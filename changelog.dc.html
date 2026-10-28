@@ -464,6 +464,18 @@ a:hover{color:var(--ss-link-hover,#21507B);}
 <script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {
   static DAYS = [
+    { date: '28. 10. 2026', entries: [
+      { title: 'Košík (drawer): varianta hned pod názvem produktu',
+        before: 'Název produktu a tlačítko Odebrat v jednom řádku, varianta až pod ním s mezerou 10 px. Řádek měl výšku tlačítka (32 px), takže mezi jednořádkovým názvem a variantou vznikala velká mezera.',
+        after: 'Název a varianta jsou ve společném bloku s mezerou 4 px, tlačítko Odebrat vpravo vedle bloku.',
+        why: 'Požadavek klienta (zbytečná mezera mezi názvem a variantou).',
+        files: 'KosikDrawer.dc.html' },
+      { title: 'Jednotná ikona košíku',
+        before: 'Hlavička a nadpis košíku: shopping-bag; tlačítka Do košíku / Ukázat košík / Zobrazit košík: shopping-cart.',
+        after: 'Všude shopping-bag (stejná jako v hlavičce). ProduktovaKarta v1 (stará verze) beze změny.',
+        why: 'Požadavek klienta.',
+        files: 'KosikDrawer, KosikPridanoModal, NakupniBox, Komponenty, Detail_Matrace 3.0, Detail_Postel 3.0, Detail_Komplet 3.0, Detail_Multi 3.0, Detail_Produkt Levita' }
+    ] },
     { date: '12. 10. 2026', entries: [
       { title: 'Kategorie: podkategorie přisazené k výpisu',
         before: 'Podkategorie (chipy + dlaždice) v samostatné sekci s meruňkovým gradientem a vlastním odsazením 48/64.',

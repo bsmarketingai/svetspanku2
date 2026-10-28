@@ -240,12 +240,14 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
             <span style="width:88px;height:88px;border-radius:8px;background:var(--ss-surface-muted,#F3EDE4);display:flex;align-items:center;justify-content:center;color:var(--ss-text-decor,#C8D0D8);overflow:hidden"><sc-if value="{{ i.hasImg }}" hint-placeholder-val="{{ false }}"><img decoding="async" src="{{ i.img }}" alt="" style="display:block;width:100%;height:100%;object-fit:{{ i.fit }}" /></sc-if><sc-if value="{{ i.noImg }}" hint-placeholder-val="{{ true }}"><dc-import name="Ikony" iconName="photo" size="22" hint-size="22px,22px"></dc-import></sc-if></span>
             <div style="display:flex;flex-direction:column;gap:10px;min-width:0">
               <div style="display:flex;align-items:flex-start;gap:12px">
-                <a href="{{ i.href }}" style="font-size:15px;font-weight:600;line-height:1.35;color:var(--ss-text-primary,#1C2229);text-decoration:none;min-width:0">{{ i.title }}</a>
+                <div style="display:flex;flex-direction:column;gap:4px;min-width:0">
+                  <a href="{{ i.href }}" style="font-size:15px;font-weight:600;line-height:1.35;color:var(--ss-text-primary,#1C2229);text-decoration:none;min-width:0">{{ i.title }}</a>
+                  <span style="font-size:13px;color:var(--ss-text-muted,#5B6874)">{{ i.variant }}</span>
+                </div>
                 <button type="button" class="ss-kd-icon ss-kd-del" style="width:32px;height:32px;margin-left:auto;flex:none" onClick="{{ i.onRemove }}" aria-label="{{ i.removeLabel }}">
                   <dc-import name="Ikony" iconName="trash" size="18" hint-size="18px,18px"></dc-import>
                 </button>
               </div>
-              <span style="font-size:13px;color:var(--ss-text-muted,#5B6874)">{{ i.variant }}</span>
               <div style="display:flex;flex-wrap:wrap;align-items:center;gap:12px">
                 <dc-import name="Kvantifikator" value="{{ i.qty }}" onChange="{{ i.onQty }}" hint-size="132px,44px"></dc-import>
                 <span style="margin-left:auto;font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:19px;white-space:nowrap">{{ i.price }}</span>
@@ -277,7 +279,7 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
 
   <sc-if value="{{ hasItems }}" hint-placeholder-val="{{ true }}">
     <div style="flex:none;padding:{{ padX }};padding-top:16px;padding-bottom:24px;border-top:1px solid var(--ss-border-subtle,#E1E6EB);display:flex;flex-direction:column;gap:10px">
-      <dc-import name="Tlacitko" label="Ukázat košík" variant="buy" size="large" href="KosikKrok1.dc.html" iconLeft="shopping-cart" fullWidth="{{ true }}" hint-size="100%,52px"></dc-import>
+      <dc-import name="Tlacitko" label="Ukázat košík" variant="buy" size="large" href="KosikKrok1.dc.html" iconLeft="shopping-bag" fullWidth="{{ true }}" hint-size="100%,52px"></dc-import>
       <dc-import name="Tlacitko" label="Pokračovat v nákupu" variant="secondary" size="large" iconLeft="arrow-left" onClick="{{ close }}" fullWidth="{{ true }}" hint-size="100%,52px"></dc-import>
     </div>
   </sc-if>
