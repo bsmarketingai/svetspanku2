@@ -4,14 +4,21 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="./support.js"></script>
+<!-- ss-head -->
+<style>
+body{margin:0}
+</style>
 </head>
 <body>
 <x-dc>
-<helmet><style>body{margin:0}
+<helmet>
+<style>
 @media (prefers-reduced-motion:reduce){svg *{animation:none!important}}
 @keyframes glow{0%,100%{opacity:.3}50%{opacity:1}}
 @keyframes lit{0%,100%{fill:#D9963E}50%{fill:#FFE6A3}}
-@keyframes halo{0%,100%{opacity:.1;transform:scale(.85)}50%{opacity:1;transform:scale(1.15)}}</style></helmet>
+@keyframes halo{0%,100%{opacity:.1;transform:scale(.85)}50%{opacity:1;transform:scale(1.15)}}
+</style>
+</helmet>
 <div style="width:100%;max-width:100%;box-sizing:border-box;background:{{ bgColor }};padding:{{ pad }}">
   <svg width="100%" viewBox="0 0 341.374 64.196" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Svět spánku" style="display:block;width:100%;height:auto;overflow:visible">
 <defs><filter id="ssA-gl" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="5"></feGaussianBlur></filter><radialGradient id="ssA-hg"><stop offset="0" stop-color="#FFD27A" stop-opacity="1"></stop><stop offset="1" stop-color="#FF9A3C" stop-opacity="0"></stop></radialGradient></defs>

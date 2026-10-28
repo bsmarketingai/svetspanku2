@@ -4,12 +4,19 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="./support.js"></script>
+<!-- ss-head -->
+<style>
+body{margin:0}
+</style>
 </head>
 <body>
 <x-dc>
-<helmet><style>body{margin:0}
+<helmet>
+<style>
 @media (prefers-reduced-motion:reduce){svg *{animation:none!important}}
-@keyframes breatheAll{0%{transform:scale(1)}40%{transform:scale(1.04)}52%{transform:scale(1.04)}100%{transform:scale(1)}}</style></helmet>
+@keyframes breatheAll{0%{transform:scale(1)}40%{transform:scale(1.04)}52%{transform:scale(1.04)}100%{transform:scale(1)}}
+</style>
+</helmet>
 <div style="width:100%;max-width:100%;box-sizing:border-box;background:{{ bgColor }};padding:{{ pad }}">
   <svg width="100%" viewBox="-8 -3 357.374 70.196" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Svět spánku" style="display:block;width:100%;height:auto;overflow:visible">
 <g style="transform-box:view-box;transform-origin:170.687px 32.098px;animation:breatheAll 5s cubic-bezier(.45,0,.4,1) infinite">
