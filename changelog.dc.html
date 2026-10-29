@@ -449,6 +449,16 @@ a:hover{color:var(--ss-link-hover,#21507B);}
 class Component extends DCLogic {
   static DAYS = [
     { date: '29. 10. 2026', entries: [
+      { title: 'Hlavička: přihlášení na mobilu nezmizí při scrollu',
+        before: 'Při scrollu s otevřeným panelem Přihlášení se hlavička schovala a panel (je uvnitř hlavičky) odjel s ní, zůstal vidět obsah pod ním.',
+        after: 'Otevřené přihlášení blokuje schování hlavičky stejně jako košík a menu; dokud je otevřené okno, hlavička se neposouvá.',
+        why: 'Klient: na mobilu modal přihlášení při scrollu zmizí.',
+        files: 'Hlavicka' },
+      { title: 'Hlavička: našeptávač na mobilu jde scrollovat',
+        before: 'Pod 820 px měl panel našeptávače jen min-height 100vh bez vlastního scrollu, obsah pod okrajem obrazovky nešel posunout.',
+        after: 'Panel má výšku do spodního okraje obrazovky (100dvh minus hlavička) a vlastní svislý scroll s overscroll-behavior: contain.',
+        why: 'Klient: na mobilu nejde scrollovat našeptávačem.',
+        files: 'Hlavicka' },
       { title: 'Mobilní menu: hierarchie úrovní',
         before: 'Level 1 Roboto 20 px, level 2 Oswald 18 px, level 3 16 px bez odsazení.',
         after: 'Level 1 condensed font Oswald 22 px (600), level 2 body font Roboto 19 px (600), level 3 Roboto 18 px odsazený o 16 px zleva.',

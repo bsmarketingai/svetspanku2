@@ -1620,7 +1620,7 @@ class Component extends DCLogic {
       const dy = y - last;
       this._lastY = y;
       if (this.state.hdMode !== 'H2') { if (this.state.hdHidden) this.setState({ hdHidden: false }); return; }
-      const busy = this.state.mobileOpen || this.state.open >= 0 || this.state.storesOpen || this.state.cartOpen || (this.state.query || '').length >= 2;
+      const busy = this.state.mobileOpen || this.state.loginOpen || this.state.open >= 0 || this.state.storesOpen || this.state.cartOpen || (this.state.query || '').length >= 2;
       const hh = this._header ? this._header.offsetHeight : 160;
       let hide = this.state.hdHidden;
       if (busy || y <= hh) hide = false;
@@ -1757,7 +1757,8 @@ class Component extends DCLogic {
       headerStyle: {
         position: 'sticky', top: 0, zIndex: 200, width: '100%',
         background: tint ? '#296093' : 'var(--ss-surface-page,#FFFFFF)', boxShadow: '0 2px 8px rgba(19,44,67,.08)',
-        transform: this.state.hdHidden ? 'translateY(calc(-100% - 12px))' : 'none',
+        // Otevřené okno (přihlášení, košík, menu) je uvnitř hlavičky: hlavička se nesmí schovat, jinak okno odjede s ní (29. 10. 2026)
+        transform: (this.state.hdHidden && !(this.state.loginOpen || this.state.cartOpen || this.state.mobileOpen)) ? 'translateY(calc(-100% - 12px))' : 'none',
         transition: 'transform .4s cubic-bezier(.22,.61,.36,1)'
       },
       cartCount,
@@ -1781,7 +1782,7 @@ class Component extends DCLogic {
       suggestOpen: open || (!!this.state.searchIntro && q.length < 2),
       // Mobil: našeptávač vyplní stránku až dolů, aby pod ním nebyl vidět e-shop
       suggestWrapStyle: narrow
-        ? { position: 'absolute', top: '100%', left: 0, right: 0, zIndex: 300, minHeight: '100vh', background: 'var(--ss-surface-page,#FFFFFF)' }
+        ? { position: 'absolute', top: '100%', left: 0, right: 0, zIndex: 300, height: 'calc(100dvh - ' + Math.max(0, Math.round(this._header ? this._header.getBoundingClientRect().bottom : (this.state.headerH || 120))) + 'px)', overflowY: 'auto', overscrollBehavior: 'contain', WebkitOverflowScrolling: 'touch', touchAction: 'pan-y', background: 'var(--ss-surface-page,#FFFFFF)' }
         : { position: 'absolute', top: '100%', left: 0, right: 0, zIndex: 300 },
       suggestProducts: this.state.searchIntro && q.length < 2 ? undefined : suggestProducts,
       suggestCategories: this.state.searchIntro && q.length < 2 ? undefined : suggestCategories,
