@@ -188,14 +188,6 @@ main>section.ss-grad-top.ss-grad-glow{background-image:radial-gradient(ellipse 5
 html[data-mode="dark"] main>section.ss-grad-top.ss-grad-glow{background-image:radial-gradient(ellipse 55% 100% at 50% 100%,rgba(251,178,85,.14) 0%,rgba(251,178,85,.05) 45%,rgba(251,178,85,0) 75%),linear-gradient(180deg,var(--ss-surface-page,#0E1F2F) 0%,var(--ss-surface-muted,#183049) 100%)!important;}
 
 
-/* Scrollbar: jen táhlo v barvách webu, bez podkladu (platí globálně) */
-*{scrollbar-width:auto;scrollbar-color:var(--ss-scrollbar-thumb,#FBB255) transparent;}
-*::-webkit-scrollbar{width:15px;height:15px;background:transparent;}
-*::-webkit-scrollbar-track{background:transparent;}
-*::-webkit-scrollbar-thumb{background:var(--ss-scrollbar-thumb,#FBB255);border-radius:999px;border:4px solid transparent;background-clip:padding-box;}
-*::-webkit-scrollbar-thumb:hover{background:var(--ss-scrollbar-thumb-hover,#F09A2C);background-clip:padding-box;}
-*::-webkit-scrollbar-corner{background:transparent;}
-html[data-mode="dark"]{--ss-scrollbar-thumb:#FBB255;--ss-scrollbar-thumb-hover:#F09A2C;}
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400..700&family=Roboto:wght@400..700&display=swap" rel="stylesheet">
 <script>try{var d=document.documentElement;if(localStorage.getItem('ss-mode')==='dark')d.setAttribute('data-mode','dark');d.setAttribute('data-logo',localStorage.getItem('ss-logo')||'a');d.setAttribute('data-font-h','base');d.setAttribute('data-font-b','base');}catch(e){}</script>
@@ -207,9 +199,9 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
 <x-dc>
 <helmet>
 <style>
-.ss-faq-q{display:flex;align-items:center;justify-content:space-between;gap:16px;width:100%;text-align:left;padding:18px 0;border:0;border-bottom:1px solid var(--ss-border-subtle,#E1E6EB);background:none;cursor:pointer;font-family:inherit;}
+.ss-faq-q{display:flex;align-items:center;justify-content:space-between;gap:16px;width:100%;text-align:left;padding:18px 0;border:0;background:none;cursor:pointer;font-family:inherit;}
 .ss-faq-q:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
-@media (hover:hover) and (pointer:fine){.ss-faq-q:hover .ss-faq-t{color:var(--ss-hover-text,#21507B);}.ss-faq-q:hover .ss-faq-i{background:var(--ss-hover-bg,#F0F5FA);color:var(--ss-hover-text,#21507B);}}
+@media (hover:hover) and (pointer:fine){.ss-faq-q:hover .ss-faq-t{color:var(--ss-hover-text,#21507B);}.ss-faq-q:hover .ss-faq-i{background:var(--ss-action-tonal-hover-bg,#FDDCAA);color:var(--ss-action-tonal-hover-fg,#7A4708);}}
 .ss-faq-i{transition:background-color .12s cubic-bezier(.22,.61,.36,1),color .12s cubic-bezier(.22,.61,.36,1);}
 .ss-faq-t{transition:color .12s cubic-bezier(.22,.61,.36,1);}
 </style>
@@ -218,7 +210,7 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
   <h2 id="{{ hId }}" style="{{ hStyle }}">{{ heading }}</h2>
   <div style="display:flex;flex-direction:column;border-top:1px solid var(--ss-border-subtle,#E1E6EB)">
     <sc-for list="{{ items }}" as="q" hint-placeholder-count="3">
-      <div>
+      <div style="border-bottom:1px solid var(--ss-border-subtle,#E1E6EB)">
         <h3 class="ss-plain" style="margin:0">
           <button type="button" class="ss-faq-q" onClick="{{ q.onToggle }}" aria-expanded="{{ q.expanded }}" aria-controls="{{ q.pid }}">
             <span class="ss-faq-t" style="font-size:16px;font-weight:600;line-height:1.4;color:var(--ss-text-primary,#1C2229)">{{ q.question }}</span>
@@ -226,7 +218,7 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
           </button>
         </h3>
         <sc-if value="{{ q.open }}" hint-placeholder-val="{{ false }}">
-          <p id="{{ q.pid }}" style="margin:0;padding:16px 0 20px;font-size:15px;line-height:1.7;color:var(--ss-text-secondary,#3D4750);max-width:70ch;text-wrap:pretty">{{ q.answer }}</p>
+          <p id="{{ q.pid }}" style="margin:0;padding:0 0 20px;font-size:15px;line-height:1.7;color:var(--ss-text-secondary,#3D4750);max-width:70ch;text-wrap:pretty">{{ q.answer }}</p>
         </sc-if>
       </div>
     </sc-for>
@@ -257,7 +249,7 @@ class Component extends DCLogic {
         open: open === k,
         expanded: open === k ? 'true' : 'false',
         chevStyle: { display: 'flex', transform: open === k ? 'rotate(180deg)' : 'none', transition: 'transform .15s cubic-bezier(.22,.61,.36,1)' },
-        iconStyle: { display: 'flex', alignItems: 'center', justifyContent: 'center', width: '44px', height: '44px', flex: 'none', borderRadius: '6px', background: open === k ? 'var(--ss-surface-hover,#F0F5FA)' : 'transparent', color: 'var(--ss-link-hover,#21507B)' },
+        iconStyle: { display: 'flex', alignItems: 'center', justifyContent: 'center', width: '44px', height: '44px', flex: 'none', borderRadius: '6px', background: open === k ? 'var(--ss-action-tonal-hover-bg,#FDDCAA)' : 'var(--ss-action-tonal-bg,#FEEDD4)', color: 'var(--ss-action-tonal-fg,#7A4708)' },
         onToggle: () => this.setState(s => ({ open: s.open === k ? -1 : k }))
       })),
       hasMore: !!p.moreLabel, moreText: p.moreText || '', moreLabel: p.moreLabel || '', moreHref: p.moreHref || '#'

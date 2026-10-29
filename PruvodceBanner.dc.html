@@ -188,14 +188,6 @@ main>section.ss-grad-top.ss-grad-glow{background-image:radial-gradient(ellipse 5
 html[data-mode="dark"] main>section.ss-grad-top.ss-grad-glow{background-image:radial-gradient(ellipse 55% 100% at 50% 100%,rgba(251,178,85,.14) 0%,rgba(251,178,85,.05) 45%,rgba(251,178,85,0) 75%),linear-gradient(180deg,var(--ss-surface-page,#0E1F2F) 0%,var(--ss-surface-muted,#183049) 100%)!important;}
 
 
-/* Scrollbar: jen táhlo v barvách webu, bez podkladu (platí globálně) */
-*{scrollbar-width:auto;scrollbar-color:var(--ss-scrollbar-thumb,#FBB255) transparent;}
-*::-webkit-scrollbar{width:15px;height:15px;background:transparent;}
-*::-webkit-scrollbar-track{background:transparent;}
-*::-webkit-scrollbar-thumb{background:var(--ss-scrollbar-thumb,#FBB255);border-radius:999px;border:4px solid transparent;background-clip:padding-box;}
-*::-webkit-scrollbar-thumb:hover{background:var(--ss-scrollbar-thumb-hover,#F09A2C);background-clip:padding-box;}
-*::-webkit-scrollbar-corner{background:transparent;}
-html[data-mode="dark"]{--ss-scrollbar-thumb:#FBB255;--ss-scrollbar-thumb-hover:#F09A2C;}
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400..700&family=Roboto:wght@400..700&display=swap" rel="stylesheet">
 <script>try{var d=document.documentElement;if(localStorage.getItem('ss-mode')==='dark')d.setAttribute('data-mode','dark');d.setAttribute('data-logo',localStorage.getItem('ss-logo')||'a');d.setAttribute('data-font-h','base');d.setAttribute('data-font-b','base');}catch(e){}</script>
@@ -214,11 +206,11 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
 </helmet>
 <div class="ss-elev ss-pb" style="{{ boxStyle }}">
   <span aria-hidden="true" style="position:absolute;inset:0;border-radius:inherit;overflow:hidden;pointer-events:none"><span class="ss-pb-bg" style="{{ bgStyle }}"></span><span style="{{ veilStyle }}"></span></span>
-  <img decoding="async" src="visacka-svetspanku.webp" alt="" aria-hidden="true" style="{{ tagStyle }}" />
+  <img decoding="async" src="/_blob/599f824abb2eafbe2a46219892a0c14e" alt="" aria-hidden="true" style="{{ tagStyle }}" />
   <div style="position:relative;display:flex;flex-direction:column;gap:12px;min-width:0">
     <h2 style="{{ hStyle }}">Pomůžeme vám najít tu správnou matraci</h2>
-    <p style="margin:0;max-width:60ch;font-size:15px;line-height:1.6;color:#3D4750">Odpovíte na osm otázek o váze, poloze spánku a rozpočtu. Doporučíme tři modely a řekneme, proč zrovna je.</p>
-    <div style="margin-top:4px"><dc-import name="Tlacitko" label="Najít dokonalou matraci" variant="buy" size="large" href="#pruvodce" iconRight="arrow-right" hint-size="260px,52px"></dc-import></div>
+    <p style="margin:0;max-width:60ch;font-size:15px;line-height:1.6;color:#3D4750">Odpovíte na sedm krátkých otázek o hmotnosti, poloze spánku a roštu. Doporučíme tuhost, typ jádra a konkrétní matrace a řekneme, proč zrovna ty.</p>
+    <div style="margin-top:4px"><dc-import name="Tlacitko" label="Najít dokonalou matraci" variant="buy" size="large" href="PruvodceMatrace.dc.html" iconRight="arrow-right" hint-size="260px,52px"></dc-import></div>
   </div>
 </div>
 </x-dc>
@@ -231,7 +223,7 @@ class Component extends DCLogic {
     const w = this.state.width, narrow = w < 820;
     return {
       boxStyle: { background: '#F2F2F0', borderRadius: '12px', padding: narrow ? '24px' : '40px', display: 'grid', gridTemplateColumns: narrow ? 'minmax(0,1fr)' : 'minmax(0,1.2fr) minmax(0,1fr)', gap: '24px', alignItems: 'center', minHeight: '320px', boxSizing: 'border-box', position: 'relative', fontFamily: 'Roboto,Helvetica,Arial,sans-serif' },
-      bgStyle: { position: 'absolute', inset: 0, background: 'url(pruvodce-matrace-povrch.webp) ' + (narrow ? '70% center' : 'right center') + ' / cover no-repeat' },
+      bgStyle: { position: 'absolute', inset: 0, background: 'url(/_blob/495987b626d0ed8642df24b67f4055ed) ' + (narrow ? '70% center' : 'right center') + ' / cover no-repeat' },
       veilStyle: { position: 'absolute', inset: 0, background: narrow ? 'rgba(255,255,255,.82)' : 'linear-gradient(90deg,rgba(255,255,255,.94) 0%,rgba(255,255,255,.8) 40%,rgba(255,255,255,0) 70%)' },
       tagStyle: { position: 'absolute', top: '-8px', right: narrow ? '16px' : '64px', width: narrow ? '90px' : '140px', height: 'auto', pointerEvents: 'none', filter: 'drop-shadow(0 4px 6px rgba(19,44,67,.18))' },
       hStyle: { margin: 0, fontSize: narrow ? '26px' : '34px', lineHeight: 1.15, color: '#1C2229' }

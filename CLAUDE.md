@@ -50,6 +50,12 @@ Motion: 60 ms stisk · 120 ms barvy · 150 ms stíny · 400 ms panely; `cubic-be
 Rozměry: `size.control` 44, compact 36, large 52, `size.row` 48. Minimální klikací plocha 24 × 24, zvětšuje se `::after`, ne paddingem.
 Scrim modálů a drawerů: **vždy třída `.ss-scrim`** z `tmavy-rezim.css` (blur 16 px, diagonální závoj, teplé bodové světlo z levého horního rohu), nikdy vlastní pozadí overlaye. Výjimka: lightbox galerie (plné tmavé pozadí pro fotky).
 Scrollbar: globálně z `tmavy-rezim.css` — systémová šířka (15 px), průhledný podklad, jen táhlo meruňkové `action.buy` (hover apricot-500), pill, stejné v obou režimech; neřeší se per komponenta.
+Grain (zrno): **plošný grain zrušen (28. 10. 2026)** — ztmavoval podklady. Sekce, gradienty `.ss-grad-top`/`.ss-grad-glow`, plné barevné plochy, hlavička a patička jsou bez zrna, jako dřív. Zrno mají jen pojmenované podklady **bg m 1 / bg b 1 / bg m 2** (vlastní jemný šum v jejich třídách). Grain nepřidávat jinam bez výslovného zadání.
+**Pojmenované podklady sekcí** (když uživatel napíše název, použije se přesně tento podklad):
+- **„bg m 1“** = třída `.ss-bg-m1`: bílá (`surface.page`) + jemné zrno krytí .07 + meruňková záře zespodu `radial-gradient(ellipse 80% 55% at 50% 100%, apricot .16 → .06 → 0 80%)`. Vzor: Ověřené recenze a Příběh Světa spánku na homepage (28. 10. 2026).
+- **„bg m 2“** = třída `.ss-bg-m2`: jako bg m 1, ale barevnější a malinko tmavší — přechod bílá → teplá `#FDF5EA` shora dolů, zrno krytí .09, meruňková záře zespodu větší a silnější `radial-gradient(ellipse 90% 70% at 50% 100%, apricot .30 → .12 → 0 85%)`. Vzor: sekce pod hero na homepage (28. 10. 2026).
+- **„bg b 1“** = třída `.ss-bg-b1`: stejné jako bg m 1, ale v modrém — bílá + jemné modré zrno krytí .07 + modrá záře zespodu `radial-gradient(ellipse 80% 55% at 50% 100%, #296093 .12 → .05 → 0 80%)`. Vzor: Newsletter na homepage (28. 10. 2026).
+- **„meruňkové podsvícení“** = `.ss-grad-top.ss-grad-glow` (přechod surface.page → surface.muted + meruňková záře od spodní hrany). **„gradient shora“** = jen `.ss-grad-top`.
 Z-index registr: 0 base · 100 sticky lišta · 200 hlavička · 300 našeptávač a mega menu · 400 overlay · 410 drawer · 500 modál · 600 toast · 900 DebugBar · 950 PrezentacniLista.
 
 ## Layout a breakpointy
@@ -67,6 +73,8 @@ html,body{margin:0!important;padding:0!important;}
 ```
 
 ## Tmavý režim
+
+**Zrušen (29. 10. 2026)** — přepínač v `PrezentacniLista` odebrán, web je jen světlý. Tmavé hodnoty v CSS zůstávají jako nepoužívaný kód; nové věci už je neřeší.
 
 Barvy v komponentách se píšou `var(--ss-token, #světláHodnota)` — světlý režim je fallback, tmavé hodnoty jsou jen v `tmavy-rezim.css` pod `html[data-mode="dark"]`. Každý soubor má v helmetu `<link href="./tmavy-rezim.css">` a skript, který obnoví uložený režim. Barvy, které se v tmavém nemění (primární tlačítko, meruňková, tmavé pásy hlavičky a patičky, bílý text na brandu), zůstávají literály. Tabulka světlý → tmavý v `DesignSystem.dc.html` § 2. Nová barva = doplnit proměnnou do CSS i tabulky.
 
@@ -104,6 +112,8 @@ Hover se nezjišťuje šířkou okna, ale `(hover:hover) and (pointer:fine)`. Fo
 - Právě jeden `<h1>`, landmarky `header/main/footer/nav`, nadpisy bez přeskočení úrovní. Skrytý nadpis vizuálně, nikdy `display:none`.
 - Význam nikdy jen barvou (skladovost = tečka + text).
 - Overlaye: `role="dialog"` + `aria-modal`, Escape, klik mimo, focus dovnitř a zpět, focus trap, zámek scrollu. Listenery se odregistrují při zavření i odmountování.
+- **Každé okno = `Overlay` + obsah** (od 28. 10. 2026, audit B1). Rám, hlavičku (ikona 24 neutrální + h2 Oswald 26/21 + zavírací tlačítko 44 „Zavřít …“), patičku s akcemi a celé chování drží jen `Overlay.dc.html`; obsah je samostatná komponenta `*Obsah.dc.html` s rozhraním `data` + `onEvent(typ, a, b)` (`onEvent('close')` zavře okno). Nový obsah = nový řádek v registru Overlay (`sc-if` + statický `dc-import`; dynamický název importu runtime neumí). Varianty: `drawer` 460 zprava (pod 550 px přes celou šířku), `modal` `sm` 420 / `md` 560 / `lg` 880 / `xl` 1200, zaoblení 12. **Na mobilu (pod 550 px) jsou větší okna přes celou obrazovku**: drawery a modaly `md`/`lg`/`xl` (i okno Přidáno do košíku) bez zaoblení na celý displej; jen malý modal `sm` zůstává jako karta uprostřed. Vlastní scrim/dialog/trap/Escape do stránek ani komponent nepsat. Okno Přidáno do košíku: `KosikPridanoModal` je tenký obal (stejné API pro stránky) = Overlay `xl` + `KosikPridanoObsah` (audit B1.2, 28. 10. 2026); tlačítka Zobrazit košík / Zpět do obchodu jsou od 550 px v obsahu hned pod dopravou zdarma, pod 550 px ve sticky patičce okna (Overlay `footerMobileOnly`) — přání klienta. **Příkaz „vrať B1.2“** = zkopírovat obsah `KosikPridanoModal_v1.dc.html` zpět do `KosikPridanoModal.dc.html` (stránky se nemění). Okna Tuhost (`TuhostModal` = Overlay `lg` + `TuhostObsah`, ikona adjustments) a Poradna (`PoradnaModal` = Overlay `md` + `PoradnaObsah`, ikona help-circle) — audit B1.3; tlačítka od 550 px v obsahu, pod 550 px sticky patička. **Příkaz „vrať B1.3“** = obsah `TuhostModal_v1.dc.html` a `PoradnaModal_v1.dc.html` zkopírovat zpět do `TuhostModal.dc.html` a `PoradnaModal.dc.html`. Mapa ikon: košík shopping-bag, přihlášení user, menu menu-2, přidáno circle-check (zelená, jediná výjimka), tuhost adjustments, poradna help-circle, varianty color-swatch, filtry filter, vlastní rozměr rozmer-postele. Panely Výběr varianty (`VariantaDrawer` = Overlay drawer + `VariantaObsah`, ikona color-swatch, patička Hotovo) a Filtry (`FiltrDrawer` = Overlay drawer + `FiltrObsah`, ikona filter, patička Smazat vše + Zobrazit N produktů vedle sebe přes `footerRow`) — audit B1.4; u drawerů je patička sticky na všech šířkách. **Příkaz „vrať B1.4“** = obsah `VariantaDrawer_v1.dc.html` a `FiltrDrawer_v1.dc.html` zkopírovat zpět do `VariantaDrawer.dc.html` a `FiltrDrawer.dc.html`. Informační bublina `InfoPopover` = spouštěč (otazník) + Overlay `variant="popover"` + `InfoObsah` (audit B1.6): nemodální, bez scrimu, zámku scrollu a trapu, kompaktní hlavička (nadpis 17 px + zavření 44), Escape zavře a vrátí focus na otazník, klik mimo zavře, zarovnání ke spouštěči přes `getAnchor`. **Příkaz „vrať B1.6“** = obsah `InfoPopover_v1.dc.html` zkopírovat zpět do `InfoPopover.dc.html`. Okno Vlastní rozměr (inline blok v Detail_*) se nepoužívá (čip otevírá formulář ve stránce) — B1.5 přeskočeno, blok zůstává beze změny.
+- **Ovládání karuselů = `KaruselNav`** (audit B2, 28. 10. 2026): šipky (`layout` below / peek / overlay, ikony arrow / chevron), stav začátek/konec (disabled, peek se na okraji schová) a posun (`step` card / px / snap) jsou jen v této komponentě. Pás karet zůstává v komponentě nebo stránce a KaruselNav ho dostane přes `getTrack`. Používají ho SouvisejiciProdukty (V1/V2/V3), homepage Prodejny P2, Ověřené recenze a Magazín M2. Nové karusely nepsat s vlastními šipkami ani scroll logikou. (Magazín M1 je stránkování, ne karusel; srovnávací tabulka v Porovnání má vlastní posuv tabulky.)
 
 ## Obsahová pravidla
 
@@ -121,7 +131,7 @@ První kolo stránek: **Homepage**.
 
 ## Rozhodnuto — nevracet se k tomu
 
-- **Výchozí režim je světlý** (rozhodnuto 6. 10. 2026, dříve tmavý). Tmavý se zapíná jen v `PrezentacniLista` (uloženo v `localStorage` `ss-mode`), podklad z tmavé modré značky, meruňková beze změny.
+- **Web je jen světlý** (29. 10. 2026). Tmavý režim zrušen, přepínač v `PrezentacniLista` odebrán; uložené `ss-mode=dark` lišta při načtení vrátí na světlý.
 - **Jedna vizuální linka**, ne varianty vzhledu k rozhodnutí (klient zvolil „jedna linka, jeď“).
 - **Konverzní barva je meruňková** (`action.buy` apricot-400, vždy tmavý text). Zelená = **success** (skladem, pozitivní oznámení), červená = **error** (nedostupné, negativní oznámení, odebrat). Primární modrá beze změny.
 - **Bez přepínače měny a jazyka** — jen CZK a čeština.
@@ -167,7 +177,7 @@ Data (plain JS): `menu.js` (struktura menu), `produkty.js`, `prodejny.js`, `kosi
 
 ### Stav v prototypu (localStorage, ovládá PrezentacniLista)
 
-`ss-mode` (light/dark), `ss-logo` (varianta loga a–d), `ss-hdmode` (sticky hlavička H1/H2, **výchozí H2** od 9. 10. 2026), `ss-cmp` (produkty v porovnání, událost `ss-cmp`). Hlavička vysílá `ss-hdhidden` při schování (H2). LED stav `state.led` → prop `ledMode`.
+`ss-mode` (zrušeno — lišta ho přepíše na light), `ss-logo` (varianta loga a–d), `ss-hdmode` (sticky hlavička H1/H2, **výchozí H2** od 9. 10. 2026), `ss-cmp` (produkty v porovnání, událost `ss-cmp`). Hlavička vysílá `ss-hdhidden` při schování (H2). LED stav `state.led` → prop `ledMode`.
 
 ### Rozpracováno — otevřené body
 

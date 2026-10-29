@@ -190,14 +190,6 @@ main>section.ss-grad-top.ss-grad-glow{background-image:radial-gradient(ellipse 5
 html[data-mode="dark"] main>section.ss-grad-top.ss-grad-glow{background-image:radial-gradient(ellipse 55% 100% at 50% 100%,rgba(251,178,85,.14) 0%,rgba(251,178,85,.05) 45%,rgba(251,178,85,0) 75%),linear-gradient(180deg,var(--ss-surface-page,#0E1F2F) 0%,var(--ss-surface-muted,#183049) 100%)!important;}
 
 
-/* Scrollbar: jen táhlo v barvách webu, bez podkladu (platí globálně) */
-*{scrollbar-width:auto;scrollbar-color:var(--ss-scrollbar-thumb,#FBB255) transparent;}
-*::-webkit-scrollbar{width:15px;height:15px;background:transparent;}
-*::-webkit-scrollbar-track{background:transparent;}
-*::-webkit-scrollbar-thumb{background:var(--ss-scrollbar-thumb,#FBB255);border-radius:999px;border:4px solid transparent;background-clip:padding-box;}
-*::-webkit-scrollbar-thumb:hover{background:var(--ss-scrollbar-thumb-hover,#F09A2C);background-clip:padding-box;}
-*::-webkit-scrollbar-corner{background:transparent;}
-html[data-mode="dark"]{--ss-scrollbar-thumb:#FBB255;--ss-scrollbar-thumb-hover:#F09A2C;}
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400..700&family=Roboto:wght@400..700&display=swap" rel="stylesheet">
 <script>try{var d=document.documentElement;if(localStorage.getItem('ss-mode')==='dark')d.setAttribute('data-mode','dark');d.setAttribute('data-logo',localStorage.getItem('ss-logo')||'a');d.setAttribute('data-font-h','base');d.setAttribute('data-font-b','base');d.setAttribute('data-bg',localStorage.getItem('ss-bg')||'on');}catch(e){}</script>
@@ -213,7 +205,7 @@ a:hover{color:var(--ss-hover-text,#21507B);}
 <body>
 <x-dc>
 <helmet>
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Sans+Condensed:wght@400;500;600;700&display=swap" rel="stylesheet"><style data-ss="tmavy-rezim">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&amp;family=IBM+Plex+Sans+Condensed:wght@400;500;600;700&amp;display=swap" rel="stylesheet"><style data-ss="tmavy-rezim">
 /* Tmavý režim — přepíná html[data-mode="dark"]. Světlý režim = fallback hodnoty v var(). */
 /* Hover ve světlém režimu modrý (6. 10. 2026), v tmavém meruňkový */
 html:not([data-mode="dark"]){--ss-hover-text:#21507B;--ss-hover-bg:#F0F5FA;
@@ -396,19 +388,11 @@ main>section.ss-grad-top.ss-grad-glow{background-image:radial-gradient(ellipse 5
 html[data-mode="dark"] main>section.ss-grad-top.ss-grad-glow{background-image:radial-gradient(ellipse 55% 100% at 50% 100%,rgba(251,178,85,.14) 0%,rgba(251,178,85,.05) 45%,rgba(251,178,85,0) 75%),linear-gradient(180deg,var(--ss-surface-page,#0E1F2F) 0%,var(--ss-surface-muted,#183049) 100%)!important;}
 
 
-/* Scrollbar: jen táhlo v barvách webu, bez podkladu (platí globálně) */
-*{scrollbar-width:auto;scrollbar-color:var(--ss-scrollbar-thumb,#FBB255) transparent;}
-*::-webkit-scrollbar{width:15px;height:15px;background:transparent;}
-*::-webkit-scrollbar-track{background:transparent;}
-*::-webkit-scrollbar-thumb{background:var(--ss-scrollbar-thumb,#FBB255);border-radius:999px;border:4px solid transparent;background-clip:padding-box;}
-*::-webkit-scrollbar-thumb:hover{background:var(--ss-scrollbar-thumb-hover,#F09A2C);background-clip:padding-box;}
-*::-webkit-scrollbar-corner{background:transparent;}
-html[data-mode="dark"]{--ss-scrollbar-thumb:#FBB255;--ss-scrollbar-thumb-hover:#F09A2C;}
 </style>
 <script>try{var d=document.documentElement;if(localStorage.getItem('ss-mode')==='dark')d.setAttribute('data-mode','dark');d.setAttribute('data-logo',localStorage.getItem('ss-logo')||'a');d.setAttribute('data-font-h','base');d.setAttribute('data-font-b','base');d.setAttribute('data-bg',localStorage.getItem('ss-bg')||'on');}catch(e){}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400..700&family=Roboto:wght@400..700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400..700&amp;family=Roboto:wght@400..700&amp;display=swap" rel="stylesheet">
 <style>
 h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-family:Oswald,Helvetica,Arial,sans-serif!important;font-weight:600!important;text-transform:none;letter-spacing:0;}
 html,body{margin:0!important;padding:0!important;}
@@ -487,24 +471,12 @@ a:hover{color:var(--ss-hover-text,#21507B);}
       </section>
     </sc-if>
 
-    <section class="ss-grad-top ss-grad-glow" style="width:100%;background-color:var(--ss-surface-page,#FFFFFF)">
-      <div style="{{ innerNews }}">
-        <dc-import name="Newsletter" narrow="{{ narrowNews }}" hint-size="100%,160px"></dc-import>
-      </div>
-    </section>
+    <dc-import name="Newsletter" bg="white" hint-size="100%,520px"></dc-import>
 
-    <section style="width:100%;background:#0B1F33">
-      <div style="{{ innerContact }}">
-        <dc-import name="KontaktniLista" ledMode="{{ ledMode }}" hint-size="100%,96px"></dc-import>
-      </div>
-    </section>
   </main>
 
-  <footer style="width:100%;background:var(--ss-surface-subtle,#FAF5EF);border-top:1px solid var(--ss-border-subtle,#E1E6EB)">
-    <div style="{{ innerFoot }}">
-      <span style="font-size:13px;color:var(--ss-text-muted,#5B6874);text-align:center">Copyright © 2026 LUCKÉ CZ GROUP s.r.o. — Všechna práva vyhrazena</span>
-    </div>
-  </footer>
+  <!-- Patička jako na homepage (29. 10. 2026): místo pruhu KontaktniLista a copyrightu -->
+  <dc-import name="Paticka" ledMode="{{ ledMode }}" hint-size="100%,700px" style="width: 100%"></dc-import>
 </div>
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:2400},&quot;stav&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;prevod&quot;,&quot;options&quot;:[&quot;prevod&quot;,&quot;zaplaceno&quot;,&quot;nezaplaceno&quot;,&quot;dobirka&quot;,&quot;osobni&quot;],&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Stav objednávky&quot;},&quot;typ&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;skladem&quot;,&quot;options&quot;:[&quot;skladem&quot;,&quot;naObjednavku&quot;],&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Stav objednávky&quot;},&quot;prihlasen&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Stav objednávky&quot;}}">
@@ -525,7 +497,7 @@ class Component extends DCLogic {
     const pad = narrow ? '16px' : '32px';
     const box = (t, b) => ({ maxWidth: '1560px', margin: '0 auto', boxSizing: 'border-box', padding: t + ' ' + pad + ' ' + b });
     const email = 'jana.novakova@seznam.cz';
-    const goods = [{ title: 'Manželská postel SANTE 45 dvoulůžko', variant: '200 × 180 cm · olej Teak · jádrový buk', qty: 2, unit: 19990, img: 'produkt-sante-45.jpg' }];
+    const goods = [{ title: 'Manželská postel SANTE 45 dvoulůžko', variant: '200 × 180 cm · olej Teak · jádrový buk', qty: 2, unit: 19990, img: '/_blob/6721a0d378d224249b73f0d946656a32' }];
     const delFee = osobni ? 0 : 1500;
     const total = goods.reduce((s, g) => s + g.unit * g.qty, 0) + delFee;
     const platba = { prevod: 'Okamžitý bankovní převod', zaplaceno: 'Platba kartou online', nezaplaceno: 'Platba kartou online', dobirka: 'Dobírka', osobni: 'Na prodejně' }[stav];
@@ -546,7 +518,7 @@ class Component extends DCLogic {
     ] : [
       { icon: 'duo-package', title: 'Příprava expedice', text: waitPay ? 'Po připsání platby objednávku pečlivě zabalíme,' : 'Objednávku pečlivě zabalíme', strong: waitPay ? 'nejdříve dnes.' : 'ještě dnes.' },
       stav === 'dobirka'
-        ? { icon: 'usp-doprava', title: 'Expedice', logo: 'logo-ppl.svg', logoAlt: 'PPL', text: 'Předáme ji dopravci PPL', strong: 'v úterý 13. 10.' }
+        ? { icon: 'usp-doprava', title: 'Expedice', logo: '/_blob/716b3b5040a1b6246fb9f795e3e50ffe', logoAlt: 'PPL', text: 'Předáme ji dopravci PPL', strong: 'v úterý 13. 10.' }
         : { icon: 'usp-doprava', title: 'Expedice', text: 'Naloží ji náš řidič', strong: 'v úterý 13. 10.' },
       { icon: 'duo-calendar', title: 'Doručíme', text: 'Můžete rozbalovat', strong: 've čtvrtek 15. 10.' }
     ];

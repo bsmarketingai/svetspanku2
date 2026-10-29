@@ -190,14 +190,6 @@ main>section.ss-grad-top.ss-grad-glow{background-image:radial-gradient(ellipse 5
 html[data-mode="dark"] main>section.ss-grad-top.ss-grad-glow{background-image:radial-gradient(ellipse 55% 100% at 50% 100%,rgba(251,178,85,.14) 0%,rgba(251,178,85,.05) 45%,rgba(251,178,85,0) 75%),linear-gradient(180deg,var(--ss-surface-page,#0E1F2F) 0%,var(--ss-surface-muted,#183049) 100%)!important;}
 
 
-/* Scrollbar: jen táhlo v barvách webu, bez podkladu (platí globálně) */
-*{scrollbar-width:auto;scrollbar-color:var(--ss-scrollbar-thumb,#FBB255) transparent;}
-*::-webkit-scrollbar{width:15px;height:15px;background:transparent;}
-*::-webkit-scrollbar-track{background:transparent;}
-*::-webkit-scrollbar-thumb{background:var(--ss-scrollbar-thumb,#FBB255);border-radius:999px;border:4px solid transparent;background-clip:padding-box;}
-*::-webkit-scrollbar-thumb:hover{background:var(--ss-scrollbar-thumb-hover,#F09A2C);background-clip:padding-box;}
-*::-webkit-scrollbar-corner{background:transparent;}
-html[data-mode="dark"]{--ss-scrollbar-thumb:#FBB255;--ss-scrollbar-thumb-hover:#F09A2C;}
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400..700&family=Roboto:wght@400..700&display=swap" rel="stylesheet">
 <script>try{var d=document.documentElement;if(localStorage.getItem('ss-mode')==='dark')d.setAttribute('data-mode','dark');d.setAttribute('data-logo',localStorage.getItem('ss-logo')||'a');d.setAttribute('data-font-h','base');d.setAttribute('data-font-b','base');d.setAttribute('data-bg',localStorage.getItem('ss-bg')||'on');}catch(e){}</script>
@@ -396,14 +388,6 @@ main>section.ss-grad-top.ss-grad-glow{background-image:radial-gradient(ellipse 5
 html[data-mode="dark"] main>section.ss-grad-top.ss-grad-glow{background-image:radial-gradient(ellipse 55% 100% at 50% 100%,rgba(251,178,85,.14) 0%,rgba(251,178,85,.05) 45%,rgba(251,178,85,0) 75%),linear-gradient(180deg,var(--ss-surface-page,#0E1F2F) 0%,var(--ss-surface-muted,#183049) 100%)!important;}
 
 
-/* Scrollbar: jen táhlo v barvách webu, bez podkladu (platí globálně) */
-*{scrollbar-width:auto;scrollbar-color:var(--ss-scrollbar-thumb,#FBB255) transparent;}
-*::-webkit-scrollbar{width:15px;height:15px;background:transparent;}
-*::-webkit-scrollbar-track{background:transparent;}
-*::-webkit-scrollbar-thumb{background:var(--ss-scrollbar-thumb,#FBB255);border-radius:999px;border:4px solid transparent;background-clip:padding-box;}
-*::-webkit-scrollbar-thumb:hover{background:var(--ss-scrollbar-thumb-hover,#F09A2C);background-clip:padding-box;}
-*::-webkit-scrollbar-corner{background:transparent;}
-html[data-mode="dark"]{--ss-scrollbar-thumb:#FBB255;--ss-scrollbar-thumb-hover:#F09A2C;}
 </style>
 <script>try{var d=document.documentElement;if(localStorage.getItem('ss-mode')==='dark')d.setAttribute('data-mode','dark');d.setAttribute('data-logo',localStorage.getItem('ss-logo')||'a');d.setAttribute('data-font-h','base');d.setAttribute('data-font-b','base');d.setAttribute('data-bg',localStorage.getItem('ss-bg')||'on');}catch(e){}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -423,11 +407,11 @@ a:hover{color:var(--ss-hover-text,#21507B);}
 </style>
 </helmet>
 <div style="width:100%;background:var(--ss-surface-page,#FFFFFF);font-family:Roboto,Helvetica,Arial,sans-serif;color:var(--ss-text-primary,#1C2229)">
-  <dc-import name="Hlavicka" style="position:sticky;top:0;z-index:200" ledMode="{{ ledMode }}" hint-size="100%,180px"></dc-import>
+  <!-- Uzavřená pokladna (29. 10. 2026): zjednodušená hlavička s krokovníkem místo plné hlavičky -->
+  <dc-import name="HlavickaPokladna" style="position:sticky;top:0;z-index:200" active="{{ 3 }}" ledMode="{{ ledMode }}" hint-size="100%,160px"></dc-import>
   <dc-import name="PrezentacniLista" items="{{ presItems }}" onToggle="{{ onPresToggle }}" hint-size="320px,52px"></dc-import>
 
   <main>
-    <dc-import name="KrokyObjednavky" active="{{ 3 }}" hint-size="100%,80px"></dc-import>
     <h1 style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0">Dodací údaje</h1>
 
     <section style="width:100%">
@@ -530,8 +514,8 @@ class Component extends DCLogic {
     const narrow = w < 820, wide = w >= 1000;
     const pad = narrow ? '16px' : '32px';
     const goods = [
-      { title: 'Manželská postel SANTE 45 dvoulůžko', variant: '200 × 180 cm · olej Teak · jádrový buk', qty: 2, unit: 19990, img: 'produkt-sante-45.jpg' },
-      { title: 'Matrace Spring Variant 22 cm', variant: '180 × 200 cm · tuhost H3', qty: 1, unit: 7590, img: 'produkt-matrace-spring-variant-karta.webp' }
+      { title: 'Manželská postel SANTE 45 dvoulůžko', variant: '200 × 180 cm · olej Teak · jádrový buk', qty: 2, unit: 19990, img: '/_blob/6721a0d378d224249b73f0d946656a32' },
+      { title: 'Matrace Spring Variant 22 cm', variant: '180 × 200 cm · tuhost H3', qty: 1, unit: 7590, img: '/_blob/66ef2119f31d8262ba38ce4bea618a8e' }
     ];
     const delFee = 1500;
     const total = goods.reduce((s, g) => s + g.unit * g.qty, 0) + delFee;

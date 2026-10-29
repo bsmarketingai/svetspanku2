@@ -188,14 +188,6 @@ main>section.ss-grad-top.ss-grad-glow{background-image:radial-gradient(ellipse 5
 html[data-mode="dark"] main>section.ss-grad-top.ss-grad-glow{background-image:radial-gradient(ellipse 55% 100% at 50% 100%,rgba(251,178,85,.14) 0%,rgba(251,178,85,.05) 45%,rgba(251,178,85,0) 75%),linear-gradient(180deg,var(--ss-surface-page,#0E1F2F) 0%,var(--ss-surface-muted,#183049) 100%)!important;}
 
 
-/* Scrollbar: jen táhlo v barvách webu, bez podkladu (platí globálně) */
-*{scrollbar-width:auto;scrollbar-color:var(--ss-scrollbar-thumb,#FBB255) transparent;}
-*::-webkit-scrollbar{width:15px;height:15px;background:transparent;}
-*::-webkit-scrollbar-track{background:transparent;}
-*::-webkit-scrollbar-thumb{background:var(--ss-scrollbar-thumb,#FBB255);border-radius:999px;border:4px solid transparent;background-clip:padding-box;}
-*::-webkit-scrollbar-thumb:hover{background:var(--ss-scrollbar-thumb-hover,#F09A2C);background-clip:padding-box;}
-*::-webkit-scrollbar-corner{background:transparent;}
-html[data-mode="dark"]{--ss-scrollbar-thumb:#FBB255;--ss-scrollbar-thumb-hover:#F09A2C;}
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400..700&family=Roboto:wght@400..700&display=swap" rel="stylesheet">
 <script>try{var d=document.documentElement;if(localStorage.getItem('ss-mode')==='dark')d.setAttribute('data-mode','dark');d.setAttribute('data-logo',localStorage.getItem('ss-logo')||'a');d.setAttribute('data-font-h','base');d.setAttribute('data-font-b','base');d.setAttribute('data-bg',localStorage.getItem('ss-bg')||'on');}catch(e){}</script>
@@ -291,9 +283,9 @@ class Component extends DCLogic {
   componentDidMount() {
     if (!this.props.items) {
       this.setState({ items: [
-        { title: 'Manželská postel SANTE 45 dvoulůžko', variant: '200 × 180 cm · olej Teak · jádrový buk', qty: 2, price: '39 800 Kč', img: 'produkt-sante-45.jpg', fit: 'cover' },
-        { title: 'Matrace Spring Variant 22 cm', variant: '180 × 200 cm · tuhost H3', qty: 1, price: '7 590 Kč', img: 'produkt-matrace-spring-variant-karta.webp' },
-        { title: 'Lamelový rošt Standard', variant: '180 × 200 cm · 28 lamel', qty: 1, price: '2 480 Kč', img: 'produkt-rost-lamelovy.webp' }
+        { title: 'Manželská postel SANTE 45 dvoulůžko', variant: '200 × 180 cm · olej Teak · jádrový buk', qty: 2, price: '39 800 Kč', img: '/_blob/6721a0d378d224249b73f0d946656a32', fit: 'cover' },
+        { title: 'Matrace Spring Variant 22 cm', variant: '180 × 200 cm · tuhost H3', qty: 1, price: '7 590 Kč', img: '/_blob/66ef2119f31d8262ba38ce4bea618a8e' },
+        { title: 'Lamelový rošt Standard', variant: '180 × 200 cm · 28 lamel', qty: 1, price: '2 480 Kč', img: '/_blob/7d9234acbe0f59bf374b86101ea80224' }
       ] });
     }
   }

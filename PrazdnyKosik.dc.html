@@ -190,14 +190,6 @@ main>section.ss-grad-top.ss-grad-glow{background-image:radial-gradient(ellipse 5
 html[data-mode="dark"] main>section.ss-grad-top.ss-grad-glow{background-image:radial-gradient(ellipse 55% 100% at 50% 100%,rgba(251,178,85,.14) 0%,rgba(251,178,85,.05) 45%,rgba(251,178,85,0) 75%),linear-gradient(180deg,var(--ss-surface-page,#0E1F2F) 0%,var(--ss-surface-muted,#183049) 100%)!important;}
 
 
-/* Scrollbar: jen táhlo v barvách webu, bez podkladu (platí globálně) */
-*{scrollbar-width:auto;scrollbar-color:var(--ss-scrollbar-thumb,#FBB255) transparent;}
-*::-webkit-scrollbar{width:15px;height:15px;background:transparent;}
-*::-webkit-scrollbar-track{background:transparent;}
-*::-webkit-scrollbar-thumb{background:var(--ss-scrollbar-thumb,#FBB255);border-radius:999px;border:4px solid transparent;background-clip:padding-box;}
-*::-webkit-scrollbar-thumb:hover{background:var(--ss-scrollbar-thumb-hover,#F09A2C);background-clip:padding-box;}
-*::-webkit-scrollbar-corner{background:transparent;}
-html[data-mode="dark"]{--ss-scrollbar-thumb:#FBB255;--ss-scrollbar-thumb-hover:#F09A2C;}
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400..700&family=Roboto:wght@400..700&display=swap" rel="stylesheet">
 <script>try{var d=document.documentElement;if(localStorage.getItem('ss-mode')==='dark')d.setAttribute('data-mode','dark');d.setAttribute('data-logo',localStorage.getItem('ss-logo')||'a');d.setAttribute('data-font-h','base');d.setAttribute('data-font-b','base');}catch(e){}</script>
@@ -396,14 +388,6 @@ main>section.ss-grad-top.ss-grad-glow{background-image:radial-gradient(ellipse 5
 html[data-mode="dark"] main>section.ss-grad-top.ss-grad-glow{background-image:radial-gradient(ellipse 55% 100% at 50% 100%,rgba(251,178,85,.14) 0%,rgba(251,178,85,.05) 45%,rgba(251,178,85,0) 75%),linear-gradient(180deg,var(--ss-surface-page,#0E1F2F) 0%,var(--ss-surface-muted,#183049) 100%)!important;}
 
 
-/* Scrollbar: jen táhlo v barvách webu, bez podkladu (platí globálně) */
-*{scrollbar-width:auto;scrollbar-color:var(--ss-scrollbar-thumb,#FBB255) transparent;}
-*::-webkit-scrollbar{width:15px;height:15px;background:transparent;}
-*::-webkit-scrollbar-track{background:transparent;}
-*::-webkit-scrollbar-thumb{background:var(--ss-scrollbar-thumb,#FBB255);border-radius:999px;border:4px solid transparent;background-clip:padding-box;}
-*::-webkit-scrollbar-thumb:hover{background:var(--ss-scrollbar-thumb-hover,#F09A2C);background-clip:padding-box;}
-*::-webkit-scrollbar-corner{background:transparent;}
-html[data-mode="dark"]{--ss-scrollbar-thumb:#FBB255;--ss-scrollbar-thumb-hover:#F09A2C;}
 </style>
 <script>try{var d=document.documentElement;if(localStorage.getItem('ss-mode')==='dark')d.setAttribute('data-mode','dark');d.setAttribute('data-logo',localStorage.getItem('ss-logo')||'a');d.setAttribute('data-font-h','base');d.setAttribute('data-font-b','base');}catch(e){}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -441,11 +425,7 @@ a:hover{color:var(--ss-hover-text,#21507B);}
       </div>
     </section>
 
-    <section class="ss-grad-top ss-grad-glow" style="width:100%;background-color:var(--ss-surface-page,#FFFFFF)">
-      <div style="{{ innerNews }}">
-        <dc-import name="Newsletter" narrow="{{ narrowNews }}" hint-size="100%,160px"></dc-import>
-      </div>
-    </section>
+    <dc-import name="Newsletter" hint-size="100%,520px"></dc-import>
   </main>
 
   <dc-import name="Paticka" ledMode="{{ ledMode }}" hint-size="100%,700px"></dc-import>
@@ -472,10 +452,10 @@ class Component extends DCLogic {
       innerContact: box(narrow ? '32px' : '40px', narrow ? '32px' : '40px'),
       narrowNews: w < 1000,
       cats: [
-        { label: 'Matrace', href: 'Kategorie_Matrace.dc.html', image: 'kategorie-matrace.webp', zoom: true },
-        { label: 'Postele z masivu', href: 'Kategorie_Postele.dc.html#s=1', image: 'kategorie-manzelske-postele-z-masivu.webp' },
-        { label: 'Čalouněné postele', href: 'Kategorie_Postele.dc.html#s=2', image: 'produkt-postel-sara.webp' },
-        { label: 'Rošty', href: 'Kategorie_Rosty.dc.html', image: 'kategorie-rosty-lamelove.webp', zoom: true }
+        { label: 'Matrace', href: 'Kategorie_Matrace.dc.html', image: '/_blob/c5a374fbd36fa4495aacd11898012a93', zoom: true },
+        { label: 'Postele z masivu', href: 'Kategorie_Postele.dc.html#s=1', image: '/_blob/cead5c69b22e38051d5480ee3e14c348' },
+        { label: 'Čalouněné postele', href: 'Kategorie_Postele.dc.html#s=2', image: '/_blob/83b97877b4eeaa401d7d46a9fa01dd17' },
+        { label: 'Rošty', href: 'Kategorie_Rosty.dc.html', image: '/_blob/e58c131539e8ad6860c8e14b3cb0959a', zoom: true }
       ]
     };
   }

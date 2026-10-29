@@ -188,14 +188,6 @@ main>section.ss-grad-top.ss-grad-glow{background-image:radial-gradient(ellipse 5
 html[data-mode="dark"] main>section.ss-grad-top.ss-grad-glow{background-image:radial-gradient(ellipse 55% 100% at 50% 100%,rgba(251,178,85,.14) 0%,rgba(251,178,85,.05) 45%,rgba(251,178,85,0) 75%),linear-gradient(180deg,var(--ss-surface-page,#0E1F2F) 0%,var(--ss-surface-muted,#183049) 100%)!important;}
 
 
-/* Scrollbar: jen táhlo v barvách webu, bez podkladu (platí globálně) */
-*{scrollbar-width:auto;scrollbar-color:var(--ss-scrollbar-thumb,#FBB255) transparent;}
-*::-webkit-scrollbar{width:15px;height:15px;background:transparent;}
-*::-webkit-scrollbar-track{background:transparent;}
-*::-webkit-scrollbar-thumb{background:var(--ss-scrollbar-thumb,#FBB255);border-radius:999px;border:4px solid transparent;background-clip:padding-box;}
-*::-webkit-scrollbar-thumb:hover{background:var(--ss-scrollbar-thumb-hover,#F09A2C);background-clip:padding-box;}
-*::-webkit-scrollbar-corner{background:transparent;}
-html[data-mode="dark"]{--ss-scrollbar-thumb:#FBB255;--ss-scrollbar-thumb-hover:#F09A2C;}
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400..700&family=Roboto:wght@400..700&display=swap" rel="stylesheet">
 <script>try{var d=document.documentElement;if(localStorage.getItem('ss-mode')==='dark')d.setAttribute('data-mode','dark');}catch(e){}</script>
@@ -206,12 +198,54 @@ html[data-mode="dark"]{--ss-scrollbar-thumb:#FBB255;--ss-scrollbar-thumb-hover:#
 <style>
 .ss-pm-t{position:relative;z-index:2;display:flex;width:100%;margin:0;padding:0;border:0;background:none;font:inherit;color:inherit;text-align:left;cursor:help;border-radius:6px;}
 .ss-pm-t:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
-.ss-pm-tip{position:absolute;left:0;bottom:calc(100% + 8px);z-index:300;width:max-content;max-width:240px;padding:8px 12px;border-radius:6px;background:#132C43;color:#FFFFFF;font-size:13px;font-weight:400;line-height:1.45;box-shadow:0 16px 40px rgba(19,44,67,.18);opacity:0;visibility:hidden;transform:translateY(4px);transition:opacity .12s cubic-bezier(.22,.61,.36,1),transform .12s cubic-bezier(.22,.61,.36,1),visibility 0s .12s;pointer-events:none;text-wrap:pretty;}
-.ss-pm-t:focus-visible .ss-pm-tip{opacity:1;visibility:visible;transform:none;transition-delay:0s;}
-@media (hover:hover) and (pointer:fine){.ss-pm-t:hover .ss-pm-tip{opacity:1;visibility:visible;transform:none;transition-delay:0s;}}
+.ss-pm-tip{position:absolute;left:0;bottom:calc(100% + 8px);z-index:300;width:max-content;max-width:240px;padding:8px 12px;border-radius:6px;background:#132C43;color:#FFFFFF;font-size:13px;font-weight:400;line-height:1.45;box-shadow:0 16px 40px rgba(19,44,67,.18);display:none;pointer-events:none;text-wrap:pretty;}
+@keyframes ss-pm-tip-in{from{opacity:0;transform:translateY(4px);}to{opacity:1;transform:none;}}
+/* Tooltip nikdy nepřeteče kartu ani viewport: max šířka = šířka tlačítka, u čipů šířka řádku čipů (kotva = řádek). */
+.ss-pm-tip{max-width:min(240px,100%);}
+.ss-pm-facts{position:relative;}
+.ss-pm-facts .ss-pm-t{position:static;}
+.ss-pm-t:focus-visible .ss-pm-tip{display:block;animation:ss-pm-tip-in .12s cubic-bezier(.22,.61,.36,1);}
+@media (hover:hover) and (pointer:fine){.ss-pm-t:hover .ss-pm-tip{display:block;animation:ss-pm-tip-in .12s cubic-bezier(.22,.61,.36,1);}}
+/* Varianta B (A/B test karty): tuhost a váha jako dvě malé karty ve dvou sloupcích */
+.ss-pm-tiles{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:8px;width:100%;}
+.ss-pm-tiles .ss-pm-t{position:static;}
+.ss-pm-tile{align-items:center;gap:8px;min-width:0;padding:8px 10px;border-radius:8px;background:var(--ss-surface-subtle,#FAF5EF);}
+.ss-pm-ico{flex:none;display:flex;align-items:center;justify-content:center;width:36px;height:36px;}
+.ss-pm-ph{display:flex;align-items:center;justify-content:center;width:36px;height:36px;box-sizing:border-box;border:1.5px dashed var(--ss-border-strong,#C8D0D8);border-radius:8px;font-size:11px;font-weight:600;color:var(--ss-text-muted,#5B6874);}
+.ss-pm-tx{display:flex;flex-direction:column;min-width:0;line-height:1.3;}
+.ss-pm-tl{font-size:12px;color:var(--ss-text-muted,#5B6874);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.ss-pm-tv{font-size:14px;font-weight:600;color:var(--ss-text-primary,#1C2229);white-space:nowrap;}
+/* Varianty C/D/E (29. 10. 2026): ukazatele bez táhel */
+@keyframes pm-grow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes pm-growy{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+@keyframes pm-in{from{opacity:0;transform:translateY(4px)}}
+.pm-fill{transform-origin:left center;animation:pm-grow .4s cubic-bezier(.22,.61,.36,1) both}
+.pm-band{transform-origin:left center;animation:pm-grow .6s cubic-bezier(.22,.61,.36,1) .45s both}
+.pm-bar{transform-origin:bottom center;animation:pm-growy .3s cubic-bezier(.22,.61,.36,1) both}
+.pm-in{animation:pm-in .3s cubic-bezier(.22,.61,.36,1) both}
+.pm-on{border-radius:8px;background:#FEEDD4;box-shadow:inset 0 0 0 1.5px #F2B544}
+.pm-rule{display:flex;justify-content:space-between;align-items:baseline;gap:8px;font-size:14px;color:var(--ss-text-secondary,#3D4750)}
+.pm-rule strong{font-weight:700;color:var(--ss-text-primary,#1C2229)}
+.pm-sub{display:flex;justify-content:space-between;font-size:12px;color:var(--ss-text-muted,#5B6874)}
+@keyframes pm-d1{0%{d:path("M3 18H5C10.5 18 11 25 16 25C21 25 21.5 18 27 18H29");animation-timing-function:cubic-bezier(0.45,0,0.55,1)}28%{d:path("M3 18H5C10.5 18 11 25 16 25C21 25 21.5 18 27 18H29");animation-timing-function:cubic-bezier(0.2,0.7,0.4,1)}32%{d:path("M3 18H5C10.5 18 11 18 16 18C21 18 21.5 18 27 18H29");animation-timing-function:cubic-bezier(0.2,0.7,0.4,1)}35%{d:path("M3 18H5C10.5 18 11 17.65 16 17.65C21 17.65 21.5 18 27 18H29");animation-timing-function:cubic-bezier(0.2,0.7,0.4,1)}37%{d:path("M3 18H5C10.5 18 11 18 16 18C21 18 21.5 18 27 18H29");animation-timing-function:cubic-bezier(0.45,0,0.55,1)}51%{d:path("M3 18H5C10.5 18 11 18 16 18C21 18 21.5 18 27 18H29");animation-timing-function:cubic-bezier(0.5,0,0.8,0.4)}59%{d:path("M3 18H5C10.5 18 11 18 16 18C21 18 21.5 18 27 18H29");animation-timing-function:cubic-bezier(0.2,0.7,0.4,1)}62%{d:path("M3 18H5C10.5 18 11 26.26 16 26.26C21 26.26 21.5 18 27 18H29");animation-timing-function:cubic-bezier(0.45,0,0.55,1)}65%{d:path("M3 18H5C10.5 18 11 24.51 16 24.51C21 24.51 21.5 18 27 18H29");animation-timing-function:cubic-bezier(0.45,0,0.55,1)}69%{d:path("M3 18H5C10.5 18 11 25 16 25C21 25 21.5 18 27 18H29");animation-timing-function:cubic-bezier(0.45,0,0.55,1)}100%{d:path("M3 18H5C10.5 18 11 25 16 25C21 25 21.5 18 27 18H29")}}
+@keyframes pm-b1{0%{transform:translateY(0px);animation-timing-function:cubic-bezier(0.45,0,0.55,1)}28%{transform:translateY(0px);animation-timing-function:cubic-bezier(0.2,0.7,0.4,1)}32%{transform:translateY(-4.2px);animation-timing-function:cubic-bezier(0.2,0.7,0.4,1)}35%{transform:translateY(-10.2px);animation-timing-function:cubic-bezier(0.2,0.7,0.4,1)}37%{transform:translateY(-11px);animation-timing-function:cubic-bezier(0.45,0,0.55,1)}51%{transform:translateY(-11px);animation-timing-function:cubic-bezier(0.5,0,0.8,0.4)}59%{transform:translateY(-7px);animation-timing-function:cubic-bezier(0.2,0.7,0.4,1)}62%{transform:translateY(1.26px);animation-timing-function:cubic-bezier(0.45,0,0.55,1)}65%{transform:translateY(-0.49px);animation-timing-function:cubic-bezier(0.45,0,0.55,1)}69%{transform:translateY(0px);animation-timing-function:cubic-bezier(0.45,0,0.55,1)}100%{transform:translateY(0px)}}
+.pm-d1{animation:pm-d1 5s infinite}.pm-b1{animation:pm-b1 5s infinite}
+@keyframes pm-d2{0%{d:path("M3 18H6C11 18 11 23.2 16 23.2C21 23.2 21 18 26 18H29");animation-timing-function:cubic-bezier(0.45,0,0.55,1)}30%{d:path("M3 18H6C11 18 11 23.2 16 23.2C21 23.2 21 18 26 18H29");animation-timing-function:cubic-bezier(0.2,0.7,0.4,1)}34%{d:path("M3 18H6C11 18 11 18 16 18C21 18 21 18 26 18H29");animation-timing-function:cubic-bezier(0.2,0.7,0.4,1)}37%{d:path("M3 18H6C11 18 11 17.65 16 17.65C21 17.65 21 18 26 18H29");animation-timing-function:cubic-bezier(0.2,0.7,0.4,1)}39%{d:path("M3 18H6C11 18 11 18 16 18C21 18 21 18 26 18H29");animation-timing-function:cubic-bezier(0.45,0,0.55,1)}53%{d:path("M3 18H6C11 18 11 18 16 18C21 18 21 18 26 18H29");animation-timing-function:cubic-bezier(0.5,0,0.8,0.4)}61%{d:path("M3 18H6C11 18 11 18 16 18C21 18 21 18 26 18H29");animation-timing-function:cubic-bezier(0.2,0.7,0.4,1)}64%{d:path("M3 18H6C11 18 11 24.14 16 24.14C21 24.14 21 18 26 18H29");animation-timing-function:cubic-bezier(0.45,0,0.55,1)}67%{d:path("M3 18H6C11 18 11 22.84 16 22.84C21 22.84 21 18 26 18H29");animation-timing-function:cubic-bezier(0.45,0,0.55,1)}71%{d:path("M3 18H6C11 18 11 23.2 16 23.2C21 23.2 21 18 26 18H29");animation-timing-function:cubic-bezier(0.45,0,0.55,1)}100%{d:path("M3 18H6C11 18 11 23.2 16 23.2C21 23.2 21 18 26 18H29")}}
+@keyframes pm-b2{0%{transform:translateY(0px);animation-timing-function:cubic-bezier(0.45,0,0.55,1)}30%{transform:translateY(0px);animation-timing-function:cubic-bezier(0.2,0.7,0.4,1)}34%{transform:translateY(-3.12px);animation-timing-function:cubic-bezier(0.2,0.7,0.4,1)}37%{transform:translateY(-8.4px);animation-timing-function:cubic-bezier(0.2,0.7,0.4,1)}39%{transform:translateY(-9.2px);animation-timing-function:cubic-bezier(0.45,0,0.55,1)}53%{transform:translateY(-9.2px);animation-timing-function:cubic-bezier(0.5,0,0.8,0.4)}61%{transform:translateY(-5.2px);animation-timing-function:cubic-bezier(0.2,0.7,0.4,1)}64%{transform:translateY(0.94px);animation-timing-function:cubic-bezier(0.45,0,0.55,1)}67%{transform:translateY(-0.36px);animation-timing-function:cubic-bezier(0.45,0,0.55,1)}71%{transform:translateY(0px);animation-timing-function:cubic-bezier(0.45,0,0.55,1)}100%{transform:translateY(0px)}}
+.pm-d2{animation:pm-d2 5s infinite}.pm-b2{animation:pm-b2 5s infinite}
+@keyframes pm-d3{0%{d:path("M3 18H7C11.5 18 11 21.6 16 21.6C21 21.6 20.5 18 25 18H29");animation-timing-function:cubic-bezier(0.45,0,0.55,1)}32%{d:path("M3 18H7C11.5 18 11 21.6 16 21.6C21 21.6 20.5 18 25 18H29");animation-timing-function:cubic-bezier(0.2,0.7,0.4,1)}36%{d:path("M3 18H7C11.5 18 11 18 16 18C21 18 20.5 18 25 18H29");animation-timing-function:cubic-bezier(0.2,0.7,0.4,1)}39%{d:path("M3 18H7C11.5 18 11 17.65 16 17.65C21 17.65 20.5 18 25 18H29");animation-timing-function:cubic-bezier(0.2,0.7,0.4,1)}41%{d:path("M3 18H7C11.5 18 11 18 16 18C21 18 20.5 18 25 18H29");animation-timing-function:cubic-bezier(0.45,0,0.55,1)}55%{d:path("M3 18H7C11.5 18 11 18 16 18C21 18 20.5 18 25 18H29");animation-timing-function:cubic-bezier(0.5,0,0.8,0.4)}63%{d:path("M3 18H7C11.5 18 11 18 16 18C21 18 20.5 18 25 18H29");animation-timing-function:cubic-bezier(0.2,0.7,0.4,1)}66%{d:path("M3 18H7C11.5 18 11 22.25 16 22.25C21 22.25 20.5 18 25 18H29");animation-timing-function:cubic-bezier(0.45,0,0.55,1)}69%{d:path("M3 18H7C11.5 18 11 21.35 16 21.35C21 21.35 20.5 18 25 18H29");animation-timing-function:cubic-bezier(0.45,0,0.55,1)}73%{d:path("M3 18H7C11.5 18 11 21.6 16 21.6C21 21.6 20.5 18 25 18H29");animation-timing-function:cubic-bezier(0.45,0,0.55,1)}100%{d:path("M3 18H7C11.5 18 11 21.6 16 21.6C21 21.6 20.5 18 25 18H29")}}
+@keyframes pm-b3{0%{transform:translateY(0px);animation-timing-function:cubic-bezier(0.45,0,0.55,1)}32%{transform:translateY(0px);animation-timing-function:cubic-bezier(0.2,0.7,0.4,1)}36%{transform:translateY(-2.16px);animation-timing-function:cubic-bezier(0.2,0.7,0.4,1)}39%{transform:translateY(-6.8px);animation-timing-function:cubic-bezier(0.2,0.7,0.4,1)}41%{transform:translateY(-7.6px);animation-timing-function:cubic-bezier(0.45,0,0.55,1)}55%{transform:translateY(-7.6px);animation-timing-function:cubic-bezier(0.5,0,0.8,0.4)}63%{transform:translateY(-3.6px);animation-timing-function:cubic-bezier(0.2,0.7,0.4,1)}66%{transform:translateY(0.65px);animation-timing-function:cubic-bezier(0.45,0,0.55,1)}69%{transform:translateY(-0.25px);animation-timing-function:cubic-bezier(0.45,0,0.55,1)}73%{transform:translateY(0px);animation-timing-function:cubic-bezier(0.45,0,0.55,1)}100%{transform:translateY(0px)}}
+.pm-d3{animation:pm-d3 5s infinite}.pm-b3{animation:pm-b3 5s infinite}
+@keyframes pm-d4{0%{d:path("M3 18H8C12 18 11 20 16 20C21 20 20 18 24 18H29");animation-timing-function:cubic-bezier(0.45,0,0.55,1)}34%{d:path("M3 18H8C12 18 11 20 16 20C21 20 20 18 24 18H29");animation-timing-function:cubic-bezier(0.2,0.7,0.4,1)}38%{d:path("M3 18H8C12 18 11 18 16 18C21 18 20 18 24 18H29");animation-timing-function:cubic-bezier(0.2,0.7,0.4,1)}41%{d:path("M3 18H8C12 18 11 17.65 16 17.65C21 17.65 20 18 24 18H29");animation-timing-function:cubic-bezier(0.2,0.7,0.4,1)}43%{d:path("M3 18H8C12 18 11 18 16 18C21 18 20 18 24 18H29");animation-timing-function:cubic-bezier(0.45,0,0.55,1)}57%{d:path("M3 18H8C12 18 11 18 16 18C21 18 20 18 24 18H29");animation-timing-function:cubic-bezier(0.5,0,0.8,0.4)}65%{d:path("M3 18H8C12 18 11 18 16 18C21 18 20 18 24 18H29");animation-timing-function:cubic-bezier(0.2,0.7,0.4,1)}68%{d:path("M3 18H8C12 18 11 20.36 16 20.36C21 20.36 20 18 24 18H29");animation-timing-function:cubic-bezier(0.45,0,0.55,1)}71%{d:path("M3 18H8C12 18 11 19.86 16 19.86C21 19.86 20 18 24 18H29");animation-timing-function:cubic-bezier(0.45,0,0.55,1)}75%{d:path("M3 18H8C12 18 11 20 16 20C21 20 20 18 24 18H29");animation-timing-function:cubic-bezier(0.45,0,0.55,1)}100%{d:path("M3 18H8C12 18 11 20 16 20C21 20 20 18 24 18H29")}}
+@keyframes pm-b4{0%{transform:translateY(0px);animation-timing-function:cubic-bezier(0.45,0,0.55,1)}34%{transform:translateY(0px);animation-timing-function:cubic-bezier(0.2,0.7,0.4,1)}38%{transform:translateY(-1.2px);animation-timing-function:cubic-bezier(0.2,0.7,0.4,1)}41%{transform:translateY(-5.2px);animation-timing-function:cubic-bezier(0.2,0.7,0.4,1)}43%{transform:translateY(-6px);animation-timing-function:cubic-bezier(0.45,0,0.55,1)}57%{transform:translateY(-6px);animation-timing-function:cubic-bezier(0.5,0,0.8,0.4)}65%{transform:translateY(-2px);animation-timing-function:cubic-bezier(0.2,0.7,0.4,1)}68%{transform:translateY(0.36px);animation-timing-function:cubic-bezier(0.45,0,0.55,1)}71%{transform:translateY(-0.14px);animation-timing-function:cubic-bezier(0.45,0,0.55,1)}75%{transform:translateY(0px);animation-timing-function:cubic-bezier(0.45,0,0.55,1)}100%{transform:translateY(0px)}}
+.pm-d4{animation:pm-d4 5s infinite}.pm-b4{animation:pm-b4 5s infinite}
+@keyframes pm-d5{0%{d:path("M3 18H9C12.5 18 11 18.6 16 18.6C21 18.6 19.5 18 23 18H29");animation-timing-function:cubic-bezier(0.45,0,0.55,1)}36%{d:path("M3 18H9C12.5 18 11 18.6 16 18.6C21 18.6 19.5 18 23 18H29");animation-timing-function:cubic-bezier(0.2,0.7,0.4,1)}40%{d:path("M3 18H9C12.5 18 11 18 16 18C21 18 19.5 18 23 18H29");animation-timing-function:cubic-bezier(0.2,0.7,0.4,1)}43%{d:path("M3 18H9C12.5 18 11 17.65 16 17.65C21 17.65 19.5 18 23 18H29");animation-timing-function:cubic-bezier(0.2,0.7,0.4,1)}45%{d:path("M3 18H9C12.5 18 11 18 16 18C21 18 19.5 18 23 18H29");animation-timing-function:cubic-bezier(0.45,0,0.55,1)}59%{d:path("M3 18H9C12.5 18 11 18 16 18C21 18 19.5 18 23 18H29");animation-timing-function:cubic-bezier(0.5,0,0.8,0.4)}67%{d:path("M3 18H9C12.5 18 11 18 16 18C21 18 19.5 18 23 18H29");animation-timing-function:cubic-bezier(0.2,0.7,0.4,1)}70%{d:path("M3 18H9C12.5 18 11 18.71 16 18.71C21 18.71 19.5 18 23 18H29");animation-timing-function:cubic-bezier(0.45,0,0.55,1)}73%{d:path("M3 18H9C12.5 18 11 18.56 16 18.56C21 18.56 19.5 18 23 18H29");animation-timing-function:cubic-bezier(0.45,0,0.55,1)}77%{d:path("M3 18H9C12.5 18 11 18.6 16 18.6C21 18.6 19.5 18 23 18H29");animation-timing-function:cubic-bezier(0.45,0,0.55,1)}100%{d:path("M3 18H9C12.5 18 11 18.6 16 18.6C21 18.6 19.5 18 23 18H29")}}
+@keyframes pm-b5{0%{transform:translateY(0px);animation-timing-function:cubic-bezier(0.45,0,0.55,1)}36%{transform:translateY(0px);animation-timing-function:cubic-bezier(0.2,0.7,0.4,1)}40%{transform:translateY(-0.36px);animation-timing-function:cubic-bezier(0.2,0.7,0.4,1)}43%{transform:translateY(-3.8px);animation-timing-function:cubic-bezier(0.2,0.7,0.4,1)}45%{transform:translateY(-4.6px);animation-timing-function:cubic-bezier(0.45,0,0.55,1)}59%{transform:translateY(-4.6px);animation-timing-function:cubic-bezier(0.5,0,0.8,0.4)}67%{transform:translateY(-0.6px);animation-timing-function:cubic-bezier(0.2,0.7,0.4,1)}70%{transform:translateY(0.11px);animation-timing-function:cubic-bezier(0.45,0,0.55,1)}73%{transform:translateY(-0.04px);animation-timing-function:cubic-bezier(0.45,0,0.55,1)}77%{transform:translateY(0px);animation-timing-function:cubic-bezier(0.45,0,0.55,1)}100%{transform:translateY(0px)}}
+.pm-d5{animation:pm-d5 5s infinite}.pm-b5{animation:pm-b5 5s infinite}
+@media (prefers-reduced-motion:reduce){.pm-fill,.pm-band,.pm-bar,.pm-in,.pm-d1,.pm-b1,.pm-d2,.pm-b2,.pm-d3,.pm-b3,.pm-d4,.pm-b4,.pm-d5,.pm-b5{animation:none}}
 </style>
 </helmet>
-<div style="display:flex;flex-direction:column;gap:{{ rootGap }};width:100%;min-width:0;font-family:Roboto,Helvetica,Arial,sans-serif;color:var(--ss-text-secondary,#3D4750)">
+<div style="display:grid;grid-template-columns:{{ rootCols }};gap:{{ rootGap }};column-gap:{{ colGap }};align-items:start;width:100%;min-width:0;font-family:Roboto,Helvetica,Arial,sans-serif;color:var(--ss-text-secondary,#3D4750)">
   <sc-if value="{{ plainTuhost }}" hint-placeholder-val="{{ false }}">
     <span style="display:flex;flex-direction:column;gap:8px;width:100%">
       <span style="display:flex;justify-content:space-between;align-items:baseline;gap:8px;width:100%;font-size:13px;line-height:1.35">
@@ -220,29 +254,131 @@ html[data-mode="dark"]{--ss-scrollbar-thumb:#FBB255;--ss-scrollbar-thumb-hover:#
       </span>
       <span aria-hidden="true" style="position:relative;display:block;width:100%;height:12px">
         <span style="position:absolute;left:0;right:0;top:4px;height:4px;border-radius:999px;background:var(--ss-surface-strong,#E9E1D5)"></span>
-        <span style="position:absolute;top:0;left:calc({{ tuhostPos }}% - 6px);width:12px;height:12px;border-radius:999px;background:var(--ss-text-secondary,#3D4750)"></span>
+        <span style="position:absolute;left:0;top:4px;height:4px;width:{{ tuhostPos }}%;border-radius:999px;background:var(--ss-pm-range,linear-gradient(90deg,#132C43 0%,#296093 100%))"></span>
+        <span style="position:absolute;top:0;left:calc({{ tuhostPos }}% - 6px);width:12px;height:12px;border-radius:999px;background:linear-gradient(180deg,#3A78B0 0%,#296093 55%,#21507B 100%)"></span>
       </span>
     </span>
   </sc-if>
+  <sc-if value="{{ segL }}" hint-placeholder-val="{{ false }}">
+    <div style="grid-column:1/-1;display:flex;flex-direction:column;gap:16px">
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div class="pm-rule"><span>{{ tuhostTitle }}</span><span><strong>{{ tWord }}</strong> · {{ tNum }}/5</span></div>
+        <div role="img" aria-label="{{ tAria }}" style="display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:4px">
+          <sc-for list="{{ segs }}" as="sg" hint-placeholder-count="5">
+            <span style="position:relative;display:block;height:10px;border-radius:3px;background:var(--ss-surface-strong,#E9E1D5);overflow:hidden"><span class="pm-fill" style="position:absolute;left:0;top:0;bottom:0;width:{{ sg.w }};background:linear-gradient(90deg,#132C43 0%,#296093 100%);animation-delay:{{ sg.d }}"></span></span>
+          </sc-for>
+        </div>
+        <div class="pm-sub" aria-hidden="true"><span>měkká</span><span>tvrdá</span></div>
+      </div>
+      <sc-if value="{{ hasZatizeni }}" hint-placeholder-val="{{ true }}">
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div class="pm-rule"><span>{{ idealLabel }}</span><strong>{{ zatizeniLabel }}</strong></div>
+          <div role="img" aria-label="{{ tipZ }}" style="position:relative;height:22px">
+            <sc-for list="{{ ticks }}" as="tk" hint-placeholder-count="14">
+              <span style="position:absolute;bottom:0;left:{{ tk.x }};width:1px;height:{{ tk.h }};background:var(--ss-border-strong,#C8D0D8)"></span>
+            </sc-for>
+            <span class="pm-band" style="position:absolute;bottom:0;left:{{ odPos }}%;width:{{ rangeW }}%;height:14px;box-sizing:border-box;background:rgba(41,96,147,.16);border-left:2px solid #296093;border-right:2px solid #296093"></span>
+            <span class="pm-band" style="position:absolute;bottom:0;left:{{ odPos }}%;width:{{ rangeW }}%;height:3px;background:linear-gradient(90deg,#132C43 0%,#296093 100%)"></span>
+          </div>
+          <div aria-hidden="true" style="position:relative;height:14px;font-size:12px;color:var(--ss-text-muted,#5B6874)"><span style="position:absolute;left:0">0</span><span style="position:absolute;left:50%;transform:translateX(-50%)">{{ scaleMid }}</span><span style="position:absolute;right:0">{{ scaleLabel }}</span></div>
+        </div>
+      </sc-if>
+    </div>
+  </sc-if>
+  <sc-if value="{{ radaL }}" hint-placeholder-val="{{ false }}">
+    <div style="grid-column:1/-1;display:flex;flex-direction:column;gap:14px">
+      <div style="display:flex;flex-direction:column;gap:6px">
+        <div class="pm-rule"><span>{{ tuhostTitle }}</span><span><strong>{{ tWord }}</strong> · {{ tNum }}/5</span></div>
+        <div role="img" aria-label="{{ tAria }}" style="display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:4px">
+          <span class="pm-in {{ rd.c1 }}" style="display:flex;justify-content:center;padding:2px 0;opacity:{{ rd.o1 }};animation-delay:0ms"><svg width="40" height="32" viewBox="0 4 32 26" aria-hidden="true" style="overflow:visible"><path class="{{ rd.pd1 }}" d="M3 18H5C10.5 18 11 25 16 25C21 25 21.5 18 27 18H29" fill="none" stroke="{{ rd.s1 }}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><circle class="{{ rd.pb1 }}" cx="16" cy="19.5" r="4.5" fill="{{ rd.f1 }}"></circle></svg></span>
+          <span class="pm-in {{ rd.c2 }}" style="display:flex;justify-content:center;padding:2px 0;opacity:{{ rd.o2 }};animation-delay:60ms"><svg width="40" height="32" viewBox="0 4 32 26" aria-hidden="true" style="overflow:visible"><path class="{{ rd.pd2 }}" d="M3 18H6C11 18 11 23.2 16 23.2C21 23.2 21 18 26 18H29" fill="none" stroke="{{ rd.s2 }}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><circle class="{{ rd.pb2 }}" cx="16" cy="17.7" r="4.5" fill="{{ rd.f2 }}"></circle></svg></span>
+          <span class="pm-in {{ rd.c3 }}" style="display:flex;justify-content:center;padding:2px 0;opacity:{{ rd.o3 }};animation-delay:120ms"><svg width="40" height="32" viewBox="0 4 32 26" aria-hidden="true" style="overflow:visible"><path class="{{ rd.pd3 }}" d="M3 18H7C11.5 18 11 21.6 16 21.6C21 21.6 20.5 18 25 18H29" fill="none" stroke="{{ rd.s3 }}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><circle class="{{ rd.pb3 }}" cx="16" cy="16.1" r="4.5" fill="{{ rd.f3 }}"></circle></svg></span>
+          <span class="pm-in {{ rd.c4 }}" style="display:flex;justify-content:center;padding:2px 0;opacity:{{ rd.o4 }};animation-delay:180ms"><svg width="40" height="32" viewBox="0 4 32 26" aria-hidden="true" style="overflow:visible"><path class="{{ rd.pd4 }}" d="M3 18H8C12 18 11 20 16 20C21 20 20 18 24 18H29" fill="none" stroke="{{ rd.s4 }}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><circle class="{{ rd.pb4 }}" cx="16" cy="14.5" r="4.5" fill="{{ rd.f4 }}"></circle></svg></span>
+          <span class="pm-in {{ rd.c5 }}" style="display:flex;justify-content:center;padding:2px 0;opacity:{{ rd.o5 }};animation-delay:240ms"><svg width="40" height="32" viewBox="0 4 32 26" aria-hidden="true" style="overflow:visible"><path class="{{ rd.pd5 }}" d="M3 18H9C12.5 18 11 18.6 16 18.6C21 18.6 19.5 18 23 18H29" fill="none" stroke="{{ rd.s5 }}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><circle class="{{ rd.pb5 }}" cx="16" cy="13.1" r="4.5" fill="{{ rd.f5 }}"></circle></svg></span>
+        </div>
+        <div class="pm-sub" aria-hidden="true"><span>měkká</span><span>tvrdá</span></div>
+      </div>
+      <sc-if value="{{ hasZatizeni }}" hint-placeholder-val="{{ true }}">
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <div class="pm-rule"><span>{{ idealLabel }}</span><strong>{{ zatizeniLabel }}</strong></div>
+          <div role="img" aria-label="{{ tipZ }}" style="display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:4px;align-items:end">
+          <span class="pm-in {{ rd.mc0 }}" style="display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:2px;height:56px;box-sizing:border-box;padding-bottom:2px;opacity:{{ rd.mo0 }};animation-delay:300ms"><svg width="22" height="22" viewBox="0 0 24 24" fill="{{ rd.ms0 }}" aria-hidden="true" style="flex:none"><path d="M12 2a5 5 0 1 1 -5 5l.005 -.217a5 5 0 0 1 4.995 -4.783z"></path><path d="M14 14a5 5 0 0 1 5 5v1a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-1a5 5 0 0 1 5 -5h4z"></path></svg><span style="font-size:11px;font-weight:{{ rd.mw0 }};color:var(--ss-text-secondary,#3D4750)">{{ rd.ml0 }}</span></span>
+          <span class="pm-in {{ rd.mc1 }}" style="display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:2px;height:56px;box-sizing:border-box;padding-bottom:2px;opacity:{{ rd.mo1 }};animation-delay:360ms"><svg width="26" height="26" viewBox="0 0 24 24" fill="{{ rd.ms1 }}" aria-hidden="true" style="flex:none"><path d="M12 2a5 5 0 1 1 -5 5l.005 -.217a5 5 0 0 1 4.995 -4.783z"></path><path d="M14 14a5 5 0 0 1 5 5v1a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-1a5 5 0 0 1 5 -5h4z"></path></svg><span style="font-size:11px;font-weight:{{ rd.mw1 }};color:var(--ss-text-secondary,#3D4750)">{{ rd.ml1 }}</span></span>
+          <span class="pm-in {{ rd.mc2 }}" style="display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:2px;height:56px;box-sizing:border-box;padding-bottom:2px;opacity:{{ rd.mo2 }};animation-delay:420ms"><svg width="30" height="30" viewBox="0 0 24 24" fill="{{ rd.ms2 }}" aria-hidden="true" style="flex:none"><path d="M12 2a5 5 0 1 1 -5 5l.005 -.217a5 5 0 0 1 4.995 -4.783z"></path><path d="M14 14a5 5 0 0 1 5 5v1a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-1a5 5 0 0 1 5 -5h4z"></path></svg><span style="font-size:11px;font-weight:{{ rd.mw2 }};color:var(--ss-text-secondary,#3D4750)">{{ rd.ml2 }}</span></span>
+          <span class="pm-in {{ rd.mc3 }}" style="display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:2px;height:56px;box-sizing:border-box;padding-bottom:2px;opacity:{{ rd.mo3 }};animation-delay:480ms"><svg width="34" height="34" viewBox="0 0 24 24" fill="{{ rd.ms3 }}" aria-hidden="true" style="flex:none"><path d="M12 2a5 5 0 1 1 -5 5l.005 -.217a5 5 0 0 1 4.995 -4.783z"></path><path d="M14 14a5 5 0 0 1 5 5v1a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-1a5 5 0 0 1 5 -5h4z"></path></svg><span style="font-size:11px;font-weight:{{ rd.mw3 }};color:var(--ss-text-secondary,#3D4750)">{{ rd.ml3 }}</span></span>
+          <span class="pm-in {{ rd.mc4 }}" style="display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:2px;height:56px;box-sizing:border-box;padding-bottom:2px;opacity:{{ rd.mo4 }};animation-delay:540ms"><svg width="38" height="38" viewBox="0 0 24 24" fill="{{ rd.ms4 }}" aria-hidden="true" style="flex:none"><path d="M12 2a5 5 0 1 1 -5 5l.005 -.217a5 5 0 0 1 4.995 -4.783z"></path><path d="M14 14a5 5 0 0 1 5 5v1a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-1a5 5 0 0 1 5 -5h4z"></path></svg><span style="font-size:11px;font-weight:{{ rd.mw4 }};color:var(--ss-text-secondary,#3D4750)">{{ rd.ml4 }}</span></span>
+          </div>
+        </div>
+      </sc-if>
+    </div>
+  </sc-if>
+  <sc-if value="{{ kompaktL }}" hint-placeholder-val="{{ false }}">
+    <dl style="grid-column:1/-1;margin:0;display:flex;flex-direction:column;border-radius:10px;background:var(--ss-surface-subtle,#FAF5EF);padding:4px 14px">
+      <div style="display:flex;align-items:center;gap:10px;min-height:44px;border-bottom:{{ kBorder }}">
+        <svg width="28" height="28" viewBox="0 4 32 26" aria-hidden="true" style="flex:none;overflow:visible"><path d="{{ kIcon.d }}" fill="none" stroke="#2E3F7F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><circle cx="16" cy="{{ kIcon.cy }}" r="4.5" fill="#F2B544"></circle></svg>
+        <dt style="flex:1;font-size:14px;color:var(--ss-text-secondary,#3D4750)">{{ tuhostTitle }}</dt>
+        <dd style="margin:0;display:flex;align-items:center;gap:10px">
+          <span role="img" aria-label="{{ tAria }}" style="display:flex;align-items:flex-end;gap:3px;height:16px">
+            <sc-for list="{{ kbars }}" as="kb" hint-placeholder-count="5">
+              <span style="position:relative;width:6px;height:{{ kb.h }};border-radius:2px;background:var(--ss-surface-strong,#E9E1D5);overflow:hidden"><span class="pm-bar" style="position:absolute;left:0;right:0;bottom:0;height:{{ kb.f }};background:#296093;animation-delay:{{ kb.d }}"></span></span>
+            </sc-for>
+          </span>
+          <strong style="font-size:15px;font-weight:700;min-width:28px;text-align:right;color:var(--ss-text-primary,#1C2229)">{{ tNum }}</strong>
+        </dd>
+      </div>
+      <sc-if value="{{ hasZatizeni }}" hint-placeholder-val="{{ true }}">
+        <div style="display:flex;align-items:center;gap:10px;min-height:44px">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#2E3F7F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex:none"><path d="M12 7m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"></path><path d="M6.835 9h10.33a2 2 0 0 1 1.94 1.515l2 8a2 2 0 0 1 -1.94 2.485h-14.33a2 2 0 0 1 -1.94 -2.485l2 -8a2 2 0 0 1 1.94 -1.515z"></path></svg>
+          <dt style="flex:1;font-size:14px;color:var(--ss-text-secondary,#3D4750)">{{ idealLabel }}</dt>
+          <dd style="margin:0"><strong style="font-size:15px;font-weight:700;white-space:nowrap;color:var(--ss-text-primary,#1C2229)">{{ zatizeniLabel }}</strong></dd>
+        </div>
+      </sc-if>
+    </dl>
+  </sc-if>
+  <sc-if value="{{ tiles }}" hint-placeholder-val="{{ false }}">
+    <div class="ss-pm-tiles" style="grid-column:1/-1">
+      <sc-if value="{{ hasTuhost }}" hint-placeholder-val="{{ true }}">
+        <button type="button" class="ss-pm-t ss-pm-tile" aria-describedby="{{ idT }}">
+          <span class="ss-pm-ico" aria-hidden="true">
+            <sc-if value="{{ hasTIcon }}" hint-placeholder-val="{{ false }}"><img src="{{ tIcon }}" alt="" width="36" height="36" style="display:block;width:36px;height:36px"></sc-if>
+            <sc-if value="{{ noTIcon }}" hint-placeholder-val="{{ true }}"><span class="ss-pm-ph">{{ tLevelTag }}</span></sc-if>
+          </span>
+          <span class="ss-pm-tx"><span class="ss-pm-tl">{{ tuhostTitle }}</span><span class="ss-pm-tv">{{ tuhostLabel }}</span></span>
+          <span class="ss-pm-tip" role="tooltip" id="{{ idT }}">Tuhost matrace na stupnici 1–5. Čím vyšší číslo, tím tužší matrace.</span>
+        </button>
+      </sc-if>
+      <sc-if value="{{ hasZatizeni }}" hint-placeholder-val="{{ true }}">
+        <button type="button" class="ss-pm-t ss-pm-tile" aria-describedby="{{ idZ }}">
+          <span class="ss-pm-ico" aria-hidden="true" style="color:#2E3F7F"><dc-import name="Ikony" iconName="weight" size="28" hint-size="28px,28px"></dc-import></span>
+          <span class="ss-pm-tx"><span class="ss-pm-tl">Ideální pro váhu</span><span class="ss-pm-tv">{{ zatizeniLabel }}</span></span>
+          <span class="ss-pm-tip" role="tooltip" id="{{ idZ }}">{{ tipZ }}</span>
+        </button>
+      </sc-if>
+    </div>
+  </sc-if>
   <sc-if value="{{ btnTuhost }}" hint-placeholder-val="{{ true }}">
-    <button type="button" class="ss-pm-t" aria-describedby="{{ idT }}" style="flex-direction:column;gap:8px">
-      <span style="display:flex;justify-content:space-between;align-items:baseline;gap:8px;width:100%;font-size:{{ lblSize }};line-height:1.35">
+    <button type="button" class="ss-pm-t" aria-describedby="{{ idT }}" style="flex-direction:column;gap:8px;box-sizing:border-box;height:100%;padding:{{ cellPad }};background:{{ cellBg }};border-radius:{{ cellRad }}">
+      <span style="display:flex;flex-wrap:{{ lblWrap }};justify-content:space-between;align-items:baseline;column-gap:8px;width:100%;font-size:{{ lblSize }};line-height:1.35">
         <span style="flex:none;white-space:nowrap;font-weight:{{ lblWeight }};color:{{ lblColor }}">{{ tuhostTitle }}</span>
         <span style="flex:none;white-space:nowrap;font-weight:600;font-size:{{ valSize }};color:var(--ss-text-primary,#1C2229)">{{ tuhostLabel }}</span>
       </span>
       <span aria-hidden="true" style="position:relative;display:block;width:100%;height:{{ knob }}px">
         <span style="position:absolute;left:0;right:0;top:{{ trackTop }}px;height:{{ track }}px;border-radius:999px;background:var(--ss-surface-strong,#E9E1D5)"></span>
-        <span style="position:absolute;top:0;left:calc({{ tuhostPos }}% - {{ knobHalf }}px);width:{{ knob }}px;height:{{ knob }}px;border-radius:999px;background:var(--ss-text-secondary,#3D4750)"></span>
+        <span style="position:absolute;left:0;top:{{ trackTop }}px;height:{{ track }}px;width:{{ tuhostPos }}%;border-radius:999px;background:var(--ss-pm-range,linear-gradient(90deg,#132C43 0%,#296093 100%))"></span>
+        <span style="position:absolute;top:0;left:calc({{ tuhostPos }}% - {{ knobHalf }}px);width:{{ knob }}px;height:{{ knob }}px;border-radius:999px;background:linear-gradient(180deg,#3A78B0 0%,#296093 55%,#21507B 100%)"></span>
       </span>
       <sc-if value="{{ large }}" hint-placeholder-val="{{ false }}">
         <span aria-hidden="true" style="display:flex;justify-content:space-between;width:100%;font-size:13px;line-height:1.2;color:var(--ss-text-muted,#5B6874)"><span>Měkká</span><span>Tuhá</span></span>
       </sc-if>
+      <sc-if value="{{ scaleT }}" hint-placeholder-val="{{ false }}">
+        <span aria-hidden="true" style="display:flex;justify-content:space-between;width:100%;margin-top:-4px;font-size:13px;line-height:1.2;color:var(--ss-text-muted,#5B6874)"><span>1</span><span>5</span></span>
+      </sc-if>
       <span class="ss-pm-tip" role="tooltip" id="{{ idT }}">Tuhost matrace na stupnici 1–5. Čím vyšší číslo, tím tužší matrace.</span>
     </button>
   </sc-if>
-  <sc-if value="{{ hasZatizeni }}" hint-placeholder-val="{{ true }}">
-    <button type="button" class="ss-pm-t" aria-describedby="{{ idZ }}" style="flex-direction:column;gap:8px">
-      <span style="display:flex;justify-content:space-between;align-items:baseline;gap:8px;width:100%;font-size:{{ lblSize }};line-height:1.35">
+  <sc-if value="{{ barZatizeni }}" hint-placeholder-val="{{ true }}">
+    <button type="button" class="ss-pm-t" aria-describedby="{{ idZ }}" style="flex-direction:column;gap:8px;box-sizing:border-box;height:100%;padding:{{ cellPad }};background:{{ cellBg }};border-radius:{{ cellRad }}">
+      <span style="display:flex;flex-wrap:{{ lblWrap }};justify-content:space-between;align-items:baseline;column-gap:8px;width:100%;font-size:{{ lblSize }};line-height:1.35">
         <span style="flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:{{ lblWeight }};color:{{ lblColor }}">{{ idealLabel }}</span>
         <span style="flex:none;white-space:nowrap;font-weight:600;font-size:{{ valSize }};color:var(--ss-text-primary,#1C2229)">{{ zatizeniLabel }}</span>
       </span>
@@ -250,8 +386,8 @@ html[data-mode="dark"]{--ss-scrollbar-thumb:#FBB255;--ss-scrollbar-thumb-hover:#
         <span style="position:relative;display:block;height:{{ knob }}px">
           <span style="position:absolute;left:0;right:0;top:{{ trackTop }}px;height:{{ track }}px;border-radius:999px;background:var(--ss-surface-strong,#E9E1D5)"></span>
           <span style="position:absolute;top:{{ trackTop }}px;height:{{ track }}px;left:{{ odPos }}%;width:{{ rangeW }}%;background:var(--ss-pm-range,linear-gradient(90deg,#132C43 0%,#296093 100%))"></span>
-          <span style="position:absolute;top:0;left:calc({{ odPos }}% - {{ knobHalf }}px);width:{{ knob }}px;height:{{ knob }}px;border-radius:999px;background:var(--ss-text-secondary,#3D4750)"></span>
-          <span style="position:absolute;top:0;left:calc({{ doPos }}% - {{ knobHalf }}px);width:{{ knob }}px;height:{{ knob }}px;border-radius:999px;background:var(--ss-text-secondary,#3D4750)"></span>
+          <span style="position:absolute;top:0;left:calc({{ odPos }}% - {{ knobHalf }}px);width:{{ knob }}px;height:{{ knob }}px;border-radius:999px;background:linear-gradient(180deg,#3A78B0 0%,#296093 55%,#21507B 100%)"></span>
+          <span style="position:absolute;top:0;left:calc({{ doPos }}% - {{ knobHalf }}px);width:{{ knob }}px;height:{{ knob }}px;border-radius:999px;background:linear-gradient(180deg,#3A78B0 0%,#296093 55%,#21507B 100%)"></span>
         </span>
         <span style="display:flex;justify-content:space-between;font-size:13px;line-height:1.2;color:var(--ss-text-muted,#5B6874)">
           <span>0</span>
@@ -261,7 +397,7 @@ html[data-mode="dark"]{--ss-scrollbar-thumb:#FBB255;--ss-scrollbar-thumb-hover:#
       <span class="ss-pm-tip" role="tooltip" id="{{ idZ }}">{{ tipZ }}</span>
     </button>
   </sc-if>
-  <div style="display:flex;flex-wrap:wrap;gap:8px;font-size:13px;font-weight:500;line-height:1.35">
+  <div class="ss-pm-facts" style="grid-column:1/-1;display:flex;flex-wrap:wrap;gap:8px;font-size:13px;font-weight:500;line-height:1.35">
     <sc-for list="{{ facts }}" as="f" hint-placeholder-count="3">
       <button type="button" class="ss-pm-t" aria-describedby="{{ f.id }}" style="width:auto;align-items:center;gap:8px;padding:6px 10px;background:var(--ss-surface-subtle,#FAF5EF);color:var(--ss-text-secondary,#3D4750)">
         <span style="display:flex;color:var(--ss-text-heading,#0B1F33);flex:none"><dc-import name="Ikony" iconName="{{ f.icon }}" size="16" hint-size="16px,16px"></dc-import></span>
@@ -272,9 +408,64 @@ html[data-mode="dark"]{--ss-scrollbar-thumb:#FBB255;--ss-scrollbar-thumb-hover:#
   </div>
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:320,&quot;height&quot;:200},&quot;tuhost&quot;:{&quot;editor&quot;:&quot;float&quot;,&quot;default&quot;:4.5,&quot;min&quot;:0,&quot;max&quot;:5,&quot;step&quot;:0.1,&quot;tsType&quot;:&quot;number&quot;},&quot;tuhostPct&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:90,&quot;min&quot;:0,&quot;max&quot;:100,&quot;tsType&quot;:&quot;number&quot;},&quot;zatizeniOd&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:70,&quot;tsType&quot;:&quot;number&quot;},&quot;zatizeniDo&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:100,&quot;tsType&quot;:&quot;number&quot;},&quot;nosnostMax&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:120,&quot;tsType&quot;:&quot;number&quot;},&quot;vyska&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:19,&quot;tsType&quot;:&quot;number&quot;},&quot;vyskaJadra&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:16,&quot;tsType&quot;:&quot;number&quot;},&quot;zaruka&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:8,&quot;tsType&quot;:&quot;number&quot;},&quot;spankNaBoku&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;plain&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;size&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;standard&quot;,&quot;options&quot;:[&quot;standard&quot;,&quot;large&quot;],&quot;tsType&quot;:&quot;string&quot;},&quot;tuhostTitle&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Tuhost&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:320,&quot;height&quot;:200},&quot;layout&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;bars&quot;,&quot;bars2&quot;,&quot;tiles&quot;,&quot;seg&quot;,&quot;rada&quot;,&quot;kompakt&quot;],&quot;default&quot;:&quot;bars&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;tuhost&quot;:{&quot;editor&quot;:&quot;float&quot;,&quot;default&quot;:4.5,&quot;min&quot;:0,&quot;max&quot;:5,&quot;step&quot;:0.1,&quot;tsType&quot;:&quot;number&quot;},&quot;tuhostPct&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:90,&quot;min&quot;:0,&quot;max&quot;:100,&quot;tsType&quot;:&quot;number&quot;},&quot;zatizeniOd&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:70,&quot;tsType&quot;:&quot;number&quot;},&quot;zatizeniDo&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:100,&quot;tsType&quot;:&quot;number&quot;},&quot;nosnostMax&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:120,&quot;tsType&quot;:&quot;number&quot;},&quot;vyska&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:19,&quot;tsType&quot;:&quot;number&quot;},&quot;vyskaJadra&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:16,&quot;tsType&quot;:&quot;number&quot;},&quot;zaruka&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:8,&quot;tsType&quot;:&quot;number&quot;},&quot;spankNaBoku&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;plain&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;size&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;standard&quot;,&quot;options&quot;:[&quot;standard&quot;,&quot;large&quot;],&quot;tsType&quot;:&quot;string&quot;},&quot;tuhostTitle&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Tuhost&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
 class Component extends DCLogic {
   uid = 'pm' + Math.random().toString(36).slice(2, 8);
+  // Animované ikony tuhosti H1 (velmi měkká) – H5 (velmi tvrdá) od klienta (tvrdost-Hx-animovana.svg), vložené inline:
+  // úložiště assetů z nahraných SVG odstraňuje <animate>. d/cy = klidový stav, dv/cv = hodnoty animace (5 s, smyčka).
+  // Klidové profily ikon tuhosti H1–H5 (pro varianty D a E)
+  static PROFILES = {"1": {"d": "M3 18H5C10.5 18 11 25 16 25C21 25 21.5 18 27 18H29", "cy": "19.5"}, "2": {"d": "M3 18H6C11 18 11 23.2 16 23.2C21 23.2 21 18 26 18H29", "cy": "17.7"}, "3": {"d": "M3 18H7C11.5 18 11 21.6 16 21.6C21 21.6 20.5 18 25 18H29", "cy": "16.1"}, "4": {"d": "M3 18H8C12 18 11 20 16 20C21 20 20 18 24 18H29", "cy": "14.5"}, "5": {"d": "M3 18H9C12.5 18 11 18.6 16 18.6C21 18.6 19.5 18 23 18H29", "cy": "13.1"}};
+  static TUHOST_ICONS = {
+    "1": {
+      "d": "M3 18H5C10.5 18 11 25 16 25C21 25 21.5 18 27 18H29",
+      "cy": "19.5",
+      "kt": "0;0.28;0.32;0.35;0.37;0.51;0.59;0.62;0.65;0.69;1",
+      "ks": "0.45 0 0.55 1;0.2 0.7 0.4 1;0.2 0.7 0.4 1;0.2 0.7 0.4 1;0.45 0 0.55 1;0.5 0 0.8 0.4;0.2 0.7 0.4 1;0.45 0 0.55 1;0.45 0 0.55 1;0.45 0 0.55 1",
+      "dv": "M3 18H5C10.5 18 11 25 16 25C21 25 21.5 18 27 18H29;M3 18H5C10.5 18 11 25 16 25C21 25 21.5 18 27 18H29;M3 18H5C10.5 18 11 18 16 18C21 18 21.5 18 27 18H29;M3 18H5C10.5 18 11 17.65 16 17.65C21 17.65 21.5 18 27 18H29;M3 18H5C10.5 18 11 18 16 18C21 18 21.5 18 27 18H29;M3 18H5C10.5 18 11 18 16 18C21 18 21.5 18 27 18H29;M3 18H5C10.5 18 11 18 16 18C21 18 21.5 18 27 18H29;M3 18H5C10.5 18 11 26.26 16 26.26C21 26.26 21.5 18 27 18H29;M3 18H5C10.5 18 11 24.51 16 24.51C21 24.51 21.5 18 27 18H29;M3 18H5C10.5 18 11 25 16 25C21 25 21.5 18 27 18H29;M3 18H5C10.5 18 11 25 16 25C21 25 21.5 18 27 18H29",
+      "cv": "19.5;19.5;15.3;9.3;8.5;8.5;12.5;20.76;19.01;19.5;19.5"
+    },
+    "2": {
+      "d": "M3 18H6C11 18 11 23.2 16 23.2C21 23.2 21 18 26 18H29",
+      "cy": "17.7",
+      "kt": "0;0.3;0.34;0.37;0.39;0.53;0.61;0.64;0.67;0.71;1",
+      "ks": "0.45 0 0.55 1;0.2 0.7 0.4 1;0.2 0.7 0.4 1;0.2 0.7 0.4 1;0.45 0 0.55 1;0.5 0 0.8 0.4;0.2 0.7 0.4 1;0.45 0 0.55 1;0.45 0 0.55 1;0.45 0 0.55 1",
+      "dv": "M3 18H6C11 18 11 23.2 16 23.2C21 23.2 21 18 26 18H29;M3 18H6C11 18 11 23.2 16 23.2C21 23.2 21 18 26 18H29;M3 18H6C11 18 11 18 16 18C21 18 21 18 26 18H29;M3 18H6C11 18 11 17.65 16 17.65C21 17.65 21 18 26 18H29;M3 18H6C11 18 11 18 16 18C21 18 21 18 26 18H29;M3 18H6C11 18 11 18 16 18C21 18 21 18 26 18H29;M3 18H6C11 18 11 18 16 18C21 18 21 18 26 18H29;M3 18H6C11 18 11 24.14 16 24.14C21 24.14 21 18 26 18H29;M3 18H6C11 18 11 22.84 16 22.84C21 22.84 21 18 26 18H29;M3 18H6C11 18 11 23.2 16 23.2C21 23.2 21 18 26 18H29;M3 18H6C11 18 11 23.2 16 23.2C21 23.2 21 18 26 18H29",
+      "cv": "17.7;17.7;14.58;9.3;8.5;8.5;12.5;18.64;17.34;17.7;17.7"
+    },
+    "3": {
+      "d": "M3 18H7C11.5 18 11 21.6 16 21.6C21 21.6 20.5 18 25 18H29",
+      "cy": "16.1",
+      "kt": "0;0.32;0.36;0.39;0.41;0.55;0.63;0.66;0.69;0.73;1",
+      "ks": "0.45 0 0.55 1;0.2 0.7 0.4 1;0.2 0.7 0.4 1;0.2 0.7 0.4 1;0.45 0 0.55 1;0.5 0 0.8 0.4;0.2 0.7 0.4 1;0.45 0 0.55 1;0.45 0 0.55 1;0.45 0 0.55 1",
+      "dv": "M3 18H7C11.5 18 11 21.6 16 21.6C21 21.6 20.5 18 25 18H29;M3 18H7C11.5 18 11 21.6 16 21.6C21 21.6 20.5 18 25 18H29;M3 18H7C11.5 18 11 18 16 18C21 18 20.5 18 25 18H29;M3 18H7C11.5 18 11 17.65 16 17.65C21 17.65 20.5 18 25 18H29;M3 18H7C11.5 18 11 18 16 18C21 18 20.5 18 25 18H29;M3 18H7C11.5 18 11 18 16 18C21 18 20.5 18 25 18H29;M3 18H7C11.5 18 11 18 16 18C21 18 20.5 18 25 18H29;M3 18H7C11.5 18 11 22.25 16 22.25C21 22.25 20.5 18 25 18H29;M3 18H7C11.5 18 11 21.35 16 21.35C21 21.35 20.5 18 25 18H29;M3 18H7C11.5 18 11 21.6 16 21.6C21 21.6 20.5 18 25 18H29;M3 18H7C11.5 18 11 21.6 16 21.6C21 21.6 20.5 18 25 18H29",
+      "cv": "16.1;16.1;13.94;9.3;8.5;8.5;12.5;16.75;15.85;16.1;16.1"
+    },
+    "4": {
+      "d": "M3 18H8C12 18 11 20 16 20C21 20 20 18 24 18H29",
+      "cy": "14.5",
+      "kt": "0;0.34;0.38;0.41;0.43;0.57;0.65;0.68;0.71;0.75;1",
+      "ks": "0.45 0 0.55 1;0.2 0.7 0.4 1;0.2 0.7 0.4 1;0.2 0.7 0.4 1;0.45 0 0.55 1;0.5 0 0.8 0.4;0.2 0.7 0.4 1;0.45 0 0.55 1;0.45 0 0.55 1;0.45 0 0.55 1",
+      "dv": "M3 18H8C12 18 11 20 16 20C21 20 20 18 24 18H29;M3 18H8C12 18 11 20 16 20C21 20 20 18 24 18H29;M3 18H8C12 18 11 18 16 18C21 18 20 18 24 18H29;M3 18H8C12 18 11 17.65 16 17.65C21 17.65 20 18 24 18H29;M3 18H8C12 18 11 18 16 18C21 18 20 18 24 18H29;M3 18H8C12 18 11 18 16 18C21 18 20 18 24 18H29;M3 18H8C12 18 11 18 16 18C21 18 20 18 24 18H29;M3 18H8C12 18 11 20.36 16 20.36C21 20.36 20 18 24 18H29;M3 18H8C12 18 11 19.86 16 19.86C21 19.86 20 18 24 18H29;M3 18H8C12 18 11 20 16 20C21 20 20 18 24 18H29;M3 18H8C12 18 11 20 16 20C21 20 20 18 24 18H29",
+      "cv": "14.5;14.5;13.3;9.3;8.5;8.5;12.5;14.86;14.36;14.5;14.5"
+    },
+    "5": {
+      "d": "M3 18H9C12.5 18 11 18.6 16 18.6C21 18.6 19.5 18 23 18H29",
+      "cy": "13.1",
+      "kt": "0;0.36;0.4;0.43;0.45;0.59;0.67;0.7;0.73;0.77;1",
+      "ks": "0.45 0 0.55 1;0.2 0.7 0.4 1;0.2 0.7 0.4 1;0.2 0.7 0.4 1;0.45 0 0.55 1;0.5 0 0.8 0.4;0.2 0.7 0.4 1;0.45 0 0.55 1;0.45 0 0.55 1;0.45 0 0.55 1",
+      "dv": "M3 18H9C12.5 18 11 18.6 16 18.6C21 18.6 19.5 18 23 18H29;M3 18H9C12.5 18 11 18.6 16 18.6C21 18.6 19.5 18 23 18H29;M3 18H9C12.5 18 11 18 16 18C21 18 19.5 18 23 18H29;M3 18H9C12.5 18 11 17.65 16 17.65C21 17.65 19.5 18 23 18H29;M3 18H9C12.5 18 11 18 16 18C21 18 19.5 18 23 18H29;M3 18H9C12.5 18 11 18 16 18C21 18 19.5 18 23 18H29;M3 18H9C12.5 18 11 18 16 18C21 18 19.5 18 23 18H29;M3 18H9C12.5 18 11 18.71 16 18.71C21 18.71 19.5 18 23 18H29;M3 18H9C12.5 18 11 18.56 16 18.56C21 18.56 19.5 18 23 18H29;M3 18H9C12.5 18 11 18.6 16 18.6C21 18.6 19.5 18 23 18H29;M3 18H9C12.5 18 11 18.6 16 18.6C21 18.6 19.5 18 23 18H29",
+      "cv": "13.1;13.1;12.74;9.3;8.5;8.5;12.5;13.21;13.06;13.1;13.1"
+    }
+  };
+  // SVG ikony jako data URI v <img> (SMIL animace v obrázku běží, úložiště assetů by <animate> odstranilo)
+  static tuhostSvg(t, anim) {
+    if (!t) return '';
+    const a = (attr, vals) => anim ? '<animate attributeName="' + attr + '" dur="5s" repeatCount="indefinite" calcMode="spline" keyTimes="' + t.kt + '" keySplines="' + t.ks + '" values="' + vals + '"/>' : '';
+    const svg = '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">'
+      + '<path d="' + t.d + '" fill="none" stroke="#2E3F7F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' + a('d', t.dv) + '</path>'
+      + '<circle cx="16" cy="' + t.cy + '" r="4.5" fill="#F2B544">' + a('cy', t.cv) + '</circle></svg>';
+    return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
+  }
   renderVals() {
     const p = this.props, u = this.uid;
     const lg = p.size === 'large';
@@ -290,6 +481,28 @@ class Component extends DCLogic {
     if (pct !== null && pct >= 50) poloha.push('na zádech');
     if (p.spankNaBoku) poloha.push('na boku');
     const polohaLabel = poloha.join(' i ');
+    const tLvl = t === null ? 3 : Math.max(1, Math.min(5, Math.round(t)));
+    const isBars = !p.layout || p.layout === 'bars' || p.layout === 'bars2';
+    // Omezený pohyb (WCAG 2.3.3): bez animace, jen klidový stav ikony
+    const tAnim = !(typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+    const wordsL = ['velmi měkká', 'měkká', 'středně tvrdá', 'tvrdá', 'velmi tvrdá'];
+    const tWordLow = wordsL[tLvl - 1];
+    const tWordCap = tWordLow.charAt(0).toUpperCase() + tWordLow.slice(1);
+    const tNumStr = t === null ? '' : String(t).replace('.', ',');
+    const ticks = [];
+    for (let v = 0; v <= max; v += 10) ticks.push({ x: 'calc(' + (v / max * 100).toFixed(2) + '% - ' + (v >= max ? 1 : 0) + 'px)', h: v % 50 === 0 ? '12px' : '6px' });
+    const rd = {};
+    for (let k = 1; k <= 5; k++) {
+      const on = k === tLvl;
+      rd['c' + k] = on ? 'pm-on' : ''; rd['o' + k] = on ? 1 : 0.4;
+      rd['pd' + k] = on ? 'pm-d' + k : ''; rd['pb' + k] = on ? 'pm-b' + k : '';
+      rd['s' + k] = on ? '#2E3F7F' : '#5B6874'; rd['f' + k] = on ? '#F2B544' : '#9AA6B2';
+    }
+    [50, 70, 90, 110, 130].forEach((w, j) => {
+      const on = hasZ && w >= od && (j === 4 ? dd >= 130 : w <= dd);
+      rd['mc' + j] = on ? 'pm-on' : ''; rd['mo' + j] = on ? 1 : 0.35; rd['ms' + j] = on ? '#2E3F7F' : '#5B6874';
+      rd['mw' + j] = on ? 600 : 400; rd['ml' + j] = j === 4 ? '130+' : String(w);
+    });
     const facts = [];
     if (p.vyska) facts.push({ icon: 'arrow-autofit-height', label: p.vyska + nb + 'cm', tip: 'Celková výška matrace včetně potahu' + (p.vyskaJadra ? ', jádro ' + p.vyskaJadra + nb + 'cm.' : '.') });
     if (p.nosnostMax) facts.push({ icon: 'weight', label: 'max' + nb + p.nosnostMax + nb + 'kg', tip: 'Maximální nosnost na jednu osobu.' });
@@ -303,7 +516,7 @@ class Component extends DCLogic {
       lblSize: lg ? '15px' : '13px', lblWeight: lg ? 700 : 400, lblColor: lg ? 'var(--ss-text-primary,#1C2229)' : 'inherit', valSize: lg ? '17px' : '13px',
       knob: k, knobHalf: k / 2, track: tr, trackTop: (k - tr) / 2,
       hasTuhost: t !== null,
-      plainTuhost: t !== null && !!p.plain, btnTuhost: t !== null && !p.plain,
+      plainTuhost: t !== null && !!p.plain && isBars, btnTuhost: t !== null && !p.plain && isBars,
       tuhostLabel: t === null ? '' : String(t).replace('.', ',') + ' z 5',
       tuhostPos: clamp(pct || 0),
       hasZatizeni: hasZ,
@@ -312,8 +525,30 @@ class Component extends DCLogic {
       doPos: hasZ ? clamp(dd / max * 100) : 0,
       rangeW: hasZ ? clamp((dd - od) / max * 100) : 0,
       scaleLabel: max + nb + 'kg',
-      idealLabel: 'Ideální pro' + (poloha.length ? (lg ? ' spánek ' + polohaLabel : ' ' + poloha.map(x => x === 'na zádech' ? 'záda' : 'bok').join(' i ')) : ''),
-      tipZ: 'Doporučená váha jednoho spáče' + (hasZ ? ' (' + od + '–' + dd + nb + 'kg)' : '') + (poloha.length ? ' a poloha spánku, pro kterou se matrace hodí.' : '.'),
+      idealLabel: 'Ideální pro váhu',
+      tiles: p.layout === 'tiles',
+      // C = segmenty + pravítko, D = řada profilů a postav, E = kompaktní řádky (bez táhel)
+      segL: t !== null && p.layout === 'seg', radaL: t !== null && p.layout === 'rada', kompaktL: t !== null && p.layout === 'kompakt',
+      tWord: tWordCap, tNum: tNumStr, tAria: 'Tuhost ' + tNumStr + ' z 5, ' + tWordLow,
+      segs: [1, 2, 3, 4, 5].map((i) => ({ w: Math.round(Math.max(0, Math.min(1, (t || 0) - (i - 1))) * 100) + '%', d: (i - 1) * 90 + 'ms' })),
+      kbars: [1, 2, 3, 4, 5].map((i) => ({ h: (6 + i * 2) + 'px', f: Math.round(Math.max(0, Math.min(1, (t || 0) - (i - 1))) * 100) + '%', d: (i - 1) * 70 + 'ms' })),
+      ticks: ticks, scaleMid: Math.round(max / 2),
+      kIcon: Component.PROFILES[tLvl], kBorder: hasZ ? '1px solid var(--ss-surface-strong,#E9E1D5)' : '0',
+      rd: rd,
+      // Varianta A2 (bars2): tuhost a „Ideální pro váhu“ ve dvou sloupcích vedle sebe; popisek a hodnota se v úzkém sloupci zalomí pod sebe
+      rootCols: p.layout === 'bars2' ? 'minmax(0,1fr) minmax(0,1fr)' : 'minmax(0,1fr)',
+      colGap: p.layout === 'bars2' ? '8px' : (lg ? '20px' : '12px'),
+      lblWrap: p.layout === 'bars2' ? 'wrap' : 'nowrap',
+      // A2: stupnice 1–5 pod tuhostí a podbarvené buňky jako dlaždice ve variantě B
+      scaleT: p.layout === 'bars2' && !lg,
+      cellBg: p.layout === 'bars2' ? 'var(--ss-surface-subtle,#FAF5EF)' : 'none',
+      cellPad: p.layout === 'bars2' ? '10px 12px' : '0',
+      cellRad: p.layout === 'bars2' ? '8px' : '6px',
+      barZatizeni: hasZ && isBars,
+      tLevelTag: 'H' + tLvl,
+      tIcon: Component.tuhostSvg(Component.TUHOST_ICONS[tLvl], tAnim),
+      hasTIcon: !!Component.TUHOST_ICONS[tLvl], noTIcon: !Component.TUHOST_ICONS[tLvl],
+      tipZ: 'Doporučená váha jednoho spáče' + (hasZ ? ' (' + od + '–' + dd + nb + 'kg).' : '.'),
       facts
     };
   }

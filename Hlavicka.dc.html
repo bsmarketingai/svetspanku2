@@ -188,14 +188,6 @@ main>section.ss-grad-top.ss-grad-glow{background-image:radial-gradient(ellipse 5
 html[data-mode="dark"] main>section.ss-grad-top.ss-grad-glow{background-image:radial-gradient(ellipse 55% 100% at 50% 100%,rgba(251,178,85,.14) 0%,rgba(251,178,85,.05) 45%,rgba(251,178,85,0) 75%),linear-gradient(180deg,var(--ss-surface-page,#0E1F2F) 0%,var(--ss-surface-muted,#183049) 100%)!important;}
 
 
-/* Scrollbar: jen táhlo v barvách webu, bez podkladu (platí globálně) */
-*{scrollbar-width:auto;scrollbar-color:var(--ss-scrollbar-thumb,#FBB255) transparent;}
-*::-webkit-scrollbar{width:15px;height:15px;background:transparent;}
-*::-webkit-scrollbar-track{background:transparent;}
-*::-webkit-scrollbar-thumb{background:var(--ss-scrollbar-thumb,#FBB255);border-radius:999px;border:4px solid transparent;background-clip:padding-box;}
-*::-webkit-scrollbar-thumb:hover{background:var(--ss-scrollbar-thumb-hover,#F09A2C);background-clip:padding-box;}
-*::-webkit-scrollbar-corner{background:transparent;}
-html[data-mode="dark"]{--ss-scrollbar-thumb:#FBB255;--ss-scrollbar-thumb-hover:#F09A2C;}
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400..700&family=Roboto:wght@400..700&display=swap" rel="stylesheet">
 <script>try{var d=document.documentElement;if(localStorage.getItem('ss-mode')==='dark')d.setAttribute('data-mode','dark');d.setAttribute('data-logo',localStorage.getItem('ss-logo')||'a');d.setAttribute('data-font-h','base');d.setAttribute('data-font-b','base');d.setAttribute('data-bg',localStorage.getItem('ss-bg')||'on');}catch(e){}</script>
@@ -231,9 +223,10 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
 .ss-hd-navwrap[data-fade-l="true"] .ss-hd-navscroll{-webkit-mask-image:linear-gradient(to right,transparent 4px,#000 48px);mask-image:linear-gradient(to right,transparent 4px,#000 48px);}
 .ss-hd-navwrap[data-fade-l="true"][data-fade-r="true"] .ss-hd-navscroll{-webkit-mask-image:linear-gradient(to right,transparent 4px,#000 48px,#000 calc(100% - 48px),transparent calc(100% - 4px));mask-image:linear-gradient(to right,transparent 4px,#000 48px,#000 calc(100% - 48px),transparent calc(100% - 4px));}
 .ss-hd-tab:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);border-radius:6px;}
-.ss-hd-tab::after{content:"";position:absolute;left:14px;right:14px;bottom:0;height:3px;border-radius:3px 3px 0 0;background:transparent;transition:background-color .12s cubic-bezier(.22,.61,.36,1);}
-.ss-hd-tab[data-open="true"]::after,.ss-hd-tab[aria-current="page"]::after{background:#FBB255;}
-@media (hover:hover) and (pointer:fine){.ss-hd-tab:hover::after{background:#FBB255;}}
+.ss-hd-tab::after{content:"";position:absolute;left:14px;right:14px;bottom:0;height:3px;border-radius:3px 3px 0 0;background:#FBB255;transform:scaleX(0);transform-origin:center;transition:transform .2s cubic-bezier(.22,.61,.36,1);}
+@media (prefers-reduced-motion:reduce){.ss-hd-tab::after{transition:none;}}
+.ss-hd-tab[data-open="true"]::after,.ss-hd-tab[aria-current="page"]::after{transform:scaleX(1);}
+@media (hover:hover) and (pointer:fine){.ss-hd-tab:hover::after{transform:scaleX(1);}}
 .ss-hd-sug{display:flex;align-items:center;gap:12px;width:100%;min-height:48px;padding:0 16px;border:0;background:none;font:inherit;font-size:15px;color:var(--ss-text-primary,#1C2229);text-align:left;text-decoration:none;cursor:pointer;}
 .ss-hd-sug:hover{background:var(--ss-hover-bg,#FFF5E6);color:var(--ss-hover-text,#A4600C)}
 .ss-hd-sug:focus-visible{outline:none;box-shadow:inset 0 0 0 3px rgba(41,96,147,.35);}
@@ -281,9 +274,11 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
 .ss-hd[data-theme="duo"] :is(.ss-hd-topbar,.ss-hd-main) .ss-hd-util:focus-visible,.ss-hd[data-theme="duo"] .ss-hd-main .ss-hd-action:focus-visible{box-shadow:0 0 0 3px rgba(251,178,85,.65);}
 .ss-hd-tab[aria-current="page"]{color:var(--ss-hover-text,#21507B);}
 .ss-hd[data-theme="blue"] .ss-hd-tab[aria-current="page"]{color:#FBB255;}
+/* Schovaná hlavička (H2): obal i hlavička nepřijímají kliky, jinak by průhledný sticky obal blokoval lištu obsahu pod sebou */
+.sc-host:has(>.ss-hd[data-hidden="true"]),.ss-hd[data-hidden="true"]{pointer-events:none;}
 </style>
 </helmet>
-<header class="ss-hd" data-theme="{{ theme }}" ref="{{ headerRef }}" style="{{ headerStyle }}">
+<header class="ss-hd" data-theme="{{ theme }}" data-hidden="{{ hdHiddenStr }}" ref="{{ headerRef }}" style="{{ headerStyle }}">
   <sc-if value="{{ wide }}" hint-placeholder-val="{{ true }}">
     <div style="{{ topBarStyle }}">
     <div class="ss-hd-topbar" style="width:100%;background:var(--ss-surface-subtle,#FAF5EF);border-bottom:1px solid var(--ss-border-subtle,#E1E6EB)">
@@ -306,8 +301,8 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
   <div class="ss-hd-main" style="width:100%;background:var(--ss-surface-page,#FFFFFF);position:relative;--ss-hd-bg:var(--ss-surface-page,#FFFFFF)">
     <div style="max-width:1560px;margin:0 auto;padding:{{ mainPad }};display:flex;align-items:center;gap:{{ mainGap }}">
       <a class="ss-hd-logo" href="index.dc.html" style="display:flex;align-items:center;flex:none;border-radius:6px;padding:4px" aria-label="Světspánku.cz — domů">
-        <img decoding="async" class="ss-hd-logo-pos" src="logo-svetspanku.png" alt="Světspánku.cz" style="display:block;height:{{ logoSize }};width:auto" />
-        <img decoding="async" class="ss-hd-logo-neg" src="logo-svetspanku-negativ.png" alt="Světspánku.cz" style="display:none;height:{{ logoSize }};width:auto" />
+        <img decoding="async" class="ss-hd-logo-pos" src="/_blob/c8b91d161f29e0501047ffad213df027" alt="Světspánku.cz" style="display:block;height:{{ logoSize }};width:auto" />
+        <img decoding="async" class="ss-hd-logo-neg" src="/_blob/060a09622abd6ccf3c263746e435c11e" alt="Světspánku.cz" style="display:none;height:{{ logoSize }};width:auto" />
         <span class="ss-hd-logo-a" style="{{ logoDkA }}"><dc-import name="LogoA-Pulz" background="{{ false }}" hint-size="100%,100%"></dc-import></span>
         <span class="ss-hd-logo-b" style="{{ logoDkB }}"><dc-import name="LogoB-DychaniZnaku" background="{{ false }}" hint-size="100%,100%"></dc-import></span>
         <span class="ss-hd-logo-c" style="{{ logoDkC }}"><dc-import name="LogoC-DychaniCele" background="{{ false }}" hint-size="100%,100%"></dc-import></span>
@@ -323,23 +318,7 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
         </div>
 
         <sc-if value="{{ showPhone }}" hint-placeholder-val="{{ true }}">
-          <div style="display:flex;align-items:center;gap:8px;line-height:1.25;flex:none">
-            <sc-if value="{{ isOpenNow }}" hint-placeholder-val="{{ true }}">
-              <span class="ss-hd-telicon" style="display:flex;color:var(--ss-link,#296093);flex:none"><dc-import name="Ikony" iconName="phone" size="20" hint-size="20px,20px"></dc-import></span>
-            </sc-if>
-            <sc-if value="{{ isClosedNow }}" hint-placeholder-val="{{ false }}">
-              <span class="ss-hd-telicon ss-hd-zzz" role="img" aria-label="Mimo otevírací dobu" style="display:flex;color:var(--ss-link,#296093);flex:none"><dc-import name="Ikony" iconName="zzz" size="20" hint-size="20px,20px"></dc-import></span>
-            </sc-if>
-            <div style="display:flex;flex-direction:column;min-width:0">
-            <a class="ss-hd-tel" href="tel:+420543212855" style="font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:18px;color:var(--ss-text-primary,#1C2229);text-decoration:none">+420 543 212 855</a>
-            <span class="ss-hd-hours" style="display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--ss-text-muted,#5B6874)">
-              <sc-if value="{{ isOpenNow }}" hint-placeholder-val="{{ false }}">
-                <span class="ss-hd-led" role="img" aria-label="Právě jsme online"></span>
-              </sc-if>
-              <span>Po–Pá 9:00–17:00</span>
-            </span>
-            </div>
-          </div>
+          <dc-import name="Telefon" ledMode="{{ ledModeP }}" hint-size="190px,44px"></dc-import>
         </sc-if>
 
         <div style="display:flex;align-items:center;gap:4px;flex:none">
@@ -446,26 +425,9 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
     </div>
   </sc-if>
 
-  <sc-if value="{{ loginOpen }}" hint-placeholder-val="{{ false }}">
-    <div class="ss-scrim" style="position:fixed;inset:0;z-index:500;display:flex;align-items:center;justify-content:center;padding:16px" onClick="{{ closeLogin }}"></div>
-    <div ref="{{ loginRef }}" role="dialog" aria-modal="true" aria-label="Přihlášení" style="position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:510;width:min(92vw,420px);max-height:92vh;overflow-y:auto">
-      <dc-import name="PrihlaseniModal" onClose="{{ closeLogin }}" hint-size="100%,560px"></dc-import>
-    </div>
-  </sc-if>
-
-  <sc-if value="{{ cartOpen }}" hint-placeholder-val="{{ false }}">
-    <div class="ss-scrim" style="position:fixed;inset:0;z-index:400" onClick="{{ closeCart }}"></div>
-    <div ref="{{ cartRef }}" role="dialog" aria-modal="true" aria-label="Nákupní košík" style="{{ cartStyle }}">
-      <dc-import name="KosikDrawer" onClose="{{ closeCart }}" compact="{{ narrow }}" items="{{ cartItems }}" total="{{ cartTotal }}" onQty="{{ onCartQty }}" onRemove="{{ onCartRemove }}" style="position:absolute;inset:0;height:100%" hint-size="100%,100%"></dc-import>
-    </div>
-  </sc-if>
-
-  <sc-if value="{{ mobileOpen }}" hint-placeholder-val="{{ false }}">
-    <div class="ss-scrim" style="{{ overlayStyle }}" onClick="{{ closeMobile }}"></div>
-    <div ref="{{ drawerRef }}" role="dialog" aria-modal="true" aria-label="Hlavní menu" style="{{ drawerStyle }}">
-      <dc-import name="MobilniMenu" open="{{ mobileOpen }}" onClose="{{ closeMobile }}" style="position:absolute;inset:0;height:100%" hint-size="100%,100%"></dc-import>
-    </div>
-  </sc-if>
+  <dc-import name="Overlay" open="{{ loginOpen }}" variant="drawer" obsah="PrihlaseniObsah" title="Přihlaste se" icon="user" closeLabel="přihlášení" data="{{ loginData }}" onEvent="{{ onLoginEvent }}" onClose="{{ closeLogin }}" hint-size="0px,0px"></dc-import>
+  <dc-import name="Overlay" open="{{ cartOpen }}" variant="drawer" obsah="KosikObsah" title="Nákupní košík" icon="shopping-bag" badge="{{ cartCount }}" closeLabel="košík" data="{{ cartData }}" onEvent="{{ onCartEvent }}" onClose="{{ closeCart }}" primaryLabel="{{ cartPrimary }}" primaryVariant="buy" primaryHref="KosikKrok1.dc.html" primaryIcon="shopping-bag" secondaryLabel="{{ cartSecondary }}" secondaryIcon="arrow-left" hint-size="0px,0px"></dc-import>
+  <dc-import name="Overlay" open="{{ mobileOpen }}" variant="drawer" flush="{{ true }}" obsah="MobilniMenuObsah" title="Menu" icon="menu-2" closeLabel="menu" onClose="{{ closeMobile }}" hint-size="0px,0px"></dc-import>
 </header>
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:320},&quot;theme&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;blue&quot;,&quot;options&quot;:[&quot;light&quot;,&quot;blue&quot;,&quot;duo&quot;],&quot;tsType&quot;:&quot;string&quot;},&quot;cartCount&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:2,&quot;min&quot;:0,&quot;max&quot;:99,&quot;tsType&quot;:&quot;number&quot;},&quot;cartTotal&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;2 480 Kč&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;activeCategory&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;onSearch&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;(query: string) =&gt; void&quot;}}">
@@ -473,61 +435,61 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
 const __M_produkty = (() => {
 // Ukázková data produktů a kategorií pro prototyp. Fotky jsou zástupné z dodaných podkladů.
 const PRODUKTY = [
-  { id: 'p1', image: 'produkt-matrace-spring-variant-karta.webp', title: 'Matrace Spring Variant 22 cm', href: 'Detail_Matrace_3.0.dc.html', orderNo: '428170',
+  { id: 'p1', image: '/_blob/66ef2119f31d8262ba38ce4bea618a8e', title: 'Matrace Spring Variant 22 cm', href: 'Detail_Matrace_3.0.dc.html', orderNo: '428170',
     perex: 'Partnerská matrace s tuhostí volitelnou pro každou polovinu samostatně. Už žádná mezera uprostřed.',
     rating: 4.8, ratingCount: 18, price: '7 590 Kč', priceBefore: '9 590 Kč', badge: 'sale', badgeLabel: 'Akce −25 %',
     secondBadge: 'news', secondBadgeLabel: 'Novinka', stock: 'inStock', moreLabel: 'Více rozměrů / stupňů tuhosti',
     mp: { tuhostPct: 70, zatizeniOd: 70, zatizeniDo: 120, nosnostMax: 130, vyska: 28, vyskaJadra: 24, zaruka: 8, spankNaBoku: true },
     tuhost: 4.5, params: [{ icon: 'weight', label: '200 kg' }, { icon: 'arrow-autofit-height', label: '20 cm' }, { icon: 'color-swatch', label: 'Pěnová' }] },
-  { id: 'p2', image: 'produkt-matrace-taskova-leda-duo.webp', title: 'Taštičková matrace Leda Duo', href: 'Detail_Matrace_3.0.dc.html', orderNo: '428204',
+  { id: 'p2', image: '/_blob/4d39f39f3e59f9479b2f3fa0c249def9', title: 'Taštičková matrace Leda Duo', href: 'Detail_Matrace_3.0.dc.html', orderNo: '428204',
     perex: 'Sedm zón tuhosti a kokosová deska. Pohyb jednoho spícího druhého neruší.',
     rating: 4.8, ratingCount: 64, price: '9 190 Kč', stock: 'inStock', moreLabel: 'Více rozměrů / stupňů tuhosti',
     mp: { tuhostPct: 40, zatizeniOd: 40, zatizeniDo: 80, nosnostMax: 95, vyska: 18, vyskaJadra: 16, zaruka: 3, spankNaBoku: false },
     tuhost: 3, params: [{ icon: 'weight', label: '130 kg' }, { icon: 'arrow-autofit-height', label: '20 cm' }, { icon: 'color-swatch', label: 'Taštičková' }] },
-  { id: 'p3', image: 'produkt-matrace-elara.webp', title: 'Antidekubitní matrace Ultra Fresh', href: 'Detail_Matrace_3.0.dc.html', orderNo: '428311',
+  { id: 'p3', image: '/_blob/c2606f1b288878aa84129b4a0e05ba7e', title: 'Antidekubitní matrace Ultra Fresh', href: 'Detail_Matrace_3.0.dc.html', orderNo: '428311',
     perex: 'Líná pěna s prodyšným potahem pro dlouhé ležení. Vhodná i pro polohovací rošty.',
     rating: 4.3, ratingCount: 21, price: '11 290 Kč', stock: 'lowStock', moreLabel: 'Více rozměrů / stupňů tuhosti',
     mp: { tuhostPct: 70, zatizeniOd: 60, zatizeniDo: 110, nosnostMax: 130, vyska: 26, vyskaJadra: 24, zaruka: 5, spankNaBoku: false },
     tuhost: 3, params: [{ icon: 'weight', label: '120 kg' }, { icon: 'arrow-autofit-height', label: '18 cm' }] },
-  { id: 'p4', image: 'produkt-postel-levita.webp', lifestyle: true, title: 'Postel z masivu LEVITA', href: 'Detail_Postel_3.0.dc.html', orderNo: '419820',
+  { id: 'p4', image: '/_blob/6b546453dfb90e0ec7ddb488eed7e6ec', lifestyle: true, title: 'Postel z masivu LEVITA', href: 'Detail_Postel_3.0.dc.html', orderNo: '419820',
     perex: 'Smrkový masiv s úložným prostorem po celé ploše lože a plynovými písty.',
     rating: 4.9, ratingCount: 43, price: '21 390 Kč', badge: 'news', stock: 'inStock', moreLabel: 'Více rozměrů / odstínů',
     params: [{ icon: 'dimensions', label: '180 × 200 cm' }, { icon: 'tree', label: 'Smrk, bílá' }, { icon: 'package', label: 'Úložný prostor' }] },
-  { id: 'p5', image: 'produkt-rost-lamelovy.webp', title: 'Lamelový rošt Flex 28', href: 'Detail_Postel_3.0.dc.html', orderNo: '431004',
+  { id: 'p5', image: '/_blob/7d9234acbe0f59bf374b86101ea80224', title: 'Lamelový rošt Flex 28', href: 'Detail_Postel_3.0.dc.html', orderNo: '431004',
     perex: 'Osmadvacet pružných lamel s pojezdem tuhosti v oblasti beder.',
     rating: 4.4, ratingCount: 37, price: '3 290 Kč', stock: 'inStock', moreLabel: 'Více rozměrů',
     params: [{ icon: 'dimensions', label: '160 × 200 cm' }, { icon: 'lamely', label: '28 lamel' }] },
-  { id: 'p6', image: 'produkt-komplet-nora.webp', title: 'Komplet postel Nora + rošt + matrace', href: 'Detail_Postel_3.0.dc.html', orderNo: '435110',
+  { id: 'p6', image: '/_blob/bec57053bba98acc27cb6181af2ecaf2', title: 'Komplet postel Nora + rošt + matrace', href: 'Detail_Postel_3.0.dc.html', orderNo: '435110',
     perex: 'Sestava připravená k okamžitému spaní. Rošt i matrace sedí na rozměr postele.',
     rating: 4.7, ratingCount: 18, price: '28 900 Kč', priceBefore: '34 700 Kč', badge: 'sale', badgeLabel: 'Akce −17 %',
     stock: 'onWay', moreLabel: 'Více rozměrů / variant matrace',
     params: [{ icon: 'dimensions', label: '160 × 200 cm' }, { icon: 'coins', label: 'Ušetříte 5 800 Kč' }] },
-  { id: 'p7', image: 'produkt-polstar-comfort-memory.webp', title: 'Anatomický polštář Comfort Memory', href: 'Detail_Postel_3.0.dc.html', orderNo: '440021',
+  { id: 'p7', image: '/_blob/70bc87f80d300e8a2f6bda4666194268', title: 'Anatomický polštář Comfort Memory', href: 'Detail_Postel_3.0.dc.html', orderNo: '440021',
     perex: 'Paměťová pěna, která kopíruje krční páteř a nedeformuje se.',
     rating: 4.2, ratingCount: 96, price: '1 290 Kč', stock: 'inStock',
     params: [{ icon: 'dimensions', label: '70 × 50 cm' }, { icon: 'color-swatch', label: 'Paměťová pěna' }] },
-  { id: 'p8', image: 'produkt-nocni-stolek-nora.webp', title: 'Noční stolek z masivu Nora', href: 'Detail_Postel_3.0.dc.html', orderNo: '419944',
+  { id: 'p8', image: '/_blob/8558634d093ec652305ccdb81196c238', title: 'Noční stolek z masivu Nora', href: 'Detail_Postel_3.0.dc.html', orderNo: '419944',
     perex: 'Dubový masiv se zásuvkou na tichém výsuvu. Ladí s postelí Nora.',
     rating: 4.5, ratingCount: 12, price: '4 690 Kč', stock: 'outOfStock', moreLabel: 'Více odstínů',
     params: [{ icon: 'tree', label: 'Dub' }, { icon: 'dimensions', label: '45 × 40 cm' }] },
-  { id: 'p9', image: 'produkt-matrace-sendvicova-duo-comfort.webp', title: 'Sendvičová matrace Duo Comfort', href: 'Detail_Matrace_3.0.dc.html', orderNo: '428590',
+  { id: 'p9', image: '/_blob/4a0a7adf8f13ddf960536da06df0e197', title: 'Sendvičová matrace Duo Comfort', href: 'Detail_Matrace_3.0.dc.html', orderNo: '428590',
     perex: 'Dvě tuhosti v jedné matraci — stačí ji otočit podle ročního období.',
     rating: 4.1, ratingCount: 54, price: '6 190 Kč', stock: 'inStock', moreLabel: 'Více rozměrů / stupňů tuhosti',
     mp: { tuhostPct: 70, zatizeniOd: 60, zatizeniDo: 110, nosnostMax: 120, vyska: 20, vyskaJadra: 18, zaruka: 5, spankNaBoku: true },
     tuhost: 3.5, params: [{ icon: 'arrows-exchange', label: 'Oboustranná' }, { icon: 'weight', label: '110 kg' }, { icon: 'arrow-autofit-height', label: '18 cm' }] },
-  { id: 'p10', image: 'produkt-postel-sara.webp', title: 'Postel z masivu Sara s čalouněným čelem', href: 'Detail_Postel_3.0.dc.html', orderNo: '419877',
+  { id: 'p10', image: '/_blob/83b97877b4eeaa401d7d46a9fa01dd17', title: 'Postel z masivu Sara s čalouněným čelem', href: 'Detail_Postel_3.0.dc.html', orderNo: '419877',
     perex: 'Masivní rám s čalouněným čelem v pratelném lněném potahu.',
     rating: 4.6, ratingCount: 29, price: '18 490 Kč', stock: 'inStock', moreLabel: 'Více rozměrů / potahů',
     params: [{ icon: 'dimensions', label: '160 × 200 cm' }, { icon: 'palette', label: 'Len šedý' }] }
 ];
 
 const KATEGORIE = [
-  { label: 'Manželské postele z masivu', href: 'Kategorie_Postele.dc.html#s=1', count: 42, image: 'kategorie-manzelske-postele-z-masivu.webp', sub: ['180 × 200', 'S úložným prostorem'] },
-  { label: 'Jednolůžka z masivu', href: 'Kategorie_Postele.dc.html#s=10', count: 24, image: 'kategorie-jednoluzka-z-masivu.webp', sub: ['90 × 200', 'Dětské', 'Buk'] },
-  { label: 'Čalouněné postele', href: 'Kategorie_Postele.dc.html#s=2', count: 31, image: 'produkt-postel-sara.webp', sub: ['S roštem', 'Boxspring'] },
-  { label: 'Matrace', href: 'Kategorie_Matrace.dc.html', count: 112, image: 'kategorie-matrace.webp', zoom: true, sub: ['Taštičkové', 'Pěnové', 'Latexové'] },
-  { label: 'Rošty', href: 'Kategorie_Rosty.dc.html', count: 54, image: 'kategorie-rosty-lamelove.webp', zoom: true, sub: ['Lamelové', 'Polohovací'] },
-  { label: 'Nábytek z masivu', href: 'Kategorie_Nabytek.dc.html', count: 73, image: 'kategorie-nabytek-z-masivu.webp', sub: ['Noční stolky', 'Komody'] }
+  { label: 'Manželské postele z masivu', href: 'Kategorie_Postele.dc.html#s=1', count: 42, image: '/_blob/cead5c69b22e38051d5480ee3e14c348', sub: ['180 × 200', 'S úložným prostorem'] },
+  { label: 'Jednolůžka z masivu', href: 'Kategorie_Postele.dc.html#s=10', count: 24, image: '/_blob/cbd39695e60222550587109c72c8c52b', sub: ['90 × 200', 'Dětské', 'Buk'] },
+  { label: 'Čalouněné postele', href: 'Kategorie_Postele.dc.html#s=2', count: 31, image: '/_blob/83b97877b4eeaa401d7d46a9fa01dd17', sub: ['S roštem', 'Boxspring'] },
+  { label: 'Matrace', href: 'Kategorie_Matrace.dc.html', count: 112, image: '/_blob/c5a374fbd36fa4495aacd11898012a93', zoom: true, sub: ['Taštičkové', 'Pěnové', 'Latexové'] },
+  { label: 'Rošty', href: 'Kategorie_Rosty.dc.html', count: 54, image: '/_blob/e58c131539e8ad6860c8e14b3cb0959a', zoom: true, sub: ['Lamelové', 'Polohovací'] },
+  { label: 'Nábytek z masivu', href: 'Kategorie_Nabytek.dc.html', count: 73, image: '/_blob/62799eee782850a7f388b83455378566', sub: ['Noční stolky', 'Komody'] }
 ];
 
 const FACETY = [
@@ -556,9 +518,9 @@ return { PRODUKTY, KATEGORIE, FACETY };
 const __M_kosik = (() => {
 // Ukázkový obsah košíku pro prototyp. Ceny s DPH.
 const KOSIK = [
-  { title: 'Manželská postel SANTE 45 dvoulůžko', variant: '200 × 180 cm · olej Teak · jádrový buk', qty: 1, unit: 39800, price: '39 800 Kč', href: '#produkt', img: 'produkt-sante-45.jpg', fit: 'cover' },
-  { title: 'Matrace Spring Variant 22 cm', variant: '180 × 200 cm · tuhost H3', qty: 1, unit: 7590, price: '7 590 Kč', href: '#produkt', img: 'produkt-matrace-spring-variant-karta.webp' },
-  { title: 'Lamelový rošt Standard', variant: '180 × 200 cm · 28 lamel', qty: 1, unit: 2480, price: '2 480 Kč', href: '#produkt', img: 'produkt-rost-lamelovy.webp' }
+  { title: 'Manželská postel SANTE 45 dvoulůžko', variant: '200 × 180 cm · olej Teak · jádrový buk', qty: 1, unit: 39800, price: '39 800 Kč', href: '#produkt', img: '/_blob/6721a0d378d224249b73f0d946656a32', fit: 'cover' },
+  { title: 'Matrace Spring Variant 22 cm', variant: '180 × 200 cm · tuhost H3', qty: 1, unit: 7590, price: '7 590 Kč', href: '#produkt', img: '/_blob/66ef2119f31d8262ba38ce4bea618a8e' },
+  { title: 'Lamelový rošt Standard', variant: '180 × 200 cm · 28 lamel', qty: 1, unit: 2480, price: '2 480 Kč', href: '#produkt', img: '/_blob/7d9234acbe0f59bf374b86101ea80224' }
 ];
 
 const formatKc = (n) => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, '\u00A0') + '\u00A0Kč';
@@ -578,7 +540,7 @@ const MENU = [
     "groups": [
       {
         "title": "Postele podle rozměrů",
-        "image": "menu-metr.webp",
+        "image": "/_blob/9459bc77080c613fe49b26658905c0d9",
         "href": "Kategorie_Postele.dc.html#s=0",
           "items": [
           {
@@ -625,7 +587,7 @@ const MENU = [
       },
       {
         "title": "Manželské postele z masivu",
-        "image": "kategorie-manzelske-postele-z-masivu.webp",
+        "image": "/_blob/cead5c69b22e38051d5480ee3e14c348",
         "href": "Kategorie_Postele.dc.html#s=1",
         "items": [
           {
@@ -664,7 +626,7 @@ const MENU = [
       },
       {
         "title": "Čalouněné postele",
-        "image": "produkt-postel-sara.webp",
+        "image": "/_blob/83b97877b4eeaa401d7d46a9fa01dd17",
         "href": "Kategorie_Postele.dc.html#s=2",
         "items": [
           {
@@ -687,7 +649,7 @@ const MENU = [
       },
       {
         "title": "Kombinované postele dřevo a čalounění",
-        "image": "menu-kombinovane.webp",
+        "image": "/_blob/2b07a10ad8eb024c6ef53104343b301c",
         "href": "Kategorie_Postele.dc.html#s=3",
         "items": [
           {
@@ -702,7 +664,7 @@ const MENU = [
       },
       {
         "title": "Postele s úložným prostorem",
-        "image": "menu-ulozny-prostor.webp",
+        "image": "/_blob/3c98d27c417e1d9ccb47b84ffe13df76",
         "href": "Kategorie_Postele.dc.html#s=4",
         "items": [
           {
@@ -721,7 +683,7 @@ const MENU = [
       },
       {
         "title": "Postele s nočními stolky",
-        "image": "menu-nocni-stolky.webp",
+        "image": "/_blob/bf9ee623a3c7f6bdd65949a31b2b28ab",
         "href": "Kategorie_Postele.dc.html#s=5",
         "items": [
           {
@@ -732,7 +694,7 @@ const MENU = [
       },
       {
         "title": "MULTI – modulární postele",
-        "image": "menu-multi.webp",
+        "image": "/_blob/0e8664e98d4e03179bcd7446fb1b686c",
         "href": "Kategorie_Postele.dc.html#s=6",
         "items": [
           {
@@ -751,7 +713,7 @@ const MENU = [
       },
       {
         "title": "Kontinentální a boxspring postele",
-        "image": "menu-boxspring.webp",
+        "image": "/_blob/c2272a0e9ca10090147050821599f427",
         "href": "Kategorie_Postele.dc.html#s=7",
         "items": [
           {
@@ -766,7 +728,7 @@ const MENU = [
       },
       {
         "title": "Vysoké postele",
-        "image": "menu-vysoke.webp",
+        "image": "/_blob/6bd4fa31ef2d1d29da5b49da70514a96",
         "href": "Kategorie_Postele.dc.html#s=8",
         "items": [
           {
@@ -785,13 +747,13 @@ const MENU = [
       },
       {
         "title": "Patrové postele",
-        "image": "menu-patrove.webp",
+        "image": "/_blob/796b776bdf1d4a9bf31b094689547727",
         "href": "Kategorie_Postele.dc.html#s=9",
         "items": []
       },
       {
         "title": "Jednolůžkové postele",
-        "image": "kategorie-jednoluzka-z-masivu.webp",
+        "image": "/_blob/cbd39695e60222550587109c72c8c52b",
         "href": "Kategorie_Postele.dc.html#s=10",
         "items": [
           {
@@ -814,7 +776,7 @@ const MENU = [
       },
       {
         "title": "Dětské postele",
-        "image": "menu-detske.webp",
+        "image": "/_blob/372550141951862e0591a3e1d5baab98",
         "href": "Kategorie_Postele.dc.html#s=11",
         "items": [
           {
@@ -829,31 +791,31 @@ const MENU = [
       },
       {
         "title": "Rozkládací postele / pohovky",
-        "image": "menu-rozkladaci-masiv.webp",
+        "image": "/_blob/7248cf07bd3a1e7a83b38dfc5d15d179",
         "href": "Kategorie_Postele.dc.html#s=12",
         "items": []
       },
       {
         "title": "LED osvětlení k posteli",
-        "image": "menu-led.webp",
+        "image": "/_blob/8e840d302ff9d7f742f55c829e285d66",
         "href": "Kategorie_Postele.dc.html#s=13",
         "items": []
       },
       {
         "title": "Noční stolky a police",
-        "image": "menu-nocni-stolky-police.webp",
+        "image": "/_blob/68fdf603437e1500e3757d7ca59801f5",
         "href": "Kategorie_Postele.dc.html#s=14",
         "items": []
       },
       {
         "title": "Úložné prostory",
-        "image": "menu-ulozne-prostory.webp",
+        "image": "/_blob/706482b09df7c053e95817ed6aee84af",
         "href": "Kategorie_Postele.dc.html#s=15",
         "items": []
       },
       {
         "title": "KOMPLETY / Sety",
-        "image": "menu-komplety-sety.webp",
+        "image": "/_blob/dfd6a27a2785e850d62aedd773271533",
         "href": "Kategorie_Postele.dc.html#s=16",
         "items": []
       }
@@ -863,14 +825,14 @@ const MENU = [
         "label": "Black Friday — nakupte se slevami až 60 %",
         "sub": "Jen do 30. listopadu, na vybrané matrace a komplety",
         "href": "#akce",
-        "image": "menu-banner-akce.webp",
+        "image": "/_blob/edd56eee566f1d974d13fb31f14a8118",
         "imagePos": "30% 30%"
       },
       {
         "label": "Cenově zvýhodněné komplety se slevou až 30 %",
         "sub": "Postel, rošt a matrace v jedné objednávce",
         "href": "#komplety",
-        "image": "menu-banner-komplety.webp",
+        "image": "/_blob/8b63107c3b3df97b4c67e750ce6b91cd",
         "imagePos": "center 40%"
       }
     ],
@@ -878,12 +840,12 @@ const MENU = [
       {
         "title": "Jak správně vybrat matraci a na co si dát pozor?",
         "href": "Clanek.dc.html",
-        "image": "pruvodce-matrace-lifestyle.webp"
+        "image": "/_blob/a4bdfc3ddeb575fee8768a3cf2019524"
       },
       {
         "title": "Postel z masivu, nebo čalouněná? Srovnání po pěti letech",
         "href": "Clanek.dc.html",
-        "image": "clanek-masiv-vs-calounena.jpg"
+        "image": "/_blob/50fbc8ecc5ccb479e539edd24a0148e8"
       }
     ],
     "popular": [
@@ -952,31 +914,31 @@ const MENU = [
       },
       {
         "title": "Podle tuhosti",
-        "href": "Kategorie_Matrace.dc.html#s=1",
+        "href": "Kategorie_Matrace_Tuhost.dc.html",
         "items": [
           {
             "label": "Velmi tvrdé matrace",
-            "href": "Kategorie_Matrace.dc.html#s=1&p=0"
+            "href": "Kategorie_Matrace_Tuhost.dc.html#s=1&p=0"
           },
           {
             "label": "Tvrdé matrace",
-            "href": "Kategorie_Matrace.dc.html#s=1&p=1"
+            "href": "Kategorie_Matrace_Tuhost.dc.html#s=1&p=1"
           },
           {
             "label": "Středně tvrdé matrace",
-            "href": "Kategorie_Matrace.dc.html#s=1&p=2"
+            "href": "Kategorie_Matrace_Tuhost.dc.html#s=1&p=2"
           },
           {
             "label": "Mírně tvrdé matrace",
-            "href": "Kategorie_Matrace.dc.html#s=1&p=3"
+            "href": "Kategorie_Matrace_Tuhost.dc.html#s=1&p=3"
           },
           {
             "label": "Měkké přizpůsobivé matrace",
-            "href": "Kategorie_Matrace.dc.html#s=1&p=4"
+            "href": "Kategorie_Matrace_Tuhost.dc.html#s=1&p=4"
           },
           {
             "label": "Velmi měkké matrace",
-            "href": "Kategorie_Matrace.dc.html#s=1&p=5"
+            "href": "Kategorie_Matrace_Tuhost.dc.html#s=1&p=5"
           }
         ]
       },
@@ -1163,7 +1125,7 @@ const MENU = [
       "title": "Nevíte, kterou matraci?",
       "text": "Osm otázek a doporučíme model podle vaší váhy, polohy spánku a rozpočtu.",
       "cta": "Průvodce výběrem",
-      "href": "#pruvodce"
+      "href": "PruvodceMatrace.dc.html"
     }
   },
   {
@@ -1173,31 +1135,31 @@ const MENU = [
     "groups": [
       {
         "title": "Lamelové rošty pevné (nepolohovací)",
-        "image": "menu-rosty-pevne.webp",
+        "image": "/_blob/caad26ab5789e17cd9a815e694427300",
         "href": "Kategorie_Rosty.dc.html#s=0",
         "items": []
       },
       {
         "title": "Lamelové rošty polohovací (manuálně)",
-        "image": "menu-rosty-polohovaci-manualne.webp",
+        "image": "/_blob/c4327c896c3672f1649ca99f1ecbface",
         "href": "Kategorie_Rosty.dc.html#s=1",
         "items": []
       },
       {
         "title": "Lamelové rošty polohovací (elektricky)",
-        "image": "menu-rosty-polohovaci-elektricky.webp",
+        "image": "/_blob/a40fed94e5cc5f510cd8b00069494c25",
         "href": "Kategorie_Rosty.dc.html#s=2",
         "items": []
       },
       {
         "title": "Lamelové rošty výklopné (pro úložný prostor)",
-        "image": "menu-rosty-vyklopne.webp",
+        "image": "/_blob/ae20c1cf530a2d75d099855576fc8afb",
         "href": "Kategorie_Rosty.dc.html#s=3",
         "items": []
       },
       {
         "title": "Laťkové rošty",
-        "image": "menu-latkove-rosty.webp",
+        "image": "/_blob/148aa05c1d8a1cefe0b02ab8da11bd39",
         "href": "Kategorie_Rosty.dc.html#s=4",
         "items": []
       }
@@ -1215,19 +1177,19 @@ const MENU = [
     "groups": [
       {
         "title": "Postel + rošt + matrace",
-        "image": "menu-komplet-postel-rost-matrace.webp",
+        "image": "/_blob/e181d2d2331563a8f08a99e8cf1cf922",
         "href": "Kategorie_Komplety.dc.html#s=0",
         "items": []
       },
       {
         "title": "Postel s úložným prostorem + rošt + matrace",
-        "image": "menu-komplet-ulozny-prostor.webp",
+        "image": "/_blob/cd65ef2d3ec37b4c44ea9c75fb27e464",
         "href": "Kategorie_Komplety.dc.html#s=1",
         "items": []
       },
       {
         "title": "Set ložnice",
-        "image": "menu-set-loznice.webp",
+        "image": "/_blob/7a6c0d5d8c766981b00a382d2267e2e9",
         "href": "Kategorie_Komplety.dc.html#s=2",
         "items": []
       }
@@ -1237,14 +1199,14 @@ const MENU = [
         "label": "Black Friday — nakupte se slevami až 60 %",
         "sub": "Jen do 30. listopadu, na vybrané matrace a komplety",
         "href": "#akce",
-        "image": "menu-banner-akce.webp",
+        "image": "/_blob/edd56eee566f1d974d13fb31f14a8118",
         "imagePos": "30% 30%"
       },
       {
         "label": "Cenově zvýhodněné komplety se slevou až 30 %",
         "sub": "Postel, rošt a matrace v jedné objednávce",
         "href": "#komplety",
-        "image": "menu-banner-komplety.webp",
+        "image": "/_blob/8b63107c3b3df97b4c67e750ce6b91cd",
         "imagePos": "center 40%"
       }
     ],
@@ -1252,12 +1214,12 @@ const MENU = [
       {
         "title": "Jak správně vybrat matraci a na co si dát pozor?",
         "href": "Clanek.dc.html",
-        "image": "pruvodce-matrace-lifestyle.webp"
+        "image": "/_blob/a4bdfc3ddeb575fee8768a3cf2019524"
       },
       {
         "title": "Postel z masivu, nebo čalouněná? Srovnání po pěti letech",
         "href": "Clanek.dc.html",
-        "image": "clanek-masiv-vs-calounena.jpg"
+        "image": "/_blob/50fbc8ecc5ccb479e539edd24a0148e8"
       }
     ],
     "popular": [
@@ -1272,7 +1234,7 @@ const MENU = [
     "groups": [
       {
         "title": "Komody",
-        "image": "menu-komody.webp",
+        "image": "/_blob/80504e0c5537776dfec28cc850910a33",
         "href": "Kategorie_Nabytek.dc.html#s=0",
         "items": [
           {
@@ -1295,7 +1257,7 @@ const MENU = [
       },
       {
         "title": "Skříně",
-        "image": "menu-skrine.webp",
+        "image": "/_blob/311377c54f3cf43b42a16264b6070c4e",
         "href": "Kategorie_Nabytek.dc.html#s=1",
         "items": [
           {
@@ -1314,7 +1276,7 @@ const MENU = [
       },
       {
         "title": "Dětský nábytek",
-        "image": "menu-detsky-nabytek.webp",
+        "image": "/_blob/247d462892685cbb4f5bc53bcd685cf0",
         "href": "Kategorie_Nabytek.dc.html#s=2",
         "items": [
           {
@@ -1341,7 +1303,7 @@ const MENU = [
       },
       {
         "title": "Noční stolky",
-        "image": "menu-nabytek-nocni-stolky.webp",
+        "image": "/_blob/4b2059e6dadbe71156efdb3f588066fc",
         "href": "Kategorie_Nabytek.dc.html#s=3",
         "items": [
           {
@@ -1356,19 +1318,19 @@ const MENU = [
       },
       {
         "title": "Zrcadla",
-        "image": "menu-zrcadla.webp",
+        "image": "/_blob/c06d0fd482a030df86a79ec2deabcab6",
         "href": "Kategorie_Nabytek.dc.html#s=4",
         "items": []
       },
       {
         "title": "Hodiny",
-        "image": "menu-hodiny.webp",
+        "image": "/_blob/76604460b93b17e6abe7cac9a311cc04",
         "href": "Kategorie_Nabytek.dc.html#s=5",
         "items": []
       },
       {
         "title": "Police",
-        "image": "menu-police.webp",
+        "image": "/_blob/e7b7e510b4570b10bfe4f7781fc86381",
         "href": "Kategorie_Nabytek.dc.html#s=6",
         "items": []
       }
@@ -1385,7 +1347,7 @@ const MENU = [
     "groups": [
       {
         "title": "Polštáře",
-        "image": "menu-polstare-anatomicke.webp",
+        "image": "/_blob/4a1cc5a91262d28ed593605cf4ab8f26",
         "href": "Kategorie_Polstare.dc.html#s=0",
         "items": [
           {
@@ -1420,7 +1382,7 @@ const MENU = [
       },
       {
         "title": "Přikrývky",
-        "image": "menu-prikryvky.webp",
+        "image": "/_blob/e8917fef009de5a2b6aa618b6eab274f",
         "href": "Kategorie_Polstare.dc.html#s=1",
         "items": [
           {
@@ -1435,7 +1397,7 @@ const MENU = [
       },
       {
         "title": "Sety",
-        "image": "menu-polstare-sety.webp",
+        "image": "/_blob/9135676a05058510e7559225139ecd5d",
         "href": "Kategorie_Polstare.dc.html#s=2",
         "items": [
           {
@@ -1454,14 +1416,14 @@ const MENU = [
         "label": "Black Friday — nakupte se slevami až 60 %",
         "sub": "Jen do 30. listopadu, na vybrané matrace a komplety",
         "href": "#akce",
-        "image": "menu-banner-akce.webp",
+        "image": "/_blob/edd56eee566f1d974d13fb31f14a8118",
         "imagePos": "30% 30%"
       },
       {
         "label": "Cenově zvýhodněné komplety se slevou až 30 %",
         "sub": "Postel, rošt a matrace v jedné objednávce",
         "href": "#komplety",
-        "image": "menu-banner-komplety.webp",
+        "image": "/_blob/8b63107c3b3df97b4c67e750ce6b91cd",
         "imagePos": "center 40%"
       }
     ],
@@ -1469,12 +1431,12 @@ const MENU = [
       {
         "title": "Jak správně vybrat matraci a na co si dát pozor?",
         "href": "Clanek.dc.html",
-        "image": "pruvodce-matrace-lifestyle.webp"
+        "image": "/_blob/a4bdfc3ddeb575fee8768a3cf2019524"
       },
       {
         "title": "Postel z masivu, nebo čalouněná? Srovnání po pěti letech",
         "href": "Clanek.dc.html",
-        "image": "clanek-masiv-vs-calounena.jpg"
+        "image": "/_blob/50fbc8ecc5ccb479e539edd24a0148e8"
       }
     ],
     "popular": [
@@ -1489,7 +1451,7 @@ const MENU = [
     "groups": [
       {
         "title": "one COLOR jednobarevné povlečení",
-        "image": "menu-povleceni-jednobarevne.webp",
+        "image": "/_blob/56aa44a9fe077e9955c51f753cc8f0e7",
         "href": "Kategorie_Luzkoviny.dc.html#s=0",
         "items": [
           {
@@ -1512,7 +1474,7 @@ const MENU = [
       },
       {
         "title": "Povlečení se vzorem",
-        "image": "menu-povleceni-se-vzorem.webp",
+        "image": "/_blob/e6e0d367624dc2976eb51684c3aafedb",
         "href": "Kategorie_Luzkoviny.dc.html#s=1",
         "items": [
           {
@@ -1543,7 +1505,7 @@ const MENU = [
       },
       {
         "title": "Prostěradla a chrániče matrací",
-        "image": "menu-prosteradla-chranice.webp",
+        "image": "/_blob/8a390213d7a03de388b2726d4453c347",
         "href": "Kategorie_Luzkoviny.dc.html#s=2",
         "items": [
           {
@@ -1562,7 +1524,7 @@ const MENU = [
       },
       {
         "title": "Potahy na matrace",
-        "image": "menu-potahy-na-matrace.webp",
+        "image": "/_blob/059ff28eafa03eeeaac840a064caef09",
         "href": "Kategorie_Luzkoviny.dc.html#s=3",
         "items": []
       }
@@ -1628,10 +1590,9 @@ class Component extends DCLogic {
     this._tick = setInterval(() => this.forceUpdate(), 60000);
     this._key = (e) => {
       if (e.key !== 'Escape') return;
-      if (this.state.loginOpen) { this.unlock(); this.setState({ loginOpen: false }); }
-      else if (this.state.cartOpen) { this.unlock(); this.setState({ cartOpen: false }); }
-      else if (this.state.mobileOpen) this.closeMobile();
-      else if (this.state.storesOpen) this.setState({ storesOpen: false });
+      // Okna (přihlášení, košík, menu) zavírá Escapem sdílený Overlay.
+      if (this.state.loginOpen || this.state.cartOpen || this.state.mobileOpen) return;
+      if (this.state.storesOpen) this.setState({ storesOpen: false });
       else if (this.state.open >= 0) this.setState({ open: -1 });
       else if (this.state.query) this.setState({ query: '' });
     };
@@ -1644,19 +1605,12 @@ class Component extends DCLogic {
       this.setState({ open: -1, storesOpen: false, suggestDismissed: true });
     };
     document.addEventListener('pointerdown', this._outside, true);
-    this._trap = (e) => {
-      if (e.key !== 'Tab') return;
-      const panel = this.state.cartOpen ? this._cart : (this.state.mobileOpen ? this._drawer : null);
-      if (!panel) return;
-      const f = panel.querySelectorAll('a[href],button:not([disabled]),input,select,textarea,[tabindex]:not([tabindex="-1"])');
-      if (!f.length) return;
-      const first = f[0], last = f[f.length - 1];
-      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
-      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
-    };
-    document.addEventListener('keydown', this._trap);
     this._scroll = (e) => {
       const t = e && e.target;
+      // Vodorovně scrollovatelné prvky (lišta obsahu, karusely) ignorovat — jinak by jejich scrollTop 0 hlavičku znovu ukázal
+      if (t && t.nodeType === 1 && t !== document.documentElement && t !== document.body && t.scrollHeight <= t.clientHeight + 1) return;
+      // Vnitřní posouvané oblasti (sticky filtrace .ss-fp-scroll, případně [data-hd-ignore]) hlavičku neovlivňují — posouvání ve filtru ji neukáže ani neschová
+      if (t && t.nodeType === 1 && t.closest && t.closest('.ss-fp-scroll,[data-hd-ignore]')) return;
       const y = (t && t.nodeType === 1 && t !== document.documentElement && t !== document.body)
         ? t.scrollTop
         : (window.pageYOffset || document.documentElement.scrollTop || 0);
@@ -1676,6 +1630,10 @@ class Component extends DCLogic {
     };
     this._hdMode = () => { let m = 'H2'; try { m = localStorage.getItem('ss-hdmode') === 'H1' ? 'H1' : 'H2'; } catch (e) {} this.setState({ hdMode: m, hdHidden: false }); try { window.__ssHdHidden = false; window.dispatchEvent(new CustomEvent('ss-hdhidden', { detail: false })); } catch (e) {} };
     window.addEventListener('ss-hdmode', this._hdMode); window.addEventListener('storage', this._hdMode);
+    // Varianta menu (M1 bez chevronů / M2 s chevrony) sdílená přes localStorage, aby platila na všech stránkách; výchozí M2.
+    this._navVar = () => { let v = 'M2'; try { v = localStorage.getItem('ss-navvar') === 'M1' ? 'M1' : 'M2'; } catch (e) {} if (v !== this.state.navV) this.setState({ navV: v }); };
+    this._navVar();
+    window.addEventListener('ss-navvar', this._navVar); window.addEventListener('storage', this._navVar);
     document.addEventListener('scroll', this._scroll, true);
     window.addEventListener('scroll', this._scroll, { passive: true });
   }
@@ -1693,26 +1651,17 @@ class Component extends DCLogic {
     window.removeEventListener('resize', this._resize);
     document.removeEventListener('keydown', this._key);
     document.removeEventListener('pointerdown', this._outside, true);
-    document.removeEventListener('keydown', this._trap);
     document.removeEventListener('scroll', this._scroll, true);
     window.removeEventListener('scroll', this._scroll);
     window.removeEventListener('ss-hdmode', this._hdMode); window.removeEventListener('storage', this._hdMode);
+    window.removeEventListener('ss-navvar', this._navVar); window.removeEventListener('storage', this._navVar);
     this.unlock();
   }
   lock() { this._prevOverflow = document.body.style.overflow; document.body.style.overflow = 'hidden'; }
   unlock() { if (this._prevOverflow !== undefined) { document.body.style.overflow = this._prevOverflow; this._prevOverflow = undefined; } }
-  openMobile = () => {
-    this._returnFocus = document.activeElement;
-    if (this._measure) this._measure();
-    this.lock();
-    this.setState({ mobileOpen: true, open: -1 }, () => {
-      setTimeout(() => { if (this._drawer) { const f = this._drawer.querySelector('button,a[href]'); if (f) f.focus(); } }, 20);
-    });
-  };
-  closeMobile = () => {
-    this.unlock();
-    this.setState({ mobileOpen: false }, () => { if (this._returnFocus && this._returnFocus.focus) this._returnFocus.focus(); });
-  };
+  // Focus, trap, Escape, scrim a zámek scrollu oken řeší Overlay; tady jen stav otevřeno/zavřeno.
+  openMobile = () => { this.setState({ mobileOpen: true, open: -1 }); };
+  closeMobile = () => { this.setState({ mobileOpen: false }); };
 
   renderVals() {
     const p = this.props;
@@ -1773,6 +1722,7 @@ class Component extends DCLogic {
       narrow,
       utility: this.state.util,
       showPhone: w >= 1150,
+      ledModeP: p.ledMode || 'auto',
       _open: (() => {
         if (p.ledMode === 'on') return true;
         if (p.ledMode === 'off') return false;
@@ -1795,6 +1745,7 @@ class Component extends DCLogic {
       ...(() => { const h = w < 420 ? 18 : narrow ? 28 : 34, u = h / 64.196, s = (x, y) => ({ display: 'none', width: ((341.374 + 2 * x) * u) + 'px', height: (h + 2 * y * u) + 'px', margin: (-y * u) + 'px ' + (-x * u) + 'px', position: 'relative', zIndex: 0, pointerEvents: 'none' }); return { logoDkA: s(0, 0), logoDkB: s(3, 3), logoDkC: s(8, 3), logoDkD: s(6, 6) }; })(),
       mainPad: narrow ? '10px 16px' : '14px 32px',
       mainGap: narrow ? '8px' : '20px',
+      hdHiddenStr: this.state.hdHidden ? 'true' : 'false',
       headerStyle: {
         position: 'sticky', top: 0, zIndex: 200, width: '100%',
         background: tint ? '#296093' : 'var(--ss-surface-page,#FFFFFF)', boxShadow: '0 2px 8px rgba(19,44,67,.08)',
@@ -1816,7 +1767,7 @@ class Component extends DCLogic {
       }),
       onCartRemove: (idx) => this.setState(s => ({ cart: s.cart.filter((_, i) => i !== idx) })),
       query,
-      onQuery: (v) => { if (this.state.mobileOpen && v) { this.unlock(); this.setState({ mobileOpen: false, query: v, suggestDismissed: false }); } else this.setState({ query: v, suggestDismissed: false }); },
+      onQuery: (v) => { if (this.state.mobileOpen && v) { this.setState({ mobileOpen: false, query: v, suggestDismissed: false }); } else this.setState({ query: v, suggestDismissed: false }); },
       submitSearch: (e) => { e.preventDefault(); if (p.onSearch) p.onSearch(query); (h => { try { const a = document.createElement('a'); a.href = h; a.style.display = 'none'; (document.getElementById('dc-root') || document.body).appendChild(a); a.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true, view: window })); a.remove(); } catch (e) { window.location.href = h; } })('VysledkyVyhledavani.dc.html'); },
       doSearch: () => { if (p.onSearch) p.onSearch(query); (h => { try { const a = document.createElement('a'); a.href = h; a.style.display = 'none'; (document.getElementById('dc-root') || document.body).appendChild(a); a.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true, view: window })); a.remove(); } catch (e) { window.location.href = h; } })('VysledkyVyhledavani.dc.html'); },
       suggestOpen: open,
@@ -1835,7 +1786,7 @@ class Component extends DCLogic {
         expanded: (c.groups && c.groups.length) ? (openIndex === i ? 'true' : 'false') : undefined,
         current: p.activeCategory === c.label ? 'page' : undefined,
         highlight: c.highlight ? 'true' : undefined,
-        chevron: p.navVariant === 'M2' && !!(c.groups && c.groups.length),
+        chevron: (p.navVariant || this.state.navV || 'M2') === 'M2' && !!(c.groups && c.groups.length),
         style: c.highlight ? { color: blue ? '#FBB255' : 'var(--ss-text-apricot,#A4600C)' } : undefined,
         onEnter: () => this.setState({ open: (c.groups && c.groups.length) ? i : -1, storesOpen: false }),
         href: c.href || 'Kategorie.dc.html'
@@ -1854,49 +1805,25 @@ class Component extends DCLogic {
       mobileExpanded: this.state.mobileOpen ? 'true' : 'false',
       openMobile: this.openMobile,
       closeMobile: this.closeMobile,
-      drawerRef: (el) => { this._drawer = el; },
       headerRef: (el) => { this._header = el; },
-      cartRef: (el) => { this._cart = el; },
-      loginRef: (el) => { this._login = el; },
       loginOpen: !!this.state.loginOpen,
       openLogin: (e) => {
         if (e && e.preventDefault) e.preventDefault();
-        this._returnFocus = document.activeElement;
-        this.lock();
-        this.setState({ loginOpen: true, open: -1, mobileOpen: false }, () => {
-          setTimeout(() => { if (this._login) { const f = this._login.querySelector('input,button,a[href]'); if (f) f.focus(); } }, 20);
-        });
+        this.setState({ loginOpen: true, open: -1, mobileOpen: false });
       },
-      closeLogin: () => {
-        this.unlock();
-        this.setState({ loginOpen: false }, () => { if (this._returnFocus && this._returnFocus.focus) this._returnFocus.focus(); });
-      },
+      closeLogin: () => { this.setState({ loginOpen: false }); },
+      loginData: {},
+      onLoginEvent: () => {},
       cartOpen: !!this.state.cartOpen,
-      cartStyle: {
-        position: 'fixed', top: 0, right: 0, bottom: 0, zIndex: 410,
-        width: narrow ? '100%' : 'min(92vw,460px)', background: 'var(--ss-surface-page,#FFFFFF)', overflow: 'hidden',
-        boxShadow: '0 16px 40px rgba(19,44,67,.18)'
+      cartData: { items: cart, total: cartTotal },
+      cartPrimary: cart.length ? 'Ukázat košík' : '',
+      cartSecondary: cart.length ? 'Pokračovat v nákupu' : '',
+      onCartEvent: (t, a, b) => {
+        if (t === 'qty') this.setState(s => ({ cart: s.cart.map((it, i) => i === a ? Object.assign({}, it, { qty: b, price: fmt(it.unit * b) }) : it) }));
+        else if (t === 'remove') this.setState(s => ({ cart: s.cart.filter((_, i) => i !== a) }));
       },
-      openCart: () => {
-        this._returnFocus = document.activeElement;
-        this.lock();
-        this.setState({ cartOpen: true, open: -1 }, () => {
-          setTimeout(() => { if (this._cart) { const f = this._cart.querySelector('button,a[href]'); if (f) f.focus(); } }, 20);
-        });
-      },
-      closeCart: () => {
-        this.unlock();
-        this.setState({ cartOpen: false }, () => { if (this._returnFocus && this._returnFocus.focus) this._returnFocus.focus(); });
-      },
-      overlayStyle: {
-        position: 'fixed', top: (this.state.headerH || 0) + 'px', left: 0, right: 0, bottom: 0,
-        zIndex: 400
-      },
-      drawerStyle: {
-        position: 'fixed', top: (this.state.headerH || 0) + 'px', left: 0, right: 0,
-        bottom: 0, zIndex: 410, overflow: 'hidden',
-        boxShadow: '0 16px 40px rgba(19,44,67,.18)'
-      }
+      openCart: () => { this.setState({ cartOpen: true, open: -1 }); },
+      closeCart: () => { this.setState({ cartOpen: false }); }
     };
   }
 }

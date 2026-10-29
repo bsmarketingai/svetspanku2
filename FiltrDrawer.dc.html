@@ -188,14 +188,6 @@ main>section.ss-grad-top.ss-grad-glow{background-image:radial-gradient(ellipse 5
 html[data-mode="dark"] main>section.ss-grad-top.ss-grad-glow{background-image:radial-gradient(ellipse 55% 100% at 50% 100%,rgba(251,178,85,.14) 0%,rgba(251,178,85,.05) 45%,rgba(251,178,85,0) 75%),linear-gradient(180deg,var(--ss-surface-page,#0E1F2F) 0%,var(--ss-surface-muted,#183049) 100%)!important;}
 
 
-/* Scrollbar: jen táhlo v barvách webu, bez podkladu (platí globálně) */
-*{scrollbar-width:auto;scrollbar-color:var(--ss-scrollbar-thumb,#FBB255) transparent;}
-*::-webkit-scrollbar{width:15px;height:15px;background:transparent;}
-*::-webkit-scrollbar-track{background:transparent;}
-*::-webkit-scrollbar-thumb{background:var(--ss-scrollbar-thumb,#FBB255);border-radius:999px;border:4px solid transparent;background-clip:padding-box;}
-*::-webkit-scrollbar-thumb:hover{background:var(--ss-scrollbar-thumb-hover,#F09A2C);background-clip:padding-box;}
-*::-webkit-scrollbar-corner{background:transparent;}
-html[data-mode="dark"]{--ss-scrollbar-thumb:#FBB255;--ss-scrollbar-thumb-hover:#F09A2C;}
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400..700&family=Roboto:wght@400..700&display=swap" rel="stylesheet">
 <script>try{var d=document.documentElement;if(localStorage.getItem('ss-mode')==='dark')d.setAttribute('data-mode','dark');d.setAttribute('data-logo',localStorage.getItem('ss-logo')||'a');d.setAttribute('data-font-h','base');d.setAttribute('data-font-b','base');d.setAttribute('data-bg',localStorage.getItem('ss-bg')||'on');}catch(e){}</script>
@@ -205,217 +197,24 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
 </head>
 <body>
 <x-dc>
-<helmet>
-<style>
-.ss-fd-close{display:flex;align-items:center;justify-content:center;width:44px;height:44px;border:0;border-radius:6px;background:none;color:var(--ss-text-secondary,#3D4750);cursor:pointer;transition:background-color .12s cubic-bezier(.22,.61,.36,1);}
-.ss-fd-close:hover{background:var(--ss-hover-bg,#FFF5E6);color:var(--ss-hover-text,#A4600C)}
-.ss-fd-close:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
-</style>
-</helmet>
-<sc-if value="{{ mounted }}" hint-placeholder-val="{{ true }}">
-  <div class="ss-scrim" style="{{ overlayStyle }}" onClick="{{ close }}" aria-hidden="true"></div>
-  <div ref="{{ panelRef }}" role="dialog" aria-modal="true" aria-label="Filtry" style="{{ panelStyle }}">
-    <div style="display:flex;align-items:center;gap:8px;padding:12px 12px 12px 20px;border-bottom:1px solid var(--ss-border-subtle,#E1E6EB);flex:none">
-      <span aria-hidden="true" style="display:flex;color:var(--ss-link,#296093)"><dc-import name="Ikony" iconName="filter" size="22" hint-size="22px,22px"></dc-import></span>
-      <h2 style="margin:0;font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:21px;color:var(--ss-text-heading,#0B1F33)">Filtry</h2>
-      <button type="button" class="ss-fd-close" style="margin-left:auto" onClick="{{ close }}" aria-label="Zavřít filtry">
-        <dc-import name="Ikony" iconName="x" size="22" hint-size="22px,22px"></dc-import>
-      </button>
-    </div>
-
-    <div style="flex:1;overflow-y:auto;padding:20px;display:flex;flex-direction:column;gap:28px;min-height:0">
-      <div style="display:flex;flex-direction:column;gap:12px">
-        <h3 style="margin:0;font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:16px;letter-spacing:.02em;color:var(--ss-text-heading,#0B1F33)">Cena</h3>
-        <dc-import name="CenovyFiltr" from="{{ priceFrom }}" to="{{ priceTo }}" min="{{ priceMin }}" max="{{ priceMax }}" onChange="{{ onPrice }}" hint-size="100%,160px"></dc-import>
-      </div>
-      <sc-for list="{{ facets }}" as="f" hint-placeholder-count="4">
-        <div style="display:flex;flex-direction:column;gap:6px">
-          <h3 style="margin:0 0 4px;font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:16px;letter-spacing:.02em;color:var(--ss-text-heading,#0B1F33)">{{ f.title }}</h3>
-          <sc-for list="{{ f.options }}" as="o" hint-placeholder-count="4">
-            <dc-import name="Checkbox" label="{{ o.label }}" size="compact" count="{{ o.count }}" checked="{{ o.checked }}" onChange="{{ o.onToggle }}" hint-size="100%,32px"></dc-import>
-          </sc-for>
-        </div>
-      </sc-for>
-    </div>
-
-    <div style="flex:none;display:flex;gap:12px;padding:16px 20px;border-top:1px solid var(--ss-border-subtle,#E1E6EB);background:var(--ss-surface-page,#FFFFFF)">
-      <dc-import name="Tlacitko" label="Smazat vše" variant="secondary" onClick="{{ clear }}" hint-size="130px,44px"></dc-import>
-      <div style="flex:1;min-width:0">
-        <dc-import name="Tlacitko" label="{{ applyLabel }}" variant="primary" fullWidth="{{ true }}" onClick="{{ close }}" hint-size="100%,44px"></dc-import>
-      </div>
-    </div>
-  </div>
-</sc-if>
+<dc-import name="Overlay" open="{{ open }}" variant="drawer" obsah="FiltrObsah" title="Filtry" icon="filter" closeLabel="filtry" initialFocus="close" data="{{ data }}" onEvent="{{ onEvent }}" onClose="{{ close }}" footerRow="{{ true }}" primaryLabel="{{ applyLabel }}" onPrimary="{{ close }}" secondaryLabel="Smazat vše" onSecondary="{{ clear }}" hint-size="100%,100%"></dc-import>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:480,&quot;height&quot;:720},&quot;open&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;},&quot;resultCount&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:128,&quot;min&quot;:0,&quot;max&quot;:9999,&quot;tsType&quot;:&quot;number&quot;},&quot;priceFrom&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:0,&quot;min&quot;:0,&quot;max&quot;:100000,&quot;tsType&quot;:&quot;number&quot;},&quot;priceTo&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:40000,&quot;min&quot;:0,&quot;max&quot;:100000,&quot;tsType&quot;:&quot;number&quot;},&quot;facets&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;Facet[]&quot;},&quot;selected&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;Record&lt;string,string[]&gt;&quot;},&quot;onToggleOption&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;(group: string, option: string) =&gt; void&quot;},&quot;onPriceChange&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;(from: number, to: number) =&gt; void&quot;},&quot;onClearAll&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;() =&gt; void&quot;},&quot;onClose&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;() =&gt; void&quot;}}">
-/* data vložena přímo (canvas nenačítá relativní soubory) */
-const __M_produkty = (() => {
-// Ukázková data produktů a kategorií pro prototyp. Fotky jsou zástupné z dodaných podkladů.
-const PRODUKTY = [
-  { id: 'p1', image: 'produkt-matrace-spring-variant-karta.webp', title: 'Matrace Spring Variant 22 cm', href: 'Detail_Matrace_3.0.dc.html', orderNo: '428170',
-    perex: 'Partnerská matrace s tuhostí volitelnou pro každou polovinu samostatně. Už žádná mezera uprostřed.',
-    rating: 4.8, ratingCount: 18, price: '7 590 Kč', priceBefore: '9 590 Kč', badge: 'sale', badgeLabel: 'Akce −25 %',
-    secondBadge: 'news', secondBadgeLabel: 'Novinka', stock: 'inStock', moreLabel: 'Více rozměrů / stupňů tuhosti',
-    mp: { tuhostPct: 70, zatizeniOd: 70, zatizeniDo: 120, nosnostMax: 130, vyska: 28, vyskaJadra: 24, zaruka: 8, spankNaBoku: true },
-    tuhost: 4.5, params: [{ icon: 'weight', label: '200 kg' }, { icon: 'arrow-autofit-height', label: '20 cm' }, { icon: 'color-swatch', label: 'Pěnová' }] },
-  { id: 'p2', image: 'produkt-matrace-taskova-leda-duo.webp', title: 'Taštičková matrace Leda Duo', href: 'Detail_Matrace_3.0.dc.html', orderNo: '428204',
-    perex: 'Sedm zón tuhosti a kokosová deska. Pohyb jednoho spícího druhého neruší.',
-    rating: 4.8, ratingCount: 64, price: '9 190 Kč', stock: 'inStock', moreLabel: 'Více rozměrů / stupňů tuhosti',
-    mp: { tuhostPct: 40, zatizeniOd: 40, zatizeniDo: 80, nosnostMax: 95, vyska: 18, vyskaJadra: 16, zaruka: 3, spankNaBoku: false },
-    tuhost: 3, params: [{ icon: 'weight', label: '130 kg' }, { icon: 'arrow-autofit-height', label: '20 cm' }, { icon: 'color-swatch', label: 'Taštičková' }] },
-  { id: 'p3', image: 'produkt-matrace-elara.webp', title: 'Antidekubitní matrace Ultra Fresh', href: 'Detail_Matrace_3.0.dc.html', orderNo: '428311',
-    perex: 'Líná pěna s prodyšným potahem pro dlouhé ležení. Vhodná i pro polohovací rošty.',
-    rating: 4.3, ratingCount: 21, price: '11 290 Kč', stock: 'lowStock', moreLabel: 'Více rozměrů / stupňů tuhosti',
-    mp: { tuhostPct: 70, zatizeniOd: 60, zatizeniDo: 110, nosnostMax: 130, vyska: 26, vyskaJadra: 24, zaruka: 5, spankNaBoku: false },
-    tuhost: 3, params: [{ icon: 'weight', label: '120 kg' }, { icon: 'arrow-autofit-height', label: '18 cm' }] },
-  { id: 'p4', image: 'produkt-postel-levita.webp', lifestyle: true, title: 'Postel z masivu LEVITA', href: 'Detail_Postel_3.0.dc.html', orderNo: '419820',
-    perex: 'Smrkový masiv s úložným prostorem po celé ploše lože a plynovými písty.',
-    rating: 4.9, ratingCount: 43, price: '21 390 Kč', badge: 'news', stock: 'inStock', moreLabel: 'Více rozměrů / odstínů',
-    params: [{ icon: 'dimensions', label: '180 × 200 cm' }, { icon: 'tree', label: 'Smrk, bílá' }, { icon: 'package', label: 'Úložný prostor' }] },
-  { id: 'p5', image: 'produkt-rost-lamelovy.webp', title: 'Lamelový rošt Flex 28', href: 'Detail_Postel_3.0.dc.html', orderNo: '431004',
-    perex: 'Osmadvacet pružných lamel s pojezdem tuhosti v oblasti beder.',
-    rating: 4.4, ratingCount: 37, price: '3 290 Kč', stock: 'inStock', moreLabel: 'Více rozměrů',
-    params: [{ icon: 'dimensions', label: '160 × 200 cm' }, { icon: 'lamely', label: '28 lamel' }] },
-  { id: 'p6', image: 'produkt-komplet-nora.webp', title: 'Komplet postel Nora + rošt + matrace', href: 'Detail_Postel_3.0.dc.html', orderNo: '435110',
-    perex: 'Sestava připravená k okamžitému spaní. Rošt i matrace sedí na rozměr postele.',
-    rating: 4.7, ratingCount: 18, price: '28 900 Kč', priceBefore: '34 700 Kč', badge: 'sale', badgeLabel: 'Akce −17 %',
-    stock: 'onWay', moreLabel: 'Více rozměrů / variant matrace',
-    params: [{ icon: 'dimensions', label: '160 × 200 cm' }, { icon: 'coins', label: 'Ušetříte 5 800 Kč' }] },
-  { id: 'p7', image: 'produkt-polstar-comfort-memory.webp', title: 'Anatomický polštář Comfort Memory', href: 'Detail_Postel_3.0.dc.html', orderNo: '440021',
-    perex: 'Paměťová pěna, která kopíruje krční páteř a nedeformuje se.',
-    rating: 4.2, ratingCount: 96, price: '1 290 Kč', stock: 'inStock',
-    params: [{ icon: 'dimensions', label: '70 × 50 cm' }, { icon: 'color-swatch', label: 'Paměťová pěna' }] },
-  { id: 'p8', image: 'produkt-nocni-stolek-nora.webp', title: 'Noční stolek z masivu Nora', href: 'Detail_Postel_3.0.dc.html', orderNo: '419944',
-    perex: 'Dubový masiv se zásuvkou na tichém výsuvu. Ladí s postelí Nora.',
-    rating: 4.5, ratingCount: 12, price: '4 690 Kč', stock: 'outOfStock', moreLabel: 'Více odstínů',
-    params: [{ icon: 'tree', label: 'Dub' }, { icon: 'dimensions', label: '45 × 40 cm' }] },
-  { id: 'p9', image: 'produkt-matrace-sendvicova-duo-comfort.webp', title: 'Sendvičová matrace Duo Comfort', href: 'Detail_Matrace_3.0.dc.html', orderNo: '428590',
-    perex: 'Dvě tuhosti v jedné matraci — stačí ji otočit podle ročního období.',
-    rating: 4.1, ratingCount: 54, price: '6 190 Kč', stock: 'inStock', moreLabel: 'Více rozměrů / stupňů tuhosti',
-    mp: { tuhostPct: 70, zatizeniOd: 60, zatizeniDo: 110, nosnostMax: 120, vyska: 20, vyskaJadra: 18, zaruka: 5, spankNaBoku: true },
-    tuhost: 3.5, params: [{ icon: 'arrows-exchange', label: 'Oboustranná' }, { icon: 'weight', label: '110 kg' }, { icon: 'arrow-autofit-height', label: '18 cm' }] },
-  { id: 'p10', image: 'produkt-postel-sara.webp', title: 'Postel z masivu Sara s čalouněným čelem', href: 'Detail_Postel_3.0.dc.html', orderNo: '419877',
-    perex: 'Masivní rám s čalouněným čelem v pratelném lněném potahu.',
-    rating: 4.6, ratingCount: 29, price: '18 490 Kč', stock: 'inStock', moreLabel: 'Více rozměrů / potahů',
-    params: [{ icon: 'dimensions', label: '160 × 200 cm' }, { icon: 'palette', label: 'Len šedý' }] }
-];
-
-const KATEGORIE = [
-  { label: 'Manželské postele z masivu', href: 'Kategorie_Postele.dc.html#s=1', count: 42, image: 'kategorie-manzelske-postele-z-masivu.webp', sub: ['180 × 200', 'S úložným prostorem'] },
-  { label: 'Jednolůžka z masivu', href: 'Kategorie_Postele.dc.html#s=10', count: 24, image: 'kategorie-jednoluzka-z-masivu.webp', sub: ['90 × 200', 'Dětské', 'Buk'] },
-  { label: 'Čalouněné postele', href: 'Kategorie_Postele.dc.html#s=2', count: 31, image: 'produkt-postel-sara.webp', sub: ['S roštem', 'Boxspring'] },
-  { label: 'Matrace', href: 'Kategorie_Matrace.dc.html', count: 112, image: 'kategorie-matrace.webp', zoom: true, sub: ['Taštičkové', 'Pěnové', 'Latexové'] },
-  { label: 'Rošty', href: 'Kategorie_Rosty.dc.html', count: 54, image: 'kategorie-rosty-lamelove.webp', zoom: true, sub: ['Lamelové', 'Polohovací'] },
-  { label: 'Nábytek z masivu', href: 'Kategorie_Nabytek.dc.html', count: 73, image: 'kategorie-nabytek-z-masivu.webp', sub: ['Noční stolky', 'Komody'] }
-];
-
-const FACETY = [
-  { id: 'dostupnost', title: 'Dostupnost', options: [
-    { id: 'skladem', label: 'Skladem', count: 128 }, { id: 'na-ceste', label: 'Na cestě k nám', count: 14 },
-    { id: 'na-miru', label: 'Výroba na míru', count: 32 } ] },
-  { id: 'rozmer', title: 'Rozměr', options: [
-    { id: '90x200', label: '90 × 200 cm', count: 41 }, { id: '140x200', label: '140 × 200 cm', count: 38 },
-    { id: '160x200', label: '160 × 200 cm', count: 62 }, { id: '180x200', label: '180 × 200 cm', count: 57 },
-    { id: '200x200', label: '200 × 200 cm', count: 12 } ] },
-  { id: 'tuhost', title: 'Tuhost', options: [
-    { id: 'h1', label: 'Měkká H1', count: 14 }, { id: 'h2', label: 'Středně tuhá H2', count: 44 },
-    { id: 'h3', label: 'Tuhá H3', count: 39 }, { id: 'h4', label: 'Velmi tuhá H4', count: 15 } ] },
-  { id: 'konstrukce', title: 'Konstrukce', options: [
-    { id: 'penova', label: 'Pěnová', count: 38 }, { id: 'tastickova', label: 'Taštičková', count: 31 },
-    { id: 'latexova', label: 'Latexová', count: 18 }, { id: 'sendvicova', label: 'Sendvičová', count: 15 } ] },
-  { id: 'material', title: 'Materiál', options: [
-    { id: 'smrk', label: 'Smrk', count: 28 }, { id: 'borovice', label: 'Borovice', count: 16 },
-    { id: 'buk', label: 'Buk', count: 14 }, { id: 'dub', label: 'Dub', count: 11 } ] }
-];
-
-if (typeof window !== 'undefined') { window.PRODUKTY = PRODUKTY; window.KATEGORIE = KATEGORIE; window.FACETY = FACETY; }
-
-return { PRODUKTY, KATEGORIE, FACETY };
-})();
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;: {&quot;width&quot;: 480, &quot;height&quot;: 720}, &quot;open&quot;: {&quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;tsType&quot;: &quot;boolean&quot;}, &quot;resultCount&quot;: {&quot;editor&quot;: &quot;int&quot;, &quot;default&quot;: 128, &quot;min&quot;: 0, &quot;max&quot;: 9999, &quot;tsType&quot;: &quot;number&quot;}, &quot;priceFrom&quot;: {&quot;editor&quot;: &quot;int&quot;, &quot;default&quot;: 0, &quot;min&quot;: 0, &quot;max&quot;: 100000, &quot;tsType&quot;: &quot;number&quot;}, &quot;priceTo&quot;: {&quot;editor&quot;: &quot;int&quot;, &quot;default&quot;: 40000, &quot;min&quot;: 0, &quot;max&quot;: 100000, &quot;tsType&quot;: &quot;number&quot;}, &quot;facets&quot;: {&quot;editor&quot;: null, &quot;tsType&quot;: &quot;Facet[]&quot;}, &quot;selected&quot;: {&quot;editor&quot;: null, &quot;tsType&quot;: &quot;Record&lt;string,string[]&gt;&quot;}, &quot;onToggleOption&quot;: {&quot;editor&quot;: null, &quot;tsType&quot;: &quot;(group: string, option: string) =&gt; void&quot;}, &quot;onPriceChange&quot;: {&quot;editor&quot;: null, &quot;tsType&quot;: &quot;(from: number, to: number) =&gt; void&quot;}, &quot;onClearAll&quot;: {&quot;editor&quot;: null, &quot;tsType&quot;: &quot;() =&gt; void&quot;}, &quot;onClose&quot;: {&quot;editor&quot;: null, &quot;tsType&quot;: &quot;() =&gt; void&quot;}}">
+// Panel Filtry = Overlay (drawer 460, tlačítka vedle sebe) + FiltrObsah. API pro stránky zůstává stejné.
+// Zpět na původní verzi: obsah FiltrDrawer_v1.dc.html zkopírovat sem (příkaz „vrať B1.4“).
 class Component extends DCLogic {
-  state = { facets: null, visible: false, mounted: false };
-  componentDidMount() {
-    if (!this.props.facets) Promise.resolve(__M_produkty).then(m => this.setState({ facets: m.FACETY }));
-    this._key = (e) => { if (e.key === 'Escape' && this.props.open) this.close(); };
-    this._trap = (e) => {
-      if (e.key !== 'Tab' || !this.props.open || !this._panel) return;
-      const f = this._panel.querySelectorAll('a[href],button:not([disabled]),input:not([type="hidden"]),select');
-      if (!f.length) return;
-      const first = f[0], last = f[f.length - 1];
-      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
-      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
-    };
-    document.addEventListener('keydown', this._key);
-    document.addEventListener('keydown', this._trap);
-    if (this.props.open) this.onOpen();
-  }
-  componentDidUpdate(prev) {
-    if (!prev.open && this.props.open) this.onOpen();
-    if (prev.open && !this.props.open) this.onClose();
-  }
-  componentWillUnmount() {
-    document.removeEventListener('keydown', this._key);
-    document.removeEventListener('keydown', this._trap);
-    this.unlock();
-    clearTimeout(this._t);
-  }
-  lock() { if (this._prev === undefined) { this._prev = document.body.style.overflow; document.body.style.overflow = 'hidden'; } }
-  unlock() { if (this._prev !== undefined) { document.body.style.overflow = this._prev; this._prev = undefined; } }
-  onOpen() {
-    this._returnFocus = document.activeElement;
-    this.lock();
-    this.setState({ mounted: true });
-    clearTimeout(this._t);
-    this._t = setTimeout(() => {
-      this.setState({ visible: true });
-      if (this._panel) { const f = this._panel.querySelector('button,a[href],input'); if (f) f.focus(); }
-    }, 20);
-  }
-  onClose() {
-    this.unlock();
-    this.setState({ visible: false });
-    clearTimeout(this._t);
-    this._t = setTimeout(() => {
-      this.setState({ mounted: false });
-      if (this._returnFocus && this._returnFocus.focus) this._returnFocus.focus();
-    }, 400);
-  }
-  close = () => { if (this.props.onClose) this.props.onClose(); };
   renderVals() {
     const p = this.props;
-    const visible = this.state.visible;
-    const selected = p.selected || {};
-    const facets = (p.facets || this.state.facets || []).map(f => ({
-      title: f.title,
-      options: (f.options || []).map(o => ({
-        label: o.label, count: o.count,
-        checked: (selected[f.id] || []).indexOf(o.id) !== -1,
-        onToggle: () => { if (p.onToggleOption) p.onToggleOption(f.id, o.id); }
-      }))
-    }));
     return {
-      mounted: this.state.mounted,
-      facets,
-      overlayStyle: {
-        position: 'fixed', inset: 0, zIndex: 400, 
-        opacity: visible ? 1 : 0, transition: 'opacity .4s cubic-bezier(.22,.61,.36,1)'
+      open: !!p.open,
+      data: { selected: p.selected, facets: p.facets, priceFrom: p.priceFrom, priceTo: p.priceTo, priceMin: p.priceMin, priceMax: p.priceMax },
+      onEvent: (t, a, b) => {
+        if (t === 'toggle' && p.onToggleOption) p.onToggleOption(a, b);
+        else if (t === 'price' && p.onPriceChange) p.onPriceChange(a, b);
       },
-      panelStyle: {
-        position: 'fixed', top: 0, right: 0, bottom: 0, zIndex: 410,
-        width: (typeof document !== 'undefined' && document.documentElement.clientWidth < 420) ? '100%' : 'min(92vw,420px)', background: 'var(--ss-surface-page,#FFFFFF)', display: 'flex', flexDirection: 'column',
-        boxShadow: '0 16px 40px rgba(19,44,67,.18)',
-        transform: visible ? 'translateX(0)' : 'translateX(100%)',
-        transition: 'transform .4s cubic-bezier(.22,.61,.36,1)'
-      },
-      priceFrom: p.priceFrom ?? 0,
-      priceTo: p.priceTo ?? 40000,
-      priceMin: p.priceMin ?? 0,
-      priceMax: p.priceMax ?? 40000,
-      onPrice: (f, t) => { if (p.onPriceChange) p.onPriceChange(f, t); },
       applyLabel: p.resultCount !== undefined ? 'Zobrazit ' + p.resultCount + ' produktů' : 'Zobrazit výsledky',
       clear: () => { if (p.onClearAll) p.onClearAll(); },
-      close: this.close,
-      panelRef: (el) => { this._panel = el; }
+      close: () => { if (p.onClose) p.onClose(); }
     };
   }
 }

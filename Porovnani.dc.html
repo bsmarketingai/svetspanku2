@@ -190,14 +190,6 @@ main>section.ss-grad-top.ss-grad-glow{background-image:radial-gradient(ellipse 5
 html[data-mode="dark"] main>section.ss-grad-top.ss-grad-glow{background-image:radial-gradient(ellipse 55% 100% at 50% 100%,rgba(251,178,85,.14) 0%,rgba(251,178,85,.05) 45%,rgba(251,178,85,0) 75%),linear-gradient(180deg,var(--ss-surface-page,#0E1F2F) 0%,var(--ss-surface-muted,#183049) 100%)!important;}
 
 
-/* Scrollbar: jen táhlo v barvách webu, bez podkladu (platí globálně) */
-*{scrollbar-width:auto;scrollbar-color:var(--ss-scrollbar-thumb,#FBB255) transparent;}
-*::-webkit-scrollbar{width:15px;height:15px;background:transparent;}
-*::-webkit-scrollbar-track{background:transparent;}
-*::-webkit-scrollbar-thumb{background:var(--ss-scrollbar-thumb,#FBB255);border-radius:999px;border:4px solid transparent;background-clip:padding-box;}
-*::-webkit-scrollbar-thumb:hover{background:var(--ss-scrollbar-thumb-hover,#F09A2C);background-clip:padding-box;}
-*::-webkit-scrollbar-corner{background:transparent;}
-html[data-mode="dark"]{--ss-scrollbar-thumb:#FBB255;--ss-scrollbar-thumb-hover:#F09A2C;}
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400..700&family=Roboto:wght@400..700&display=swap" rel="stylesheet">
 <script>try{var d=document.documentElement;if(localStorage.getItem('ss-mode')==='dark')d.setAttribute('data-mode','dark');d.setAttribute('data-logo',localStorage.getItem('ss-logo')||'a');d.setAttribute('data-font-h','base');d.setAttribute('data-font-b','base');d.setAttribute('data-bg',localStorage.getItem('ss-bg')||'on');}catch(e){}</script>
@@ -213,7 +205,7 @@ a:hover{color:var(--ss-hover-text,#A4600C);}
 <body>
 <x-dc>
 <helmet>
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Sans+Condensed:wght@400;500;600;700&display=swap" rel="stylesheet"><style data-ss="tmavy-rezim">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&amp;family=IBM+Plex+Sans+Condensed:wght@400;500;600;700&amp;display=swap" rel="stylesheet"><style data-ss="tmavy-rezim">
 /* Tmavý režim — přepíná html[data-mode="dark"]. Světlý režim = fallback hodnoty v var(). */
 /* Hover ve světlém režimu modrý (6. 10. 2026), v tmavém meruňkový */
 html:not([data-mode="dark"]){--ss-hover-text:#21507B;--ss-hover-bg:#F0F5FA;
@@ -396,19 +388,11 @@ main>section.ss-grad-top.ss-grad-glow{background-image:radial-gradient(ellipse 5
 html[data-mode="dark"] main>section.ss-grad-top.ss-grad-glow{background-image:radial-gradient(ellipse 55% 100% at 50% 100%,rgba(251,178,85,.14) 0%,rgba(251,178,85,.05) 45%,rgba(251,178,85,0) 75%),linear-gradient(180deg,var(--ss-surface-page,#0E1F2F) 0%,var(--ss-surface-muted,#183049) 100%)!important;}
 
 
-/* Scrollbar: jen táhlo v barvách webu, bez podkladu (platí globálně) */
-*{scrollbar-width:auto;scrollbar-color:var(--ss-scrollbar-thumb,#FBB255) transparent;}
-*::-webkit-scrollbar{width:15px;height:15px;background:transparent;}
-*::-webkit-scrollbar-track{background:transparent;}
-*::-webkit-scrollbar-thumb{background:var(--ss-scrollbar-thumb,#FBB255);border-radius:999px;border:4px solid transparent;background-clip:padding-box;}
-*::-webkit-scrollbar-thumb:hover{background:var(--ss-scrollbar-thumb-hover,#F09A2C);background-clip:padding-box;}
-*::-webkit-scrollbar-corner{background:transparent;}
-html[data-mode="dark"]{--ss-scrollbar-thumb:#FBB255;--ss-scrollbar-thumb-hover:#F09A2C;}
 </style>
 <script>try{var d=document.documentElement;if(localStorage.getItem('ss-mode')==='dark')d.setAttribute('data-mode','dark');d.setAttribute('data-logo',localStorage.getItem('ss-logo')||'a');d.setAttribute('data-font-h','base');d.setAttribute('data-font-b','base');d.setAttribute('data-bg',localStorage.getItem('ss-bg')||'on');}catch(e){}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400..700&family=Roboto:wght@400..700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400..700&amp;family=Roboto:wght@400..700&amp;display=swap" rel="stylesheet">
 <style>
 h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-family:Oswald,Helvetica,Arial,sans-serif!important;font-weight:600!important;text-transform:none;letter-spacing:0;}
 
@@ -451,6 +435,8 @@ a:hover{color:var(--ss-hover-text,#A4600C);}
 .ss-cmp-led{display:inline-block;width:8px;height:8px;flex:none;border-radius:999px;background:#157A41;animation:ss-cmp-led 1.8s cubic-bezier(.22,.61,.36,1) infinite;}
 @media (prefers-reduced-motion:reduce){.ss-cmp-led{animation:none;}}
 .ss-cmp-scroll{overflow-x:auto;overflow-y:visible;-webkit-overflow-scrolling:touch;scrollbar-width:thin;}
+/* Podklad „bg m 1“ — hlavička stránky jako samostatná sekce (29. 10. 2026) */
+.ss-bg-m1{background-color:var(--ss-surface-page,#FFFFFF)!important;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .55 0 0 0 0 .35 0 0 0 0 .1 0 0 0 .07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),radial-gradient(ellipse 80% 55% at 50% 100%,rgba(251,178,85,.16) 0%,rgba(251,178,85,.06) 45%,rgba(251,178,85,0) 80%)!important;background-size:220px 220px,auto!important;background-repeat:repeat,no-repeat!important;background-position:0 0,center!important;}
 </style>
 </helmet>
 <div style="width:100%;background:var(--ss-surface-page,#FFFFFF);font-family:Roboto,Helvetica,Arial,sans-serif;color:var(--ss-text-primary,#1C2229)">
@@ -458,7 +444,7 @@ a:hover{color:var(--ss-hover-text,#A4600C);}
   <dc-import name="PrezentacniLista" items="{{ presItems }}" onToggle="{{ onPresToggle }}" hint-size="320px,52px"></dc-import>
 
   <main>
-    <section class="ss-grad-top" style="width:100%;background-color:var(--ss-surface-page,#FFFFFF)">
+    <section class="ss-bg-m1" style="width:100%">
       <div style="{{ innerTop }}">
 
         <div style="{{ topGrid }}">
@@ -475,9 +461,9 @@ a:hover{color:var(--ss-hover-text,#A4600C);}
           </div>
 
           <sc-if value="{{ showAdvisor }}" hint-placeholder-val="{{ true }}">
-            <div style="{{ advisorStyle }}">
-              <h2 style="margin:0;font-size:22px;line-height:1.2">Nevíte si rady s výběrem?</h2>
-              <p style="margin:0;font-size:15px;line-height:1.5;color:var(--ss-text-secondary,#3D4750)">Naši spánkoví specialisté vám poradí on-line nebo přímo na pobočce.</p>
+            <div style="background: #0E1F2F; color: #FFFFFF; padding: 32px; display: flex; flex-direction: column; gap: 16px; border-radius: 8px; box-sizing: border-box">
+              <h2 style="margin:0; font-size:22px; line-height:1.2; color: #FFFFFF">Nevíte si rady s výběrem?</h2>
+              <p style="margin:0; font-size:15px; line-height:1.5; color: #D5DCE3">Naši spánkoví specialisté vám poradí on-line nebo přímo na pobočce.</p>
               <div style="{{ advisorGrid }}">
                 <div style="background:var(--ss-surface-page,#FFFFFF);border-radius:6px;padding:16px;display:flex;flex-direction:column;gap:10px;min-width:0">
                   <h3 style="margin:0;font-size:15px;line-height:1.3">Chcete poradit on-line?</h3>
@@ -582,24 +568,7 @@ a:hover{color:var(--ss-hover-text,#A4600C);}
           <p style="margin:24px 0 0;font-size:15px;color:var(--ss-text-secondary,#3D4750)">Vybrané produkty se v uvedených parametrech neliší. Vypněte <strong>Jen rozdíly</strong> a uvidíte celou tabulku.</p>
         </sc-if>
 
-        <div style="{{ supportWrapStyle }}">
-          <div style="{{ supportCardStyle }}">
-            <h2 style="margin:0;font-size:20px;line-height:1.15;max-width:8ch">Jsme tu pro vás</h2>
-            <span aria-hidden="true" style="display:inline-flex;align-items:center;justify-content:center;width:56px;height:56px;border-radius:999px;background:#FBB255;color:#1C2229;flex:none">
-              <dc-import name="Ikony" iconName="phone" size="26" hint-size="26px,26px"></dc-import>
-            </span>
-            <span style="display:flex;flex-direction:column;gap:6px">
-              <a class="ss-cmp-tel" href="tel:+420543212855" style="font-family:Oswald,Roboto,sans-serif;font-size:22px;font-weight:700;text-decoration:none">+420 543 212 855</a>
-              <span style="display:inline-flex;align-items:center;gap:8px;font-size:13px;color:var(--ss-text-secondary,#3D4750)">
-                <sc-if value="{{ isOpenNow }}" hint-placeholder-val="{{ true }}">
-                  <span class="ss-cmp-led" role="img" aria-label="Právě jsme online"></span>
-                </sc-if>
-                <span>Po–Ne 9–17 hod.</span>
-              </span>
-            </span>
-            <a href="mailto:podpora@svetspanku.cz" style="font-size:16px;font-weight:600">podpora@svetspanku.cz</a>
-          </div>
-        </div>
+        
 
       </div>
     </section>
@@ -619,19 +588,19 @@ class Component extends DCLogic {
   };
   static ORDER = ['rozmer','material','odstin','nosnost','vyska','tuhost','konstrukce','jadro','potah','zony','celo','ulozny','rost','rostvceni','zaruka'];
   static DATA = [
-    { id: 'm20', image: 'produkt-matrace-spring-variant-karta.webp', kat: 'matrace', title: 'Matrace Spring Variant 20 cm', href: 'Detail_Postel_3.0.dc.html', stock: 'inStock',
+    { id: 'm20', image: '/_blob/66ef2119f31d8262ba38ce4bea618a8e', kat: 'matrace', title: 'Matrace Spring Variant 20 cm', href: 'Detail_Postel_3.0.dc.html', stock: 'inStock',
       perex: 'Partnerská matrace s tuhostí volitelnou pro každou polovinu samostatně. Už žádná mezera uprostřed.',
       price: '7 950 Kč',
       params: { rozmer: '80 × 200 cm', nosnost: '120 kg', vyska: '19 cm', tuhost: '3/5 – středně tuhá', konstrukce: 'Pěnová', jadro: 'Studená pěna HR', potah: 'Úplet Silver, snímatelný', zony: '5 zón', rost: 'Ano', zaruka: '5 let' } },
-    { id: 'm22', image: 'produkt-matrace-taskova-leda-duo.webp', kat: 'matrace', title: 'Matrace Spring Variant 22 cm', href: 'Detail_Postel_3.0.dc.html', stock: 'inStock',
+    { id: 'm22', image: '/_blob/4d39f39f3e59f9479b2f3fa0c249def9', kat: 'matrace', title: 'Matrace Spring Variant 22 cm', href: 'Detail_Postel_3.0.dc.html', stock: 'inStock',
       perex: 'Partnerská matrace s tuhostí volitelnou pro každou polovinu samostatně. Už žádná mezera uprostřed.',
       price: '8 950 Kč', priceBefore: '9 950 Kč',
       params: { rozmer: '80 × 200 cm', nosnost: '140 kg', vyska: '21 cm', tuhost: '4/5 – tuhá', konstrukce: 'Pěnová', jadro: 'Studená pěna HR + latex', potah: 'Úplet Silver, snímatelný', zony: '7 zón', rost: 'Ano', zaruka: '5 let' } },
-    { id: 'm24', image: 'produkt-matrace-sendvicova-duo-comfort.webp', kat: 'matrace', title: 'Matrace Spring Variant 24 cm', href: 'Detail_Postel_3.0.dc.html', stock: 'lowStock',
+    { id: 'm24', image: '/_blob/4a0a7adf8f13ddf960536da06df0e197', kat: 'matrace', title: 'Matrace Spring Variant 24 cm', href: 'Detail_Postel_3.0.dc.html', stock: 'lowStock',
       perex: 'Nejvyšší z řady. Taštičkové jádro s latexovou deskou pro vyšší hmotnost spících.',
       price: '9 950 Kč',
       params: { rozmer: '80 × 200 cm', nosnost: '160 kg', vyska: '23 cm', tuhost: '3/5 – středně tuhá', konstrukce: 'Taštičková', jadro: 'Taštičkové pružiny + latex', potah: 'Úplet Silver, snímatelný', zony: '7 zón', rost: 'Ne', zaruka: '7 let' } },
-    { id: 'b1', image: 'produkt-postel-levita.webp', kat: 'postele', title: 'Postel z masivu LEVITA', href: 'Detail_Postel_3.0.dc.html', stock: 'inStock',
+    { id: 'b1', image: '/_blob/6b546453dfb90e0ec7ddb488eed7e6ec', kat: 'postele', title: 'Postel z masivu LEVITA', href: 'Detail_Postel_3.0.dc.html', stock: 'inStock',
       perex: 'Smrkový masiv s úložným prostorem po celé ploše lože a plynovými písty.',
       price: '21 390 Kč',
       params: { rozmer: '180 × 200 cm', material: 'Smrkový masiv', odstin: 'Bílá lazura', nosnost: '250 kg', celo: 'Dřevěné plné', ulozny: 'Ano, po celé ploše', rostvceni: 'Ne', zaruka: '5 let' } },

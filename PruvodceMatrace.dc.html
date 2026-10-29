@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+<!-- ss-head -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Sans+Condensed:wght@400;500;600;700&display=swap" rel="stylesheet"><style data-ss="tmavy-rezim">
+/* Tmavý režim — přepíná html[data-mode="dark"]. Světlý režim = fallback hodnoty v var(). */
+/* Hover ve světlém režimu modrý (6. 10. 2026), v tmavém meruňkový */
+html:not([data-mode="dark"]){--ss-hover-text:#21507B;--ss-hover-bg:#F0F5FA;
+  /* Teplé meruňkové podklady (7. 10. 2026) */
+  --ss-surface-page:#FFFFFF;--ss-surface-subtle:#FAF5EF;--ss-surface-muted:#F3EDE4;--ss-surface-strong:#E9E1D5;--ss-surface-card:#FFFFFF;--ss-surface-box:#FFFFFF;--ss-text-heading:#0B1F33;
+  /* Sekundární tlačítko tonální meruňkové (7. 10. 2026) */
+  --ss-action-tonal-bg:#FEEDD4;--ss-action-tonal-hover-bg:#FDDCAA;--ss-action-tonal-fg:#7A4708;--ss-action-tonal-hover-fg:#7A4708;}
+html:not([data-mode="dark"]),html:not([data-mode="dark"]) body{background:#FFFFFF;}
+html[data-mode="dark"]{color-scheme:dark;
+  --ss-surface-tint:rgba(251,178,85,.04);
+  --ss-pm-range:linear-gradient(90deg,#4F82B0 0%,#8DB3D3 100%);
+  --ss-border-accent-subtle:#5A4425;
+  --ss-border-action:#8DB3D3;
+  --ss-action-tonal-bg:rgba(141,179,211,.16);
+  --ss-action-tonal-hover-bg:rgba(141,179,211,.26);
+  --ss-action-tonal-fg:#B9D0E5;
+  --ss-action-tonal-hover-fg:#FBB255;
+  --ss-border-action-hover:#B9D0E5;
+  --ss-border-error:#F4A39C;
+  --ss-border-error-subtle:#7A3A35;
+  --ss-border-faint:#1E3850;
+  --ss-border-hover:#5B8FBC;
+  --ss-border-strong:#3A5A7A;
+  --ss-border-subtle:#24405B;
+  --ss-border-success-subtle:#2C5A40;
+  --ss-link:#8DB3D3;
+  --ss-link-hover:#B9D0E5;
+  --ss-usp-from-c:#8DB3D3;
+  --ss-usp-to-c:#FBB255;
+  --ss-text-apricot:#FBB255;
+  --ss-usp-title:#FBB255;
+  --ss-hover-text:#FBB255;
+  --ss-hover-bg:rgba(251,178,85,.12);
+  --ss-status-error:#F4A39C;
+  --ss-status-error-strong:#F4B6B1;
+  --ss-status-error-surface:#3A1A18;
+  --ss-status-success:#71CC92;
+  --ss-status-success-strong:#A8E1BB;
+  --ss-status-success-surface:#12301F;
+  --ss-status-success-chip:#12301F;
+  --ss-status-success-chip-fg:#A8E1BB;
+  --ss-status-warning:#FCC77D;
+  --ss-surface-accent:#2B2318;
+  --ss-surface-accent-strong:#3A2C17;
+  --ss-surface-hover:#1A3A58;
+  --ss-surface-muted:#183049;
+  --ss-surface-page:#0E1F2F;
+  --ss-surface-card:#0E1F2F;
+  --ss-surface-box:#13283C;
+  --ss-surface-selected:#1F4669;
+  --ss-surface-strong:#22405C;
+  --ss-surface-subtle:#13283C;
+  --ss-text-decor:#4A6683;
+  --ss-text-disabled:#7F94A8;
+  --ss-text-muted:#9DB0C2;
+  --ss-text-primary:#EEF3F8;
+  --ss-text-heading:#EEF3F8;
+  --ss-text-secondary:#C5D2DE;
+}
+html[data-mode="dark"],html[data-mode="dark"] body{background:#0E1F2F;}
+html[data-mode="dark"] .ss-hd-logo-pos{display:none!important;}
+html[data-mode="dark"] .ss-hd-logo-neg{display:block!important;}
+html[data-mode="dark"][data-logo="a"] .ss-hd-logo-neg,html[data-mode="dark"][data-logo="b"] .ss-hd-logo-neg,html[data-mode="dark"][data-logo="c"] .ss-hd-logo-neg,html[data-mode="dark"][data-logo="d"] .ss-hd-logo-neg{display:none!important;}
+html[data-mode="dark"][data-logo="a"] .ss-hd-logo-a,html[data-mode="dark"][data-logo="b"] .ss-hd-logo-b,html[data-mode="dark"][data-logo="c"] .ss-hd-logo-c,html[data-mode="dark"][data-logo="d"] .ss-hd-logo-d{display:block!important;}
+html[data-mode="dark"] img{filter:none;}
+
+/* Oddělení hlavičky a overlay panelů v tmavém režimu */
+html[data-mode="dark"] .ss-hd{box-shadow:0 1px 0 rgba(141,179,211,.18),0 8px 24px rgba(0,0,0,.45)!important;}
+/* Hlavička: horní lišta a hlavní řádek průsvitné s background blur, menu (.ss-hd-nav) zůstává plné */
+html[data-mode="dark"] .ss-hd{background:transparent!important;}
+html[data-mode="dark"] .ss-hd-topbar{background-color:rgba(19,40,60,.72)!important;-webkit-backdrop-filter:blur(16px) saturate(140%);backdrop-filter:blur(16px) saturate(140%);}
+html[data-mode="dark"] .ss-hd-main{background-color:rgba(14,31,47,.72)!important;-webkit-backdrop-filter:blur(16px) saturate(140%);backdrop-filter:blur(16px) saturate(140%);}
+html[data-mode="dark"] .ss-hd-topbar{border-bottom-color:transparent!important;}
+html[data-mode="dark"] .ss-hd-nav{border-top-color:transparent!important;background-color:#13283C!important;background-image:linear-gradient(180deg,#13283C 0%,#102336 100%)!important;}
+html[data-mode="dark"] .ss-mm{background:#13283C!important;box-shadow:inset 0 1px 0 rgba(141,179,211,.18),0 0 0 1px rgba(141,179,211,.14),0 24px 48px rgba(0,0,0,.6)!important;}
+html[data-mode="dark"] .ss-hd .ss-pm{background:#13283C!important;box-shadow:inset 0 1px 0 rgba(141,179,211,.18),0 0 0 1px rgba(141,179,211,.14),0 24px 48px rgba(0,0,0,.6)!important;}
+html[data-mode="dark"] .ss-pm-card{background:#13283C;}
+html[data-mode="dark"] .ss-pm-card:hover{background:#13283C!important;box-shadow:none!important;color:inherit!important;}
+html[data-mode="dark"] .ss-pm-row:hover{background:transparent!important;box-shadow:none!important;color:inherit!important;}
+
+/* Ostrůvek světlého režimu (popupy nad fotkami — produktové fotky mají bílé pozadí) */
+html[data-mode="dark"] .ss-light{color-scheme:light;
+  --ss-hover-text:#21507B;
+  --ss-hover-bg:#F0F5FA;
+  --ss-text-apricot:initial;
+  --ss-usp-title:initial;
+  --ss-border-accent-subtle:initial;
+  --ss-border-action:initial;
+  --ss-action-tonal-bg:initial;
+  --ss-action-tonal-hover-bg:initial;
+  --ss-action-tonal-fg:initial;
+  --ss-border-action-hover:initial;
+  --ss-border-error:initial;
+  --ss-border-error-subtle:initial;
+  --ss-border-faint:initial;
+  --ss-border-hover:initial;
+  --ss-border-strong:initial;
+  --ss-border-subtle:initial;
+  --ss-border-success-subtle:initial;
+  --ss-link:initial;
+  --ss-link-hover:initial;
+  --ss-status-error:initial;
+  --ss-status-error-strong:initial;
+  --ss-status-error-surface:initial;
+  --ss-status-success:initial;
+  --ss-status-success-strong:initial;
+  --ss-status-success-surface:initial;
+  --ss-status-warning:initial;
+  --ss-surface-accent:initial;
+  --ss-surface-accent-strong:initial;
+  --ss-surface-hover:initial;
+  --ss-surface-muted:initial;
+  --ss-surface-page:initial;
+  --ss-surface-selected:initial;
+  --ss-surface-strong:initial;
+  --ss-surface-subtle:initial;
+  --ss-text-decor:initial;
+  --ss-text-disabled:initial;
+  --ss-text-muted:initial;
+  --ss-text-primary:initial;
+  --ss-text-secondary:initial;
+}
+
+/* Hlavička v tmavém režimu: bez dělicí linky nad menu */
+html[data-mode="dark"] .ss-hd-nav{border-top-color:transparent!important;}
+/* Karty: v tmavém režimu bez hover podkladu a stínu, mění se jen barva nadpisu */
+html[data-mode="dark"] .ss-ct:hover,html[data-mode="dark"] .ss-cat:hover,html[data-mode="dark"] .ss-art:hover,html[data-mode="dark"] .ss-mm-ban:hover,html[data-mode="dark"] .ss-pc:hover,html[data-mode="dark"] .ss-hp-tile:hover{box-shadow:none!important;}
+/* Produktová karta: v tmavém režimu bez podkladu, tmavá modrá jen na hover; karty blíž k sobě */
+html[data-mode="dark"] .ss-pc{background:transparent;padding:18px;transition:background-color .15s cubic-bezier(.22,.61,.36,1);}
+@media (hover:hover) and (pointer:fine){html[data-mode="dark"] .ss-pc:hover{background:#0E1F2F;}}
+html[data-mode="dark"] .ss-car{gap:8px;}
+html[data-mode="dark"] .ss-pgrid{gap:4px!important;}
+/* Hover obtažení: 1px gradientní linka, světle modré světlo z levého horního rohu */
+html[data-mode="dark"] .ss-pc::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;pointer-events:none;background:radial-gradient(ellipse 90% 70% at 0% 0%,rgba(141,179,211,.95) 0%,rgba(141,179,211,.45) 35%,rgba(141,179,211,.16) 65%,rgba(141,179,211,.06) 100%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0);opacity:0;transition:opacity .15s cubic-bezier(.22,.61,.36,1);}
+@media (hover:hover) and (pointer:fine){html[data-mode="dark"] .ss-pc:hover::before{opacity:1;}}
+html[data-mode="dark"] .ss-pm-card:hover .ss-pm-title,html[data-mode="dark"] .ss-pm-row:hover .ss-pm-title,html[data-mode="dark"] .ss-pc:hover .ss-pc-title,html[data-mode="dark"] .ss-mm-ban:hover{color:#FBB255!important;}
+
+/* Podklad webu: jemný radiální gradient ze středu viewportu (hloubka). Fixní → plynule přes všechny sekce. */
+/* Vinětace (Elevace) odebrána 12. 10. 2026 — plné podklady, stíny karet zůstávají vždy */
+
+
+/* Gradient Zap: elevace všech ploch, které by na gradientu splývaly (karty, filtry, video, boxy). Gradient Vyp = beze změny. */
+html .ss-elev,html .ss-ct:not([data-pop="true"]),html .ss-cat,html .ss-hp-tile,html .ss-pd-row,html .ss-mm-art{box-shadow:0 2px 8px rgba(19,44,67,.08)!important;}
+html[data-mode="dark"] .ss-elev,html[data-mode="dark"] .ss-ct:not([data-pop="true"]),html[data-mode="dark"] .ss-cat,html[data-mode="dark"] .ss-hp-tile,html[data-mode="dark"] .ss-pd-row{box-shadow:inset 0 1px 0 rgba(141,179,211,.14),0 0 0 1px rgba(141,179,211,.10),0 2px 8px rgba(0,0,0,.35)!important;}
+@media (hover:hover) and (pointer:fine){
+html a.ss-elev:hover,html button.ss-elev:hover,html .ss-ct:not([data-pop="true"]):hover,html .ss-cat:hover,html .ss-hp-tile:hover,html .ss-pd-row:hover{box-shadow:0 4px 12px rgba(19,44,67,.12)!important;}
+html[data-mode="dark"] a.ss-elev:hover,html[data-mode="dark"] button.ss-elev:hover,html[data-mode="dark"] .ss-ct:not([data-pop="true"]):hover,html[data-mode="dark"] .ss-cat:hover,html[data-mode="dark"] .ss-hp-tile:hover,html[data-mode="dark"] .ss-pd-row:hover{box-shadow:inset 0 1px 0 rgba(141,179,211,.18),0 0 0 1px rgba(141,179,211,.14),0 8px 24px rgba(0,0,0,.45)!important;}
+}
+html .ss-ct[data-pop="true"]::before{box-shadow:0 2px 8px rgba(19,44,67,.08);}
+html[data-mode="dark"] .ss-ct[data-pop="true"]::before{box-shadow:inset 0 1px 0 rgba(141,179,211,.14),0 0 0 1px rgba(141,179,211,.10),0 2px 8px rgba(0,0,0,.35);}
+@media (hover:hover) and (pointer:fine){html .ss-ct[data-pop="true"]:hover::before{box-shadow:0 4px 12px rgba(19,44,67,.12);}html[data-mode="dark"] .ss-ct[data-pop="true"]:hover::before{box-shadow:inset 0 1px 0 rgba(141,179,211,.18),0 0 0 1px rgba(141,179,211,.14),0 8px 24px rgba(0,0,0,.45);}}
+html .ss-elev:focus-visible{box-shadow:0 0 0 3px rgba(41,96,147,.35)!important;}
+
+/* Prezentační přepínač fontů — html[data-font-h|data-font-b]="alt" */
+html[data-font-h="alt"] h1:not(.ss-plain),html[data-font-h="alt"] h2:not(.ss-plain),html[data-font-h="alt"] h3:not(.ss-plain),html[data-font-h="alt"] h4:not(.ss-plain),html[data-font-h="alt"] [style*="Oswald"]{font-family:'Barlow Condensed',Oswald,Helvetica,Arial,sans-serif!important;}
+html[data-font-b="alt"] body,html[data-font-b="alt"] [style*="Roboto"]:not([style*="Archivo"]):not([style*="Oswald"]),html[data-font-b="alt"] input,html[data-font-b="alt"] button,html[data-font-b="alt"] select,html[data-font-b="alt"] textarea{font-family:'IBM Plex Sans Condensed',Roboto,Helvetica,Arial,sans-serif!important;}
+html[data-mode="dark"] .ss-ct:hover .ss-ct-title,html[data-mode="dark"] .ss-hp-art:hover .ss-hp-art-t,html[data-mode="dark"] .ss-mag-lead:hover .ss-hp-art-t{color:#FBB255;}
+
+/* Centrální scrim pro všechny modály a drawery (oba režimy): blur 16 px, diagonální závoj, teplé bodové světlo z levého horního rohu */
+.ss-scrim{background:radial-gradient(ellipse 75% 65% at 0% 0%,rgba(251,178,85,.34) 0%,rgba(251,178,85,.12) 40%,rgba(251,178,85,0) 70%),radial-gradient(ellipse 70% 60% at 100% 100%,rgba(240,154,44,.36) 0%,rgba(240,154,44,.12) 40%,rgba(240,154,44,0) 70%),linear-gradient(135deg,rgba(9,18,27,.6) 0%,rgba(9,18,27,.74) 50%,rgba(6,12,18,.8) 100%);-webkit-backdrop-filter:blur(16px) saturate(.9);backdrop-filter:blur(16px) saturate(.9);}
+/* Vyhledávání v hlavičce: teplé bodové světlo na podkladu pole (tmavý režim) */
+html[data-mode="dark"] .ss-hd .ss-input{background-image:radial-gradient(ellipse 45% 140% at 0% 0%,rgba(251,178,85,.20) 0%,rgba(251,178,85,.07) 45%,rgba(251,178,85,0) 75%)!important;}
+html[data-mode="dark"] .ss-hd .ss-input:focus{background-image:radial-gradient(ellipse 55% 160% at 0% 0%,rgba(251,178,85,.28) 0%,rgba(251,178,85,.10) 45%,rgba(251,178,85,0) 80%)!important;}
+
+html[data-mode="dark"] .ss-hd-tab[aria-current="page"]{color:#FBB255;}
+
+/* Filtrační panel: světlý bílý (surface.card), tmavý zůstává surface.subtle */
+html[data-mode="dark"] .ss-filtr{background:var(--ss-surface-subtle,#13283C)!important;}
+
+/* Úvodní sekce s gradientem (Kategorie): surface.page nahoře → surface.muted dole; vrství se pod vinětaci */
+main>section.ss-grad-top{background-image:linear-gradient(180deg,var(--ss-surface-page,#FFFFFF) 0%,var(--ss-surface-muted,#F3EDE4) 100%)!important;background-attachment:scroll!important;}
+
+
+
+/* Nadpisy: světlý režim tmavá modrá z hlavičky #0B1F33 (inline barva vyhrává — bílé nadpisy na tmavých pásech zůstávají) */
+h1,h2,h3,h4{color:var(--ss-text-heading,#0B1F33);}
+
+/* Sekce s meruňkovým podsvícením zespoda — poloviční radiál od spodní hrany, vrstvený nad .ss-grad-top */
+main>section.ss-grad-top.ss-grad-glow{background-image:radial-gradient(ellipse 55% 100% at 50% 100%,rgba(251,178,85,.22) 0%,rgba(251,178,85,.09) 45%,rgba(251,178,85,0) 75%),linear-gradient(180deg,var(--ss-surface-page,#FFFFFF) 0%,var(--ss-surface-muted,#F3EDE4) 100%)!important;background-size:100% 520px,auto!important;background-position:center bottom,center!important;background-repeat:no-repeat!important;background-attachment:scroll!important;}
+html[data-mode="dark"] main>section.ss-grad-top.ss-grad-glow{background-image:radial-gradient(ellipse 55% 100% at 50% 100%,rgba(251,178,85,.14) 0%,rgba(251,178,85,.05) 45%,rgba(251,178,85,0) 75%),linear-gradient(180deg,var(--ss-surface-page,#0E1F2F) 0%,var(--ss-surface-muted,#183049) 100%)!important;}
+
+
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400..700&family=Roboto:wght@400..700&display=swap" rel="stylesheet">
+<script>try{var d=document.documentElement;if(localStorage.getItem('ss-mode')==='dark')d.setAttribute('data-mode','dark');d.setAttribute('data-logo',localStorage.getItem('ss-logo')||'a');d.setAttribute('data-font-h','base');d.setAttribute('data-font-b','base');}catch(e){}</script>
+<style>
+h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-family:Oswald,Helvetica,Arial,sans-serif!important;font-weight:600!important;text-transform:none;letter-spacing:0;}
+html,body{margin:0!important;padding:0!important;}
+#dc-root{margin:0!important;padding:0!important;width:100%!important;max-width:none!important;border:0!important;}
+#dc-root>.sc-host{margin:0!important;padding:0!important;width:100%!important;}
+a{color:var(--ss-link,#296093);}
+a:hover{color:var(--ss-hover-text,#21507B);}
+</style>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&amp;family=IBM+Plex+Sans+Condensed:wght@400;500;600;700&amp;display=swap" rel="stylesheet"><style data-ss="tmavy-rezim">
+/* Tmavý režim — přepíná html[data-mode="dark"]. Světlý režim = fallback hodnoty v var(). */
+/* Hover ve světlém režimu modrý (6. 10. 2026), v tmavém meruňkový */
+html:not([data-mode="dark"]){--ss-hover-text:#21507B;--ss-hover-bg:#F0F5FA;
+  /* Teplé meruňkové podklady (7. 10. 2026) */
+  --ss-surface-page:#FFFFFF;--ss-surface-subtle:#FAF5EF;--ss-surface-muted:#F3EDE4;--ss-surface-strong:#E9E1D5;--ss-surface-card:#FFFFFF;--ss-surface-box:#FFFFFF;--ss-text-heading:#0B1F33;
+  /* Sekundární tlačítko tonální meruňkové (7. 10. 2026) */
+  --ss-action-tonal-bg:#FEEDD4;--ss-action-tonal-hover-bg:#FDDCAA;--ss-action-tonal-fg:#7A4708;--ss-action-tonal-hover-fg:#7A4708;}
+html:not([data-mode="dark"]),html:not([data-mode="dark"]) body{background:#FFFFFF;}
+html[data-mode="dark"]{color-scheme:dark;
+  --ss-surface-tint:rgba(251,178,85,.04);
+  --ss-pm-range:linear-gradient(90deg,#4F82B0 0%,#8DB3D3 100%);
+  --ss-border-accent-subtle:#5A4425;
+  --ss-border-action:#8DB3D3;
+  --ss-action-tonal-bg:rgba(141,179,211,.16);
+  --ss-action-tonal-hover-bg:rgba(141,179,211,.26);
+  --ss-action-tonal-fg:#B9D0E5;
+  --ss-action-tonal-hover-fg:#FBB255;
+  --ss-border-action-hover:#B9D0E5;
+  --ss-border-error:#F4A39C;
+  --ss-border-error-subtle:#7A3A35;
+  --ss-border-faint:#1E3850;
+  --ss-border-hover:#5B8FBC;
+  --ss-border-strong:#3A5A7A;
+  --ss-border-subtle:#24405B;
+  --ss-border-success-subtle:#2C5A40;
+  --ss-link:#8DB3D3;
+  --ss-link-hover:#B9D0E5;
+  --ss-usp-from-c:#8DB3D3;
+  --ss-usp-to-c:#FBB255;
+  --ss-text-apricot:#FBB255;
+  --ss-usp-title:#FBB255;
+  --ss-hover-text:#FBB255;
+  --ss-hover-bg:rgba(251,178,85,.12);
+  --ss-status-error:#F4A39C;
+  --ss-status-error-strong:#F4B6B1;
+  --ss-status-error-surface:#3A1A18;
+  --ss-status-success:#71CC92;
+  --ss-status-success-strong:#A8E1BB;
+  --ss-status-success-surface:#12301F;
+  --ss-status-success-chip:#12301F;
+  --ss-status-success-chip-fg:#A8E1BB;
+  --ss-status-warning:#FCC77D;
+  --ss-surface-accent:#2B2318;
+  --ss-surface-accent-strong:#3A2C17;
+  --ss-surface-hover:#1A3A58;
+  --ss-surface-muted:#183049;
+  --ss-surface-page:#0E1F2F;
+  --ss-surface-card:#0E1F2F;
+  --ss-surface-box:#13283C;
+  --ss-surface-selected:#1F4669;
+  --ss-surface-strong:#22405C;
+  --ss-surface-subtle:#13283C;
+  --ss-text-decor:#4A6683;
+  --ss-text-disabled:#7F94A8;
+  --ss-text-muted:#9DB0C2;
+  --ss-text-primary:#EEF3F8;
+  --ss-text-heading:#EEF3F8;
+  --ss-text-secondary:#C5D2DE;
+}
+html[data-mode="dark"],html[data-mode="dark"] body{background:#0E1F2F;}
+html[data-mode="dark"] .ss-hd-logo-pos{display:none!important;}
+html[data-mode="dark"] .ss-hd-logo-neg{display:block!important;}
+html[data-mode="dark"][data-logo="a"] .ss-hd-logo-neg,html[data-mode="dark"][data-logo="b"] .ss-hd-logo-neg,html[data-mode="dark"][data-logo="c"] .ss-hd-logo-neg,html[data-mode="dark"][data-logo="d"] .ss-hd-logo-neg{display:none!important;}
+html[data-mode="dark"][data-logo="a"] .ss-hd-logo-a,html[data-mode="dark"][data-logo="b"] .ss-hd-logo-b,html[data-mode="dark"][data-logo="c"] .ss-hd-logo-c,html[data-mode="dark"][data-logo="d"] .ss-hd-logo-d{display:block!important;}
+html[data-mode="dark"] img{filter:none;}
+
+/* Oddělení hlavičky a overlay panelů v tmavém režimu */
+html[data-mode="dark"] .ss-hd{box-shadow:0 1px 0 rgba(141,179,211,.18),0 8px 24px rgba(0,0,0,.45)!important;}
+/* Hlavička: horní lišta a hlavní řádek průsvitné s background blur, menu (.ss-hd-nav) zůstává plné */
+html[data-mode="dark"] .ss-hd{background:transparent!important;}
+html[data-mode="dark"] .ss-hd-topbar{background-color:rgba(19,40,60,.72)!important;-webkit-backdrop-filter:blur(16px) saturate(140%);backdrop-filter:blur(16px) saturate(140%);}
+html[data-mode="dark"] .ss-hd-main{background-color:rgba(14,31,47,.72)!important;-webkit-backdrop-filter:blur(16px) saturate(140%);backdrop-filter:blur(16px) saturate(140%);}
+html[data-mode="dark"] .ss-hd-topbar{border-bottom-color:transparent!important;}
+html[data-mode="dark"] .ss-hd-nav{border-top-color:transparent!important;background-color:#13283C!important;background-image:linear-gradient(180deg,#13283C 0%,#102336 100%)!important;}
+html[data-mode="dark"] .ss-mm{background:#13283C!important;box-shadow:inset 0 1px 0 rgba(141,179,211,.18),0 0 0 1px rgba(141,179,211,.14),0 24px 48px rgba(0,0,0,.6)!important;}
+html[data-mode="dark"] .ss-hd .ss-pm{background:#13283C!important;box-shadow:inset 0 1px 0 rgba(141,179,211,.18),0 0 0 1px rgba(141,179,211,.14),0 24px 48px rgba(0,0,0,.6)!important;}
+html[data-mode="dark"] .ss-pm-card{background:#13283C;}
+html[data-mode="dark"] .ss-pm-card:hover{background:#13283C!important;box-shadow:none!important;color:inherit!important;}
+html[data-mode="dark"] .ss-pm-row:hover{background:transparent!important;box-shadow:none!important;color:inherit!important;}
+
+/* Ostrůvek světlého režimu (popupy nad fotkami — produktové fotky mají bílé pozadí) */
+html[data-mode="dark"] .ss-light{color-scheme:light;
+  --ss-hover-text:#21507B;
+  --ss-hover-bg:#F0F5FA;
+  --ss-text-apricot:initial;
+  --ss-usp-title:initial;
+  --ss-border-accent-subtle:initial;
+  --ss-border-action:initial;
+  --ss-action-tonal-bg:initial;
+  --ss-action-tonal-hover-bg:initial;
+  --ss-action-tonal-fg:initial;
+  --ss-border-action-hover:initial;
+  --ss-border-error:initial;
+  --ss-border-error-subtle:initial;
+  --ss-border-faint:initial;
+  --ss-border-hover:initial;
+  --ss-border-strong:initial;
+  --ss-border-subtle:initial;
+  --ss-border-success-subtle:initial;
+  --ss-link:initial;
+  --ss-link-hover:initial;
+  --ss-status-error:initial;
+  --ss-status-error-strong:initial;
+  --ss-status-error-surface:initial;
+  --ss-status-success:initial;
+  --ss-status-success-strong:initial;
+  --ss-status-success-surface:initial;
+  --ss-status-warning:initial;
+  --ss-surface-accent:initial;
+  --ss-surface-accent-strong:initial;
+  --ss-surface-hover:initial;
+  --ss-surface-muted:initial;
+  --ss-surface-page:initial;
+  --ss-surface-selected:initial;
+  --ss-surface-strong:initial;
+  --ss-surface-subtle:initial;
+  --ss-text-decor:initial;
+  --ss-text-disabled:initial;
+  --ss-text-muted:initial;
+  --ss-text-primary:initial;
+  --ss-text-secondary:initial;
+}
+
+/* Hlavička v tmavém režimu: bez dělicí linky nad menu */
+html[data-mode="dark"] .ss-hd-nav{border-top-color:transparent!important;}
+/* Karty: v tmavém režimu bez hover podkladu a stínu, mění se jen barva nadpisu */
+html[data-mode="dark"] .ss-ct:hover,html[data-mode="dark"] .ss-cat:hover,html[data-mode="dark"] .ss-art:hover,html[data-mode="dark"] .ss-mm-ban:hover,html[data-mode="dark"] .ss-pc:hover,html[data-mode="dark"] .ss-hp-tile:hover{box-shadow:none!important;}
+/* Produktová karta: v tmavém režimu bez podkladu, tmavá modrá jen na hover; karty blíž k sobě */
+html[data-mode="dark"] .ss-pc{background:transparent;padding:18px;transition:background-color .15s cubic-bezier(.22,.61,.36,1);}
+@media (hover:hover) and (pointer:fine){html[data-mode="dark"] .ss-pc:hover{background:#0E1F2F;}}
+html[data-mode="dark"] .ss-car{gap:8px;}
+html[data-mode="dark"] .ss-pgrid{gap:4px!important;}
+/* Hover obtažení: 1px gradientní linka, světle modré světlo z levého horního rohu */
+html[data-mode="dark"] .ss-pc::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;pointer-events:none;background:radial-gradient(ellipse 90% 70% at 0% 0%,rgba(141,179,211,.95) 0%,rgba(141,179,211,.45) 35%,rgba(141,179,211,.16) 65%,rgba(141,179,211,.06) 100%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0);opacity:0;transition:opacity .15s cubic-bezier(.22,.61,.36,1);}
+@media (hover:hover) and (pointer:fine){html[data-mode="dark"] .ss-pc:hover::before{opacity:1;}}
+html[data-mode="dark"] .ss-pm-card:hover .ss-pm-title,html[data-mode="dark"] .ss-pm-row:hover .ss-pm-title,html[data-mode="dark"] .ss-pc:hover .ss-pc-title,html[data-mode="dark"] .ss-mm-ban:hover{color:#FBB255!important;}
+
+/* Podklad webu: jemný radiální gradient ze středu viewportu (hloubka). Fixní → plynule přes všechny sekce. */
+/* Vinětace (Elevace) odebrána 12. 10. 2026 — plné podklady, stíny karet zůstávají vždy */
+
+
+/* Gradient Zap: elevace všech ploch, které by na gradientu splývaly (karty, filtry, video, boxy). Gradient Vyp = beze změny. */
+html .ss-elev,html .ss-ct:not([data-pop="true"]),html .ss-cat,html .ss-hp-tile,html .ss-pd-row,html .ss-mm-art{box-shadow:0 2px 8px rgba(19,44,67,.08)!important;}
+html[data-mode="dark"] .ss-elev,html[data-mode="dark"] .ss-ct:not([data-pop="true"]),html[data-mode="dark"] .ss-cat,html[data-mode="dark"] .ss-hp-tile,html[data-mode="dark"] .ss-pd-row{box-shadow:inset 0 1px 0 rgba(141,179,211,.14),0 0 0 1px rgba(141,179,211,.10),0 2px 8px rgba(0,0,0,.35)!important;}
+@media (hover:hover) and (pointer:fine){
+html a.ss-elev:hover,html button.ss-elev:hover,html .ss-ct:not([data-pop="true"]):hover,html .ss-cat:hover,html .ss-hp-tile:hover,html .ss-pd-row:hover{box-shadow:0 4px 12px rgba(19,44,67,.12)!important;}
+html[data-mode="dark"] a.ss-elev:hover,html[data-mode="dark"] button.ss-elev:hover,html[data-mode="dark"] .ss-ct:not([data-pop="true"]):hover,html[data-mode="dark"] .ss-cat:hover,html[data-mode="dark"] .ss-hp-tile:hover,html[data-mode="dark"] .ss-pd-row:hover{box-shadow:inset 0 1px 0 rgba(141,179,211,.18),0 0 0 1px rgba(141,179,211,.14),0 8px 24px rgba(0,0,0,.45)!important;}
+}
+html .ss-ct[data-pop="true"]::before{box-shadow:0 2px 8px rgba(19,44,67,.08);}
+html[data-mode="dark"] .ss-ct[data-pop="true"]::before{box-shadow:inset 0 1px 0 rgba(141,179,211,.14),0 0 0 1px rgba(141,179,211,.10),0 2px 8px rgba(0,0,0,.35);}
+@media (hover:hover) and (pointer:fine){html .ss-ct[data-pop="true"]:hover::before{box-shadow:0 4px 12px rgba(19,44,67,.12);}html[data-mode="dark"] .ss-ct[data-pop="true"]:hover::before{box-shadow:inset 0 1px 0 rgba(141,179,211,.18),0 0 0 1px rgba(141,179,211,.14),0 8px 24px rgba(0,0,0,.45);}}
+html .ss-elev:focus-visible{box-shadow:0 0 0 3px rgba(41,96,147,.35)!important;}
+
+/* Prezentační přepínač fontů — html[data-font-h|data-font-b]="alt" */
+html[data-font-h="alt"] h1:not(.ss-plain),html[data-font-h="alt"] h2:not(.ss-plain),html[data-font-h="alt"] h3:not(.ss-plain),html[data-font-h="alt"] h4:not(.ss-plain),html[data-font-h="alt"] [style*="Oswald"]{font-family:'Barlow Condensed',Oswald,Helvetica,Arial,sans-serif!important;}
+html[data-font-b="alt"] body,html[data-font-b="alt"] [style*="Roboto"]:not([style*="Archivo"]):not([style*="Oswald"]),html[data-font-b="alt"] input,html[data-font-b="alt"] button,html[data-font-b="alt"] select,html[data-font-b="alt"] textarea{font-family:'IBM Plex Sans Condensed',Roboto,Helvetica,Arial,sans-serif!important;}
+html[data-mode="dark"] .ss-ct:hover .ss-ct-title,html[data-mode="dark"] .ss-hp-art:hover .ss-hp-art-t,html[data-mode="dark"] .ss-mag-lead:hover .ss-hp-art-t{color:#FBB255;}
+
+/* Centrální scrim pro všechny modály a drawery (oba režimy): blur 16 px, diagonální závoj, teplé bodové světlo z levého horního rohu */
+.ss-scrim{background:radial-gradient(ellipse 75% 65% at 0% 0%,rgba(251,178,85,.34) 0%,rgba(251,178,85,.12) 40%,rgba(251,178,85,0) 70%),radial-gradient(ellipse 70% 60% at 100% 100%,rgba(240,154,44,.36) 0%,rgba(240,154,44,.12) 40%,rgba(240,154,44,0) 70%),linear-gradient(135deg,rgba(9,18,27,.6) 0%,rgba(9,18,27,.74) 50%,rgba(6,12,18,.8) 100%);-webkit-backdrop-filter:blur(16px) saturate(.9);backdrop-filter:blur(16px) saturate(.9);}
+/* Vyhledávání v hlavičce: teplé bodové světlo na podkladu pole (tmavý režim) */
+html[data-mode="dark"] .ss-hd .ss-input{background-image:radial-gradient(ellipse 45% 140% at 0% 0%,rgba(251,178,85,.20) 0%,rgba(251,178,85,.07) 45%,rgba(251,178,85,0) 75%)!important;}
+html[data-mode="dark"] .ss-hd .ss-input:focus{background-image:radial-gradient(ellipse 55% 160% at 0% 0%,rgba(251,178,85,.28) 0%,rgba(251,178,85,.10) 45%,rgba(251,178,85,0) 80%)!important;}
+
+html[data-mode="dark"] .ss-hd-tab[aria-current="page"]{color:#FBB255;}
+
+/* Filtrační panel: světlý bílý (surface.card), tmavý zůstává surface.subtle */
+html[data-mode="dark"] .ss-filtr{background:var(--ss-surface-subtle,#13283C)!important;}
+
+/* Úvodní sekce s gradientem (Kategorie): surface.page nahoře → surface.muted dole; vrství se pod vinětaci */
+main>section.ss-grad-top{background-image:linear-gradient(180deg,var(--ss-surface-page,#FFFFFF) 0%,var(--ss-surface-muted,#F3EDE4) 100%)!important;background-attachment:scroll!important;}
+
+
+
+/* Nadpisy: světlý režim tmavá modrá z hlavičky #0B1F33 (inline barva vyhrává — bílé nadpisy na tmavých pásech zůstávají) */
+h1,h2,h3,h4{color:var(--ss-text-heading,#0B1F33);}
+
+/* Sekce s meruňkovým podsvícením zespoda — poloviční radiál od spodní hrany, vrstvený nad .ss-grad-top */
+main>section.ss-grad-top.ss-grad-glow{background-image:radial-gradient(ellipse 55% 100% at 50% 100%,rgba(251,178,85,.22) 0%,rgba(251,178,85,.09) 45%,rgba(251,178,85,0) 75%),linear-gradient(180deg,var(--ss-surface-page,#FFFFFF) 0%,var(--ss-surface-muted,#F3EDE4) 100%)!important;background-size:100% 520px,auto!important;background-position:center bottom,center!important;background-repeat:no-repeat!important;background-attachment:scroll!important;}
+html[data-mode="dark"] main>section.ss-grad-top.ss-grad-glow{background-image:radial-gradient(ellipse 55% 100% at 50% 100%,rgba(251,178,85,.14) 0%,rgba(251,178,85,.05) 45%,rgba(251,178,85,0) 75%),linear-gradient(180deg,var(--ss-surface-page,#0E1F2F) 0%,var(--ss-surface-muted,#183049) 100%)!important;}
+
+
+</style>
+<script>try{var d=document.documentElement;if(localStorage.getItem('ss-mode')==='dark')d.setAttribute('data-mode','dark');d.setAttribute('data-logo',localStorage.getItem('ss-logo')||'a');d.setAttribute('data-font-h','base');d.setAttribute('data-font-b','base');}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400..700&amp;family=Roboto:wght@400..700&amp;display=swap" rel="stylesheet">
+<style>
+h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-family:Oswald,Helvetica,Arial,sans-serif!important;font-weight:600!important;text-transform:none;letter-spacing:0;}
+html,body{margin:0!important;padding:0!important;}
+#dc-root{margin:0!important;padding:0!important;width:100%!important;max-width:none!important;border:0!important;}
+#dc-root>.sc-host{margin:0!important;padding:0!important;width:100%!important;}
+a{color:var(--ss-link,#296093);}
+a:hover{color:var(--ss-hover-text,#21507B);}
+/* bg m 1 (pojmenovaný podklad, viz CLAUDE.md) — liché sekce detailu */
+.ss-bg-m1{background-color:var(--ss-surface-page,#FFFFFF)!important;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .55 0 0 0 0 .35 0 0 0 0 .1 0 0 0 .07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),radial-gradient(ellipse 80% 55% at 50% 100%,rgba(251,178,85,.16) 0%,rgba(251,178,85,.06) 45%,rgba(251,178,85,0) 80%)!important;background-size:220px 220px,auto!important;background-repeat:repeat,no-repeat!important;background-position:0 0,center!important;}
+html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .85 0 0 0 0 .9 0 0 0 0 1 0 0 0 .06 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),radial-gradient(ellipse 80% 55% at 50% 100%,rgba(251,178,85,.12) 0%,rgba(251,178,85,.04) 45%,rgba(251,178,85,0) 80%)!important;}
+/* Průvodce výběrem matrace (29. 10. 2026) */
+.ss-pv-opt{position:relative;display:flex;align-items:center;gap:16px;width:100%;min-height:72px;box-sizing:border-box;padding:14px 18px;border:0;border-radius:12px;background:var(--ss-surface-card,#FFFFFF);box-shadow:inset 0 0 0 1px var(--ss-border-subtle,#E1E6EB);cursor:pointer;text-align:left;font-family:inherit;color:var(--ss-text-primary,#1C2229);transition:box-shadow .15s cubic-bezier(.22,.61,.36,1),background-color .12s cubic-bezier(.22,.61,.36,1);}
+.ss-pv-opt[data-compact="true"]{min-height:48px;padding:10px 14px;gap:10px;justify-content:space-between;}
+@media (hover:hover) and (pointer:fine){.ss-pv-opt:hover{box-shadow:inset 0 0 0 1px var(--ss-border-hover,#8DB3D3),0 2px 8px rgba(19,44,67,.08);}}
+.ss-pv-opt[aria-pressed="true"]{background:var(--ss-hover-bg,#F0F5FA);box-shadow:inset 0 0 0 2px #296093;}
+.ss-pv-opt:focus-visible{outline:none;box-shadow:inset 0 0 0 1px var(--ss-border-subtle,#E1E6EB),0 0 0 3px rgba(41,96,147,.35);}
+.ss-pv-opt[aria-pressed="true"]:focus-visible{box-shadow:inset 0 0 0 2px #296093,0 0 0 3px rgba(41,96,147,.35);}
+.ss-pv-ico{display:flex;align-items:center;justify-content:center;flex:none;width:44px;height:44px;border-radius:999px;background:var(--ss-surface-subtle,#FAF5EF);color:var(--ss-link,#296093);}
+.ss-pv-opt[aria-pressed="true"] .ss-pv-ico{background:var(--ss-surface-card,#FFFFFF);}
+.ss-pv-txt{display:flex;flex-direction:column;gap:2px;min-width:0;flex:1;}
+.ss-pv-l{font-size:16px;font-weight:600;line-height:1.3;}
+.ss-pv-d{font-size:14px;line-height:1.45;color:var(--ss-text-secondary,#3D4750);}
+.ss-pv-chk{display:flex;align-items:center;justify-content:center;flex:none;width:24px;height:24px;border-radius:999px;box-shadow:inset 0 0 0 2px var(--ss-border-strong,#C8D0D8);color:#FFFFFF;transition:background-color .12s cubic-bezier(.22,.61,.36,1);}
+.ss-pv-opt[data-multi="true"] .ss-pv-chk{border-radius:6px;}
+.ss-pv-opt[aria-pressed="true"] .ss-pv-chk{background:#296093;box-shadow:none;}
+.ss-pv-edit{border:0;background:none;padding:0;font:inherit;font-size:14px;font-weight:600;color:var(--ss-link,#296093);cursor:pointer;text-decoration:underline;text-underline-offset:3px;position:relative;}
+.ss-pv-edit::after{content:"";position:absolute;inset:-10px -6px;}
+@media (hover:hover) and (pointer:fine){.ss-pv-edit:hover{color:var(--ss-hover-text,#21507B);}}
+.ss-pv-edit:focus-visible{outline:none;border-radius:4px;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
+@media (prefers-reduced-motion:reduce){.ss-pv-opt,.ss-pv-chk{transition:none;}}
+</style>
+</helmet>
+<div style="width:100%;background:var(--ss-surface-page,#FFFFFF);font-family:Roboto,Helvetica,Arial,sans-serif;color:var(--ss-text-primary,#1C2229)">
+  <dc-import name="Hlavicka" style="position:sticky;top:0;z-index:200" ledMode="{{ ledMode }}" hint-size="100%,180px"></dc-import>
+  <dc-import name="PrezentacniLista" items="{{ presItems }}" onToggle="{{ onPresToggle }}" hint-size="320px,52px"></dc-import>
+
+  <main>
+    <section class="ss-grad-top ss-grad-glow" style="width:100%;background-color:var(--ss-surface-page,#FFFFFF)">
+      <div style="{{ innerTop }}">
+        <dc-import name="Drobeckova" items="{{ crumbs }}" hint-size="100%,56px"></dc-import>
+
+        <sc-if value="{{ isIntro }}" hint-placeholder-val="{{ true }}">
+          <div style="{{ introGrid }}">
+            <div style="min-width:0;display:flex;flex-direction:column;gap:20px">
+              <h1 style="{{ h1Style }}">Průvodce výběrem matrace</h1>
+              <p style="margin:0;max-width:60ch;font-size:17px;line-height:1.65;color:var(--ss-text-secondary,#3D4750);text-wrap:pretty">Neexistuje jedna nejlepší matrace pro všechny. Ta správná odpovídá vašemu tělu, poloze při spaní, roštu i ložnici. Odpovězte na sedm krátkých otázek. U každé vysvětlíme, proč na ní záleží, a na konci doporučíme tuhost, typ jádra a konkrétní matrace z naší nabídky.</p>
+              <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px">
+                <sc-for list="{{ introFacts }}" as="f" hint-placeholder-count="3">
+                  <li style="display:flex;align-items:center;gap:12px;font-size:16px;line-height:1.4">
+                    <span style="display:flex;align-items:center;justify-content:center;flex:none;width:40px;height:40px;border-radius:999px;background:var(--ss-surface-card,#FFFFFF);box-shadow:0 2px 8px rgba(19,44,67,.08);color:var(--ss-link,#296093)"><dc-import name="Ikony" iconName="{{ f.icon }}" size="20" hint-size="20px,20px"></dc-import></span>
+                    <span>{{ f.label }}</span>
+                  </li>
+                </sc-for>
+              </ul>
+              <div style="display:flex;flex-wrap:wrap;align-items:center;gap:16px;margin-top:8px">
+                <dc-import name="Tlacitko" label="Začít výběr" variant="buy" size="large" iconRight="arrow-right" onClick="{{ start }}" hint-size="200px,52px"></dc-import>
+                <span style="font-size:14px;color:var(--ss-text-muted,#5B6874)">Zabere to zhruba 2 minuty</span>
+              </div>
+            </div>
+            <div style="min-width:0">
+              <img decoding="async" src="/_blob/c5a374fbd36fa4495aacd11898012a93" alt="Matrace s prošívaným potahem" style="display:block; width:100%; max-width: 960px; margin:0 auto; aspect-ratio:4/3; object-fit:contain; filter:drop-shadow(0 24px 24px rgba(19,44,67,.16))">
+            </div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isStep }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex;flex-direction:column;gap:16px">
+            <h1 style="{{ h1SmallStyle }}">Průvodce výběrem matrace</h1>
+            <div style="display:flex;flex-direction:column;gap:10px">
+              <div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:4px 16px;font-size:14px">
+                <span style="font-weight:600;color:var(--ss-text-heading,#0B1F33)">Krok {{ stepNo }} ze 7 · {{ q.name }}</span>
+                <span style="color:var(--ss-text-muted,#5B6874)">{{ progressText }}</span>
+              </div>
+              <div role="progressbar" aria-label="Postup průvodcem" aria-valuemin="1" aria-valuemax="7" aria-valuenow="{{ stepNo }}" style="display:flex;gap:6px">
+                <sc-for list="{{ segs }}" as="s" hint-placeholder-count="7">
+                  <span style="{{ s.style }}"></span>
+                </sc-for>
+              </div>
+            </div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isResult }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex;flex-direction:column;gap:16px">
+            <h1 style="{{ h1Style }}">Vaše doporučení</h1>
+            <p style="margin:0;max-width:70ch;font-size:17px;line-height:1.65;color:var(--ss-text-secondary,#3D4750);text-wrap:pretty">{{ r.summary }}</p>
+          </div>
+        </sc-if>
+      </div>
+    </section>
+
+    <sc-if value="{{ isStep }}" hint-placeholder-val="{{ false }}">
+      <section style="width:100%;background:var(--ss-surface-tint,rgba(251,178,85,.05))">
+        <div style="{{ innerBody }}">
+          <div style="{{ stepGrid }}">
+            <div class="ss-elev" style="min-width:0;display:flex;flex-direction:column;gap:24px;background:var(--ss-surface-card,#FFFFFF);border-radius:12px;padding:{{ cardPad }}">
+              <div style="display:flex;flex-direction:column;gap:8px">
+                <h2 style="margin:0;font-size:{{ h2Size }};line-height:1.15">{{ q.title }}</h2>
+                <p style="margin:0;font-size:16px;line-height:1.6;color:var(--ss-text-secondary,#3D4750);text-wrap:pretty">{{ q.sub }}</p>
+              </div>
+              <sc-for list="{{ q.groups }}" as="g" hint-placeholder-count="1">
+                <div role="group" aria-label="{{ g.aria }}" style="display:flex;flex-direction:column;gap:12px">
+                  <sc-if value="{{ g.hasTitle }}" hint-placeholder-val="{{ false }}">
+                    <h3 style="margin:0;font-size:18px;line-height:1.3">{{ g.title }}</h3>
+                  </sc-if>
+                  <div style="{{ g.gridStyle }}">
+                    <sc-for list="{{ g.opts }}" as="o" hint-placeholder-count="4">
+                      <button type="button" class="ss-pv-opt" data-compact="{{ o.compact }}" data-multi="{{ o.multi }}" aria-pressed="{{ o.pressed }}" onClick="{{ o.pick }}">
+                        
+                        <span class="ss-pv-chk" aria-hidden="true">
+                          <sc-if value="{{ o.selected }}" hint-placeholder-val="{{ false }}">
+                            <dc-import name="Ikony" iconName="check" size="16" hint-size="16px,16px"></dc-import>
+                          </sc-if>
+                        </span><span class="ss-pv-txt" style="min-width: 0">
+                          <span class="ss-pv-l" style="white-space: nowrap">{{ o.label }}</span>
+                          <sc-if value="{{ o.hasDesc }}" hint-placeholder-val="{{ true }}">
+                            <span class="ss-pv-d">{{ o.desc }}</span>
+                          </sc-if>
+                        </span>
+                        
+                      </button>
+                    </sc-for>
+                  </div>
+                </div>
+              </sc-for>
+              <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;padding-top:8px;border-top:1px solid var(--ss-border-subtle,#E1E6EB)">
+                <dc-import name="Tlacitko" label="{{ backLabel }}" variant="secondary" size="large" iconLeft="arrow-left" onClick="{{ back }}" hint-size="140px,52px"></dc-import>
+                <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:flex-end;gap:12px">
+                  <sc-if value="{{ showHint }}" hint-placeholder-val="{{ false }}">
+                    <span style="font-size:14px;color:var(--ss-text-muted,#5B6874)">{{ hint }}</span>
+                  </sc-if>
+                  <dc-import name="Tlacitko" label="{{ nextLabel }}" variant="primary" size="large" iconRight="arrow-right" disabled="{{ nextDisabled }}" onClick="{{ next }}" hint-size="200px,52px"></dc-import>
+                </div>
+              </div>
+            </div>
+
+            <aside aria-labelledby="pv-proc" style="min-width:0;display:flex;flex-direction:column;gap:16px;background:var(--ss-surface-subtle,#FAF5EF);border-radius:12px;padding:{{ cardPad }}">
+              <div style="display:flex;align-items:center;gap:10px;color:var(--ss-link,#296093)">
+                <dc-import name="Ikony" iconName="info-circle" size="22" hint-size="22px,22px"></dc-import>
+                <h2 id="pv-proc" class="ss-plain" style="margin:0;font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--ss-text-heading,#0B1F33)">Proč se ptáme</h2>
+              </div>
+              <h3 style="margin:0;font-size:22px;line-height:1.25">{{ q.whyTitle }}</h3>
+              <p style="margin:0;font-size:15px;line-height:1.65;color:var(--ss-text-secondary,#3D4750);text-wrap:pretty">{{ q.why }}</p>
+              <sc-if value="{{ q.hasPoints }}" hint-placeholder-val="{{ true }}">
+                <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px">
+                  <sc-for list="{{ q.points }}" as="pt" hint-placeholder-count="3">
+                    <li style="display:flex;align-items:flex-start;gap:10px;font-size:15px;line-height:1.5">
+                      <span style="display:flex;flex:none;margin-top:1px;color:var(--ss-status-success,#157A41)"><dc-import name="Ikony" iconName="circle-check" size="20" hint-size="20px,20px"></dc-import></span>
+                      <span><strong style="font-weight:600">{{ pt.b }}</strong> {{ pt.t }}</span>
+                    </li>
+                  </sc-for>
+                </ul>
+              </sc-if>
+              <sc-if value="{{ q.hasImage }}" hint-placeholder-val="{{ false }}">
+                <img decoding="async" src="{{ q.image }}" alt="{{ q.imageAlt }}" style="display:block;width:100%;aspect-ratio:3/2;object-fit:contain;border-radius:8px;background:var(--ss-surface-card,#FFFFFF)">
+              </sc-if>
+              <sc-if value="{{ q.hasTip }}" hint-placeholder-val="{{ true }}">
+                <div style="display:flex;gap:10px;padding:14px 16px;border-radius:8px;background:var(--ss-action-tonal-bg,#FEEDD4);color:var(--ss-action-tonal-fg,#7A4708);font-size:14px;line-height:1.55">
+                  <span style="display:flex;flex:none;margin-top:1px"><dc-import name="Ikony" iconName="thumb-up" size="20" hint-size="20px,20px"></dc-import></span>
+                  <span><strong style="font-weight:700">Tip poradce:</strong> {{ q.tip }}</span>
+                </div>
+              </sc-if>
+            </aside>
+          </div>
+        </div>
+      </section>
+    </sc-if>
+
+    <sc-if value="{{ isResult }}" hint-placeholder-val="{{ false }}">
+      <section style="width:100%;background:var(--ss-surface-page,#FFFFFF)">
+        <div style="{{ innerBody }}">
+          <div style="display:flex;flex-direction:column;gap:32px">
+            <div style="{{ recGrid }}">
+              <div class="ss-elev" style="min-width:0;display:flex;flex-direction:column;gap:12px;background:var(--ss-surface-card,#FFFFFF);border-radius:12px;padding:24px">
+                <span style="font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--ss-text-muted,#5B6874)">Tuhost</span>
+                <img decoding="async" src="{{ r.tImage }}" alt="{{ r.tImageAlt }}" style="display:block;width:100%;aspect-ratio:3/2;object-fit:contain">
+                <h2 style="margin:0;font-size:24px;line-height:1.2">{{ r.tTitle }}</h2>
+                <p style="margin:0;font-size:15px;line-height:1.6;color:var(--ss-text-secondary,#3D4750)">{{ r.tText }}</p>
+              </div>
+              <div class="ss-elev" style="min-width:0;display:flex;flex-direction:column;gap:12px;background:var(--ss-surface-card,#FFFFFF);border-radius:12px;padding:24px">
+                <span style="font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--ss-text-muted,#5B6874)">Typ jádra</span><div style="display:flex;align-items:center;justify-content:center;width:100%;aspect-ratio:3/2;box-sizing:border-box;border:2px dashed #B8C2CC;border-radius:8px;background:#F3EDE4;color:#5B6874;font-size:14px;text-align:center;padding:12px">Místo pro obrázek: typ jádra</div>
+                
+                <h2 style="margin:0;font-size:24px;line-height:1.2">{{ r.mTitle }}</h2>
+                <p style="margin:0;font-size:15px;line-height:1.6;color:var(--ss-text-secondary,#3D4750)">{{ r.mText }}</p>
+              </div>
+              <div class="ss-elev" style="min-width:0;display:flex;flex-direction:column;gap:12px;background:var(--ss-surface-card,#FFFFFF);border-radius:12px;padding:24px">
+                <span style="font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--ss-text-muted,#5B6874)">Rozměr</span><div style="display:flex;align-items:center;justify-content:center;width:100%;aspect-ratio:3/2;box-sizing:border-box;border:2px dashed #B8C2CC;border-radius:8px;background:#F3EDE4;color:#5B6874;font-size:14px;text-align:center;padding:12px">Místo pro obrázek: rozměr</div>
+                
+                <h2 style="margin:0;font-size:24px;line-height:1.2">{{ r.sTitle }}</h2>
+                <p style="margin:0;font-size:15px;line-height:1.6;color:var(--ss-text-secondary,#3D4750)">{{ r.sText }}</p>
+              </div>
+            </div>
+
+            <div style="{{ whyGrid }}">
+              <div style="min-width:0;display:flex;flex-direction:column;gap:16px;background:var(--ss-surface-subtle,#FAF5EF);border-radius:12px;padding:24px">
+                <h2 style="margin:0;font-size:22px;line-height:1.25">Proč právě tohle</h2>
+                <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px">
+                  <sc-for list="{{ r.reasons }}" as="x" hint-placeholder-count="4">
+                    <li style="display:flex;align-items:flex-start;gap:10px;font-size:15px;line-height:1.55">
+                      <span style="display:flex;flex:none;margin-top:1px;color:var(--ss-status-success,#157A41)"><dc-import name="Ikony" iconName="circle-check" size="20" hint-size="20px,20px"></dc-import></span>
+                      <span>{{ x.t }}</span>
+                    </li>
+                  </sc-for>
+                </ul>
+              </div>
+              <div style="min-width:0;display:flex;flex-direction:column;gap:16px;border-radius:12px;padding:24px;box-shadow:inset 0 0 0 1px var(--ss-border-subtle,#E1E6EB)">
+                <h2 style="margin:0;font-size:22px;line-height:1.25">Vaše odpovědi</h2>
+                <dl style="margin:0;display:flex;flex-direction:column">
+                  <sc-for list="{{ r.answers }}" as="an" hint-placeholder-count="7">
+                    <div style="display:flex;align-items:baseline;gap:12px;padding:10px 0;border-bottom:1px solid var(--ss-border-subtle,#E1E6EB)">
+                      <dt style="flex:none;width:40%;font-size:14px;color:var(--ss-text-muted,#5B6874)">{{ an.label }}</dt>
+                      <dd style="margin:0;flex:1;min-width:0;font-size:15px;font-weight:600">{{ an.value }}</dd>
+                      <button type="button" class="ss-pv-edit" onClick="{{ an.edit }}" aria-label="{{ an.aria }}">Změnit</button>
+                    </div>
+                  </sc-for>
+                </dl>
+              </div>
+            </div><div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:12px"><dc-import name="Tlacitko" label="Zobrazit doporučené matrace" variant="buy" size="large" href="#doporucene-matrace" iconRight="arrow-down" hint-size="320px,52px"></dc-import></div>
+          </div>
+        </div>
+      </section>
+
+      <section style="width:100%;background:var(--ss-surface-tint,rgba(251,178,85,.05))" id="doporucene-matrace">
+        <div style="{{ innerBody }}">
+          <div style="display:flex;flex-direction:column;gap:24px">
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <h2 style="margin:0;font-size:{{ h2Size }};line-height:1.15">Matrace z naší nabídky, které vám sednou</h2>
+              <p style="margin:0;font-size:16px;line-height:1.6;color:var(--ss-text-secondary,#3D4750)">Seřazeno podle shody s vaším profilem. Každou matraci můžete 30 nocí vyzkoušet a tuhost vyměnit.</p>
+            </div>
+            <div style="{{ prodGrid }}">
+              <sc-for list="{{ r.products }}" as="p" hint-placeholder-count="3">
+                <div style="min-width:0;display:flex;flex-direction:column;gap:12px">
+                  <div style="display:flex;flex-direction:column;gap:4px">
+                    <span style="display:inline-flex;align-self:flex-start;align-items:center;gap:6px;height:28px;padding:0 12px;border-radius:999px;background:{{ p.matchBg }};color:{{ p.matchFg }};font-size:13px;font-weight:600">{{ p.match }}</span>
+                    <span style="font-size:14px;line-height:1.45;color:var(--ss-text-secondary,#3D4750)">{{ p.why }}</span>
+                  </div>
+                  <dc-import name="ProduktovaKarta" product="{{ p.data }}" hint-size="100%,560px"></dc-import>
+                </div>
+              </sc-for>
+            </div>
+            <div style="display:flex;flex-wrap:wrap;gap:12px">
+              <dc-import name="Tlacitko" label="{{ r.ctaLabel }}" variant="primary" size="large" href="Kategorie_Matrace_Tuhost.dc.html" iconRight="arrow-right" hint-size="300px,52px"></dc-import>
+              <dc-import name="Tlacitko" label="Projít průvodce znovu" variant="secondary" size="large" iconLeft="refresh" onClick="{{ restart }}" hint-size="220px,52px"></dc-import>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="ss-bg-m1" style="width:100%">
+        <div style="{{ innerBody }}">
+          <div style="{{ adviceGrid }}">
+            <div style="min-width:0;display:flex;flex-direction:column;gap:12px">
+              <h2 style="margin:0;font-size:{{ h2Size }};line-height:1.15">Vyzkoušejte si ji vleže</h2>
+              <p style="margin:0;font-size:16px;line-height:1.65;color:var(--ss-text-secondary,#3D4750);text-wrap:pretty">Každý vnímá tuhost trochu jinak. Matraci si vyzkoušejte v poloze, ve které běžně spíte, a pokud budete spát ve dvou, zkoušejte ji spolu. Na prodejně vám poradce ukáže i vhodný rošt.</p>
+            </div>
+            <div style="min-width:0;display:flex;flex-wrap:wrap;gap:12px;align-items:center">
+              <dc-import name="Tlacitko" label="Najít prodejnu" variant="buy" size="large" iconLeft="map-pin" href="#prodejny" hint-size="200px,52px"></dc-import>
+              <dc-import name="Tlacitko" label="+420 543 212 855" sublabel="Po–Pá 9:00–17:00" variant="secondary" size="large" iconLeft="phone" href="tel:+420543212855" hint-size="240px,52px"></dc-import>
+            </div>
+          </div>
+        </div>
+      </section>
+    </sc-if>
+  </main>
+
+  <dc-import name="Paticka" ledMode="{{ ledMode }}" hint-size="100%,700px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:1800}}">
+// Průvodce výběrem matrace — 7 kroků podle článku blog.svetspanku.cz/jak-vybrat-matraci, na konci doporučení a matrace z nabídky.
+// Odpovědi drží state.a, krok state.step (0 = úvod, 1–7 otázky, 8 = výsledek). Data produktů vložena přímo (plátno nenačítá relativní soubory).
+class Component extends DCLogic {
+  static LEVELS = [
+    { n: 1, title: 'H1 – Velmi měkká', image: '/_blob/a63e20d779f2e3e40349f4ecbcc793c0', text: 'Ramena a boky se hluboce zaboří, páteř zůstane rovná i u lehčích postav. Vhodná i pro seniory a citlivé klouby.' },
+    { n: 2, title: 'H2 – Měkká', image: '/_blob/4c656a6df09362706765cb731767ac96', text: 'Příjemně se přizpůsobí, ale nepropadá se. Dobrá volba pro spaní na boku a střídání poloh.' },
+    { n: 3, title: 'H3 – Středně tuhá', image: '/_blob/a63789a52fc157dddaef6cdbafc13fb0', text: 'Nejčastější volba. Vyvážená opora pro většinu spáčů na boku i na zádech.' },
+    { n: 4, title: 'H4 – Tvrdá', image: '/_blob/45ceef241f2bd0f41d022267c01370de', text: 'Pánev se nepropadá, záda zůstávají v rovině. Vhodná pro těžší postavy a spaní na zádech či na břiše.' },
+    { n: 5, title: 'H5 – Velmi tvrdá', image: '/_blob/3f85ee4ed91cf11d2ff61f165a3410a2', text: 'Minimální prohnutí i při vysoké zátěži. Pro těžší postavy a ty, kdo chtějí cítit pevnou podložku.' }
+  ];
+  static MATS = {
+    studena: { phrase: 'se studenou (HR) pěnou', title: 'Studená (HR) pěna', fam: 'pena', text: 'Elastická, tvarově stálá a velmi prodyšná. Univerzální volba pro všechny polohy spaní.' },
+    pametova: { phrase: 's paměťovou pěnou', title: 'Paměťová pěna', fam: 'pena', text: 'Reaguje na teplo a tlak těla a odlehčí ramenům i bokům. Ideální pro spaní na boku.' },
+    tastickova: { phrase: 's taštičkovými pružinami', title: 'Taštičkové pružiny', fam: 'pruziny', text: 'Bodová pružnost, dlouhá životnost a výborná cirkulace vzduchu. Zvládne vyšší hmotnost i vlhčí prostředí.' },
+    latex: { phrase: 's latexovým jádrem', title: 'Latex', fam: 'pena', text: 'Měkký a pružný, dobře rozloží tlak a usnadní vstávání. Nevhodný do vlhčích místností.' },
+    hybrid: { phrase: 's hybridním jádrem (pružiny a pěna)', title: 'Hybridní matrace', fam: 'hybrid', text: 'Zhruba půl na půl samostatných pružin a pěny. Dobře odvětrává, neruší partnera — vhodná pro páry a horké spáče.' }
+  };
+  static PRODUCTS = [
+    { mat: 'pena', partner: true, polohovaci: false, data: { id: 'p1', image: '/_blob/66ef2119f31d8262ba38ce4bea618a8e', title: 'Matrace Spring Variant 22 cm', href: 'Detail_Matrace_3.0.dc.html', orderNo: '428170',
+      perex: 'Partnerská matrace s tuhostí volitelnou pro každou polovinu samostatně. Už žádná mezera uprostřed.',
+      rating: 4.8, ratingCount: 18, price: '7 590 Kč', priceBefore: '9 590 Kč', badge: 'sale', badgeLabel: 'Akce −25 %',
+      secondBadge: 'news', secondBadgeLabel: 'Novinka', stock: 'inStock', moreLabel: 'Více rozměrů / stupňů tuhosti',
+      mp: { tuhostPct: 70, zatizeniOd: 70, zatizeniDo: 120, nosnostMax: 130, vyska: 28, vyskaJadra: 24, zaruka: 8, spankNaBoku: true },
+      tuhost: 4.5, params: [{ icon: 'weight', label: '200 kg' }, { icon: 'arrow-autofit-height', label: '20 cm' }, { icon: 'color-swatch', label: 'Pěnová' }] } },
+    { mat: 'pruziny', partner: false, polohovaci: false, data: { id: 'p2', image: '/_blob/4d39f39f3e59f9479b2f3fa0c249def9', title: 'Taštičková matrace Leda Duo', href: 'Detail_Matrace_3.0.dc.html', orderNo: '428204',
+      perex: 'Sedm zón tuhosti a kokosová deska. Pohyb jednoho spícího druhého neruší.',
+      rating: 4.8, ratingCount: 64, price: '9 190 Kč', stock: 'inStock', moreLabel: 'Více rozměrů / stupňů tuhosti',
+      mp: { tuhostPct: 40, zatizeniOd: 40, zatizeniDo: 80, nosnostMax: 95, vyska: 18, vyskaJadra: 16, zaruka: 3, spankNaBoku: false },
+      tuhost: 3, params: [{ icon: 'weight', label: '130 kg' }, { icon: 'arrow-autofit-height', label: '20 cm' }, { icon: 'color-swatch', label: 'Taštičková' }] } },
+    { mat: 'pena', partner: false, polohovaci: true, data: { id: 'p3', image: '/_blob/c2606f1b288878aa84129b4a0e05ba7e', title: 'Antidekubitní matrace Ultra Fresh', href: 'Detail_Matrace_3.0.dc.html', orderNo: '428311',
+      perex: 'Líná pěna s prodyšným potahem pro dlouhé ležení. Vhodná i pro polohovací rošty.',
+      rating: 4.3, ratingCount: 21, price: '11 290 Kč', stock: 'lowStock', moreLabel: 'Více rozměrů / stupňů tuhosti',
+      mp: { tuhostPct: 70, zatizeniOd: 60, zatizeniDo: 110, nosnostMax: 130, vyska: 26, vyskaJadra: 24, zaruka: 5, spankNaBoku: false },
+      tuhost: 3, params: [{ icon: 'weight', label: '120 kg' }, { icon: 'arrow-autofit-height', label: '18 cm' }] } },
+    { mat: 'pena', partner: false, polohovaci: false, data: { id: 'p9', image: '/_blob/4a0a7adf8f13ddf960536da06df0e197', title: 'Sendvičová matrace Duo Comfort', href: 'Detail_Matrace_3.0.dc.html', orderNo: '428590',
+      perex: 'Dvě tuhosti v jedné matraci — stačí ji otočit podle ročního období.',
+      rating: 4.1, ratingCount: 54, price: '6 190 Kč', stock: 'inStock', moreLabel: 'Více rozměrů / stupňů tuhosti',
+      mp: { tuhostPct: 70, zatizeniOd: 60, zatizeniDo: 110, nosnostMax: 120, vyska: 20, vyskaJadra: 18, zaruka: 5, spankNaBoku: true },
+      tuhost: 3.5, params: [{ icon: 'arrows-exchange', label: 'Oboustranná' }, { icon: 'weight', label: '110 kg' }, { icon: 'arrow-autofit-height', label: '18 cm' }] } }
+  ];
+  // U páru se tyto kroky ptají za oba spáče (klíč + '2')
+  static PAIR = { vaha: ['Vaše hmotnost', 'Hmotnost druhého spáče'], poloha: ['Jak spíte vy', 'Jak spí druhý spáč'], pocit: ['Co je příjemné vám', 'Co je příjemné druhému spáči'] };
+  static STEPS = [
+    { key: 'kdo', name: 'Pro koho', title: 'Pro koho matraci vybíráte?', sub: 'Věk i počet spáčů mění, co je pro vás nejlepší.',
+      groups: [{ opts: [
+        { id: 'ja', icon: 'user', label: 'Pro sebe', desc: 'Dospělý, spím sám nebo vybírám jen svou polovinu' },
+        { id: 'par', icon: 'heart', label: 'Pro dva', desc: 'Jedna velká postel, spíme spolu' },
+        { id: 'dite', icon: 'mood-happy', label: 'Pro dítě nebo teenagera', desc: 'Rostoucí páteř potřebuje stabilní oporu' },
+        { id: 'senior', icon: 'zzz', label: 'Pro seniora', desc: 'Důležité je rozložení tlaku a snadné vstávání' }
+      ] }],
+      whyTitle: 'Každý věk potřebuje jinou oporu', why: 'Rostoucí tělo i stárnoucí klouby mají na matraci jiné nároky. U párů zase rozhoduje, jak moc se lišíte hmotností a oblíbenou tuhostí.',
+      points: [{ b: 'Děti a mladiství:', t: 'spíše pevnější a stabilnější matrace.' }, { b: 'Senioři:', t: 'pružnější matrace, která lépe rozloží tlak a usnadní vstávání.' }, { b: 'Páry:', t: 'při výrazném rozdílu hmotnosti jsou praktičtější dvě samostatné matrace.' }],
+      tip: 'Nevybírejte podle toho, co vyhovuje kamarádovi nebo rodičům. Začněte u sebe, ne u značky nebo ceny.' },
+    { key: 'vaha', name: 'Hmotnost', title: 'Kolik vážíte?', sub: 'Stačí přibližně.', subPar: 'Vyberte hmotnost obou spáčů. Podle rozdílu poznáme, jestli vám stačí jedna matrace, nebo je lepší mít každý svou tuhost.',
+      groups: [{ cols: 'auto', opts: [
+        { id: 'w60', icon: 'weight', label: 'Do 60 kg' }, { id: 'w80', icon: 'weight', label: '60–80 kg' }, { id: 'w100', icon: 'weight', label: '80–100 kg' },
+        { id: 'w120', icon: 'weight', label: '100–120 kg' }, { id: 'w121', icon: 'weight', label: 'Nad 120 kg' }
+      ] }],
+      whyTitle: 'Hmotnost určuje, jak pevné jádro potřebujete', why: 'Těžší tělo potřebuje pevnější a odolnější jádro, které se nebude nadměrně deformovat. Lehčí postava se do tuhé matrace naopak vůbec nezaboří a ramena i boky tlačí.',
+      points: [{ b: 'Nosnost:', t: 'u každé matrace najdete maximální doporučenou zátěž — ověřte si ji.' }, { b: 'Tvarová stálost:', t: 'při vyšší hmotnosti vydrží déle taštičkové pružiny nebo HR pěna.' }],
+      tip: 'Podceněná nosnost je jedna z nejčastějších chyb. Matrace se pak rychle proleží.' },
+    { key: 'poloha', name: 'Poloha při spaní', title: 'Jak nejčastěji spíte?', sub: 'Myslete na polohu, ve které ráno nejčastěji usínáte a probouzíte se.', subPar: 'Každý spí jinak — vyberte polohu za sebe i za druhého spáče.',
+      groups: [{ opts: [
+        { id: 'bok', icon: 'bed', label: 'Na boku', desc: 'Rameno a bok se mají přiměřeně zabořit' },
+        { id: 'zada', icon: 'bed', label: 'Na zádech', desc: 'Potřebuji dobrou podporu pánve a beder' },
+        { id: 'bricho', icon: 'bed', label: 'Na břiše', desc: 'Bedra se nesmí prohýbat' },
+        { id: 'stridam', icon: 'arrows-exchange', label: 'Střídám polohy', desc: 'Během noci se často otáčím' }
+      ] }],
+      whyTitle: 'Páteř má zůstat v rovině', why: 'V každé poloze se tělo opírá o matraci jinými místy. Správná matrace udrží páteř rovnou — na boku jako přímku, na zádech v přirozeném esíčku.',
+      points: [{ b: 'Na boku:', t: 'měkčí až středně tuhá.' }, { b: 'Na zádech:', t: 'středně tuhá až tužší.' }, { b: 'Na břiše:', t: 'pevnější až tužší, měkká způsobí prohnutí v bedrech.' }, { b: 'Střídání poloh:', t: 'středně tuhá s rychle reagující pěnou.' }],
+      tip: 'Když se ráno budíte s bolestí ramene, matrace je pro spaní na boku nejspíš příliš tvrdá.' },
+    { key: 'pocit', name: 'Pocit tuhosti', title: 'Na čem se vám spí lépe?', sub: 'Vzpomeňte si na postel, na které se vám spalo nejlépe — doma, u rodiny nebo na dovolené.', subPar: 'Tuhost vnímá každý jinak — odpovězte za sebe i za druhého spáče.',
+      groups: [{ opts: [
+        { id: 'mekci', icon: 'minus', label: 'Spíš na měkčím', desc: 'Mám rád, když se do matrace trochu zabořím' },
+        { id: 'nevim', icon: 'help-circle', label: 'Nevím, poraďte', desc: 'Doporučení postavíme jen na hmotnosti a poloze' },
+        { id: 'pevnejsi', icon: 'plus', label: 'Spíš na pevnějším', desc: 'Chci cítit pevnou podložku' }
+      ] }],
+      whyTitle: 'Tvrdší neznamená zdravější', why: 'Ideální tuhost tělo podepře a zároveň dovolí ramenům a bokům se přizpůsobit. Osobní pocit je důležitý — doladíme podle něj doporučení o půl stupně.',
+      points: [{ b: 'Stupnice H1–H5:', t: 'od velmi měkké po velmi tvrdou. Většině lidí sedne H2–H3.' }, { b: 'Pozor na označení:', t: '„ortopedická“ nebo „extra tvrdá“ samo o sobě nic neznamená.' }],
+      image: '/_blob/a63789a52fc157dddaef6cdbafc13fb0', imageAlt: 'Řez středně tuhou matrací s figurínou',
+      tip: 'Když tuhost doma nesedne, do 30 nocí ji u nás vyměníte.' },
+    { key: 'prostredi', multi: true, name: 'Spánek a prostředí', title: 'Platí pro vás něco z toho?', sub: 'Můžete vybrat více možností.',
+      groups: [{ opts: [
+        { id: 'horko', icon: 'flame', label: 'V noci mi bývá horko', desc: 'Potím se nebo se odkopávám' },
+        { id: 'alergie', icon: 'leaf', label: 'Mám alergii', desc: 'Na roztoče, prach nebo pyl' },
+        { id: 'vlhko', icon: 'refresh', label: 'Spím ve vlhčí místnosti', desc: 'Chalupa, přízemí, málo větrám' },
+        { id: 'nic', icon: 'circle-check', label: 'Nic z toho', desc: 'Spím v suché a dobře větrané ložnici' }
+      ] }],
+      whyTitle: 'Prodyšnost a hygiena', why: 'Matrace musí odvádět teplo a vlhkost. Jinak se v ní spí hůř a rychleji se v ní množí roztoče.',
+      points: [{ b: 'Horko:', t: 'pomůže prodyšné jádro s pružinami nebo chladicí gel v potahu.' }, { b: 'Alergie:', t: 'snímatelný potah pratelný na 60 °C a antimikrobiální úprava.' }, { b: 'Vlhko:', t: 'taštičkové pružiny dobře větrají, latex se do vlhka nehodí.' }],
+      tip: 'Potah perte zhruba jednou za čtvrt roku a matraci párkrát do roka otočte.' },
+    { key: 'rost', name: 'Rošt', title: 'Na jakém roštu bude matrace ležet?', sub: 'Rošt a matrace spolu musí fungovat, jinak utrpí pohodlí i životnost.',
+      groups: [{ opts: [
+        { id: 'lamely', icon: 'stack-2', label: 'Pevný lamelový rošt', desc: 'Lamely bez možnosti polohování' },
+        { id: 'polohovaci', icon: 'adjustments', label: 'Polohovací nebo motorový', desc: 'Zvedám si hlavu nebo nohy' },
+        { id: 'deska', icon: 'package', label: 'Pevná deska nebo úložný prostor', desc: 'Matrace leží na plné ploše' },
+        { id: 'novy', icon: 'help-circle', label: 'Nevím / kupuji nový', desc: 'Rošt vám pomůžeme vybrat' }
+      ] }],
+      whyTitle: 'Matrace je jen polovina lůžka', why: 'Rošt určuje, jak matrace pruží a jak větrá. Polohovací a motorové rošty potřebují flexibilnější matraci, která se ohne bez poškození.',
+      points: [{ b: 'Rozteč lamel:', t: 'u pěnových matrací by neměla být příliš velká.' }, { b: 'Plná deska:', t: 'zhoršuje větrání — volte prodyšné jádro a matraci častěji otáčejte.' }],
+      tip: 'Kupujete-li matraci i rošt najednou, vyjde to u nás levněji a máte jistotu, že spolu sednou.' },
+    { key: 'rozmer', name: 'Rozměr', title: 'Jaký rozměr potřebujete?', sub: 'Šířku zvolte podle postele. Podle vaší výšky doporučíme délku.',
+      groups: [
+        { key: 'sirka', title: 'Šířka postele', compact: true, opts: [
+          { id: '80', label: '80 cm' }, { id: '90', label: '90 cm' }, { id: '120', label: '120 cm' }, { id: '140', label: '140 cm' },
+          { id: '160', label: '160 cm' }, { id: '180', label: '180 cm' }, { id: '200', label: '200 cm' }, { id: 'jina', label: 'Jiná / na míru' }
+        ] },
+        { key: 'vyska', title: 'Výška nejvyššího spáče', opts: [
+          { id: 'v185', icon: 'ruler-2', label: 'Do 185 cm' }, { id: 'v195', icon: 'ruler-2', label: '185–195 cm' }, { id: 'v196', icon: 'ruler-2', label: 'Nad 195 cm' }
+        ] }
+      ],
+      whyTitle: 'Matrace má být o 15–20 cm delší než vy', why: 'Standardní délka 200 cm vyhovuje zhruba do 180–185 cm výšky. Vyšším spáčům doporučujeme 210 nebo 220 cm, aby nohy nepřesahovaly a hlava neležela na hraně.',
+      points: [{ b: 'Pro dva:', t: 'buď jedna velká matrace, nebo dvě menší vedle sebe.' }, { b: 'Výška matrace:', t: 'sama o sobě kvalitu neurčuje — rozhoduje jádro.' }],
+      tip: 'Matrace vyrábíme i v atypických rozměrech s přesností na centimetr.' }
+  ];
+  state = { width: typeof window !== 'undefined' ? document.documentElement.clientWidth : 1440, led: true, step: 0, a: { prostredi: [] } };
+  componentDidMount() { this._r = () => this.setState({ width: document.documentElement.clientWidth }); window.addEventListener('resize', this._r); }
+  componentWillUnmount() { window.removeEventListener('resize', this._r); }
+  go(step) { this.setState({ step }); try { window.scrollTo({ top: 0, behavior: 'smooth' }); } catch (e) {} }
+  answered(i) {
+    const a = this.state.a, s = Component.STEPS[i];
+    if (!s) return false;
+    if (s.key === 'rozmer') return !!a.sirka && !!a.vyska;
+    if (a.kdo === 'par' && Component.PAIR[s.key]) return !!a[s.key] && !!a[s.key + '2'];
+    if (s.multi) return (a[s.key] || []).length > 0;
+    return !!a[s.key];
+  }
+  pick(groupKey, id, multi) {
+    this.setState(st => {
+      const a = Object.assign({}, st.a);
+      if (multi) {
+        let cur = (a[groupKey] || []).slice();
+        if (id === 'nic') cur = cur.indexOf('nic') >= 0 ? [] : ['nic'];
+        else { cur = cur.filter(x => x !== 'nic'); cur = cur.indexOf(id) >= 0 ? cur.filter(x => x !== id) : cur.concat(id); }
+        a[groupKey] = cur;
+      } else a[groupKey] = id;
+      return { a };
+    });
+  }
+  label(stepKey, groupKey, id) {
+    const s = Component.STEPS.find(x => x.key === stepKey);
+    const g = s.groups.find(x => (x.key || s.key) === groupKey) || s.groups[0];
+    const o = g.opts.find(x => x.id === id);
+    return o ? o.label : '';
+  }
+  // Pro dva: druhá hmotnost a.vaha2 → druhý stupeň tuhosti (level2)
+  levelFor(vaha, poloha, pocit) {
+    const a = this.state.a;
+    let t = { w60: 2, w80: 2.5, w100: 3, w120: 4, w121: 5 }[vaha] || 3;
+    t += { bok: -0.5, zada: 0, bricho: 0.5, stridam: 0 }[poloha] || 0;
+    t += { mekci: -0.5, nevim: 0, pevnejsi: 0.5 }[pocit] || 0;
+    t += { dite: 0.5, senior: -0.5 }[a.kdo] || 0;
+    return Math.max(1, Math.min(5, Math.round(t)));
+  }
+  recommend() {
+    const a = this.state.a, env = a.prostredi || [];
+    const par = a.kdo === 'par';
+    const level = this.levelFor(a.vaha, a.poloha, a.pocit);
+    const level2 = par && a.vaha2 ? this.levelFor(a.vaha2, a.poloha2 || a.poloha, a.pocit2 || a.pocit) : level;
+    const heavy = (v) => v === 'w120' || v === 'w121';
+    let mat;
+    if (a.rost === 'polohovaci') mat = a.poloha === 'bok' ? 'pametova' : 'studena';
+    else if (heavy(a.vaha) || (par && heavy(a.vaha2)) || env.indexOf('vlhko') >= 0) mat = 'tastickova';
+    else if (a.kdo === 'par' || env.indexOf('horko') >= 0) mat = 'hybrid';
+    else if (a.kdo === 'senior') mat = 'latex';
+    else if (a.poloha === 'bok') mat = 'pametova';
+    else mat = 'studena';
+    const len = { v185: 200, v195: 210, v196: 220 }[a.vyska] || 200;
+    return { level, level2, split: level2 !== level, mat, len };
+  }
+  renderVals() {
+    const w = this.state.width, narrow = w < 820, st = this.state.step, a = this.state.a;
+    const pad = narrow ? '16px' : '32px';
+    const box = (t, b) => ({ maxWidth: '1560px', margin: '0 auto', boxSizing: 'border-box', padding: t + ' ' + pad + ' ' + b });
+    const STEPS = Component.STEPS;
+    const isStep = st >= 1 && st <= 7, isResult = st === 8;
+    const s = STEPS[(isStep ? st : 1) - 1];
+    const optCols = (g, n) => g.compact ? (w >= 550 ? 4 : 2) : (n === 5 || n === 3) ? (w >= 1150 ? n : w >= 550 ? (n === 5 ? 3 : n) : 1) : (w >= 550 ? 2 : 1);
+    const q = {
+      name: s.name, title: s.title, sub: (a.kdo === 'par' && Component.PAIR[s.key]) ? s.subPar : s.sub, whyTitle: s.whyTitle, why: s.why,
+      points: s.points || [], hasPoints: !!(s.points && s.points.length),
+      tip: s.tip || '', hasTip: !!s.tip, image: s.image || '', imageAlt: s.imageAlt || '', hasImage: !!s.image,
+      groups: ((a.kdo === 'par' && Component.PAIR[s.key]) ? [Object.assign({}, s.groups[0], { title: Component.PAIR[s.key][0] }), Object.assign({}, s.groups[0], { key: s.key + '2', title: Component.PAIR[s.key][1] })] : s.groups).map(g => {
+        const gk = g.key || s.key;
+        const cur = a[gk];
+        return {
+          title: g.title || '', hasTitle: !!g.title, aria: g.title || s.title,
+          gridStyle: { display: 'grid', gridTemplateColumns: 'repeat(' + optCols(g, g.opts.length) + ',minmax(0,1fr))', gap: '12px' },
+          opts: g.opts.map(o => {
+            const sel = s.multi ? (cur || []).indexOf(o.id) >= 0 : cur === o.id;
+            return { label: o.label, desc: o.desc || '', hasDesc: !!o.desc, icon: o.icon || '', hasIcon: !!o.icon,
+              compact: g.compact ? 'true' : 'false', multi: s.multi ? 'true' : 'false',
+              selected: sel, pressed: sel ? 'true' : 'false', pick: () => this.pick(gk, o.id, !!s.multi) };
+          })
+        };
+      })
+    };
+    const done = isStep && this.answered(st - 1);
+    // Výsledek
+    const rec = this.recommend();
+    const L = Component.LEVELS[rec.level - 1], L2 = Component.LEVELS[rec.level2 - 1], M = Component.MATS[rec.mat];
+    const H = (x) => x.title.split(' – ')[0];
+    const env = a.prostredi || [];
+    const width = a.sirka === 'jina' ? null : parseInt(a.sirka || '160', 10);
+    let sTitle = width ? width + ' × ' + rec.len + ' cm' : 'Na míru × ' + rec.len + ' cm';
+    let sText = rec.len > 200 ? 'Kvůli vaší výšce doporučujeme prodlouženou délku ' + rec.len + ' cm.' : 'Standardní délka 200 cm vám bude stačit.';
+    if (a.kdo === 'par' && width && width >= 140) sText += rec.split ? ' Protože každý z vás potřebuje jinou tuhost, doporučujeme dvě matrace ' + (width / 2) + ' × ' + rec.len + ' cm. Mezeru mezi nimi překryje topper.' : ' Pro dva zvažte i dvě matrace ' + (width / 2) + ' × ' + rec.len + ' cm — každý si zvolí vlastní tuhost a mezeru překryje topper.';
+    if (!width) sText += ' Matraci vyrobíme na míru s přesností na centimetr.';
+    const reasons = [];
+    const vahaL = this.label('vaha', 'vaha', a.vaha), vaha2L = a.kdo === 'par' ? this.label('vaha', 'vaha', a.vaha2) : '', polohaL = this.label('poloha', 'poloha', a.poloha);
+    if (a.vaha && a.kdo !== 'par') reasons.push({ t: 'Při hmotnosti ' + vahaL.toLowerCase() + ' potřebujete jádro, které vás podrží a nebude se nadměrně deformovat.' });
+    if (a.kdo === 'par' && rec.split) reasons.push({ t: 'Lišíte se hmotností, polohou při spaní nebo oblíbenou tuhostí, proto každý potřebuje jinou tuhost (vy ' + H(L) + ', druhý spáč ' + H(L2) + '). Jedna společná matrace by jednomu z vás byla moc měkká, nebo moc tvrdá.' });
+    if (a.kdo === 'par' && !rec.split && a.vaha) reasons.push({ t: 'Podle hmotnosti, polohy i pocitu vám oběma vychází stejná tuhost ' + H(L) + ', takže vám stačí jedna společná matrace.' });
+    const par = a.kdo === 'par';
+    const who = (v1, v2, v) => par && v1 !== v2 ? (v === v1 ? 'Vy: ' : 'Druhý spáč: ') : '';
+    const uniq = (x, y) => (par && y && y !== x) ? [x, y] : [x];
+    uniq(a.poloha, a.poloha2).forEach(v => {
+      const p = who(a.poloha, a.poloha2, v);
+      if (v === 'bok') reasons.push({ t: p + 'Na boku se má rameno a bok zabořit, proto o kousek měkčí tuhost.' });
+      if (v === 'zada') reasons.push({ t: p + 'Na zádech potřebujete dobrou podporu pánve a beder — středně tuhá až tužší.' });
+      if (v === 'bricho') reasons.push({ t: p + 'Na břiše by se v měkké matraci prohýbala bedra, proto pevnější tuhost.' });
+      if (v === 'stridam') reasons.push({ t: p + 'Při střídání poloh se hodí středně tuhá matrace, která rychle reaguje na pohyb.' });
+    });
+    uniq(a.pocit, a.pocit2).forEach(v => {
+      const p = who(a.pocit, a.pocit2, v);
+      if (v === 'mekci') reasons.push({ t: p + 'Podle pocitu jsme doporučení posunuli o půl stupně k měkčí.' });
+      if (v === 'pevnejsi') reasons.push({ t: p + 'Podle pocitu jsme doporučení posunuli o půl stupně k pevnější.' });
+    });
+    if (a.kdo === 'dite') reasons.push({ t: 'Rostoucí páteř potřebuje stabilní oporu, proto spíše pevnější matrace.' });
+    if (a.kdo === 'senior') reasons.push({ t: 'Pružnější matrace lépe rozloží tlak a usnadní vstávání.' });
+    if (a.rost === 'polohovaci') reasons.push({ t: 'Na polohovací rošt patří flexibilní pěnová matrace, která se ohne bez poškození.' });
+    if (a.rost === 'deska') reasons.push({ t: 'Na plné desce matrace hůř větrá — volte prodyšné jádro a matraci pravidelně otáčejte.' });
+    if (env.indexOf('horko') >= 0) reasons.push({ t: 'Kvůli horku doporučujeme prodyšné jádro s pružinami nebo chladicí potah.' });
+    if (env.indexOf('alergie') >= 0) reasons.push({ t: 'Kvůli alergii hledejte snímatelný potah pratelný na 60 °C s antimikrobiální úpravou.' });
+    if (env.indexOf('vlhko') >= 0) reasons.push({ t: 'Ve vlhčí místnosti se osvědčí taštičkové pružiny, latex se nehodí.' });
+    const kdoL = this.label('kdo', 'kdo', a.kdo);
+    const envL = env.map(id => this.label('prostredi', 'prostredi', id)).join(', ');
+    const sirkaL = this.label('rozmer', 'sirka', a.sirka), vyskaL = this.label('rozmer', 'vyska', a.vyska);
+    const answers = [
+      { label: 'Pro koho', value: kdoL, i: 1 }, { label: 'Hmotnost', value: a.kdo === 'par' ? vahaL + ' a ' + vaha2L.toLowerCase() : vahaL, i: 2 }, { label: 'Poloha', value: par && a.poloha2 ? polohaL + ' a ' + this.label('poloha', 'poloha', a.poloha2).toLowerCase() : polohaL, i: 3 },
+      { label: 'Pocit tuhosti', value: par && a.pocit2 ? this.label('pocit', 'pocit', a.pocit) + ' a ' + this.label('pocit', 'pocit', a.pocit2).toLowerCase() : this.label('pocit', 'pocit', a.pocit), i: 4 }, { label: 'Spánek a prostředí', value: envL, i: 5 },
+      { label: 'Rošt', value: this.label('rost', 'rost', a.rost), i: 6 }, { label: 'Rozměr', value: sirkaL + ' · ' + vyskaL, i: 7 }
+    ].map(x => ({ label: x.label, value: x.value || '—', aria: 'Změnit: ' + x.label, edit: () => this.go(x.i) }));
+    const fam = M.fam;
+    const products = Component.PRODUCTS.map(p => {
+      // Partnerská matrace má tuhost volitelnou pro každou polovinu → u páru sedne tuhostí vždy
+      const diff = (a.kdo === 'par' && p.partner) ? 0 : Math.min(Math.abs(p.data.tuhost - rec.level), Math.abs(p.data.tuhost - rec.level2));
+      const matPen = p.mat === fam ? 0 : (fam === 'hybrid' || p.mat === 'hybrid') ? 8 : 16;
+      let score = 100 - diff * 16 - matPen;
+      if (a.rost === 'polohovaci' && p.mat === 'pruziny') score -= 15;
+      if (a.rost === 'polohovaci' && p.polohovaci) score += 6;
+      if (a.kdo === 'par' && p.partner) score += rec.split ? 14 : 8;
+      score = Math.max(40, Math.min(98, Math.round(score)));
+      const why = ['Tuhost ' + String(p.data.tuhost).replace('.', ',') + ' z 5', p.mat === 'pruziny' ? 'taštičkové pružiny' : 'pěnové jádro'];
+      if (a.kdo === 'par' && p.partner) why.push('každá polovina může mít jinou tuhost');
+      if (a.rost === 'polohovaci' && p.polohovaci) why.push('vhodná na polohovací rošt');
+      return { score, data: p.data, why: why.join(' · ') };
+    }).sort((x, y) => y.score - x.score).slice(0, w >= 820 && w < 1000 ? 3 : 3).map((p, k) => ({
+      data: p.data, why: p.why,
+      match: (k === 0 ? 'Nejlepší shoda · ' : 'Shoda ') + p.score + ' %',
+      matchBg: k === 0 ? '#FBB255' : 'var(--ss-surface-subtle,#FAF5EF)', matchFg: k === 0 ? '#1C2229' : 'var(--ss-text-secondary,#3D4750)'
+    }));
+    const r = {
+      summary: rec.split
+        ? 'Každý z vás potřebuje jinou tuhost: ' + H(L) + ' pro vás a ' + H(L2) + ' pro druhého spáče. Hledejte dvě matrace ' + M.phrase + ', nebo partnerskou matraci s rozdílnou tuhostí každé poloviny. Níže najdete, proč právě tohle, a matrace z naší nabídky seřazené podle shody.'
+        : 'Podle vašich odpovědí hledejte matraci s tuhostí ' + H(L) + ' ' + M.phrase + ' v rozměru ' + sTitle + '. Níže najdete, proč právě tohle, a matrace z naší nabídky seřazené podle shody.',
+      tImage: L.image, tImageAlt: 'Ilustrace tuhosti ' + L.title,
+      tTitle: rec.split ? H(L) + ' pro vás, ' + H(L2) + ' pro druhého' : L.title,
+      tText: rec.split ? 'Vy: ' + L.title + '. Druhý spáč: ' + L2.title + '. Zvolte dvě samostatné matrace, nebo partnerskou matraci, kde má každá polovina vlastní tuhost.' : L.text,
+      mTitle: M.title, mText: M.text, sTitle, sText,
+      reasons, answers, products, ctaLabel: 'Všechny matrace podle tuhosti'
+    };
+    const segs = STEPS.map((x, k) => ({ style: { flex: 1, height: '6px', borderRadius: '999px', background: k + 1 < st ? '#296093' : k + 1 === st ? '#FBB255' : 'var(--ss-surface-strong,#E9E1D5)' } }));
+    return {
+      ledMode: this.state.led ? 'on' : 'off',
+      presItems: [{ label: 'LED', value: this.state.led }],
+      onPresToggle: () => this.setState(x => ({ led: !x.led })),
+      crumbs: [{ label: 'Domů', href: 'index.dc.html' }, { label: 'Matrace', href: 'Kategorie_Matrace.dc.html' }, { label: 'Průvodce výběrem matrace' }],
+      isIntro: st === 0, isStep, isResult,
+      innerTop: box(narrow ? '8px' : '16px', narrow ? '32px' : '48px'),
+      innerBody: box(narrow ? '40px' : '64px', narrow ? '48px' : '80px'),
+      introGrid: { display: 'grid', gridTemplateColumns: w >= 1000 ? 'minmax(0,1fr) minmax(0,1fr)' : 'minmax(0,1fr)', gap: narrow ? '32px' : '64px', alignItems: 'center', marginTop: narrow ? '8px' : '16px' },
+      stepGrid: { display: 'grid', gridTemplateColumns: w >= 1000 ? 'minmax(0,1.6fr) minmax(0,1fr)' : 'minmax(0,1fr)', gap: narrow ? '20px' : '32px', alignItems: 'start' },
+      recGrid: { display: 'grid', gridTemplateColumns: w >= 1000 ? 'repeat(3,minmax(0,1fr))' : w >= 550 ? 'repeat(2,minmax(0,1fr))' : 'minmax(0,1fr)', gap: '20px' },
+      whyGrid: { display: 'grid', gridTemplateColumns: w >= 1000 ? 'minmax(0,1fr) minmax(0,1fr)' : 'minmax(0,1fr)', gap: '20px', alignItems: 'start' },
+      prodGrid: { display: 'grid', gridTemplateColumns: w >= 820 ? 'repeat(3,minmax(0,1fr))' : w >= 550 ? 'repeat(2,minmax(0,1fr))' : 'minmax(0,1fr)', gap: '20px', alignItems: 'start' },
+      adviceGrid: { display: 'grid', gridTemplateColumns: w >= 1000 ? 'minmax(0,1.4fr) minmax(0,1fr)' : 'minmax(0,1fr)', gap: '24px', alignItems: 'center' },
+      cardPad: narrow ? '20px' : '32px',
+      h1Style: { margin: 0, fontSize: narrow ? '30px' : '44px', lineHeight: 1.1 },
+      h1SmallStyle: { margin: narrow ? '8px 0 0' : '16px 0 0', fontSize: narrow ? '22px' : '28px', lineHeight: 1.15 },
+      h2Size: narrow ? '24px' : '30px',
+      introFacts: [{ icon: 'help-circle', label: '7 krátkých otázek s vysvětlením, proč na nich záleží' }, { icon: 'adjustments-horizontal', label: 'Doporučení tuhosti, typu jádra a rozměru' }, { icon: 'award', label: 'Konkrétní matrace z naší nabídky seřazené podle shody' }],
+      start: () => this.go(1),
+      stepNo: st, q, segs,
+      progressText: st === 7 ? 'Poslední otázka' : 'Zbývá ' + (7 - st) + (7 - st === 1 ? ' otázka' : 7 - st < 5 ? ' otázky' : ' otázek'),
+      backLabel: st === 1 ? 'Úvod' : 'Zpět',
+      back: () => this.go(Math.max(0, st - 1)),
+      nextLabel: st === 7 ? 'Zobrazit doporučení' : 'Pokračovat',
+      nextDisabled: !done,
+      next: () => { if (this.answered(st - 1)) this.go(st + 1); },
+      showHint: isStep && !done, hint: st === 7 ? 'Vyberte šířku i výšku' : s.multi ? 'Vyberte alespoň jednu možnost' : 'Vyberte jednu z možností',
+      r,
+      restart: () => { this.setState({ a: { prostredi: [] } }); this.go(1); }
+    };
+  }
+}
+</script>
+</body>
+</html>

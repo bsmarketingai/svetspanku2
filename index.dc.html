@@ -190,14 +190,15 @@ main>section.ss-grad-top.ss-grad-glow{background-image:radial-gradient(ellipse 5
 html[data-mode="dark"] main>section.ss-grad-top.ss-grad-glow{background-image:radial-gradient(ellipse 55% 100% at 50% 100%,rgba(251,178,85,.14) 0%,rgba(251,178,85,.05) 45%,rgba(251,178,85,0) 75%),linear-gradient(180deg,var(--ss-surface-page,#0E1F2F) 0%,var(--ss-surface-muted,#183049) 100%)!important;}
 
 
-/* Scrollbar: jen táhlo v barvách webu, bez podkladu (platí globálně) */
-*{scrollbar-width:auto;scrollbar-color:var(--ss-scrollbar-thumb,#FBB255) transparent;}
-*::-webkit-scrollbar{width:15px;height:15px;background:transparent;}
-*::-webkit-scrollbar-track{background:transparent;}
-*::-webkit-scrollbar-thumb{background:var(--ss-scrollbar-thumb,#FBB255);border-radius:999px;border:4px solid transparent;background-clip:padding-box;}
-*::-webkit-scrollbar-thumb:hover{background:var(--ss-scrollbar-thumb-hover,#F09A2C);background-clip:padding-box;}
-*::-webkit-scrollbar-corner{background:transparent;}
-html[data-mode="dark"]{--ss-scrollbar-thumb:#FBB255;--ss-scrollbar-thumb-hover:#F09A2C;}
+/* Podklad „bg m 1“ (28. 10. 2026): bílá + jemné zrno (krytí .07) + meruňková záře zespodu (ellipse 80 % × 55 %). Vzor: Ověřené recenze a Příběh Světa spánku na homepage. */
+.ss-bg-m1{background-color:var(--ss-surface-page,#FFFFFF)!important;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .55 0 0 0 0 .35 0 0 0 0 .1 0 0 0 .07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),radial-gradient(ellipse 80% 55% at 50% 100%,rgba(251,178,85,.16) 0%,rgba(251,178,85,.06) 45%,rgba(251,178,85,0) 80%)!important;background-size:220px 220px,auto!important;background-repeat:repeat,no-repeat!important;background-position:0 0,center!important;}
+html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .85 0 0 0 0 .9 0 0 0 0 1 0 0 0 .06 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),radial-gradient(ellipse 80% 55% at 50% 100%,rgba(251,178,85,.12) 0%,rgba(251,178,85,.04) 45%,rgba(251,178,85,0) 80%)!important;}
+/* Podklad „bg b 1“ (28. 10. 2026): jako bg m 1, ale v modrém — bílá + jemné modré zrno (.07) + modrá záře zespodu (#296093). */
+.ss-bg-b1{background-color:var(--ss-surface-page,#FFFFFF)!important;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .16 0 0 0 0 .38 0 0 0 0 .58 0 0 0 .07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),radial-gradient(ellipse 80% 55% at 50% 100%,rgba(41,96,147,.12) 0%,rgba(41,96,147,.05) 45%,rgba(41,96,147,0) 80%)!important;background-size:220px 220px,auto!important;background-repeat:repeat,no-repeat!important;background-position:0 0,center!important;}
+html[data-mode="dark"] .ss-bg-b1{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .85 0 0 0 0 .9 0 0 0 0 1 0 0 0 .06 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),radial-gradient(ellipse 80% 55% at 50% 100%,rgba(141,179,211,.14) 0%,rgba(141,179,211,.05) 45%,rgba(141,179,211,0) 80%)!important;}
+/* Podklad „bg m 2“ (28. 10. 2026): jako bg m 1, ale barevnější a o kousek tmavší — jemný přechod bílá → teplá #FDF5EA, zrno .09, silnější a větší meruňková záře zespodu. */
+.ss-bg-m2{background-color:#FDF5EA!important;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .55 0 0 0 0 .35 0 0 0 0 .1 0 0 0 .09 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),radial-gradient(ellipse 90% 70% at 50% 100%,rgba(251,178,85,.30) 0%,rgba(251,178,85,.12) 45%,rgba(251,178,85,0) 85%),linear-gradient(180deg,#FFFFFF 0%,#FDF5EA 100%)!important;background-size:220px 220px,auto,auto!important;background-repeat:repeat,no-repeat,no-repeat!important;background-position:0 0,center,center!important;}
+html[data-mode="dark"] .ss-bg-m2{background-color:var(--ss-surface-subtle,#13283C)!important;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .85 0 0 0 0 .9 0 0 0 0 1 0 0 0 .07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),radial-gradient(ellipse 90% 70% at 50% 100%,rgba(251,178,85,.20) 0%,rgba(251,178,85,.07) 45%,rgba(251,178,85,0) 85%),linear-gradient(180deg,var(--ss-surface-page,#0E1F2F) 0%,var(--ss-surface-subtle,#13283C) 100%)!important;}
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400..700&family=Roboto:wght@400..700&display=swap" rel="stylesheet">
 <script>try{var d=document.documentElement;if(localStorage.getItem('ss-mode')==='dark')d.setAttribute('data-mode','dark');d.setAttribute('data-logo',localStorage.getItem('ss-logo')||'a');d.setAttribute('data-font-h','base');d.setAttribute('data-font-b','base');d.setAttribute('data-bg',localStorage.getItem('ss-bg')||'on');}catch(e){}</script>
@@ -214,7 +215,8 @@ html[data-mode="dark"] .ss-rev-badge{--ss-shine:rgba(251,178,85,.14);}
 <body>
 <x-dc>
 <helmet>
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Sans+Condensed:wght@400;500;600;700&display=swap" rel="stylesheet"><style data-ss="tmavy-rezim">
+
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&amp;family=IBM+Plex+Sans+Condensed:wght@400;500;600;700&amp;display=swap" rel="stylesheet"><style data-ss="tmavy-rezim">
 /* Tmavý režim — přepíná html[data-mode="dark"]. Světlý režim = fallback hodnoty v var(). */
 /* Hover ve světlém režimu modrý (6. 10. 2026), v tmavém meruňkový */
 html:not([data-mode="dark"]){--ss-hover-text:#21507B;--ss-hover-bg:#F0F5FA;
@@ -397,19 +399,20 @@ main>section.ss-grad-top.ss-grad-glow{background-image:radial-gradient(ellipse 5
 html[data-mode="dark"] main>section.ss-grad-top.ss-grad-glow{background-image:radial-gradient(ellipse 55% 100% at 50% 100%,rgba(251,178,85,.14) 0%,rgba(251,178,85,.05) 45%,rgba(251,178,85,0) 75%),linear-gradient(180deg,var(--ss-surface-page,#0E1F2F) 0%,var(--ss-surface-muted,#183049) 100%)!important;}
 
 
-/* Scrollbar: jen táhlo v barvách webu, bez podkladu (platí globálně) */
-*{scrollbar-width:auto;scrollbar-color:var(--ss-scrollbar-thumb,#FBB255) transparent;}
-*::-webkit-scrollbar{width:15px;height:15px;background:transparent;}
-*::-webkit-scrollbar-track{background:transparent;}
-*::-webkit-scrollbar-thumb{background:var(--ss-scrollbar-thumb,#FBB255);border-radius:999px;border:4px solid transparent;background-clip:padding-box;}
-*::-webkit-scrollbar-thumb:hover{background:var(--ss-scrollbar-thumb-hover,#F09A2C);background-clip:padding-box;}
-*::-webkit-scrollbar-corner{background:transparent;}
-html[data-mode="dark"]{--ss-scrollbar-thumb:#FBB255;--ss-scrollbar-thumb-hover:#F09A2C;}
+/* Podklad „bg m 1“ (28. 10. 2026): bílá + jemné zrno (krytí .07) + meruňková záře zespodu (ellipse 80 % × 55 %). Vzor: Ověřené recenze a Příběh Světa spánku na homepage. */
+.ss-bg-m1{background-color:var(--ss-surface-page,#FFFFFF)!important;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .55 0 0 0 0 .35 0 0 0 0 .1 0 0 0 .07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),radial-gradient(ellipse 80% 55% at 50% 100%,rgba(251,178,85,.16) 0%,rgba(251,178,85,.06) 45%,rgba(251,178,85,0) 80%)!important;background-size:220px 220px,auto!important;background-repeat:repeat,no-repeat!important;background-position:0 0,center!important;}
+html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .85 0 0 0 0 .9 0 0 0 0 1 0 0 0 .06 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),radial-gradient(ellipse 80% 55% at 50% 100%,rgba(251,178,85,.12) 0%,rgba(251,178,85,.04) 45%,rgba(251,178,85,0) 80%)!important;}
+/* Podklad „bg b 1“ (28. 10. 2026): jako bg m 1, ale v modrém — bílá + jemné modré zrno (.07) + modrá záře zespodu (#296093). */
+.ss-bg-b1{background-color:var(--ss-surface-page,#FFFFFF)!important;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .16 0 0 0 0 .38 0 0 0 0 .58 0 0 0 .07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),radial-gradient(ellipse 80% 55% at 50% 100%,rgba(41,96,147,.12) 0%,rgba(41,96,147,.05) 45%,rgba(41,96,147,0) 80%)!important;background-size:220px 220px,auto!important;background-repeat:repeat,no-repeat!important;background-position:0 0,center!important;}
+html[data-mode="dark"] .ss-bg-b1{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .85 0 0 0 0 .9 0 0 0 0 1 0 0 0 .06 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),radial-gradient(ellipse 80% 55% at 50% 100%,rgba(141,179,211,.14) 0%,rgba(141,179,211,.05) 45%,rgba(141,179,211,0) 80%)!important;}
+/* Podklad „bg m 2“ (28. 10. 2026): jako bg m 1, ale barevnější a o kousek tmavší — jemný přechod bílá → teplá #FDF5EA, zrno .09, silnější a větší meruňková záře zespodu. */
+.ss-bg-m2{background-color:#FDF5EA!important;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .55 0 0 0 0 .35 0 0 0 0 .1 0 0 0 .09 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),radial-gradient(ellipse 90% 70% at 50% 100%,rgba(251,178,85,.30) 0%,rgba(251,178,85,.12) 45%,rgba(251,178,85,0) 85%),linear-gradient(180deg,#FFFFFF 0%,#FDF5EA 100%)!important;background-size:220px 220px,auto,auto!important;background-repeat:repeat,no-repeat,no-repeat!important;background-position:0 0,center,center!important;}
+html[data-mode="dark"] .ss-bg-m2{background-color:var(--ss-surface-subtle,#13283C)!important;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .85 0 0 0 0 .9 0 0 0 0 1 0 0 0 .07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),radial-gradient(ellipse 90% 70% at 50% 100%,rgba(251,178,85,.20) 0%,rgba(251,178,85,.07) 45%,rgba(251,178,85,0) 85%),linear-gradient(180deg,var(--ss-surface-page,#0E1F2F) 0%,var(--ss-surface-subtle,#13283C) 100%)!important;}
 </style>
 <script>try{var d=document.documentElement;if(localStorage.getItem('ss-mode')==='dark')d.setAttribute('data-mode','dark');d.setAttribute('data-logo',localStorage.getItem('ss-logo')||'a');d.setAttribute('data-font-h','base');d.setAttribute('data-font-b','base');d.setAttribute('data-bg',localStorage.getItem('ss-bg')||'on');}catch(e){}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400..700&family=Roboto:wght@400..700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400..700&amp;family=Roboto:wght@400..700&amp;display=swap" rel="stylesheet">
 <style>
 h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-family:Oswald,Helvetica,Arial,sans-serif!important;font-weight:600!important;text-transform:none;letter-spacing:0;}
 
@@ -424,6 +427,15 @@ a:hover{color:var(--ss-hover-text,#A4600C);}
 @media (hover:hover) and (pointer:fine){.ss-hp-tile:hover .ss-hp-tile-bg{transform:scale(1.04);}}
 @media (prefers-reduced-motion:reduce){.ss-hp-tile-bg{transition:none;}.ss-hp-tile:hover .ss-hp-tile-bg{transform:none;}}
 .ss-hp-tile:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
+/* Hero dlaždice pod 550 px (28. 10. 2026, podle wireframu klienta): 2 dlaždice vedle sebe, třetí přes celou šířku; menší písmo, bez perexu */
+.ss-hero-mob{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px!important;}
+.ss-hero-mob>.ss-hp-tile{min-height:200px;padding:16px;gap:8px;}
+.ss-hero-mob>.ss-hp-tile:nth-child(3){grid-column:1/-1;min-height:220px;}
+.ss-hero-mob .ss-hp-t{font-size:17px!important;line-height:1.25!important;}
+.ss-hero-mob>.ss-hp-tile:nth-child(3) .ss-hp-t{font-size:19px!important;}
+.ss-hero-mob .ss-hp-p{display:none!important;}
+/* mobil: menší odsazení od okraje (8 px) a nahoře (8 px), zaoblení 12 px zachováno */
+.ss-hero-mob{margin:0 -8px;padding:8px 0 0!important;}
 .ss-hp-art{position:relative;display:flex;flex-direction:column;gap:12px;padding:8px;margin:-8px;text-decoration:none;color:var(--ss-text-primary,#1C2229);border-radius:12px;}
 .ss-hp-art:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
 .ss-hp-art:hover .ss-hp-art-t{color:var(--ss-hover-text,#A4600C);}
@@ -483,12 +495,6 @@ html[data-mode="dark"] .ss-rev-badge{--ss-shine:rgba(251,178,85,.14);}
 .ss-p2-nav{display:none!important;}
 @media (max-width:1149px){.ss-p2-nav{display:flex!important;margin-top:16px;}}
 .ss-pv-bg{transition:none;}.ss-pv:hover .ss-pv-bg{transform:none;}}
-.ss-m2-peek{position:absolute;z-index:3;top:128px;transform:translateY(-50%);display:flex;align-items:center;justify-content:center;width:44px;height:44px;border:0;box-sizing:border-box;border-radius:6px;background:var(--ss-action-tonal-bg,#FEEDD4);color:var(--ss-action-tonal-fg,#7A4708);box-shadow:0 4px 12px rgba(19,44,67,.12);cursor:pointer;transition:background-color .12s cubic-bezier(.22,.61,.36,1),color .12s cubic-bezier(.22,.61,.36,1);}
-.ss-m2-peek > *{display:flex;line-height:0;}
-.ss-m2-peek-next{right:8px;}.ss-m2-peek-prev{left:8px;}
-@media (max-width:819px){.ss-m2-peek{top:120px;}}
-@media (hover:hover) and (pointer:fine){.ss-m2-peek:hover{background:var(--ss-action-tonal-hover-bg,#FDDCAA);color:var(--ss-action-tonal-hover-fg,#7A4708);}}
-.ss-m2-peek:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
 .ss-m2-track::after{content:"";flex:0 0 1px;}
 .ss-m2-track>.ss-hp-art{flex:0 0 320px;margin:0;padding:0;scroll-snap-align:start;min-width:0;}
 .ss-m2-track>.ss-m2-lead{flex-basis:640px;}
@@ -500,6 +506,9 @@ html[data-mode="dark"] .ss-rev-badge{--ss-shine:rgba(251,178,85,.14);}
 .ss-mag-arrow{display:flex;align-items:center;justify-content:center;width:44px;height:44px;flex:none;border:0;border-radius:999px;background:none;color:var(--ss-text-primary,#1C2229);cursor:pointer;transition:background-color .12s cubic-bezier(.22,.61,.36,1),color .12s cubic-bezier(.22,.61,.36,1);}
 @media (hover:hover) and (pointer:fine){.ss-mag-arrow:hover{background:var(--ss-hover-bg,#FFF5E6);color:var(--ss-hover-text,#A4600C);}}
 .ss-mag-arrow:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
+/* Šipky karuselů na začátku / konci: disabled (opacity .45, cursor not-allowed, bez hoveru) */
+.ss-mag-arrow[aria-disabled="true"]{opacity:.45;cursor:not-allowed;}
+@media (hover:hover) and (pointer:fine){.ss-mag-arrow[aria-disabled="true"]:hover{background:none;color:var(--ss-text-primary,#1C2229);}.ss-mag-nav .ss-mag-arrow[aria-disabled="true"]:hover{background:var(--ss-action-tonal-bg,#FEEDD4);color:var(--ss-action-tonal-fg,#7A4708);}.ss-mag-over-prev[aria-disabled="true"]:hover,.ss-mag-over-next[aria-disabled="true"]:hover{background:var(--ss-surface-page,#FFFFFF);color:var(--ss-link-hover,#21507B);}}
 .ss-mag-wrap{position:relative;}
 .ss-mag-over-prev,.ss-mag-over-next{position:absolute;top:50%;transform:translateY(-50%);z-index:3;background:var(--ss-surface-page,#FFFFFF);color:var(--ss-link-hover,#21507B);box-shadow:0 4px 12px rgba(19,44,67,.12);}
 .ss-mag-over-prev{left:-22px;}
@@ -522,31 +531,31 @@ html[data-mode="dark"] .ss-rev-badge{--ss-shine:rgba(251,178,85,.14);}
   <main>
     <h1 style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0">Světspánku.cz — postele, matrace a rošty z masivu</h1>
 
-    <section class="ss-grad-top" style="width:100%;background-color:var(--ss-surface-page,#FFFFFF)">
+    <section class="ss-bg-m1" style="width:100%;background-color:var(--ss-surface-page,#FFFFFF)">
       <div style="{{ inner }}">
-        <div style="display:grid;grid-template-columns:{{ heroTemplate }};gap:20px;padding:24px 0 0">
+        <div class="{{ heroMobClass }}" style="display:grid;grid-template-columns:{{ heroTemplate }};gap:20px;padding:24px 0 0">
           <a class="ss-hp-tile" href="#akce" style="background:#132C43;color:#FFFFFF;overflow:hidden;isolation:isolate">
-            <span aria-hidden="true" class="ss-hp-tile-bg" style="position:absolute;inset:0;z-index:-2;background:url(menu-banner-akce.webp) 30% 30% / cover no-repeat"></span>
+            <span aria-hidden="true" class="ss-hp-tile-bg" style="position:absolute;inset:0;z-index:-2;background:url(/_blob/edd56eee566f1d974d13fb31f14a8118) 30% 30% / cover no-repeat"></span>
             <span aria-hidden="true" style="position:absolute;inset:0;z-index:-1;background:linear-gradient(to top,rgba(9,18,27,.92) 0%,rgba(9,18,27,.72) 35%,rgba(9,18,27,.2) 70%,rgba(9,18,27,0) 90%)"></span>
-            <span style="font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:21px;line-height:1.2">Black Friday — nakupte se slevami až 60 %</span>
-            <span style="font-size:14px;color:#DCE8F2">Jen do 30. listopadu, na vybrané matrace a komplety</span>
+            <span class="ss-hp-t" style="font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:21px;line-height:1.2">Black Friday — nakupte se slevami až 60 %</span>
+            <span class="ss-hp-p" style="font-size:14px;color:#DCE8F2">Jen do 30. listopadu, na vybrané matrace a komplety</span>
           </a>
           <a class="ss-hp-tile" href="#komplety" style="background:#132C43;color:#FFFFFF;overflow:hidden;isolation:isolate">
-            <span aria-hidden="true" class="ss-hp-tile-bg" style="position:absolute;inset:0;z-index:-2;background:url(menu-banner-komplety.webp) center 40% / cover no-repeat"></span>
+            <span aria-hidden="true" class="ss-hp-tile-bg" style="position:absolute;inset:0;z-index:-2;background:url(/_blob/8b63107c3b3df97b4c67e750ce6b91cd) center 40% / cover no-repeat"></span>
             <span aria-hidden="true" style="position:absolute;inset:0;z-index:-1;background:linear-gradient(to top,rgba(9,18,27,.92) 0%,rgba(9,18,27,.72) 35%,rgba(9,18,27,.2) 70%,rgba(9,18,27,0) 90%)"></span>
-            <span style="font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:21px;line-height:1.2">Cenově zvýhodněné komplety se slevou až 30 %</span>
-            <span style="font-size:14px;color:#DCE8F2">Postel, rošt a matrace v jedné objednávce</span>
+            <span class="ss-hp-t" style="font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:21px;line-height:1.2">Cenově zvýhodněné komplety se slevou až 30 %</span>
+            <span class="ss-hp-p" style="font-size:14px;color:#DCE8F2">Postel, rošt a matrace v jedné objednávce</span>
           </a>
           <div class="ss-hp-tile" style="background:#132C43;color:#FFFFFF;overflow:hidden;isolation:isolate">
-            <span aria-hidden="true" class="ss-hp-tile-bg" style="position:absolute;inset:0;z-index:-2;background:url(pruvodce-matrace-lifestyle.webp) center 30% / cover no-repeat"></span>
+            <span aria-hidden="true" class="ss-hp-tile-bg" style="position:absolute;inset:0;z-index:-2;background:url(/_blob/a4bdfc3ddeb575fee8768a3cf2019524) center 30% / cover no-repeat"></span>
             <span aria-hidden="true" style="position:absolute;inset:0;z-index:-1;background:linear-gradient(to top,rgba(9,18,27,.92) 0%,rgba(9,18,27,.72) 35%,rgba(9,18,27,.2) 70%,rgba(9,18,27,0) 90%)"></span>
-            <span style="font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:21px;line-height:1.2">Najít moji matraci</span>
-            <span style="font-size:14px;color:#DCE8F2">Osm otázek a doporučíme model podle vaší váhy a polohy spánku</span>
-            <div style="margin-top:4px"><dc-import name="Tlacitko" label="Průvodce výběrem" variant="primary" href="#pruvodce" iconRight="arrow-right" hint-size="200px,44px"></dc-import></div>
+            <span class="ss-hp-t" style="font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:21px;line-height:1.2">Najít moji matraci</span>
+            <span class="ss-hp-p" style="font-size:14px;color:#DCE8F2">Osm otázek a doporučíme model podle vaší váhy a polohy spánku</span>
+            <div style="margin-top:4px"><dc-import name="Tlacitko" label="Průvodce výběrem" variant="primary" href="PruvodceMatrace.dc.html" iconRight="arrow-right" hint-size="200px,44px"></dc-import></div>
           </div>
           <sc-if value="{{ bannerInGrid }}" hint-placeholder-val="{{ false }}">
             <div class="ss-hp-tile" style="background:#132C43;color:#FFFFFF;overflow:hidden;isolation:isolate">
-            <span aria-hidden="true" class="ss-hp-tile-bg" style="position:absolute;inset:0;z-index:-2;background:url(hero-banner.webp) center / cover no-repeat"></span>
+            <span aria-hidden="true" class="ss-hp-tile-bg" style="position:absolute;inset:0;z-index:-2;background:url(/_blob/717dcb859712b3db5254228bc1f360d5) center / cover no-repeat"></span>
             <span aria-hidden="true" style="position:absolute;inset:0;z-index:-1;background:linear-gradient(to top,rgba(9,18,27,.92) 0%,rgba(9,18,27,.72) 35%,rgba(9,18,27,.2) 70%,rgba(9,18,27,0) 90%)"></span>
               <h2 style="margin:0;font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:21px;line-height:1.2;color:#FFFFFF">Stylové povlečení</h2>
               <span style="font-size:14px;color:#DCE8F2">Proměníme vaši ložnici v oázu klidu. Prémiové materiály, moderní design a maximální pohodlí pro váš spánek.</span>
@@ -555,21 +564,21 @@ html[data-mode="dark"] .ss-rev-badge{--ss-shine:rgba(251,178,85,.14);}
           </sc-if>
         </div>
         <sc-if value="{{ bannerWide }}" hint-placeholder-val="{{ true }}">
-        <div style="position:relative;margin-top:20px;border-radius:12px;overflow:hidden;min-height:{{ bannerHeight }};display:flex;align-items:center">
-          <img decoding="async" src="hero-banner.webp" alt="" aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" />
+        <div style="position:relative;margin-top:20px;border-radius:12px;overflow:hidden;min-height:{{ bannerHeight }};display:flex;align-items:center" class="ss-banner-wide">
+          <img decoding="async" src="/_blob/717dcb859712b3db5254228bc1f360d5" alt="" aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
           <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(9,18,27,.82) 0%,rgba(9,18,27,.62) 45%,rgba(9,18,27,.15) 100%)"></div>
           <div style="position:relative;display:flex;flex-direction:column;gap:16px;max-width:min(100%,560px);padding:{{ bannerPad }}">
             <h2 style="margin:0;font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:{{ bannerTitle }};line-height:1.02;letter-spacing:-0.01em;color:#FFFFFF">Stylové povlečení</h2>
             <p style="margin:0;font-size:{{ bannerText }};line-height:1.55;color:#FFFFFF;max-width:46ch">Proměníme vaši ložnici v oázu klidu. Prémiové materiály, moderní design a maximální pohodlí pro váš spánek.</p>
             <div><dc-import name="Tlacitko" label="Zobrazit povlečení" variant="primary" size="large" href="#luzkoviny" iconRight="arrow-right" hint-size="220px,52px"></dc-import></div>
           </div>
-        </div>
+        <style>@media (max-width: 600px) { .ss-banner-wide { min-height: 220px !important; } .ss-banner-wide > div:last-child { padding: 24px 20px !important; gap: 12px !important; } }</style></div>
         </sc-if>
-        <div aria-hidden="true" style="height:{{ sectionGap }}"></div>
+        <div aria-hidden="true" style="height:{{ heroSpacer }}"></div>
       </div>
     </section>
 
-    <section class="ss-grad-top ss-grad-glow" style="width:100%;background-color:var(--ss-surface-page,#FFFFFF)">
+    <section class="ss-bg-m2" style="width:100%;background-color:var(--ss-surface-page,#FFFFFF)">
       <div style="{{ innerPadded }}">
         <dc-import name="VypisKategorii" variant="{{ catVariant }}" heading="Nejoblíbenější kategorie" subheading="Vše pro zdravý spánek" hint-size="100%,380px"></dc-import>
       </div>
@@ -593,7 +602,7 @@ html[data-mode="dark"] .ss-rev-badge{--ss-shine:rgba(251,178,85,.14);}
         </div>
         <div style="display:grid;grid-template-columns:{{ inspTemplate }};gap:20px;isolation:isolate;position:relative;z-index:0">
           <div class="ss-hp-ph" style="position:relative;min-height:{{ inspHeight }}">
-            <img decoding="async" src="clanek-masiv-vs-calounena.jpg" alt="Ložnice s postelí z masivu a LED osvětlením v čele" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;border-radius:12px" />
+            <img decoding="async" src="/_blob/50fbc8ecc5ccb479e539edd24a0148e8" alt="Ložnice s postelí z masivu a LED osvětlením v čele" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;border-radius:12px">
             <div onMouseEnter="{{ hoverHot }}" onMouseLeave="{{ leaveHot }}" onFocus="{{ hoverHot }}" onBlur="{{ leaveHot }}">
               <button type="button" class="ss-hp-hot" style="top:56%;left:44%" onClick="{{ toggleHot }}" aria-label="Zobrazit produkt Postel CASTELLO LED" aria-expanded="{{ hotExpanded }}">
                 <dc-import name="Ikony" iconName="plus" size="18" hint-size="18px,18px"></dc-import>
@@ -601,7 +610,7 @@ html[data-mode="dark"] .ss-rev-badge{--ss-shine:rgba(251,178,85,.14);}
               <sc-if value="{{ hotOpen }}" hint-placeholder-val="{{ true }}">
                 <div class="ss-light ss-hp-pop" style="position:absolute;bottom:calc(44% + 12px);left:44%;max-width:56%;width:min(280px,70%);background:var(--ss-surface-card,#FFFFFF);border-radius:12px;box-shadow:0 16px 40px rgba(19,44,67,.18);display:flex;align-items:stretch;overflow:hidden;z-index:300">
                   <div class="ss-hp-pop-b" style="flex:1;min-width:0;padding:16px;display:flex;flex-direction:column;gap:8px;text-align:left">
-                    <img decoding="async" class="ss-hp-pop-img" src="produkt-castello-led.webp" alt="Postel z masivu CASTELLO LED" style="display:block;width:100%;height:88px;object-fit:contain;object-position:left center;border-radius:12px;background:var(--ss-surface-page,#FFFFFF)" />
+                    <img decoding="async" class="ss-hp-pop-img" src="/_blob/04f0641f01e716e9cb921b2a7c7709dd" alt="Postel z masivu CASTELLO LED" style="display:block;width:100%;height:88px;object-fit:contain;object-position:left center;border-radius:12px;background:var(--ss-surface-page,#FFFFFF)">
                     <span style="font-size:14px;font-weight:600;line-height:1.35;color:var(--ss-text-primary,#1C2229)">Postel z masivu CASTELLO LED</span>
                     <span style="font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:28px;color:var(--ss-text-primary,#1C2229);letter-spacing:-0.01em">od 22 990 Kč</span>
                     <dc-import name="Stitek" kind="inStock" size="small" hint-size="200px,18px"></dc-import>
@@ -618,7 +627,7 @@ html[data-mode="dark"] .ss-rev-badge{--ss-shine:rgba(251,178,85,.14);}
             <sc-if value="{{ hot2Open }}" hint-placeholder-val="{{ false }}">
               <div class="ss-light ss-hp-pop" style="position:absolute;bottom:calc(37% + 12px);left:12%;max-width:88%;width:min(280px,70%);background:var(--ss-surface-card,#FFFFFF);border-radius:12px;box-shadow:0 16px 40px rgba(19,44,67,.18);display:flex;align-items:stretch;overflow:hidden;z-index:300">
                 <div class="ss-hp-pop-b" style="flex:1;min-width:0;padding:16px;display:flex;flex-direction:column;gap:8px;text-align:left">
-                  <img decoding="async" class="ss-hp-pop-img" src="produkt-nocni-stolek-nora.webp" alt="Noční stolek UNI 50 z masivu" style="display:block;width:100%;height:88px;object-fit:contain;object-position:left center;border-radius:12px;background:var(--ss-surface-page,#FFFFFF)" />
+                  <img decoding="async" class="ss-hp-pop-img" src="/_blob/8558634d093ec652305ccdb81196c238" alt="Noční stolek UNI 50 z masivu" style="display:block;width:100%;height:88px;object-fit:contain;object-position:left center;border-radius:12px;background:var(--ss-surface-page,#FFFFFF)">
                   <span style="font-size:14px;font-weight:600;line-height:1.35;color:var(--ss-text-primary,#1C2229)">Noční stolek UNI 50</span>
                   <span style="font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:28px;color:var(--ss-text-primary,#1C2229);letter-spacing:-0.01em">od 6 089 Kč</span>
                   <dc-import name="Stitek" kind="inStock" size="small" hint-size="200px,18px"></dc-import>
@@ -631,7 +640,7 @@ html[data-mode="dark"] .ss-rev-badge{--ss-shine:rgba(251,178,85,.14);}
           </div>
           <div style="display:grid;grid-template-rows:repeat(2,minmax(0,1fr));gap:20px">
             <div class="ss-hp-ph" style="position:relative;min-height:{{ inspSmallHeight }}">
-              <img decoding="async" src="inspirace-detsky-pokoj-patrova-postel.jpg" alt="Dětský pokoj s patrovou postelí z masivu a komodou" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;border-radius:12px" />
+              <img decoding="async" src="/_blob/051ebe43c1856ca8d75b16e2340bd003" alt="Dětský pokoj s patrovou postelí z masivu a komodou" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;border-radius:12px">
               <div onMouseEnter="{{ hoverHot3 }}" onMouseLeave="{{ leaveHot3 }}" onFocus="{{ hoverHot3 }}" onBlur="{{ leaveHot3 }}">
                 <button type="button" class="ss-hp-hot" style="top:143px;left:32%" onClick="{{ toggleHot3 }}" aria-label="Zobrazit produkt Komplet Patrik – patrová rozkládací postel" aria-expanded="{{ hot3Expanded }}">
                   <dc-import name="Ikony" iconName="plus" size="18" hint-size="18px,18px"></dc-import>
@@ -639,7 +648,7 @@ html[data-mode="dark"] .ss-rev-badge{--ss-shine:rgba(251,178,85,.14);}
                 <sc-if value="{{ hot3Open }}" hint-placeholder-val="{{ false }}">
                   <div class="ss-light ss-hp-pop" style="position:absolute;top:191px;max-height:240px;left:32%;max-width:68%;width:min(260px,70%);background:var(--ss-surface-card,#FFFFFF);border-radius:12px;box-shadow:0 16px 40px rgba(19,44,67,.18);display:flex;align-items:stretch;overflow:hidden;z-index:300">
                     <div class="ss-hp-pop-b" style="flex:1;min-width:0;padding:12px;display:flex;flex-direction:column;gap:6px;text-align:left;overflow:hidden">
-                      <img decoding="async" class="ss-hp-pop-img" src="produkt-patrik-patrova-postel.webp" alt="Patrová rozkládací postel Patrik z bukového masivu" style="display:block;width:100%;height:52px;min-height:0;flex:none;object-fit:contain;object-position:left center;border-radius:12px;background:var(--ss-surface-page,#FFFFFF)" />
+                      <img decoding="async" class="ss-hp-pop-img" src="/_blob/e7eaec925bcc59d691f7658ddfee27ce" alt="Patrová rozkládací postel Patrik z bukového masivu" style="display:block;width:100%;height:52px;min-height:0;flex:none;object-fit:contain;object-position:left center;border-radius:12px;background:var(--ss-surface-page,#FFFFFF)">
                       <span style="font-size:13px;font-weight:600;line-height:1.3;color:var(--ss-text-primary,#1C2229);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden">Komplet Patrik – patrová postel s rošty a matracemi</span>
                       <span style="display:flex;align-items:baseline;gap:8px"><span style="font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:24px;color:var(--ss-text-primary,#1C2229);letter-spacing:-0.01em">28 995 Kč</span><span style="font-family:Oswald,Roboto,sans-serif;font-size:15px;color:var(--ss-text-muted,#5B6874);text-decoration:line-through">37 870 Kč</span></span>
                       <dc-import name="Stitek" kind="inStock" size="small" hint-size="200px,18px"></dc-import>
@@ -656,7 +665,7 @@ html[data-mode="dark"] .ss-rev-badge{--ss-shine:rgba(251,178,85,.14);}
                 <sc-if value="{{ hot5Open }}" hint-placeholder-val="{{ false }}">
                   <div class="ss-light ss-hp-pop" style="position:absolute;bottom:calc(30% + 12px);max-height:240px;left:22%;max-width:78%;width:min(260px,70%);background:var(--ss-surface-card,#FFFFFF);border-radius:12px;box-shadow:0 16px 40px rgba(19,44,67,.18);display:flex;align-items:stretch;overflow:hidden;z-index:300">
                     <div class="ss-hp-pop-b" style="flex:1;min-width:0;padding:12px;display:flex;flex-direction:column;gap:6px;text-align:left;overflow:hidden">
-                      <img decoding="async" class="ss-hp-pop-img" src="produkt-valentina-ultrafresh.webp" alt="Matrace Valentina Ultrafresh" style="display:block;width:100%;height:52px;min-height:0;flex:none;object-fit:contain;object-position:left center;border-radius:12px;background:var(--ss-surface-page,#FFFFFF)" />
+                      <img decoding="async" class="ss-hp-pop-img" src="/_blob/bc7007f08af1d6737c56db995538cb91" alt="Matrace Valentina Ultrafresh" style="display:block;width:100%;height:52px;min-height:0;flex:none;object-fit:contain;object-position:left center;border-radius:12px;background:var(--ss-surface-page,#FFFFFF)">
                       <span style="font-size:13px;font-weight:600;line-height:1.3;color:var(--ss-text-primary,#1C2229);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden">Matrace Valentina Ultrafresh</span>
                       <span style="font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:24px;color:var(--ss-text-primary,#1C2229);letter-spacing:-0.01em">od 7 949 Kč</span>
                       <dc-import name="Stitek" kind="inStock" size="small" hint-size="200px,18px"></dc-import>
@@ -673,7 +682,7 @@ html[data-mode="dark"] .ss-rev-badge{--ss-shine:rgba(251,178,85,.14);}
                 <sc-if value="{{ hot4Open }}" hint-placeholder-val="{{ false }}">
                   <div class="ss-light ss-hp-pop" style="position:absolute;bottom:calc(36% + 12px);max-height:240px;right:calc(20% - 36px);max-width:80%;width:min(260px,70%);background:var(--ss-surface-card,#FFFFFF);border-radius:12px;box-shadow:0 16px 40px rgba(19,44,67,.18);display:flex;align-items:stretch;overflow:hidden;z-index:300">
                     <div class="ss-hp-pop-b" style="flex:1;min-width:0;padding:12px;display:flex;flex-direction:column;gap:6px;text-align:left;overflow:hidden">
-                      <img decoding="async" class="ss-hp-pop-img" src="produkt-komoda-uni-kombi.webp" alt="Komoda UNI kombi z masivu" style="display:block;width:100%;height:52px;min-height:0;flex:none;object-fit:contain;object-position:left center;border-radius:12px;background:var(--ss-surface-page,#FFFFFF)" />
+                      <img decoding="async" class="ss-hp-pop-img" src="/_blob/d31d537b9d9606558176e03cfba06f09" alt="Komoda UNI kombi z masivu" style="display:block;width:100%;height:52px;min-height:0;flex:none;object-fit:contain;object-position:left center;border-radius:12px;background:var(--ss-surface-page,#FFFFFF)">
                       <span style="font-size:13px;font-weight:600;line-height:1.3;color:var(--ss-text-primary,#1C2229);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden">Komoda UNI kombi z masivu</span>
                       <span style="font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:24px;color:var(--ss-text-primary,#1C2229);letter-spacing:-0.01em">od 19 989 Kč</span>
                       <dc-import name="Stitek" kind="inStock" size="small" hint-size="200px,18px"></dc-import>
@@ -685,7 +694,7 @@ html[data-mode="dark"] .ss-rev-badge{--ss-shine:rgba(251,178,85,.14);}
               </div>
             </div>
             <div class="ss-hp-ph" style="position:relative;min-height:{{ inspSmallHeight }}">
-              <img decoding="async" src="inspirace-skrin-azzo-loznice.jpg" alt="Ložnice se šatní skříní AZZO z masivu" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;border-radius:12px" />
+              <img decoding="async" src="/_blob/c428a305df833f26ea819eb629838b9b" alt="Ložnice se šatní skříní AZZO z masivu" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;border-radius:12px">
               <div onMouseEnter="{{ hoverHot6 }}" onMouseLeave="{{ leaveHot6 }}" onFocus="{{ hoverHot6 }}" onBlur="{{ leaveHot6 }}">
                 <button type="button" class="ss-hp-hot" style="top:46%;left:52%" onClick="{{ toggleHot6 }}" aria-label="Zobrazit produkt Skříň Azzo 3D" aria-expanded="{{ hot6Expanded }}">
                   <dc-import name="Ikony" iconName="plus" size="18" hint-size="18px,18px"></dc-import>
@@ -693,7 +702,7 @@ html[data-mode="dark"] .ss-rev-badge{--ss-shine:rgba(251,178,85,.14);}
                 <sc-if value="{{ hot6Open }}" hint-placeholder-val="{{ false }}">
                   <div class="ss-light ss-hp-pop" style="position:absolute;bottom:calc(54% + 12px);right:calc(48% - 36px);max-width:52%;max-height:240px;width:min(260px,70%);background:var(--ss-surface-card,#FFFFFF);border-radius:12px;box-shadow:0 16px 40px rgba(19,44,67,.18);display:flex;align-items:stretch;overflow:hidden;z-index:300">
                     <div class="ss-hp-pop-b" style="flex:1;min-width:0;padding:12px;display:flex;flex-direction:column;gap:6px;text-align:left;overflow:hidden">
-                      <img decoding="async" class="ss-hp-pop-img" src="produkt-skrin-azzo.webp" alt="Skříň Azzo 3D z masivu" style="display:block;width:100%;height:52px;min-height:0;flex:none;object-fit:contain;object-position:left center;border-radius:12px;background:var(--ss-surface-page,#FFFFFF)" />
+                      <img decoding="async" class="ss-hp-pop-img" src="/_blob/0585f62be306944953ce51ad4ef2c314" alt="Skříň Azzo 3D z masivu" style="display:block;width:100%;height:52px;min-height:0;flex:none;object-fit:contain;object-position:left center;border-radius:12px;background:var(--ss-surface-page,#FFFFFF)">
                       <span style="font-size:13px;font-weight:600;line-height:1.3;color:var(--ss-text-primary,#1C2229);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden">Skříň Azzo 3D z masivu</span>
                       <span style="font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:24px;color:var(--ss-text-primary,#1C2229);letter-spacing:-0.01em">od 34 990 Kč</span>
                       <dc-import name="Stitek" kind="madeToOrder" size="small" hint-size="200px,18px"></dc-import>
@@ -710,7 +719,7 @@ html[data-mode="dark"] .ss-rev-badge{--ss-shine:rgba(251,178,85,.14);}
                 <sc-if value="{{ hot7Open }}" hint-placeholder-val="{{ false }}">
                   <div class="ss-light ss-hp-pop" style="position:absolute;top:calc(33% + 48px);left:20%;max-width:80%;max-height:240px;width:min(260px,70%);background:var(--ss-surface-card,#FFFFFF);border-radius:12px;box-shadow:0 16px 40px rgba(19,44,67,.18);display:flex;align-items:stretch;overflow:hidden;z-index:300">
                     <div class="ss-hp-pop-b" style="flex:1;min-width:0;padding:12px;display:flex;flex-direction:column;gap:6px;text-align:left;overflow:hidden">
-                      <img decoding="async" class="ss-hp-pop-img" src="produkt-zrcadlo-kulate.webp" alt="Kulaté zrcadlo v černém rámu" style="display:block;width:100%;height:52px;min-height:0;flex:none;object-fit:contain;object-position:left center;border-radius:12px;background:var(--ss-surface-page,#FFFFFF)" />
+                      <img decoding="async" class="ss-hp-pop-img" src="/_blob/de69c12a5b0859bfb9b8a7b7104021f9" alt="Kulaté zrcadlo v černém rámu" style="display:block;width:100%;height:52px;min-height:0;flex:none;object-fit:contain;object-position:left center;border-radius:12px;background:var(--ss-surface-page,#FFFFFF)">
                       <span style="font-size:13px;font-weight:600;line-height:1.3;color:var(--ss-text-primary,#1C2229);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden">Kulaté zrcadlo v černém rámu ⌀ 70 cm</span>
                       <span style="font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:24px;color:var(--ss-text-primary,#1C2229);letter-spacing:-0.01em">2 490 Kč</span>
                       <dc-import name="Stitek" kind="inStock" size="small" hint-size="200px,18px"></dc-import>
@@ -727,7 +736,7 @@ html[data-mode="dark"] .ss-rev-badge{--ss-shine:rgba(251,178,85,.14);}
           <div style="display:grid;grid-template-columns:{{ inspTemplateMirror }};gap:20px;margin-top:20px">
             <div style="display:grid;grid-template-rows:repeat(2,minmax(0,1fr));gap:20px">
               <div class="ss-hp-ph" style="position:relative;min-height:{{ inspSmallHeight }}">
-                <img decoding="async" src="inspirace-leonardo-led.jpg" alt="Ložnice s postelí LEONARDO z dubového masivu a LED osvětlením" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;border-radius:12px" />
+                <img decoding="async" src="/_blob/a625c66afad0487fbbad30aab381965e" alt="Ložnice s postelí LEONARDO z dubového masivu a LED osvětlením" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;border-radius:12px">
                 <button type="button" class="ss-hp-hot" style="top:56%;left:42%" aria-label="Zobrazit produkt Postel LEONARDO">
                   <dc-import name="Ikony" iconName="plus" size="18" hint-size="18px,18px"></dc-import>
                 </button>
@@ -736,14 +745,14 @@ html[data-mode="dark"] .ss-rev-badge{--ss-shine:rgba(251,178,85,.14);}
                 </button>
               </div>
               <div class="ss-hp-ph" style="position:relative;min-height:{{ inspSmallHeight }}">
-                <img decoding="async" src="inspirace-obyvak-lineta.jpg" alt="Obývací pokoj s rozkládací pohovkou LINETA z masivu" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;border-radius:12px" />
+                <img decoding="async" src="/_blob/0a85f016e5a25af2b0841e015b1b9d9f" alt="Obývací pokoj s rozkládací pohovkou LINETA z masivu" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;border-radius:12px">
                 <button type="button" class="ss-hp-hot" style="top:52%;left:30%" aria-label="Zobrazit produkt Rozkládací postel LINETA">
                   <dc-import name="Ikony" iconName="plus" size="18" hint-size="18px,18px"></dc-import>
                 </button>
               </div>
             </div>
             <div class="ss-hp-ph" style="position:relative;min-height:{{ inspHeight }}">
-              <img decoding="async" src="inspirace-multi-sante-loznice.webp" alt="Ložnice se sestavou MULTI SANTÉ z bukového masivu" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;border-radius:12px" />
+              <img decoding="async" src="/_blob/9a24dead655319655afea7817e5a98fd" alt="Ložnice se sestavou MULTI SANTÉ z bukového masivu" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;border-radius:12px">
                 <button type="button" class="ss-hp-hot" style="top:58%;left:45%" aria-label="Zobrazit produkt Postel MULTI SANTÉ">
                   <dc-import name="Ikony" iconName="plus" size="18" hint-size="18px,18px"></dc-import>
                 </button>
@@ -762,11 +771,12 @@ html[data-mode="dark"] .ss-rev-badge{--ss-shine:rgba(251,178,85,.14);}
       </div>
     </section>
 
-    <section style="width:100%;background:var(--ss-surface-subtle,#FAF5EF);margin-top:{{ sectionGap }}">
+    <!-- Prodejny + Průvodce výběrem matrace: jedna sekce s meruňkovým podsvícením (28. 10. 2026) -->
+    <section class="ss-bg-m1" style="width:100%; background-color:var(--ss-surface-page,#FFFFFF); margin-top:{{ sectionGap }}">
       <sc-if value="{{ storeP1 }}" hint-placeholder-val="{{ false }}">
       <div style="{{ innerPadded }}">
         <div style="text-align:center;margin-bottom:24px">
-          <span style="display:block;font-family:Oswald,Helvetica,Arial,sans-serif;font-size:13px;font-weight:600;letter-spacing:.02em;color:var(--ss-link-hover,#21507B);margin-bottom:8px">Naše prodejny</span>
+          <span style="display:block; font-family:Oswald,Helvetica,Arial,sans-serif; font-size: 15px; font-weight:600; letter-spacing:.02em; color:var(--ss-link-hover,#21507B); margin-bottom:8px">Naše prodejny</span>
           <h2 style="margin:0;font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:{{ h2Size }};line-height:1.15">Přijďte si vše osobně vyzkoušet</h2>
         </div>
         <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-bottom:24px">
@@ -809,11 +819,11 @@ html[data-mode="dark"] .ss-rev-badge{--ss-shine:rgba(251,178,85,.14);}
       <sc-if value="{{ storeP2 }}" hint-placeholder-val="{{ true }}">
       <div style="{{ innerPadded }}">
         <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:32px;max-width:72ch">
-          <span style="font-family:Oswald,Helvetica,Arial,sans-serif;font-size:13px;font-weight:600;letter-spacing:.02em;color:var(--ss-link-hover,#21507B)">Naše prodejny</span>
+          <span style="font-family:Oswald,Helvetica,Arial,sans-serif; font-size: 15px; font-weight:600; letter-spacing:.02em; color:var(--ss-link-hover,#21507B)">Naše prodejny</span>
           <h2 style="margin:0;font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:{{ h2Size }};line-height:1.15">Přijďte si vše osobně vyzkoušet</h2>
           <p style="margin:4px 0 0;font-size:16px;line-height:1.6;color:var(--ss-text-secondary,#3D4750);text-wrap:pretty">Víme, jak je důležité si postel nebo matraci vyzkoušet. Bez toho to nejde. Proto máme <a href="https://showroomy.svetspanku.cz/" style="text-underline-offset:3px;transition:color .12s cubic-bezier(.22,.61,.36,1)">6 prodejen po celé ČR</a> s kompletním sortimentem.</p>
         </div>
-        <div class="ss-p2-track" ref="{{ p2Ref }}" onScroll="{{ p2OnScroll }}">
+        <div class="ss-p2-track" ref="{{ p2Ref }}">
           <sc-for list="{{ p2Stores }}" as="s" hint-placeholder-count="5">
             <a class="ss-p2-card" href="{{ s.href }}">
               <span class="ss-p2-bg" aria-hidden="true" style="{{ s.bgStyle }}"></span>
@@ -826,37 +836,33 @@ html[data-mode="dark"] .ss-rev-badge{--ss-shine:rgba(251,178,85,.14);}
           </sc-for>
         </div>
         <div class="ss-p2-nav ss-mag-nav" role="group" aria-label="Ovládání karuselu prodejen">
-          <button type="button" class="ss-mag-arrow" onClick="{{ p2Prev }}" aria-label="Předchozí prodejny" aria-disabled="{{ p2AtStartStr }}" style="opacity:{{ p2PrevOpacity }}"><dc-import name="Ikony" iconName="chevron-left" size="22" hint-size="22px,22px"></dc-import></button>
-          <button type="button" class="ss-mag-arrow" onClick="{{ p2Next }}" aria-label="Další prodejny" aria-disabled="{{ p2AtEndStr }}" style="opacity:{{ p2NextOpacity }}"><dc-import name="Ikony" iconName="chevron-right" size="22" hint-size="22px,22px"></dc-import></button>
+          <dc-import name="KaruselNav" layout="below" icons="chevron" labelPrev="Předchozí prodejny" labelNext="Další prodejny" step="card" cardSelector=".ss-p2-card" edge="{{ 4 }}" getTrack="{{ p2Track }}" hint-size="96px,44px"></dc-import>
         </div>
       </div>
       </sc-if>
-    </section>
-
-    <section style="width:100%;background:var(--ss-surface-subtle,#FAF5EF)">
       <div style="{{ innerTight }}">
         <div class="ss-elev ss-pv" style="background:#F2F2F0;border-radius:12px;padding:{{ ctaPad }};display:grid;grid-template-columns:{{ ctaTemplate }};gap:24px;align-items:center;min-height:320px;box-sizing:border-box;position:relative">
-          <span aria-hidden="true" style="position:absolute;inset:0;border-radius:inherit;overflow:hidden;pointer-events:none"><span class="ss-pv-bg" style="position:absolute;inset:0;background:url(pruvodce-matrace-povrch.webp) {{ ctaPhotoPos }} / cover no-repeat"></span><span style="position:absolute;inset:0;background:{{ ctaVeil }}"></span></span>
-          <img decoding="async" src="visacka-svetspanku.webp" alt="" aria-hidden="true" style="position:absolute;top:-8px;right:{{ tagRight }};width:{{ tagWidth }};height:auto;pointer-events:none;filter:drop-shadow(0 4px 6px rgba(19,44,67,.18))" />
+          <span aria-hidden="true" style="position:absolute;inset:0;border-radius:inherit;overflow:hidden;pointer-events:none"><span class="ss-pv-bg" style="position:absolute;inset:0;background:url(/_blob/495987b626d0ed8642df24b67f4055ed) {{ ctaPhotoPos }} / cover no-repeat"></span><span style="position:absolute;inset:0;background:{{ ctaVeil }}"></span></span>
+          <img decoding="async" src="/_blob/599f824abb2eafbe2a46219892a0c14e" alt="" aria-hidden="true" style="position:absolute;top:-8px;right:{{ tagRight }};width:{{ tagWidth }};height:auto;pointer-events:none;filter:drop-shadow(0 4px 6px rgba(19,44,67,.18))">
           <div style="position:relative;display:flex;flex-direction:column;gap:12px;min-width:0">
             <h2 style="margin:0;font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:{{ h2Size }};line-height:1.15;color:#1C2229">Pomůžeme vám najít tu správnou matraci</h2>
             <p style="margin:0;max-width:60ch;font-size:15px;line-height:1.6;color:#3D4750">Odpovíte na osm otázek o váze, poloze spánku a rozpočtu. Doporučíme tři modely a řekneme, proč zrovna je.</p>
-            <div style="margin-top:4px"><dc-import name="Tlacitko" label="Najít dokonalou matraci" variant="buy" size="large" href="#pruvodce" iconRight="arrow-right" hint-size="260px,52px"></dc-import></div>
+            <div style="margin-top:4px"><dc-import name="Tlacitko" label="Najít dokonalou matraci" variant="buy" size="large" href="PruvodceMatrace.dc.html" iconRight="arrow-right" hint-size="260px,52px"></dc-import></div>
           </div>
         </div>
       </div>
     </section>
 
-    <section style="width:100%;background:var(--ss-surface-page,#FFFFFF);margin-top:{{ sectionGap }}">
+    <section class="ss-bg-m1" style="width:100%; margin-top:{{ sectionGap }}; padding:clamp(32px,5vw,64px) 0; background-color:#FFFFFF; background-image: url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .55 0 0 0 0 .35 0 0 0 0 .1 0 0 0 .07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E&quot;), radial-gradient(ellipse 80% 55% at 50% 100%, rgba(251,178,85,.16) 0%, rgba(251,178,85,.06) 45%, rgba(251,178,85,0) 80%); margin-top: 0; background-size: 220px 220px, auto">
       <div style="{{ inner }}">
         <div style="display:grid;grid-template-columns:{{ storyTemplate }};gap:32px;align-items:center">
           <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px">
             <div style="position:relative;grid-column:span 2;aspect-ratio:16/9;border-radius:12px;overflow:hidden;background:#132C43"><a href="https://www.youtube.com/watch?v=2rdMJMSvv0g" target="_blank" rel="noopener" aria-label="Video: příběh Světa spánku – přehrát na YouTube (otevře se v novém okně)" style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;background:#132C43;color:#FFFFFF;text-decoration:none;font-weight:600;font-size:16px"><svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path><path d="M10 9l5 3l-5 3z" fill="currentColor"></path></svg><span>příběh Světa spánku</span><span style="font-weight:400;font-size:14px;opacity:.85">Přehrát na YouTube</span></a></div>
-            <img decoding="async" src="onas-vyroba.jpg" alt="Truhlář při výrobě masivního nábytku v dílně" loading="lazy" style="display:block;width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:12px" />
-            <img decoding="async" src="onas-showroom.webp" alt="Postele z masivu ve výstavní prodejně Světspánku.cz" loading="lazy" style="display:block;width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:12px" />
+            <img decoding="async" src="/_blob/de20077a93461976fd0adac46dc0b7be" alt="Truhlář při výrobě masivního nábytku v dílně" loading="lazy" style="display:block;width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:12px">
+            <img decoding="async" src="/_blob/4907c546874d7ecee6316ef9e8f2eb5c" alt="Postele z masivu ve výstavní prodejně Světspánku.cz" loading="lazy" style="display:block;width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:12px">
           </div>
           <div style="display:flex;flex-direction:column;gap:14px;min-width:0;padding-left:{{ storyTextPad }};order:{{ storyTextOrder }}">
-            <span style="font-family:Oswald,Helvetica,Arial,sans-serif;font-size:13px;font-weight:600;letter-spacing:.02em;color:var(--ss-link-hover,#21507B)">O nás</span>
+            <span style="font-family:Oswald,Helvetica,Arial,sans-serif; font-size: 15px; font-weight:600; letter-spacing:.02em; color:var(--ss-link-hover,#21507B)">O nás</span>
             <h2 style="margin:0;font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:{{ h2Size }};line-height:1.15">Poznejte příběh Světa spánku</h2>
             <p style="margin:0;max-width:{{ storyPMax }};font-size:15px;line-height:1.65;color:var(--ss-text-secondary,#3D4750)">Jsme výrobci <strong style="font-weight:700;color:var(--ss-text-primary,#1C2229)">dřevěného nábytku a <a href="#matrace" style="text-underline-offset:3px;transition:color .12s cubic-bezier(.22,.61,.36,1)">matrací</a>.</strong> Naprostou většinu naší nabídky přímo vyrábíme v ČR. Při výrobě nábytku klademe důraz na použití dřeva ve všech jeho prvcích. Jak těch viditelných, tak těch skrytých, konstrukčních. Veškerý nábytek a postele vyrábíme z buku, jasanu a dubu v celkem 14 barevných odstínech.</p>
             <p style="margin:0;max-width:{{ storyPMax }};font-size:15px;line-height:1.65;color:var(--ss-text-secondary,#3D4750)">U matrací je pro nás klíčový výběr kvalitních a spolehlivých materiálů, které zajistí matracím <strong style="font-weight:700;color:var(--ss-text-primary,#1C2229)">vysokou kvalitu a dlouhou životnost.</strong> Samozřejmostí jsou pro nás také vysoké nároky na zdravotní nezávadnost, i proto v matracích používáme vodou ředitelná ekologická lepidla <a href="https://www.simalfa.com/" target="_blank" rel="noopener" style="text-underline-offset:3px;transition:color .12s cubic-bezier(.22,.61,.36,1)">SIMALFA</a>. Kvalita výrobku je pro nás stejně důležitá jako pro naše zákazníky.</p>
@@ -867,11 +873,11 @@ html[data-mode="dark"] .ss-rev-badge{--ss-shine:rgba(251,178,85,.14);}
       </div>
     </section>
 
-    <section class="ss-grad-top ss-grad-glow" style="width:100%;background-color:var(--ss-surface-page,#FFFFFF);margin-top:{{ sectionGap }}">
+    <section class="ss-bg-m1" style="width:100%; margin-top:{{ sectionGap }}; border-top: 0; border-bottom: 0; padding: clamp(32px,5vw,64px) 0; box-shadow: none; margin-top: 0; background-position: initial; background-size: 220px 220px, auto; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; background-color: #FFFFFF; background-image: url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .55 0 0 0 0 .35 0 0 0 0 .1 0 0 0 .07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E&quot;), radial-gradient(ellipse 80% 55% at 50% 100%, rgba(251,178,85,.16) 0%, rgba(251,178,85,.06) 45%, rgba(251,178,85,0) 80%)">
       <div style="{{ innerPadded }}">
         <h2 style="margin:0 0 16px;text-align:center;font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:{{ h2Size }};line-height:1.15">Ověřené recenze</h2>
         <div style="display:flex;flex-direction:column;align-items:center;gap:8px;margin:0 0 24px">
-          <span style="font-family:Roboto,Helvetica,Arial,sans-serif;font-size:15px;font-weight:400;color:var(--ss-text-muted,#5B6874)">Za co nás chválíte</span>
+          
           <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:10px">
           <sc-for list="{{ praise }}" as="p" hint-placeholder-count="4">
             <span style="display:inline-flex;align-items:center;gap:8px;background:var(--ss-status-success-chip,#D3F0DC);border-radius:999px;padding:6px 14px;font-size:13px;font-weight:600;color:var(--ss-status-success-chip-fg,#0C4A28)"><span style="display:flex"><dc-import name="Ikony" iconName="circle-check" size="16" hint-size="16px,16px"></dc-import></span>{{ p }}</span>
@@ -880,7 +886,7 @@ html[data-mode="dark"] .ss-rev-badge{--ss-shine:rgba(251,178,85,.14);}
         </div>
         <div style="display:grid;grid-template-columns:{{ reviewTemplate }};gap:20px;align-items:stretch">
           <div class="ss-rev-badge" style="border-radius:12px;padding:24px;display:flex;flex-direction:column;gap:10px;align-items:center;text-align:center;min-width:0">
-            <img decoding="async" src="logo-heureka-overeno.png" alt="Ověřeno zákazníky — Heureka" style="display:block;width:84px;height:auto;margin-bottom:4px" />
+            <img decoding="async" src="/_blob/06133fd9e25dd5fa4207c7d268fc5b47" alt="Ověřeno zákazníky — Heureka" style="display:block;width:84px;height:auto;margin-bottom:4px">
             <span style="font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:21px;line-height:1.25">98 % zákazníků nás doporučuje</span>
             <span style="font-size:14px;color:var(--ss-text-secondary,#3D4750)">2 430 hodnocení za posledních 12 měsíců</span>
             <dc-import name="Tlacitko" label="Všechny recenze" variant="text" href="#recenze" iconRight="chevron-right" hint-size="160px,24px"></dc-import>
@@ -896,9 +902,8 @@ html[data-mode="dark"] .ss-rev-badge{--ss-shine:rgba(251,178,85,.14);}
           </sc-for>
           </div>
           <sc-if value="{{ revArrows }}" hint-placeholder-val="{{ false }}">
-            <div class="ss-mag-nav">
-              <button type="button" class="ss-mag-arrow" onClick="{{ revPrev }}" aria-label="Předchozí recenze"><dc-import name="Ikony" iconName="arrow-left" size="24" hint-size="24px,24px"></dc-import></button>
-              <button type="button" class="ss-mag-arrow" onClick="{{ revNext }}" aria-label="Další recenze"><dc-import name="Ikony" iconName="arrow-right" size="24" hint-size="24px,24px"></dc-import></button>
+            <div class="ss-mag-nav" style="display: flex; align-items: center; width: 100%"><a href="#recenze" style="margin-right:auto;display:inline-flex;align-items:center;justify-content:center;width:auto;height:auto;min-height:44px;padding:0 20px;box-sizing:border-box;font-size:15px;font-weight:600;text-decoration:none;white-space:nowrap" class="ss-mag-arrow">Všechny recenze</a>
+              <dc-import name="KaruselNav" layout="below" icons="arrow" labelPrev="Předchozí recenze" labelNext="Další recenze" step="px" stepPx="{{ 340 }}" edge="{{ 4 }}" getTrack="{{ revTrack }}" hint-size="96px,44px"></dc-import>
             </div>
           </sc-if>
           </div>
@@ -906,18 +911,18 @@ html[data-mode="dark"] .ss-rev-badge{--ss-shine:rgba(251,178,85,.14);}
       </div>
     </section>
 
-    <section style="width:100%;background:var(--ss-surface-tint,rgba(251,178,85,.05));padding:{{ sectionGap }} 0">
+    <section style="width:100%; padding:{{ sectionGap }} 0" class="ss-bg-m1">
       <div style="{{ inner }}">
         <dc-import name="SouvisejiciProdukty" heading="Objevte nejprodávanější produkty" linkLabel="Zobrazit vše" linkHref="#bestsellery" navPosition="{{ carNavPosition }}" hint-size="100%,560px"></dc-import>
       </div>
     </section>
 
-    <section style="width:100%;background:var(--ss-surface-card,#FFFFFF);padding:{{ sectionGap }} 0">
+    <section style="width:100%;background:var(--ss-surface-card,#FFFFFF);padding:{{ sectionGap }} 0" class="ss-bg-m1">
       <div style="{{ inner }}">
         <div style="display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-bottom:20px">
           <h2 style="margin:0;font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:{{ h2Size }};line-height:1.15">Magazín zdravého spánku</h2>
           <sc-if value="{{ magLinkTop }}" hint-placeholder-val="{{ true }}">
-            <div style="margin-left:auto"><dc-import name="Tlacitko" label="Do magazínu" variant="secondary" href="#magazin" iconRight="chevron-right" hint-size="170px,44px"></dc-import></div>
+            <div style="margin-left:auto"><dc-import name="Tlacitko" label="Do magazínu" variant="secondary" href="https://blog.svetspanku.cz/" newTab="{{ true }}" iconRight="chevron-right" hint-size="170px,44px"></dc-import></div>
           </sc-if>
         </div>
         <sc-if value="{{ magM1 }}" hint-placeholder-val="{{ true }}">
@@ -928,20 +933,20 @@ html[data-mode="dark"] .ss-rev-badge{--ss-shine:rgba(251,178,85,.14);}
                 <span class="ss-mag-zoom" style="{{ leadPhotoStyle }}"></span>
                 <span class="ss-mag-cta">Přečíst</span>
                 <sc-if value="{{ navOverlay }}" hint-placeholder-val="{{ false }}">
-                  <button type="button" class="ss-mag-arrow ss-mag-over-prev" onClick="{{ magPrev }}" aria-label="Předchozí články">
+                  <button type="button" class="ss-mag-arrow ss-mag-over-prev" onClick="{{ magPrev }}" aria-label="Předchozí články" aria-disabled="{{ magPrevDis }}">
                     <dc-import name="Ikony" iconName="chevron-left" size="22" hint-size="22px,22px"></dc-import>
                   </button>
-                  <button type="button" class="ss-mag-arrow ss-mag-over-next" onClick="{{ magNext }}" aria-label="Další články">
+                  <button type="button" class="ss-mag-arrow ss-mag-over-next" onClick="{{ magNext }}" aria-label="Další články" aria-disabled="{{ magNextDis }}">
                     <dc-import name="Ikony" iconName="chevron-right" size="22" hint-size="22px,22px"></dc-import>
                   </button>
                 </sc-if>
               </span>
               <span class="ss-hp-art-t" style="font-family:Oswald,Roboto,sans-serif;font-weight:700;line-height:1.25;transition:color .12s cubic-bezier(.22,.61,.36,1)">{{ leadArticle.title }}</span>
               <span style="font-size:15px;line-height:1.6;color:var(--ss-text-secondary,#3D4750)">{{ leadArticle.perex }}</span>
-              <a class="ss-mag-cover" href="{{ leadArticle.href }}" aria-label="{{ leadArticle.title }}"></a>
+              <a class="ss-mag-cover" href="{{ leadArticle.href }}" target="_blank" rel="noopener" aria-label="{{ leadArticle.title }}"></a>
             </div>
             <sc-for list="{{ restArticles }}" as="a" hint-placeholder-count="4">
-              <a class="ss-hp-art" href="{{ a.href }}">
+              <a class="ss-hp-art" href="{{ a.href }}" target="_blank" rel="noopener">
                 <span class="ss-hp-ph ss-mag-ph">
                   <span class="ss-mag-zoom" style="{{ a.photoStyle }}"></span>
                   <span class="ss-mag-cta">Přečíst</span>
@@ -954,13 +959,13 @@ html[data-mode="dark"] .ss-rev-badge{--ss-shine:rgba(251,178,85,.14);}
           <sc-if value="{{ magRowM1 }}" hint-placeholder-val="{{ true }}">
           <div class="ss-mag-nav">
             <sc-if value="{{ magLinkBelow }}" hint-placeholder-val="{{ false }}">
-              <div style="margin-right:auto"><dc-import name="Tlacitko" label="Do magazínu" variant="secondary" href="#magazin" iconRight="chevron-right" hint-size="170px,44px"></dc-import></div>
+              <div style="margin-right:auto"><dc-import name="Tlacitko" label="Do magazínu" variant="secondary" href="https://blog.svetspanku.cz/" newTab="{{ true }}" iconRight="chevron-right" hint-size="170px,44px"></dc-import></div>
             </sc-if>
             <sc-if value="{{ magArrowsBelow }}" hint-placeholder-val="{{ true }}">
-              <button type="button" class="ss-mag-arrow" onClick="{{ magPrev }}" aria-label="Předchozí články">
+              <button type="button" class="ss-mag-arrow" onClick="{{ magPrev }}" aria-label="Předchozí články" aria-disabled="{{ magPrevDis }}">
                 <dc-import name="Ikony" iconName="arrow-left" size="24" hint-size="24px,24px"></dc-import>
               </button>
-              <button type="button" class="ss-mag-arrow" onClick="{{ magNext }}" aria-label="Další články">
+              <button type="button" class="ss-mag-arrow" onClick="{{ magNext }}" aria-label="Další články" aria-disabled="{{ magNextDis }}">
                 <dc-import name="Ikony" iconName="arrow-right" size="24" hint-size="24px,24px"></dc-import>
               </button>
             </sc-if>
@@ -971,14 +976,11 @@ html[data-mode="dark"] .ss-rev-badge{--ss-shine:rgba(251,178,85,.14);}
       </div>
       <sc-if value="{{ magM2 }}" hint-placeholder-val="{{ false }}">
         <div class="ss-m2-wrap">
-        <sc-if value="{{ m2PeekPrev }}" hint-placeholder-val="{{ false }}">
-          <button type="button" class="ss-m2-peek ss-m2-peek-prev" onClick="{{ m2Prev }}" aria-label="Předchozí články"><dc-import name="Ikony" iconName="chevron-left" size="22" hint-size="22px,22px"></dc-import></button>
+        <sc-if value="{{ m2PeekOn }}" hint-placeholder-val="{{ false }}">
+          <dc-import name="KaruselNav" layout="peek" icons="chevron" peekTop="{{ m2PeekTop }}" prevLeft="8px" nextRight="8px" labelPrev="Předchozí články" labelNext="Další články" step="snap" cardSelector="a" getTrack="{{ m2Track }}" hint-size="0px,0px"></dc-import>
         </sc-if>
-        <sc-if value="{{ m2PeekNext }}" hint-placeholder-val="{{ false }}">
-          <button type="button" class="ss-m2-peek ss-m2-peek-next" onClick="{{ m2Next }}" aria-label="Další články"><dc-import name="Ikony" iconName="chevron-right" size="22" hint-size="22px,22px"></dc-import></button>
-        </sc-if>
-        <div class="ss-m2-track" ref="{{ m2Ref }}" onScroll="{{ m2OnScroll }}">
-          <a class="ss-hp-art ss-m2-lead" href="{{ m2Lead.href }}">
+        <div class="ss-m2-track" ref="{{ m2Ref }}">
+          <a class="ss-hp-art ss-m2-lead" href="{{ m2Lead.href }}" target="_blank" rel="noopener">
             <span class="ss-hp-ph ss-mag-ph" style="position:relative;overflow:hidden">
               <span class="ss-mag-zoom" style="{{ m2Lead.photoStyle }}"></span>
               <span class="ss-mag-cta">Přečíst</span>
@@ -987,7 +989,7 @@ html[data-mode="dark"] .ss-rev-badge{--ss-shine:rgba(251,178,85,.14);}
             <span class="ss-m2-perex" style="font-size:15px;line-height:1.6;color:var(--ss-text-secondary,#3D4750)">{{ m2Lead.perexLong }}</span>
           </a>
           <sc-for list="{{ m2Rest }}" as="a" hint-placeholder-count="4">
-            <a class="ss-hp-art" href="{{ a.href }}">
+            <a class="ss-hp-art" href="{{ a.href }}" target="_blank" rel="noopener">
               <span class="ss-hp-ph ss-mag-ph" style="position:relative;overflow:hidden">
                 <span class="ss-mag-zoom" style="{{ a.photoStyle }}"></span>
                 <span class="ss-mag-cta">Přečíst</span>
@@ -1002,15 +1004,10 @@ html[data-mode="dark"] .ss-rev-badge{--ss-shine:rgba(251,178,85,.14);}
           <sc-if value="{{ magM2 }}" hint-placeholder-val="{{ true }}">
           <div class="ss-mag-nav">
             <sc-if value="{{ magLinkBelow }}" hint-placeholder-val="{{ false }}">
-              <div style="margin-right:auto"><dc-import name="Tlacitko" label="Do magazínu" variant="secondary" href="#magazin" iconRight="chevron-right" hint-size="170px,44px"></dc-import></div>
+              <div style="margin-right:auto"><dc-import name="Tlacitko" label="Do magazínu" variant="secondary" href="https://blog.svetspanku.cz/" newTab="{{ true }}" iconRight="chevron-right" hint-size="170px,44px"></dc-import></div>
             </sc-if>
             <sc-if value="{{ magArrowsBelow }}" hint-placeholder-val="{{ true }}">
-              <button type="button" class="ss-mag-arrow" onClick="{{ m2Prev }}" aria-label="Předchozí články">
-                <dc-import name="Ikony" iconName="arrow-left" size="24" hint-size="24px,24px"></dc-import>
-              </button>
-              <button type="button" class="ss-mag-arrow" onClick="{{ m2Next }}" aria-label="Další články">
-                <dc-import name="Ikony" iconName="arrow-right" size="24" hint-size="24px,24px"></dc-import>
-              </button>
+              <dc-import name="KaruselNav" layout="below" icons="arrow" labelPrev="Předchozí články" labelNext="Další články" step="snap" cardSelector="a" getTrack="{{ m2Track }}" hint-size="96px,44px"></dc-import>
             </sc-if>
           </div>
           </sc-if>
@@ -1018,27 +1015,7 @@ html[data-mode="dark"] .ss-rev-badge{--ss-shine:rgba(251,178,85,.14);}
       </sc-if>
     </section>
 
-    <section class="ss-grad-top ss-grad-glow" style="width:100%;background-color:var(--ss-surface-page,#FFFFFF)">
-      <div style="{{ innerPadded }}">
-        <div style="max-width:560px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:16px;text-align:center">
-          <div style="display:flex;flex-direction:column;align-items:center;gap:8px">
-            <h2 style="margin:0;font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:{{ h3Size }};line-height:1.2;text-wrap:balance">Dostávejte novinky ze Světa spánku</h2>
-            <p style="margin:0;font-size:14px;color:var(--ss-text-secondary,#3D4750);text-wrap:pretty">Slevy, akce, výprodeje a novinky o spánkové vědě. Jednou za týden, bez balastu.</p>
-          </div>
-          <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:8px">
-            <sc-for list="{{ newsPerks }}" as="n" hint-placeholder-count="3">
-              <span style="display:inline-flex;align-items:center;gap:8px;background:var(--ss-surface-card,#FFFFFF);border-radius:999px;padding:6px 14px;font-size:13px;font-weight:600;color:var(--ss-status-success,#157A41)"><span style="display:flex"><dc-import name="Ikony" iconName="circle-check" size="16" hint-size="16px,16px"></dc-import></span>{{ n }}</span>
-            </sc-for>
-          </div>
-          <form style="width:100%;display:flex;flex-direction:column;align-items:center;gap:12px;min-width:0;margin-top:8px" onSubmit="{{ submitNews }}">
-            <div style="width:min(100%,336px);min-width:0;text-align:left">
-              <dc-import name="Input" label="" type="email" icon="mail" white="{{ true }}" placeholder="Váš e-mail" ariaLabel="Váš e-mail" value="{{ email }}" onChange="{{ onEmail }}" hint-size="100%,44px"></dc-import>
-            </div>
-            <dc-import name="Tlacitko" label="Chci newsletter" variant="primary" onClick="{{ doNews }}" hint-size="170px,44px"></dc-import>
-          </form>
-        </div>
-      </div>
-    </section>
+    <dc-import name="Newsletter" hint-size="100%,520px"></dc-import>
   </main>
 
   <dc-import name="Paticka" ledMode="{{ ledMode }}" theme="{{ footerTheme }}" hint-size="100%,700px"></dc-import>
@@ -1047,37 +1024,16 @@ html[data-mode="dark"] .ss-rev-badge{--ss-shine:rgba(251,178,85,.14);}
 <script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:1000}}">
 class Component extends DCLogic {
   ARTICLES = [
-    { title: 'Proč kvalitní matrace vydrží déle?', perex: 'Levná matrace může ztratit oporu už po pár nocích. Ukážeme, které materiály rozhodují o tom, jestli matrace vydrží dva roky, nebo dlouhá léta.', href: 'Clanek.dc.html', image: 'clanek-tlak-na-potah.webp', perexLong: 'Levná matrace může ztratit oporu už po pár nocích. Ukážeme, které materiály rozhodují o tom, jestli matrace vydrží dva roky, nebo dlouhá léta. Rozebíráme hustotu a nosnost pěn, typy pružin, kvalitu potahu i to, proč na nich záleží víc než na ceně. Přidáváme i rady, jak matraci správně větrat a otáčet, aby si tvar a oporu udržela co nejdéle.' },
-    { title: 'Nová matrace na starém roštu? Chyba, která může zkrátit její životnost', perex: 'Rošt rozhoduje o tom, jak matrace pracuje i jak dlouho vydrží. Podle čeho poznáte, že je čas vyměnit i jeho.', href: 'Clanek.dc.html', image: 'clanek-vymena-rostu.webp', perexLong: 'Rošt rozhoduje o tom, jak matrace pracuje i jak dlouho vydrží. Prohnuté nebo prasklé lamely, vytahané pouzdra a ztuhlé nastavení tuhosti dokážou novou matraci zdeformovat během pár měsíců. Ukážeme, podle čeho poznáte, že je čas vyměnit i rošt, a jaký typ se hodí k pěnové, pružinové nebo latexové matraci.' },
-    { title: 'Proč se vyplatí koupit postelový komplet místo jednotlivých částí', perex: 'Postel, rošt a matrace v jednom balení — ušetříte peníze i čas a všechny části do sebe pasují.', href: 'Clanek.dc.html', image: 'clanek-postelovy-komplet.jpg', perexLong: 'Postel, rošt a matrace v jednom balení — ušetříte peníze i čas a všechny části do sebe pasují. Nemusíte hlídat rozměry, výšku ložné plochy ani kompatibilitu roštu s matrací. Spočítali jsme, kolik se na kompletu reálně ušetří a kdy se naopak vyplatí skládat ložnici po částech.' },
-    { title: 'Dovezeme, vyneseme, smontujeme. Vše zařídíme za vás', perex: 'Nová ložnice bez starostí — od dopravy až po odvoz obalů. Jak služba funguje a kam všude jezdíme.', href: 'Clanek.dc.html', image: 'clanek-doprava-montaz.jpg', perexLong: 'Nová ložnice bez starostí — od dopravy až po odvoz obalů. Řidiči postel vynesou do patra, smontují ji na místě a na přání odvezou i starou matraci k ekologické likvidaci. Popisujeme, jak služba funguje, kolik stojí a kam všude po republice jezdíme.' },
-    { title: 'Postel s LED osvětlením: praktický pomocník i stylový doplněk ložnice', perex: 'Tlumené světlo u čela postele, které nevzbudí partnera. Jaké má varianty a kolik potřebuje energie.', href: 'Clanek.dc.html', image: 'clanek-postel-led-osvetleni.jpg', perexLong: 'Tlumené světlo u čela postele, které nevzbudí partnera. LED pásek pod rámem poslouží jako noční orientační světlo i jako dekorace, která ložnici dodá hloubku. Porovnáváme teplé a studené varianty, ovládání dálkovým ovladačem i čidlem a kolik energie osvětlení za rok spotřebuje.' },
+    { title: 'Proč kvalitní matrace vydrží déle?', perex: 'Levná matrace může ztratit oporu už po pár nocích. Ukážeme, které materiály rozhodují o tom, jestli matrace vydrží dva roky, nebo dlouhá léta.', href: 'https://blog.svetspanku.cz/', image: '/_blob/f1610f7d4e46565d090f83df0006d3ea', perexLong: 'Levná matrace může ztratit oporu už po pár nocích. Ukážeme, které materiály rozhodují o tom, jestli matrace vydrží dva roky, nebo dlouhá léta. Rozebíráme hustotu a nosnost pěn, typy pružin, kvalitu potahu i to, proč na nich záleží víc než na ceně. Přidáváme i rady, jak matraci správně větrat a otáčet, aby si tvar a oporu udržela co nejdéle.' },
+    { title: 'Nová matrace na starém roštu? Chyba, která může zkrátit její životnost', perex: 'Rošt rozhoduje o tom, jak matrace pracuje i jak dlouho vydrží. Podle čeho poznáte, že je čas vyměnit i jeho.', href: 'https://blog.svetspanku.cz/', image: '/_blob/d2bda866ab22bcf876b84e2ab2606821', perexLong: 'Rošt rozhoduje o tom, jak matrace pracuje i jak dlouho vydrží. Prohnuté nebo prasklé lamely, vytahané pouzdra a ztuhlé nastavení tuhosti dokážou novou matraci zdeformovat během pár měsíců. Ukážeme, podle čeho poznáte, že je čas vyměnit i rošt, a jaký typ se hodí k pěnové, pružinové nebo latexové matraci.' },
+    { title: 'Proč se vyplatí koupit postelový komplet místo jednotlivých částí', perex: 'Postel, rošt a matrace v jednom balení — ušetříte peníze i čas a všechny části do sebe pasují.', href: 'https://blog.svetspanku.cz/', image: '/_blob/4d3ed596486e42d6033d430cd7530f2e', perexLong: 'Postel, rošt a matrace v jednom balení — ušetříte peníze i čas a všechny části do sebe pasují. Nemusíte hlídat rozměry, výšku ložné plochy ani kompatibilitu roštu s matrací. Spočítali jsme, kolik se na kompletu reálně ušetří a kdy se naopak vyplatí skládat ložnici po částech.' },
+    { title: 'Dovezeme, vyneseme, smontujeme. Vše zařídíme za vás', perex: 'Nová ložnice bez starostí — od dopravy až po odvoz obalů. Jak služba funguje a kam všude jezdíme.', href: 'https://blog.svetspanku.cz/', image: '/_blob/a73c4563d2d4d8caf4cbb89c6a3d655e', perexLong: 'Nová ložnice bez starostí — od dopravy až po odvoz obalů. Řidiči postel vynesou do patra, smontují ji na místě a na přání odvezou i starou matraci k ekologické likvidaci. Popisujeme, jak služba funguje, kolik stojí a kam všude po republice jezdíme.' },
+    { title: 'Postel s LED osvětlením: praktický pomocník i stylový doplněk ložnice', perex: 'Tlumené světlo u čela postele, které nevzbudí partnera. Jaké má varianty a kolik potřebuje energie.', href: 'https://blog.svetspanku.cz/', image: '/_blob/5b07ea44660d8949c792282b6b74a470', perexLong: 'Tlumené světlo u čela postele, které nevzbudí partnera. LED pásek pod rámem poslouží jako noční orientační světlo i jako dekorace, která ložnici dodá hloubku. Porovnáváme teplé a studené varianty, ovládání dálkovým ovladačem i čidlem a kolik energie osvětlení za rok spotřebuje.' },
   ];
   state = {
     width: typeof window !== 'undefined' ? document.documentElement.clientWidth : 1440,
-    insp: 0, city: 0, hot: true, hot2: false, hot3: false, hot4: false, hot5: false, hot6: false, hot7: false, inspMore: false, email: '', mag: 0, carNav: 'V3', storeV: 'P1', magV: 'M1', m2AtStart: true, m2AtEnd: false
+    insp: 0, city: 0, hot: true, hot2: false, hot3: false, hot4: false, hot5: false, hot6: false, hot7: false, inspMore: false, email: '', mag: 0, carNav: 'V1',storeV: 'P1', magV: 'M1', m2AtStart: true, m2AtEnd: false, revAtStart: true, revAtEnd: false
   };
-  p2Scroll(dir) {
-    const el = this._p2; if (!el) return;
-    const card = el.querySelector('.ss-p2-card'); if (!card) return;
-    const step = card.getBoundingClientRect().width + parseFloat(getComputedStyle(el).columnGap || 16);
-    el.scrollBy({ left: dir * step, behavior: 'smooth' });
-  }
-  p2Sync() {
-    const el = this._p2; if (!el) return;
-    const s = el.scrollLeft <= 4, e = el.scrollLeft + el.clientWidth >= el.scrollWidth - 4;
-    if (s !== this.state.p2AtStart || e !== this.state.p2AtEnd) this.setState({ p2AtStart: s, p2AtEnd: e });
-  }
-  m2Scroll(dir) {
-    const el = this._m2; if (!el) return;
-    const cards = [...el.children].filter(c => c.tagName === 'A');
-    const pad = parseFloat(getComputedStyle(el).paddingLeft) || 0;
-    const x = el.scrollLeft;
-    const pos = cards.map(c => c.offsetLeft - pad);
-    let i = pos.findIndex(p => p > x + 4);
-    if (dir < 0) { const prev = pos.filter(p => p < x - 4); el.scrollTo({ left: prev.length ? prev[prev.length - 1] : 0, behavior: 'smooth' }); }
-    else el.scrollTo({ left: i < 0 ? el.scrollWidth : pos[i], behavior: 'smooth' });
-  }
   componentDidMount() {
     this._resize = () => this.setState({ width: document.documentElement.clientWidth });
     window.addEventListener('resize', this._resize);
@@ -1106,31 +1062,31 @@ class Component extends DCLogic {
       { city: 'Brno – H-Park', title: 'Brno H-Park', address: 'H-Park, Heršpická 11f, 639 00 Brno',
         hours: 'Po–Pá 9:00–18:00 · So 10:00–18:00',
         phone: '+420 543 212 855', email: 'obchod@svetspanku.cz',
-        photo: 'prodejna-brno.jpg', href: 'https://showroomy.svetspanku.cz/prodejna/brno',
+        photo: '/_blob/b4cf44c6b3eb61bbab476995ff83b775', href: 'https://showroomy.svetspanku.cz/prodejna/brno',
         map: 'https://www.google.com/maps?q=Her%C5%A1pick%C3%A1+11f+639+00+Brno-st%C5%99ed&ll=49.174158,16.604449&z=16&hl=cs',
         facts: [{ icon: 'bed', label: '28 předváděcích postelí' }, { icon: 'ruler-3', label: '42 matrací k vyzkoušení' }] },
       { city: 'Praha 5 – Butovice', title: 'Praha 5 Butovice', address: 'Galerie Butovice, Radlická 117, Praha 5',
         hours: 'Po–Ne 9:00–20:00',
         phone: '+420 222 261 497', email: 'butovice@svetspanku.cz',
-        photo: 'prodejna-praha-butovice.jpg', href: 'https://showroomy.svetspanku.cz/prodejna/butovice',
+        photo: '/_blob/e8f10f3844217f32afa71a3df6911c3d', href: 'https://showroomy.svetspanku.cz/prodejna/butovice',
         map: 'https://www.google.com/maps?cid=8282324235014765458&ll=50.047164,14.354621&z=16&hl=cs',
         facts: [{ icon: 'bed', label: '18 předváděcích postelí' }, { icon: 'ruler-3', label: '29 matrací k vyzkoušení' }] },
       { city: 'Praha 10 – Kutnohorská', title: 'Praha 10 Kutnohorská', address: 'Retail Kutnohorská (u Penny), Kutnohorská 532, Praha 10',
         hours: 'Po–Ne 9:00–20:00',
         phone: '+420 272 656 213', email: 'sterboholy@svetspanku.cz',
-        photo: 'prodejna-praha-10.jpg', href: 'https://showroomy.svetspanku.cz/prodejna/sterboholy',
+        photo: '/_blob/41a746eb8527715e36eabc3ff28d6861', href: 'https://showroomy.svetspanku.cz/prodejna/sterboholy',
         map: 'https://www.google.com/maps?cid=14642449341363822801&ll=50.066794,14.5492&z=16&hl=cs',
         facts: [{ icon: 'bed', label: '24 předváděcích postelí' }, { icon: 'ruler-3', label: '39 matrací k vyzkoušení' }] },
       { city: 'Ostrava', title: 'Ostrava', address: 'Varenská 50, 702 00 Ostrava',
         hours: 'Po–Ne 9:00–20:00',
         phone: '+420 596 633 911', email: 'ostrava@svetspanku.cz',
-        photo: 'prodejna-ostrava.jpg', href: 'https://showroomy.svetspanku.cz/prodejna/ostrava',
+        photo: '/_blob/7a3963f203b8e24fc1abe276d2bfae86', href: 'https://showroomy.svetspanku.cz/prodejna/ostrava',
         map: 'https://www.google.com/maps?q=Sv%C4%9Btsp%C3%A1nku.cz+Ostrava&ll=49.8335365,18.2680417&z=16&hl=cs',
         facts: [{ icon: 'bed', label: '25 předváděcích postelí' }, { icon: 'ruler-3', label: '37 matrací k vyzkoušení' }] },
       { city: 'Olomouc', title: 'Olomouc', address: 'Nákupní park OC Haná, Kafkova 15, 783 01 Olomouc-Slavonín',
         hours: 'Po–Pá 9:00–20:00 · So–Ne 9:00–19:00',
         phone: '+420 581 277 810', email: 'olomouc@svetspanku.cz',
-        photo: 'prodejna-olomouc.jpg', href: 'https://showroomy.svetspanku.cz/prodejna/olomouc',
+        photo: '/_blob/bd63109e110c61ed4bbefa646330bca5', href: 'https://showroomy.svetspanku.cz/prodejna/olomouc',
         map: 'https://www.google.com/maps?cid=5323467175451449000&ll=49.572849,17.223726&z=17&hl=cs',
         facts: [{ icon: 'dimensions', label: 'cca 600 m² výstavní plochy' }, { icon: 'bed', label: 'přes 40 předváděcích postelí' }, { icon: 'ruler-3', label: 'přes 70 matrací k vyzkoušení' }] }
     ];
@@ -1147,7 +1103,7 @@ class Component extends DCLogic {
         { label: 'Magazín', value: this.state.magV, options: ['M1', 'M2'] },
         { label: 'Kategorie', value: this.state.catV || 'K2', options: ['K1', 'K2'] },
         { label: 'Prodejny', value: this.state.storeV, options: ['P1', 'P2'] },
-        { label: 'Menu', value: this.state.navV || 'M2', options: ['M1', 'M2'] }
+        { label: 'Menu', value: this.state.navV || (() => { try { return localStorage.getItem('ss-navvar') === 'M1' ? 'M1' : 'M2'; } catch (e) { return 'M2'; } })(), options: ['M1', 'M2'] }
       ],
       onPresPick: (ci, opt) => {
         if (ci === 0) this.setState({ carNav: opt });
@@ -1156,12 +1112,12 @@ class Component extends DCLogic {
         else if (ci === 3) this.setState({ magV: opt });
         else if (ci === 4) this.setState({ catV: opt });
         else if (ci === 5) this.setState({ storeV: opt });
-        else this.setState({ navV: opt });
+        else { this.setState({ navV: opt }); try { localStorage.setItem('ss-navvar', opt); window.dispatchEvent(new CustomEvent('ss-navvar')); } catch (e) {} }
       },
-      navVariant: this.state.navV || 'M2',
+      navVariant: this.state.navV || (() => { try { return localStorage.getItem('ss-navvar') === 'M1' ? 'M1' : 'M2'; } catch (e) { return 'M2'; } })(),
       chromeTheme: this.state.chrome === 'Světlá' ? 'light' : this.state.chrome === 'Duo' ? 'duo' : 'blue',
       footerTheme: this.state.footer === 'Světlá' ? 'light' : 'blue',
-      carNavPosition: this.state.carNav === 'V2' ? 'overlay' : this.state.carNav === 'V3' ? 'peek' : 'below',
+      carNavPosition: this.state.carNav === 'V2' ? 'overlay' : this.state.carNav === 'V3' ? 'peek' : 'belowPeek',
       navBelow: this.state.carNav !== 'V2',
       navOverlay: this.state.carNav === 'V2',
       catVariant: this.state.catV === 'K1' ? 'standard' : 'vystup',
@@ -1170,17 +1126,19 @@ class Component extends DCLogic {
       magLinkTop: w >= 1000,
       magLinkBelow: w < 1000,
       magArrowsBelow: this.state.magV === 'M2' ? !(this.state.carNav === 'V3' && w < 1000) : this.state.carNav !== 'V2',
-      m2PeekPrev: this.state.carNav === 'V3' && w < 1000 && !this.state.m2AtStart,
-      m2PeekNext: this.state.carNav === 'V3' && w < 1000 && !this.state.m2AtEnd,
-      m2OnScroll: () => { const el = this._m2; if (!el) return; const a = el.scrollLeft < 8, b = el.scrollLeft + el.clientWidth >= el.scrollWidth - 8; if (a !== this.state.m2AtStart || b !== this.state.m2AtEnd) this.setState({ m2AtStart: a, m2AtEnd: b }); },
-      magRowM1: this.state.magV !== 'M2' && (this.state.carNav !== 'V2' || w < 1000),
+      // Ovládání karuselů (šipky, stav začátek/konec, posun) = sdílená komponenta KaruselNav (B2)
+      m2PeekOn: this.state.carNav === 'V3' && w < 1000,
+      m2PeekTop: w < 820 ? '120px' : '128px',
       m2Ref: (el) => { this._m2 = el; },
-      m2Prev: () => this.m2Scroll(-1),
-      m2Next: () => this.m2Scroll(1),
+      m2Track: () => this._m2,
+      magRowM1: this.state.magV !== 'M2' && (this.state.carNav !== 'V2' || w < 1000),
       m2Lead: Object.assign({}, this.ARTICLES[0], { photoStyle: this.ARTICLES[0].image ? { backgroundImage: 'url(' + this.ARTICLES[0].image + ')', backgroundSize: 'cover', backgroundPosition: 'center' } : { background: 'var(--ss-surface-muted,#F0F3F6)' } }),
       m2Rest: this.ARTICLES.slice(1).map(a => Object.assign({}, a, { photoStyle: a.image ? { backgroundImage: 'url(' + a.image + ')', backgroundSize: 'cover', backgroundPosition: 'center' } : { background: 'var(--ss-surface-muted,#F0F3F6)' } })),
-      magPrev: () => this.setState(s => ({ mag: (s.mag + this.ARTICLES.length - 1) % this.ARTICLES.length })),
-      magNext: () => this.setState(s => ({ mag: (s.mag + 1) % this.ARTICLES.length })),
+      // Magazín M1: bez dokola — na začátku je šipka vlevo disabled, na posledním článku šipka vpravo
+      magPrev: () => this.setState(s => ({ mag: Math.max(0, s.mag - 1) })),
+      magNext: () => this.setState(s => ({ mag: Math.min(this.ARTICLES.length - 1, s.mag + 1) })),
+      magPrevDis: this.state.mag <= 0 ? 'true' : 'false',
+      magNextDis: this.state.mag >= this.ARTICLES.length - 1 ? 'true' : 'false',
       leadArticle: this.ARTICLES[this.state.mag % this.ARTICLES.length],
       leadPhotoStyle: this.ARTICLES[this.state.mag % this.ARTICLES.length].image
         ? { backgroundImage: 'url(' + this.ARTICLES[this.state.mag % this.ARTICLES.length].image + ')', backgroundSize: 'cover', backgroundPosition: 'center' }
@@ -1197,11 +1155,14 @@ class Component extends DCLogic {
       innerPadded: Object.assign({}, inner, { padding: narrow ? '40px 16px' : '64px 32px' }),
       innerTight: Object.assign({}, inner, { padding: narrow ? '0 16px 40px' : '0 32px 64px' }),
       sectionGap: narrow ? '40px' : '64px',
+      heroSpacer: w < 550 ? '24px' : (narrow ? '40px' : '64px'),
       h2Size: narrow ? '26px' : '34px',
       h3Size: narrow ? '21px' : '26px',
       heroTemplate: w >= 1000 ? 'repeat(3,minmax(0,1fr))' : w >= 550 ? 'repeat(2,minmax(0,1fr))' : 'minmax(0,1fr)',
+      heroMobClass: w < 550 ? 'ss-hero-mob' : '',
+      // Stylové povlečení: 550–999 px jako 4. dlaždice v mřížce, od 1000 px široký banner, pod 550 px se nezobrazuje (klient, 28. 10. 2026)
       bannerInGrid: w >= 550 && w < 1000,
-      bannerWide: !(w >= 550 && w < 1000),
+      bannerWide: w >= 1000,
       bannerHeight: narrow ? '340px' : '420px',
       bannerPad: narrow ? '32px 24px' : '48px 64px',
       bannerTitle: narrow ? '38px' : '64px',
@@ -1215,21 +1176,14 @@ class Component extends DCLogic {
       inspHeight: narrow ? '480px' : '780px',
       inspSmallHeight: narrow ? '230px' : '380px',
       storeP1: this.state.storeV === 'P1',
-      p2Ref: el => { this._p2 = el; if (el) requestAnimationFrame(() => this.p2Sync()); },
-      p2OnScroll: () => this.p2Sync(),
-      p2Prev: () => this.p2Scroll(-1),
-      p2Next: () => this.p2Scroll(1),
-      p2AtStartStr: this.state.p2AtStart !== false ? 'true' : 'false',
-      p2AtEndStr: this.state.p2AtEnd ? 'true' : 'false',
-      p2PrevOpacity: this.state.p2AtStart !== false ? .45 : 1,
-      p2NextOpacity: this.state.p2AtEnd ? .45 : 1,
-      storeP2: this.state.storeV !== 'P1',
+      p2Ref: el => { this._p2 = el; },
+      p2Track: () => this._p2,
       p2Stores: [
-        { city: 'Brno', place: 'H-Park', photo: 'prodejna-brno.jpg', href: 'https://showroomy.svetspanku.cz/prodejna/brno' },
-        { city: 'Praha 5', place: 'Galerie Butovice', photo: 'prodejna-praha-butovice.jpg', href: 'https://showroomy.svetspanku.cz/prodejna/butovice' },
-        { city: 'Praha 10', place: 'Retail Kutnohorská', photo: 'prodejna-praha-10.jpg', href: 'https://showroomy.svetspanku.cz/prodejna/sterboholy' },
-        { city: 'Olomouc', place: 'OC Olomouc City', photo: 'prodejna-olomouc.jpg', href: 'https://showroomy.svetspanku.cz/prodejna/olomouc' },
-        { city: 'Ostrava', place: 'OC Futurum', photo: 'prodejna-ostrava.jpg', href: 'https://showroomy.svetspanku.cz/prodejna/ostrava' }
+        { city: 'Brno', place: 'H-Park', photo: '/_blob/b4cf44c6b3eb61bbab476995ff83b775', href: 'https://showroomy.svetspanku.cz/prodejna/brno' },
+        { city: 'Praha 5', place: 'Galerie Butovice', photo: '/_blob/e8f10f3844217f32afa71a3df6911c3d', href: 'https://showroomy.svetspanku.cz/prodejna/butovice' },
+        { city: 'Praha 10', place: 'Retail Kutnohorská', photo: '/_blob/41a746eb8527715e36eabc3ff28d6861', href: 'https://showroomy.svetspanku.cz/prodejna/sterboholy' },
+        { city: 'Olomouc', place: 'OC Olomouc City', photo: '/_blob/bd63109e110c61ed4bbefa646330bca5', href: 'https://showroomy.svetspanku.cz/prodejna/olomouc' },
+        { city: 'Ostrava', place: 'OC Futurum', photo: '/_blob/7a3963f203b8e24fc1abe276d2bfae86', href: 'https://showroomy.svetspanku.cz/prodejna/ostrava' }
       ].map(s => Object.assign({}, s, { bgStyle: s.photo ? { backgroundImage: 'url(' + s.photo + ')' } : {} })),
       storeTemplate: w >= 1150 ? 'minmax(0,1fr) minmax(0,1fr) minmax(0,1fr)' : w >= 550 ? 'minmax(0,1fr) minmax(0,1fr)' : 'minmax(0,1fr)',
       storeMediaHeight: narrow ? '200px' : '280px',
@@ -1246,8 +1200,7 @@ class Component extends DCLogic {
       reviewTemplate: w >= 1150 ? 'minmax(0,1fr) minmax(0,3fr)' : 'minmax(0,1fr)',
       revArrows: w < 1150,
       revRef: (el) => { this._rev = el; },
-      revPrev: () => { const el = this._rev; if (el) el.scrollBy({ left: -340, behavior: 'smooth' }); },
-      revNext: () => { const el = this._rev; if (el) el.scrollBy({ left: 340, behavior: 'smooth' }); },
+      revTrack: () => this._rev,
       articleTemplate: w >= 1150 ? '1.7fr minmax(0,1fr) minmax(0,1fr)' : w >= 820 ? 'repeat(2,minmax(0,1fr))' : 'minmax(0,1fr)',
       newsTemplate: w >= 820 ? 'minmax(0,1fr) minmax(0,1fr)' : 'minmax(0,1fr)',
       inspTabs: ['Ložnice', 'Dětský pokoj', 'Penzion'].map((label, i) => ({

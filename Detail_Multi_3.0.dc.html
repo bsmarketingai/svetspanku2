@@ -190,14 +190,6 @@ main>section.ss-grad-top.ss-grad-glow{background-image:radial-gradient(ellipse 5
 html[data-mode="dark"] main>section.ss-grad-top.ss-grad-glow{background-image:radial-gradient(ellipse 55% 100% at 50% 100%,rgba(251,178,85,.14) 0%,rgba(251,178,85,.05) 45%,rgba(251,178,85,0) 75%),linear-gradient(180deg,var(--ss-surface-page,#0E1F2F) 0%,var(--ss-surface-muted,#183049) 100%)!important;}
 
 
-/* Scrollbar: jen táhlo v barvách webu, bez podkladu (platí globálně) */
-*{scrollbar-width:auto;scrollbar-color:var(--ss-scrollbar-thumb,#FBB255) transparent;}
-*::-webkit-scrollbar{width:15px;height:15px;background:transparent;}
-*::-webkit-scrollbar-track{background:transparent;}
-*::-webkit-scrollbar-thumb{background:var(--ss-scrollbar-thumb,#FBB255);border-radius:999px;border:4px solid transparent;background-clip:padding-box;}
-*::-webkit-scrollbar-thumb:hover{background:var(--ss-scrollbar-thumb-hover,#F09A2C);background-clip:padding-box;}
-*::-webkit-scrollbar-corner{background:transparent;}
-html[data-mode="dark"]{--ss-scrollbar-thumb:#FBB255;--ss-scrollbar-thumb-hover:#F09A2C;}
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400..700&family=Roboto:wght@400..700&display=swap" rel="stylesheet">
 <script>try{var d=document.documentElement;if(localStorage.getItem('ss-mode')==='dark')d.setAttribute('data-mode','dark');d.setAttribute('data-logo',localStorage.getItem('ss-logo')||'a');d.setAttribute('data-font-h','base');d.setAttribute('data-font-b','base');d.setAttribute('data-bg',localStorage.getItem('ss-bg')||'on');}catch(e){}</script>
@@ -398,14 +390,6 @@ main>section.ss-grad-top.ss-grad-glow{background-image:radial-gradient(ellipse 5
 html[data-mode="dark"] main>section.ss-grad-top.ss-grad-glow{background-image:radial-gradient(ellipse 55% 100% at 50% 100%,rgba(251,178,85,.14) 0%,rgba(251,178,85,.05) 45%,rgba(251,178,85,0) 75%),linear-gradient(180deg,var(--ss-surface-page,#0E1F2F) 0%,var(--ss-surface-muted,#183049) 100%)!important;}
 
 
-/* Scrollbar: jen táhlo v barvách webu, bez podkladu (platí globálně) */
-*{scrollbar-width:auto;scrollbar-color:var(--ss-scrollbar-thumb,#FBB255) transparent;}
-*::-webkit-scrollbar{width:15px;height:15px;background:transparent;}
-*::-webkit-scrollbar-track{background:transparent;}
-*::-webkit-scrollbar-thumb{background:var(--ss-scrollbar-thumb,#FBB255);border-radius:999px;border:4px solid transparent;background-clip:padding-box;}
-*::-webkit-scrollbar-thumb:hover{background:var(--ss-scrollbar-thumb-hover,#F09A2C);background-clip:padding-box;}
-*::-webkit-scrollbar-corner{background:transparent;}
-html[data-mode="dark"]{--ss-scrollbar-thumb:#FBB255;--ss-scrollbar-thumb-hover:#F09A2C;}
 </style>
 <script>try{var d=document.documentElement;if(localStorage.getItem('ss-mode')==='dark')d.setAttribute('data-mode','dark');d.setAttribute('data-logo',localStorage.getItem('ss-logo')||'a');d.setAttribute('data-font-h','base');d.setAttribute('data-font-b','base');d.setAttribute('data-bg',localStorage.getItem('ss-bg')||'on');}catch(e){}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -418,7 +402,7 @@ html,body{margin:0!important;padding:0!important;}
 #dc-root>.sc-host{margin:0!important;padding:0!important;width:100%!important;}
 a{color:var(--ss-link,#296093);}
 a:hover{color:var(--ss-hover-text,#A4600C);}
-.ss-pd-ph{display:block;width:100%;border:0;padding:0;background:var(--ss-surface-subtle,#FAF5EF);border-radius:12px;overflow:hidden;cursor:zoom-in;position:relative;}
+.ss-pd-ph{display:block;width:100%;border:0;padding:0;background:var(--ss-surface-subtle,#FAF5EF);border-radius:12px;overflow:hidden;cursor:zoom-in;position:relative;box-shadow:0 2px 8px rgba(19,44,67,.08);}
 .ss-pd-ph:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
 .ss-pd-thumbs{display:flex;gap:8px;overflow-x:auto;scroll-snap-type:x proximity;scroll-padding-inline:16px;scrollbar-width:none;margin:0 -16px;padding:2px 16px;}
 .ss-pd-thumbs::-webkit-scrollbar{display:none;}
@@ -490,16 +474,25 @@ html[data-mode="dark"] .ss-pd-glass::before,html[data-mode="dark"] .ss-pd-glassw
 .ss-pd-ap{background:#1C2229;color:#FFFFFF;}
 .ss-pd-ap:hover{background:#000000;color:#FFFFFF;}
 .ss-pd-var-check{position:absolute;top:8px;right:8px;display:flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:999px;background:#FBB255;color:#1C2229;box-shadow:0 2px 8px rgba(19,44,67,.08);}
-.ss-pd-tab{display:inline-flex;align-items:center;gap:6px;padding:12px 2px;font-size:15px;font-weight:600;color:var(--ss-text-secondary,#3D4750);text-decoration:none;border-bottom:2px solid transparent;}
-.ss-pd-tab:hover{color:var(--ss-hover-text,#A4600C);border-bottom-color:var(--ss-hover-text,#A4600C);}
-.ss-pd-tab[data-on="true"]{color:var(--ss-text-heading,#0B1F33);border-bottom-color:#FBB255;}
+.ss-pd-tab{display:inline-flex;align-items:center;gap:6px;padding:16px 2px;font-size:15px;font-weight:600;color:var(--ss-text-secondary,#3D4750);text-decoration:none;position:relative;}.ss-pd-tab::after{content:"";position:absolute;left:2px;right:2px;bottom:0;height:3px;border-radius:3px 3px 0 0;background:#FBB255;transform:scaleX(0);transform-origin:center;transition:transform .2s cubic-bezier(.22,.61,.36,1);}
+@media (prefers-reduced-motion:reduce){.ss-pd-tab::after{transition:none;}}
+.ss-pd-tab:hover{color:var(--ss-hover-text,#A4600C);}@media (hover:hover) and (pointer:fine){.ss-pd-tab:hover::after{transform:scaleX(1);}}
+.ss-pd-tab[data-on="true"]{color:var(--ss-text-heading,#0B1F33);}.ss-pd-tab[data-on="true"]::after{transform:scaleX(1);}
 .ss-pd-qnav{scrollbar-width:none;}
 .ss-pd-qnav::-webkit-scrollbar{display:none;}
 .ss-pd-qnav .ss-pd-tab{white-space:nowrap;flex:none;}
 .ss-pd-tab:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
-.ss-pd-faq{display:flex;align-items:center;justify-content:space-between;gap:16px;width:100%;text-align:left;padding:18px 0;border:0;border-bottom:1px solid var(--ss-border-subtle,#E1E6EB);background:none;cursor:pointer;font-family:inherit;}
-.ss-pd-faq:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
-.ss-pd-faq:hover span:first-child,.ss-pd-faq:hover svg{color:var(--ss-hover-text,#A4600C);}
+.ss-pd-tocbar{background:rgba(255,255,255,.55);-webkit-backdrop-filter:blur(20px) saturate(180%);backdrop-filter:blur(20px) saturate(180%);border-bottom:0!important;box-shadow:inset 0 8px 10px -6px rgba(19,44,67,.16);}
+.ss-pd-tocbar::before,.ss-pd-tocbar::after{content:"";position:absolute;left:0;right:0;top:100%;pointer-events:none;}
+.ss-pd-tocbar::before{height:12px;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);-webkit-mask-image:linear-gradient(180deg,#000 0%,transparent 100%);mask-image:linear-gradient(180deg,#000 0%,transparent 100%);}
+.ss-pd-tocbar::after{height:24px;-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px);-webkit-mask-image:linear-gradient(180deg,#000 0%,transparent 100%);mask-image:linear-gradient(180deg,#000 0%,transparent 100%);}
+html[data-mode="dark"] .ss-pd-tocbar{background:rgba(14,31,47,.55);box-shadow:inset 0 8px 10px -6px rgba(0,0,0,.5);}
+.ss-pd-stchips::-webkit-scrollbar{display:none;}
+@media (max-width:819px){.ss-pd-toc{position:relative;flex-wrap:nowrap!important;overflow-x:auto;overscroll-behavior-x:contain;scrollbar-width:none;margin:0 -16px;padding:0 16px;}.ss-pd-toc::-webkit-scrollbar{display:none;}.ss-pd-toc .ss-pd-tab{white-space:nowrap;flex:none;}}
+/* bg m 1 (pojmenovaný podklad, viz CLAUDE.md) — liché sekce detailu */
+.ss-bg-m1{background-color:var(--ss-surface-page,#FFFFFF)!important;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .55 0 0 0 0 .35 0 0 0 0 .1 0 0 0 .07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),radial-gradient(ellipse 80% 55% at 50% 100%,rgba(251,178,85,.16) 0%,rgba(251,178,85,.06) 45%,rgba(251,178,85,0) 80%)!important;background-size:220px 220px,auto!important;background-repeat:repeat,no-repeat!important;background-position:0 0,center!important;}
+html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .85 0 0 0 0 .9 0 0 0 0 1 0 0 0 .06 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),radial-gradient(ellipse 80% 55% at 50% 100%,rgba(251,178,85,.12) 0%,rgba(251,178,85,.04) 45%,rgba(251,178,85,0) 80%)!important;}
+.ss-pd-tab-i{color:var(--ss-link,#296093);transition:color .12s cubic-bezier(.22,.61,.36,1);}.ss-pd-tab:hover .ss-pd-tab-i{color:inherit;}.ss-pd-tab[data-on="true"] .ss-pd-tab-i{color:#A4600C;}html[data-mode="dark"] .ss-pd-tab[data-on="true"] .ss-pd-tab-i{color:#FBB255;}
 .ss-pd-lbth{display:block;width:72px;height:56px;flex:none;border:0;padding:0;border-radius:8px;overflow:hidden;background:#12202D;cursor:pointer;opacity:.55;}
 .ss-pd-lbth[aria-current="true"]{opacity:1;box-shadow:inset 0 0 0 2px #FFFFFF;}
 .ss-pd-lbth:hover{opacity:1;}
@@ -579,10 +572,10 @@ html[data-mode="dark"] .ss-pd-glass::before,html[data-mode="dark"] .ss-pd-glassw
             <sc-if value="{{ wideGallery }}" hint-placeholder-val="{{ true }}">
             <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px">
               <button type="button" class="ss-pd-ph" style="aspect-ratio:4/3" onClick="{{ openSub1 }}" aria-label="MULTI BENE v ložnici s komodou a vínovým přehozem">
-                <img decoding="async" src="levita-loznice-komoda.jpg" alt="MULTI BENE v ložnici s komodou a vínovým přehozem" style="width:100%;height:100%;object-fit:cover;display:block" />
+                <img decoding="async" src="/_blob/5d284e9d65729ad7719aa1d43749b751" alt="MULTI BENE v ložnici s komodou a vínovým přehozem" style="width:100%;height:100%;object-fit:cover;display:block" />
               </button>
               <button type="button" class="ss-pd-ph" style="aspect-ratio:4/3;background:#FFFFFF" onClick="{{ openSub2 }}" aria-label="Schéma rozměrů postele MULTI BENE">
-                <img decoding="async" src="levita-schema-rozmeru.webp" alt="Schéma rozměrů postele MULTI BENE" style="width:100%;height:100%;object-fit:contain;display:block" />
+                <img decoding="async" src="/_blob/e334b477f4cdda9c9ebd7473bab882be" alt="Schéma rozměrů postele MULTI BENE" style="width:100%;height:100%;object-fit:contain;display:block" />
               </button>
             </div>
             </sc-if>
@@ -687,7 +680,7 @@ html[data-mode="dark"] .ss-pd-glass::before,html[data-mode="dark"] .ss-pd-glassw
                   <button type="button" class="ss-pd-cs-info" aria-label="Informace o vlastním rozměru" aria-expanded="{{ csInfoExp }}" aria-controls="ss-pd-cs-info" onClick="{{ toggleCsInfo }}"><dc-import name="Ikony" iconName="info-circle" size="22" hint-size="22px,22px"></dc-import></button>
                 </div>
                 <sc-if value="{{ csInfo }}" hint-placeholder-val="{{ false }}">
-                  <p id="ss-pd-cs-info" style="margin:0;display:flex;gap:10px;padding:12px 16px;border-radius:6px;background:var(--ss-surface-page,#FFFFFF);font-size:14px;line-height:1.55;color:var(--ss-text-secondary,#3D4750)">Kvůli změnám rozměrů se může změnit dodací lhůta a cena. O všem vás budeme informovat e-mailem.</p>
+                  <p id="ss-pd-cs-info" style="margin:0;display:flex;justify-content:flex-start;text-align:left;gap:10px;padding:12px 16px;border-radius:6px;background:var(--ss-surface-page,#FFFFFF);font-size:14px;line-height:1.55;color:var(--ss-text-secondary,#3D4750)">Kvůli změnám rozměrů se může změnit dodací lhůta a cena. O všem vás budeme informovat e-mailem.</p>
                 </sc-if>
                 <sc-if value="{{ csOn }}" hint-placeholder-val="{{ false }}">
                   <div id="ss-pd-cs-form" style="display:flex;flex-direction:column;gap:12px">
@@ -820,9 +813,9 @@ html[data-mode="dark"] .ss-pd-glass::before,html[data-mode="dark"] .ss-pd-glassw
             <a href="#komplety" style="{{ setBannerStyle }}">
               <sc-if value="{{ setNotS4 }}" hint-placeholder-val="{{ true }}">
               <span style="display:flex;align-items:center;gap:8px;flex:none">
-                <img decoding="async" src="produkt-valentina-ultrafresh.webp" alt="" style="display:block;width:64px;height:48px;object-fit:contain" />
+                <img decoding="async" src="/_blob/bc7007f08af1d6737c56db995538cb91" alt="" style="display:block;width:64px;height:48px;object-fit:contain" />
                 <span style="font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:26px;line-height:1;color:var(--ss-status-error,#B3261E)">+</span>
-                <img decoding="async" src="produkt-rost-lamelovy.webp" alt="" style="display:block;width:64px;height:48px;object-fit:contain" />
+                <img decoding="async" src="/_blob/7d9234acbe0f59bf374b86101ea80224" alt="" style="display:block;width:64px;height:48px;object-fit:contain" />
               </span>
               </sc-if>
               <sc-if value="{{ setIsS4 }}" hint-placeholder-val="{{ false }}">
@@ -866,43 +859,45 @@ html[data-mode="dark"] .ss-pd-glass::before,html[data-mode="dark"] .ss-pd-glassw
       </div>
     </section>
 
-    <nav aria-label="Obsah produktu" style="position:sticky;top:{{ tocTop }};transition:top .4s cubic-bezier(.22,.61,.36,1);z-index:100;box-shadow:0 2px 8px rgba(19,44,67,.08);width:100%;border-top:1px solid var(--ss-border-subtle,#E1E6EB);border-bottom:1px solid var(--ss-border-subtle,#E1E6EB);background:var(--ss-surface-page,#FFFFFF)">
+    <nav aria-label="Obsah produktu" class="ss-pd-tocbar" style="position:sticky;top:{{ tocTop }};transition:top .4s cubic-bezier(.22,.61,.36,1);z-index:100;width:100%;border-bottom:1px solid var(--ss-border-subtle,#E1E6EB)">
       <div style="{{ inner }}">
-        <div style="display:flex;flex-wrap:wrap;gap:8px 28px">
+        <div class="ss-pd-toc" style="display:flex;flex-wrap:wrap;gap:8px 28px">
           <sc-for list="{{ anchors }}" as="a" hint-placeholder-count="6">
-            <a class="ss-pd-tab" href="{{ a.href }}" data-on="{{ a.on }}" aria-current="{{ a.current }}" onClick="{{ a.go }}">{{ a.label }}</a>
+            <a class="ss-pd-tab" href="{{ a.href }}" data-on="{{ a.on }}" aria-current="{{ a.current }}" onClick="{{ a.go }}"><span class="ss-pd-tab-i" style="display:flex;flex:none" aria-hidden="true"><dc-import name="Ikony" iconName="{{ a.icon }}" size="18" hint-size="18px,18px"></dc-import></span>{{ a.label }}</a>
           </sc-for>
         </div>
       </div>
     </nav>
 
-    <section id="popis" style="width:100%;background:transparent">
+    <section id="popis" class="ss-bg-m1" style="width:100%">
       <div style="{{ innerPadded }}">
         <div style="display:grid;grid-template-columns:{{ descTemplate }};gap:{{ topGap }};align-items:start">
           <div style="min-width:0;display:flex;flex-direction:column;gap:20px">
             <h2 style="margin:0;font-size:{{ h2Size }};line-height:1.15">Vyrobeno v České republice a navrženo našimi designéry</h2>
             <p style="margin:0;font-size:16px;line-height:1.7;color:var(--ss-text-secondary,#3D4750)">Dřevěná postel MULTI BENE působí díky kombinaci masivního dřeva a čalounění velmi elegantně a současně robustně a pevně. Představuje čisté řešení ložnice, ve které je postel perfektně sladěná s nočními stolky se zásuvkami, jež jsou součástí čela postele. Mezi čalouněnými opěrkami v čele vyniká působivá dřevěná „mozaika“, která dotváří celkový dojem.</p>
-            <img decoding="async" src="levita-loznice-komoda.jpg" alt="Postel MULTI BENE v ložnici z dubového masivu" style="display:block;width:100%;border-radius:12px" />
+            <img decoding="async" src="/_blob/5d284e9d65729ad7719aa1d43749b751" alt="Postel MULTI BENE v ložnici z dubového masivu" style="display:block;width:100%;border-radius:12px" />
           </div>
           <div style="min-width:0;display:flex;flex-direction:column;gap:16px">
             <h3 style="margin:0;font-size:{{ h3Size }};line-height:1.2">Parametry</h3>
-            <table style="width:100%;border-collapse:collapse;font-size:14px">
-              <tbody>
-                <sc-for list="{{ params }}" as="p" hint-placeholder-count="10">
-                  <tr style="background:{{ p.bg }}">
-                    <th scope="row" style="text-align:left;font-weight:600;color:var(--ss-text-primary,#1C2229);padding:10px 12px;width:46%">{{ p.label }}</th>
-                    <td style="color:var(--ss-text-secondary,#3D4750);padding:10px 12px">{{ p.value }}</td>
-                  </tr>
-                </sc-for>
-              </tbody>
-            </table>
+            <div class="ss-elev" style="background:var(--ss-surface-card,#FFFFFF);border-radius:12px;padding:8px 24px">
+              <table style="width:100%;border-collapse:collapse;font-size:14px">
+                <tbody>
+                  <sc-for list="{{ params }}" as="p" hint-placeholder-count="10">
+                    <tr style="border-bottom:{{ p.border }}">
+                      <th scope="row" style="text-align:left;font-weight:600;color:var(--ss-text-primary,#1C2229);padding:12px 16px 12px 0;width:46%;vertical-align:top">{{ p.label }}</th>
+                      <td style="color:var(--ss-text-secondary,#3D4750);padding:12px 0;vertical-align:top">{{ p.value }}</td>
+                    </tr>
+                  </sc-for>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="prednosti" style="width:100%;background:transparent">
-      <div style="{{ innerTight }}">
+    <section id="prednosti" style="width:100%;background:var(--ss-surface-page,#FFFFFF)">
+      <div style="{{ innerPadded }}">
         <div style="display:grid;grid-template-columns:{{ descTemplate }};gap:{{ topGap }};align-items:start">
           <div style="min-width:0;display:flex;flex-direction:column;gap:20px">
             <h2 style="margin:0;font-size:{{ h2Size }};line-height:1.15">Hlavní přednosti</h2>
@@ -916,19 +911,19 @@ html[data-mode="dark"] .ss-pd-glass::before,html[data-mode="dark"] .ss-pd-glassw
             </ul>
           </div>
           <div style="min-width:0">
-            <img decoding="async" src="levita-schema-rozmeru.webp" alt="Schéma rozměrů postele MULTI BENE v provedení 180 × 200 cm" style="display:block;width:100%;border-radius:12px;background:var(--ss-surface-subtle,#FAF5EF)" />
+            <img decoding="async" src="/_blob/e334b477f4cdda9c9ebd7473bab882be" alt="Schéma rozměrů postele MULTI BENE v provedení 180 × 200 cm" style="display:block;width:100%;border-radius:12px;background:var(--ss-surface-subtle,#FAF5EF)" />
           </div>
         </div>
       </div>
     </section>
 
-    <section id="materialy" style="width:100%;background:var(--ss-surface-subtle,#FAF5EF)">
+    <section id="materialy" class="ss-bg-m1" style="width:100%">
       <div style="{{ innerPadded }}">
         <div style="display:grid;grid-template-columns:{{ descTemplate }};gap:{{ topGap }};align-items:center">
           <div style="min-width:0;display:flex;flex-direction:column;gap:32px">
+            <h2 style="margin:0;font-size:{{ h2Size }};line-height:1.15">Materiály</h2>
             <div style="display:flex;flex-direction:column;gap:8px">
-              <h2 style="margin:0;font-size:{{ h2Size }};line-height:1.15">Materiály</h2>
-              <span style="font-size:17px;font-weight:600">Kvalitní dřevo — masiv</span>
+              <h3 style="margin:0;font-size:{{ h3Size }};line-height:1.2">Kvalitní dřevo — masiv</h3>
               <p style="margin:0;font-size:15px;line-height:1.6;color:var(--ss-text-secondary,#3D4750)">Buk jádrový, divoký jasan nebo dub z českých lesů, s certifikací PEFC. Dřevotřísku tu nenajdete.</p>
             </div>
             <div style="display:flex;flex-direction:column;gap:8px">
@@ -941,36 +936,32 @@ html[data-mode="dark"] .ss-pd-glass::before,html[data-mode="dark"] .ss-pd-glassw
             </div>
           </div>
           <div style="min-width:0;display:flex;flex-direction:column;gap:16px">
-            <img decoding="async" src="levita-detail-ramu.jpg" alt="Detail masivního rámu postele MULTI BENE" style="display:block;width:100%;border-radius:12px" />
+            <img decoding="async" src="/_blob/70effb58e28fd2449c59b5d4beb57cbd" alt="Detail masivního rámu postele MULTI BENE" style="display:block;width:100%;border-radius:12px" />
             <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px">
-              <img decoding="async" src="levita-mozaika-v-cele.jpg" alt="Detail dřevěné mozaiky v čele postele" style="display:block;width:100%;border-radius:12px" />
-              <img decoding="async" src="levita-vzornik-latek-kronos.jpg" alt="Vzorník čalounických látek Kronos" style="display:block;width:100%;border-radius:12px" />
+              <img decoding="async" src="/_blob/b063f85293a9bbca2a4787911ec6fd73" alt="Detail dřevěné mozaiky v čele postele" style="display:block;width:100%;border-radius:12px" />
+              <img decoding="async" src="/_blob/0fe9fb83b34eb082696b1cc067e4fc91" alt="Vzorník čalounických látek Kronos" style="display:block;width:100%;border-radius:12px" />
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="doplnky" style="width:100%;background:transparent">
+    <section id="doplnky" class="ss-bg-m1" style="width:100%">
       <div style="{{ innerPadded }}">
-        <div style="display:flex;flex-direction:column;gap:8px;align-items:center;text-align:center;margin-bottom:32px">
-          <h2 style="margin:0;font-size:{{ h2Size }};line-height:1.15">Vyberte si z naší nabídky i další produkty, ať máte svou novou postel kompletní</h2>
-          <span style="font-size:15px;color:var(--ss-text-secondary,#3D4750)">Nakupte současně se slevou až 20 %</span>
-        </div>
-        <div style="display:grid;grid-template-columns:{{ tilesTemplate }};gap:20px">
-          <sc-for list="{{ addons }}" as="a" hint-placeholder-count="3">
-            <a href="{{ a.href }}" style="display:flex;flex-direction:column;gap:10px;text-decoration:none;color:var(--ss-text-primary,#1C2229)">
-              <img decoding="async" src="{{ a.src }}" alt="" style="display:block;width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:12px" />
-              <span style="font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:22px;text-transform:uppercase">{{ a.title }}</span>
-              <span style="font-size:14px;color:var(--ss-text-secondary,#3D4750)">{{ a.note }}</span>
-            </a>
-          </sc-for>
+        <div style="display:grid;grid-template-columns:{{ descTemplate }};gap:{{ topGap }};align-items:center">
+          <div style="min-width:0;display:flex;flex-direction:column;gap:16px">
+            <h2 style="margin:0;font-size:{{ h2Size }};line-height:1.15">Vyberte si z naší nabídky i další produkty, ať máte svou novou postel kompletní</h2>
+            <p style="margin:0;font-size:16px;line-height:1.65;color:var(--ss-text-secondary,#3D4750);text-wrap:pretty">Nakupte současně se slevou až 20 %</p>
+          </div>
+          <div style="min-width:0">
+            <dc-import name="VypisKategorii" variant="vystup" columns="3" items="{{ addonTiles }}" hint-size="100%,260px"></dc-import>
+          </div>
         </div>
       </div>
     </section>
 
-    <section id="na-miru" style="width:100%;background:transparent">
-      <div style="{{ innerTight }}">
+    <section id="na-miru" class="ss-bg-m1" style="width:100%">
+      <div style="{{ innerPadded }}">
         <div style="display:grid;grid-template-columns:{{ descTemplate }};gap:{{ topGap }};align-items:center">
           <div style="min-width:0;display:flex;flex-direction:column;gap:20px">
             <h2 style="margin:0;font-size:{{ h2Size }};line-height:1.15">Masivní postel na míru</h2>
@@ -986,13 +977,13 @@ html[data-mode="dark"] .ss-pd-glass::before,html[data-mode="dark"] .ss-pd-glassw
             <div><dc-import name="Tlacitko" label="Ložnice na míru" variant="primary" size="large" href="#loznice-na-miru" hint-size="200px,52px"></dc-import></div>
           </div>
           <div style="min-width:0">
-            <img decoding="async" src="levita-loznice-koberec.jpg" alt="Ložnice s postelí MULTI BENE upravenou na míru" style="display:block;width:100%;border-radius:12px" />
+            <img decoding="async" src="/_blob/827bda76a4305353740be28bd19199c5" alt="Ložnice s postelí MULTI BENE upravenou na míru" style="display:block;width:100%;border-radius:12px" />
           </div>
         </div>
       </div>
     </section>
 
-    <section id="hodnoceni" style="width:100%;background:transparent">
+    <section id="hodnoceni" style="width:100%;background:var(--ss-surface-page,#FFFFFF)">
       <div style="{{ innerPadded }}">
         <div style="display:grid;grid-template-columns:{{ reviewTemplate }};gap:{{ topGap }};align-items:start">
           <div style="min-width:0;display:flex;flex-direction:column;gap:24px">
@@ -1048,31 +1039,15 @@ html[data-mode="dark"] .ss-pd-glass::before,html[data-mode="dark"] .ss-pd-glassw
       </div>
     </section>
 
-    <section id="faq" style="width:100%;background:transparent">
-      <div style="{{ innerTight }}">
-        <div style="max-width:900px;display:flex;flex-direction:column;gap:16px">
-          <h2 style="margin:0;font-size:{{ h2Size }};line-height:1.15">Časté dotazy našich spáčů</h2>
-          <div style="display:flex;flex-direction:column;border-top:1px solid var(--ss-border-subtle,#E1E6EB)">
-            <sc-for list="{{ faqs }}" as="q" hint-placeholder-count="3">
-              <div>
-                <button type="button" class="ss-pd-faq" onClick="{{ q.onToggle }}" aria-expanded="{{ q.expanded }}">
-                  <span style="font-size:16px;font-weight:600;color:var(--ss-text-primary,#1C2229)">{{ q.question }}</span>
-                  <span style="display:flex;align-items:center;justify-content:center;width:36px;height:36px;flex:none;border-radius:999px;background:{{ q.iconBg }};color:var(--ss-text-primary,#1C2229)"><dc-import name="Ikony" iconName="{{ q.icon }}" size="20" hint-size="20px,20px"></dc-import></span>
-                </button>
-                <sc-if value="{{ q.open }}" hint-placeholder-val="{{ false }}">
-                  <p style="margin:0;padding:0 0 20px;font-size:15px;line-height:1.7;color:var(--ss-text-secondary,#3D4750);max-width:70ch">{{ q.answer }}</p>
-                </sc-if>
-              </div>
-            </sc-for>
-          </div>
-          <span style="font-size:15px;color:var(--ss-text-secondary,#3D4750)">Další často kladené otázky naleznete v sekci <a href="#faq-vse">FAQ</a>.</span>
-        </div>
+    <section id="faq" class="ss-bg-m1" style="width:100%">
+      <div style="{{ innerPadded }}">
+        <dc-import name="Faq" heading="Časté dotazy našich spáčů" items="{{ faqs }}" narrow="{{ faqNarrow }}" idPrefix="pd-faq" moreText="Další často kladené otázky naleznete v sekci" moreLabel="FAQ" moreHref="#faq-vse" hint-size="100%,420px"></dc-import>
       </div>
     </section>
 
     <section id="souvisejici" style="width:100%;background:transparent">
       <div style="{{ innerPadded }}">
-        <dc-import name="SouvisejiciProdukty" heading="Spáči ještě přikoupili" navPosition="below" hint-size="100%,560px"></dc-import>
+        <dc-import name="SouvisejiciProdukty" heading="Spáči ještě přikoupili" navPosition="belowPeek" hint-size="100%,560px"></dc-import>
       </div>
     </section>
   </main>
@@ -1086,7 +1061,7 @@ html[data-mode="dark"] .ss-pd-glass::before,html[data-mode="dark"] .ss-pd-glassw
           <div style="display:grid;grid-template-columns:minmax(0,1fr) auto auto;align-items:center;gap:8px 24px;padding:10px 0">
             <div style="display:flex;flex-direction:column;gap:2px;min-width:0">
               <div style="display:flex;align-items:center;gap:16px;min-width:0">
-                <img decoding="async" src="produkt-postel-levita.webp" alt="" style="width:64px;height:48px;object-fit:cover;border-radius:6px;flex:none;background:var(--ss-surface-subtle,#FAF5EF)" />
+                <img decoding="async" src="/_blob/6b546453dfb90e0ec7ddb488eed7e6ec" alt="" style="width:64px;height:48px;object-fit:cover;border-radius:6px;flex:none;background:var(--ss-surface-subtle,#FAF5EF)" />
                 <span style="font-size:15px;font-weight:600;line-height:1.3;color:var(--ss-text-primary,#1C2229);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Modulární postel z masivu MULTI BENE</span>
               </div>
               <span style="display:flex;flex-wrap:wrap;gap:6px;margin-top:4px">
@@ -1113,6 +1088,17 @@ html[data-mode="dark"] .ss-pd-glass::before,html[data-mode="dark"] .ss-pd-glassw
         <sc-if value="{{ stickyNarrow }}" hint-placeholder-val="{{ false }}">
           <div style="display:flex;flex-direction:column;gap:8px;padding:10px 0">
             <span style="font-size:14px;font-weight:600;line-height:1.3;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Modulární postel z masivu MULTI BENE</span>
+            <div class="ss-pd-stchips" style="display:flex;align-items:center;gap:6px;overflow-x:auto;scrollbar-width:none;white-space:nowrap;margin:0 -16px;padding:0 16px">
+              <span style="display:inline-flex;align-items:center;gap:6px;flex:none;font-size:13px;color:var(--ss-status-success,#157A41);margin-right:4px"><span style="width:8px;height:8px;border-radius:999px;background:#157A41;flex:none"></span>Skladem</span>
+              <sc-for list="{{ stickyChips }}" as="ch" hint-placeholder-count="4">
+                <span style="display:inline-flex;align-items:center;gap:6px;flex:none;height:24px;padding:0 10px;border-radius:999px;background:var(--ss-surface-subtle,#FAF5EF);box-shadow:inset 0 0 0 1px var(--ss-border-subtle,#E1E6EB);font-size:13px;color:var(--ss-text-secondary,#3D4750)">
+                  <sc-if value="{{ ch.hasSwatch }}" hint-placeholder-val="{{ false }}">
+                    <span style="width:10px;height:10px;border-radius:999px;flex:none;box-shadow:inset 0 0 0 1px rgba(19,44,67,.18);background:{{ ch.color }}"></span>
+                  </sc-if>
+                  <span>{{ ch.label }}</span>
+                </span>
+              </sc-for>
+            </div>
             <div style="display:flex;align-items:center;gap:16px">
               <div style="display:flex;flex-direction:column;gap:4px;min-width:0;flex:1">
                 <div style="display:flex;flex-wrap:wrap;align-items:baseline;gap:10px">
@@ -1121,7 +1107,6 @@ html[data-mode="dark"] .ss-pd-glass::before,html[data-mode="dark"] .ss-pd-glassw
                   </sc-if>
                   <span style="font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:24px;line-height:1">{{ price }}</span>
                 </div>
-                <span style="display:flex;align-items:center;gap:6px;font-size:13px;color:var(--ss-status-success,#157A41)"><span style="width:8px;height:8px;border-radius:999px;background:#157A41;flex:none"></span>Skladem</span>
               </div>
               <dc-import name="Tlacitko" label="Do košíku" variant="buy" size="large" onClick="{{ onBuy }}" hint-size="150px,52px"></dc-import>
             </div>
@@ -1133,7 +1118,7 @@ html[data-mode="dark"] .ss-pd-glass::before,html[data-mode="dark"] .ss-pd-glassw
 
   <dc-import name="VariantaDrawer" open="{{ drawerOpen }}" title="{{ drawerTitle }}" note="{{ drawerNote }}" value="{{ drawerValue }}" groups="{{ drawerGroups }}" rows="{{ drawerRows }}" onPick="{{ onDrawerPick }}" onClose="{{ closeDrawer }}" hint-size="0px,0px"></dc-import>
 
-  <dc-import name="KosikPridanoModal" open="{{ addedOpen }}" title="Postel MULTI BENE" qty="{{ qty }}" variant="{{ addedVariant }}" image="produkt-postel-levita.webp" stockKind="onWay" stockLabel="Vyrobíme během 2–4 týdnů" total="{{ addedTotal }}" onClose="{{ closeAdded }}" hint-size="0px,0px"></dc-import>
+  <dc-import name="KosikPridanoModal" open="{{ addedOpen }}" title="Postel MULTI BENE" qty="{{ qty }}" variant="{{ addedVariant }}" image="/_blob/6b546453dfb90e0ec7ddb488eed7e6ec" stockKind="onWay" stockLabel="Vyrobíme během 2–4 týdnů" total="{{ addedTotal }}" onClose="{{ closeAdded }}" hint-size="0px,0px"></dc-import>
 
   <sc-if value="{{ customOpen }}" hint-placeholder-val="{{ false }}">
     <div class="ss-scrim" style="position:fixed;inset:0;z-index:500;display:flex;align-items:safe center;justify-content:center;overflow-y:auto;padding:24px 16px" onClick="{{ onCustomBackdrop }}">
@@ -1167,11 +1152,11 @@ html[data-mode="dark"] .ss-pd-glass::before,html[data-mode="dark"] .ss-pd-glassw
                 <span>Facebook</span>
               </a>
               <a class="ss-pd-soc ss-pd-gg" href="#registrace-google">
-                <img decoding="async" src="logo-google.svg" alt="" aria-hidden="true" style="display:block;width:20px;height:20px" />
+                <img decoding="async" src="/_blob/8e388f9e29b9442880ecdcf7e62aa9cc" alt="" aria-hidden="true" style="display:block;width:20px;height:20px" />
                 <span>Google</span>
               </a>
               <a class="ss-pd-soc ss-pd-sz" href="#registrace-seznam">
-                <img decoding="async" src="logo-seznam-znak.svg" alt="" aria-hidden="true" style="display:block;width:22px;height:22px;object-fit:contain;filter:brightness(0) invert(1)" />
+                <img decoding="async" src="/_blob/8edc6c2c2895278a238bb3dbb1819e6b" alt="" aria-hidden="true" style="display:block;width:22px;height:22px;object-fit:contain;filter:brightness(0) invert(1)" />
                 <span>Seznam</span>
               </a>
               <a class="ss-pd-soc ss-pd-ap" href="#registrace-apple">
@@ -1238,17 +1223,28 @@ html[data-mode="dark"] .ss-pd-glass::before,html[data-mode="dark"] .ss-pd-glassw
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:1000},&quot;zobrazitVarianty&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;fixniSloupec&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;nakup&quot;,&quot;options&quot;:[&quot;nakup&quot;,&quot;galerie&quot;,&quot;zadny&quot;],&quot;tsType&quot;:&quot;string&quot;},&quot;ukazatVideo&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;},&quot;stickyLista&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;}}">
 class Component extends DCLogic {
+  // Lišta obsahu pod 820 px: vodorovný scroll, aktivní položka se posune na začátek
+  scrollToc(id) {
+    try {
+      if (document.documentElement.clientWidth >= 820) return;
+      const box = document.querySelector('.ss-pd-toc');
+      const el = box && box.querySelector('a[href="#' + id + '"]');
+      if (!el) return;
+      const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      box.scrollTo({ left: Math.max(0, el.offsetLeft - 16), behavior: reduce ? 'auto' : 'smooth' });
+    } catch (e) {}
+  }
   PHOTOS = [
-    { src: 'produkt-postel-levita.webp', alt: 'Postel MULTI BENE z dubového masivu s nočními stolky', lifestyle: true },
-    { src: 'levita-loznice-komoda.jpg', alt: 'MULTI BENE v ložnici s komodou a vínovým přehozem', lifestyle: true },
-    { src: 'levita-loznice-koberec.jpg', alt: 'MULTI BENE ve světlé ložnici s kobercem', lifestyle: true },
-    { src: 'levita-mozaika-v-cele.jpg', alt: 'Detail dřevěné mozaiky mezi čalouněnými opěrkami' },
-    { src: 'levita-nocni-stolek-v-cele.jpg', alt: 'Noční stolek se zásuvkou jako součást čela postele' },
-    { src: 'levita-detail-ramu.jpg', alt: 'Detail „levitujícího“ rámu postele' },
-    { src: 'levita-nastavitelna-noha.jpg', alt: 'Detail nastavitelné nohy postele' },
-    { src: 'levita-ulozny-prostor.jpg', alt: 'Postel v kombinaci s úložným prostorem' },
-    { src: 'levita-schema-rozmeru.webp', alt: 'Schéma rozměrů postele MULTI BENE', fit: 'contain' },
-    { src: 'levita-vzornik-latek-kronos.jpg', alt: 'Vzorník čalounických látek Kronos', fit: 'contain' }
+    { src: '/_blob/6b546453dfb90e0ec7ddb488eed7e6ec', alt: 'Postel MULTI BENE z dubového masivu s nočními stolky', lifestyle: true },
+    { src: '/_blob/5d284e9d65729ad7719aa1d43749b751', alt: 'MULTI BENE v ložnici s komodou a vínovým přehozem', lifestyle: true },
+    { src: '/_blob/827bda76a4305353740be28bd19199c5', alt: 'MULTI BENE ve světlé ložnici s kobercem', lifestyle: true },
+    { src: '/_blob/b063f85293a9bbca2a4787911ec6fd73', alt: 'Detail dřevěné mozaiky mezi čalouněnými opěrkami' },
+    { src: '/_blob/42c46d7f99e215e0f2807071fa8d63f4', alt: 'Noční stolek se zásuvkou jako součást čela postele' },
+    { src: '/_blob/70effb58e28fd2449c59b5d4beb57cbd', alt: 'Detail „levitujícího“ rámu postele' },
+    { src: '/_blob/4b599019da08a9a4bd2f79cb1ce5592d', alt: 'Detail nastavitelné nohy postele' },
+    { src: '/_blob/27aac8085a87d891384dc315ddf4318d', alt: 'Postel v kombinaci s úložným prostorem' },
+    { src: '/_blob/e334b477f4cdda9c9ebd7473bab882be', alt: 'Schéma rozměrů postele MULTI BENE', fit: 'contain' },
+    { src: '/_blob/0fe9fb83b34eb082696b1cc067e4fc91', alt: 'Vzorník čalounických látek Kronos', fit: 'contain' }
   ];
   state = {
     width: typeof window !== 'undefined' ? document.documentElement.clientWidth : 1440,
@@ -1284,7 +1280,7 @@ class Component extends DCLogic {
       const line = (tn ? Math.max(0, tn.getBoundingClientRect().bottom) : (this.state.headerH || 0)) + 24;
       let act = '';
       for (const id of Component.SECTIONS) { const el = document.getElementById(id); if (el && el.getBoundingClientRect().top <= line) act = id; }
-      if (act !== this.state.activeSec) this.setState({ activeSec: act });
+      if (act !== this.state.activeSec) { this.setState({ activeSec: act }); this.scrollToc(act); }
     };
     window.addEventListener('scroll', this._scroll, { passive: true });
     this._measureHeader = () => {
@@ -1464,9 +1460,9 @@ class Component extends DCLogic {
     const discount = '−' + Math.round((1 - now / before) * 100) + ' %';
     const sizes = ['90 × 200 cm', '120 × 200 cm', '140 × 200 cm', '160 × 200 cm', '180 × 200 cm', '200 × 200 cm', '180 × 210 cm', '180 × 220 cm'];
     const variants = [
-      { label: 'MULTI BENE bez stolků', src: 'levita-loznice-komoda.jpg', stock: false },
-      { label: 'MULTI BENE s nočními stolky', src: 'produkt-postel-levita.webp', stock: true },
-      { label: 'MULTI BENE s úložným prostorem', src: 'levita-ulozny-prostor.jpg', stock: true }
+      { label: 'MULTI BENE bez stolků', src: '/_blob/5d284e9d65729ad7719aa1d43749b751', stock: false },
+      { label: 'MULTI BENE s nočními stolky', src: '/_blob/6b546453dfb90e0ec7ddb488eed7e6ec', stock: true },
+      { label: 'MULTI BENE s úložným prostorem', src: '/_blob/27aac8085a87d891384dc315ddf4318d', stock: true }
     ];
     const faqData = [
       { question: 'Za jak dlouho postel dorazí?', answer: 'Skladové varianty expedujeme do 24 hodin a doručíme zpravidla do pěti pracovních dnů. Postele vyráběné na zakázku, v atypickém rozměru nebo s netypickým odstínem oleje dokončíme do 4–7 týdnů. Přesný termín vám potvrdíme e-mailem hned po objednávce.' },
@@ -1527,8 +1523,8 @@ class Component extends DCLogic {
       openMain: () => this.openLightbox(i),
       narrowGallery: narrow, wideGallery: !narrow,
       thumbs: PH.map((p, k) => ({ src: p.src || '', isPhoto: !p.video, isVideo: !!p.video, aria: (p.video ? 'Zobrazit video' : 'Zobrazit fotku ' + (k + 1)) + ' z ' + n, current: k === i ? 'true' : undefined, ring: k === i ? 'inset 0 0 0 2px #296093' : 'none', pick: () => this.setState({ photo: k }) })),
-      openSub1: () => this.openLightbox(Math.max(0, this.photos().findIndex(p => p.src === 'levita-loznice-komoda.jpg'))),
-      openSub2: () => this.openLightbox(Math.max(0, this.photos().findIndex(p => p.src === 'levita-schema-rozmeru.webp'))),
+      openSub1: () => this.openLightbox(Math.max(0, this.photos().findIndex(p => p.src === '/_blob/5d284e9d65729ad7719aa1d43749b751'))),
+      openSub2: () => this.openLightbox(Math.max(0, this.photos().findIndex(p => p.src === '/_blob/e334b477f4cdda9c9ebd7473bab882be'))),
       tiles: this.PHOTOS.filter((_, k) => k !== i).slice(0, 4).map(p => {
         const k = this.PHOTOS.indexOf(p);
         return { src: p.src, alt: p.alt, aria: 'Zvětšit fotku: ' + p.alt, onOpen: () => this.openLightbox(k) };
@@ -1712,12 +1708,12 @@ class Component extends DCLogic {
         { icon: 'duo-ruler-3', title: 'Úpravy na míru', text: 'vyrobíme na centimetr přesně' }
       ],
       anchors: [
-        { label: 'Popis a parametry', href: '#popis' },
-        { label: 'Hlavní přednosti', href: '#prednosti' },
-        { label: 'Materiály', href: '#materialy' },
-        { label: 'Hodnocení', href: '#hodnoceni' },
-        { label: 'Časté dotazy', href: '#faq' },
-        { label: 'Související produkty', href: '#souvisejici' }
+        { label: 'Popis a parametry', href: '#popis', icon: 'adjustments-horizontal' },
+        { label: 'Hlavní přednosti', href: '#prednosti', icon: 'award' },
+        { label: 'Materiály', href: '#materialy', icon: 'stack-2' },
+        { label: 'Hodnocení', href: '#hodnoceni', icon: 'star' },
+        { label: 'Časté dotazy', href: '#faq', icon: 'help-circle' },
+        { label: 'Související produkty', href: '#souvisejici', icon: 'package' }
       ].map(a => { const id = a.href.slice(1); const on = this.state.activeSec === id; return Object.assign(a, { current: on ? 'location' : undefined, on: on ? 'true' : 'false', go: (e) => { e.preventDefault(); this.goTo(id); } }); }),
       params: [
         ['Záruka', '5 let'],
@@ -1734,7 +1730,7 @@ class Component extends DCLogic {
         ['Výška čela u nohou', '45 cm'],
         ['Výška bočnice', '45 cm'],
         ['Uložení roštu', '12–19 cm (stavitelné)']
-      ].map((p, k) => ({ label: p[0] + ':', value: p[1], bg: k % 2 === 0 ? 'var(--ss-surface-subtle,#FAF5EF)' : 'var(--ss-surface-page,#FFFFFF)' })),
+      ].map((p, k, all) => ({ label: p[0] + ':', value: p[1], border: k < all.length - 1 ? '1px solid var(--ss-border-subtle,#E1E6EB)' : '0' })),
       perks: [
         { icon: 'map-pin', label: 'Vyrobena u nás v Česku' },
         { icon: 'package', label: 'Masivní dřevo z českých lesů' },
@@ -1748,9 +1744,14 @@ class Component extends DCLogic {
         { icon: 'calendar-time', label: 'Prodloužená záruka 5 let' }
       ],
       addons: [
-        { title: 'Matrace', note: 'Nakupte současně se slevou 10 %', href: '#matrace', src: 'levita-loznice-koberec.jpg' },
-        { title: 'Rošty', note: 'Nakupte současně se slevou 10 %', href: '#rosty', src: 'levita-nocni-stolek-v-cele.jpg' },
-        { title: 'Povlečení', note: 'Nakupte současně se slevou 20 %', href: '#povleceni', src: 'levita-loznice-komoda.jpg' }
+        { title: 'Matrace', note: 'Nakupte současně se slevou 10 %', href: '#matrace', src: '/_blob/827bda76a4305353740be28bd19199c5' },
+        { title: 'Rošty', note: 'Nakupte současně se slevou 10 %', href: '#rosty', src: '/_blob/42c46d7f99e215e0f2807071fa8d63f4' },
+        { title: 'Povlečení', note: 'Nakupte současně se slevou 20 %', href: '#povleceni', src: '/_blob/5d284e9d65729ad7719aa1d43749b751' }
+      ],
+      addonTiles: [
+        { label: 'Matrace', sub: ['Nakupte současně se slevou 10 %'], href: '#matrace', image: '/_blob/c5a374fbd36fa4495aacd11898012a93', zoom: true },
+        { label: 'Rošty', sub: ['Nakupte současně se slevou 10 %'], href: '#rosty', image: '/_blob/e58c131539e8ad6860c8e14b3cb0959a', zoom: true },
+        { label: 'Povlečení', sub: ['Nakupte současně se slevou 20 %'], href: '#povleceni', image: '/_blob/56aa44a9fe077e9955c51f753cc8f0e7' }
       ],
       customPoints: [
         { label: 'Postele, rošty i matrace na míru podle vašich potřeb s přesností na 1 mm' },
@@ -1776,14 +1777,8 @@ class Component extends DCLogic {
       moreReviewsLabel: this.state.moreReviews ? 'Skrýt hodnocení' : 'Zobrazit další hodnocení',
       moreReviewsIcon: this.state.moreReviews ? 'chevron-up' : 'chevron-down',
       toggleReviews: () => this.setState(s => ({ moreReviews: !s.moreReviews })),
-      faqs: faqData.map((q, k) => ({
-        question: q.question, answer: q.answer,
-        open: this.state.faq === k,
-        expanded: this.state.faq === k ? 'true' : 'false',
-        icon: this.state.faq === k ? 'x' : 'plus',
-        iconBg: this.state.faq === k ? '#EFF2F5' : '#F7F9FB',
-        onToggle: () => this.setState(s => ({ faq: s.faq === k ? -1 : k }))
-      })),
+      faqs: faqData.map(q => ({ question: q.question, answer: q.answer })),
+      faqNarrow: narrow,
       stickyOn: (this.props.stickyLista ?? true) && this.state.sticky && this.state.lb === null,
       stickyWide: w >= 820,
       stickyNarrow: w < 820,

@@ -188,14 +188,6 @@ main>section.ss-grad-top.ss-grad-glow{background-image:radial-gradient(ellipse 5
 html[data-mode="dark"] main>section.ss-grad-top.ss-grad-glow{background-image:radial-gradient(ellipse 55% 100% at 50% 100%,rgba(251,178,85,.14) 0%,rgba(251,178,85,.05) 45%,rgba(251,178,85,0) 75%),linear-gradient(180deg,var(--ss-surface-page,#0E1F2F) 0%,var(--ss-surface-muted,#183049) 100%)!important;}
 
 
-/* Scrollbar: jen táhlo v barvách webu, bez podkladu (platí globálně) */
-*{scrollbar-width:auto;scrollbar-color:var(--ss-scrollbar-thumb,#FBB255) transparent;}
-*::-webkit-scrollbar{width:15px;height:15px;background:transparent;}
-*::-webkit-scrollbar-track{background:transparent;}
-*::-webkit-scrollbar-thumb{background:var(--ss-scrollbar-thumb,#FBB255);border-radius:999px;border:4px solid transparent;background-clip:padding-box;}
-*::-webkit-scrollbar-thumb:hover{background:var(--ss-scrollbar-thumb-hover,#F09A2C);background-clip:padding-box;}
-*::-webkit-scrollbar-corner{background:transparent;}
-html[data-mode="dark"]{--ss-scrollbar-thumb:#FBB255;--ss-scrollbar-thumb-hover:#F09A2C;}
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400..700&family=Roboto:wght@400..700&display=swap" rel="stylesheet">
 <script>try{var d=document.documentElement;if(localStorage.getItem('ss-mode')==='dark')d.setAttribute('data-mode','dark');d.setAttribute('data-logo',localStorage.getItem('ss-logo')||'a');d.setAttribute('data-font-h','base');d.setAttribute('data-font-b','base');d.setAttribute('data-bg',localStorage.getItem('ss-bg')||'on');}catch(e){}</script>
@@ -216,9 +208,7 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
 .ss-ft-acc:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);border-radius:6px;}
 .ss-ft a.ss-ft-soc{display:inline-flex;align-items:center;justify-content:center;width:48px;height:48px;border-radius:999px;background:var(--ss-surface-page,#FFFFFF);color:var(--ss-link-hover,#21507B);box-shadow:inset 0 0 0 1px var(--ss-border-subtle,#E1E6EB);transition:background-color .12s cubic-bezier(.22,.61,.36,1),color .12s cubic-bezier(.22,.61,.36,1);}
 .ss-ft a.ss-ft-soc:hover{background:var(--ss-hover-bg,#FFF5E6);color:var(--ss-hover-text,#A4600C)}
-.ss-ft a.ss-ft-soc-fb{color:#1877F2;}
-.ss-ft a.ss-ft-soc-ig{color:#D6249F;}
-.ss-ft a.ss-ft-soc-yt{color:#FF0000;}
+.ss-ft a.ss-ft-soc-fb,.ss-ft a.ss-ft-soc-ig,.ss-ft a.ss-ft-soc-yt{color:var(--ss-text-apricot,#A4600C);}
 .ss-ft-soc:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
 @keyframes ss-ft-led{0%{box-shadow:0 0 0 0 rgba(21,122,65,.45);}70%{box-shadow:0 0 0 6px rgba(21,122,65,0);}100%{box-shadow:0 0 0 0 rgba(21,122,65,0);}}
 .ss-ft-led{display:inline-block;width:8px;height:8px;flex:none;border-radius:999px;background:#157A41;animation:ss-ft-led 1.8s cubic-bezier(.22,.61,.36,1) infinite;}
@@ -242,11 +232,9 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
 .ss-ft[data-theme="blue"] .ss-ft-acc{color:#FBB255;}
 .ss-ft[data-theme="blue"] .ss-ft-accrow{border-top-color:#21507B!important;}
 .ss-ft[data-theme="blue"] .ss-ft-accicon{color:#DCE8F2!important;}
-.ss-ft[data-theme="blue"] a.ss-ft-soc{box-shadow:inset 0 0 0 1px rgba(255,255,255,.35);}
-.ss-ft[data-theme="blue"] a.ss-ft-soc:hover{background:var(--ss-surface-selected,#DCE8F2);}
-.ss-ft[data-theme="blue"] a.ss-ft-soc-fb{color:#1877F2;}
-.ss-ft[data-theme="blue"] a.ss-ft-soc-ig{color:#D6249F;}
-.ss-ft[data-theme="blue"] a.ss-ft-soc-yt{color:#FF0000;}
+.ss-ft[data-theme="blue"] a.ss-ft-soc{background:#FFFFFF;box-shadow:inset 0 0 0 1px rgba(255,255,255,.35);}
+.ss-ft[data-theme="blue"] a.ss-ft-soc:hover{background:#FBB255;color:#21507B;}
+.ss-ft[data-theme="blue"] a.ss-ft-soc-fb,.ss-ft[data-theme="blue"] a.ss-ft-soc-ig,.ss-ft[data-theme="blue"] a.ss-ft-soc-yt{color:#21507B;}
 .ss-ft[data-theme="blue"] .ss-ft-paybar{background:#132C43;}
 .ss-ft[data-theme="blue"] .ss-ft-legal{background:#132C43;color:#DCE8F2;}
 .ss-ft[data-theme="blue"] .ss-ft-legal>div{border-top-color:#1A3E5F!important;}
@@ -265,7 +253,7 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
         <div style="display:flex;flex-direction:column;gap:16px">
           <h2 style="margin:0;font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:19px;color:var(--ss-text-apricot,#A4600C)">Jsme tu pro vás</h2>
           <div style="display:flex;align-items:center;gap:16px;min-width:0">
-            <img decoding="async" src="foto-specialistka-podpory.webp" alt="Spánková specialistka zákaznické podpory" style="width:72px;height:72px;flex:none;border-radius:999px;object-fit:cover;background:var(--ss-surface-muted,#F3EDE4);display:block" />
+            <img decoding="async" src="/_blob/74ef54af0e4db9a48d5a73d81d74cd71" alt="Spánková specialistka zákaznické podpory" style="width:72px;height:72px;flex:none;border-radius:999px;object-fit:cover;background:var(--ss-surface-muted,#F3EDE4);display:block" />
             <div style="display:flex;flex-direction:column;gap:2px;min-width:0">
               <a class="ss-ft-tel" href="tel:+420543212855" style="font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:21px;color:var(--ss-link,#296093)">+420 543 212 855</a>
               <span class="ss-ft-hours" style="display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--ss-text-muted,#5B6874)">
@@ -367,7 +355,7 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
       </div>
       <div style="{{ badgeWrapStyle }}">
         <a class="ss-ft-badge" href="#recenze" style="display:flex;border-radius:999px" aria-label="Ověřeno zákazníky — Heureka">
-          <img decoding="async" src="logo-heureka-overeno.png" alt="Ověřeno zákazníky — Heureka" style="display:block;width:76px;height:auto" />
+          <img decoding="async" src="/_blob/06133fd9e25dd5fa4207c7d268fc5b47" alt="Ověřeno zákazníky — Heureka" style="display:block;width:76px;height:auto" />
         </a>
       </div>
     </div>
@@ -457,8 +445,8 @@ class Component extends DCLogic {
       padPay: narrow ? '24px 16px 24px' : '32px 32px 32px',
       padLegal: narrow ? '20px 16px 28px' : '24px 32px 32px',
       delivery: [
-        { label: 'PPL', src: 'logo-ppl.svg' },
-        { label: 'Zásilkovna', src: 'logo-zasilkovna.svg' },
+        { label: 'PPL', src: '/_blob/716b3b5040a1b6246fb9f795e3e50ffe' },
+        { label: 'Zásilkovna', src: '/_blob/7cd71c054a02fc4a4aec2c2d9a736ec0' },
         { label: 'Vlastní doprava', icon: 'truck' },
         { label: 'Osobní odběr', icon: 'map-pin' }
       ].map(d => ({ label: d.label, src: d.src, icon: d.icon, isLogo: !!d.src, isIcon: !d.src })),
@@ -466,10 +454,10 @@ class Component extends DCLogic {
         { label: 'Převod', icon: 'coins' },
         { label: 'Dobírka', icon: 'coin' },
         { label: 'Hotově', icon: 'coin' },
-        { label: 'VISA / Mastercard', src: 'logo-visa-mastercard.svg' },
-        { label: 'Mastercard', src: 'logo-mastercard.svg' },
-        { label: 'Google Pay', src: 'logo-google-pay.svg' },
-        { label: 'Apple Pay', src: 'logo-apple-pay.svg' }
+        { label: 'VISA / Mastercard', src: '/_blob/d2e02f48c7c21cf75919a5f378eaa600' },
+        { label: 'Mastercard', src: '/_blob/5cb2adedc20785582a4ba678833c2278' },
+        { label: 'Google Pay', src: '/_blob/cd147266568c825a4bd1307aa053c17e' },
+        { label: 'Apple Pay', src: '/_blob/3b993d55123ae38f35df5a711fc08b34' }
       ].map(d => ({ label: d.label, src: d.src, icon: d.icon, isLogo: !!d.src, isIcon: !d.src }))
     };
   }

@@ -190,14 +190,6 @@ main>section.ss-grad-top.ss-grad-glow{background-image:radial-gradient(ellipse 5
 html[data-mode="dark"] main>section.ss-grad-top.ss-grad-glow{background-image:radial-gradient(ellipse 55% 100% at 50% 100%,rgba(251,178,85,.14) 0%,rgba(251,178,85,.05) 45%,rgba(251,178,85,0) 75%),linear-gradient(180deg,var(--ss-surface-page,#0E1F2F) 0%,var(--ss-surface-muted,#183049) 100%)!important;}
 
 
-/* Scrollbar: jen táhlo v barvách webu, bez podkladu (platí globálně) */
-*{scrollbar-width:auto;scrollbar-color:var(--ss-scrollbar-thumb,#FBB255) transparent;}
-*::-webkit-scrollbar{width:15px;height:15px;background:transparent;}
-*::-webkit-scrollbar-track{background:transparent;}
-*::-webkit-scrollbar-thumb{background:var(--ss-scrollbar-thumb,#FBB255);border-radius:999px;border:4px solid transparent;background-clip:padding-box;}
-*::-webkit-scrollbar-thumb:hover{background:var(--ss-scrollbar-thumb-hover,#F09A2C);background-clip:padding-box;}
-*::-webkit-scrollbar-corner{background:transparent;}
-html[data-mode="dark"]{--ss-scrollbar-thumb:#FBB255;--ss-scrollbar-thumb-hover:#F09A2C;}
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400..700&family=Roboto:wght@400..700&display=swap" rel="stylesheet">
 <script>try{var d=document.documentElement;if(localStorage.getItem('ss-mode')==='dark')d.setAttribute('data-mode','dark');d.setAttribute('data-logo',localStorage.getItem('ss-logo')||'a');d.setAttribute('data-font-h','base');d.setAttribute('data-font-b','base');d.setAttribute('data-bg',localStorage.getItem('ss-bg')||'on');}catch(e){}</script>
@@ -398,14 +390,6 @@ main>section.ss-grad-top.ss-grad-glow{background-image:radial-gradient(ellipse 5
 html[data-mode="dark"] main>section.ss-grad-top.ss-grad-glow{background-image:radial-gradient(ellipse 55% 100% at 50% 100%,rgba(251,178,85,.14) 0%,rgba(251,178,85,.05) 45%,rgba(251,178,85,0) 75%),linear-gradient(180deg,var(--ss-surface-page,#0E1F2F) 0%,var(--ss-surface-muted,#183049) 100%)!important;}
 
 
-/* Scrollbar: jen táhlo v barvách webu, bez podkladu (platí globálně) */
-*{scrollbar-width:auto;scrollbar-color:var(--ss-scrollbar-thumb,#FBB255) transparent;}
-*::-webkit-scrollbar{width:15px;height:15px;background:transparent;}
-*::-webkit-scrollbar-track{background:transparent;}
-*::-webkit-scrollbar-thumb{background:var(--ss-scrollbar-thumb,#FBB255);border-radius:999px;border:4px solid transparent;background-clip:padding-box;}
-*::-webkit-scrollbar-thumb:hover{background:var(--ss-scrollbar-thumb-hover,#F09A2C);background-clip:padding-box;}
-*::-webkit-scrollbar-corner{background:transparent;}
-html[data-mode="dark"]{--ss-scrollbar-thumb:#FBB255;--ss-scrollbar-thumb-hover:#F09A2C;}
 </style>
 <script>try{var d=document.documentElement;if(localStorage.getItem('ss-mode')==='dark')d.setAttribute('data-mode','dark');d.setAttribute('data-logo',localStorage.getItem('ss-logo')||'a');d.setAttribute('data-font-h','base');d.setAttribute('data-font-b','base');d.setAttribute('data-bg',localStorage.getItem('ss-bg')||'on');}catch(e){}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -418,7 +402,7 @@ html,body{margin:0!important;padding:0!important;}
 #dc-root>.sc-host{margin:0!important;padding:0!important;width:100%!important;}
 a{color:var(--ss-link,#296093);}
 a:hover{color:var(--ss-hover-text,#A4600C);}
-.ss-pd-ph{display:block;width:100%;border:0;padding:0;background:var(--ss-surface-subtle,#FAF5EF);border-radius:12px;overflow:hidden;cursor:zoom-in;position:relative;}
+.ss-pd-ph{display:block;width:100%;border:0;padding:0;background:var(--ss-surface-subtle,#FAF5EF);border-radius:12px;overflow:hidden;cursor:zoom-in;position:relative;box-shadow:0 2px 8px rgba(19,44,67,.08);}
 .ss-pd-ph:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
 .ss-pd-thumbs{display:flex;gap:8px;overflow-x:auto;scroll-snap-type:x proximity;scroll-padding-inline:16px;scrollbar-width:none;margin:0 -16px;padding:2px 16px;}
 .ss-pd-thumbs::-webkit-scrollbar{display:none;}
@@ -490,16 +474,25 @@ html[data-mode="dark"] .ss-pd-glass::before,html[data-mode="dark"] .ss-pd-glassw
 .ss-pd-ap{background:#1C2229;color:#FFFFFF;}
 .ss-pd-ap:hover{background:#000000;color:#FFFFFF;}
 .ss-pd-var-check{position:absolute;top:8px;right:8px;display:flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:999px;background:#FBB255;color:#1C2229;box-shadow:0 2px 8px rgba(19,44,67,.08);}
-.ss-pd-tab{display:inline-flex;align-items:center;gap:6px;padding:12px 2px;font-size:15px;font-weight:600;color:var(--ss-text-secondary,#3D4750);text-decoration:none;border-bottom:2px solid transparent;}
-.ss-pd-tab:hover{color:var(--ss-hover-text,#A4600C);border-bottom-color:var(--ss-hover-text,#A4600C);}
-.ss-pd-tab[data-on="true"]{color:var(--ss-text-heading,#0B1F33);border-bottom-color:#FBB255;}
+.ss-pd-tab{display:inline-flex;align-items:center;gap:6px;padding:16px 2px;font-size:15px;font-weight:600;color:var(--ss-text-secondary,#3D4750);text-decoration:none;position:relative;}.ss-pd-tab::after{content:"";position:absolute;left:2px;right:2px;bottom:0;height:3px;border-radius:3px 3px 0 0;background:#FBB255;transform:scaleX(0);transform-origin:center;transition:transform .2s cubic-bezier(.22,.61,.36,1);}
+@media (prefers-reduced-motion:reduce){.ss-pd-tab::after{transition:none;}}
+.ss-pd-tab:hover{color:var(--ss-hover-text,#A4600C);}@media (hover:hover) and (pointer:fine){.ss-pd-tab:hover::after{transform:scaleX(1);}}
+.ss-pd-tab[data-on="true"]{color:var(--ss-text-heading,#0B1F33);}.ss-pd-tab[data-on="true"]::after{transform:scaleX(1);}
 .ss-pd-qnav{scrollbar-width:none;}
 .ss-pd-qnav::-webkit-scrollbar{display:none;}
 .ss-pd-qnav .ss-pd-tab{white-space:nowrap;flex:none;}
 .ss-pd-tab:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
-.ss-pd-faq{display:flex;align-items:center;justify-content:space-between;gap:16px;width:100%;text-align:left;padding:18px 0;border:0;border-bottom:1px solid var(--ss-border-subtle,#E1E6EB);background:none;cursor:pointer;font-family:inherit;}
-.ss-pd-faq:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
-.ss-pd-faq:hover span:first-child,.ss-pd-faq:hover svg{color:var(--ss-hover-text,#A4600C);}
+.ss-pd-tocbar{background:rgba(255,255,255,.55);-webkit-backdrop-filter:blur(20px) saturate(180%);backdrop-filter:blur(20px) saturate(180%);border-bottom:0!important;box-shadow:inset 0 8px 10px -6px rgba(19,44,67,.16);}
+.ss-pd-tocbar::before,.ss-pd-tocbar::after{content:"";position:absolute;left:0;right:0;top:100%;pointer-events:none;}
+.ss-pd-tocbar::before{height:12px;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);-webkit-mask-image:linear-gradient(180deg,#000 0%,transparent 100%);mask-image:linear-gradient(180deg,#000 0%,transparent 100%);}
+.ss-pd-tocbar::after{height:24px;-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px);-webkit-mask-image:linear-gradient(180deg,#000 0%,transparent 100%);mask-image:linear-gradient(180deg,#000 0%,transparent 100%);}
+html[data-mode="dark"] .ss-pd-tocbar{background:rgba(14,31,47,.55);box-shadow:inset 0 8px 10px -6px rgba(0,0,0,.5);}
+.ss-pd-stchips::-webkit-scrollbar{display:none;}
+@media (max-width:819px){.ss-pd-toc{position:relative;flex-wrap:nowrap!important;overflow-x:auto;overscroll-behavior-x:contain;scrollbar-width:none;margin:0 -16px;padding:0 16px;}.ss-pd-toc::-webkit-scrollbar{display:none;}.ss-pd-toc .ss-pd-tab{white-space:nowrap;flex:none;}}
+/* bg m 1 (pojmenovaný podklad, viz CLAUDE.md) — liché sekce detailu */
+.ss-bg-m1{background-color:var(--ss-surface-page,#FFFFFF)!important;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .55 0 0 0 0 .35 0 0 0 0 .1 0 0 0 .07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),radial-gradient(ellipse 80% 55% at 50% 100%,rgba(251,178,85,.16) 0%,rgba(251,178,85,.06) 45%,rgba(251,178,85,0) 80%)!important;background-size:220px 220px,auto!important;background-repeat:repeat,no-repeat!important;background-position:0 0,center!important;}
+html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .85 0 0 0 0 .9 0 0 0 0 1 0 0 0 .06 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),radial-gradient(ellipse 80% 55% at 50% 100%,rgba(251,178,85,.12) 0%,rgba(251,178,85,.04) 45%,rgba(251,178,85,0) 80%)!important;}
+.ss-pd-tab-i{color:var(--ss-link,#296093);transition:color .12s cubic-bezier(.22,.61,.36,1);}.ss-pd-tab:hover .ss-pd-tab-i{color:inherit;}.ss-pd-tab[data-on="true"] .ss-pd-tab-i{color:#A4600C;}html[data-mode="dark"] .ss-pd-tab[data-on="true"] .ss-pd-tab-i{color:#FBB255;}
 .ss-pd-lbth{display:block;width:72px;height:56px;flex:none;border:0;padding:0;border-radius:8px;overflow:hidden;background:#12202D;cursor:pointer;opacity:.55;}
 .ss-pd-lbth[aria-current="true"]{opacity:1;box-shadow:inset 0 0 0 2px #FFFFFF;}
 .ss-pd-lbth:hover{opacity:1;}
@@ -587,10 +580,10 @@ html[data-mode="dark"] .ss-pd-glass::before,html[data-mode="dark"] .ss-pd-glassw
             <sc-if value="{{ wideGallery }}" hint-placeholder-val="{{ true }}">
             <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px">
               <button type="button" class="ss-pd-ph" style="aspect-ratio:4/3" onClick="{{ openSub1 }}" aria-label="LEVITA v ložnici s komodou a vínovým přehozem">
-                <img decoding="async" src="levita-loznice-komoda.jpg" alt="LEVITA v ložnici s komodou a vínovým přehozem" style="width:100%;height:100%;object-fit:cover;display:block" />
+                <img decoding="async" src="/_blob/5d284e9d65729ad7719aa1d43749b751" alt="LEVITA v ložnici s komodou a vínovým přehozem" style="width:100%;height:100%;object-fit:cover;display:block" />
               </button>
               <button type="button" class="ss-pd-ph" style="aspect-ratio:4/3;background:#FFFFFF" onClick="{{ openSub2 }}" aria-label="Schéma rozměrů postele LEVITA">
-                <img decoding="async" src="levita-schema-rozmeru.webp" alt="Schéma rozměrů postele LEVITA" style="width:100%;height:100%;object-fit:contain;display:block" />
+                <img decoding="async" src="/_blob/e334b477f4cdda9c9ebd7473bab882be" alt="Schéma rozměrů postele LEVITA" style="width:100%;height:100%;object-fit:contain;display:block" />
               </button>
             </div>
             </sc-if>
@@ -723,9 +716,9 @@ html[data-mode="dark"] .ss-pd-glass::before,html[data-mode="dark"] .ss-pd-glassw
             <a href="#komplety" style="{{ setBannerStyle }}">
               <sc-if value="{{ setNotS4 }}" hint-placeholder-val="{{ true }}">
               <span style="display:flex;align-items:center;gap:8px;flex:none">
-                <img decoding="async" src="produkt-valentina-ultrafresh.webp" alt="" style="display:block;width:64px;height:48px;object-fit:contain" />
+                <img decoding="async" src="/_blob/bc7007f08af1d6737c56db995538cb91" alt="" style="display:block;width:64px;height:48px;object-fit:contain" />
                 <span style="font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:26px;line-height:1;color:var(--ss-status-error,#B3261E)">+</span>
-                <img decoding="async" src="produkt-rost-lamelovy.webp" alt="" style="display:block;width:64px;height:48px;object-fit:contain" />
+                <img decoding="async" src="/_blob/7d9234acbe0f59bf374b86101ea80224" alt="" style="display:block;width:64px;height:48px;object-fit:contain" />
               </span>
               </sc-if>
               <sc-if value="{{ setIsS4 }}" hint-placeholder-val="{{ false }}">
@@ -769,43 +762,45 @@ html[data-mode="dark"] .ss-pd-glass::before,html[data-mode="dark"] .ss-pd-glassw
       </div>
     </section>
 
-    <nav aria-label="Obsah produktu" style="position:sticky;top:{{ tocTop }};transition:top .4s cubic-bezier(.22,.61,.36,1);z-index:100;box-shadow:0 2px 8px rgba(19,44,67,.08);width:100%;border-top:1px solid var(--ss-border-subtle,#E1E6EB);border-bottom:1px solid var(--ss-border-subtle,#E1E6EB);background:var(--ss-surface-page,#FFFFFF)">
+    <nav aria-label="Obsah produktu" class="ss-pd-tocbar" style="position:sticky;top:{{ tocTop }};transition:top .4s cubic-bezier(.22,.61,.36,1);z-index:100;width:100%;border-bottom:1px solid var(--ss-border-subtle,#E1E6EB)">
       <div style="{{ inner }}">
-        <div style="display:flex;flex-wrap:wrap;gap:8px 28px">
+        <div class="ss-pd-toc" style="display:flex;flex-wrap:wrap;gap:8px 28px">
           <sc-for list="{{ anchors }}" as="a" hint-placeholder-count="6">
-            <a class="ss-pd-tab" href="{{ a.href }}" data-on="{{ a.on }}" aria-current="{{ a.current }}" onClick="{{ a.go }}">{{ a.label }}</a>
+            <a class="ss-pd-tab" href="{{ a.href }}" data-on="{{ a.on }}" aria-current="{{ a.current }}" onClick="{{ a.go }}"><span class="ss-pd-tab-i" style="display:flex;flex:none" aria-hidden="true"><dc-import name="Ikony" iconName="{{ a.icon }}" size="18" hint-size="18px,18px"></dc-import></span>{{ a.label }}</a>
           </sc-for>
         </div>
       </div>
     </nav>
 
-    <section id="popis" style="width:100%;background:transparent">
+    <section id="popis" class="ss-bg-m1" style="width:100%">
       <div style="{{ innerPadded }}">
         <div style="display:grid;grid-template-columns:{{ descTemplate }};gap:{{ topGap }};align-items:start">
           <div style="min-width:0;display:flex;flex-direction:column;gap:20px">
             <h2 style="margin:0;font-size:{{ h2Size }};line-height:1.15">Vyrobeno v České republice a navrženo našimi designéry</h2>
             <p style="margin:0;font-size:16px;line-height:1.7;color:var(--ss-text-secondary,#3D4750)">Dřevěná postel LEVITA působí díky kombinaci masivního dřeva a čalounění velmi elegantně a současně robustně a pevně. Představuje čisté řešení ložnice, ve které je postel perfektně sladěná s nočními stolky se zásuvkami, jež jsou součástí čela postele. Mezi čalouněnými opěrkami v čele vyniká působivá dřevěná „mozaika“, která dotváří celkový dojem.</p>
-            <img decoding="async" src="levita-loznice-komoda.jpg" alt="Postel LEVITA v ložnici z dubového masivu" style="display:block;width:100%;border-radius:12px" />
+            <img decoding="async" src="/_blob/5d284e9d65729ad7719aa1d43749b751" alt="Postel LEVITA v ložnici z dubového masivu" style="display:block;width:100%;border-radius:12px" />
           </div>
           <div style="min-width:0;display:flex;flex-direction:column;gap:16px">
             <h3 style="margin:0;font-size:{{ h3Size }};line-height:1.2">Parametry</h3>
-            <table style="width:100%;border-collapse:collapse;font-size:14px">
-              <tbody>
-                <sc-for list="{{ params }}" as="p" hint-placeholder-count="10">
-                  <tr style="background:{{ p.bg }}">
-                    <th scope="row" style="text-align:left;font-weight:600;color:var(--ss-text-primary,#1C2229);padding:10px 12px;width:46%">{{ p.label }}</th>
-                    <td style="color:var(--ss-text-secondary,#3D4750);padding:10px 12px">{{ p.value }}</td>
-                  </tr>
-                </sc-for>
-              </tbody>
-            </table>
+            <div class="ss-elev" style="background:var(--ss-surface-card,#FFFFFF);border-radius:12px;padding:8px 24px">
+              <table style="width:100%;border-collapse:collapse;font-size:14px">
+                <tbody>
+                  <sc-for list="{{ params }}" as="p" hint-placeholder-count="10">
+                    <tr style="border-bottom:{{ p.border }}">
+                      <th scope="row" style="text-align:left;font-weight:600;color:var(--ss-text-primary,#1C2229);padding:12px 16px 12px 0;width:46%;vertical-align:top">{{ p.label }}</th>
+                      <td style="color:var(--ss-text-secondary,#3D4750);padding:12px 0;vertical-align:top">{{ p.value }}</td>
+                    </tr>
+                  </sc-for>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="prednosti" style="width:100%;background:transparent">
-      <div style="{{ innerTight }}">
+    <section id="prednosti" style="width:100%;background:var(--ss-surface-page,#FFFFFF)">
+      <div style="{{ innerPadded }}">
         <div style="display:grid;grid-template-columns:{{ descTemplate }};gap:{{ topGap }};align-items:start">
           <div style="min-width:0;display:flex;flex-direction:column;gap:20px">
             <h2 style="margin:0;font-size:{{ h2Size }};line-height:1.15">Hlavní přednosti</h2>
@@ -819,19 +814,19 @@ html[data-mode="dark"] .ss-pd-glass::before,html[data-mode="dark"] .ss-pd-glassw
             </ul>
           </div>
           <div style="min-width:0">
-            <img decoding="async" src="levita-schema-rozmeru.webp" alt="Schéma rozměrů postele LEVITA v provedení 180 × 200 cm" style="display:block;width:100%;border-radius:12px;background:var(--ss-surface-subtle,#FAF5EF)" />
+            <img decoding="async" src="/_blob/e334b477f4cdda9c9ebd7473bab882be" alt="Schéma rozměrů postele LEVITA v provedení 180 × 200 cm" style="display:block;width:100%;border-radius:12px;background:var(--ss-surface-subtle,#FAF5EF)" />
           </div>
         </div>
       </div>
     </section>
 
-    <section id="materialy" style="width:100%;background:var(--ss-surface-subtle,#FAF5EF)">
+    <section id="materialy" class="ss-bg-m1" style="width:100%">
       <div style="{{ innerPadded }}">
         <div style="display:grid;grid-template-columns:{{ descTemplate }};gap:{{ topGap }};align-items:center">
           <div style="min-width:0;display:flex;flex-direction:column;gap:32px">
+            <h2 style="margin:0;font-size:{{ h2Size }};line-height:1.15">Materiály</h2>
             <div style="display:flex;flex-direction:column;gap:8px">
-              <h2 style="margin:0;font-size:{{ h2Size }};line-height:1.15">Materiály</h2>
-              <span style="font-size:17px;font-weight:600">Kvalitní dřevo — masiv</span>
+              <h3 style="margin:0;font-size:{{ h3Size }};line-height:1.2">Kvalitní dřevo — masiv</h3>
               <p style="margin:0;font-size:15px;line-height:1.6;color:var(--ss-text-secondary,#3D4750)">Buk jádrový, divoký jasan nebo dub z českých lesů, s certifikací PEFC. Dřevotřísku tu nenajdete.</p>
             </div>
             <div style="display:flex;flex-direction:column;gap:8px">
@@ -844,36 +839,32 @@ html[data-mode="dark"] .ss-pd-glass::before,html[data-mode="dark"] .ss-pd-glassw
             </div>
           </div>
           <div style="min-width:0;display:flex;flex-direction:column;gap:16px">
-            <img decoding="async" src="levita-detail-ramu.jpg" alt="Detail masivního rámu postele LEVITA" style="display:block;width:100%;border-radius:12px" />
+            <img decoding="async" src="/_blob/70effb58e28fd2449c59b5d4beb57cbd" alt="Detail masivního rámu postele LEVITA" style="display:block;width:100%;border-radius:12px" />
             <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px">
-              <img decoding="async" src="levita-mozaika-v-cele.jpg" alt="Detail dřevěné mozaiky v čele postele" style="display:block;width:100%;border-radius:12px" />
-              <img decoding="async" src="levita-vzornik-latek-kronos.jpg" alt="Vzorník čalounických látek Kronos" style="display:block;width:100%;border-radius:12px" />
+              <img decoding="async" src="/_blob/b063f85293a9bbca2a4787911ec6fd73" alt="Detail dřevěné mozaiky v čele postele" style="display:block;width:100%;border-radius:12px" />
+              <img decoding="async" src="/_blob/0fe9fb83b34eb082696b1cc067e4fc91" alt="Vzorník čalounických látek Kronos" style="display:block;width:100%;border-radius:12px" />
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="doplnky" style="width:100%;background:transparent">
+    <section id="doplnky" class="ss-bg-m1" style="width:100%">
       <div style="{{ innerPadded }}">
-        <div style="display:flex;flex-direction:column;gap:8px;align-items:center;text-align:center;margin-bottom:32px">
-          <h2 style="margin:0;font-size:{{ h2Size }};line-height:1.15">Vyberte si z naší nabídky i další produkty, ať máte svou novou postel kompletní</h2>
-          <span style="font-size:15px;color:var(--ss-text-secondary,#3D4750)">Nakupte současně se slevou až 20 %</span>
-        </div>
-        <div style="display:grid;grid-template-columns:{{ tilesTemplate }};gap:20px">
-          <sc-for list="{{ addons }}" as="a" hint-placeholder-count="3">
-            <a href="{{ a.href }}" style="display:flex;flex-direction:column;gap:10px;text-decoration:none;color:var(--ss-text-primary,#1C2229)">
-              <img decoding="async" src="{{ a.src }}" alt="" style="display:block;width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:12px" />
-              <span style="font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:22px;text-transform:uppercase">{{ a.title }}</span>
-              <span style="font-size:14px;color:var(--ss-text-secondary,#3D4750)">{{ a.note }}</span>
-            </a>
-          </sc-for>
+        <div style="display:grid;grid-template-columns:{{ descTemplate }};gap:{{ topGap }};align-items:center">
+          <div style="min-width:0;display:flex;flex-direction:column;gap:16px">
+            <h2 style="margin:0;font-size:{{ h2Size }};line-height:1.15">Vyberte si z naší nabídky i další produkty, ať máte svou novou postel kompletní</h2>
+            <p style="margin:0;font-size:16px;line-height:1.65;color:var(--ss-text-secondary,#3D4750);text-wrap:pretty">Nakupte současně se slevou až 20 %</p>
+          </div>
+          <div style="min-width:0">
+            <dc-import name="VypisKategorii" variant="vystup" columns="3" items="{{ addonTiles }}" hint-size="100%,260px"></dc-import>
+          </div>
         </div>
       </div>
     </section>
 
-    <section id="na-miru" style="width:100%;background:transparent">
-      <div style="{{ innerTight }}">
+    <section id="na-miru" class="ss-bg-m1" style="width:100%">
+      <div style="{{ innerPadded }}">
         <div style="display:grid;grid-template-columns:{{ descTemplate }};gap:{{ topGap }};align-items:center">
           <div style="min-width:0;display:flex;flex-direction:column;gap:20px">
             <h2 style="margin:0;font-size:{{ h2Size }};line-height:1.15">Masivní postel na míru</h2>
@@ -889,13 +880,15 @@ html[data-mode="dark"] .ss-pd-glass::before,html[data-mode="dark"] .ss-pd-glassw
             <div><dc-import name="Tlacitko" label="Ložnice na míru" variant="primary" size="large" href="#loznice-na-miru" hint-size="200px,52px"></dc-import></div>
           </div>
           <div style="min-width:0">
-            <img decoding="async" src="levita-loznice-koberec.jpg" alt="Ložnice s postelí LEVITA upravenou na míru" style="display:block;width:100%;border-radius:12px" />
+            <div class="ss-elev" style="position:relative;width:100%;aspect-ratio:16/9;background:var(--ss-surface-muted,#F3EDE4);border-radius:12px;overflow:hidden">
+              <a href="https://www.youtube.com/watch?v=2rdMJMSvv0g" target="_blank" rel="noopener" aria-label="Video Ložnice na míru – přehrát na YouTube (otevře se v novém okně)" style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;background:#132C43;color:#FFFFFF;text-decoration:none;font-weight:600;font-size:16px"><svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path><path d="M10 9l5 3l-5 3z" fill="currentColor"></path></svg><span>Video – Ložnice na míru</span><span style="font-weight:400;font-size:14px;opacity:.85">Přehrát na YouTube</span></a>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="hodnoceni" style="width:100%;background:transparent">
+    <section id="hodnoceni" style="width:100%;background:var(--ss-surface-page,#FFFFFF)">
       <div style="{{ innerPadded }}">
         <div style="display:grid;grid-template-columns:{{ reviewTemplate }};gap:{{ topGap }};align-items:start">
           <div style="min-width:0;display:flex;flex-direction:column;gap:24px">
@@ -951,31 +944,15 @@ html[data-mode="dark"] .ss-pd-glass::before,html[data-mode="dark"] .ss-pd-glassw
       </div>
     </section>
 
-    <section id="faq" style="width:100%;background:transparent">
-      <div style="{{ innerTight }}">
-        <div style="max-width:900px;display:flex;flex-direction:column;gap:16px">
-          <h2 style="margin:0;font-size:{{ h2Size }};line-height:1.15">Časté dotazy našich spáčů</h2>
-          <div style="display:flex;flex-direction:column;border-top:1px solid var(--ss-border-subtle,#E1E6EB)">
-            <sc-for list="{{ faqs }}" as="q" hint-placeholder-count="3">
-              <div>
-                <button type="button" class="ss-pd-faq" onClick="{{ q.onToggle }}" aria-expanded="{{ q.expanded }}">
-                  <span style="font-size:16px;font-weight:600;color:var(--ss-text-primary,#1C2229)">{{ q.question }}</span>
-                  <span style="display:flex;align-items:center;justify-content:center;width:36px;height:36px;flex:none;border-radius:999px;background:{{ q.iconBg }};color:var(--ss-text-primary,#1C2229)"><dc-import name="Ikony" iconName="{{ q.icon }}" size="20" hint-size="20px,20px"></dc-import></span>
-                </button>
-                <sc-if value="{{ q.open }}" hint-placeholder-val="{{ false }}">
-                  <p style="margin:0;padding:0 0 20px;font-size:15px;line-height:1.7;color:var(--ss-text-secondary,#3D4750);max-width:70ch">{{ q.answer }}</p>
-                </sc-if>
-              </div>
-            </sc-for>
-          </div>
-          <span style="font-size:15px;color:var(--ss-text-secondary,#3D4750)">Další často kladené otázky naleznete v sekci <a href="#faq-vse">FAQ</a>.</span>
-        </div>
+    <section id="faq" class="ss-bg-m1" style="width:100%">
+      <div style="{{ innerPadded }}">
+        <dc-import name="Faq" heading="Časté dotazy našich spáčů" items="{{ faqs }}" narrow="{{ faqNarrow }}" idPrefix="pd-faq" moreText="Další často kladené otázky naleznete v sekci" moreLabel="FAQ" moreHref="#faq-vse" hint-size="100%,420px"></dc-import>
       </div>
     </section>
 
     <section id="souvisejici" style="width:100%;background:transparent">
       <div style="{{ innerPadded }}">
-        <dc-import name="SouvisejiciProdukty" heading="Spáči ještě přikoupili" navPosition="below" hint-size="100%,560px"></dc-import>
+        <dc-import name="SouvisejiciProdukty" heading="Spáči ještě přikoupili" navPosition="belowPeek" hint-size="100%,560px"></dc-import>
       </div>
     </section>
   </main>
@@ -989,7 +966,7 @@ html[data-mode="dark"] .ss-pd-glass::before,html[data-mode="dark"] .ss-pd-glassw
           <div style="display:grid;grid-template-columns:minmax(0,1fr) auto auto;align-items:center;gap:8px 24px;padding:10px 0 0">
             <div style="display:flex;flex-direction:column;gap:2px;min-width:0">
               <div style="display:flex;align-items:center;gap:16px;min-width:0">
-                <img decoding="async" src="menu-nocni-stolky.webp" alt="" style="width:64px;height:48px;object-fit:contain;border-radius:6px;flex:none;background:#FFFFFF" />
+                <img decoding="async" src="/_blob/bf9ee623a3c7f6bdd65949a31b2b28ab" alt="" style="width:64px;height:48px;object-fit:contain;border-radius:6px;flex:none;background:#FFFFFF" />
                 <span style="font-size:15px;font-weight:600;line-height:1.3;color:var(--ss-text-primary,#1C2229);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Postel LEVITA 180 × 200 + matrace Viscoair a 2 rošty Villach S</span>
               </div>
               <span style="display:flex;flex-wrap:wrap;gap:6px;margin-top:4px">
@@ -1014,6 +991,17 @@ html[data-mode="dark"] .ss-pd-glass::before,html[data-mode="dark"] .ss-pd-glassw
         <sc-if value="{{ stickyNarrow }}" hint-placeholder-val="{{ false }}">
           <div style="display:flex;flex-direction:column;gap:8px;padding:10px 0">
             <span style="font-size:14px;font-weight:600;line-height:1.3;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Postel LEVITA 180 × 200 + matrace Viscoair a 2 rošty Villach S</span>
+            <div class="ss-pd-stchips" style="display:flex;align-items:center;gap:6px;overflow-x:auto;scrollbar-width:none;white-space:nowrap;margin:0 -16px;padding:0 16px">
+              <span style="display:inline-flex;align-items:center;gap:6px;flex:none;font-size:13px;color:var(--ss-status-success,#157A41);margin-right:4px"><span style="width:8px;height:8px;border-radius:999px;background:#157A41;flex:none"></span>Skladem</span>
+              <sc-for list="{{ stickyChips }}" as="ch" hint-placeholder-count="4">
+                <span style="display:inline-flex;align-items:center;gap:6px;flex:none;height:24px;padding:0 10px;border-radius:999px;background:var(--ss-surface-subtle,#FAF5EF);box-shadow:inset 0 0 0 1px var(--ss-border-subtle,#E1E6EB);font-size:13px;color:var(--ss-text-secondary,#3D4750)">
+                  <sc-if value="{{ ch.hasSwatch }}" hint-placeholder-val="{{ false }}">
+                    <span style="width:10px;height:10px;border-radius:999px;flex:none;box-shadow:inset 0 0 0 1px rgba(19,44,67,.18);background:{{ ch.color }}"></span>
+                  </sc-if>
+                  <span>{{ ch.label }}</span>
+                </span>
+              </sc-for>
+            </div>
             <div style="display:flex;align-items:center;gap:16px">
               <div style="display:flex;flex-direction:column;gap:4px;min-width:0;flex:1">
                 <div style="display:flex;flex-wrap:wrap;align-items:baseline;gap:10px">
@@ -1022,7 +1010,6 @@ html[data-mode="dark"] .ss-pd-glass::before,html[data-mode="dark"] .ss-pd-glassw
                   </sc-if>
                   <span style="font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:24px;line-height:1">{{ kitPriceFmt }}</span>
                 </div>
-                <span style="display:flex;align-items:center;gap:6px;font-size:13px;color:var(--ss-status-success,#157A41)"><span style="width:8px;height:8px;border-radius:999px;background:#157A41;flex:none"></span>Skladem</span>
               </div>
               <dc-import name="Tlacitko" label="Do košíku" variant="buy" size="large" onClick="{{ onBuy }}" hint-size="150px,52px"></dc-import>
             </div>
@@ -1034,7 +1021,7 @@ html[data-mode="dark"] .ss-pd-glass::before,html[data-mode="dark"] .ss-pd-glassw
 
   <dc-import name="VariantaDrawer" open="{{ drawerOpen }}" title="{{ drawerTitle }}" note="{{ drawerNote }}" value="{{ drawerValue }}" groups="{{ drawerGroups }}" rows="{{ drawerRows }}" onPick="{{ onDrawerPick }}" onClose="{{ closeDrawer }}" hint-size="0px,0px"></dc-import>
 
-  <dc-import name="KosikPridanoModal" open="{{ addedOpen }}" title="Postel LEVITA" qty="{{ qty }}" variant="{{ addedVariant }}" image="produkt-postel-levita.webp" stockKind="onWay" stockLabel="Vyrobíme během 2–4 týdnů" total="{{ addedTotal }}" onClose="{{ closeAdded }}" hint-size="0px,0px"></dc-import>
+  <dc-import name="KosikPridanoModal" open="{{ addedOpen }}" title="Postel LEVITA" qty="{{ qty }}" variant="{{ addedVariant }}" image="/_blob/6b546453dfb90e0ec7ddb488eed7e6ec" stockKind="onWay" stockLabel="Vyrobíme během 2–4 týdnů" total="{{ addedTotal }}" onClose="{{ closeAdded }}" hint-size="0px,0px"></dc-import>
 
   <sc-if value="{{ customOpen }}" hint-placeholder-val="{{ false }}">
     <div class="ss-scrim" style="position:fixed;inset:0;z-index:500;display:flex;align-items:safe center;justify-content:center;overflow-y:auto;padding:24px 16px" onClick="{{ onCustomBackdrop }}">
@@ -1068,11 +1055,11 @@ html[data-mode="dark"] .ss-pd-glass::before,html[data-mode="dark"] .ss-pd-glassw
                 <span>Facebook</span>
               </a>
               <a class="ss-pd-soc ss-pd-gg" href="#registrace-google">
-                <img decoding="async" src="logo-google.svg" alt="" aria-hidden="true" style="display:block;width:20px;height:20px" />
+                <img decoding="async" src="/_blob/8e388f9e29b9442880ecdcf7e62aa9cc" alt="" aria-hidden="true" style="display:block;width:20px;height:20px" />
                 <span>Google</span>
               </a>
               <a class="ss-pd-soc ss-pd-sz" href="#registrace-seznam">
-                <img decoding="async" src="logo-seznam-znak.svg" alt="" aria-hidden="true" style="display:block;width:22px;height:22px;object-fit:contain;filter:brightness(0) invert(1)" />
+                <img decoding="async" src="/_blob/8edc6c2c2895278a238bb3dbb1819e6b" alt="" aria-hidden="true" style="display:block;width:22px;height:22px;object-fit:contain;filter:brightness(0) invert(1)" />
                 <span>Seznam</span>
               </a>
               <a class="ss-pd-soc ss-pd-ap" href="#registrace-apple">
@@ -1139,23 +1126,34 @@ html[data-mode="dark"] .ss-pd-glass::before,html[data-mode="dark"] .ss-pd-glassw
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:1000},&quot;zobrazitVarianty&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;fixniSloupec&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;nakup&quot;,&quot;options&quot;:[&quot;nakup&quot;,&quot;galerie&quot;,&quot;zadny&quot;],&quot;tsType&quot;:&quot;string&quot;},&quot;ukazatVideo&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;},&quot;stickyLista&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;}}">
 class Component extends DCLogic {
+  // Lišta obsahu pod 820 px: vodorovný scroll, aktivní položka se posune na začátek
+  scrollToc(id) {
+    try {
+      if (document.documentElement.clientWidth >= 820) return;
+      const box = document.querySelector('.ss-pd-toc');
+      const el = box && box.querySelector('a[href="#' + id + '"]');
+      if (!el) return;
+      const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      box.scrollTo({ left: Math.max(0, el.offsetLeft - 16), behavior: reduce ? 'auto' : 'smooth' });
+    } catch (e) {}
+  }
   PHOTOS = [
-    { src: 'produkt-postel-levita.webp', alt: 'Postel LEVITA z dubového masivu s nočními stolky', lifestyle: true },
-    { src: 'levita-loznice-komoda.jpg', alt: 'LEVITA v ložnici s komodou a vínovým přehozem', lifestyle: true },
-    { src: 'levita-loznice-koberec.jpg', alt: 'LEVITA ve světlé ložnici s kobercem', lifestyle: true },
-    { src: 'levita-mozaika-v-cele.jpg', alt: 'Detail dřevěné mozaiky mezi čalouněnými opěrkami' },
-    { src: 'levita-nocni-stolek-v-cele.jpg', alt: 'Noční stolek se zásuvkou jako součást čela postele' },
-    { src: 'levita-detail-ramu.jpg', alt: 'Detail „levitujícího“ rámu postele' },
-    { src: 'levita-nastavitelna-noha.jpg', alt: 'Detail nastavitelné nohy postele' },
-    { src: 'levita-ulozny-prostor.jpg', alt: 'Postel v kombinaci s úložným prostorem' },
-    { src: 'levita-schema-rozmeru.webp', alt: 'Schéma rozměrů postele LEVITA', fit: 'contain' },
-    { src: 'levita-vzornik-latek-kronos.jpg', alt: 'Vzorník čalounických látek Kronos', fit: 'contain' }
+    { src: '/_blob/6b546453dfb90e0ec7ddb488eed7e6ec', alt: 'Postel LEVITA z dubového masivu s nočními stolky', lifestyle: true },
+    { src: '/_blob/5d284e9d65729ad7719aa1d43749b751', alt: 'LEVITA v ložnici s komodou a vínovým přehozem', lifestyle: true },
+    { src: '/_blob/827bda76a4305353740be28bd19199c5', alt: 'LEVITA ve světlé ložnici s kobercem', lifestyle: true },
+    { src: '/_blob/b063f85293a9bbca2a4787911ec6fd73', alt: 'Detail dřevěné mozaiky mezi čalouněnými opěrkami' },
+    { src: '/_blob/42c46d7f99e215e0f2807071fa8d63f4', alt: 'Noční stolek se zásuvkou jako součást čela postele' },
+    { src: '/_blob/70effb58e28fd2449c59b5d4beb57cbd', alt: 'Detail „levitujícího“ rámu postele' },
+    { src: '/_blob/4b599019da08a9a4bd2f79cb1ce5592d', alt: 'Detail nastavitelné nohy postele' },
+    { src: '/_blob/27aac8085a87d891384dc315ddf4318d', alt: 'Postel v kombinaci s úložným prostorem' },
+    { src: '/_blob/e334b477f4cdda9c9ebd7473bab882be', alt: 'Schéma rozměrů postele LEVITA', fit: 'contain' },
+    { src: '/_blob/0fe9fb83b34eb082696b1cc067e4fc91', alt: 'Vzorník čalounických látek Kronos', fit: 'contain' }
   ];
   state = {
     width: typeof window !== 'undefined' ? document.documentElement.clientWidth : 1440,
     led: true, photo: 0, lb: null, qty: 1, fav: (() => { try { return JSON.parse(localStorage.getItem('ss-fav') || '[]').includes('levita'); } catch (e) { return false; } })(), cmp: (() => { try { return JSON.parse(localStorage.getItem('ss-cmp') || '[]').includes('levita'); } catch (e) { return false; } })(), perex: false,
     onlyStock: false, size: '180 × 200 cm', up: 'no', variant: 1, faq: 1,
-    rost: 'bez', mat: 'buk-cherry', cal: 'k26',
+    rost: 'bez', mat: 'buk-cherry', cal: 'kronos-05',
     custom: false, customW: '', customL: '', customMail: '', customAgree: false, customReg: true,
     customError: false, customSize: null, csOn: false, csW: '', csL: '', csOk: false, csInfo: false,
     moreReviews: false, sticky: false, setUi: 'S4'
@@ -1185,7 +1183,7 @@ class Component extends DCLogic {
       const line = (tn ? Math.max(0, tn.getBoundingClientRect().bottom) : (this.state.headerH || 0)) + 24;
       let act = '';
       for (const id of Component.SECTIONS) { const el = document.getElementById(id); if (el && el.getBoundingClientRect().top <= line) act = id; }
-      if (act !== this.state.activeSec) this.setState({ activeSec: act });
+      if (act !== this.state.activeSec) { this.setState({ activeSec: act }); this.scrollToc(act); }
     };
     window.addEventListener('scroll', this._scroll, { passive: true });
     this._measureHeader = () => {
@@ -1308,40 +1306,122 @@ class Component extends DCLogic {
       title: d.title,
       items: ODSTINY.map(o => ({ id: d.key + '-' + o.id, label: o.label, note: d.note, color: o.color }))
     }));
-    const LATKY = [
-      { id: 'k26', label: 'Tyrkysová k26', note: 'bez příplatku', color: '#3FB8AE' },
-      { id: 'k05', label: 'Modrá k05', note: 'bez příplatku', color: '#3E6E9E' },
-      { id: 'k35', label: 'Béžová k35', note: 'bez příplatku', color: '#D3BC9A' },
-      { id: 'k15', label: 'Šedá k15', note: 'bez příplatku', color: '#6E7377' },
-      { id: 'k28', label: 'Hnědá k28', note: 'bez příplatku', color: '#7A5641' },
-      { id: 'k02', label: 'Červená k02', note: '+ 1 400 Kč', color: '#A8433E' },
-      { id: 'k07', label: 'Černá k07', note: '+ 1 400 Kč', color: '#2B2B2E' },
-      { id: '400', label: 'Vanilka 400', note: 'bez příplatku', color: '#E4CD8B' },
-      { id: '101', label: 'Bílá 101', note: 'bez příplatku', color: '#EFEDE8' }
+    const LATKY_GROUPS = [
+      { title: 'Kronos — velur', desc: 'Sametový velur s krátkým hustým vlasem, odstín se jemně mění podle dopadu světla. 270 g/m², oděruvzdornost až 50 000 cyklů. Výrobce ji uvádí jako vhodnou i do domácností se zvířaty.', items: [
+        { id: 'kronos-01', label: 'Kronos 01', color: '#AD802D', image: '/_blob/8183b758bbce3acfddefafba8d80f41e' },
+        { id: 'kronos-02', label: 'Kronos 02', color: '#631522', image: '/_blob/84a14f4985f21f4fa846ba0c5881db90' },
+        { id: 'kronos-03', label: 'Kronos 03', color: '#4B2646', image: '/_blob/df19b9d9bb218f2dd6294802d6befd6e' },
+        { id: 'kronos-04', label: 'Kronos 04', color: '#0E373F', image: '/_blob/8f6030d0ae4e6e77e5e8794d54c8bf7b' },
+        { id: 'kronos-05', label: 'Kronos 05', color: '#334965', image: '/_blob/4b0c0d6cdca8e767ba6e36a5df5c7e42' },
+        { id: 'kronos-06', label: 'Kronos 06', color: '#412C22', image: '/_blob/e46f110ffbefef2ebd2ad820ce17a1b3' },
+        { id: 'kronos-07', label: 'Kronos 07', color: '#0D0D0D', image: '/_blob/22a1c3d8ec0054fec04574c856d51ffe' },
+        { id: 'kronos-09', label: 'Kronos 09', color: '#102A4B', image: '/_blob/125bfe2dee0270d3eca88aeda0a330e2' },
+        { id: 'kronos-11', label: 'Kronos 11', color: '#E8CE73', image: '/_blob/7137e4c111c901c8e04cf8eece07ea5c' },
+        { id: 'kronos-12', label: 'Kronos 12', color: '#5693A9', image: '/_blob/9f3707b2e56f91b9a943ee1d26da6e1d' },
+        { id: 'kronos-13', label: 'Kronos 13', color: '#2D8FA6', image: '/_blob/2aaf6f72a613b75e72a077de01b58860' },
+        { id: 'kronos-14', label: 'Kronos 14', color: '#1F2F27', image: '/_blob/45824f1066ea3320f67bbd98633e1e6b' },
+        { id: 'kronos-15', label: 'Kronos 15', color: '#73726E', image: '/_blob/1b01bb25ea2d60c8969d96a1f0966c5e' },
+        { id: 'kronos-16', label: 'Kronos 16', color: '#ACAC4A', image: '/_blob/79c415b77fff6d8ced33936c2827a2ed' },
+        { id: 'kronos-17', label: 'Kronos 17', color: '#A1933E', image: '/_blob/d8ca653abdbbc0893783e17a889d3a76' },
+        { id: 'kronos-19', label: 'Kronos 19', color: '#1D4332', image: '/_blob/b0da59a93e3faba76d7f6ca5e5adc7e7' },
+        { id: 'kronos-20', label: 'Kronos 20', color: '#532428', image: '/_blob/62b55e25dedb9a111334dad18e7db0f9' },
+        { id: 'kronos-22', label: 'Kronos 22', color: '#686269', image: '/_blob/04262bc0dc41ee5f9040cdd04462edbf' },
+        { id: 'kronos-25', label: 'Kronos 25', color: '#627579', image: '/_blob/52f663226fe738fff0807ac35e490a70' },
+        { id: 'kronos-26', label: 'Kronos 26', color: '#587D85', image: '/_blob/f9e83a14c2487946d53817fc9c955137' },
+        { id: 'kronos-27', label: 'Kronos 27', color: '#BEA4AC', image: '/_blob/c7ebbfee241548754a8510dd0265f7fa' },
+        { id: 'kronos-28', label: 'Kronos 28', color: '#663D2F', image: '/_blob/5aa89c067547023fd0a20353cbfc070f' },
+        { id: 'kronos-29', label: 'Kronos 29', color: '#B57E7B', image: '/_blob/0344db69c1756e9e95bcffdccdabae88' },
+        { id: 'kronos-31', label: 'Kronos 31', color: '#7FA1BB', image: '/_blob/8a7824859fa1f972012315725dbc3618' },
+        { id: 'kronos-34', label: 'Kronos 34', color: '#393939', image: '/_blob/658991ab60d13980878bc4867ea3262a' },
+        { id: 'kronos-35', label: 'Kronos 35', color: '#C8B398', image: '/_blob/8fc076cf0eca6809bf1a7f951a84dad5' },
+        { id: 'kronos-37', label: 'Kronos 37', color: '#281D34', image: '/_blob/eede41db9f9cdc01aaf31798245f3019' },
+        { id: 'kronos-38', label: 'Kronos 38', color: '#E7E4E1', image: '/_blob/d13218245c86b9aba0b0261415eb9038' },
+        { id: 'kronos-39', label: 'Kronos 39', color: '#7B3421', image: '/_blob/55ad293c4752dec205895e635fd39dd5' },
+        { id: 'kronos-40', label: 'Kronos 40', color: '#BD6E40', image: '/_blob/ceb6987cd3306a9aec4c446021bf2e78' },
+        { id: 'kronos-41', label: 'Kronos 41', color: '#BA8060', image: '/_blob/ed517f5b1aa967e3c4149b9ed5ef43d7' },
+        { id: 'kronos-42', label: 'Kronos 42', color: '#C1821B', image: '/_blob/79925197c0a02be7ab868b7169e77245' },
+        { id: 'kronos-43', label: 'Kronos 43', color: '#E4BC54', image: '/_blob/ba44d51a95266cbb40c0e88d817a7007' },
+        { id: 'kronos-44', label: 'Kronos 44', color: '#BBB57C', image: '/_blob/df3df718ec3dfc68a64c89a794277899' },
+        { id: 'kronos-45', label: 'Kronos 45', color: '#AEA78E', image: '/_blob/77eb22521491c0346f0c66691ecfe8a0' },
+        { id: 'kronos-46', label: 'Kronos 46', color: '#7C7A5E', image: '/_blob/0d0c94f7c5d9f3a1f064f1122ac5efd8' },
+        { id: 'kronos-47', label: 'Kronos 47', color: '#A7B3A0', image: '/_blob/5a157416cc9af758f30b22dd06d0e6cc' },
+        { id: 'kronos-52', label: 'Kronos 52', color: '#D5AAA7', image: '/_blob/cf7dc52a8dfcccda03b653e5e9841733' },
+        { id: 'kronos-53', label: 'Kronos 53', color: '#848A8E', image: '/_blob/8be4b9fa36a63d2403d84176ddd9ff15' }
+      ] },
+      { title: 'Vega — imitace kůže', desc: 'Hladký úplet vzhledu kůže, chlupy a prach se na něm tolik nedrží. Nejtěžší z látek: 330 g/m², oděruvzdornost 45 000–55 000 cyklů, norma EN 1021-1, Oeko-Tex. Pro intenzivní používání a snadnou údržbu.', items: [
+        { id: 'vega-01', label: 'Vega 01', color: '#D2D1CF', image: '/_blob/39c02ff9cd86352bb5c355eaf1245961' },
+        { id: 'vega-02', label: 'Vega 02', color: '#D2CFC8', image: '/_blob/b3b54cf8a9a8a8504386f9f34032510f' },
+        { id: 'vega-11', label: 'Vega 11', color: '#91908C', image: '/_blob/a8ee4c153f1fa006c6c31a3a73ac8580' },
+        { id: 'vega-26', label: 'Vega 26', color: '#717173', image: '/_blob/9311545a9446fb72f4b1ff3ed96bcc64' },
+        { id: 'vega-31', label: 'Vega 31', color: '#889F97', image: '/_blob/354adfefda95a35e5dc6edd5f1528139' },
+        { id: 'vega-37', label: 'Vega 37', color: '#6B7864', image: '/_blob/bfec52574eff6b115688a9d17562ff2b' },
+        { id: 'vega-48', label: 'Vega 48', color: '#BDA172', image: '/_blob/df2532c1e88ba66bd184965a4b4f3940' },
+        { id: 'vega-53', label: 'Vega 53', color: '#997050', image: '/_blob/8ca62a5c784ec958e9bcb9ba05c64c73' },
+        { id: 'vega-56', label: 'Vega 56', color: '#835941', image: '/_blob/17fd2c6951141e63e5f97d9ff7cce732' },
+        { id: 'vega-70', label: 'Vega 70', color: '#657E85', image: '/_blob/57184b6717f0d4731d72b4c72708606b' },
+        { id: 'vega-72', label: 'Vega 72', color: '#567F85', image: '/_blob/b7a45790bddcfd938d6ebddd8d86049f' },
+        { id: 'vega-79', label: 'Vega 79', color: '#3A4B53', image: '/_blob/774d9477ae8fc64c065da6020eaa01ef' },
+        { id: 'vega-80', label: 'Vega 80', color: '#8B989E', image: '/_blob/71920ea556f5178b7cb190863921cf21' },
+        { id: 'vega-83', label: 'Vega 83', color: '#6C7980', image: '/_blob/220ba63b34715304a192051c8f1a3586' },
+        { id: 'vega-88', label: 'Vega 88', color: '#717A79', image: '/_blob/b2d28fb33fffe6943624e0c0ef7e87e7' },
+        { id: 'vega-90', label: 'Vega 90', color: '#667071', image: '/_blob/7edaefd08b8f94e64a1a12f05aac7b1d' },
+        { id: 'vega-92', label: 'Vega 92', color: '#60686A', image: '/_blob/0d574bb10c62236909c1bfcbb1ccfbb9' },
+        { id: 'vega-95', label: 'Vega 95', color: '#3E4B51', image: '/_blob/5d31a7965d8bcc3308cb72e0175388ed' },
+        { id: 'vega-99', label: 'Vega 99', color: '#2E393F', image: '/_blob/a0e69c737bcf168150fcf3fa5cae4cc2' }
+      ] },
+      { title: 'Wind — žinylka', desc: 'Měkká a teplá žinylka s jemnou vazbou připomínající len, dobře maskuje drobné skvrny. 230 g/m², oděruvzdornost 30 000–40 000 cyklů, Oeko-Tex. Do domácnosti s kočkou ji nedoporučujeme.', items: [
+        { id: 'wind-02', label: 'Wind 02', color: '#EBEAE5', image: '/_blob/9b1a9ee4c7709afff635bfbefa13df55' },
+        { id: 'wind-05', label: 'Wind 05', color: '#CAC4BD', image: '/_blob/0ba6167a191b4fa2f38b7e86c932e0fc' },
+        { id: 'wind-11', label: 'Wind 11', color: '#B9B1A7', image: '/_blob/d1711f76376d330f65a01da61f676f40' },
+        { id: 'wind-21', label: 'Wind 21', color: '#817D79', image: '/_blob/f3bacf41d413c23bbb06711fe593580f' },
+        { id: 'wind-22', label: 'Wind 22', color: '#756148', image: '/_blob/7616632a222a070b3ccf7628e4b19a80' },
+        { id: 'wind-23', label: 'Wind 23', color: '#A79082', image: '/_blob/9b5251bb9a34de898f64305053704449' },
+        { id: 'wind-28', label: 'Wind 28', color: '#463E3B', image: '/_blob/742ccb1d48f4e851920901152b2ef479' },
+        { id: 'wind-31', label: 'Wind 31', color: '#ADB18D', image: '/_blob/ad721bdaa91073d163e222575925b3fa' },
+        { id: 'wind-33', label: 'Wind 33', color: '#9D8442', image: '/_blob/964b103fceccfc1387f99b4e9f0061a3' },
+        { id: 'wind-34', label: 'Wind 34', color: '#5A5830', image: '/_blob/6edcbfd5f1a2103083b58b4702f3974f' },
+        { id: 'wind-35', label: 'Wind 35', color: '#7E7139', image: '/_blob/3c9a423543984c4b72c1f2d901c5edbf' },
+        { id: 'wind-38', label: 'Wind 38', color: '#796A41', image: '/_blob/81bef7e5f55b3c1ae5454b2a0cd74433' },
+        { id: 'wind-48', label: 'Wind 48', color: '#AF8C3A', image: '/_blob/ba480b05a3660d3b2f793f538c685d70' },
+        { id: 'wind-52', label: 'Wind 52', color: '#904F3D', image: '/_blob/7d5fb9a29e8c7ec445d1bab84f71b88c' },
+        { id: 'wind-56', label: 'Wind 56', color: '#80523B', image: '/_blob/d003ebc57f6d5e2f25eec6c07b68c9a4' },
+        { id: 'wind-63', label: 'Wind 63', color: '#614B4D', image: '/_blob/8cea4b65715142a9b41df4918947eb53' },
+        { id: 'wind-73', label: 'Wind 73', color: '#AEB7BE', image: '/_blob/21ff7fc44cba79bae02ddbc97f5759dd' },
+        { id: 'wind-75', label: 'Wind 75', color: '#4C5042', image: '/_blob/aa349a9f3b7f1cdf268ca86d253880ae' },
+        { id: 'wind-76', label: 'Wind 76', color: '#526168', image: '/_blob/cbafdc8ec8a8fa8b6bafc99df15c9c7b' },
+        { id: 'wind-77', label: 'Wind 77', color: '#333D46', image: '/_blob/2eee7a219a776059db85c4177ba50c22' },
+        { id: 'wind-80', label: 'Wind 80', color: '#C8C5C1', image: '/_blob/8f78709178b19258688dfc9727c08288' },
+        { id: 'wind-82', label: 'Wind 82', color: '#B4B1AC', image: '/_blob/de10def59f19c4e9d29af53882282195' },
+        { id: 'wind-84', label: 'Wind 84', color: '#B4B1AC', image: '/_blob/90614cf48d77be16f108d2fa8a1b0a6c' },
+        { id: 'wind-89', label: 'Wind 89', color: '#707571', image: '/_blob/87b8b4468db1b71d6c9630f7180729e6' },
+        { id: 'wind-90', label: 'Wind 90', color: '#8E8E89', image: '/_blob/4501c566a4d6f2c8a4658f6e2c7e764e' },
+        { id: 'wind-99', label: 'Wind 99', color: '#212528', image: '/_blob/d7cb431033ad4c730a6f2a33f3fd7e9e' }
+      ] }
     ];
+    const LATKY = LATKY_GROUPS.reduce((a, g) => a.concat(g.items), []);
     const rostData = ROSTY.find(r => r.id === (this.state.rost || 'bez')) || ROSTY[0];
     const rost = { label: rostData.label, note: rostData.id === 'bez' ? 'Bez příplatku' : '+ ' + rostData.price };
     const matId = this.state.mat || 'buk-cherry';
     const matGroup = MATERIALY.find(g => g.items.some(i => i.id === matId)) || MATERIALY[0];
     const matItem = matGroup.items.find(i => i.id === matId) || matGroup.items[0];
     const mat = { label: matGroup.title + ' · ' + matItem.label, note: matItem.note === 'bez příplatku' ? 'Bez příplatku' : matItem.note, color: matItem.color };
-    const calItem = LATKY.find(l => l.id === (this.state.cal || 'k26')) || LATKY[0];
+    const calItem = LATKY.find(l => l.id === (this.state.cal || 'kronos-05')) || LATKY[0];
     const TUHOSTI = [
-      { id: 't1', label: 'Měkká (1/5)', meta: 'pro lehčí postavy a spaní na boku', price: '0 Kč', stock: 'Skladem', image: 'tvrdost-mekka.webp' },
-      { id: 't2', label: 'Středně měkká (2/5)', meta: 'pro spaní na boku i na zádech do 80 kg', price: '0 Kč', stock: 'Skladem', image: 'tvrdost-stredne-mekka.webp' },
-      { id: 't3', label: 'Středně tvrdá (3/5)', meta: 'univerzální volba 60–100 kg', price: '0 Kč', stock: 'Skladem', image: 'tvrdost-stredne-tvrda.webp' },
-      { id: 't4', label: 'Tvrdá (4/5)', meta: 'pro těžší postavy a spaní na zádech', price: '0 Kč', stock: 'Skladem', image: 'tvrdost-tvrda.webp' },
-      { id: 't5', label: 'Velmi tvrdá (5/5)', meta: 'pro nejtěžší postavy a pevnou oporu zad', price: '0 Kč', stock: 'Skladem', image: 'tvrdost-nejtvrdsi.webp' }
+      { id: 't1', label: 'Měkká (1/5)', meta: 'pro lehčí postavy a spaní na boku', price: '0 Kč', stock: 'Skladem', image: '/_blob/a63e20d779f2e3e40349f4ecbcc793c0' },
+      { id: 't2', label: 'Středně měkká (2/5)', meta: 'pro spaní na boku i na zádech do 80 kg', price: '0 Kč', stock: 'Skladem', image: '/_blob/4c656a6df09362706765cb731767ac96' },
+      { id: 't3', label: 'Středně tvrdá (3/5)', meta: 'univerzální volba 60–100 kg', price: '0 Kč', stock: 'Skladem', image: '/_blob/a63789a52fc157dddaef6cdbafc13fb0' },
+      { id: 't4', label: 'Tvrdá (4/5)', meta: 'pro těžší postavy a spaní na zádech', price: '0 Kč', stock: 'Skladem', image: '/_blob/45ceef241f2bd0f41d022267c01370de' },
+      { id: 't5', label: 'Velmi tvrdá (5/5)', meta: 'pro nejtěžší postavy a pevnou oporu zad', price: '0 Kč', stock: 'Skladem', image: '/_blob/3f85ee4ed91cf11d2ff61f165a3410a2' }
     ];
     const tuh = TUHOSTI.find(t => t.id === (this.state.tuh || 't3')) || TUHOSTI[1];
     const kitOpen = this.state.kitOpen || { postel: true, matrace: true, rost: true };
     const kitToggle = key => () => this.setState(s => { const o = Object.assign({ postel: true, matrace: true, rost: true }, s.kitOpen); o[key] = !o[key]; return { kitOpen: o }; });
     const KIT = [
-      { key: 'postel', img: 'menu-nocni-stolky.webp', fit: 'contain', title: 'LEVITA — dřevěná postel s „levitujícím“ rámem a nočními stolky, 180 × 200 cm', unit: 38990, count: 1, qty: '3 ks',
+      { key: 'postel', img: '/_blob/bf9ee623a3c7f6bdd65949a31b2b28ab', fit: 'contain', title: 'LEVITA — dřevěná postel s „levitujícím“ rámem a nočními stolky, 180 × 200 cm', unit: 38990, count: 1, qty: '3 ks',
         desc: 'Postel LEVITA je skvělou volbou pro každého, kdo hledá nábytek, který nejen skvěle vypadá, ale také vám dopřeje kvalitní odpočinek.' },
-      { key: 'matrace', img: 'produkt-matrace-sendvicova-duo-comfort.webp', fit: 'contain', title: 'Matrace Viscoair 19 cm, 180 × 200 cm', unit: 8290, count: 1, qty: '5 ks',
+      { key: 'matrace', img: '/_blob/4a0a7adf8f13ddf960536da06df0e197', fit: 'contain', title: 'Matrace Viscoair 19 cm, 180 × 200 cm', unit: 8290, count: 1, qty: '5 ks',
         desc: 'Antimikrobiální a ortopedická matrace spojuje BIO pěnu VERDE® a pěnu XDURA® – pro hluboký spánek a dlouhotrvající komfort.' },
-      { key: 'rost', img: 'produkt-rost-lamelovy.webp', fit: 'contain', title: 'Lamelový rošt Villach S, 90 × 200 cm', unit: 2290, count: 2, qty: '8 ks',
+      { key: 'rost', img: '/_blob/7d9234acbe0f59bf374b86101ea80224', fit: 'contain', title: 'Lamelový rošt Villach S, 90 × 200 cm', unit: 2290, count: 2, qty: '8 ks',
         desc: 'Lamelový rošt s 28 pružnými lamelami z bukové překližky. Lamely v oblasti ramen lze ručně změkčit, rám je z masivního smrku.' }
     ];
     const fmtK = n => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, '\u00A0') + '\u00A0Kč';
@@ -1349,7 +1429,7 @@ class Component extends DCLogic {
     const KIT_PRICE = 43270;
     const kitSave = kitSum - KIT_PRICE;
     const kitPct = Math.floor(kitSave / kitSum * 100);
-    const cal = { label: calItem.label, note: calItem.note === 'bez příplatku' ? 'Bez příplatku' : calItem.note, color: calItem.color };
+    const cal = { label: calItem.label, note: 'Bez příplatku', color: calItem.color };
     const fmt = (v) => String(v).replace(/\B(?=(\d{3})+(?!\d))/g, '\u00A0') + '\u00A0Kč';
     const baseNow = 31990, baseBefore = 34290, upDiff = 7000;
     const now = this.state.up === 'yes' ? baseNow : baseNow - upDiff;
@@ -1365,9 +1445,9 @@ class Component extends DCLogic {
     const discount = '−' + Math.round((1 - now / before) * 100) + ' %';
     const sizes = ['90 × 200 cm', '120 × 200 cm', '140 × 200 cm', '160 × 200 cm', '180 × 200 cm', '200 × 200 cm', '180 × 210 cm', '180 × 220 cm'];
     const variants = [
-      { label: 'LEVITA bez stolků', src: 'levita-loznice-komoda.jpg', stock: false },
-      { label: 'LEVITA s nočními stolky', src: 'produkt-postel-levita.webp', stock: true },
-      { label: 'LEVITA s úložným prostorem', src: 'levita-ulozny-prostor.jpg', stock: true }
+      { label: 'LEVITA bez stolků', src: '/_blob/5d284e9d65729ad7719aa1d43749b751', stock: false },
+      { label: 'LEVITA s nočními stolky', src: '/_blob/6b546453dfb90e0ec7ddb488eed7e6ec', stock: true },
+      { label: 'LEVITA s úložným prostorem', src: '/_blob/27aac8085a87d891384dc315ddf4318d', stock: true }
     ];
     const faqData = [
       { question: 'Za jak dlouho postel dorazí?', answer: 'Skladové varianty expedujeme do 24 hodin a doručíme zpravidla do pěti pracovních dnů. Postele vyráběné na zakázku, v atypickém rozměru nebo s netypickým odstínem oleje dokončíme do 4–7 týdnů. Přesný termín vám potvrdíme e-mailem hned po objednávce.' },
@@ -1428,8 +1508,8 @@ class Component extends DCLogic {
       openMain: () => this.openLightbox(i),
       narrowGallery: narrow, wideGallery: !narrow,
       thumbs: PH.map((p, k) => ({ src: p.src || '', isPhoto: !p.video, isVideo: !!p.video, aria: (p.video ? 'Zobrazit video' : 'Zobrazit fotku ' + (k + 1)) + ' z ' + n, current: k === i ? 'true' : undefined, ring: k === i ? 'inset 0 0 0 2px #296093' : 'none', pick: () => this.setState({ photo: k }) })),
-      openSub1: () => this.openLightbox(Math.max(0, this.photos().findIndex(p => p.src === 'levita-loznice-komoda.jpg'))),
-      openSub2: () => this.openLightbox(Math.max(0, this.photos().findIndex(p => p.src === 'levita-schema-rozmeru.webp'))),
+      openSub1: () => this.openLightbox(Math.max(0, this.photos().findIndex(p => p.src === '/_blob/5d284e9d65729ad7719aa1d43749b751'))),
+      openSub2: () => this.openLightbox(Math.max(0, this.photos().findIndex(p => p.src === '/_blob/e334b477f4cdda9c9ebd7473bab882be'))),
       tiles: this.PHOTOS.filter((_, k) => k !== i).slice(0, 4).map(p => {
         const k = this.PHOTOS.indexOf(p);
         return { src: p.src, alt: p.alt, aria: 'Zvětšit fotku: ' + p.alt, onOpen: () => this.openLightbox(k) };
@@ -1503,9 +1583,9 @@ class Component extends DCLogic {
       ],
       drawerOpen: !!this.state.drawer,
       drawerTitle: this.state.drawer === 'tuhost' ? 'Tuhost matrace' : this.state.drawer === 'rosty' ? 'Rošt(y)' : this.state.drawer === 'material' ? 'Materiál a odstín dřeva' : 'Čalounění',
-      drawerNote: this.state.drawer === 'calouneni' ? 'Nevybrali jste si? Celou škálu látek Kronos a Paros najdete ve vzorníku níže na stránce nebo na našich prodejnách.' : '',
+      drawerNote: this.state.drawer === 'calouneni' ? 'Cena postele se výběrem látky nemění. Barvy se na obrazovkách liší — odstín si raději ověřte za denního světla na vzorníku v některé z našich prodejen.' : '',
       drawerValue: this.state.drawer === 'tuhost' ? (this.state.tuh || 't3') : this.state.drawer === 'rosty' ? this.state.rost : this.state.drawer === 'material' ? this.state.mat : this.state.cal,
-      drawerGroups: this.state.drawer === 'material' ? MATERIALY : this.state.drawer === 'calouneni' ? [{ items: LATKY }] : [],
+      drawerGroups: this.state.drawer === 'material' ? MATERIALY : this.state.drawer === 'calouneni' ? LATKY_GROUPS : [],
       drawerRows: this.state.drawer === 'rosty' ? ROSTY : this.state.drawer === 'tuhost' ? TUHOSTI : [],
       onDrawerPick: (id) => {
         const k = this.state.drawer;
@@ -1614,12 +1694,12 @@ class Component extends DCLogic {
         { icon: 'duo-ruler-3', title: 'Úpravy na míru', text: 'vyrobíme na centimetr přesně' }
       ],
       anchors: [
-        { label: 'Popis a parametry', href: '#popis' },
-        { label: 'Hlavní přednosti', href: '#prednosti' },
-        { label: 'Materiály', href: '#materialy' },
-        { label: 'Hodnocení', href: '#hodnoceni' },
-        { label: 'Časté dotazy', href: '#faq' },
-        { label: 'Související produkty', href: '#souvisejici' }
+        { label: 'Popis a parametry', href: '#popis', icon: 'adjustments-horizontal' },
+        { label: 'Hlavní přednosti', href: '#prednosti', icon: 'award' },
+        { label: 'Materiály', href: '#materialy', icon: 'stack-2' },
+        { label: 'Hodnocení', href: '#hodnoceni', icon: 'star' },
+        { label: 'Časté dotazy', href: '#faq', icon: 'help-circle' },
+        { label: 'Související produkty', href: '#souvisejici', icon: 'package' }
       ].map(a => { const id = a.href.slice(1); const on = this.state.activeSec === id; return Object.assign(a, { current: on ? 'location' : undefined, on: on ? 'true' : 'false', go: (e) => { e.preventDefault(); this.goTo(id); } }); }),
       params: [
         ['Záruka', '5 let'],
@@ -1636,7 +1716,7 @@ class Component extends DCLogic {
         ['Výška čela u nohou', '45 cm'],
         ['Výška bočnice', '45 cm'],
         ['Uložení roštu', '12–19 cm (stavitelné)']
-      ].map((p, k) => ({ label: p[0] + ':', value: p[1], bg: k % 2 === 0 ? 'var(--ss-surface-subtle,#FAF5EF)' : 'var(--ss-surface-page,#FFFFFF)' })),
+      ].map((p, k, all) => ({ label: p[0] + ':', value: p[1], border: k < all.length - 1 ? '1px solid var(--ss-border-subtle,#E1E6EB)' : '0' })),
       perks: [
         { icon: 'map-pin', label: 'Vyrobena u nás v Česku' },
         { icon: 'package', label: 'Masivní dřevo z českých lesů' },
@@ -1650,9 +1730,14 @@ class Component extends DCLogic {
         { icon: 'calendar-time', label: 'Prodloužená záruka 5 let' }
       ],
       addons: [
-        { title: 'Matrace', note: 'Nakupte současně se slevou 10 %', href: '#matrace', src: 'levita-loznice-koberec.jpg' },
-        { title: 'Rošty', note: 'Nakupte současně se slevou 10 %', href: '#rosty', src: 'levita-nocni-stolek-v-cele.jpg' },
-        { title: 'Povlečení', note: 'Nakupte současně se slevou 20 %', href: '#povleceni', src: 'levita-loznice-komoda.jpg' }
+        { title: 'Matrace', note: 'Nakupte současně se slevou 10 %', href: '#matrace', src: '/_blob/827bda76a4305353740be28bd19199c5' },
+        { title: 'Rošty', note: 'Nakupte současně se slevou 10 %', href: '#rosty', src: '/_blob/42c46d7f99e215e0f2807071fa8d63f4' },
+        { title: 'Povlečení', note: 'Nakupte současně se slevou 20 %', href: '#povleceni', src: '/_blob/5d284e9d65729ad7719aa1d43749b751' }
+      ],
+      addonTiles: [
+        { label: 'Matrace', sub: ['Nakupte současně se slevou 10 %'], href: '#matrace', image: '/_blob/c5a374fbd36fa4495aacd11898012a93', zoom: true },
+        { label: 'Rošty', sub: ['Nakupte současně se slevou 10 %'], href: '#rosty', image: '/_blob/e58c131539e8ad6860c8e14b3cb0959a', zoom: true },
+        { label: 'Povlečení', sub: ['Nakupte současně se slevou 20 %'], href: '#povleceni', image: '/_blob/56aa44a9fe077e9955c51f753cc8f0e7' }
       ],
       customPoints: [
         { label: 'Postele, rošty i matrace na míru podle vašich potřeb s přesností na 1 mm' },
@@ -1678,14 +1763,8 @@ class Component extends DCLogic {
       moreReviewsLabel: this.state.moreReviews ? 'Skrýt hodnocení' : 'Zobrazit další hodnocení',
       moreReviewsIcon: this.state.moreReviews ? 'chevron-up' : 'chevron-down',
       toggleReviews: () => this.setState(s => ({ moreReviews: !s.moreReviews })),
-      faqs: faqData.map((q, k) => ({
-        question: q.question, answer: q.answer,
-        open: this.state.faq === k,
-        expanded: this.state.faq === k ? 'true' : 'false',
-        icon: this.state.faq === k ? 'x' : 'plus',
-        iconBg: this.state.faq === k ? '#EFF2F5' : '#F7F9FB',
-        onToggle: () => this.setState(s => ({ faq: s.faq === k ? -1 : k }))
-      })),
+      faqs: faqData.map(q => ({ question: q.question, answer: q.answer })),
+      faqNarrow: narrow,
       stickyOn: (this.props.stickyLista ?? true) && this.state.sticky && this.state.lb === null,
       stickyWide: w >= 820,
       stickyNarrow: w < 820,

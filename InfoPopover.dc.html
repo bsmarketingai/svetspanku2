@@ -188,14 +188,6 @@ main>section.ss-grad-top.ss-grad-glow{background-image:radial-gradient(ellipse 5
 html[data-mode="dark"] main>section.ss-grad-top.ss-grad-glow{background-image:radial-gradient(ellipse 55% 100% at 50% 100%,rgba(251,178,85,.14) 0%,rgba(251,178,85,.05) 45%,rgba(251,178,85,0) 75%),linear-gradient(180deg,var(--ss-surface-page,#0E1F2F) 0%,var(--ss-surface-muted,#183049) 100%)!important;}
 
 
-/* Scrollbar: jen táhlo v barvách webu, bez podkladu (platí globálně) */
-*{scrollbar-width:auto;scrollbar-color:var(--ss-scrollbar-thumb,#FBB255) transparent;}
-*::-webkit-scrollbar{width:15px;height:15px;background:transparent;}
-*::-webkit-scrollbar-track{background:transparent;}
-*::-webkit-scrollbar-thumb{background:var(--ss-scrollbar-thumb,#FBB255);border-radius:999px;border:4px solid transparent;background-clip:padding-box;}
-*::-webkit-scrollbar-thumb:hover{background:var(--ss-scrollbar-thumb-hover,#F09A2C);background-clip:padding-box;}
-*::-webkit-scrollbar-corner{background:transparent;}
-html[data-mode="dark"]{--ss-scrollbar-thumb:#FBB255;--ss-scrollbar-thumb-hover:#F09A2C;}
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400..700&family=Roboto:wght@400..700&display=swap" rel="stylesheet">
 <script>try{var d=document.documentElement;if(localStorage.getItem('ss-mode')==='dark')d.setAttribute('data-mode','dark');d.setAttribute('data-logo',localStorage.getItem('ss-logo')||'a');d.setAttribute('data-font-h','base');d.setAttribute('data-font-b','base');d.setAttribute('data-bg',localStorage.getItem('ss-bg')||'on');}catch(e){}</script>
@@ -211,68 +203,20 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
 @media (hover:hover) and (pointer:fine){.ss-ip-btn:hover{background:var(--ss-hover-bg,#F0F5FA);color:var(--ss-hover-text,#21507B);}}
 .ss-ip-btn[aria-expanded="true"]{background:var(--ss-hover-bg,#F0F5FA);color:var(--ss-hover-text,#21507B);}
 .ss-ip-btn:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
-.ss-ip-pop{position:fixed;z-index:300;box-sizing:border-box;padding:16px 20px;border-radius:12px;background:var(--ss-surface-page,#FFFFFF);box-shadow:0 16px 40px rgba(19,44,67,.18);font-family:Roboto,Helvetica,Arial,sans-serif;color:var(--ss-text-primary,#1C2229);}
-.ss-ip-pop:focus{outline:none;}
 </style>
 </helmet>
 <span style="position:relative;z-index:2;display:inline-flex;flex:none">
   <button type="button" class="ss-ip-btn" ref="{{ btnRef }}" onClick="{{ toggle }}" aria-expanded="{{ expanded }}" aria-controls="{{ popId }}" aria-label="{{ btnLabel }}">
     <dc-import name="Ikony" iconName="help-circle" size="20" hint-size="20px,20px"></dc-import>
   </button>
-  <sc-if value="{{ open }}" hint-placeholder-val="{{ false }}">
-    <div class="ss-ip-pop" id="{{ popId }}" role="dialog" aria-label="{{ title }}" tabindex="-1" ref="{{ popRef }}" style="{{ popStyle }}">
-      <ul style="margin:0;padding:0 0 0 18px;display:flex;flex-direction:column;gap:8px;font-size:15px;line-height:1.45;color:var(--ss-text-secondary,#3D4750)">
-        <sc-for list="{{ items }}" as="t" hint-placeholder-count="3">
-          <li style="text-wrap:pretty">{{ t }}</li>
-        </sc-for>
-      </ul>
-    </div>
-  </sc-if>
+  <dc-import name="Overlay" open="{{ open }}" variant="popover" obsah="InfoObsah" title="{{ title }}" closeLabel="nápovědu" initialFocus="close" panelId="{{ popId }}" getAnchor="{{ getAnchor }}" data="{{ data }}" onClose="{{ close }}" hint-size="0px,0px"></dc-import>
 </span>
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:400,&quot;height&quot;:260},&quot;title&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Více informací&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;items&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;string[]&quot;}}">
+// Informační bublina = spouštěč (otazník) + Overlay ve variantě popover s obsahem InfoObsah. API pro stránky zůstává stejné.
+// Zpět na původní verzi: obsah InfoPopover_v1.dc.html zkopírovat sem (příkaz „vrať B1.6“).
 class Component extends DCLogic {
-  state = { open: false, top: 0, left: 0, width: 320, measured: false };
-  componentWillUnmount() { this.unbind(); }
-  bind() {
-    this._down = (e) => { if (this._pop && !this._pop.contains(e.target) && this._btn && !this._btn.contains(e.target)) this.close(false); };
-    this._key = (e) => { if (e.key === 'Escape') this.close(true); };
-    this._move = () => this.place();
-    document.addEventListener('pointerdown', this._down, true);
-    document.addEventListener('keydown', this._key);
-    window.addEventListener('scroll', this._move, true);
-    window.addEventListener('resize', this._move);
-  }
-  unbind() {
-    if (!this._down) return;
-    document.removeEventListener('pointerdown', this._down, true);
-    document.removeEventListener('keydown', this._key);
-    window.removeEventListener('scroll', this._move, true);
-    window.removeEventListener('resize', this._move);
-    this._down = null;
-  }
-  place() {
-    const b = this._btn; if (!b) return;
-    const r = b.getBoundingClientRect();
-    const vw = document.documentElement.clientWidth;
-    const width = Math.min(320, vw - 32);
-    const left = Math.max(16, Math.min(r.left + r.width / 2 - 32, vw - width - 16));
-    const h = this._pop ? this._pop.offsetHeight : 160;
-    const above = r.top - h - 8 > 16;
-    const top = above ? r.top - h - 8 : r.bottom + 8;
-    this.setState({ top, left, width, measured: true });
-  }
-  open() {
-    this.setState({ open: true, measured: false }, () => {
-      requestAnimationFrame(() => { this.place(); if (this._pop) this._pop.focus({ preventScroll: true }); });
-    });
-    this.bind();
-  }
-  close(refocus) {
-    this.unbind();
-    this.setState({ open: false });
-    if (refocus && this._btn) this._btn.focus();
-  }
+  state = { open: false };
   renderVals() {
     const p = this.props;
     const uid = this._id || (this._id = 'ss-ip-' + Math.random().toString(36).slice(2, 8));
@@ -283,11 +227,11 @@ class Component extends DCLogic {
       popId: uid,
       title,
       btnLabel: 'Více informací: ' + title,
-      items: p.items || ['Doručení v pracovní dny 8:00–18:00', 'Odkaz na sledování zásilky obdržíte e-mailem'],
-      toggle: () => (this.state.open ? this.close(false) : this.open()),
+      data: { items: p.items },
+      toggle: () => this.setState(s => ({ open: !s.open })),
+      close: () => this.setState({ open: false }),
       btnRef: (el) => { this._btn = el; },
-      popRef: (el) => { this._pop = el; },
-      popStyle: { top: this.state.top + 'px', left: this.state.left + 'px', width: this.state.width + 'px', opacity: this.state.measured ? 1 : 0 }
+      getAnchor: () => this._btn
     };
   }
 }

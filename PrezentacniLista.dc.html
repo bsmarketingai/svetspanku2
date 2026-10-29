@@ -188,14 +188,6 @@ main>section.ss-grad-top.ss-grad-glow{background-image:radial-gradient(ellipse 5
 html[data-mode="dark"] main>section.ss-grad-top.ss-grad-glow{background-image:radial-gradient(ellipse 55% 100% at 50% 100%,rgba(251,178,85,.14) 0%,rgba(251,178,85,.05) 45%,rgba(251,178,85,0) 75%),linear-gradient(180deg,var(--ss-surface-page,#0E1F2F) 0%,var(--ss-surface-muted,#183049) 100%)!important;}
 
 
-/* Scrollbar: jen táhlo v barvách webu, bez podkladu (platí globálně) */
-*{scrollbar-width:auto;scrollbar-color:var(--ss-scrollbar-thumb,#FBB255) transparent;}
-*::-webkit-scrollbar{width:15px;height:15px;background:transparent;}
-*::-webkit-scrollbar-track{background:transparent;}
-*::-webkit-scrollbar-thumb{background:var(--ss-scrollbar-thumb,#FBB255);border-radius:999px;border:4px solid transparent;background-clip:padding-box;}
-*::-webkit-scrollbar-thumb:hover{background:var(--ss-scrollbar-thumb-hover,#F09A2C);background-clip:padding-box;}
-*::-webkit-scrollbar-corner{background:transparent;}
-html[data-mode="dark"]{--ss-scrollbar-thumb:#FBB255;--ss-scrollbar-thumb-hover:#F09A2C;}
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400..700&family=Roboto:wght@400..700&display=swap" rel="stylesheet">
 <script>try{var d=document.documentElement;if(localStorage.getItem('ss-mode')==='dark')d.setAttribute('data-mode','dark');d.setAttribute('data-logo',localStorage.getItem('ss-logo')||'a');d.setAttribute('data-font-h','base');d.setAttribute('data-font-b','base');d.setAttribute('data-bg',localStorage.getItem('ss-bg')||'on');}catch(e){}</script>
@@ -270,6 +262,8 @@ class Component extends DCLogic {
     try { localStorage.setItem(key, v); } catch (e) {}
     document.documentElement.setAttribute(attr, v);
   }
+  // Uložený tmavý režim z dřívějška vrátí na světlý
+  componentDidMount() { if (this.state.mode === 'dark') this.setMode('light'); }
   setLogo(l) { this.setAttr('ss-logo', 'data-logo', l); this.setState({ logo: l }); }
   setMode(m) {
     try { localStorage.setItem('ss-mode', m); } catch (e) {}
@@ -281,11 +275,9 @@ class Component extends DCLogic {
     const open = this.state.open;
     const src = p.items || [{ label: 'LED u otevírací doby', value: true }];
     const grp = (label, opts, cur, fn) => ({ label, options: opts.map(([l, v]) => ({ label: l, pressed: cur === v ? 'true' : 'false', onPick: () => fn(v) })) });
-    const base = [
-      grp('Režim', [['Světlý', 'light'], ['Tmavý', 'dark']], this.state.mode, v => this.setMode(v))
-    ];
+    // Tmavý režim zrušen (29. 10. 2026) — přepínač Režim i volba Logo (jen pro tmavý) odebrány
+    const base = [];
     base.push(grp('Sticky hlavička', [['H1', 'H1'], ['H2', 'H2']], this.state.hd, v => { try { localStorage.setItem('ss-hdmode', v); } catch (e) {} window.dispatchEvent(new Event('ss-hdmode')); this.setState({ hd: v }); }));
-    if (this.state.mode === 'dark') base.push(grp('Logo', [['Statické', 'none'], ['A pulz', 'a'], ['D přejezd', 'd']], this.state.logo, v => this.setLogo(v)));
     return {
       open,
       visible: !this.state.hidden,
