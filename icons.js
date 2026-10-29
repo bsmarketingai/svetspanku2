@@ -137,7 +137,7 @@ export const ICONS = {
  "arrows-horizontal": "<path d=\"M7 8l-4 4l4 4\"></path><path d=\"M17 8l4 4l-4 4\"></path><path d=\"M3 12l18 0\"></path>",
  "arrows-vertical": "<path d=\"M8 7l4 -4l4 4\"></path><path d=\"M8 17l4 4l4 -4\"></path><path d=\"M12 3l0 18\"></path>"
 };
-// USP ilustrace klienta — viewBox 64, stroke 2.5, statické, dvoubarevné: currentColor + --ss-usp-accent
+// USP ilustrace klienta – viewBox 64, stroke 2.5, statické, dvoubarevné: currentColor + --ss-usp-accent
 export const ICONS_USP = {
  "usp-spanek": "<path d=\"M9 36H27L9 54H27\"></path><path style=\"stroke:var(--ss-usp-accent,currentColor)\" d=\"M31 22H43L31 34H43\"></path><path style=\"stroke:var(--ss-usp-accent,currentColor)\" d=\"M47 10H55L47 18H55\"></path>",
  "usp-doprava": "<g transform=\"translate(1 -3)\"><path style=\"stroke:var(--ss-usp-accent,currentColor)\" d=\"M8 25H3\"></path><path style=\"stroke:var(--ss-usp-accent,currentColor)\" d=\"M8 32H1\"></path><path style=\"stroke:var(--ss-usp-accent,currentColor)\" d=\"M8 39H4\"></path><g><path d=\"M15.5 44H15A3 3 0 0 1 12 41V23A3 3 0 0 1 15 20H37A3 3 0 0 1 40 23V44H24.5M40 44H43.5M40 27H48.76A3 3 0 0 1 50.88 27.88L57.12 34.12A3 3 0 0 1 58 36.24V41A3 3 0 0 1 55 44H52.5\"></path><path d=\"M45 31H48.6A1 1 0 0 1 49.3 31.3L52 34A.6 .6 0 0 1 51.6 35H45A1 1 0 0 1 44 34V32A1 1 0 0 1 45 31Z\"></path></g><circle cx=\"20\" cy=\"46\" r=\"4.5\"></circle><circle cx=\"48\" cy=\"46\" r=\"4.5\"></circle></g>",

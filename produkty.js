@@ -38,7 +38,7 @@ export const PRODUKTY = [
     rating: 4.5, ratingCount: 12, price: '4 690 Kč', stock: 'outOfStock', moreLabel: 'Více odstínů',
     params: [{ icon: 'tree', label: 'Dub' }, { icon: 'dimensions', label: '45 × 40 cm' }] },
   { id: 'p9', image: '_blob/4a0a7adf8f13ddf960536da06df0e197.webp', title: 'Sendvičová matrace Duo Comfort', href: 'Detail_Matrace_3.0.dc.html', orderNo: '428590',
-    perex: 'Dvě tuhosti v jedné matraci — stačí ji otočit podle ročního období.',
+    perex: 'Dvě tuhosti v jedné matraci – stačí ji otočit podle ročního období.',
     rating: 4.1, ratingCount: 54, price: '6 190 Kč', stock: 'inStock', moreLabel: 'Více rozměrů / stupňů tuhosti',
     mp: { tuhostPct: 70, zatizeniOd: 60, zatizeniDo: 110, nosnostMax: 120, vyska: 20, vyskaJadra: 18, zaruka: 5, spankNaBoku: true },
     tuhost: 3.5, params: [{ icon: 'arrows-exchange', label: 'Oboustranná' }, { icon: 'weight', label: '110 kg' }, { icon: 'arrow-autofit-height', label: '18 cm' }] },

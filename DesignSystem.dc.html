@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Sans+Condensed:wght@400;500;600;700&display=swap" rel="stylesheet"><style data-ss="tmavy-rezim">
-/* Tmavý režim — přepíná html[data-mode="dark"]. Světlý režim = fallback hodnoty v var(). */
+/* Tmavý režim – přepíná html[data-mode="dark"]. Světlý režim = fallback hodnoty v var(). */
 /* Hover ve světlém režimu modrý (6. 10. 2026), v tmavém meruňkový */
 html:not([data-mode="dark"]){--ss-hover-text:#21507B;--ss-hover-bg:#F0F5FA;
   /* Teplé meruňkové podklady (7. 10. 2026) */
@@ -88,7 +88,7 @@ html[data-mode="dark"] .ss-pm-card{background:#13283C;}
 html[data-mode="dark"] .ss-pm-card:hover{background:#13283C!important;box-shadow:none!important;color:inherit!important;}
 html[data-mode="dark"] .ss-pm-row:hover{background:transparent!important;box-shadow:none!important;color:inherit!important;}
 
-/* Ostrůvek světlého režimu (popupy nad fotkami — produktové fotky mají bílé pozadí) */
+/* Ostrůvek světlého režimu (popupy nad fotkami – produktové fotky mají bílé pozadí) */
 html[data-mode="dark"] .ss-light{color-scheme:light;
   --ss-hover-text:#21507B;
   --ss-hover-bg:#F0F5FA;
@@ -146,7 +146,7 @@ html[data-mode="dark"] .ss-pc::before{content:"";position:absolute;inset:0;borde
 html[data-mode="dark"] .ss-pm-card:hover .ss-pm-title,html[data-mode="dark"] .ss-pm-row:hover .ss-pm-title,html[data-mode="dark"] .ss-pc:hover .ss-pc-title,html[data-mode="dark"] .ss-mm-ban:hover{color:#FBB255!important;}
 
 /* Podklad webu: jemný radiální gradient ze středu viewportu (hloubka). Fixní → plynule přes všechny sekce. */
-/* Vinětace (Elevace) odebrána 12. 10. 2026 — plné podklady, stíny karet zůstávají vždy */
+/* Vinětace (Elevace) odebrána 12. 10. 2026 – plné podklady, stíny karet zůstávají vždy */
 
 
 /* Gradient Zap: elevace všech ploch, které by na gradientu splývaly (karty, filtry, video, boxy). Gradient Vyp = beze změny. */
@@ -161,7 +161,7 @@ html[data-mode="dark"] .ss-ct[data-pop="true"]::before{box-shadow:inset 0 1px 0 
 @media (hover:hover) and (pointer:fine){html .ss-ct[data-pop="true"]:hover::before{box-shadow:0 4px 12px rgba(19,44,67,.12);}html[data-mode="dark"] .ss-ct[data-pop="true"]:hover::before{box-shadow:inset 0 1px 0 rgba(141,179,211,.18),0 0 0 1px rgba(141,179,211,.14),0 8px 24px rgba(0,0,0,.45);}}
 html .ss-elev:focus-visible{box-shadow:0 0 0 3px rgba(41,96,147,.35)!important;}
 
-/* Prezentační přepínač fontů — html[data-font-h|data-font-b]="alt" */
+/* Prezentační přepínač fontů – html[data-font-h|data-font-b]="alt" */
 html[data-font-h="alt"] h1:not(.ss-plain),html[data-font-h="alt"] h2:not(.ss-plain),html[data-font-h="alt"] h3:not(.ss-plain),html[data-font-h="alt"] h4:not(.ss-plain),html[data-font-h="alt"] [style*="Oswald"]{font-family:'Barlow Condensed',Oswald,Helvetica,Arial,sans-serif!important;}
 html[data-font-b="alt"] body,html[data-font-b="alt"] [style*="Roboto"]:not([style*="Archivo"]):not([style*="Oswald"]),html[data-font-b="alt"] input,html[data-font-b="alt"] button,html[data-font-b="alt"] select,html[data-font-b="alt"] textarea{font-family:'IBM Plex Sans Condensed',Roboto,Helvetica,Arial,sans-serif!important;}
 html[data-mode="dark"] .ss-ct:hover .ss-ct-title,html[data-mode="dark"] .ss-hp-art:hover .ss-hp-art-t,html[data-mode="dark"] .ss-mag-lead:hover .ss-hp-art-t{color:#FBB255;}
@@ -182,10 +182,10 @@ main>section.ss-grad-top{background-image:linear-gradient(180deg,var(--ss-surfac
 
 
 
-/* Nadpisy: světlý režim tmavá modrá z hlavičky #0B1F33 (inline barva vyhrává — bílé nadpisy na tmavých pásech zůstávají) */
+/* Nadpisy: světlý režim tmavá modrá z hlavičky #0B1F33 (inline barva vyhrává – bílé nadpisy na tmavých pásech zůstávají) */
 h1,h2,h3,h4{color:var(--ss-text-heading,#0B1F33);}
 
-/* Sekce s meruňkovým podsvícením zespoda — poloviční radiál od spodní hrany, vrstvený nad .ss-grad-top */
+/* Sekce s meruňkovým podsvícením zespoda – poloviční radiál od spodní hrany, vrstvený nad .ss-grad-top */
 main>section.ss-grad-top.ss-grad-glow{background-image:radial-gradient(ellipse 55% 100% at 50% 100%,rgba(251,178,85,.22) 0%,rgba(251,178,85,.09) 45%,rgba(251,178,85,0) 75%),linear-gradient(180deg,var(--ss-surface-page,#FFFFFF) 0%,var(--ss-surface-muted,#F3EDE4) 100%)!important;background-size:100% 520px,auto!important;background-position:center bottom,center!important;background-repeat:no-repeat!important;background-attachment:scroll!important;}
 html[data-mode="dark"] main>section.ss-grad-top.ss-grad-glow{background-image:radial-gradient(ellipse 55% 100% at 50% 100%,rgba(251,178,85,.14) 0%,rgba(251,178,85,.05) 45%,rgba(251,178,85,0) 75%),linear-gradient(180deg,var(--ss-surface-page,#0E1F2F) 0%,var(--ss-surface-muted,#183049) 100%)!important;}
 
@@ -206,7 +206,7 @@ a:hover{color:var(--ss-link-hover,#21507B);}
 <x-dc>
 <helmet>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Sans+Condensed:wght@400;500;600;700&display=swap" rel="stylesheet"><style data-ss="tmavy-rezim">
-/* Tmavý režim — přepíná html[data-mode="dark"]. Světlý režim = fallback hodnoty v var(). */
+/* Tmavý režim – přepíná html[data-mode="dark"]. Světlý režim = fallback hodnoty v var(). */
 /* Hover ve světlém režimu modrý (6. 10. 2026), v tmavém meruňkový */
 html:not([data-mode="dark"]){--ss-hover-text:#21507B;--ss-hover-bg:#F0F5FA;
   /* Teplé meruňkové podklady (7. 10. 2026) */
@@ -286,7 +286,7 @@ html[data-mode="dark"] .ss-pm-card{background:#13283C;}
 html[data-mode="dark"] .ss-pm-card:hover{background:#13283C!important;box-shadow:none!important;color:inherit!important;}
 html[data-mode="dark"] .ss-pm-row:hover{background:transparent!important;box-shadow:none!important;color:inherit!important;}
 
-/* Ostrůvek světlého režimu (popupy nad fotkami — produktové fotky mají bílé pozadí) */
+/* Ostrůvek světlého režimu (popupy nad fotkami – produktové fotky mají bílé pozadí) */
 html[data-mode="dark"] .ss-light{color-scheme:light;
   --ss-hover-text:#21507B;
   --ss-hover-bg:#F0F5FA;
@@ -344,7 +344,7 @@ html[data-mode="dark"] .ss-pc::before{content:"";position:absolute;inset:0;borde
 html[data-mode="dark"] .ss-pm-card:hover .ss-pm-title,html[data-mode="dark"] .ss-pm-row:hover .ss-pm-title,html[data-mode="dark"] .ss-pc:hover .ss-pc-title,html[data-mode="dark"] .ss-mm-ban:hover{color:#FBB255!important;}
 
 /* Podklad webu: jemný radiální gradient ze středu viewportu (hloubka). Fixní → plynule přes všechny sekce. */
-/* Vinětace (Elevace) odebrána 12. 10. 2026 — plné podklady, stíny karet zůstávají vždy */
+/* Vinětace (Elevace) odebrána 12. 10. 2026 – plné podklady, stíny karet zůstávají vždy */
 
 
 /* Gradient Zap: elevace všech ploch, které by na gradientu splývaly (karty, filtry, video, boxy). Gradient Vyp = beze změny. */
@@ -359,7 +359,7 @@ html[data-mode="dark"] .ss-ct[data-pop="true"]::before{box-shadow:inset 0 1px 0 
 @media (hover:hover) and (pointer:fine){html .ss-ct[data-pop="true"]:hover::before{box-shadow:0 4px 12px rgba(19,44,67,.12);}html[data-mode="dark"] .ss-ct[data-pop="true"]:hover::before{box-shadow:inset 0 1px 0 rgba(141,179,211,.18),0 0 0 1px rgba(141,179,211,.14),0 8px 24px rgba(0,0,0,.45);}}
 html .ss-elev:focus-visible{box-shadow:0 0 0 3px rgba(41,96,147,.35)!important;}
 
-/* Prezentační přepínač fontů — html[data-font-h|data-font-b]="alt" */
+/* Prezentační přepínač fontů – html[data-font-h|data-font-b]="alt" */
 html[data-font-h="alt"] h1:not(.ss-plain),html[data-font-h="alt"] h2:not(.ss-plain),html[data-font-h="alt"] h3:not(.ss-plain),html[data-font-h="alt"] h4:not(.ss-plain),html[data-font-h="alt"] [style*="Oswald"]{font-family:'Barlow Condensed',Oswald,Helvetica,Arial,sans-serif!important;}
 html[data-font-b="alt"] body,html[data-font-b="alt"] [style*="Roboto"]:not([style*="Archivo"]):not([style*="Oswald"]),html[data-font-b="alt"] input,html[data-font-b="alt"] button,html[data-font-b="alt"] select,html[data-font-b="alt"] textarea{font-family:'IBM Plex Sans Condensed',Roboto,Helvetica,Arial,sans-serif!important;}
 html[data-mode="dark"] .ss-ct:hover .ss-ct-title,html[data-mode="dark"] .ss-hp-art:hover .ss-hp-art-t,html[data-mode="dark"] .ss-mag-lead:hover .ss-hp-art-t{color:#FBB255;}
@@ -380,10 +380,10 @@ main>section.ss-grad-top{background-image:linear-gradient(180deg,var(--ss-surfac
 
 
 
-/* Nadpisy: světlý režim tmavá modrá z hlavičky #0B1F33 (inline barva vyhrává — bílé nadpisy na tmavých pásech zůstávají) */
+/* Nadpisy: světlý režim tmavá modrá z hlavičky #0B1F33 (inline barva vyhrává – bílé nadpisy na tmavých pásech zůstávají) */
 h1,h2,h3,h4{color:var(--ss-text-heading,#0B1F33);}
 
-/* Sekce s meruňkovým podsvícením zespoda — poloviční radiál od spodní hrany, vrstvený nad .ss-grad-top */
+/* Sekce s meruňkovým podsvícením zespoda – poloviční radiál od spodní hrany, vrstvený nad .ss-grad-top */
 main>section.ss-grad-top.ss-grad-glow{background-image:radial-gradient(ellipse 55% 100% at 50% 100%,rgba(251,178,85,.22) 0%,rgba(251,178,85,.09) 45%,rgba(251,178,85,0) 75%),linear-gradient(180deg,var(--ss-surface-page,#FFFFFF) 0%,var(--ss-surface-muted,#F3EDE4) 100%)!important;background-size:100% 520px,auto!important;background-position:center bottom,center!important;background-repeat:no-repeat!important;background-attachment:scroll!important;}
 html[data-mode="dark"] main>section.ss-grad-top.ss-grad-glow{background-image:radial-gradient(ellipse 55% 100% at 50% 100%,rgba(251,178,85,.14) 0%,rgba(251,178,85,.05) 45%,rgba(251,178,85,0) 75%),linear-gradient(180deg,var(--ss-surface-page,#0E1F2F) 0%,var(--ss-surface-muted,#183049) 100%)!important;}
 
@@ -421,7 +421,7 @@ a:hover{color:var(--ss-link-hover,#21507B);}
   <section style="width:100%">
     <div style="max-width:1560px;margin:0 auto;padding:64px 32px 0">
       <h2 style="margin:0 0 8px;font-family:Oswald,sans-serif;font-weight:600;font-size:34px;line-height:1.15">1 · Barvy</h2>
-      <p style="margin:0 0 32px;max-width:76ch;color:var(--ss-text-muted,#55616C)">Pět škál po deseti krocích. Meziodstíny se nevytvářejí. Barvy loga (blue-600 primární, apricot-400 konverzní) se neupravují — jsou pevně dané logomanuálem.</p>
+      <p style="margin:0 0 32px;max-width:76ch;color:var(--ss-text-muted,#55616C)">Pět škál po deseti krocích. Meziodstíny se nevytvářejí. Barvy loga (blue-600 primární, apricot-400 konverzní) se neupravují – jsou pevně dané logomanuálem.</p>
       <sc-for list="{{ scales }}" as="s" hint-placeholder-count="4">
         <div style="margin-bottom:36px">
           <div style="display:flex;flex-wrap:wrap;align-items:baseline;gap:12px;margin-bottom:12px">
@@ -447,7 +447,7 @@ a:hover{color:var(--ss-link-hover,#21507B);}
   <section style="width:100%;background:var(--ss-surface-subtle,#FAF5EF);margin-top:32px">
     <div style="max-width:1560px;margin:0 auto;padding:64px 32px">
       <h2 style="margin:0 0 8px;font-family:Oswald,sans-serif;font-weight:600;font-size:34px;line-height:1.15">2 · Sémantické tokeny</h2>
-      <p style="margin:0 0 28px;max-width:76ch;color:var(--ss-text-muted,#55616C)">V komponentách se používají jen tato jména, nikdy číslo ze škály. Kontrast každého textového tokenu je spočítaný proti jeho pozadí — pod 4,5 : 1 se token přemapoval.</p>
+      <p style="margin:0 0 28px;max-width:76ch;color:var(--ss-text-muted,#55616C)">V komponentách se používají jen tato jména, nikdy číslo ze škály. Kontrast každého textového tokenu je spočítaný proti jeho pozadí – pod 4,5 : 1 se token přemapoval.</p>
       <div style="overflow-x:auto;background:var(--ss-surface-page,#FFFFFF);border-radius:12px;padding:8px">
         <table style="width:100%;border-collapse:collapse;font-size:14px;min-width:820px">
           <thead>
@@ -474,7 +474,7 @@ a:hover{color:var(--ss-link-hover,#21507B);}
           </tbody>
         </table>
       </div>
-      <p style="margin:20px 0 0;max-width:76ch;font-size:13px;color:var(--ss-text-muted,#55616C)">Přemapováno: <code style="font-family:ui-monospace,Menlo,monospace">neutral-500 var(--ss-text-muted,#6B7986)</code> mělo být <code style="font-family:ui-monospace,Menlo,monospace">text.muted</code>, ale na bílé dává 4,46 : 1 — text.muted je proto <code style="font-family:ui-monospace,Menlo,monospace">#5B6874</code>. <code style="font-family:ui-monospace,Menlo,monospace">green-500 #1E914F</code> (4,02 : 1) a <code style="font-family:ui-monospace,Menlo,monospace">apricot-500 #F09A2C</code> nesmí nést text — success text používá green-600, textová meruňková apricot-700. Konverzní tlačítko je apricot-400 s tmavým textem <code style="font-family:ui-monospace,Menlo,monospace">#1C2229</code>; meruňková nikdy nenese bílý text ani není text na bílé.</p>
+      <p style="margin:20px 0 0;max-width:76ch;font-size:13px;color:var(--ss-text-muted,#55616C)">Přemapováno: <code style="font-family:ui-monospace,Menlo,monospace">neutral-500 var(--ss-text-muted,#6B7986)</code> mělo být <code style="font-family:ui-monospace,Menlo,monospace">text.muted</code>, ale na bílé dává 4,46 : 1 – text.muted je proto <code style="font-family:ui-monospace,Menlo,monospace">#5B6874</code>. <code style="font-family:ui-monospace,Menlo,monospace">green-500 #1E914F</code> (4,02 : 1) a <code style="font-family:ui-monospace,Menlo,monospace">apricot-500 #F09A2C</code> nesmí nést text – success text používá green-600, textová meruňková apricot-700. Konverzní tlačítko je apricot-400 s tmavým textem <code style="font-family:ui-monospace,Menlo,monospace">#1C2229</code>; meruňková nikdy nenese bílý text ani není text na bílé.</p>
       <h3 style="margin:40px 0 8px;font-size:24px;line-height:1.25">Tmavý režim</h3>
       <p style="margin:0 0 20px;max-width:76ch;color:var(--ss-text-muted,#55616C)">Přepíná se atributem <code style="font-family:ui-monospace,Menlo,monospace">html[data-mode="dark"]</code> (v prototypu jen z PrezentacniLista, výchozí je vždy světlý). Barvy v komponentách jsou zapsané jako <code style="font-family:ui-monospace,Menlo,monospace">var(--ss-token, #světlá)</code>; tmavé hodnoty jsou jediný soubor <code style="font-family:ui-monospace,Menlo,monospace">tmavy-rezim.css</code>. Podklad z modré značky, konverzní meruňková, primární tlačítko a tmavé pásy hlavičky a patičky se nemění. Kontrast se počítá proti surface-page #0E1F2F.</p>
       <div style="overflow-x:auto;background:var(--ss-surface-page,#FFFFFF);border-radius:12px;padding:8px">
@@ -513,10 +513,10 @@ a:hover{color:var(--ss-link-hover,#21507B);}
           <p style="margin:0 0 18px;font-family:Oswald,sans-serif;font-weight:600;font-size:34px;line-height:1.15">heading.h2 · 34/39</p>
           <p style="margin:0 0 18px;font-family:Oswald,sans-serif;font-weight:600;font-size:24px;line-height:1.25">heading.h3 · 24/30</p>
           <p style="margin:0 0 18px;font-family:Oswald,sans-serif;font-weight:600;font-size:19px;line-height:1.3">heading.h4 · 19/25</p>
-          <p style="margin:0 0 14px;font-size:17px;line-height:1.55">body.large · 17/26 — popisné odstavce, perex kategorie.</p>
-          <p style="margin:0 0 14px;font-size:15px;line-height:1.55">body.medium · 15/23 — základní text webu.</p>
-          <p style="margin:0 0 14px;font-size:13px;font-weight:600;line-height:1.4">label.small · 13/18 semibold — popisky polí, chipsy.</p>
-          <p style="margin:0 0 14px;font-size:13px;color:var(--ss-text-muted,#5B6874)">caption · 13/18 — doplňkový údaj, poznámka.</p>
+          <p style="margin:0 0 14px;font-size:17px;line-height:1.55">body.large · 17/26 – popisné odstavce, perex kategorie.</p>
+          <p style="margin:0 0 14px;font-size:15px;line-height:1.55">body.medium · 15/23 – základní text webu.</p>
+          <p style="margin:0 0 14px;font-size:13px;font-weight:600;line-height:1.4">label.small · 13/18 semibold – popisky polí, chipsy.</p>
+          <p style="margin:0 0 14px;font-size:13px;color:var(--ss-text-muted,#5B6874)">caption · 13/18 – doplňkový údaj, poznámka.</p>
           <p style="margin:0;font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--ss-link-hover,#21507B)">overline · 13 uppercase</p>
         </div>
         <div style="background:var(--ss-surface-subtle,#FAF5EF);border-radius:12px;padding:28px">
@@ -529,7 +529,7 @@ a:hover{color:var(--ss-link-hover,#21507B);}
           <p style="margin:0 0 14px;font-size:15px;line-height:1.55">body.medium · 15/23 (stejné)</p>
           <p style="margin:0 0 14px;font-size:13px;font-weight:600;line-height:1.4">label.small · 13/18 (stejné)</p>
           <p style="margin:0 0 14px;font-size:13px;color:var(--ss-text-muted,#5B6874)">caption · 13/18 (stejné)</p>
-          <p style="margin:0;font-size:16px;color:var(--ss-text-muted,#5B6874)">Pole formulářů pod 550 px: <code style="font-family:ui-monospace,Menlo,monospace;font-size:14px">font-size:16px</code> — iOS jinak zoomuje.</p>
+          <p style="margin:0;font-size:16px;color:var(--ss-text-muted,#5B6874)">Pole formulářů pod 550 px: <code style="font-family:ui-monospace,Menlo,monospace;font-size:14px">font-size:16px</code> – iOS jinak zoomuje.</p>
         </div>
       </div>
       <h3 style="margin:36px 0 16px;font-family:Oswald,Roboto,sans-serif;font-weight:600;font-size:20px">Commerce tokeny</h3>
@@ -564,7 +564,7 @@ a:hover{color:var(--ss-link-hover,#21507B);}
   <section style="width:100%;background:var(--ss-surface-subtle,#FAF5EF)">
     <div style="max-width:1560px;margin:0 auto;padding:64px 32px">
       <h2 style="margin:0 0 8px;font-family:Oswald,sans-serif;font-weight:600;font-size:34px;line-height:1.15">4 · Spacing</h2>
-      <p style="margin:0 0 28px;max-width:76ch;color:var(--ss-text-muted,#55616C)">4px grid, space-1 až space-13. Mezihodnoty jsou zakázané — když hodnota nesedí, mění se layout, ne token.</p>
+      <p style="margin:0 0 28px;max-width:76ch;color:var(--ss-text-muted,#55616C)">4px grid, space-1 až space-13. Mezihodnoty jsou zakázané – když hodnota nesedí, mění se layout, ne token.</p>
       <div style="display:flex;flex-direction:column;gap:6px;background:var(--ss-surface-page,#FFFFFF);border-radius:12px;padding:20px">
         <sc-for list="{{ spacing }}" as="s" hint-placeholder-count="13">
           <div style="display:flex;align-items:center;gap:16px">
@@ -581,7 +581,7 @@ a:hover{color:var(--ss-link-hover,#21507B);}
   <section style="width:100%">
     <div style="max-width:1560px;margin:0 auto;padding:64px 32px">
       <h2 style="margin:0 0 8px;font-family:Oswald,sans-serif;font-weight:600;font-size:34px;line-height:1.15">5 · Rádiusy, elevace, motion, rozměry</h2>
-      <p style="margin:0 0 32px;max-width:76ch;color:var(--ss-text-muted,#55616C)">Karty v klidu nemají border ani stín — drží je jen pozadí a mezera. Stín vzniká až interakcí nebo vrstvením.</p>
+      <p style="margin:0 0 32px;max-width:76ch;color:var(--ss-text-muted,#55616C)">Karty v klidu nemají border ani stín – drží je jen pozadí a mezera. Stín vzniká až interakcí nebo vrstvením.</p>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:20px">
         <div style="background:var(--ss-surface-subtle,#FAF5EF);border-radius:12px;padding:24px">
           <h3 style="margin:0 0 16px;font-family:Oswald,Roboto,sans-serif;font-weight:600;font-size:20px">Rádiusy</h3>
@@ -606,20 +606,20 @@ a:hover{color:var(--ss-link-hover,#21507B);}
         <div style="background:var(--ss-surface-subtle,#FAF5EF);border-radius:12px;padding:24px">
           <h3 style="margin:0 0 16px;font-family:Oswald,Roboto,sans-serif;font-weight:600;font-size:20px">Motion</h3>
           <ul style="margin:0;padding-left:18px;font-size:14px;color:var(--ss-text-secondary,#3D4750);display:flex;flex-direction:column;gap:6px">
-            <li>60 ms — stisk (transform, scale .98)</li>
-            <li>120 ms — barvy a border</li>
-            <li>150 ms — stíny a elevace</li>
-            <li>400 ms — panely, drawery, drill-down</li>
+            <li>60 ms – stisk (transform, scale .98)</li>
+            <li>120 ms – barvy a border</li>
+            <li>150 ms – stíny a elevace</li>
+            <li>400 ms – panely, drawery, drill-down</li>
           </ul>
           <p style="margin:12px 0 0;font-size:13px;color:var(--ss-text-muted,#5B6874)">Křivka cubic-bezier(.22,.61,.36,1). prefers-reduced-motion vypíná posuny, ne barvy.</p>
         </div>
         <div style="background:var(--ss-surface-subtle,#FAF5EF);border-radius:12px;padding:24px">
           <h3 style="margin:0 0 16px;font-family:Oswald,Roboto,sans-serif;font-weight:600;font-size:20px">Rozměry</h3>
           <ul style="margin:0;padding-left:18px;font-size:14px;color:var(--ss-text-secondary,#3D4750);display:flex;flex-direction:column;gap:6px">
-            <li>size.control 44 px — výchozí výška ovládacího prvku</li>
-            <li>size.control.compact 36 px — v hustých lištách</li>
-            <li>size.control.large 52 px — hlavní konverzní tlačítko</li>
-            <li>size.row 48 px — řádek seznamu, menu, tabulky</li>
+            <li>size.control 44 px – výchozí výška ovládacího prvku</li>
+            <li>size.control.compact 36 px – v hustých lištách</li>
+            <li>size.control.large 52 px – hlavní konverzní tlačítko</li>
+            <li>size.row 48 px – řádek seznamu, menu, tabulky</li>
             <li>min. klikací plocha 24 × 24 px, zvětšuje ::after</li>
           </ul>
         </div>
@@ -636,7 +636,7 @@ a:hover{color:var(--ss-link-hover,#21507B);}
   <section style="width:100%;background:var(--ss-surface-subtle,#FAF5EF)">
     <div style="max-width:1560px;margin:0 auto;padding:64px 32px">
       <h2 style="margin:0 0 8px;font-family:Oswald,sans-serif;font-weight:600;font-size:34px;line-height:1.15">6 · Breakpointy</h2>
-      <p style="margin:0 0 28px;max-width:76ch;color:var(--ss-text-muted,#55616C)">Sedm pásem na hranicích 1560 · 1150 · 1000 · 820 · 550 · 420. Toto je jediné platné názvosloví — „mobil / tablet / desktop“ se v projektu nepoužívá.</p>
+      <p style="margin:0 0 28px;max-width:76ch;color:var(--ss-text-muted,#55616C)">Sedm pásem na hranicích 1560 · 1150 · 1000 · 820 · 550 · 420. Toto je jediné platné názvosloví – „mobil / tablet / desktop“ se v projektu nepoužívá.</p>
       <div style="overflow-x:auto;background:var(--ss-surface-page,#FFFFFF);border-radius:12px;padding:8px">
         <table style="width:100%;border-collapse:collapse;font-size:14px;min-width:760px">
           <thead>
@@ -659,7 +659,7 @@ a:hover{color:var(--ss-link-hover,#21507B);}
           </tbody>
         </table>
       </div>
-      <p style="margin:20px 0 0;max-width:76ch;font-size:13px;color:var(--ss-text-muted,#55616C)">Full-bleed vzorec: sekce jde přes celou šířku viewportu, omezený je až vnitřní obal — max-width 1560 px, margin 0 auto, padding 0 32px (pod 820 px 0 16px). Produktový grid má pevné počty sloupců, ne auto-fill minmax(). Gap 20 px.</p>
+      <p style="margin:20px 0 0;max-width:76ch;font-size:13px;color:var(--ss-text-muted,#55616C)">Full-bleed vzorec: sekce jde přes celou šířku viewportu, omezený je až vnitřní obal – max-width 1560 px, margin 0 auto, padding 0 32px (pod 820 px 0 16px). Produktový grid má pevné počty sloupců, ne auto-fill minmax(). Gap 20 px.</p>
     </div>
   </section>
 
@@ -722,13 +722,13 @@ class Component extends DCLogic {
   }
   renderVals() {
     const scales = [
-      { title: 'Primární — modrá značky', note: '600 je barva loga #296093, neupravuje se', prefix: 'blue',
+      { title: 'Primární – modrá značky', note: '600 je barva loga #296093, neupravuje se', prefix: 'blue',
         hex: ['#F0F5FA','#DCE8F2','#B9D0E5','#8DB3D3','#5B8FBC','#3A76A9','#296093','#21507B','#1A3E5F','#132C43'] },
-      { title: 'Konverzní — meruňková', note: '400 je barva loga #FBB255; Koupit, Do košíku, konverzní cesta; vždy tmavý text, nikdy text na bílé', prefix: 'apricot',
+      { title: 'Konverzní – meruňková', note: '400 je barva loga #FBB255; Koupit, Do košíku, konverzní cesta; vždy tmavý text, nikdy text na bílé', prefix: 'apricot',
         hex: ['#FFF8EE','#FEEDD4','#FDDCAA','#FCC77D','#FBB255','#F09A2C','#D07C13','#A4600C','#7A4708','#4F2D05'] },
-      { title: 'Success — zelená', note: 'skladem, potvrzení, pozitivní oznámení; text a plochy od 600', prefix: 'green',
+      { title: 'Success – zelená', note: 'skladem, potvrzení, pozitivní oznámení; text a plochy od 600', prefix: 'green',
         hex: ['#EEF9F1','#D3F0DC','#A8E1BB','#71CC92','#3EB06C','#1E914F','#157A41','#106134','#0C4A28','#08321B'] },
-      { title: 'Error — červená', note: 'nedostupné, chyba, negativní oznámení, odebrat; text a plochy od 600', prefix: 'red',
+      { title: 'Error – červená', note: 'nedostupné, chyba, negativní oznámení, odebrat; text a plochy od 600', prefix: 'red',
         hex: ['#FDF0EF','#FADBD8','#F4B6B1','#EC8A82','#E15D53','#D03B30','#B3261E','#8F1E18','#6B1712','#470F0C'] },
       { title: 'Neutrální', note: 'plochy, bordery, text; 500 nesmí nést text', prefix: 'neutral',
         hex: ['#F7F9FB','#EFF2F5','#E1E6EB','#C8D0D8','#9AA6B2','#6B7986','#55616C','#3D4750','#2A323A','#1C2229'] }
@@ -777,14 +777,14 @@ class Component extends DCLogic {
       ['focus.ring', 'rgba(41,96,147,.35)', 'focus ring 3 px', null, null]
     ];
     const darkRaw = [['surface-page','#FFFFFF','#0E1F2F'],['surface-subtle','#F7F9FB','#13283C'],['surface-muted','#EFF2F5','#183049'],['surface-strong','#E1E6EB','#22405C'],['action-tonal-bg','#DCE8F2','rgba(141,179,211,.16)'],['action-tonal-hover-bg','#B9D0E5','rgba(141,179,211,.26)'],['action-tonal-fg','#21507B','#B9D0E5',true],['surface-hover','#F0F5FA','#1A3A58'],['surface-selected','#DCE8F2','#1F4669'],['surface-accent','#FFF8EE','#2B2318'],['surface-accent-strong','#FEEDD4','#3A2C17'],['status-success-surface','#EEF9F1','#12301F'],['status-error-surface','#FDF0EF','#3A1A18'],['text-primary','#1C2229','#EEF3F8',1],['text-secondary','#3D4750','#C5D2DE',1],['text-muted','#5B6874','#9DB0C2',1],['text-disabled','#9AA6B2','#7F94A8'],['text-decor','#C8D0D8','#4A6683'],['link','#296093','#8DB3D3',1],['link-hover','#21507B','#B9D0E5',1],['status-success','#157A41','#71CC92',1],['status-success-strong','#106134','#A8E1BB',1],['status-error','#B3261E','#F4A39C',1],['status-error-strong','#8E1E18','#F4B6B1',1],['status-warning','#A4600C','#FCC77D',1],['border-faint','#EFF2F5','#1E3850'],['border-subtle','#E1E6EB','#24405B'],['border-strong','#C8D0D8','#3A5A7A'],['border-hover','#8DB3D3','#5B8FBC'],['border-action','#296093','#8DB3D3'],['border-action-hover','#21507B','#B9D0E5'],['border-error','#B3261E','#F4A39C'],['border-error-subtle','#E3B9B6','#7A3A35'],['border-success-subtle','#C7E2D2','#2C5A40'],['border-accent-subtle','#F3DDB4','#5A4425']];
-    const darkTokens = darkRaw.map(([n, l, d, isText]) => { let verdict = '—'; if (isText) { const r = this.ratio(d, '#0E1F2F'); verdict = r.toFixed(2) + ' : 1 ' + (r >= 4.5 ? 'AA ✓' : 'AA ✗'); } return { name: '--ss-' + n, light: l, dark: d, verdict }; });
+    const darkTokens = darkRaw.map(([n, l, d, isText]) => { let verdict = '–'; if (isText) { const r = this.ratio(d, '#0E1F2F'); verdict = r.toFixed(2) + ' : 1 ' + (r >= 4.5 ? 'AA ✓' : 'AA ✗'); } return { name: '--ss-' + n, light: l, dark: d, verdict }; });
     const tokens = raw.map(([name, hex, use, onName, onHex]) => {
-      let verdict = '—';
+      let verdict = '–';
       if (onHex && hex.charAt(0) === '#') {
         const r = this.ratio(hex, onHex);
         verdict = r.toFixed(2) + ' : 1 ' + (r >= 4.5 ? 'AA ✓' : 'AA ✗');
       }
-      return { name, hex, use, onName: onName || '—', verdict };
+      return { name, hex, use, onName: onName || '–', verdict };
     });
 
     const spacing = [
@@ -824,12 +824,12 @@ class Component extends DCLogic {
       ['Tlačítko secondary (tonální)','pozadí blue-200, text action.secondary.hover','scale .98','ring 3 px','opacity .45'],
       
       ['Tlačítko ghost / text','pozadí surface.subtle','pozadí surface.muted','ring 3 px','opacity .45'],
-      ['Odkaz','link.onLight.hover, podtržení zůstává','bez změny','ring 3 px','—'],
+      ['Odkaz','link.onLight.hover, podtržení zůstává','bez změny','ring 3 px','–'],
       ['Chip filter','border.strong → blue-400','scale .98','ring 3 px','opacity .45'],
-      ['Produktová karta','stín hover, název na link.onLight','bez posunu','ring 3 px na krycím odkazu','—'],
-      ['Pole / select','border.strong → blue-400','—','ring 3 px, border blue-600','pozadí surface.muted, text.muted'],
-      ['Záložka navigace','underline 2 px apricot-400','—','ring 3 px','—'],
-      ['Řádek menu (48 px)','pozadí surface.subtle','pozadí surface.muted','ring 3 px','—']
+      ['Produktová karta','stín hover, název na link.onLight','bez posunu','ring 3 px na krycím odkazu','–'],
+      ['Pole / select','border.strong → blue-400','–','ring 3 px, border blue-600','pozadí surface.muted, text.muted'],
+      ['Záložka navigace','underline 2 px apricot-400','–','ring 3 px','–'],
+      ['Řádek menu (48 px)','pozadí surface.subtle','pozadí surface.muted','ring 3 px','–']
     ].map(([el, hover, active, focus, disabled]) => ({ el, hover, active, focus, disabled }));
 
     return { darkTokens, scales, tokens, spacing, zindex, bands, states };

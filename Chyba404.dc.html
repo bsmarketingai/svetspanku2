@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Sans+Condensed:wght@400;500;600;700&display=swap" rel="stylesheet"><style data-ss="tmavy-rezim">
-/* Tmavý režim — přepíná html[data-mode="dark"]. Světlý režim = fallback hodnoty v var(). */
+/* Tmavý režim – přepíná html[data-mode="dark"]. Světlý režim = fallback hodnoty v var(). */
 /* Hover ve světlém režimu modrý (6. 10. 2026), v tmavém meruňkový */
 html:not([data-mode="dark"]){--ss-hover-text:#21507B;--ss-hover-bg:#F0F5FA;
   /* Teplé meruňkové podklady (7. 10. 2026) */
@@ -88,7 +88,7 @@ html[data-mode="dark"] .ss-pm-card{background:#13283C;}
 html[data-mode="dark"] .ss-pm-card:hover{background:#13283C!important;box-shadow:none!important;color:inherit!important;}
 html[data-mode="dark"] .ss-pm-row:hover{background:transparent!important;box-shadow:none!important;color:inherit!important;}
 
-/* Ostrůvek světlého režimu (popupy nad fotkami — produktové fotky mají bílé pozadí) */
+/* Ostrůvek světlého režimu (popupy nad fotkami – produktové fotky mají bílé pozadí) */
 html[data-mode="dark"] .ss-light{color-scheme:light;
   --ss-hover-text:#21507B;
   --ss-hover-bg:#F0F5FA;
@@ -146,7 +146,7 @@ html[data-mode="dark"] .ss-pc::before{content:"";position:absolute;inset:0;borde
 html[data-mode="dark"] .ss-pm-card:hover .ss-pm-title,html[data-mode="dark"] .ss-pm-row:hover .ss-pm-title,html[data-mode="dark"] .ss-pc:hover .ss-pc-title,html[data-mode="dark"] .ss-mm-ban:hover{color:#FBB255!important;}
 
 /* Podklad webu: jemný radiální gradient ze středu viewportu (hloubka). Fixní → plynule přes všechny sekce. */
-/* Vinětace (Elevace) odebrána 12. 10. 2026 — plné podklady, stíny karet zůstávají vždy */
+/* Vinětace (Elevace) odebrána 12. 10. 2026 – plné podklady, stíny karet zůstávají vždy */
 
 
 /* Gradient Zap: elevace všech ploch, které by na gradientu splývaly (karty, filtry, video, boxy). Gradient Vyp = beze změny. */
@@ -161,7 +161,7 @@ html[data-mode="dark"] .ss-ct[data-pop="true"]::before{box-shadow:inset 0 1px 0 
 @media (hover:hover) and (pointer:fine){html .ss-ct[data-pop="true"]:hover::before{box-shadow:0 4px 12px rgba(19,44,67,.12);}html[data-mode="dark"] .ss-ct[data-pop="true"]:hover::before{box-shadow:inset 0 1px 0 rgba(141,179,211,.18),0 0 0 1px rgba(141,179,211,.14),0 8px 24px rgba(0,0,0,.45);}}
 html .ss-elev:focus-visible{box-shadow:0 0 0 3px rgba(41,96,147,.35)!important;}
 
-/* Prezentační přepínač fontů — html[data-font-h|data-font-b]="alt" */
+/* Prezentační přepínač fontů – html[data-font-h|data-font-b]="alt" */
 html[data-font-h="alt"] h1:not(.ss-plain),html[data-font-h="alt"] h2:not(.ss-plain),html[data-font-h="alt"] h3:not(.ss-plain),html[data-font-h="alt"] h4:not(.ss-plain),html[data-font-h="alt"] [style*="Oswald"]{font-family:'Barlow Condensed',Oswald,Helvetica,Arial,sans-serif!important;}
 html[data-font-b="alt"] body,html[data-font-b="alt"] [style*="Roboto"]:not([style*="Archivo"]):not([style*="Oswald"]),html[data-font-b="alt"] input,html[data-font-b="alt"] button,html[data-font-b="alt"] select,html[data-font-b="alt"] textarea{font-family:'IBM Plex Sans Condensed',Roboto,Helvetica,Arial,sans-serif!important;}
 html[data-mode="dark"] .ss-ct:hover .ss-ct-title,html[data-mode="dark"] .ss-hp-art:hover .ss-hp-art-t,html[data-mode="dark"] .ss-mag-lead:hover .ss-hp-art-t{color:#FBB255;}
@@ -182,10 +182,10 @@ main>section.ss-grad-top{background-image:linear-gradient(180deg,var(--ss-surfac
 
 
 
-/* Nadpisy: světlý režim tmavá modrá z hlavičky #0B1F33 (inline barva vyhrává — bílé nadpisy na tmavých pásech zůstávají) */
+/* Nadpisy: světlý režim tmavá modrá z hlavičky #0B1F33 (inline barva vyhrává – bílé nadpisy na tmavých pásech zůstávají) */
 h1,h2,h3,h4{color:var(--ss-text-heading,#0B1F33);}
 
-/* Sekce s meruňkovým podsvícením zespoda — poloviční radiál od spodní hrany, vrstvený nad .ss-grad-top */
+/* Sekce s meruňkovým podsvícením zespoda – poloviční radiál od spodní hrany, vrstvený nad .ss-grad-top */
 main>section.ss-grad-top.ss-grad-glow{background-image:radial-gradient(ellipse 55% 100% at 50% 100%,rgba(251,178,85,.22) 0%,rgba(251,178,85,.09) 45%,rgba(251,178,85,0) 75%),linear-gradient(180deg,var(--ss-surface-page,#FFFFFF) 0%,var(--ss-surface-muted,#F3EDE4) 100%)!important;background-size:100% 520px,auto!important;background-position:center bottom,center!important;background-repeat:no-repeat!important;background-attachment:scroll!important;}
 html[data-mode="dark"] main>section.ss-grad-top.ss-grad-glow{background-image:radial-gradient(ellipse 55% 100% at 50% 100%,rgba(251,178,85,.14) 0%,rgba(251,178,85,.05) 45%,rgba(251,178,85,0) 75%),linear-gradient(180deg,var(--ss-surface-page,#0E1F2F) 0%,var(--ss-surface-muted,#183049) 100%)!important;}
 
@@ -196,6 +196,10 @@ html[data-mode="dark"] main>section.ss-grad-top.ss-grad-glow{background-image:ra
 <style>
 h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-family:Oswald,Helvetica,Arial,sans-serif!important;font-weight:600!important;text-transform:none;letter-spacing:0;}
 html,body{margin:0!important;padding:0!important;}
+/* Pojmenovaný podklad bg m 1 */
+.ss-bg-m1{background-color:var(--ss-surface-page,#FFFFFF)!important;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .55 0 0 0 0 .35 0 0 0 0 .1 0 0 0 .07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),radial-gradient(ellipse 80% 55% at 50% 100%,rgba(251,178,85,.16) 0%,rgba(251,178,85,.06) 45%,rgba(251,178,85,0) 80%)!important;background-size:220px 220px,auto!important;background-repeat:repeat,no-repeat!important;background-position:0 0,center!important;}
+/* Pojmenovaný podklad bg m 2 (jako na homepage) */
+.ss-bg-m2{background-color:#FDF5EA!important;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .55 0 0 0 0 .35 0 0 0 0 .1 0 0 0 .09 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),radial-gradient(ellipse 90% 70% at 50% 100%,rgba(251,178,85,.30) 0%,rgba(251,178,85,.12) 45%,rgba(251,178,85,0) 85%),linear-gradient(180deg,#FFFFFF 0%,#FDF5EA 100%)!important;background-size:220px 220px,auto,auto!important;background-repeat:repeat,no-repeat,no-repeat!important;background-position:0 0,center,center!important;}
 #dc-root{margin:0!important;padding:0!important;width:100%!important;max-width:none!important;border:0!important;}
 #dc-root>.sc-host{margin:0!important;padding:0!important;width:100%!important;}
 a{color:var(--ss-link,#296093);}
@@ -205,8 +209,8 @@ a:hover{color:var(--ss-hover-text,#21507B);}
 <body>
 <x-dc>
 <helmet>
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Sans+Condensed:wght@400;500;600;700&display=swap" rel="stylesheet"><style data-ss="tmavy-rezim">
-/* Tmavý režim — přepíná html[data-mode="dark"]. Světlý režim = fallback hodnoty v var(). */
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&amp;family=IBM+Plex+Sans+Condensed:wght@400;500;600;700&amp;display=swap" rel="stylesheet"><style data-ss="tmavy-rezim">
+/* Tmavý režim – přepíná html[data-mode="dark"]. Světlý režim = fallback hodnoty v var(). */
 /* Hover ve světlém režimu modrý (6. 10. 2026), v tmavém meruňkový */
 html:not([data-mode="dark"]){--ss-hover-text:#21507B;--ss-hover-bg:#F0F5FA;
   /* Teplé meruňkové podklady (7. 10. 2026) */
@@ -286,7 +290,7 @@ html[data-mode="dark"] .ss-pm-card{background:#13283C;}
 html[data-mode="dark"] .ss-pm-card:hover{background:#13283C!important;box-shadow:none!important;color:inherit!important;}
 html[data-mode="dark"] .ss-pm-row:hover{background:transparent!important;box-shadow:none!important;color:inherit!important;}
 
-/* Ostrůvek světlého režimu (popupy nad fotkami — produktové fotky mají bílé pozadí) */
+/* Ostrůvek světlého režimu (popupy nad fotkami – produktové fotky mají bílé pozadí) */
 html[data-mode="dark"] .ss-light{color-scheme:light;
   --ss-hover-text:#21507B;
   --ss-hover-bg:#F0F5FA;
@@ -344,7 +348,7 @@ html[data-mode="dark"] .ss-pc::before{content:"";position:absolute;inset:0;borde
 html[data-mode="dark"] .ss-pm-card:hover .ss-pm-title,html[data-mode="dark"] .ss-pm-row:hover .ss-pm-title,html[data-mode="dark"] .ss-pc:hover .ss-pc-title,html[data-mode="dark"] .ss-mm-ban:hover{color:#FBB255!important;}
 
 /* Podklad webu: jemný radiální gradient ze středu viewportu (hloubka). Fixní → plynule přes všechny sekce. */
-/* Vinětace (Elevace) odebrána 12. 10. 2026 — plné podklady, stíny karet zůstávají vždy */
+/* Vinětace (Elevace) odebrána 12. 10. 2026 – plné podklady, stíny karet zůstávají vždy */
 
 
 /* Gradient Zap: elevace všech ploch, které by na gradientu splývaly (karty, filtry, video, boxy). Gradient Vyp = beze změny. */
@@ -359,7 +363,7 @@ html[data-mode="dark"] .ss-ct[data-pop="true"]::before{box-shadow:inset 0 1px 0 
 @media (hover:hover) and (pointer:fine){html .ss-ct[data-pop="true"]:hover::before{box-shadow:0 4px 12px rgba(19,44,67,.12);}html[data-mode="dark"] .ss-ct[data-pop="true"]:hover::before{box-shadow:inset 0 1px 0 rgba(141,179,211,.18),0 0 0 1px rgba(141,179,211,.14),0 8px 24px rgba(0,0,0,.45);}}
 html .ss-elev:focus-visible{box-shadow:0 0 0 3px rgba(41,96,147,.35)!important;}
 
-/* Prezentační přepínač fontů — html[data-font-h|data-font-b]="alt" */
+/* Prezentační přepínač fontů – html[data-font-h|data-font-b]="alt" */
 html[data-font-h="alt"] h1:not(.ss-plain),html[data-font-h="alt"] h2:not(.ss-plain),html[data-font-h="alt"] h3:not(.ss-plain),html[data-font-h="alt"] h4:not(.ss-plain),html[data-font-h="alt"] [style*="Oswald"]{font-family:'Barlow Condensed',Oswald,Helvetica,Arial,sans-serif!important;}
 html[data-font-b="alt"] body,html[data-font-b="alt"] [style*="Roboto"]:not([style*="Archivo"]):not([style*="Oswald"]),html[data-font-b="alt"] input,html[data-font-b="alt"] button,html[data-font-b="alt"] select,html[data-font-b="alt"] textarea{font-family:'IBM Plex Sans Condensed',Roboto,Helvetica,Arial,sans-serif!important;}
 html[data-mode="dark"] .ss-ct:hover .ss-ct-title,html[data-mode="dark"] .ss-hp-art:hover .ss-hp-art-t,html[data-mode="dark"] .ss-mag-lead:hover .ss-hp-art-t{color:#FBB255;}
@@ -380,10 +384,10 @@ main>section.ss-grad-top{background-image:linear-gradient(180deg,var(--ss-surfac
 
 
 
-/* Nadpisy: světlý režim tmavá modrá z hlavičky #0B1F33 (inline barva vyhrává — bílé nadpisy na tmavých pásech zůstávají) */
+/* Nadpisy: světlý režim tmavá modrá z hlavičky #0B1F33 (inline barva vyhrává – bílé nadpisy na tmavých pásech zůstávají) */
 h1,h2,h3,h4{color:var(--ss-text-heading,#0B1F33);}
 
-/* Sekce s meruňkovým podsvícením zespoda — poloviční radiál od spodní hrany, vrstvený nad .ss-grad-top */
+/* Sekce s meruňkovým podsvícením zespoda – poloviční radiál od spodní hrany, vrstvený nad .ss-grad-top */
 main>section.ss-grad-top.ss-grad-glow{background-image:radial-gradient(ellipse 55% 100% at 50% 100%,rgba(251,178,85,.22) 0%,rgba(251,178,85,.09) 45%,rgba(251,178,85,0) 75%),linear-gradient(180deg,var(--ss-surface-page,#FFFFFF) 0%,var(--ss-surface-muted,#F3EDE4) 100%)!important;background-size:100% 520px,auto!important;background-position:center bottom,center!important;background-repeat:no-repeat!important;background-attachment:scroll!important;}
 html[data-mode="dark"] main>section.ss-grad-top.ss-grad-glow{background-image:radial-gradient(ellipse 55% 100% at 50% 100%,rgba(251,178,85,.14) 0%,rgba(251,178,85,.05) 45%,rgba(251,178,85,0) 75%),linear-gradient(180deg,var(--ss-surface-page,#0E1F2F) 0%,var(--ss-surface-muted,#183049) 100%)!important;}
 
@@ -391,8 +395,8 @@ html[data-mode="dark"] main>section.ss-grad-top.ss-grad-glow{background-image:ra
 </style>
 <script>try{var d=document.documentElement;if(localStorage.getItem('ss-mode')==='dark')d.setAttribute('data-mode','dark');d.setAttribute('data-logo',localStorage.getItem('ss-logo')||'a');d.setAttribute('data-font-h','base');d.setAttribute('data-font-b','base');}catch(e){}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400..700&family=Roboto:wght@400..700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400..700&amp;family=Roboto:wght@400..700&amp;display=swap" rel="stylesheet">
 <style>
 h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-family:Oswald,Helvetica,Arial,sans-serif!important;font-weight:600!important;text-transform:none;letter-spacing:0;}
 html,body{margin:0!important;padding:0!important;}
@@ -411,17 +415,20 @@ a:hover{color:var(--ss-hover-text,#21507B);}
       <div style="{{ innerTop }}">
         <div style="{{ heroGrid }}">
           <div aria-hidden="true" style="display:flex;flex-direction:column;align-items:center;min-width:0">
-            <div style="{{ illoStyle }}"></div>
-            <span style="{{ bigStyle }}">404</span>
+            <img decoding="async" src="_blob/be5299644752e2ad64dcde558fd0c14c.webp" alt="" style="{{ illoStyle }}">
+            
           </div>
           <div style="display:flex;flex-direction:column;align-items:flex-start;gap:20px;min-width:0">
-            <h1 style="{{ h1Style }}">Nějak jsme se zamotali. Stránka, kterou hledáte, neexistuje.</h1>
+            <span style="font-size: 64px; line-height: 1; margin: 0; font-family: Oswald,Roboto,sans-serif; font-weight: 700; color: #C2A47E">404</span><h1 style="{{ h1Style }}">Nějak jsme se zamotali. Stránka, kterou hledáte, neexistuje.</h1>
             <p style="margin:0;max-width:52ch;font-size:17px;line-height:1.55;color:var(--ss-text-secondary,#3D4750);text-wrap:pretty">Mohla se nám někam zatoulat, porouchat, nebo na našich stránkách nikdy nebyla.</p>
-            <div style="margin-top:4px"><dc-import name="Tlacitko" label="Zpět do obchodu" variant="primary" size="large" iconLeft="chevron-left" href="index.dc.html" hint-size="220px,52px"></dc-import></div>
+            <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:4px">
+              <dc-import name="Tlacitko" label="Zpět do obchodu" variant="primary" size="large" iconLeft="chevron-left" href="index.dc.html" hint-size="220px,52px"></dc-import>
+              <dc-import name="Tlacitko" label="Vyhledat v obchodě" variant="secondary" size="large" iconLeft="search" onClick="{{ openHeaderSearch }}" hint-size="220px,52px"></dc-import>
+            </div>
           </div>
         </div>
 
-        <div class="ss-elev" style="{{ searchBox }}">
+        <div class="ss-elev" style="display: none">
           <form role="search" aria-labelledby="ss-404-s" onSubmit="{{ onSubmit }}" style="display:flex;flex-direction:column;gap:12px;min-width:0">
             <h2 id="ss-404-s" style="margin:0;font-size:19px;line-height:1.3">Víte, co hledáte? Zkuste to vyhledat</h2>
             <div style="display:flex;gap:8px;align-items:flex-start;min-width:0">
@@ -441,17 +448,12 @@ a:hover{color:var(--ss-hover-text,#21507B);}
       </div>
     </section>
 
-    <section style="width:100%">
+    <section class="ss-bg-m1" style="width:100%;background-color:var(--ss-surface-page,#FFFFFF)">
       <div style="{{ innerCats }}">
-        <dc-import name="VypisKategorii" heading="Prozkoumejte oblíbené kategorie" subheading="" items="{{ cats }}" columns="{{ 4 }}" center="{{ true }}" hint-size="100%,560px"></dc-import>
+        <dc-import name="VypisKategorii" variant="vystup" heading="Nejoblíbenější kategorie" subheading="Vše pro zdravý spánek" hint-size="100%,380px"></dc-import>
       </div>
     </section>
 
-    <section style="width:100%;background:var(--ss-surface-subtle,#FAF5EF)">
-      <div style="{{ innerHelp }}">
-        <div style="max-width:880px;margin:0 auto"><dc-import name="KontaktniOsoba" heading="Potřebujete poradit? Jsme tu pro vás" headingLevel="2" name="" photo="_blob/74ef54af0e4db9a48d5a73d81d74cd71.webp" phone="+420 543 212 855" hours="Po–Pá 9:00–17:00" ledMode="{{ ledMode }}" email="podpora@svetspanku.cz" hint-size="100%,140px"></dc-import></div>
-      </div>
-    </section>
   </main>
 
   <dc-import name="Paticka" ledMode="{{ ledMode }}" hint-size="100%,700px"></dc-import>
@@ -474,10 +476,12 @@ class Component extends DCLogic {
       onPresToggle: () => this.setState(s => ({ led: !s.led })),
       innerTop: box(narrow ? '32px' : '64px', narrow ? '48px' : '80px'),
       heroGrid: { display: 'grid', gridTemplateColumns: wide ? 'minmax(0,.8fr) minmax(0,1.2fr)' : 'minmax(0,1fr)', gap: wide ? '64px' : '24px', alignItems: 'center', maxWidth: '1200px', margin: '0 auto' },
-      illoStyle: { width: '100%', maxWidth: narrow ? '320px' : '400px', aspectRatio: '4 / 3', borderRadius: '12px', background: 'var(--ss-surface-muted,#F3EDE4)' },
+      // Ilustrace 404: „zamotaná“ patrová postel (fotka klienta, průhledné pozadí)
+      illoStyle: { display: 'block', position: 'relative', zIndex: 1, width: '100%', maxWidth: narrow ? '300px' : '420px', aspectRatio: '1 / 1', objectFit: 'contain' },
       bigStyle: { marginTop: narrow ? '-24px' : '-40px', fontFamily: 'Oswald,Roboto,sans-serif', fontWeight: 700, fontSize: narrow ? '96px' : '160px', lineHeight: 1, letterSpacing: '.02em', color: 'var(--ss-surface-strong,#E9E1D5)' },
       h1Style: { margin: 0, fontSize: narrow ? '28px' : '40px', lineHeight: 1.12, maxWidth: '22ch', textWrap: 'balance' },
       searchBox: { boxSizing: 'border-box', maxWidth: '1200px', margin: (narrow ? '40px' : '64px') + ' auto 0', background: 'var(--ss-surface-card,#FFFFFF)', borderRadius: '12px', padding: narrow ? '24px 16px' : '32px', display: 'grid', gridTemplateColumns: wide ? 'minmax(0,1fr) minmax(0,1fr)' : 'minmax(0,1fr)', gap: wide ? '48px' : '24px' },
+      openHeaderSearch: () => { try { window.dispatchEvent(new Event('ss-open-search')); } catch (e) {} },
       q: this.state.q, setQ: (v) => this.setState({ q: v }),
       doSearch, onSubmit: (e) => { if (e && e.preventDefault) e.preventDefault(); doSearch(); },
       popular: [

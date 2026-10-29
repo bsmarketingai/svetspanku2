@@ -290,7 +290,7 @@ export const MENU = [
     ],
     "banners": [
       {
-        "label": "Black Friday — nakupte se slevami až 60 %",
+        "label": "Black Friday – nakupte se slevami až 60 %",
         "sub": "Jen do 30. listopadu, na vybrané matrace a komplety",
         "href": "#akce",
         "image": "_blob/edd56eee566f1d974d13fb31f14a8118.webp",
@@ -656,7 +656,7 @@ export const MENU = [
     ],
     "banners": [
       {
-        "label": "Black Friday — nakupte se slevami až 60 %",
+        "label": "Black Friday – nakupte se slevami až 60 %",
         "sub": "Jen do 30. listopadu, na vybrané matrace a komplety",
         "href": "#akce",
         "image": "_blob/edd56eee566f1d974d13fb31f14a8118.webp",
@@ -863,7 +863,7 @@ export const MENU = [
     ],
     "banners": [
       {
-        "label": "Black Friday — nakupte se slevami až 60 %",
+        "label": "Black Friday – nakupte se slevami až 60 %",
         "sub": "Jen do 30. listopadu, na vybrané matrace a komplety",
         "href": "#akce",
         "image": "_blob/edd56eee566f1d974d13fb31f14a8118.webp",

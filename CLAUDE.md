@@ -1,4 +1,4 @@
-# Světspánku.cz — prototyp e-shopu
+# Světspánku.cz – prototyp e-shopu
 
 Klient: Světspánku.cz (LUCKÉ CZ GROUP). Sortiment: postele a nábytek z masivu, matrace, rošty, čalouněné postele.
 B2C, ceny **s DPH**, jen **CZK**, jen **čeština** (`lang="cs"`).
@@ -33,14 +33,14 @@ Přemapováno kvůli kontrastu:
 
 ## Typografie
 
-Google Fonts: výchozí **Oswald** (nadpisy), **Roboto** (běžný text, 400–700), ceny a číselné údaje také **Oswald** (Archivo Narrow odstraněno 8. 10. 2026 — používá se jen Oswald a Roboto). Volba fontů v `PrezentacniLista` odebrána (6. 10. 2026), fonty jsou pevné. **Minimum 13 px.**
-Nadpisy `h1`–`h4`: `font-weight:600`, `text-transform:none`, **vždy větná kapitalizace** — první písmeno velké, zbytek malé (kromě vlastních jmen); píše se tak přímo v textu, ne přes CSS. Pravidlo je v helmetu každého souboru.
+Google Fonts: výchozí **Oswald** (nadpisy), **Roboto** (běžný text, 400–700), ceny a číselné údaje také **Oswald** (Archivo Narrow odstraněno 8. 10. 2026 – používá se jen Oswald a Roboto). Volba fontů v `PrezentacniLista` odebrána (6. 10. 2026), fonty jsou pevné. **Minimum 13 px.**
+Nadpisy `h1`–`h4`: `font-weight:600`, `text-transform:none`, **vždy větná kapitalizace** – první písmeno velké, zbytek malé (kromě vlastních jmen); píše se tak přímo v textu, ne přes CSS. Pravidlo je v helmetu každého souboru.
 Tokeny: `heading.h1–h4`, `body.large/medium`, `label.small`, `caption`, `overline`, commerce `price.primary`, `price.before`, `product.title`, `stock`, `orderNo`.
 Mobilní sada se přepíná **skokem na 820 px**, nikdy přes `clamp()`. Pole formulářů pod 550 px mají `font-size:16px` (iOS jinak zoomuje).
 
 ## Spacing
 
-4px grid, `space-1` (4) … `space-13` (128): 4 · 8 · 12 · 16 · 20 · 24 · 32 · 40 · 48 · 64 · 80 · 96 · 128. **Mezihodnoty zakázané** — když hodnota nesedí, mění se layout, ne token.
+4px grid, `space-1` (4) … `space-13` (128): 4 · 8 · 12 · 16 · 20 · 24 · 32 · 40 · 48 · 64 · 80 · 96 · 128. **Mezihodnoty zakázané** – když hodnota nesedí, mění se layout, ne token.
 
 ## Rádiusy, elevace, motion, rozměry
 
@@ -49,20 +49,20 @@ Elevace: karta **v klidu bez borderu a bez stínu** (výjimka ProduktovaKarta: v
 Motion: 60 ms stisk · 120 ms barvy · 150 ms stíny · 400 ms panely; `cubic-bezier(.22,.61,.36,1)`.
 Rozměry: `size.control` 44, compact 36, large 52, `size.row` 48. Minimální klikací plocha 24 × 24, zvětšuje se `::after`, ne paddingem.
 Scrim modálů a drawerů: **vždy třída `.ss-scrim`** z `tmavy-rezim.css` (blur 16 px, diagonální závoj, teplé bodové světlo z levého horního rohu), nikdy vlastní pozadí overlaye. Výjimka: lightbox galerie (plné tmavé pozadí pro fotky).
-Scrollbar: globálně z `tmavy-rezim.css` — systémová šířka (15 px), průhledný podklad, jen táhlo meruňkové `action.buy` (hover apricot-500), pill, stejné v obou režimech; neřeší se per komponenta.
-Grain (zrno): **plošný grain zrušen (28. 10. 2026)** — ztmavoval podklady. Sekce, gradienty `.ss-grad-top`/`.ss-grad-glow`, plné barevné plochy, hlavička a patička jsou bez zrna, jako dřív. Zrno mají jen pojmenované podklady **bg m 1 / bg b 1 / bg m 2** (vlastní jemný šum v jejich třídách). Grain nepřidávat jinam bez výslovného zadání.
+Scrollbar: globálně z `tmavy-rezim.css` – systémová šířka (15 px), průhledný podklad, jen táhlo meruňkové `action.buy` (hover apricot-500), pill, stejné v obou režimech; neřeší se per komponenta.
+Grain (zrno): **plošný grain zrušen (28. 10. 2026)** – ztmavoval podklady. Sekce, gradienty `.ss-grad-top`/`.ss-grad-glow`, plné barevné plochy, hlavička a patička jsou bez zrna, jako dřív. Zrno mají jen pojmenované podklady **bg m 1 / bg b 1 / bg m 2** (vlastní jemný šum v jejich třídách). Grain nepřidávat jinam bez výslovného zadání.
 **Pojmenované podklady sekcí** (když uživatel napíše název, použije se přesně tento podklad):
 - **„bg m 1“** = třída `.ss-bg-m1`: bílá (`surface.page`) + jemné zrno krytí .07 + meruňková záře zespodu `radial-gradient(ellipse 80% 55% at 50% 100%, apricot .16 → .06 → 0 80%)`. Vzor: Ověřené recenze a Příběh Světa spánku na homepage (28. 10. 2026).
-- **„bg m 2“** = třída `.ss-bg-m2`: jako bg m 1, ale barevnější a malinko tmavší — přechod bílá → teplá `#FDF5EA` shora dolů, zrno krytí .09, meruňková záře zespodu větší a silnější `radial-gradient(ellipse 90% 70% at 50% 100%, apricot .30 → .12 → 0 85%)`. Vzor: sekce pod hero na homepage (28. 10. 2026).
-- **„bg b 1“** = třída `.ss-bg-b1`: stejné jako bg m 1, ale v modrém — bílá + jemné modré zrno krytí .07 + modrá záře zespodu `radial-gradient(ellipse 80% 55% at 50% 100%, #296093 .12 → .05 → 0 80%)`. Vzor: Newsletter na homepage (28. 10. 2026).
+- **„bg m 2“** = třída `.ss-bg-m2`: jako bg m 1, ale barevnější a malinko tmavší – přechod bílá → teplá `#FDF5EA` shora dolů, zrno krytí .09, meruňková záře zespodu větší a silnější `radial-gradient(ellipse 90% 70% at 50% 100%, apricot .30 → .12 → 0 85%)`. Vzor: sekce pod hero na homepage (28. 10. 2026).
+- **„bg b 1“** = třída `.ss-bg-b1`: stejné jako bg m 1, ale v modrém – bílá + jemné modré zrno krytí .07 + modrá záře zespodu `radial-gradient(ellipse 80% 55% at 50% 100%, #296093 .12 → .05 → 0 80%)`. Vzor: Newsletter na homepage (28. 10. 2026).
 - **„meruňkové podsvícení“** = `.ss-grad-top.ss-grad-glow` (přechod surface.page → surface.muted + meruňková záře od spodní hrany). **„gradient shora“** = jen `.ss-grad-top`.
 Z-index registr: 0 base · 100 sticky lišta · 200 hlavička · 300 našeptávač a mega menu · 400 overlay · 410 drawer · 500 modál · 600 toast · 900 DebugBar · 950 PrezentacniLista.
 
 ## Layout a breakpointy
 
 Sedm pásem, hranice **1560 · 1150 · 1000 · 820 · 550 · 420**: XXL ≥1560, XL 1150–1559, L 1000–1149, M 820–999, S 550–819, XS 420–549, XXS <420.
-**Jediné platné názvosloví** — „mobil / tablet / desktop“ se v projektu nepoužívá.
-Horní část stránky (drobečková, h1, perex, přepínače) je vždy samostatná první `<section class="ss-grad-top">` v `<main>` — přechod surface.page → surface.muted jako v Kategorii (7. 10. 2026).
+**Jediné platné názvosloví** – „mobil / tablet / desktop“ se v projektu nepoužívá.
+Horní část stránky (drobečková, h1, perex, přepínače) je vždy samostatná první `<section class="ss-grad-top">` v `<main>` – přechod surface.page → surface.muted jako v Kategorii (7. 10. 2026).
 Full-bleed vzorec: kořen stránky `width:100%`, bez paddingu, bez `max-width`, bez rádiusu, nese jen barvu pozadí. Sekce přes celou šířku, omezený je až vnitřní obal: `max-width:1560px; margin:0 auto; padding:0 32px` (pod 820 px `0 16px`). Platí i pro hlavičku a patičku.
 Produktový grid má **pevné počty sloupců**, ne `auto-fill minmax()`: XXL 5 · XL/L 4 · M 3 · S 2 · XS/XXS 1, gap 20 px.
 Reset kořene v každé stránkové `.dc.html`:
@@ -74,9 +74,9 @@ html,body{margin:0!important;padding:0!important;}
 
 ## Tmavý režim
 
-**Zrušen (29. 10. 2026)** — přepínač v `PrezentacniLista` odebrán, web je jen světlý. Tmavé hodnoty v CSS zůstávají jako nepoužívaný kód; nové věci už je neřeší.
+**Zrušen (29. 10. 2026)** – přepínač v `PrezentacniLista` odebrán, web je jen světlý. Tmavé hodnoty v CSS zůstávají jako nepoužívaný kód; nové věci už je neřeší.
 
-Barvy v komponentách se píšou `var(--ss-token, #světláHodnota)` — světlý režim je fallback, tmavé hodnoty jsou jen v `tmavy-rezim.css` pod `html[data-mode="dark"]`. Každý soubor má v helmetu `<link href="./tmavy-rezim.css">` a skript, který obnoví uložený režim. Barvy, které se v tmavém nemění (primární tlačítko, meruňková, tmavé pásy hlavičky a patičky, bílý text na brandu), zůstávají literály. Tabulka světlý → tmavý v `DesignSystem.dc.html` § 2. Nová barva = doplnit proměnnou do CSS i tabulky.
+Barvy v komponentách se píšou `var(--ss-token, #světláHodnota)` – světlý režim je fallback, tmavé hodnoty jsou jen v `tmavy-rezim.css` pod `html[data-mode="dark"]`. Každý soubor má v helmetu `<link href="./tmavy-rezim.css">` a skript, který obnoví uložený režim. Barvy, které se v tmavém nemění (primární tlačítko, meruňková, tmavé pásy hlavičky a patičky, bílý text na brandu), zůstávají literály. Tabulka světlý → tmavý v `DesignSystem.dc.html` § 2. Nová barva = doplnit proměnnou do CSS i tabulky.
 
 ## Štítky (příznaky)
 
@@ -86,9 +86,9 @@ Komponenta `Stitek.dc.html`, rádius 6, Roboto 13/600 (small 12). Dvě skupiny (
 
 ## Ikony
 
-Sada **Tabler**, inline SVG 24 × 24, `stroke-width 2`, `currentColor`, bez výplní. Jediný registr `Ikony.dc.html` (data `icons.js`) — žádná jiná komponenta ikonu nekreslí inline, vždy import.
+Sada **Tabler**, inline SVG 24 × 24, `stroke-width 2`, `currentColor`, bez výplní. Jediný registr `Ikony.dc.html` (data `icons.js`) – žádná jiná komponenta ikonu nekreslí inline, vždy import.
 `dc-import` obsazuje atribut `name`, proto se ikona volá propem **`iconName`**.
-Kurátorská sada klienta (49 ikon) neobsahuje e-shopové základy — chybějící ikony (košík, lupa, uživatel, filtr, doprava, šipky menu, porovnání) **doplňuji z Tablera** podle potřeby a zapisuji do registru.
+Kurátorská sada klienta (49 ikon) neobsahuje e-shopové základy – chybějící ikony (košík, lupa, uživatel, filtr, doprava, šipky menu, porovnání) **doplňuji z Tablera** podle potřeby a zapisuji do registru.
 
 ## Interaktivní stavy
 
@@ -100,19 +100,19 @@ Hover se nezjišťuje šířkou okna, ale `(hover:hover) and (pointer:fine)`. Fo
 - Všechny soubory **v kořeni projektu**, žádné podadresáře. Názvy bez diakritiky.
 - Znovupoužitelné komponenty = samostatné `.dc.html` importované přes `dc-import`. Stránka **nikdy nekopíruje markup komponenty**.
 - Komponenta je bezstavová vůči stránce: data propem, změna skalárním callbackem.
-- Funkce se předávají **jen jako přímý prop** — funkce v objektu nebo poli se při druhém předání ztratí. Kontejner dostává data bez funkcí + skalární callbacky (`onPick(index)`, `onToggle(a, b)`) a per-položkové handlery si vyrábí sám.
-- `flex:1` na `dc-import` se nepropíše — komponenta se obaluje vlastním divem.
+- Funkce se předávají **jen jako přímý prop** – funkce v objektu nebo poli se při druhém předání ztratí. Kontejner dostává data bez funkcí + skalární callbacky (`onPick(index)`, `onToggle(a, b)`) a per-položkové handlery si vyrábí sám.
+- `flex:1` na `dc-import` se nepropíše – komponenta se obaluje vlastním divem.
 - Větší revize = kopie (`Neco.dc.html` → `Neco v2.dc.html`), předchozí verze se neztrácí.
 
 ## Přístupnost (WCAG 2.2 AA, závazné)
 
 - Interaktivní prvek je `<button type="button">` nebo `<a href>`. `<div onClick>` a `role="button"` se nepoužívají.
 - Nikdy `<button>` uvnitř `<button>` nebo `<a>`. Klikací karta = krycí odkaz přes `::after`, vnitřní tlačítka `position:relative` + vyšší `z-index`.
-- `<button>` má shrink-to-fit šířku — řádkový prvek přes celou šířku potřebuje `width:100%`.
+- `<button>` má shrink-to-fit šířku – řádkový prvek přes celou šířku potřebuje `width:100%`.
 - Právě jeden `<h1>`, landmarky `header/main/footer/nav`, nadpisy bez přeskočení úrovní. Skrytý nadpis vizuálně, nikdy `display:none`.
 - Význam nikdy jen barvou (skladovost = tečka + text).
 - Overlaye: `role="dialog"` + `aria-modal`, Escape, klik mimo, focus dovnitř a zpět, focus trap, zámek scrollu. Listenery se odregistrují při zavření i odmountování.
-- **Každé okno = `Overlay` + obsah** (od 28. 10. 2026, audit B1). Rám, hlavičku (ikona 24 neutrální + h2 Oswald 26/21 + zavírací tlačítko 44 „Zavřít …“), patičku s akcemi a celé chování drží jen `Overlay.dc.html`; obsah je samostatná komponenta `*Obsah.dc.html` s rozhraním `data` + `onEvent(typ, a, b)` (`onEvent('close')` zavře okno). Nový obsah = nový řádek v registru Overlay (`sc-if` + statický `dc-import`; dynamický název importu runtime neumí). Varianty: `drawer` 460 zprava (pod 550 px přes celou šířku), `modal` `sm` 420 / `md` 560 / `lg` 880 / `xl` 1200, zaoblení 12. **Na mobilu (pod 550 px) jsou větší okna přes celou obrazovku**: drawery a modaly `md`/`lg`/`xl` (i okno Přidáno do košíku) bez zaoblení na celý displej; jen malý modal `sm` zůstává jako karta uprostřed. Vlastní scrim/dialog/trap/Escape do stránek ani komponent nepsat. Okno Přidáno do košíku: `KosikPridanoModal` je tenký obal (stejné API pro stránky) = Overlay `xl` + `KosikPridanoObsah` (audit B1.2, 28. 10. 2026); tlačítka Zobrazit košík / Zpět do obchodu jsou od 550 px v obsahu hned pod dopravou zdarma, pod 550 px ve sticky patičce okna (Overlay `footerMobileOnly`) — přání klienta. **Příkaz „vrať B1.2“** = zkopírovat obsah `KosikPridanoModal_v1.dc.html` zpět do `KosikPridanoModal.dc.html` (stránky se nemění). Okna Tuhost (`TuhostModal` = Overlay `lg` + `TuhostObsah`, ikona adjustments) a Poradna (`PoradnaModal` = Overlay `md` + `PoradnaObsah`, ikona help-circle) — audit B1.3; tlačítka od 550 px v obsahu, pod 550 px sticky patička. **Příkaz „vrať B1.3“** = obsah `TuhostModal_v1.dc.html` a `PoradnaModal_v1.dc.html` zkopírovat zpět do `TuhostModal.dc.html` a `PoradnaModal.dc.html`. Mapa ikon: košík shopping-bag, přihlášení user, menu menu-2, přidáno circle-check (zelená, jediná výjimka), tuhost adjustments, poradna help-circle, varianty color-swatch, filtry filter, vlastní rozměr rozmer-postele. Panely Výběr varianty (`VariantaDrawer` = Overlay drawer + `VariantaObsah`, ikona color-swatch, patička Hotovo) a Filtry (`FiltrDrawer` = Overlay drawer + `FiltrObsah`, ikona filter, patička Smazat vše + Zobrazit N produktů vedle sebe přes `footerRow`) — audit B1.4; u drawerů je patička sticky na všech šířkách. **Příkaz „vrať B1.4“** = obsah `VariantaDrawer_v1.dc.html` a `FiltrDrawer_v1.dc.html` zkopírovat zpět do `VariantaDrawer.dc.html` a `FiltrDrawer.dc.html`. Informační bublina `InfoPopover` = spouštěč (otazník) + Overlay `variant="popover"` + `InfoObsah` (audit B1.6): nemodální, bez scrimu, zámku scrollu a trapu, kompaktní hlavička (nadpis 17 px + zavření 44), Escape zavře a vrátí focus na otazník, klik mimo zavře, zarovnání ke spouštěči přes `getAnchor`. **Příkaz „vrať B1.6“** = obsah `InfoPopover_v1.dc.html` zkopírovat zpět do `InfoPopover.dc.html`. Okno Vlastní rozměr (inline blok v Detail_*) se nepoužívá (čip otevírá formulář ve stránce) — B1.5 přeskočeno, blok zůstává beze změny.
+- **Každé okno = `Overlay` + obsah** (od 28. 10. 2026, audit B1). Rám, hlavičku (ikona 24 neutrální + h2 Oswald 26/21 + zavírací tlačítko 44 „Zavřít …“), patičku s akcemi a celé chování drží jen `Overlay.dc.html`; obsah je samostatná komponenta `*Obsah.dc.html` s rozhraním `data` + `onEvent(typ, a, b)` (`onEvent('close')` zavře okno). Nový obsah = nový řádek v registru Overlay (`sc-if` + statický `dc-import`; dynamický název importu runtime neumí). Varianty: `drawer` 460 zprava (pod 550 px přes celou šířku), `modal` `sm` 420 / `md` 560 / `lg` 880 / `xl` 1200, zaoblení 12. **Na mobilu (pod 550 px) jsou větší okna přes celou obrazovku**: drawery a modaly `md`/`lg`/`xl` (i okno Přidáno do košíku) bez zaoblení na celý displej; jen malý modal `sm` zůstává jako karta uprostřed. Vlastní scrim/dialog/trap/Escape do stránek ani komponent nepsat. Okno Přidáno do košíku: `KosikPridanoModal` je tenký obal (stejné API pro stránky) = Overlay `xl` + `KosikPridanoObsah` (audit B1.2, 28. 10. 2026); tlačítka Zobrazit košík / Zpět do obchodu jsou od 550 px v obsahu hned pod dopravou zdarma, pod 550 px ve sticky patičce okna (Overlay `footerMobileOnly`) – přání klienta. **Příkaz „vrať B1.2“** = zkopírovat obsah `KosikPridanoModal_v1.dc.html` zpět do `KosikPridanoModal.dc.html` (stránky se nemění). Okna Tuhost (`TuhostModal` = Overlay `lg` + `TuhostObsah`, ikona adjustments) a Poradna (`PoradnaModal` = Overlay `md` + `PoradnaObsah`, ikona help-circle) – audit B1.3; tlačítka od 550 px v obsahu, pod 550 px sticky patička. **Příkaz „vrať B1.3“** = obsah `TuhostModal_v1.dc.html` a `PoradnaModal_v1.dc.html` zkopírovat zpět do `TuhostModal.dc.html` a `PoradnaModal.dc.html`. Mapa ikon: košík shopping-bag, přihlášení user, menu menu-2, přidáno circle-check (zelená, jediná výjimka), tuhost adjustments, poradna help-circle, varianty color-swatch, filtry filter, vlastní rozměr rozmer-postele. Panely Výběr varianty (`VariantaDrawer` = Overlay drawer + `VariantaObsah`, ikona color-swatch, patička Hotovo) a Filtry (`FiltrDrawer` = Overlay drawer + `FiltrObsah`, ikona filter, patička Smazat vše + Zobrazit N produktů vedle sebe přes `footerRow`) – audit B1.4; u drawerů je patička sticky na všech šířkách. **Příkaz „vrať B1.4“** = obsah `VariantaDrawer_v1.dc.html` a `FiltrDrawer_v1.dc.html` zkopírovat zpět do `VariantaDrawer.dc.html` a `FiltrDrawer.dc.html`. Informační bublina `InfoPopover` = spouštěč (otazník) + Overlay `variant="popover"` + `InfoObsah` (audit B1.6): nemodální, bez scrimu, zámku scrollu a trapu, kompaktní hlavička (nadpis 17 px + zavření 44), Escape zavře a vrátí focus na otazník, klik mimo zavře, zarovnání ke spouštěči přes `getAnchor`. **Příkaz „vrať B1.6“** = obsah `InfoPopover_v1.dc.html` zkopírovat zpět do `InfoPopover.dc.html`. Okno Vlastní rozměr (inline blok v Detail_*) se nepoužívá (čip otevírá formulář ve stránce) – B1.5 přeskočeno, blok zůstává beze změny.
 - **Ovládání karuselů = `KaruselNav`** (audit B2, 28. 10. 2026): šipky (`layout` below / peek / overlay, ikony arrow / chevron), stav začátek/konec (disabled, peek se na okraji schová) a posun (`step` card / px / snap) jsou jen v této komponentě. Pás karet zůstává v komponentě nebo stránce a KaruselNav ho dostane přes `getTrack`. Používají ho SouvisejiciProdukty (V1/V2/V3), homepage Prodejny P2, Ověřené recenze a Magazín M2. Nové karusely nepsat s vlastními šipkami ani scroll logikou. (Magazín M1 je stránkování, ne karusel; srovnávací tabulka v Porovnání má vlastní posuv tabulky.)
 
 ## Obsahová pravidla
@@ -122,19 +122,19 @@ Hover se nezjišťuje šířkou okna, ale `(hover:hover) and (pointer:fine)`. Fo
 - Čas se píše vždy s dvojtečkou: „9:00–17:00“ (pomlčka bez mezer), nikdy „9.00“.
 - Ceny, skladovost a dostupnost se píšou jednotně: cena „7 590 Kč“ (pevná mezera, s DPH), „Skladem · odesíláme do 24 h“, „Poslední kusy“, „Nedostupné“. Formulace se ustálí jednou a drží.
 - Vždy **„tuhost“**, nikdy „tvrdost“ (9. 10. 2026). Přídavná jména stupňů (tvrdá, středně tvrdá, měkká) zůstávají.
-- Fotky klient dodá — do té doby placeholdery ve `surface.muted`.
+- Fotky klient dodá – do té doby placeholdery ve `surface.muted`.
 
 ## Funkční rozsah (potvrzeno klientem)
 
 Varianty produktů (rozměr, tuhost, barva) · množstevní slevy · porovnávání · oblíbené/wishlist · konfigurátor „průvodce výběrem“ · hodnocení a recenze · dostupnost na prodejnách · poradna/rádce výběru · blog/magazín.
 První kolo stránek: **Homepage**.
 
-## Rozhodnuto — nevracet se k tomu
+## Rozhodnuto – nevracet se k tomu
 
 - **Web je jen světlý** (29. 10. 2026). Tmavý režim zrušen, přepínač v `PrezentacniLista` odebrán; uložené `ss-mode=dark` lišta při načtení vrátí na světlý.
 - **Jedna vizuální linka**, ne varianty vzhledu k rozhodnutí (klient zvolil „jedna linka, jeď“).
 - **Konverzní barva je meruňková** (`action.buy` apricot-400, vždy tmavý text). Zelená = **success** (skladem, pozitivní oznámení), červená = **error** (nedostupné, negativní oznámení, odebrat). Primární modrá beze změny.
-- **Bez přepínače měny a jazyka** — jen CZK a čeština.
+- **Bez přepínače měny a jazyka** – jen CZK a čeština.
 - **Nimbus Sans L Condensed se na web nenasazuje.** Výchozí nadpisy Oswald, text Roboto (6. 10. 2026), ceny Oswald (8. 10. 2026). Jiné písmo se nepoužívá.
 - **Názvosloví pásem XXS–XXL**, ne mobil/tablet/desktop.
 - **Jen designový Select** (`Select.dc.html`, vlastní listbox). Systémový `<select>` se nepoužívá (2. 10. 2026).
@@ -146,7 +146,7 @@ První kolo stránek: **Homepage**.
 - **Každá změna se zapisuje do `changelog.dc.html`** (pole `DAYS` v logice): chronologicky, nový den = nový blok s datem, u každé položky před / po / proč / soubory.
 
 - Podle screenu nebo wireframu se staví přesně, ne podle vlastní představy; nejednoznačnosti se doptávají.
-- Malá změna = malá změna. Neopravovat, na co se nikdo neptal — navrhnout zvlášť.
+- Malá změna = malá změna. Neopravovat, na co se nikdo neptal – navrhnout zvlášť.
 - Nekonzistence proti design systému se nahlásí a navrhne oprava, ale neopravuje se uvnitř jiného úkolu.
 - Odpovídat stručně a česky.
 
@@ -154,21 +154,21 @@ První kolo stránek: **Homepage**.
 
 ## Přenos projektu do nového účtu (8. 10. 2026)
 
-**Pokyn pro Claude v novém účtu:** projekt byl přenesen přes Git repozitář. Uložit **1:1**, nic nepřepisovat, nevylepšovat, nepřejmenovávat, neformátovat, neslučovat ani nemazat (ani staré verze `v1`, ani `uploads/`, ani `screenshots/`). `support.js` je runtime prostředí — neupravovat. Pak pokračovat v práci podle tohoto souboru.
+**Pokyn pro Claude v novém účtu:** projekt byl přenesen přes Git repozitář. Uložit **1:1**, nic nepřepisovat, nevylepšovat, nepřejmenovávat, neformátovat, neslučovat ani nemazat (ani staré verze `v1`, ani `uploads/`, ani `screenshots/`). `support.js` je runtime prostředí – neupravovat. Pak pokračovat v práci podle tohoto souboru.
 
 - Projekt se jmenuje **svetspanku.cz**. Uživatel (agentura, doména jxk.cz) píše česky, chce stručné odpovědi.
-- Projekt dříve navazoval na design systém v jiném projektu účtu (id 437bfa2d…). **Vše potřebné je už zkopírované sem** — tokeny v `DesignSystem.dc.html` + `tmavy-rezim.css`, fonty z Google Fonts. Na externí design systém se neodkazovat; zdrojem pravdy je tento projekt.
+- Projekt dříve navazoval na design systém v jiném projektu účtu (id 437bfa2d…). **Vše potřebné je už zkopírované sem** – tokeny v `DesignSystem.dc.html` + `tmavy-rezim.css`, fonty z Google Fonts. Na externí design systém se neodkazovat; zdrojem pravdy je tento projekt.
 - Všechny soubory jsou Design Components (`*.dc.html`), otevírají se přímo v prohlížeči, závisí na `support.js` v kořeni.
 
 ### Mapa souborů
 
 Stránky:
-- `index.dc.html` — Homepage (hero, karty pod hero, Nejoblíbenější kategorie, Nejprodávanější, Recenze, Magazín, Newsletter).
-- `Kategorie.dc.html` — šablona výpisu kategorie s filtry (prop `k` = slug L1, L2/L3 přes hash `#s=&p=`). Stránky L1: `Kategorie Postele / Matrace / Rosty / Komplety / Nabytek / Polstare / Luzkoviny.dc.html` (jen import šablony). Odkazy nikdy přes query parametry (`?…`) — rozbíjí náhled. `Kategorie v1.dc.html` = původní verze pro Matrace.
-- `Detail_Postel 3.0.dc.html` — **aktuální detail produktu** (všechny odkazy na detail vedou sem, 7. 10. 2026). `Detail_Komplet 3.0.dc.html` — kopie k ladění detailu kompletu, přepínač v PrezentacniLista. `Detail_Produkt Levita.dc.html` — původní detail (zdroj kopií, nemazat).
-- `Kosik.dc.html`, `KosikKrok1–3.dc.html` — košík a kroky objednávky. `PrazdnyKosik.dc.html` — prázdný košík. `Oblibene.dc.html` — wishlist (ss-fav). `VseONakupu.dc.html` — rozcestník informací o nákupu + FAQ. `ONas.dc.html` — O nás (rozpracováno). `Kontakty.dc.html` — Kontakty (29. 10. 2026). `Chyba404.dc.html` — stránka 404 (29. 10. 2026). `Dekujeme.dc.html` — děkovací stránka po odeslání (props `stav` prevod/zaplaceno/nezaplaceno/dobirka/osobni, `typ` skladem/naObjednavku, `prihlasen`).
+- `index.dc.html` – Homepage (hero, karty pod hero, Nejoblíbenější kategorie, Nejprodávanější, Recenze, Magazín, Newsletter).
+- `Kategorie.dc.html` – šablona výpisu kategorie s filtry (prop `k` = slug L1, L2/L3 přes hash `#s=&p=`). Stránky L1: `Kategorie Postele / Matrace / Rosty / Komplety / Nabytek / Polstare / Luzkoviny.dc.html` (jen import šablony). Odkazy nikdy přes query parametry (`?…`) – rozbíjí náhled. `Kategorie v1.dc.html` = původní verze pro Matrace.
+- `Detail_Postel 3.0.dc.html` – **aktuální detail produktu** (všechny odkazy na detail vedou sem, 7. 10. 2026). `Detail_Komplet 3.0.dc.html` – kopie k ladění detailu kompletu, přepínač v PrezentacniLista. `Detail_Produkt Levita.dc.html` – původní detail (zdroj kopií, nemazat). `Detail_Komoda_VIA.dc.html` – detail nábytku (komoda VIA 3Z, kopie Postel 3.0 bez postelových bloků, 29. 10. 2026).
+- `Kosik.dc.html`, `KosikKrok1–3.dc.html` – košík a kroky objednávky. `PrazdnyKosik.dc.html` – prázdný košík. `Oblibene.dc.html` – wishlist (ss-fav). `VseONakupu.dc.html` – rozcestník informací o nákupu + FAQ. `ONas.dc.html` – O nás (rozpracováno). `Kontakty.dc.html` – Kontakty (29. 10. 2026). `Chyba404.dc.html` – stránka 404 (29. 10. 2026). `Dekujeme.dc.html` – děkovací stránka po odeslání (props `stav` prevod/zaplaceno/nezaplaceno/dobirka/osobni, `typ` skladem/naObjednavku, `prihlasen`).
 - `Porovnani.dc.html`, `VysledkyVyhledavani.dc.html`, `Registrace.dc.html`, `Clanek.dc.html` (blog).
-- `DesignSystem.dc.html`, `Komponenty.dc.html`, `Ikony.dc.html`, `changelog.dc.html` — dokumentace.
+- `DesignSystem.dc.html`, `Komponenty.dc.html`, `Ikony.dc.html`, `changelog.dc.html` – dokumentace.
 
 Komponenty (importované přes `dc-import`): Hlavicka, Paticka, MegaMenu, MobilniMenu, ProdejnyMenu, Vyhledavani, PrezentacniLista, Tlacitko, Chip, Stitek, Input, Select, Checkbox, VolbaRadio, SkupinaVoleb, Kvantifikator, Zalozky, Paginace, Drobeckova, Hodnoceni, InfoPopover, ProduktovaKarta, KategorickaDlazdice, VypisKategorii, SouvisejiciProdukty, Galerie, NakupniBox, VyberVariant, VariantaDrawer, MnozstevniSlevy, DopravaZdarma, Usp, CenovyFiltr, FiltrPanel, FiltrDrawer, FiltracniLista, KosikDrawer, KosikPridanoModal, PolozkaKosiku, SouhrnKosiku, ShrnutiObjednavky, SlevovyKupon, KrokyObjednavky, PrihlaseniModal, SocialniPrihlaseni, PoradnaModal, PrazdnyStav, PlatebniUdaje, ZpetnaVazba, PrubehObjednavky, RegistracePoNakupu, Newsletter, KontaktniLista, PruvodceBanner, PoradceBox, Faq, CasovaOsa, Prodejny, KontaktniKarta, KontaktniOsoba, KontaktniFormular, TextovePole, LogoA–D (animace loga).
 Staré verze (nemazat): `MegaMenu v1`, `Paticka v1`, `ProduktovaKarta v1`.
@@ -177,9 +177,9 @@ Data (plain JS): `menu.js` (struktura menu), `produkty.js`, `prodejny.js`, `kosi
 
 ### Stav v prototypu (localStorage, ovládá PrezentacniLista)
 
-`ss-mode` (zrušeno — lišta ho přepíše na light), `ss-logo` (varianta loga a–d), `ss-hdmode` (sticky hlavička H1/H2, **výchozí H2** od 9. 10. 2026), `ss-cmp` (produkty v porovnání, událost `ss-cmp`). Hlavička vysílá `ss-hdhidden` při schování (H2). LED stav `state.led` → prop `ledMode`.
+`ss-mode` (zrušeno – lišta ho přepíše na light), `ss-logo` (varianta loga a–d), `ss-hdmode` (sticky hlavička H1/H2, **výchozí H2** od 9. 10. 2026), `ss-cmp` (produkty v porovnání, událost `ss-cmp`). Hlavička vysílá `ss-hdhidden` při schování (H2). LED stav `state.led` → prop `ledMode`.
 
-### Rozpracováno — otevřené body
+### Rozpracováno – otevřené body
 
 - **Struktura menu**: naplněna podle screenshotů z Muralu (8. 10. 2026) v `menu.js`. Otevřené: skupina „Podle materiálu“ u polštářů (v Muralu otazníky), zda ponechat „Akce a výprodej“, zvýraznění „Průvodce výběrem matrace“.
 - Poslední dny práce (7. 10. 2026): přesměrování detailu na Postel 3.0, teplé meruňkové podklady sekcí homepage (`.ss-grad-top` + `.ss-grad-glow`), bílé boxy konfigurace na detailu, sticky hlavička H1/H2, počty v porovnání/oblíbených v hlavičce. Podrobnosti v `changelog.dc.html`.

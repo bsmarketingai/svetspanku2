@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Sans+Condensed:wght@400;500;600;700&display=swap" rel="stylesheet"><style data-ss="tmavy-rezim">
-/* Tmavý režim — přepíná html[data-mode="dark"]. Světlý režim = fallback hodnoty v var(). */
+/* Tmavý režim – přepíná html[data-mode="dark"]. Světlý režim = fallback hodnoty v var(). */
 /* Hover ve světlém režimu modrý (6. 10. 2026), v tmavém meruňkový */
 html:not([data-mode="dark"]){--ss-hover-text:#21507B;--ss-hover-bg:#F0F5FA;
   /* Teplé meruňkové podklady (7. 10. 2026) */
@@ -88,7 +88,7 @@ html[data-mode="dark"] .ss-pm-card{background:#13283C;}
 html[data-mode="dark"] .ss-pm-card:hover{background:#13283C!important;box-shadow:none!important;color:inherit!important;}
 html[data-mode="dark"] .ss-pm-row:hover{background:transparent!important;box-shadow:none!important;color:inherit!important;}
 
-/* Ostrůvek světlého režimu (popupy nad fotkami — produktové fotky mají bílé pozadí) */
+/* Ostrůvek světlého režimu (popupy nad fotkami – produktové fotky mají bílé pozadí) */
 html[data-mode="dark"] .ss-light{color-scheme:light;
   --ss-hover-text:#21507B;
   --ss-hover-bg:#F0F5FA;
@@ -146,7 +146,7 @@ html[data-mode="dark"] .ss-pc::before{content:"";position:absolute;inset:0;borde
 html[data-mode="dark"] .ss-pm-card:hover .ss-pm-title,html[data-mode="dark"] .ss-pm-row:hover .ss-pm-title,html[data-mode="dark"] .ss-pc:hover .ss-pc-title,html[data-mode="dark"] .ss-mm-ban:hover{color:#FBB255!important;}
 
 /* Podklad webu: jemný radiální gradient ze středu viewportu (hloubka). Fixní → plynule přes všechny sekce. */
-/* Vinětace (Elevace) odebrána 12. 10. 2026 — plné podklady, stíny karet zůstávají vždy */
+/* Vinětace (Elevace) odebrána 12. 10. 2026 – plné podklady, stíny karet zůstávají vždy */
 
 
 /* Gradient Zap: elevace všech ploch, které by na gradientu splývaly (karty, filtry, video, boxy). Gradient Vyp = beze změny. */
@@ -161,7 +161,7 @@ html[data-mode="dark"] .ss-ct[data-pop="true"]::before{box-shadow:inset 0 1px 0 
 @media (hover:hover) and (pointer:fine){html .ss-ct[data-pop="true"]:hover::before{box-shadow:0 4px 12px rgba(19,44,67,.12);}html[data-mode="dark"] .ss-ct[data-pop="true"]:hover::before{box-shadow:inset 0 1px 0 rgba(141,179,211,.18),0 0 0 1px rgba(141,179,211,.14),0 8px 24px rgba(0,0,0,.45);}}
 html .ss-elev:focus-visible{box-shadow:0 0 0 3px rgba(41,96,147,.35)!important;}
 
-/* Prezentační přepínač fontů — html[data-font-h|data-font-b]="alt" */
+/* Prezentační přepínač fontů – html[data-font-h|data-font-b]="alt" */
 html[data-font-h="alt"] h1:not(.ss-plain),html[data-font-h="alt"] h2:not(.ss-plain),html[data-font-h="alt"] h3:not(.ss-plain),html[data-font-h="alt"] h4:not(.ss-plain),html[data-font-h="alt"] [style*="Oswald"]{font-family:'Barlow Condensed',Oswald,Helvetica,Arial,sans-serif!important;}
 html[data-font-b="alt"] body,html[data-font-b="alt"] [style*="Roboto"]:not([style*="Archivo"]):not([style*="Oswald"]),html[data-font-b="alt"] input,html[data-font-b="alt"] button,html[data-font-b="alt"] select,html[data-font-b="alt"] textarea{font-family:'IBM Plex Sans Condensed',Roboto,Helvetica,Arial,sans-serif!important;}
 html[data-mode="dark"] .ss-ct:hover .ss-ct-title,html[data-mode="dark"] .ss-hp-art:hover .ss-hp-art-t,html[data-mode="dark"] .ss-mag-lead:hover .ss-hp-art-t{color:#FBB255;}
@@ -182,10 +182,10 @@ main>section.ss-grad-top{background-image:linear-gradient(180deg,var(--ss-surfac
 
 
 
-/* Nadpisy: světlý režim tmavá modrá z hlavičky #0B1F33 (inline barva vyhrává — bílé nadpisy na tmavých pásech zůstávají) */
+/* Nadpisy: světlý režim tmavá modrá z hlavičky #0B1F33 (inline barva vyhrává – bílé nadpisy na tmavých pásech zůstávají) */
 h1,h2,h3,h4{color:var(--ss-text-heading,#0B1F33);}
 
-/* Sekce s meruňkovým podsvícením zespoda — poloviční radiál od spodní hrany, vrstvený nad .ss-grad-top */
+/* Sekce s meruňkovým podsvícením zespoda – poloviční radiál od spodní hrany, vrstvený nad .ss-grad-top */
 main>section.ss-grad-top.ss-grad-glow{background-image:radial-gradient(ellipse 55% 100% at 50% 100%,rgba(251,178,85,.22) 0%,rgba(251,178,85,.09) 45%,rgba(251,178,85,0) 75%),linear-gradient(180deg,var(--ss-surface-page,#FFFFFF) 0%,var(--ss-surface-muted,#F3EDE4) 100%)!important;background-size:100% 520px,auto!important;background-position:center bottom,center!important;background-repeat:no-repeat!important;background-attachment:scroll!important;}
 html[data-mode="dark"] main>section.ss-grad-top.ss-grad-glow{background-image:radial-gradient(ellipse 55% 100% at 50% 100%,rgba(251,178,85,.14) 0%,rgba(251,178,85,.05) 45%,rgba(251,178,85,0) 75%),linear-gradient(180deg,var(--ss-surface-page,#0E1F2F) 0%,var(--ss-surface-muted,#183049) 100%)!important;}
 
@@ -193,10 +193,10 @@ html[data-mode="dark"] main>section.ss-grad-top.ss-grad-glow{background-image:ra
 /* Podklad „bg m 1“ (28. 10. 2026): bílá + jemné zrno (krytí .07) + meruňková záře zespodu (ellipse 80 % × 55 %). Vzor: Ověřené recenze a Příběh Světa spánku na homepage. */
 .ss-bg-m1{background-color:var(--ss-surface-page,#FFFFFF)!important;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .55 0 0 0 0 .35 0 0 0 0 .1 0 0 0 .07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),radial-gradient(ellipse 80% 55% at 50% 100%,rgba(251,178,85,.16) 0%,rgba(251,178,85,.06) 45%,rgba(251,178,85,0) 80%)!important;background-size:220px 220px,auto!important;background-repeat:repeat,no-repeat!important;background-position:0 0,center!important;}
 html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .85 0 0 0 0 .9 0 0 0 0 1 0 0 0 .06 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),radial-gradient(ellipse 80% 55% at 50% 100%,rgba(251,178,85,.12) 0%,rgba(251,178,85,.04) 45%,rgba(251,178,85,0) 80%)!important;}
-/* Podklad „bg b 1“ (28. 10. 2026): jako bg m 1, ale v modrém — bílá + jemné modré zrno (.07) + modrá záře zespodu (#296093). */
+/* Podklad „bg b 1“ (28. 10. 2026): jako bg m 1, ale v modrém – bílá + jemné modré zrno (.07) + modrá záře zespodu (#296093). */
 .ss-bg-b1{background-color:var(--ss-surface-page,#FFFFFF)!important;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .16 0 0 0 0 .38 0 0 0 0 .58 0 0 0 .07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),radial-gradient(ellipse 80% 55% at 50% 100%,rgba(41,96,147,.12) 0%,rgba(41,96,147,.05) 45%,rgba(41,96,147,0) 80%)!important;background-size:220px 220px,auto!important;background-repeat:repeat,no-repeat!important;background-position:0 0,center!important;}
 html[data-mode="dark"] .ss-bg-b1{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .85 0 0 0 0 .9 0 0 0 0 1 0 0 0 .06 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),radial-gradient(ellipse 80% 55% at 50% 100%,rgba(141,179,211,.14) 0%,rgba(141,179,211,.05) 45%,rgba(141,179,211,0) 80%)!important;}
-/* Podklad „bg m 2“ (28. 10. 2026): jako bg m 1, ale barevnější a o kousek tmavší — jemný přechod bílá → teplá #FDF5EA, zrno .09, silnější a větší meruňková záře zespodu. */
+/* Podklad „bg m 2“ (28. 10. 2026): jako bg m 1, ale barevnější a o kousek tmavší – jemný přechod bílá → teplá #FDF5EA, zrno .09, silnější a větší meruňková záře zespodu. */
 .ss-bg-m2{background-color:#FDF5EA!important;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .55 0 0 0 0 .35 0 0 0 0 .1 0 0 0 .09 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),radial-gradient(ellipse 90% 70% at 50% 100%,rgba(251,178,85,.30) 0%,rgba(251,178,85,.12) 45%,rgba(251,178,85,0) 85%),linear-gradient(180deg,#FFFFFF 0%,#FDF5EA 100%)!important;background-size:220px 220px,auto,auto!important;background-repeat:repeat,no-repeat,no-repeat!important;background-position:0 0,center,center!important;}
 html[data-mode="dark"] .ss-bg-m2{background-color:var(--ss-surface-subtle,#13283C)!important;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .85 0 0 0 0 .9 0 0 0 0 1 0 0 0 .07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),radial-gradient(ellipse 90% 70% at 50% 100%,rgba(251,178,85,.20) 0%,rgba(251,178,85,.07) 45%,rgba(251,178,85,0) 85%),linear-gradient(180deg,var(--ss-surface-page,#0E1F2F) 0%,var(--ss-surface-subtle,#13283C) 100%)!important;}
 </style>
@@ -217,7 +217,7 @@ html[data-mode="dark"] .ss-rev-badge{--ss-shine:rgba(251,178,85,.14);}
 <helmet>
 
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&amp;family=IBM+Plex+Sans+Condensed:wght@400;500;600;700&amp;display=swap" rel="stylesheet"><style data-ss="tmavy-rezim">
-/* Tmavý režim — přepíná html[data-mode="dark"]. Světlý režim = fallback hodnoty v var(). */
+/* Tmavý režim – přepíná html[data-mode="dark"]. Světlý režim = fallback hodnoty v var(). */
 /* Hover ve světlém režimu modrý (6. 10. 2026), v tmavém meruňkový */
 html:not([data-mode="dark"]){--ss-hover-text:#21507B;--ss-hover-bg:#F0F5FA;
   /* Teplé meruňkové podklady (7. 10. 2026) */
@@ -297,7 +297,7 @@ html[data-mode="dark"] .ss-pm-card{background:#13283C;}
 html[data-mode="dark"] .ss-pm-card:hover{background:#13283C!important;box-shadow:none!important;color:inherit!important;}
 html[data-mode="dark"] .ss-pm-row:hover{background:transparent!important;box-shadow:none!important;color:inherit!important;}
 
-/* Ostrůvek světlého režimu (popupy nad fotkami — produktové fotky mají bílé pozadí) */
+/* Ostrůvek světlého režimu (popupy nad fotkami – produktové fotky mají bílé pozadí) */
 html[data-mode="dark"] .ss-light{color-scheme:light;
   --ss-hover-text:#21507B;
   --ss-hover-bg:#F0F5FA;
@@ -355,7 +355,7 @@ html[data-mode="dark"] .ss-pc::before{content:"";position:absolute;inset:0;borde
 html[data-mode="dark"] .ss-pm-card:hover .ss-pm-title,html[data-mode="dark"] .ss-pm-row:hover .ss-pm-title,html[data-mode="dark"] .ss-pc:hover .ss-pc-title,html[data-mode="dark"] .ss-mm-ban:hover{color:#FBB255!important;}
 
 /* Podklad webu: jemný radiální gradient ze středu viewportu (hloubka). Fixní → plynule přes všechny sekce. */
-/* Vinětace (Elevace) odebrána 12. 10. 2026 — plné podklady, stíny karet zůstávají vždy */
+/* Vinětace (Elevace) odebrána 12. 10. 2026 – plné podklady, stíny karet zůstávají vždy */
 
 
 /* Gradient Zap: elevace všech ploch, které by na gradientu splývaly (karty, filtry, video, boxy). Gradient Vyp = beze změny. */
@@ -370,7 +370,7 @@ html[data-mode="dark"] .ss-ct[data-pop="true"]::before{box-shadow:inset 0 1px 0 
 @media (hover:hover) and (pointer:fine){html .ss-ct[data-pop="true"]:hover::before{box-shadow:0 4px 12px rgba(19,44,67,.12);}html[data-mode="dark"] .ss-ct[data-pop="true"]:hover::before{box-shadow:inset 0 1px 0 rgba(141,179,211,.18),0 0 0 1px rgba(141,179,211,.14),0 8px 24px rgba(0,0,0,.45);}}
 html .ss-elev:focus-visible{box-shadow:0 0 0 3px rgba(41,96,147,.35)!important;}
 
-/* Prezentační přepínač fontů — html[data-font-h|data-font-b]="alt" */
+/* Prezentační přepínač fontů – html[data-font-h|data-font-b]="alt" */
 html[data-font-h="alt"] h1:not(.ss-plain),html[data-font-h="alt"] h2:not(.ss-plain),html[data-font-h="alt"] h3:not(.ss-plain),html[data-font-h="alt"] h4:not(.ss-plain),html[data-font-h="alt"] [style*="Oswald"]{font-family:'Barlow Condensed',Oswald,Helvetica,Arial,sans-serif!important;}
 html[data-font-b="alt"] body,html[data-font-b="alt"] [style*="Roboto"]:not([style*="Archivo"]):not([style*="Oswald"]),html[data-font-b="alt"] input,html[data-font-b="alt"] button,html[data-font-b="alt"] select,html[data-font-b="alt"] textarea{font-family:'IBM Plex Sans Condensed',Roboto,Helvetica,Arial,sans-serif!important;}
 html[data-mode="dark"] .ss-ct:hover .ss-ct-title,html[data-mode="dark"] .ss-hp-art:hover .ss-hp-art-t,html[data-mode="dark"] .ss-mag-lead:hover .ss-hp-art-t{color:#FBB255;}
@@ -391,10 +391,10 @@ main>section.ss-grad-top{background-image:linear-gradient(180deg,var(--ss-surfac
 
 
 
-/* Nadpisy: světlý režim tmavá modrá z hlavičky #0B1F33 (inline barva vyhrává — bílé nadpisy na tmavých pásech zůstávají) */
+/* Nadpisy: světlý režim tmavá modrá z hlavičky #0B1F33 (inline barva vyhrává – bílé nadpisy na tmavých pásech zůstávají) */
 h1,h2,h3,h4{color:var(--ss-text-heading,#0B1F33);}
 
-/* Sekce s meruňkovým podsvícením zespoda — poloviční radiál od spodní hrany, vrstvený nad .ss-grad-top */
+/* Sekce s meruňkovým podsvícením zespoda – poloviční radiál od spodní hrany, vrstvený nad .ss-grad-top */
 main>section.ss-grad-top.ss-grad-glow{background-image:radial-gradient(ellipse 55% 100% at 50% 100%,rgba(251,178,85,.22) 0%,rgba(251,178,85,.09) 45%,rgba(251,178,85,0) 75%),linear-gradient(180deg,var(--ss-surface-page,#FFFFFF) 0%,var(--ss-surface-muted,#F3EDE4) 100%)!important;background-size:100% 520px,auto!important;background-position:center bottom,center!important;background-repeat:no-repeat!important;background-attachment:scroll!important;}
 html[data-mode="dark"] main>section.ss-grad-top.ss-grad-glow{background-image:radial-gradient(ellipse 55% 100% at 50% 100%,rgba(251,178,85,.14) 0%,rgba(251,178,85,.05) 45%,rgba(251,178,85,0) 75%),linear-gradient(180deg,var(--ss-surface-page,#0E1F2F) 0%,var(--ss-surface-muted,#183049) 100%)!important;}
 
@@ -402,10 +402,10 @@ html[data-mode="dark"] main>section.ss-grad-top.ss-grad-glow{background-image:ra
 /* Podklad „bg m 1“ (28. 10. 2026): bílá + jemné zrno (krytí .07) + meruňková záře zespodu (ellipse 80 % × 55 %). Vzor: Ověřené recenze a Příběh Světa spánku na homepage. */
 .ss-bg-m1{background-color:var(--ss-surface-page,#FFFFFF)!important;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .55 0 0 0 0 .35 0 0 0 0 .1 0 0 0 .07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),radial-gradient(ellipse 80% 55% at 50% 100%,rgba(251,178,85,.16) 0%,rgba(251,178,85,.06) 45%,rgba(251,178,85,0) 80%)!important;background-size:220px 220px,auto!important;background-repeat:repeat,no-repeat!important;background-position:0 0,center!important;}
 html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .85 0 0 0 0 .9 0 0 0 0 1 0 0 0 .06 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),radial-gradient(ellipse 80% 55% at 50% 100%,rgba(251,178,85,.12) 0%,rgba(251,178,85,.04) 45%,rgba(251,178,85,0) 80%)!important;}
-/* Podklad „bg b 1“ (28. 10. 2026): jako bg m 1, ale v modrém — bílá + jemné modré zrno (.07) + modrá záře zespodu (#296093). */
+/* Podklad „bg b 1“ (28. 10. 2026): jako bg m 1, ale v modrém – bílá + jemné modré zrno (.07) + modrá záře zespodu (#296093). */
 .ss-bg-b1{background-color:var(--ss-surface-page,#FFFFFF)!important;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .16 0 0 0 0 .38 0 0 0 0 .58 0 0 0 .07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),radial-gradient(ellipse 80% 55% at 50% 100%,rgba(41,96,147,.12) 0%,rgba(41,96,147,.05) 45%,rgba(41,96,147,0) 80%)!important;background-size:220px 220px,auto!important;background-repeat:repeat,no-repeat!important;background-position:0 0,center!important;}
 html[data-mode="dark"] .ss-bg-b1{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .85 0 0 0 0 .9 0 0 0 0 1 0 0 0 .06 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),radial-gradient(ellipse 80% 55% at 50% 100%,rgba(141,179,211,.14) 0%,rgba(141,179,211,.05) 45%,rgba(141,179,211,0) 80%)!important;}
-/* Podklad „bg m 2“ (28. 10. 2026): jako bg m 1, ale barevnější a o kousek tmavší — jemný přechod bílá → teplá #FDF5EA, zrno .09, silnější a větší meruňková záře zespodu. */
+/* Podklad „bg m 2“ (28. 10. 2026): jako bg m 1, ale barevnější a o kousek tmavší – jemný přechod bílá → teplá #FDF5EA, zrno .09, silnější a větší meruňková záře zespodu. */
 .ss-bg-m2{background-color:#FDF5EA!important;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .55 0 0 0 0 .35 0 0 0 0 .1 0 0 0 .09 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),radial-gradient(ellipse 90% 70% at 50% 100%,rgba(251,178,85,.30) 0%,rgba(251,178,85,.12) 45%,rgba(251,178,85,0) 85%),linear-gradient(180deg,#FFFFFF 0%,#FDF5EA 100%)!important;background-size:220px 220px,auto,auto!important;background-repeat:repeat,no-repeat,no-repeat!important;background-position:0 0,center,center!important;}
 html[data-mode="dark"] .ss-bg-m2{background-color:var(--ss-surface-subtle,#13283C)!important;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .85 0 0 0 0 .9 0 0 0 0 1 0 0 0 .07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),radial-gradient(ellipse 90% 70% at 50% 100%,rgba(251,178,85,.20) 0%,rgba(251,178,85,.07) 45%,rgba(251,178,85,0) 85%),linear-gradient(180deg,var(--ss-surface-page,#0E1F2F) 0%,var(--ss-surface-subtle,#13283C) 100%)!important;}
 </style>
@@ -531,6 +531,11 @@ html[data-mode="dark"] .ss-rev-badge{--ss-shine:rgba(251,178,85,.14);}
 .ss-hp-hot:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
 @media (min-width:820px) and (max-width:1149px){.ss-hp-map{grid-column:1 / -1;}}
 @media (min-width:550px) and (max-width:819px){.ss-hp-store>:first-child{grid-column:1 / -1;}}
+/* Náhled produktu v inspiraci je celý odkazem na detail (29. 10. 2026) */
+.ss-hp-pop-link{position:absolute;inset:0;z-index:1;border-radius:12px;}
+.ss-hp-pop-link:focus-visible{outline:none;box-shadow:inset 0 0 0 3px rgba(41,96,147,.35);}
+.ss-hp-pop>button{z-index:2;}
+@media (hover:hover) and (pointer:fine){.ss-hp-pop:has(.ss-hp-pop-link:hover) .ss-hp-pop-b>span:first-of-type{color:var(--ss-hover-text,#21507B);text-decoration:underline;text-underline-offset:3px;}}
 @media (max-width:549px){.ss-hp-pop{left:12px!important;right:12px!important;width:auto!important;max-width:none!important;max-height:none!important;}.ss-hp-pop-b{display:grid!important;grid-template-columns:72px minmax(0,1fr);column-gap:12px!important;row-gap:4px!important;padding:12px 40px 12px 12px!important;align-items:center;}.ss-hp-pop-img{grid-row:1 / span 3;width:72px!important;height:72px!important;object-position:center!important;}.ss-hp-pop-b>span[style*="28px"],.ss-hp-pop-b>span[style*="24px"],.ss-hp-pop-b>span[style*="22px"]{font-size:20px!important;}.ss-hp-pop-b>*{min-width:0;}}
 .ss-hp-ph{display:flex;align-items:center;justify-content:center;background:var(--ss-surface-muted,#F3EDE4);color:var(--ss-text-decor,#C8D0D8);border-radius:12px;}
 </style>
@@ -540,7 +545,7 @@ html[data-mode="dark"] .ss-rev-badge{--ss-shine:rgba(251,178,85,.14);}
   <dc-import name="PrezentacniLista" items="{{ presItems }}" onToggle="{{ onPresToggle }}" choices="{{ presChoices }}" onPick="{{ onPresPick }}" hint-size="460px,52px"></dc-import>
 
   <main>
-    <h1 style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0">Světspánku.cz — postele, matrace a rošty z masivu</h1>
+    <h1 style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0">Světspánku.cz – postele, matrace a rošty z masivu</h1>
 
     <section class="ss-bg-m1" style="width:100%;background-color:var(--ss-surface-page,#FFFFFF)">
       <div style="{{ inner }}">
@@ -548,7 +553,7 @@ html[data-mode="dark"] .ss-rev-badge{--ss-shine:rgba(251,178,85,.14);}
           <a class="ss-hp-tile" href="#akce" style="background:#132C43;color:#FFFFFF;overflow:hidden;isolation:isolate">
             <span aria-hidden="true" class="ss-hp-tile-bg" style="position:absolute;inset:0;z-index:-2;background:url(_blob/edd56eee566f1d974d13fb31f14a8118.webp) 30% 30% / cover no-repeat"></span>
             <span aria-hidden="true" style="position:absolute;inset:0;z-index:-1;background:linear-gradient(to top,rgba(9,18,27,.92) 0%,rgba(9,18,27,.72) 35%,rgba(9,18,27,.2) 70%,rgba(9,18,27,0) 90%)"></span>
-            <span class="ss-hp-t" style="font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:21px;line-height:1.2">Black Friday — nakupte se slevami až 60 %</span>
+            <span class="ss-hp-t" style="font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:21px;line-height:1.2">Black Friday – nakupte se slevami až 60 %</span>
             <span class="ss-hp-p" style="font-size:14px;color:#DCE8F2">Jen do 30. listopadu, na vybrané matrace a komplety</span>
           </a>
           <a class="ss-hp-tile" href="#komplety" style="background:#132C43;color:#FFFFFF;overflow:hidden;isolation:isolate">
@@ -620,6 +625,7 @@ html[data-mode="dark"] .ss-rev-badge{--ss-shine:rgba(251,178,85,.14);}
               </button>
               <sc-if value="{{ hotOpen }}" hint-placeholder-val="{{ true }}">
                 <div class="ss-light ss-hp-pop" style="position:absolute;bottom:calc(44% + 12px);left:44%;max-width:56%;width:min(280px,70%);background:var(--ss-surface-card,#FFFFFF);border-radius:12px;box-shadow:0 16px 40px rgba(19,44,67,.18);display:flex;align-items:stretch;overflow:hidden;z-index:300">
+<a class="ss-hp-pop-link" href="Detail_Postel_3.0.dc.html" aria-label="Zobrazit detail: Postel z masivu CASTELLO LED"></a>
                   <div class="ss-hp-pop-b" style="flex:1;min-width:0;padding:16px;display:flex;flex-direction:column;gap:8px;text-align:left">
                     <img decoding="async" class="ss-hp-pop-img" src="_blob/04f0641f01e716e9cb921b2a7c7709dd.webp" alt="Postel z masivu CASTELLO LED" style="display:block;width:100%;height:88px;object-fit:contain;object-position:left center;border-radius:12px;background:var(--ss-surface-page,#FFFFFF)">
                     <span style="font-size:14px;font-weight:600;line-height:1.35;color:var(--ss-text-primary,#1C2229)">Postel z masivu CASTELLO LED</span>
@@ -637,6 +643,7 @@ html[data-mode="dark"] .ss-rev-badge{--ss-shine:rgba(251,178,85,.14);}
             </button>
             <sc-if value="{{ hot2Open }}" hint-placeholder-val="{{ false }}">
               <div class="ss-light ss-hp-pop" style="position:absolute;bottom:calc(37% + 12px);left:12%;max-width:88%;width:min(280px,70%);background:var(--ss-surface-card,#FFFFFF);border-radius:12px;box-shadow:0 16px 40px rgba(19,44,67,.18);display:flex;align-items:stretch;overflow:hidden;z-index:300">
+<a class="ss-hp-pop-link" href="Detail_Komoda_VIA.dc.html" aria-label="Zobrazit detail: Noční stolek UNI 50"></a>
                 <div class="ss-hp-pop-b" style="flex:1;min-width:0;padding:16px;display:flex;flex-direction:column;gap:8px;text-align:left">
                   <img decoding="async" class="ss-hp-pop-img" src="_blob/8558634d093ec652305ccdb81196c238.webp" alt="Noční stolek UNI 50 z masivu" style="display:block;width:100%;height:88px;object-fit:contain;object-position:left center;border-radius:12px;background:var(--ss-surface-page,#FFFFFF)">
                   <span style="font-size:14px;font-weight:600;line-height:1.35;color:var(--ss-text-primary,#1C2229)">Noční stolek UNI 50</span>
@@ -658,6 +665,7 @@ html[data-mode="dark"] .ss-rev-badge{--ss-shine:rgba(251,178,85,.14);}
                 </button>
                 <sc-if value="{{ hot3Open }}" hint-placeholder-val="{{ false }}">
                   <div class="ss-light ss-hp-pop" style="position:absolute;top:191px;max-height:240px;left:32%;max-width:68%;width:min(260px,70%);background:var(--ss-surface-card,#FFFFFF);border-radius:12px;box-shadow:0 16px 40px rgba(19,44,67,.18);display:flex;align-items:stretch;overflow:hidden;z-index:300">
+<a class="ss-hp-pop-link" href="Detail_Komplet_3.0.dc.html" aria-label="Zobrazit detail: Komplet Patrik – patrová postel s rošty a matracemi"></a>
                     <div class="ss-hp-pop-b" style="flex:1;min-width:0;padding:12px;display:flex;flex-direction:column;gap:6px;text-align:left;overflow:hidden">
                       <img decoding="async" class="ss-hp-pop-img" src="_blob/e7eaec925bcc59d691f7658ddfee27ce.webp" alt="Patrová rozkládací postel Patrik z bukového masivu" style="display:block;width:100%;height:52px;min-height:0;flex:none;object-fit:contain;object-position:left center;border-radius:12px;background:var(--ss-surface-page,#FFFFFF)">
                       <span style="font-size:13px;font-weight:600;line-height:1.3;color:var(--ss-text-primary,#1C2229);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden">Komplet Patrik – patrová postel s rošty a matracemi</span>
@@ -675,6 +683,7 @@ html[data-mode="dark"] .ss-rev-badge{--ss-shine:rgba(251,178,85,.14);}
                 </button>
                 <sc-if value="{{ hot5Open }}" hint-placeholder-val="{{ false }}">
                   <div class="ss-light ss-hp-pop" style="position:absolute;bottom:calc(30% + 12px);max-height:240px;left:22%;max-width:78%;width:min(260px,70%);background:var(--ss-surface-card,#FFFFFF);border-radius:12px;box-shadow:0 16px 40px rgba(19,44,67,.18);display:flex;align-items:stretch;overflow:hidden;z-index:300">
+<a class="ss-hp-pop-link" href="Detail_Matrace_3.0.dc.html" aria-label="Zobrazit detail: Matrace Valentina Ultrafresh"></a>
                     <div class="ss-hp-pop-b" style="flex:1;min-width:0;padding:12px;display:flex;flex-direction:column;gap:6px;text-align:left;overflow:hidden">
                       <img decoding="async" class="ss-hp-pop-img" src="_blob/bc7007f08af1d6737c56db995538cb91.webp" alt="Matrace Valentina Ultrafresh" style="display:block;width:100%;height:52px;min-height:0;flex:none;object-fit:contain;object-position:left center;border-radius:12px;background:var(--ss-surface-page,#FFFFFF)">
                       <span style="font-size:13px;font-weight:600;line-height:1.3;color:var(--ss-text-primary,#1C2229);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden">Matrace Valentina Ultrafresh</span>
@@ -692,6 +701,7 @@ html[data-mode="dark"] .ss-rev-badge{--ss-shine:rgba(251,178,85,.14);}
                 </button>
                 <sc-if value="{{ hot4Open }}" hint-placeholder-val="{{ false }}">
                   <div class="ss-light ss-hp-pop" style="position:absolute;bottom:calc(36% + 12px);max-height:240px;right:calc(20% - 36px);max-width:80%;width:min(260px,70%);background:var(--ss-surface-card,#FFFFFF);border-radius:12px;box-shadow:0 16px 40px rgba(19,44,67,.18);display:flex;align-items:stretch;overflow:hidden;z-index:300">
+<a class="ss-hp-pop-link" href="Detail_Komoda_VIA.dc.html" aria-label="Zobrazit detail: Komoda UNI kombi z masivu"></a>
                     <div class="ss-hp-pop-b" style="flex:1;min-width:0;padding:12px;display:flex;flex-direction:column;gap:6px;text-align:left;overflow:hidden">
                       <img decoding="async" class="ss-hp-pop-img" src="_blob/d31d537b9d9606558176e03cfba06f09.webp" alt="Komoda UNI kombi z masivu" style="display:block;width:100%;height:52px;min-height:0;flex:none;object-fit:contain;object-position:left center;border-radius:12px;background:var(--ss-surface-page,#FFFFFF)">
                       <span style="font-size:13px;font-weight:600;line-height:1.3;color:var(--ss-text-primary,#1C2229);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden">Komoda UNI kombi z masivu</span>
@@ -712,6 +722,7 @@ html[data-mode="dark"] .ss-rev-badge{--ss-shine:rgba(251,178,85,.14);}
                 </button>
                 <sc-if value="{{ hot6Open }}" hint-placeholder-val="{{ false }}">
                   <div class="ss-light ss-hp-pop" style="position:absolute;bottom:calc(54% + 12px);right:calc(48% - 36px);max-width:52%;max-height:240px;width:min(260px,70%);background:var(--ss-surface-card,#FFFFFF);border-radius:12px;box-shadow:0 16px 40px rgba(19,44,67,.18);display:flex;align-items:stretch;overflow:hidden;z-index:300">
+<a class="ss-hp-pop-link" href="Detail_Komoda_VIA.dc.html" aria-label="Zobrazit detail: Skříň Azzo 3D z masivu"></a>
                     <div class="ss-hp-pop-b" style="flex:1;min-width:0;padding:12px;display:flex;flex-direction:column;gap:6px;text-align:left;overflow:hidden">
                       <img decoding="async" class="ss-hp-pop-img" src="_blob/0585f62be306944953ce51ad4ef2c314.webp" alt="Skříň Azzo 3D z masivu" style="display:block;width:100%;height:52px;min-height:0;flex:none;object-fit:contain;object-position:left center;border-radius:12px;background:var(--ss-surface-page,#FFFFFF)">
                       <span style="font-size:13px;font-weight:600;line-height:1.3;color:var(--ss-text-primary,#1C2229);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden">Skříň Azzo 3D z masivu</span>
@@ -729,6 +740,7 @@ html[data-mode="dark"] .ss-rev-badge{--ss-shine:rgba(251,178,85,.14);}
                 </button>
                 <sc-if value="{{ hot7Open }}" hint-placeholder-val="{{ false }}">
                   <div class="ss-light ss-hp-pop" style="position:absolute;top:calc(33% + 48px);left:20%;max-width:80%;max-height:240px;width:min(260px,70%);background:var(--ss-surface-card,#FFFFFF);border-radius:12px;box-shadow:0 16px 40px rgba(19,44,67,.18);display:flex;align-items:stretch;overflow:hidden;z-index:300">
+<a class="ss-hp-pop-link" href="Detail_Komoda_VIA.dc.html" aria-label="Zobrazit detail: Kulaté zrcadlo v černém rámu ⌀ 70 cm"></a>
                     <div class="ss-hp-pop-b" style="flex:1;min-width:0;padding:12px;display:flex;flex-direction:column;gap:6px;text-align:left;overflow:hidden">
                       <img decoding="async" class="ss-hp-pop-img" src="_blob/de69c12a5b0859bfb9b8a7b7104021f9.webp" alt="Kulaté zrcadlo v černém rámu" style="display:block;width:100%;height:52px;min-height:0;flex:none;object-fit:contain;object-position:left center;border-radius:12px;background:var(--ss-surface-page,#FFFFFF)">
                       <span style="font-size:13px;font-weight:600;line-height:1.3;color:var(--ss-text-primary,#1C2229);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden">Kulaté zrcadlo v černém rámu ⌀ 70 cm</span>
@@ -897,7 +909,7 @@ html[data-mode="dark"] .ss-rev-badge{--ss-shine:rgba(251,178,85,.14);}
         </div>
         <div style="display:grid;grid-template-columns:{{ reviewTemplate }};gap:20px;align-items:stretch">
           <div class="ss-rev-badge" style="border-radius:12px;padding:24px;display:flex;flex-direction:column;gap:10px;align-items:center;text-align:center;min-width:0">
-            <img decoding="async" src="_blob/06133fd9e25dd5fa4207c7d268fc5b47.png" alt="Ověřeno zákazníky — Heureka" style="display:block;width:84px;height:auto;margin-bottom:4px">
+            <img decoding="async" src="_blob/06133fd9e25dd5fa4207c7d268fc5b47.png" alt="Ověřeno zákazníky – Heureka" style="display:block;width:84px;height:auto;margin-bottom:4px">
             <span style="font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:21px;line-height:1.25">98 % zákazníků nás doporučuje</span>
             <span style="font-size:14px;color:var(--ss-text-secondary,#3D4750)">2 430 hodnocení za posledních 12 měsíců</span>
             <dc-import name="Tlacitko" label="Všechny recenze" variant="text" href="#recenze" iconRight="chevron-right" hint-size="160px,24px"></dc-import>
@@ -1052,8 +1064,8 @@ class Component extends DCLogic {
     { flag: 'Téma měsíce', title: 'Matrace do ložnice pro dva: jedna velká, nebo dvě menší?', perex: 'Vybíráte matraci do společné ložnice? Pak jste nejspíš narazili na otázku, zda koupit jednu velkou matraci, nebo dvě menší. Každá možnost má svá pro i proti a správná volba závisí hlavně na vašich spánkových návycích, váze a preferované tuhosti. Projdeme spáru uprostřed, přenos pohybu, rozdílnou tuhost, matraci pro páry, údržbu, rošty i rozměry a doporučíme vám konkrétní řešení podle typu vašeho páru.', href: 'https://blog.svetspanku.cz/', image: '_blob/a5b2dddd28075d3cff604ededcac5430.webp', imagePos: '62% 70%', perexLong: 'Vybíráte matraci do společné ložnice? Pak jste nejspíš narazili na otázku, zda koupit jednu velkou matraci, nebo dvě menší. Každá možnost má svá pro i proti a správná volba závisí hlavně na vašich spánkových návycích, váze a preferované tuhosti. Projdeme spáru uprostřed, přenos pohybu, rozdílnou tuhost, matraci pro páry, údržbu, rošty i rozměry a doporučíme vám konkrétní řešení podle typu vašeho páru.' },
     { title: 'Proč kvalitní matrace vydrží déle?', perex: 'Levná matrace může ztratit oporu už po pár nocích. Ukážeme, které materiály rozhodují o tom, jestli matrace vydrží dva roky, nebo dlouhá léta.', href: 'https://blog.svetspanku.cz/', image: '_blob/f1610f7d4e46565d090f83df0006d3ea.webp', perexLong: 'Levná matrace může ztratit oporu už po pár nocích. Ukážeme, které materiály rozhodují o tom, jestli matrace vydrží dva roky, nebo dlouhá léta. Rozebíráme hustotu a nosnost pěn, typy pružin, kvalitu potahu i to, proč na nich záleží víc než na ceně. Přidáváme i rady, jak matraci správně větrat a otáčet, aby si tvar a oporu udržela co nejdéle.' },
     { title: 'Nová matrace na starém roštu? Chyba, která může zkrátit její životnost', perex: 'Rošt rozhoduje o tom, jak matrace pracuje i jak dlouho vydrží. Podle čeho poznáte, že je čas vyměnit i jeho.', href: 'https://blog.svetspanku.cz/', image: '_blob/d2bda866ab22bcf876b84e2ab2606821.webp', perexLong: 'Rošt rozhoduje o tom, jak matrace pracuje i jak dlouho vydrží. Prohnuté nebo prasklé lamely, vytahané pouzdra a ztuhlé nastavení tuhosti dokážou novou matraci zdeformovat během pár měsíců. Ukážeme, podle čeho poznáte, že je čas vyměnit i rošt, a jaký typ se hodí k pěnové, pružinové nebo latexové matraci.' },
-    { title: 'Proč se vyplatí koupit postelový komplet místo jednotlivých částí', perex: 'Postel, rošt a matrace v jednom balení — ušetříte peníze i čas a všechny části do sebe pasují.', href: 'https://blog.svetspanku.cz/', image: '_blob/4d3ed596486e42d6033d430cd7530f2e.jpg', perexLong: 'Postel, rošt a matrace v jednom balení — ušetříte peníze i čas a všechny části do sebe pasují. Nemusíte hlídat rozměry, výšku ložné plochy ani kompatibilitu roštu s matrací. Spočítali jsme, kolik se na kompletu reálně ušetří a kdy se naopak vyplatí skládat ložnici po částech.' },
-    { title: 'Dovezeme, vyneseme, smontujeme. Vše zařídíme za vás', perex: 'Nová ložnice bez starostí — od dopravy až po odvoz obalů. Jak služba funguje a kam všude jezdíme.', href: 'https://blog.svetspanku.cz/', image: '_blob/a73c4563d2d4d8caf4cbb89c6a3d655e.jpg', perexLong: 'Nová ložnice bez starostí — od dopravy až po odvoz obalů. Řidiči postel vynesou do patra, smontují ji na místě a na přání odvezou i starou matraci k ekologické likvidaci. Popisujeme, jak služba funguje, kolik stojí a kam všude po republice jezdíme.' },
+    { title: 'Proč se vyplatí koupit postelový komplet místo jednotlivých částí', perex: 'Postel, rošt a matrace v jednom balení – ušetříte peníze i čas a všechny části do sebe pasují.', href: 'https://blog.svetspanku.cz/', image: '_blob/4d3ed596486e42d6033d430cd7530f2e.jpg', perexLong: 'Postel, rošt a matrace v jednom balení – ušetříte peníze i čas a všechny části do sebe pasují. Nemusíte hlídat rozměry, výšku ložné plochy ani kompatibilitu roštu s matrací. Spočítali jsme, kolik se na kompletu reálně ušetří a kdy se naopak vyplatí skládat ložnici po částech.' },
+    { title: 'Dovezeme, vyneseme, smontujeme. Vše zařídíme za vás', perex: 'Nová ložnice bez starostí – od dopravy až po odvoz obalů. Jak služba funguje a kam všude jezdíme.', href: 'https://blog.svetspanku.cz/', image: '_blob/a73c4563d2d4d8caf4cbb89c6a3d655e.jpg', perexLong: 'Nová ložnice bez starostí – od dopravy až po odvoz obalů. Řidiči postel vynesou do patra, smontují ji na místě a na přání odvezou i starou matraci k ekologické likvidaci. Popisujeme, jak služba funguje, kolik stojí a kam všude po republice jezdíme.' },
     { title: 'Postel s LED osvětlením: praktický pomocník i stylový doplněk ložnice', perex: 'Tlumené světlo u čela postele, které nevzbudí partnera. Jaké má varianty a kolik potřebuje energie.', href: 'https://blog.svetspanku.cz/', image: '_blob/5b07ea44660d8949c792282b6b74a470.jpg', perexLong: 'Tlumené světlo u čela postele, které nevzbudí partnera. LED pásek pod rámem poslouží jako noční orientační světlo i jako dekorace, která ložnici dodá hloubku. Porovnáváme teplé a studené varianty, ovládání dálkovým ovladačem i čidlem a kolik energie osvětlení za rok spotřebuje.' },
     { title: 'Taštičková, nebo pěnová? V čem se liší jádra matrací', perex: 'Pružiny v taštičkách, studená pěna, latex. Srovnáváme, jak které jádro pruží, větrá a kolik vydrží.', href: 'https://blog.svetspanku.cz/', image: '_blob/aec9689576430d3569ed9070edb37a7d.webp', perexLong: 'Pružiny v taštičkách, studená pěna, latex. Srovnáváme, jak které jádro pruží, větrá a kolik vydrží, a komu se která konstrukce hodí nejvíc.' },
     { title: 'Jak pečovat o potah matrace, aby zůstal svěží', perex: 'Kdy prát, na kolik stupňů a proč potah nesušit v sušičce. Jednoduchá péče, která matraci prodlouží život.', href: 'https://blog.svetspanku.cz/', image: '_blob/ef1649754e48c2c68be3cda60ee7ec76.jpg', perexLong: 'Kdy prát, na kolik stupňů a proč potah nesušit v sušičce. Jednoduchá péče, která matraci prodlouží život a udrží ji hygienickou.' },
@@ -1164,7 +1176,7 @@ class Component extends DCLogic {
       magRowM1: this.state.magV !== 'M2' && (this.state.carNav !== 'V2' || w < 1000),
       m2Lead: Object.assign({}, this.ARTICLES[0], { photoStyle: this.ARTICLES[0].image ? { backgroundImage: 'url(' + this.ARTICLES[0].image + ')', backgroundSize: 'cover', backgroundPosition: 'center' } : { background: 'var(--ss-surface-muted,#F0F3F6)' } }),
       m2Rest: this.ARTICLES.slice(1).map(a => Object.assign({}, a, { photoStyle: a.image ? { backgroundImage: 'url(' + a.image + ')', backgroundSize: 'cover', backgroundPosition: 'center' } : { background: 'var(--ss-surface-muted,#F0F3F6)' } })),
-      // Magazín M1: bez dokola — na začátku je šipka vlevo disabled, na posledním článku šipka vpravo
+      // Magazín M1: bez dokola – na začátku je šipka vlevo disabled, na posledním článku šipka vpravo
       magPrev: () => this.setState(s => ({ mag: Math.max(0, s.mag - 1), magDir: 'prev' })),
       magNext: () => this.setState(s => ({ mag: Math.min(magPages - 1, s.mag + 1), magDir: 'next' })),
       magDir: this.state.magDir || 'none',
@@ -1279,7 +1291,7 @@ class Component extends DCLogic {
       storeMap: store.map,
       hasStoreMap: !!store.map,
       noStoreMap: !store.map,
-      storeMapTitle: 'Mapa — ' + store.title,
+      storeMapTitle: 'Mapa – ' + store.title,
       hotOpen: this.state.hot,
       hotExpanded: this.state.hot ? 'true' : 'false',
       toggleHot: () => this.setState(s => ({ hot: !s.hot, hot2: false })),

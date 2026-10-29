@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Sans+Condensed:wght@400;500;600;700&display=swap" rel="stylesheet"><style data-ss="tmavy-rezim">
-/* Tmavý režim — přepíná html[data-mode="dark"]. Světlý režim = fallback hodnoty v var(). */
+/* Tmavý režim – přepíná html[data-mode="dark"]. Světlý režim = fallback hodnoty v var(). */
 /* Hover ve světlém režimu modrý (6. 10. 2026), v tmavém meruňkový */
 html:not([data-mode="dark"]){--ss-hover-text:#21507B;--ss-hover-bg:#F0F5FA;
   /* Teplé meruňkové podklady (7. 10. 2026) */
@@ -88,7 +88,7 @@ html[data-mode="dark"] .ss-pm-card{background:#13283C;}
 html[data-mode="dark"] .ss-pm-card:hover{background:#13283C!important;box-shadow:none!important;color:inherit!important;}
 html[data-mode="dark"] .ss-pm-row:hover{background:transparent!important;box-shadow:none!important;color:inherit!important;}
 
-/* Ostrůvek světlého režimu (popupy nad fotkami — produktové fotky mají bílé pozadí) */
+/* Ostrůvek světlého režimu (popupy nad fotkami – produktové fotky mají bílé pozadí) */
 html[data-mode="dark"] .ss-light{color-scheme:light;
   --ss-hover-text:#21507B;
   --ss-hover-bg:#F0F5FA;
@@ -146,7 +146,7 @@ html[data-mode="dark"] .ss-pc::before{content:"";position:absolute;inset:0;borde
 html[data-mode="dark"] .ss-pm-card:hover .ss-pm-title,html[data-mode="dark"] .ss-pm-row:hover .ss-pm-title,html[data-mode="dark"] .ss-pc:hover .ss-pc-title,html[data-mode="dark"] .ss-mm-ban:hover{color:#FBB255!important;}
 
 /* Podklad webu: jemný radiální gradient ze středu viewportu (hloubka). Fixní → plynule přes všechny sekce. */
-/* Vinětace (Elevace) odebrána 12. 10. 2026 — plné podklady, stíny karet zůstávají vždy */
+/* Vinětace (Elevace) odebrána 12. 10. 2026 – plné podklady, stíny karet zůstávají vždy */
 
 
 /* Gradient Zap: elevace všech ploch, které by na gradientu splývaly (karty, filtry, video, boxy). Gradient Vyp = beze změny. */
@@ -161,7 +161,7 @@ html[data-mode="dark"] .ss-ct[data-pop="true"]::before{box-shadow:inset 0 1px 0 
 @media (hover:hover) and (pointer:fine){html .ss-ct[data-pop="true"]:hover::before{box-shadow:0 4px 12px rgba(19,44,67,.12);}html[data-mode="dark"] .ss-ct[data-pop="true"]:hover::before{box-shadow:inset 0 1px 0 rgba(141,179,211,.18),0 0 0 1px rgba(141,179,211,.14),0 8px 24px rgba(0,0,0,.45);}}
 html .ss-elev:focus-visible{box-shadow:0 0 0 3px rgba(41,96,147,.35)!important;}
 
-/* Prezentační přepínač fontů — html[data-font-h|data-font-b]="alt" */
+/* Prezentační přepínač fontů – html[data-font-h|data-font-b]="alt" */
 html[data-font-h="alt"] h1:not(.ss-plain),html[data-font-h="alt"] h2:not(.ss-plain),html[data-font-h="alt"] h3:not(.ss-plain),html[data-font-h="alt"] h4:not(.ss-plain),html[data-font-h="alt"] [style*="Oswald"]{font-family:'Barlow Condensed',Oswald,Helvetica,Arial,sans-serif!important;}
 html[data-font-b="alt"] body,html[data-font-b="alt"] [style*="Roboto"]:not([style*="Archivo"]):not([style*="Oswald"]),html[data-font-b="alt"] input,html[data-font-b="alt"] button,html[data-font-b="alt"] select,html[data-font-b="alt"] textarea{font-family:'IBM Plex Sans Condensed',Roboto,Helvetica,Arial,sans-serif!important;}
 html[data-mode="dark"] .ss-ct:hover .ss-ct-title,html[data-mode="dark"] .ss-hp-art:hover .ss-hp-art-t,html[data-mode="dark"] .ss-mag-lead:hover .ss-hp-art-t{color:#FBB255;}
@@ -182,10 +182,10 @@ main>section.ss-grad-top{background-image:linear-gradient(180deg,var(--ss-surfac
 
 
 
-/* Nadpisy: světlý režim tmavá modrá z hlavičky #0B1F33 (inline barva vyhrává — bílé nadpisy na tmavých pásech zůstávají) */
+/* Nadpisy: světlý režim tmavá modrá z hlavičky #0B1F33 (inline barva vyhrává – bílé nadpisy na tmavých pásech zůstávají) */
 h1,h2,h3,h4{color:var(--ss-text-heading,#0B1F33);}
 
-/* Sekce s meruňkovým podsvícením zespoda — poloviční radiál od spodní hrany, vrstvený nad .ss-grad-top */
+/* Sekce s meruňkovým podsvícením zespoda – poloviční radiál od spodní hrany, vrstvený nad .ss-grad-top */
 main>section.ss-grad-top.ss-grad-glow{background-image:radial-gradient(ellipse 55% 100% at 50% 100%,rgba(251,178,85,.22) 0%,rgba(251,178,85,.09) 45%,rgba(251,178,85,0) 75%),linear-gradient(180deg,var(--ss-surface-page,#FFFFFF) 0%,var(--ss-surface-muted,#F3EDE4) 100%)!important;background-size:100% 520px,auto!important;background-position:center bottom,center!important;background-repeat:no-repeat!important;background-attachment:scroll!important;}
 html[data-mode="dark"] main>section.ss-grad-top.ss-grad-glow{background-image:radial-gradient(ellipse 55% 100% at 50% 100%,rgba(251,178,85,.14) 0%,rgba(251,178,85,.05) 45%,rgba(251,178,85,0) 75%),linear-gradient(180deg,var(--ss-surface-page,#0E1F2F) 0%,var(--ss-surface-muted,#183049) 100%)!important;}
 
@@ -208,7 +208,7 @@ html[data-mode="dark"] .ss-pd-glass::before,html[data-mode="dark"] .ss-pd-glassw
 <x-dc>
 <helmet>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Sans+Condensed:wght@400;500;600;700&display=swap" rel="stylesheet"><style data-ss="tmavy-rezim">
-/* Tmavý režim — přepíná html[data-mode="dark"]. Světlý režim = fallback hodnoty v var(). */
+/* Tmavý režim – přepíná html[data-mode="dark"]. Světlý režim = fallback hodnoty v var(). */
 /* Hover ve světlém režimu modrý (6. 10. 2026), v tmavém meruňkový */
 html:not([data-mode="dark"]){--ss-hover-text:#21507B;--ss-hover-bg:#F0F5FA;
   /* Teplé meruňkové podklady (7. 10. 2026) */
@@ -288,7 +288,7 @@ html[data-mode="dark"] .ss-pm-card{background:#13283C;}
 html[data-mode="dark"] .ss-pm-card:hover{background:#13283C!important;box-shadow:none!important;color:inherit!important;}
 html[data-mode="dark"] .ss-pm-row:hover{background:transparent!important;box-shadow:none!important;color:inherit!important;}
 
-/* Ostrůvek světlého režimu (popupy nad fotkami — produktové fotky mají bílé pozadí) */
+/* Ostrůvek světlého režimu (popupy nad fotkami – produktové fotky mají bílé pozadí) */
 html[data-mode="dark"] .ss-light{color-scheme:light;
   --ss-hover-text:#21507B;
   --ss-hover-bg:#F0F5FA;
@@ -346,7 +346,7 @@ html[data-mode="dark"] .ss-pc::before{content:"";position:absolute;inset:0;borde
 html[data-mode="dark"] .ss-pm-card:hover .ss-pm-title,html[data-mode="dark"] .ss-pm-row:hover .ss-pm-title,html[data-mode="dark"] .ss-pc:hover .ss-pc-title,html[data-mode="dark"] .ss-mm-ban:hover{color:#FBB255!important;}
 
 /* Podklad webu: jemný radiální gradient ze středu viewportu (hloubka). Fixní → plynule přes všechny sekce. */
-/* Vinětace (Elevace) odebrána 12. 10. 2026 — plné podklady, stíny karet zůstávají vždy */
+/* Vinětace (Elevace) odebrána 12. 10. 2026 – plné podklady, stíny karet zůstávají vždy */
 
 
 /* Gradient Zap: elevace všech ploch, které by na gradientu splývaly (karty, filtry, video, boxy). Gradient Vyp = beze změny. */
@@ -361,7 +361,7 @@ html[data-mode="dark"] .ss-ct[data-pop="true"]::before{box-shadow:inset 0 1px 0 
 @media (hover:hover) and (pointer:fine){html .ss-ct[data-pop="true"]:hover::before{box-shadow:0 4px 12px rgba(19,44,67,.12);}html[data-mode="dark"] .ss-ct[data-pop="true"]:hover::before{box-shadow:inset 0 1px 0 rgba(141,179,211,.18),0 0 0 1px rgba(141,179,211,.14),0 8px 24px rgba(0,0,0,.45);}}
 html .ss-elev:focus-visible{box-shadow:0 0 0 3px rgba(41,96,147,.35)!important;}
 
-/* Prezentační přepínač fontů — html[data-font-h|data-font-b]="alt" */
+/* Prezentační přepínač fontů – html[data-font-h|data-font-b]="alt" */
 html[data-font-h="alt"] h1:not(.ss-plain),html[data-font-h="alt"] h2:not(.ss-plain),html[data-font-h="alt"] h3:not(.ss-plain),html[data-font-h="alt"] h4:not(.ss-plain),html[data-font-h="alt"] [style*="Oswald"]{font-family:'Barlow Condensed',Oswald,Helvetica,Arial,sans-serif!important;}
 html[data-font-b="alt"] body,html[data-font-b="alt"] [style*="Roboto"]:not([style*="Archivo"]):not([style*="Oswald"]),html[data-font-b="alt"] input,html[data-font-b="alt"] button,html[data-font-b="alt"] select,html[data-font-b="alt"] textarea{font-family:'IBM Plex Sans Condensed',Roboto,Helvetica,Arial,sans-serif!important;}
 html[data-mode="dark"] .ss-ct:hover .ss-ct-title,html[data-mode="dark"] .ss-hp-art:hover .ss-hp-art-t,html[data-mode="dark"] .ss-mag-lead:hover .ss-hp-art-t{color:#FBB255;}
@@ -382,10 +382,10 @@ main>section.ss-grad-top{background-image:linear-gradient(180deg,var(--ss-surfac
 
 
 
-/* Nadpisy: světlý režim tmavá modrá z hlavičky #0B1F33 (inline barva vyhrává — bílé nadpisy na tmavých pásech zůstávají) */
+/* Nadpisy: světlý režim tmavá modrá z hlavičky #0B1F33 (inline barva vyhrává – bílé nadpisy na tmavých pásech zůstávají) */
 h1,h2,h3,h4{color:var(--ss-text-heading,#0B1F33);}
 
-/* Sekce s meruňkovým podsvícením zespoda — poloviční radiál od spodní hrany, vrstvený nad .ss-grad-top */
+/* Sekce s meruňkovým podsvícením zespoda – poloviční radiál od spodní hrany, vrstvený nad .ss-grad-top */
 main>section.ss-grad-top.ss-grad-glow{background-image:radial-gradient(ellipse 55% 100% at 50% 100%,rgba(251,178,85,.22) 0%,rgba(251,178,85,.09) 45%,rgba(251,178,85,0) 75%),linear-gradient(180deg,var(--ss-surface-page,#FFFFFF) 0%,var(--ss-surface-muted,#F3EDE4) 100%)!important;background-size:100% 520px,auto!important;background-position:center bottom,center!important;background-repeat:no-repeat!important;background-attachment:scroll!important;}
 html[data-mode="dark"] main>section.ss-grad-top.ss-grad-glow{background-image:radial-gradient(ellipse 55% 100% at 50% 100%,rgba(251,178,85,.14) 0%,rgba(251,178,85,.05) 45%,rgba(251,178,85,0) 75%),linear-gradient(180deg,var(--ss-surface-page,#0E1F2F) 0%,var(--ss-surface-muted,#183049) 100%)!important;}
 
@@ -428,6 +428,10 @@ a:hover{color:var(--ss-hover-text,#A4600C);}
 @media (hover:hover) and (pointer:fine){.ss-pd-row:hover .ss-pd-cs-dot{border-color:var(--ss-hover-text,#A4600C);}}
 .ss-pd-cs-radio[aria-checked="true"] .ss-pd-cs-dot{border-color:#FBB255;}
 .ss-pd-cs-radio[aria-checked="true"] .ss-pd-cs-dot::after{content:"";width:10px;height:10px;border-radius:999px;background:#FBB255;}
+/* Zapnutá volba (vlastní rozměr, úložný prostor…) = meruňkový kruh s checkem, ne radio puntík (29. 10. 2026) */
+.ss-pd-cs-radio[aria-checked="true"] .ss-pd-cs-dot{border:0;background:#FBB255 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%231C2229' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12l5 5l10 -10'/%3E%3C/svg%3E") center / 16px no-repeat;box-shadow:0 2px 8px rgba(19,44,67,.08);}
+.ss-pd-cs-radio[aria-checked="true"] .ss-pd-cs-dot::after{display:none!important;}
+
 @media (hover:hover) and (pointer:fine){.ss-pd-cs-radio:hover .ss-pd-cs-dot{border-color:var(--ss-hover-text,#A4600C);}.ss-pd-cs-radio:hover .ss-pd-cs-t{color:#21507B;}html[data-mode="dark"] .ss-pd-cs-radio:hover .ss-pd-cs-t{color:#FBB255;}}
 .ss-pd-cs-info{position:relative;flex:none;display:flex;align-items:center;justify-content:center;width:36px;height:36px;padding:0;border:0;border-radius:999px;background:none;cursor:pointer;color:var(--ss-link,#296093);transition:color .12s cubic-bezier(.22,.61,.36,1),background-color .12s cubic-bezier(.22,.61,.36,1);}
 .ss-pd-cs-info:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
@@ -458,6 +462,11 @@ html[data-mode="dark"] .ss-pd-glass::before,html[data-mode="dark"] .ss-pd-glassw
 .ss-pd-seg:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);z-index:1;}
 @media (hover:hover) and (pointer:fine){.ss-pd-seg[aria-pressed="false"]:hover{background:var(--ss-hover-bg,#FFF5E6);color:var(--ss-hover-text,#A4600C);}.ss-pd-seg[aria-pressed="false"]:hover>span:first-child,.ss-pd-seg[aria-pressed="false"]:hover svg{color:var(--ss-hover-text,#A4600C);}}
 .ss-pd-seg[aria-pressed="true"]{background:var(--ss-surface-page,#FFFFFF);box-shadow:0 2px 8px rgba(19,44,67,.08);}
+/* Přepínač: podklad vnořený (vnitřní stín), vybraná položka vystouplá (29. 10. 2026) */
+.ss-pd-segwrap{box-shadow:inset 0 2px 4px rgba(19,44,67,.14),inset 0 1px 2px rgba(19,44,67,.10);}
+.ss-pd-seg[aria-pressed="true"]{box-shadow:0 1px 2px rgba(19,44,67,.12),0 4px 12px rgba(19,44,67,.14);}
+.ss-pd-seg[aria-pressed="true"]:focus-visible{box-shadow:0 0 0 3px rgba(41,96,147,.35),0 4px 12px rgba(19,44,67,.14);}
+
 .ss-pd-var{display:flex;flex-direction:column;gap:8px;width:100%;padding:0;border:0;background:none;cursor:pointer;text-align:left;font-family:inherit;border-radius:12px;}
 .ss-pd-var:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
 .ss-pd-var-ph{position:relative;width:100%;border-radius:12px;overflow:hidden;background:var(--ss-surface-subtle,#FAF5EF);}
@@ -490,7 +499,7 @@ html[data-mode="dark"] .ss-pd-glass::before,html[data-mode="dark"] .ss-pd-glassw
 html[data-mode="dark"] .ss-pd-tocbar{background:rgba(14,31,47,.55);box-shadow:inset 0 8px 10px -6px rgba(0,0,0,.5);}
 .ss-pd-stchips::-webkit-scrollbar{display:none;}
 @media (max-width:819px){.ss-pd-toc{position:relative;flex-wrap:nowrap!important;overflow-x:auto;overscroll-behavior-x:contain;scrollbar-width:none;margin:0 -16px;padding:0 16px;}.ss-pd-toc::-webkit-scrollbar{display:none;}.ss-pd-toc .ss-pd-tab{white-space:nowrap;flex:none;}}
-/* bg m 1 (pojmenovaný podklad, viz CLAUDE.md) — liché sekce detailu */
+/* bg m 1 (pojmenovaný podklad, viz CLAUDE.md) – liché sekce detailu */
 .ss-bg-m1{background-color:var(--ss-surface-page,#FFFFFF)!important;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .55 0 0 0 0 .35 0 0 0 0 .1 0 0 0 .07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),radial-gradient(ellipse 80% 55% at 50% 100%,rgba(251,178,85,.16) 0%,rgba(251,178,85,.06) 45%,rgba(251,178,85,0) 80%)!important;background-size:220px 220px,auto!important;background-repeat:repeat,no-repeat!important;background-position:0 0,center!important;}
 html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .85 0 0 0 0 .9 0 0 0 0 1 0 0 0 .06 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),radial-gradient(ellipse 80% 55% at 50% 100%,rgba(251,178,85,.12) 0%,rgba(251,178,85,.04) 45%,rgba(251,178,85,0) 80%)!important;}
 .ss-pd-tab-i{color:var(--ss-link,#296093);transition:color .12s cubic-bezier(.22,.61,.36,1);}.ss-pd-tab:hover .ss-pd-tab-i{color:inherit;}.ss-pd-tab[data-on="true"] .ss-pd-tab-i{color:#A4600C;}html[data-mode="dark"] .ss-pd-tab[data-on="true"] .ss-pd-tab-i{color:#FBB255;}
@@ -534,7 +543,7 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
                 <sc-if value="{{ mainIsVideo }}" hint-placeholder-val="{{ false }}">
                   <span style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;width:100%;height:100%;background:var(--ss-surface-muted,#F3EDE4);color:var(--ss-text-muted,#5B6874)">
                     <span style="display:flex;color:var(--ss-link,#296093)"><dc-import name="Ikony" iconName="player-play" size="40" hint-size="40px,40px"></dc-import></span>
-                    <span style="font-size:14px">Video produktu — dodá klient</span>
+                    <span style="font-size:14px">Video produktu – dodá klient</span>
                   </span>
                 </sc-if>
               </button>
@@ -1131,7 +1140,7 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
             <dc-import name="Ikony" iconName="x" size="22" hint-size="22px,22px"></dc-import>
           </button>
         </div>
-        <p style="margin:0;font-size:15px;line-height:1.6;color:var(--ss-text-secondary,#3D4750)">Matraci vyrobíme na centimetr přesně. Zadejte rozměr ložné plochy — cenu vám spočítáme individuálně a pošleme jako cenovou nabídku.</p>
+        <p style="margin:0;font-size:15px;line-height:1.6;color:var(--ss-text-secondary,#3D4750)">Matraci vyrobíme na centimetr přesně. Zadejte rozměr ložné plochy – cenu vám spočítáme individuálně a pošleme jako cenovou nabídku.</p>
         <div style="display:flex;flex-wrap:wrap;gap:16px">
           <div style="flex:1;min-width:140px">
             <dc-import name="Input" label="Šířka (cm)" type="number" bordered="{{ true }}" placeholder="např. 175" value="{{ customW }}" onChange="{{ setCustomW }}" hint-size="100%,70px"></dc-import>
@@ -1141,7 +1150,7 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
           </div>
         </div>
         <dc-import name="Input" label="E-mail pro zaslání nabídky" type="email" bordered="{{ true }}" placeholder="vas@email.cz" value="{{ customMail }}" onChange="{{ setCustomMail }}" hint-size="100%,70px"></dc-import>
-        <dc-import name="Checkbox" label="Beru na vědomí, že atypický rozměr nelze koupit rovnou — do dvou pracovních dnů mi pošlete cenovou nabídku." checked="{{ customAgree }}" onChange="{{ setCustomAgree }}" hint-size="100%,44px"></dc-import>
+        <dc-import name="Checkbox" label="Beru na vědomí, že atypický rozměr nelze koupit rovnou – do dvou pracovních dnů mi pošlete cenovou nabídku." checked="{{ customAgree }}" onChange="{{ setCustomAgree }}" hint-size="100%,44px"></dc-import>
         <div style="display:flex;gap:12px;align-items:flex-start;padding:16px;border-radius:12px;background:var(--ss-surface-subtle,#FAF5EF)">
           <span style="display:flex;color:var(--ss-link,#296093);flex:none"><dc-import name="Ikony" iconName="user" size="20" hint-size="20px,20px"></dc-import></span>
           <span style="display:flex;flex-direction:column;gap:6px;min-width:0">
@@ -1195,7 +1204,7 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
           <sc-if value="{{ lbIsVideo }}" hint-placeholder-val="{{ false }}">
             <span style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;width:min(100%,900px);aspect-ratio:16/9;border-radius:12px;background:#12202D;color:#8DB3D3">
               <span style="display:flex;color:#FFFFFF"><dc-import name="Ikony" iconName="player-play" size="48" hint-size="48px,48px"></dc-import></span>
-              <span style="font-size:14px">Video produktu — dodá klient</span>
+              <span style="font-size:14px">Video produktu – dodá klient</span>
             </span>
           </sc-if>
           <button type="button" class="ss-pd-arrow" style="left:0" onClick="{{ lbPrev }}" aria-label="Předchozí fotka">
@@ -1384,8 +1393,8 @@ class Component extends DCLogic {
     const ROSTY = [
       { id: 'bez', label: 'Bez roštu', meta: 'rošty nejsou součástí postele', price: '0 Kč', stock: 'Skladem' },
       { id: 'villach-s', label: 'Lamelový rošt Villach S', meta: '90 × 200 cm · 28 lamel', price: '1 344 Kč', stock: 'Skladem' },
-      { id: 'vyklopny-bok', label: 'Lamelový výklopný rošt — z boku', meta: '90 × 200 cm', price: '1 190 Kč', stock: 'Skladem' },
-      { id: 'vyklopny-nohy', label: 'Lamelový výklopný rošt — od nohou', meta: '90 × 200 cm', price: '1 190 Kč', stock: 'Skladem' },
+      { id: 'vyklopny-bok', label: 'Lamelový výklopný rošt – z boku', meta: '90 × 200 cm', price: '1 190 Kč', stock: 'Skladem' },
+      { id: 'vyklopny-nohy', label: 'Lamelový výklopný rošt – od nohou', meta: '90 × 200 cm', price: '1 190 Kč', stock: 'Skladem' },
       { id: 'polohovaci', label: 'Polohovací rošt s kováním', meta: '90 × 200 cm · hlava i nohy', price: '2 890 Kč', stock: 'Na objednání (2–3 týdny)', outOfStock: true }
     ];
     const ODSTINY = [
@@ -1397,9 +1406,9 @@ class Component extends DCLogic {
       { id: 'prirodni', label: 'Přírodní odstín', color: '#C8A272' }
     ];
     const drevo = [
-      { key: 'buk', title: 'Buk — jádrový', note: 'bez příplatku' },
+      { key: 'buk', title: 'Buk – jádrový', note: 'bez příplatku' },
       { key: 'dub', title: 'Dub', note: '+ 4 200 Kč' },
-      { key: 'jasan', title: 'Jasan — divoký', note: '+ 2 600 Kč' }
+      { key: 'jasan', title: 'Jasan – divoký', note: '+ 2 600 Kč' }
     ];
     const MATERIALY = drevo.map(d => ({
       title: d.title,
@@ -1476,7 +1485,7 @@ class Component extends DCLogic {
       presItems: [{ label: 'LED', value: this.state.led }],
       onPresToggle: () => this.setState(s => ({ led: !s.led })),
       presChoices: [
-        { label: 'Detail', value: 'Matrace 3.0', options: ['Postel 3.0', 'Komplet 3.0', 'Multi 3.0', 'Matrace 3.0'] },
+        { label: 'Detail', value: 'Matrace 3.0', options: ['Postel 3.0', 'Komplet 3.0', 'Multi 3.0', 'Matrace 3.0', 'Komoda VIA'] },
         { label: 'Fixní sloupec', value: this.state.stickPick || (stick === 'zadny' ? 'Žádný' : 'Galerie'), options: ['Galerie', 'Žádný'] },
         { label: 'Rozměr', value: this.state.sizeUi === 'V2' ? 'Dropdown' : 'Chipy', options: ['Chipy', 'Dropdown'] },
         { label: 'Výška', value: this.state.heightUi === 'V2' ? 'Dropdown' : 'Chipy', options: ['Chipy', 'Dropdown'] },
