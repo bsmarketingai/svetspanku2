@@ -456,7 +456,8 @@ html[data-mode="dark"] .ss-pd-glass::before,html[data-mode="dark"] .ss-pd-glassw
 @media (max-width:549px){.ss-pd-segwrap{flex-direction:column;}.ss-pd-seg{min-height:64px;}}
 .ss-pd-seg{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px;align-items:center;justify-content:center;padding:12px 16px;border:0;border-radius:8px;background:transparent;cursor:pointer;font-family:inherit;min-height:72px;transition:background-color .12s cubic-bezier(.22,.61,.36,1),box-shadow .15s cubic-bezier(.22,.61,.36,1);}
 .ss-pd-seg:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);z-index:1;}
-@media (hover:hover) and (pointer:fine){.ss-pd-seg[aria-pressed="false"]:hover{background:var(--ss-hover-bg,#FFF5E6);color:var(--ss-hover-text,#A4600C);}.ss-pd-seg[aria-pressed="false"]:hover>span:first-child,.ss-pd-seg[aria-pressed="false"]:hover svg{color:var(--ss-hover-text,#A4600C);}}
+/* Hover segmentu stejnou barvou jako aktivní stav (29. 10. 2026) */
+@media (hover:hover) and (pointer:fine){.ss-pd-seg[aria-pressed="false"]:hover{background:var(--ss-surface-page,#FFFFFF);}}
 .ss-pd-seg[aria-pressed="true"]{background:var(--ss-surface-page,#FFFFFF);box-shadow:0 2px 8px rgba(19,44,67,.08);}
 /* Přepínač: podklad vnořený (vnitřní stín), vybraná položka vystouplá (29. 10. 2026) */
 .ss-pd-segwrap{box-shadow:inset 0 2px 4px rgba(19,44,67,.14),inset 0 1px 2px rgba(19,44,67,.10);}
@@ -489,7 +490,9 @@ html[data-mode="dark"] .ss-pd-glass::before,html[data-mode="dark"] .ss-pd-glassw
 .ss-pd-tocbar::after{height:24px;-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px);-webkit-mask-image:linear-gradient(180deg,#000 0%,transparent 100%);mask-image:linear-gradient(180deg,#000 0%,transparent 100%);}
 html[data-mode="dark"] .ss-pd-tocbar{background:rgba(14,31,47,.55);box-shadow:inset 0 8px 10px -6px rgba(0,0,0,.5);}
 .ss-pd-stchips::-webkit-scrollbar{display:none;}
-@media (max-width:819px){.ss-pd-toc{position:relative;flex-wrap:nowrap!important;overflow-x:auto;overscroll-behavior-x:contain;scrollbar-width:none;margin:0 -16px;padding:0 16px;}.ss-pd-toc::-webkit-scrollbar{display:none;}.ss-pd-toc .ss-pd-tab{white-space:nowrap;flex:none;}}
+@media (max-width:819px){.ss-pd-toc{position:relative;flex-wrap:nowrap!important;overflow-x:auto;overscroll-behavior-x:contain;scrollbar-width:none;margin:0 -16px;padding:0 16px;}.ss-pd-toc::-webkit-scrollbar{display:none;}.ss-pd-toc .ss-pd-tab{white-space:nowrap;flex:none;}
+/* Naznačení horizontálního scrollu: pravý okraj lišty se rozmlží, poslední položka má rezervu (29. 10. 2026) */
+.ss-pd-toc{padding-right:56px!important;-webkit-mask-image:linear-gradient(90deg,#000 0,#000 calc(100% - 64px),transparent 100%);mask-image:linear-gradient(90deg,#000 0,#000 calc(100% - 64px),transparent 100%);}}
 /* bg m 1 (pojmenovaný podklad, viz CLAUDE.md) – liché sekce detailu */
 .ss-bg-m1{background-color:var(--ss-surface-page,#FFFFFF)!important;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .55 0 0 0 0 .35 0 0 0 0 .1 0 0 0 .07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),radial-gradient(ellipse 80% 55% at 50% 100%,rgba(251,178,85,.16) 0%,rgba(251,178,85,.06) 45%,rgba(251,178,85,0) 80%)!important;background-size:220px 220px,auto!important;background-repeat:repeat,no-repeat!important;background-position:0 0,center!important;}
 html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .85 0 0 0 0 .9 0 0 0 0 1 0 0 0 .06 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),radial-gradient(ellipse 80% 55% at 50% 100%,rgba(251,178,85,.12) 0%,rgba(251,178,85,.04) 45%,rgba(251,178,85,0) 80%)!important;}
@@ -1252,6 +1255,23 @@ class Component extends DCLogic {
     this._headerTick = null; this._onResize = () => this._measureHeader(); window.addEventListener('resize', this._onResize, { passive: true }); [300, 1000, 2500].forEach(ms => setTimeout(this._measureHeader, ms));
     this._hdHidden = () => this._measureHeader();
     window.addEventListener('ss-hdhidden', this._hdHidden);
+    // Kotvy v liště obsahu: posun tak, aby nadpis sekce nebyl pod hlavičkou ani pod lištou (29. 10. 2026)
+    this._tocClick = (e) => {
+      const a = e.target.closest && e.target.closest('.ss-pd-tocbar a[href^="#"]');
+      if (!a) return;
+      const el = document.getElementById(a.getAttribute('href').slice(1));
+      if (!el) return;
+      e.preventDefault();
+      const r = el.getBoundingClientRect();
+      const up = r.top < 0;
+      const hd = document.querySelector('header.ss-hd');
+      const hdH = up && hd ? Math.round(hd.getBoundingClientRect().height) : 0;
+      const bar = document.querySelector('.ss-pd-tocbar');
+      const barH = bar ? Math.round(bar.getBoundingClientRect().height) : 0;
+      window.scrollTo({ top: window.scrollY + r.top - hdH - barH, behavior: 'smooth' });
+      try { history.replaceState(null, '', a.getAttribute('href')); } catch (err) {}
+    };
+    document.addEventListener('click', this._tocClick);
     setTimeout(this._measureHeader, 80);
     this._key = (e) => {
       if (this.state.custom) {
@@ -1268,7 +1288,7 @@ class Component extends DCLogic {
     window.addEventListener('keydown', this._key);
   }
   componentWillUnmount() {
-    window.removeEventListener('ss-hdhidden', this._hdHidden);
+    window.removeEventListener('ss-hdhidden', this._hdHidden); document.removeEventListener('click', this._tocClick);
     clearInterval(this._headerTick); window.removeEventListener('resize', this._onResize);
     window.removeEventListener('resize', this._resize);
     window.removeEventListener('scroll', this._scroll);
