@@ -285,6 +285,7 @@ class Component extends DCLogic {
   static GROUPS = [
     { id: 'rz-hp', title: 'Homepage a kategorie', desc: 'Úvodní stránka a výpisy kategorií. Výpisy sdílí jednu šablonu, liší se obsahem a obrázky podkategorií.', items: [
       ['index.dc.html', 'Homepage', 'Hero, kategorie, nejoblíbenější, magazín, prodejny, recenze, newsletter, patička.'],
+      ['Kategorie.dc.html', 'Kategorie – základní šablona', 'Společná šablona výpisu, ze které vychází všechny kategorie.'],
       ['Kategorie_Postele.dc.html', 'Kategorie – Postele', 'Výpis s filtrem, řazením, kartami produktů a stránkováním.'],
       ['Kategorie_Matrace.dc.html', 'Kategorie – Matrace', 'Karty matrací s ukazateli tuhosti a váhy, sticky filtrace.'],
       ['Kategorie_Matrace_Tuhost.dc.html', 'Kategorie – Matrace podle tuhosti', 'Stejný výpis s předvybraným řazením podle tuhosti (z menu „Podle tuhosti“).'],
@@ -294,11 +295,11 @@ class Component extends DCLogic {
       ['Kategorie_Polstare.dc.html', 'Kategorie – Polštáře', ''],
       ['Kategorie_Luzkoviny.dc.html', 'Kategorie – Lůžkoviny', '']
     ] },
-    { id: 'rz-det', title: 'Detaily produktů', desc: 'Detail ve čtyřech typech produktu a konkrétní postel Levita. Vyzkoušejte výběr variant, rozměru, roštů a čalounění i přidání do košíku.', items: [
-      ['Detail_Postel_3.0.dc.html', 'Detail – Postel', 'Výběr rozměru, úložného prostoru, roštů, materiálu, odstínu a čalounění.'],
-      ['Detail_Komplet_3.0.dc.html', 'Detail – Komplet', 'Postel s matracemi a rošty v sadě, video v sekci Ložnice na míru.'],
+    { id: 'rz-det', title: 'Detaily produktů', desc: 'Detail v pěti typech produktu (postel, komplet, matrace, multi, komoda) a konkrétní postel Levita. Vyzkoušejte výběr rozměru, materiálu a oleje, roštů a čalounění, přepočet ceny i přidání do košíku.', items: [
+      ['Detail_Postel_3.0.dc.html', 'Detail – Postel', 'Výběr rozměru, úložného prostoru, roštů, dřeva s olejem a čalounění. Cena se přepočítá podle rozměru, roštů a dřeva.'],
+      ['Detail_Komplet_3.0.dc.html', 'Detail – Komplet', 'Postel s matracemi a rošty v sadě, výběr dřeva a oleje jako u postele, video v sekci Ložnice na míru.'],
       ['Detail_Matrace_3.0.dc.html', 'Detail – Matrace', 'Výška, rozměr, varianty tuhosti, parametry, potahy.'],
-      ['Detail_Multi_3.0.dc.html', 'Detail – Multi', 'Produkt s více variantami najednou.'],
+      ['Detail_Multi_3.0.dc.html', 'Detail – Multi', 'Postel MULTI BENE: rozměr, výška, rošty, dřevo a olej. Cena se přepočítá podle výběru.'],
       ['Detail_Komoda_VIA.dc.html', 'Detail – Komoda VIA 3Z', 'Nábytek: rozměr 90/120 cm, dřevo a olej, skryté plnovýsuvy.'],
       ['Detail_Produkt_Levita.dc.html', 'Detail – Postel Levita', 'Konkrétní produkt s reálnými fotkami a vzorníkem látek Kronos, Vega, Wind.'],
       ['Karta_Matrace.dc.html', 'Karta matrace – varianty', 'Přehled variant karty produktu pro matrace.']
@@ -338,13 +339,14 @@ class Component extends DCLogic {
       ['Kategorie_Matrace.dc.html', 'Tooltipy u parametrů karty', 'Krátké vysvětlení tuhosti, váhy, výšky a záruky.', 'Na kartě matrace najeďte myší na tuhost, váhu nebo štítky 22 cm / max kg / let.', 'ParametryMatrace.dc.html', 'Tooltip'],
       ['KosikKrok2.dc.html', 'Info bubliny u dopravy a platby', 'Podrobnosti k jednotlivým způsobům dopravy a platby.', 'Klikněte na ikonu „i“ u volby dopravy nebo platby.', 'InfoPopover.dc.html', 'Popover'],
       ['KosikKrok3.dc.html', 'Info bublina DIČ', 'Vysvětlení, kdy vyplnit DIČ.', 'Zaškrtněte „Nakupuji na firmu“ a klikněte na „i“ u pole DIČ.', 'InfoObsah.dc.html', 'Popover'],
+      ['Chyba404.dc.html', 'Vyhledávání ze stránky 404', 'Tlačítko na 404 otevře vyhledávání v hlavičce s návrhy.', 'Na stránce 404 klikněte na „Vyhledat v obchodě“.', '', ''],
       ['KosikKrok2.dc.html', 'Opustit pokladnu?', 'Potvrzení před odchodem z pokladny.', 'V kroku 2 nebo 3 klikněte na logo v hlavičce.', 'HlavickaPokladna.dc.html', 'Dialog']
     ] },
     { id: 'rz-pre', title: 'Prezentační přepínače', desc: 'Na většině stránek je dole plovoucí lišta s variantami k porovnání. Tady jsou stránky, kde jsou varianty k vyzkoušení.', items: [
       ['index.dc.html', 'Homepage – varianty', 'Karusel V1–V3, Header Světlá / Modrá / Duo, Footer, Magazín M1/M2, Kategorie K1/K2, Prodejny P1/P2, Menu M1/M2, LED.'],
       ['Kategorie_Matrace.dc.html', 'Kategorie – varianty', 'Kategorie K1/K2, Karta S–XXS Standard / Řádek, Sticky filtrace ON/OFF, Karta matrace A, A2, B, C, D, E.'],
-      ['Detail_Postel_3.0.dc.html', 'Detail postele – varianty', 'Fixní sloupec, Rozměr V1/V2, Set S1–S4, Materiál a odstín A/B, LED.'],
-      ['Detail_Komoda_VIA.dc.html', 'Detail komody – varianty', 'Fixní sloupec, Rozměr Chipy/Dropdown, Materiál a olej A/B (výchozí B), LED.'],
+      ['Detail_Postel_3.0.dc.html', 'Detail postele – varianty', 'Fixní sloupec, Rozměr V1/V2, Set S1–S4, Materiál a odstín A/B, Příplatky ON/OFF, LED.'],
+      ['Detail_Komoda_VIA.dc.html', 'Detail komody – varianty', 'Fixní sloupec, Rozměr Chipy/Dropdown, Materiál a olej A/B (výchozí B), Příplatky ON/OFF, LED.'],
       ['Detail_Matrace_3.0.dc.html', 'Detail matrace – varianty', 'Rozměr a Výška Chipy / Dropdown, Varianty Karty / Chipy.'],
       ['Clanek.dc.html', 'Článek – varianty', 'Navigace karuselů V1–V3.']
     ] },
