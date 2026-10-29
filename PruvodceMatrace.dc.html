@@ -453,7 +453,7 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
               </div>
             </div>
             <div style="min-width:0">
-              <img decoding="async" src="/_blob/c5a374fbd36fa4495aacd11898012a93" alt="Matrace s prošívaným potahem" style="display:block; width:100%; max-width: 960px; margin:0 auto; aspect-ratio:4/3; object-fit:contain; filter:drop-shadow(0 24px 24px rgba(19,44,67,.16))">
+              <img decoding="async" src="_blob/c5a374fbd36fa4495aacd11898012a93.webp" alt="Matrace s prošívaným potahem" style="display:block; width:100%; max-width: 960px; margin:0 auto; aspect-ratio:4/3; object-fit:contain; filter:drop-shadow(0 24px 24px rgba(19,44,67,.16))">
             </div>
           </div>
         </sc-if>
@@ -666,11 +666,11 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
 // Odpovědi drží state.a, krok state.step (0 = úvod, 1–7 otázky, 8 = výsledek). Data produktů vložena přímo (plátno nenačítá relativní soubory).
 class Component extends DCLogic {
   static LEVELS = [
-    { n: 1, title: 'H1 – Velmi měkká', image: '/_blob/a63e20d779f2e3e40349f4ecbcc793c0', text: 'Ramena a boky se hluboce zaboří, páteř zůstane rovná i u lehčích postav. Vhodná i pro seniory a citlivé klouby.' },
-    { n: 2, title: 'H2 – Měkká', image: '/_blob/4c656a6df09362706765cb731767ac96', text: 'Příjemně se přizpůsobí, ale nepropadá se. Dobrá volba pro spaní na boku a střídání poloh.' },
-    { n: 3, title: 'H3 – Středně tuhá', image: '/_blob/a63789a52fc157dddaef6cdbafc13fb0', text: 'Nejčastější volba. Vyvážená opora pro většinu spáčů na boku i na zádech.' },
-    { n: 4, title: 'H4 – Tvrdá', image: '/_blob/45ceef241f2bd0f41d022267c01370de', text: 'Pánev se nepropadá, záda zůstávají v rovině. Vhodná pro těžší postavy a spaní na zádech či na břiše.' },
-    { n: 5, title: 'H5 – Velmi tvrdá', image: '/_blob/3f85ee4ed91cf11d2ff61f165a3410a2', text: 'Minimální prohnutí i při vysoké zátěži. Pro těžší postavy a ty, kdo chtějí cítit pevnou podložku.' }
+    { n: 1, title: 'H1 – Velmi měkká', image: '_blob/a63e20d779f2e3e40349f4ecbcc793c0.webp', text: 'Ramena a boky se hluboce zaboří, páteř zůstane rovná i u lehčích postav. Vhodná i pro seniory a citlivé klouby.' },
+    { n: 2, title: 'H2 – Měkká', image: '_blob/4c656a6df09362706765cb731767ac96.webp', text: 'Příjemně se přizpůsobí, ale nepropadá se. Dobrá volba pro spaní na boku a střídání poloh.' },
+    { n: 3, title: 'H3 – Středně tuhá', image: '_blob/a63789a52fc157dddaef6cdbafc13fb0.webp', text: 'Nejčastější volba. Vyvážená opora pro většinu spáčů na boku i na zádech.' },
+    { n: 4, title: 'H4 – Tvrdá', image: '_blob/45ceef241f2bd0f41d022267c01370de.webp', text: 'Pánev se nepropadá, záda zůstávají v rovině. Vhodná pro těžší postavy a spaní na zádech či na břiše.' },
+    { n: 5, title: 'H5 – Velmi tvrdá', image: '_blob/3f85ee4ed91cf11d2ff61f165a3410a2.webp', text: 'Minimální prohnutí i při vysoké zátěži. Pro těžší postavy a ty, kdo chtějí cítit pevnou podložku.' }
   ];
   static MATS = {
     studena: { phrase: 'se studenou (HR) pěnou', title: 'Studená (HR) pěna', fam: 'pena', text: 'Elastická, tvarově stálá a velmi prodyšná. Univerzální volba pro všechny polohy spaní.' },
@@ -680,23 +680,23 @@ class Component extends DCLogic {
     hybrid: { phrase: 's hybridním jádrem (pružiny a pěna)', title: 'Hybridní matrace', fam: 'hybrid', text: 'Zhruba půl na půl samostatných pružin a pěny. Dobře odvětrává, neruší partnera — vhodná pro páry a horké spáče.' }
   };
   static PRODUCTS = [
-    { mat: 'pena', partner: true, polohovaci: false, data: { id: 'p1', image: '/_blob/66ef2119f31d8262ba38ce4bea618a8e', title: 'Matrace Spring Variant 22 cm', href: 'Detail_Matrace_3.0.dc.html', orderNo: '428170',
+    { mat: 'pena', partner: true, polohovaci: false, data: { id: 'p1', image: '_blob/66ef2119f31d8262ba38ce4bea618a8e.webp', title: 'Matrace Spring Variant 22 cm', href: 'Detail_Matrace_3.0.dc.html', orderNo: '428170',
       perex: 'Partnerská matrace s tuhostí volitelnou pro každou polovinu samostatně. Už žádná mezera uprostřed.',
       rating: 4.8, ratingCount: 18, price: '7 590 Kč', priceBefore: '9 590 Kč', badge: 'sale', badgeLabel: 'Akce −25 %',
       secondBadge: 'news', secondBadgeLabel: 'Novinka', stock: 'inStock', moreLabel: 'Více rozměrů / stupňů tuhosti',
       mp: { tuhostPct: 70, zatizeniOd: 70, zatizeniDo: 120, nosnostMax: 130, vyska: 28, vyskaJadra: 24, zaruka: 8, spankNaBoku: true },
       tuhost: 4.5, params: [{ icon: 'weight', label: '200 kg' }, { icon: 'arrow-autofit-height', label: '20 cm' }, { icon: 'color-swatch', label: 'Pěnová' }] } },
-    { mat: 'pruziny', partner: false, polohovaci: false, data: { id: 'p2', image: '/_blob/4d39f39f3e59f9479b2f3fa0c249def9', title: 'Taštičková matrace Leda Duo', href: 'Detail_Matrace_3.0.dc.html', orderNo: '428204',
+    { mat: 'pruziny', partner: false, polohovaci: false, data: { id: 'p2', image: '_blob/4d39f39f3e59f9479b2f3fa0c249def9.webp', title: 'Taštičková matrace Leda Duo', href: 'Detail_Matrace_3.0.dc.html', orderNo: '428204',
       perex: 'Sedm zón tuhosti a kokosová deska. Pohyb jednoho spícího druhého neruší.',
       rating: 4.8, ratingCount: 64, price: '9 190 Kč', stock: 'inStock', moreLabel: 'Více rozměrů / stupňů tuhosti',
       mp: { tuhostPct: 40, zatizeniOd: 40, zatizeniDo: 80, nosnostMax: 95, vyska: 18, vyskaJadra: 16, zaruka: 3, spankNaBoku: false },
       tuhost: 3, params: [{ icon: 'weight', label: '130 kg' }, { icon: 'arrow-autofit-height', label: '20 cm' }, { icon: 'color-swatch', label: 'Taštičková' }] } },
-    { mat: 'pena', partner: false, polohovaci: true, data: { id: 'p3', image: '/_blob/c2606f1b288878aa84129b4a0e05ba7e', title: 'Antidekubitní matrace Ultra Fresh', href: 'Detail_Matrace_3.0.dc.html', orderNo: '428311',
+    { mat: 'pena', partner: false, polohovaci: true, data: { id: 'p3', image: '_blob/c2606f1b288878aa84129b4a0e05ba7e.webp', title: 'Antidekubitní matrace Ultra Fresh', href: 'Detail_Matrace_3.0.dc.html', orderNo: '428311',
       perex: 'Líná pěna s prodyšným potahem pro dlouhé ležení. Vhodná i pro polohovací rošty.',
       rating: 4.3, ratingCount: 21, price: '11 290 Kč', stock: 'lowStock', moreLabel: 'Více rozměrů / stupňů tuhosti',
       mp: { tuhostPct: 70, zatizeniOd: 60, zatizeniDo: 110, nosnostMax: 130, vyska: 26, vyskaJadra: 24, zaruka: 5, spankNaBoku: false },
       tuhost: 3, params: [{ icon: 'weight', label: '120 kg' }, { icon: 'arrow-autofit-height', label: '18 cm' }] } },
-    { mat: 'pena', partner: false, polohovaci: false, data: { id: 'p9', image: '/_blob/4a0a7adf8f13ddf960536da06df0e197', title: 'Sendvičová matrace Duo Comfort', href: 'Detail_Matrace_3.0.dc.html', orderNo: '428590',
+    { mat: 'pena', partner: false, polohovaci: false, data: { id: 'p9', image: '_blob/4a0a7adf8f13ddf960536da06df0e197.webp', title: 'Sendvičová matrace Duo Comfort', href: 'Detail_Matrace_3.0.dc.html', orderNo: '428590',
       perex: 'Dvě tuhosti v jedné matraci — stačí ji otočit podle ročního období.',
       rating: 4.1, ratingCount: 54, price: '6 190 Kč', stock: 'inStock', moreLabel: 'Více rozměrů / stupňů tuhosti',
       mp: { tuhostPct: 70, zatizeniOd: 60, zatizeniDo: 110, nosnostMax: 120, vyska: 20, vyskaJadra: 18, zaruka: 5, spankNaBoku: true },
@@ -741,7 +741,7 @@ class Component extends DCLogic {
       ] }],
       whyTitle: 'Tvrdší neznamená zdravější', why: 'Ideální tuhost tělo podepře a zároveň dovolí ramenům a bokům se přizpůsobit. Osobní pocit je důležitý — doladíme podle něj doporučení o půl stupně.',
       points: [{ b: 'Stupnice H1–H5:', t: 'od velmi měkké po velmi tvrdou. Většině lidí sedne H2–H3.' }, { b: 'Pozor na označení:', t: '„ortopedická“ nebo „extra tvrdá“ samo o sobě nic neznamená.' }],
-      image: '/_blob/a63789a52fc157dddaef6cdbafc13fb0', imageAlt: 'Řez středně tuhou matrací s figurínou',
+      image: '_blob/a63789a52fc157dddaef6cdbafc13fb0.webp', imageAlt: 'Řez středně tuhou matrací s figurínou',
       tip: 'Když tuhost doma nesedne, do 30 nocí ji u nás vyměníte.' },
     { key: 'prostredi', multi: true, name: 'Spánek a prostředí', title: 'Platí pro vás něco z toho?', sub: 'Můžete vybrat více možností.',
       groups: [{ opts: [

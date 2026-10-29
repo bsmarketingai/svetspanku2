@@ -301,8 +301,8 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
   <div class="ss-hd-main" style="width:100%;background:var(--ss-surface-page,#FFFFFF);position:relative;--ss-hd-bg:var(--ss-surface-page,#FFFFFF)">
     <div style="max-width:1560px;margin:0 auto;padding:{{ mainPad }};display:flex;align-items:center;gap:{{ mainGap }}">
       <a class="ss-hd-logo" href="index.dc.html" style="display:flex;align-items:center;flex:none;border-radius:6px;padding:4px" aria-label="Světspánku.cz — domů">
-        <img decoding="async" class="ss-hd-logo-pos" src="/_blob/c8b91d161f29e0501047ffad213df027" alt="Světspánku.cz" style="display:block;height:{{ logoSize }};width:auto" />
-        <img decoding="async" class="ss-hd-logo-neg" src="/_blob/060a09622abd6ccf3c263746e435c11e" alt="Světspánku.cz" style="display:none;height:{{ logoSize }};width:auto" />
+        <img decoding="async" class="ss-hd-logo-pos" src="_blob/c8b91d161f29e0501047ffad213df027.png" alt="Světspánku.cz" style="display:block;height:{{ logoSize }};width:auto" />
+        <img decoding="async" class="ss-hd-logo-neg" src="_blob/060a09622abd6ccf3c263746e435c11e.png" alt="Světspánku.cz" style="display:none;height:{{ logoSize }};width:auto" />
         <span class="ss-hd-logo-a" style="{{ logoDkA }}"><dc-import name="LogoA-Pulz" background="{{ false }}" hint-size="100%,100%"></dc-import></span>
         <span class="ss-hd-logo-b" style="{{ logoDkB }}"><dc-import name="LogoB-DychaniZnaku" background="{{ false }}" hint-size="100%,100%"></dc-import></span>
         <span class="ss-hd-logo-c" style="{{ logoDkC }}"><dc-import name="LogoC-DychaniCele" background="{{ false }}" hint-size="100%,100%"></dc-import></span>
@@ -435,61 +435,61 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
 const __M_produkty = (() => {
 // Ukázková data produktů a kategorií pro prototyp. Fotky jsou zástupné z dodaných podkladů.
 const PRODUKTY = [
-  { id: 'p1', image: '/_blob/66ef2119f31d8262ba38ce4bea618a8e', title: 'Matrace Spring Variant 22 cm', href: 'Detail_Matrace_3.0.dc.html', orderNo: '428170',
+  { id: 'p1', image: '_blob/66ef2119f31d8262ba38ce4bea618a8e.webp', title: 'Matrace Spring Variant 22 cm', href: 'Detail_Matrace_3.0.dc.html', orderNo: '428170',
     perex: 'Partnerská matrace s tuhostí volitelnou pro každou polovinu samostatně. Už žádná mezera uprostřed.',
     rating: 4.8, ratingCount: 18, price: '7 590 Kč', priceBefore: '9 590 Kč', badge: 'sale', badgeLabel: 'Akce −25 %',
     secondBadge: 'news', secondBadgeLabel: 'Novinka', stock: 'inStock', moreLabel: 'Více rozměrů / stupňů tuhosti',
     mp: { tuhostPct: 70, zatizeniOd: 70, zatizeniDo: 120, nosnostMax: 130, vyska: 28, vyskaJadra: 24, zaruka: 8, spankNaBoku: true },
     tuhost: 4.5, params: [{ icon: 'weight', label: '200 kg' }, { icon: 'arrow-autofit-height', label: '20 cm' }, { icon: 'color-swatch', label: 'Pěnová' }] },
-  { id: 'p2', image: '/_blob/4d39f39f3e59f9479b2f3fa0c249def9', title: 'Taštičková matrace Leda Duo', href: 'Detail_Matrace_3.0.dc.html', orderNo: '428204',
+  { id: 'p2', image: '_blob/4d39f39f3e59f9479b2f3fa0c249def9.webp', title: 'Taštičková matrace Leda Duo', href: 'Detail_Matrace_3.0.dc.html', orderNo: '428204',
     perex: 'Sedm zón tuhosti a kokosová deska. Pohyb jednoho spícího druhého neruší.',
     rating: 4.8, ratingCount: 64, price: '9 190 Kč', stock: 'inStock', moreLabel: 'Více rozměrů / stupňů tuhosti',
     mp: { tuhostPct: 40, zatizeniOd: 40, zatizeniDo: 80, nosnostMax: 95, vyska: 18, vyskaJadra: 16, zaruka: 3, spankNaBoku: false },
     tuhost: 3, params: [{ icon: 'weight', label: '130 kg' }, { icon: 'arrow-autofit-height', label: '20 cm' }, { icon: 'color-swatch', label: 'Taštičková' }] },
-  { id: 'p3', image: '/_blob/c2606f1b288878aa84129b4a0e05ba7e', title: 'Antidekubitní matrace Ultra Fresh', href: 'Detail_Matrace_3.0.dc.html', orderNo: '428311',
+  { id: 'p3', image: '_blob/c2606f1b288878aa84129b4a0e05ba7e.webp', title: 'Antidekubitní matrace Ultra Fresh', href: 'Detail_Matrace_3.0.dc.html', orderNo: '428311',
     perex: 'Líná pěna s prodyšným potahem pro dlouhé ležení. Vhodná i pro polohovací rošty.',
     rating: 4.3, ratingCount: 21, price: '11 290 Kč', stock: 'lowStock', moreLabel: 'Více rozměrů / stupňů tuhosti',
     mp: { tuhostPct: 70, zatizeniOd: 60, zatizeniDo: 110, nosnostMax: 130, vyska: 26, vyskaJadra: 24, zaruka: 5, spankNaBoku: false },
     tuhost: 3, params: [{ icon: 'weight', label: '120 kg' }, { icon: 'arrow-autofit-height', label: '18 cm' }] },
-  { id: 'p4', image: '/_blob/6b546453dfb90e0ec7ddb488eed7e6ec', lifestyle: true, title: 'Postel z masivu LEVITA', href: 'Detail_Postel_3.0.dc.html', orderNo: '419820',
+  { id: 'p4', image: '_blob/6b546453dfb90e0ec7ddb488eed7e6ec.webp', lifestyle: true, title: 'Postel z masivu LEVITA', href: 'Detail_Postel_3.0.dc.html', orderNo: '419820',
     perex: 'Smrkový masiv s úložným prostorem po celé ploše lože a plynovými písty.',
     rating: 4.9, ratingCount: 43, price: '21 390 Kč', badge: 'news', stock: 'inStock', moreLabel: 'Více rozměrů / odstínů',
     params: [{ icon: 'dimensions', label: '180 × 200 cm' }, { icon: 'tree', label: 'Smrk, bílá' }, { icon: 'package', label: 'Úložný prostor' }] },
-  { id: 'p5', image: '/_blob/7d9234acbe0f59bf374b86101ea80224', title: 'Lamelový rošt Flex 28', href: 'Detail_Postel_3.0.dc.html', orderNo: '431004',
+  { id: 'p5', image: '_blob/7d9234acbe0f59bf374b86101ea80224.webp', title: 'Lamelový rošt Flex 28', href: 'Detail_Postel_3.0.dc.html', orderNo: '431004',
     perex: 'Osmadvacet pružných lamel s pojezdem tuhosti v oblasti beder.',
     rating: 4.4, ratingCount: 37, price: '3 290 Kč', stock: 'inStock', moreLabel: 'Více rozměrů',
     params: [{ icon: 'dimensions', label: '160 × 200 cm' }, { icon: 'lamely', label: '28 lamel' }] },
-  { id: 'p6', image: '/_blob/bec57053bba98acc27cb6181af2ecaf2', title: 'Komplet postel Nora + rošt + matrace', href: 'Detail_Postel_3.0.dc.html', orderNo: '435110',
+  { id: 'p6', image: '_blob/bec57053bba98acc27cb6181af2ecaf2.webp', title: 'Komplet postel Nora + rošt + matrace', href: 'Detail_Postel_3.0.dc.html', orderNo: '435110',
     perex: 'Sestava připravená k okamžitému spaní. Rošt i matrace sedí na rozměr postele.',
     rating: 4.7, ratingCount: 18, price: '28 900 Kč', priceBefore: '34 700 Kč', badge: 'sale', badgeLabel: 'Akce −17 %',
     stock: 'onWay', moreLabel: 'Více rozměrů / variant matrace',
     params: [{ icon: 'dimensions', label: '160 × 200 cm' }, { icon: 'coins', label: 'Ušetříte 5 800 Kč' }] },
-  { id: 'p7', image: '/_blob/70bc87f80d300e8a2f6bda4666194268', title: 'Anatomický polštář Comfort Memory', href: 'Detail_Postel_3.0.dc.html', orderNo: '440021',
+  { id: 'p7', image: '_blob/70bc87f80d300e8a2f6bda4666194268.webp', title: 'Anatomický polštář Comfort Memory', href: 'Detail_Postel_3.0.dc.html', orderNo: '440021',
     perex: 'Paměťová pěna, která kopíruje krční páteř a nedeformuje se.',
     rating: 4.2, ratingCount: 96, price: '1 290 Kč', stock: 'inStock',
     params: [{ icon: 'dimensions', label: '70 × 50 cm' }, { icon: 'color-swatch', label: 'Paměťová pěna' }] },
-  { id: 'p8', image: '/_blob/8558634d093ec652305ccdb81196c238', title: 'Noční stolek z masivu Nora', href: 'Detail_Postel_3.0.dc.html', orderNo: '419944',
+  { id: 'p8', image: '_blob/8558634d093ec652305ccdb81196c238.webp', title: 'Noční stolek z masivu Nora', href: 'Detail_Postel_3.0.dc.html', orderNo: '419944',
     perex: 'Dubový masiv se zásuvkou na tichém výsuvu. Ladí s postelí Nora.',
     rating: 4.5, ratingCount: 12, price: '4 690 Kč', stock: 'outOfStock', moreLabel: 'Více odstínů',
     params: [{ icon: 'tree', label: 'Dub' }, { icon: 'dimensions', label: '45 × 40 cm' }] },
-  { id: 'p9', image: '/_blob/4a0a7adf8f13ddf960536da06df0e197', title: 'Sendvičová matrace Duo Comfort', href: 'Detail_Matrace_3.0.dc.html', orderNo: '428590',
+  { id: 'p9', image: '_blob/4a0a7adf8f13ddf960536da06df0e197.webp', title: 'Sendvičová matrace Duo Comfort', href: 'Detail_Matrace_3.0.dc.html', orderNo: '428590',
     perex: 'Dvě tuhosti v jedné matraci — stačí ji otočit podle ročního období.',
     rating: 4.1, ratingCount: 54, price: '6 190 Kč', stock: 'inStock', moreLabel: 'Více rozměrů / stupňů tuhosti',
     mp: { tuhostPct: 70, zatizeniOd: 60, zatizeniDo: 110, nosnostMax: 120, vyska: 20, vyskaJadra: 18, zaruka: 5, spankNaBoku: true },
     tuhost: 3.5, params: [{ icon: 'arrows-exchange', label: 'Oboustranná' }, { icon: 'weight', label: '110 kg' }, { icon: 'arrow-autofit-height', label: '18 cm' }] },
-  { id: 'p10', image: '/_blob/83b97877b4eeaa401d7d46a9fa01dd17', title: 'Postel z masivu Sara s čalouněným čelem', href: 'Detail_Postel_3.0.dc.html', orderNo: '419877',
+  { id: 'p10', image: '_blob/83b97877b4eeaa401d7d46a9fa01dd17.webp', title: 'Postel z masivu Sara s čalouněným čelem', href: 'Detail_Postel_3.0.dc.html', orderNo: '419877',
     perex: 'Masivní rám s čalouněným čelem v pratelném lněném potahu.',
     rating: 4.6, ratingCount: 29, price: '18 490 Kč', stock: 'inStock', moreLabel: 'Více rozměrů / potahů',
     params: [{ icon: 'dimensions', label: '160 × 200 cm' }, { icon: 'palette', label: 'Len šedý' }] }
 ];
 
 const KATEGORIE = [
-  { label: 'Manželské postele z masivu', href: 'Kategorie_Postele.dc.html#s=1', count: 42, image: '/_blob/cead5c69b22e38051d5480ee3e14c348', sub: ['180 × 200', 'S úložným prostorem'] },
-  { label: 'Jednolůžka z masivu', href: 'Kategorie_Postele.dc.html#s=10', count: 24, image: '/_blob/cbd39695e60222550587109c72c8c52b', sub: ['90 × 200', 'Dětské', 'Buk'] },
-  { label: 'Čalouněné postele', href: 'Kategorie_Postele.dc.html#s=2', count: 31, image: '/_blob/83b97877b4eeaa401d7d46a9fa01dd17', sub: ['S roštem', 'Boxspring'] },
-  { label: 'Matrace', href: 'Kategorie_Matrace.dc.html', count: 112, image: '/_blob/c5a374fbd36fa4495aacd11898012a93', zoom: true, sub: ['Taštičkové', 'Pěnové', 'Latexové'] },
-  { label: 'Rošty', href: 'Kategorie_Rosty.dc.html', count: 54, image: '/_blob/e58c131539e8ad6860c8e14b3cb0959a', zoom: true, sub: ['Lamelové', 'Polohovací'] },
-  { label: 'Nábytek z masivu', href: 'Kategorie_Nabytek.dc.html', count: 73, image: '/_blob/62799eee782850a7f388b83455378566', sub: ['Noční stolky', 'Komody'] }
+  { label: 'Manželské postele z masivu', href: 'Kategorie_Postele.dc.html#s=1', count: 42, image: '_blob/cead5c69b22e38051d5480ee3e14c348.webp', sub: ['180 × 200', 'S úložným prostorem'] },
+  { label: 'Jednolůžka z masivu', href: 'Kategorie_Postele.dc.html#s=10', count: 24, image: '_blob/cbd39695e60222550587109c72c8c52b.webp', sub: ['90 × 200', 'Dětské', 'Buk'] },
+  { label: 'Čalouněné postele', href: 'Kategorie_Postele.dc.html#s=2', count: 31, image: '_blob/83b97877b4eeaa401d7d46a9fa01dd17.webp', sub: ['S roštem', 'Boxspring'] },
+  { label: 'Matrace', href: 'Kategorie_Matrace.dc.html', count: 112, image: '_blob/c5a374fbd36fa4495aacd11898012a93.webp', zoom: true, sub: ['Taštičkové', 'Pěnové', 'Latexové'] },
+  { label: 'Rošty', href: 'Kategorie_Rosty.dc.html', count: 54, image: '_blob/e58c131539e8ad6860c8e14b3cb0959a.webp', zoom: true, sub: ['Lamelové', 'Polohovací'] },
+  { label: 'Nábytek z masivu', href: 'Kategorie_Nabytek.dc.html', count: 73, image: '_blob/62799eee782850a7f388b83455378566.webp', sub: ['Noční stolky', 'Komody'] }
 ];
 
 const FACETY = [
@@ -518,9 +518,9 @@ return { PRODUKTY, KATEGORIE, FACETY };
 const __M_kosik = (() => {
 // Ukázkový obsah košíku pro prototyp. Ceny s DPH.
 const KOSIK = [
-  { title: 'Manželská postel SANTE 45 dvoulůžko', variant: '200 × 180 cm · olej Teak · jádrový buk', qty: 1, unit: 39800, price: '39 800 Kč', href: '#produkt', img: '/_blob/6721a0d378d224249b73f0d946656a32', fit: 'cover' },
-  { title: 'Matrace Spring Variant 22 cm', variant: '180 × 200 cm · tuhost H3', qty: 1, unit: 7590, price: '7 590 Kč', href: '#produkt', img: '/_blob/66ef2119f31d8262ba38ce4bea618a8e' },
-  { title: 'Lamelový rošt Standard', variant: '180 × 200 cm · 28 lamel', qty: 1, unit: 2480, price: '2 480 Kč', href: '#produkt', img: '/_blob/7d9234acbe0f59bf374b86101ea80224' }
+  { title: 'Manželská postel SANTE 45 dvoulůžko', variant: '200 × 180 cm · olej Teak · jádrový buk', qty: 1, unit: 39800, price: '39 800 Kč', href: '#produkt', img: '_blob/6721a0d378d224249b73f0d946656a32.jpg', fit: 'cover' },
+  { title: 'Matrace Spring Variant 22 cm', variant: '180 × 200 cm · tuhost H3', qty: 1, unit: 7590, price: '7 590 Kč', href: '#produkt', img: '_blob/66ef2119f31d8262ba38ce4bea618a8e.webp' },
+  { title: 'Lamelový rošt Standard', variant: '180 × 200 cm · 28 lamel', qty: 1, unit: 2480, price: '2 480 Kč', href: '#produkt', img: '_blob/7d9234acbe0f59bf374b86101ea80224.webp' }
 ];
 
 const formatKc = (n) => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, '\u00A0') + '\u00A0Kč';
@@ -540,7 +540,7 @@ const MENU = [
     "groups": [
       {
         "title": "Postele podle rozměrů",
-        "image": "/_blob/9459bc77080c613fe49b26658905c0d9",
+        "image": "_blob/9459bc77080c613fe49b26658905c0d9.webp",
         "href": "Kategorie_Postele.dc.html#s=0",
           "items": [
           {
@@ -587,7 +587,7 @@ const MENU = [
       },
       {
         "title": "Manželské postele z masivu",
-        "image": "/_blob/cead5c69b22e38051d5480ee3e14c348",
+        "image": "_blob/cead5c69b22e38051d5480ee3e14c348.webp",
         "href": "Kategorie_Postele.dc.html#s=1",
         "items": [
           {
@@ -626,7 +626,7 @@ const MENU = [
       },
       {
         "title": "Čalouněné postele",
-        "image": "/_blob/83b97877b4eeaa401d7d46a9fa01dd17",
+        "image": "_blob/83b97877b4eeaa401d7d46a9fa01dd17.webp",
         "href": "Kategorie_Postele.dc.html#s=2",
         "items": [
           {
@@ -649,7 +649,7 @@ const MENU = [
       },
       {
         "title": "Kombinované postele dřevo a čalounění",
-        "image": "/_blob/2b07a10ad8eb024c6ef53104343b301c",
+        "image": "_blob/2b07a10ad8eb024c6ef53104343b301c.webp",
         "href": "Kategorie_Postele.dc.html#s=3",
         "items": [
           {
@@ -664,7 +664,7 @@ const MENU = [
       },
       {
         "title": "Postele s úložným prostorem",
-        "image": "/_blob/3c98d27c417e1d9ccb47b84ffe13df76",
+        "image": "_blob/3c98d27c417e1d9ccb47b84ffe13df76.webp",
         "href": "Kategorie_Postele.dc.html#s=4",
         "items": [
           {
@@ -683,7 +683,7 @@ const MENU = [
       },
       {
         "title": "Postele s nočními stolky",
-        "image": "/_blob/bf9ee623a3c7f6bdd65949a31b2b28ab",
+        "image": "_blob/bf9ee623a3c7f6bdd65949a31b2b28ab.webp",
         "href": "Kategorie_Postele.dc.html#s=5",
         "items": [
           {
@@ -694,7 +694,7 @@ const MENU = [
       },
       {
         "title": "MULTI – modulární postele",
-        "image": "/_blob/0e8664e98d4e03179bcd7446fb1b686c",
+        "image": "_blob/0e8664e98d4e03179bcd7446fb1b686c.webp",
         "href": "Kategorie_Postele.dc.html#s=6",
         "items": [
           {
@@ -713,7 +713,7 @@ const MENU = [
       },
       {
         "title": "Kontinentální a boxspring postele",
-        "image": "/_blob/c2272a0e9ca10090147050821599f427",
+        "image": "_blob/c2272a0e9ca10090147050821599f427.webp",
         "href": "Kategorie_Postele.dc.html#s=7",
         "items": [
           {
@@ -728,7 +728,7 @@ const MENU = [
       },
       {
         "title": "Vysoké postele",
-        "image": "/_blob/6bd4fa31ef2d1d29da5b49da70514a96",
+        "image": "_blob/6bd4fa31ef2d1d29da5b49da70514a96.webp",
         "href": "Kategorie_Postele.dc.html#s=8",
         "items": [
           {
@@ -747,13 +747,13 @@ const MENU = [
       },
       {
         "title": "Patrové postele",
-        "image": "/_blob/796b776bdf1d4a9bf31b094689547727",
+        "image": "_blob/796b776bdf1d4a9bf31b094689547727.webp",
         "href": "Kategorie_Postele.dc.html#s=9",
         "items": []
       },
       {
         "title": "Jednolůžkové postele",
-        "image": "/_blob/cbd39695e60222550587109c72c8c52b",
+        "image": "_blob/cbd39695e60222550587109c72c8c52b.webp",
         "href": "Kategorie_Postele.dc.html#s=10",
         "items": [
           {
@@ -776,7 +776,7 @@ const MENU = [
       },
       {
         "title": "Dětské postele",
-        "image": "/_blob/372550141951862e0591a3e1d5baab98",
+        "image": "_blob/372550141951862e0591a3e1d5baab98.webp",
         "href": "Kategorie_Postele.dc.html#s=11",
         "items": [
           {
@@ -791,31 +791,31 @@ const MENU = [
       },
       {
         "title": "Rozkládací postele / pohovky",
-        "image": "/_blob/7248cf07bd3a1e7a83b38dfc5d15d179",
+        "image": "_blob/7248cf07bd3a1e7a83b38dfc5d15d179.webp",
         "href": "Kategorie_Postele.dc.html#s=12",
         "items": []
       },
       {
         "title": "LED osvětlení k posteli",
-        "image": "/_blob/8e840d302ff9d7f742f55c829e285d66",
+        "image": "_blob/8e840d302ff9d7f742f55c829e285d66.webp",
         "href": "Kategorie_Postele.dc.html#s=13",
         "items": []
       },
       {
         "title": "Noční stolky a police",
-        "image": "/_blob/68fdf603437e1500e3757d7ca59801f5",
+        "image": "_blob/68fdf603437e1500e3757d7ca59801f5.webp",
         "href": "Kategorie_Postele.dc.html#s=14",
         "items": []
       },
       {
         "title": "Úložné prostory",
-        "image": "/_blob/706482b09df7c053e95817ed6aee84af",
+        "image": "_blob/706482b09df7c053e95817ed6aee84af.webp",
         "href": "Kategorie_Postele.dc.html#s=15",
         "items": []
       },
       {
         "title": "KOMPLETY / Sety",
-        "image": "/_blob/dfd6a27a2785e850d62aedd773271533",
+        "image": "_blob/dfd6a27a2785e850d62aedd773271533.webp",
         "href": "Kategorie_Postele.dc.html#s=16",
         "items": []
       }
@@ -825,14 +825,14 @@ const MENU = [
         "label": "Black Friday — nakupte se slevami až 60 %",
         "sub": "Jen do 30. listopadu, na vybrané matrace a komplety",
         "href": "#akce",
-        "image": "/_blob/edd56eee566f1d974d13fb31f14a8118",
+        "image": "_blob/edd56eee566f1d974d13fb31f14a8118.webp",
         "imagePos": "30% 30%"
       },
       {
         "label": "Cenově zvýhodněné komplety se slevou až 30 %",
         "sub": "Postel, rošt a matrace v jedné objednávce",
         "href": "#komplety",
-        "image": "/_blob/8b63107c3b3df97b4c67e750ce6b91cd",
+        "image": "_blob/8b63107c3b3df97b4c67e750ce6b91cd.webp",
         "imagePos": "center 40%"
       }
     ],
@@ -840,12 +840,12 @@ const MENU = [
       {
         "title": "Jak správně vybrat matraci a na co si dát pozor?",
         "href": "Clanek.dc.html",
-        "image": "/_blob/a4bdfc3ddeb575fee8768a3cf2019524"
+        "image": "_blob/a4bdfc3ddeb575fee8768a3cf2019524.webp"
       },
       {
         "title": "Postel z masivu, nebo čalouněná? Srovnání po pěti letech",
         "href": "Clanek.dc.html",
-        "image": "/_blob/50fbc8ecc5ccb479e539edd24a0148e8"
+        "image": "_blob/50fbc8ecc5ccb479e539edd24a0148e8.jpg"
       }
     ],
     "popular": [
@@ -1135,31 +1135,31 @@ const MENU = [
     "groups": [
       {
         "title": "Lamelové rošty pevné (nepolohovací)",
-        "image": "/_blob/caad26ab5789e17cd9a815e694427300",
+        "image": "_blob/caad26ab5789e17cd9a815e694427300.webp",
         "href": "Kategorie_Rosty.dc.html#s=0",
         "items": []
       },
       {
         "title": "Lamelové rošty polohovací (manuálně)",
-        "image": "/_blob/c4327c896c3672f1649ca99f1ecbface",
+        "image": "_blob/c4327c896c3672f1649ca99f1ecbface.webp",
         "href": "Kategorie_Rosty.dc.html#s=1",
         "items": []
       },
       {
         "title": "Lamelové rošty polohovací (elektricky)",
-        "image": "/_blob/a40fed94e5cc5f510cd8b00069494c25",
+        "image": "_blob/a40fed94e5cc5f510cd8b00069494c25.webp",
         "href": "Kategorie_Rosty.dc.html#s=2",
         "items": []
       },
       {
         "title": "Lamelové rošty výklopné (pro úložný prostor)",
-        "image": "/_blob/ae20c1cf530a2d75d099855576fc8afb",
+        "image": "_blob/ae20c1cf530a2d75d099855576fc8afb.webp",
         "href": "Kategorie_Rosty.dc.html#s=3",
         "items": []
       },
       {
         "title": "Laťkové rošty",
-        "image": "/_blob/148aa05c1d8a1cefe0b02ab8da11bd39",
+        "image": "_blob/148aa05c1d8a1cefe0b02ab8da11bd39.webp",
         "href": "Kategorie_Rosty.dc.html#s=4",
         "items": []
       }
@@ -1177,19 +1177,19 @@ const MENU = [
     "groups": [
       {
         "title": "Postel + rošt + matrace",
-        "image": "/_blob/e181d2d2331563a8f08a99e8cf1cf922",
+        "image": "_blob/e181d2d2331563a8f08a99e8cf1cf922.webp",
         "href": "Kategorie_Komplety.dc.html#s=0",
         "items": []
       },
       {
         "title": "Postel s úložným prostorem + rošt + matrace",
-        "image": "/_blob/cd65ef2d3ec37b4c44ea9c75fb27e464",
+        "image": "_blob/cd65ef2d3ec37b4c44ea9c75fb27e464.webp",
         "href": "Kategorie_Komplety.dc.html#s=1",
         "items": []
       },
       {
         "title": "Set ložnice",
-        "image": "/_blob/7a6c0d5d8c766981b00a382d2267e2e9",
+        "image": "_blob/7a6c0d5d8c766981b00a382d2267e2e9.webp",
         "href": "Kategorie_Komplety.dc.html#s=2",
         "items": []
       }
@@ -1199,14 +1199,14 @@ const MENU = [
         "label": "Black Friday — nakupte se slevami až 60 %",
         "sub": "Jen do 30. listopadu, na vybrané matrace a komplety",
         "href": "#akce",
-        "image": "/_blob/edd56eee566f1d974d13fb31f14a8118",
+        "image": "_blob/edd56eee566f1d974d13fb31f14a8118.webp",
         "imagePos": "30% 30%"
       },
       {
         "label": "Cenově zvýhodněné komplety se slevou až 30 %",
         "sub": "Postel, rošt a matrace v jedné objednávce",
         "href": "#komplety",
-        "image": "/_blob/8b63107c3b3df97b4c67e750ce6b91cd",
+        "image": "_blob/8b63107c3b3df97b4c67e750ce6b91cd.webp",
         "imagePos": "center 40%"
       }
     ],
@@ -1214,12 +1214,12 @@ const MENU = [
       {
         "title": "Jak správně vybrat matraci a na co si dát pozor?",
         "href": "Clanek.dc.html",
-        "image": "/_blob/a4bdfc3ddeb575fee8768a3cf2019524"
+        "image": "_blob/a4bdfc3ddeb575fee8768a3cf2019524.webp"
       },
       {
         "title": "Postel z masivu, nebo čalouněná? Srovnání po pěti letech",
         "href": "Clanek.dc.html",
-        "image": "/_blob/50fbc8ecc5ccb479e539edd24a0148e8"
+        "image": "_blob/50fbc8ecc5ccb479e539edd24a0148e8.jpg"
       }
     ],
     "popular": [
@@ -1234,7 +1234,7 @@ const MENU = [
     "groups": [
       {
         "title": "Komody",
-        "image": "/_blob/80504e0c5537776dfec28cc850910a33",
+        "image": "_blob/80504e0c5537776dfec28cc850910a33.webp",
         "href": "Kategorie_Nabytek.dc.html#s=0",
         "items": [
           {
@@ -1257,7 +1257,7 @@ const MENU = [
       },
       {
         "title": "Skříně",
-        "image": "/_blob/311377c54f3cf43b42a16264b6070c4e",
+        "image": "_blob/311377c54f3cf43b42a16264b6070c4e.webp",
         "href": "Kategorie_Nabytek.dc.html#s=1",
         "items": [
           {
@@ -1276,7 +1276,7 @@ const MENU = [
       },
       {
         "title": "Dětský nábytek",
-        "image": "/_blob/247d462892685cbb4f5bc53bcd685cf0",
+        "image": "_blob/247d462892685cbb4f5bc53bcd685cf0.webp",
         "href": "Kategorie_Nabytek.dc.html#s=2",
         "items": [
           {
@@ -1303,7 +1303,7 @@ const MENU = [
       },
       {
         "title": "Noční stolky",
-        "image": "/_blob/4b2059e6dadbe71156efdb3f588066fc",
+        "image": "_blob/4b2059e6dadbe71156efdb3f588066fc.webp",
         "href": "Kategorie_Nabytek.dc.html#s=3",
         "items": [
           {
@@ -1318,19 +1318,19 @@ const MENU = [
       },
       {
         "title": "Zrcadla",
-        "image": "/_blob/c06d0fd482a030df86a79ec2deabcab6",
+        "image": "_blob/c06d0fd482a030df86a79ec2deabcab6.webp",
         "href": "Kategorie_Nabytek.dc.html#s=4",
         "items": []
       },
       {
         "title": "Hodiny",
-        "image": "/_blob/76604460b93b17e6abe7cac9a311cc04",
+        "image": "_blob/76604460b93b17e6abe7cac9a311cc04.webp",
         "href": "Kategorie_Nabytek.dc.html#s=5",
         "items": []
       },
       {
         "title": "Police",
-        "image": "/_blob/e7b7e510b4570b10bfe4f7781fc86381",
+        "image": "_blob/e7b7e510b4570b10bfe4f7781fc86381.webp",
         "href": "Kategorie_Nabytek.dc.html#s=6",
         "items": []
       }
@@ -1347,7 +1347,7 @@ const MENU = [
     "groups": [
       {
         "title": "Polštáře",
-        "image": "/_blob/4a1cc5a91262d28ed593605cf4ab8f26",
+        "image": "_blob/4a1cc5a91262d28ed593605cf4ab8f26.webp",
         "href": "Kategorie_Polstare.dc.html#s=0",
         "items": [
           {
@@ -1382,7 +1382,7 @@ const MENU = [
       },
       {
         "title": "Přikrývky",
-        "image": "/_blob/e8917fef009de5a2b6aa618b6eab274f",
+        "image": "_blob/e8917fef009de5a2b6aa618b6eab274f.webp",
         "href": "Kategorie_Polstare.dc.html#s=1",
         "items": [
           {
@@ -1397,7 +1397,7 @@ const MENU = [
       },
       {
         "title": "Sety",
-        "image": "/_blob/9135676a05058510e7559225139ecd5d",
+        "image": "_blob/9135676a05058510e7559225139ecd5d.webp",
         "href": "Kategorie_Polstare.dc.html#s=2",
         "items": [
           {
@@ -1416,14 +1416,14 @@ const MENU = [
         "label": "Black Friday — nakupte se slevami až 60 %",
         "sub": "Jen do 30. listopadu, na vybrané matrace a komplety",
         "href": "#akce",
-        "image": "/_blob/edd56eee566f1d974d13fb31f14a8118",
+        "image": "_blob/edd56eee566f1d974d13fb31f14a8118.webp",
         "imagePos": "30% 30%"
       },
       {
         "label": "Cenově zvýhodněné komplety se slevou až 30 %",
         "sub": "Postel, rošt a matrace v jedné objednávce",
         "href": "#komplety",
-        "image": "/_blob/8b63107c3b3df97b4c67e750ce6b91cd",
+        "image": "_blob/8b63107c3b3df97b4c67e750ce6b91cd.webp",
         "imagePos": "center 40%"
       }
     ],
@@ -1431,12 +1431,12 @@ const MENU = [
       {
         "title": "Jak správně vybrat matraci a na co si dát pozor?",
         "href": "Clanek.dc.html",
-        "image": "/_blob/a4bdfc3ddeb575fee8768a3cf2019524"
+        "image": "_blob/a4bdfc3ddeb575fee8768a3cf2019524.webp"
       },
       {
         "title": "Postel z masivu, nebo čalouněná? Srovnání po pěti letech",
         "href": "Clanek.dc.html",
-        "image": "/_blob/50fbc8ecc5ccb479e539edd24a0148e8"
+        "image": "_blob/50fbc8ecc5ccb479e539edd24a0148e8.jpg"
       }
     ],
     "popular": [
@@ -1451,7 +1451,7 @@ const MENU = [
     "groups": [
       {
         "title": "one COLOR jednobarevné povlečení",
-        "image": "/_blob/56aa44a9fe077e9955c51f753cc8f0e7",
+        "image": "_blob/56aa44a9fe077e9955c51f753cc8f0e7.webp",
         "href": "Kategorie_Luzkoviny.dc.html#s=0",
         "items": [
           {
@@ -1474,7 +1474,7 @@ const MENU = [
       },
       {
         "title": "Povlečení se vzorem",
-        "image": "/_blob/e6e0d367624dc2976eb51684c3aafedb",
+        "image": "_blob/e6e0d367624dc2976eb51684c3aafedb.webp",
         "href": "Kategorie_Luzkoviny.dc.html#s=1",
         "items": [
           {
@@ -1505,7 +1505,7 @@ const MENU = [
       },
       {
         "title": "Prostěradla a chrániče matrací",
-        "image": "/_blob/8a390213d7a03de388b2726d4453c347",
+        "image": "_blob/8a390213d7a03de388b2726d4453c347.webp",
         "href": "Kategorie_Luzkoviny.dc.html#s=2",
         "items": [
           {
@@ -1524,7 +1524,7 @@ const MENU = [
       },
       {
         "title": "Potahy na matrace",
-        "image": "/_blob/059ff28eafa03eeeaac840a064caef09",
+        "image": "_blob/059ff28eafa03eeeaac840a064caef09.webp",
         "href": "Kategorie_Luzkoviny.dc.html#s=3",
         "items": []
       }

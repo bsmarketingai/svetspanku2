@@ -1160,6 +1160,16 @@
       "w": 1440,
       "x": 0,
       "y": 0
+    },
+    "Rozcestnik.dc.html": {
+      "expand": "fill",
+      "h": 4200,
+      "is_interactive": true,
+      "page": "rozcestnik",
+      "title": "Rozcestník",
+      "w": 1440,
+      "x": 0,
+      "y": 0
     }
   },
   "createdOnFiles": {
@@ -1246,6 +1256,7 @@
     }
   },
   "order": [
+    "Rozcestnik.dc.html",
     "Detail_Postel_3.0.dc.html",
     "Detail_Komplet_3.0.dc.html",
     "Detail_Matrace_3.0.dc.html",
@@ -1371,6 +1382,10 @@
     "Porovnani.dc.html"
   ],
   "pages": [
+    {
+      "id": "rozcestnik",
+      "name": "Rozcestník"
+    },
     {
       "id": "homepage",
       "name": "Homepage a kategorie"

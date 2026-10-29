@@ -418,7 +418,7 @@ a:hover{color:var(--ss-hover-text,#21507B);}
             <section aria-labelledby="ss-k2-doprava">
               <h2 id="ss-k2-doprava" style="margin:0;font-size:{{ h2Size }};line-height:1.2">Způsob dopravy</h2>
               <dc-import name="SkupinaVoleb" group="doprava" recommended="{{ true }}" title="Naše vlastní doprava Svět spánku" description="Jistota perfektního stavu, doručení na domluvený termín a čas" date="21.–22. 10." dateNote="u vás" price="od 650 Kč" icon="truck" info="{{ ownInfo }}" options="{{ ownOptions }}" selectedIndex="{{ ownSel }}" open="{{ ownOpen }}" onToggle="{{ onOwnToggle }}" onPick="{{ onOwnPick }}" compact="{{ compact }}" hint-size="100%,320px"></dc-import>
-              <dc-import name="VolbaRadio" group="doprava" title="Doručení na adresu PPL" date="21.–22. 10." dateNote="u vás" price="1 000 Kč" logo="/_blob/716b3b5040a1b6246fb9f795e3e50ffe" info="{{ pplInfo }}" checked="{{ pplChecked }}" onSelect="{{ onPpl }}" divider="{{ true }}" compact="{{ compact }}" hint-size="100%,96px"></dc-import>
+              <dc-import name="VolbaRadio" group="doprava" title="Doručení na adresu PPL" date="21.–22. 10." dateNote="u vás" price="1 000 Kč" logo="_blob/716b3b5040a1b6246fb9f795e3e50ffe.svg" info="{{ pplInfo }}" checked="{{ pplChecked }}" onSelect="{{ onPpl }}" divider="{{ true }}" compact="{{ compact }}" hint-size="100%,96px"></dc-import>
               <dc-import name="SkupinaVoleb" group="doprava" title="{{ storeTitle }}" date="21.–22. 10." dateNote="na prodejně" price="Zdarma" icon="building-store" options="{{ storeOptions }}" selectedIndex="{{ storeSel }}" open="{{ storeOpen }}" onToggle="{{ onStoreToggle }}" onPick="{{ onStorePick }}" compact="{{ compact }}" hint-size="100%,96px"></dc-import>
             </section>
 
@@ -457,7 +457,7 @@ const PRODEJNY = [
     address: 'Heršpická 11f, 639 00 Brno-střed',
     hours: 'Po–Pá 9:00–18:00 · So 10:00–18:00',
     phone: '+420 543 212 855',
-    photo: '/_blob/b4cf44c6b3eb61bbab476995ff83b775',
+    photo: '_blob/b4cf44c6b3eb61bbab476995ff83b775.jpg',
     href: 'https://showroomy.svetspanku.cz/prodejna/brno',
     lat: 49.174158, lng: 16.604449
   },
@@ -467,7 +467,7 @@ const PRODEJNY = [
     address: 'Galerie Butovice, Radlická 117, Praha 5',
     hours: 'Po–Ne 9:00–20:00',
     phone: '+420 222 261 497',
-    photo: '/_blob/e8f10f3844217f32afa71a3df6911c3d',
+    photo: '_blob/e8f10f3844217f32afa71a3df6911c3d.jpg',
     href: 'https://showroomy.svetspanku.cz/prodejna/butovice',
     lat: 50.047164, lng: 14.354621
   },
@@ -477,7 +477,7 @@ const PRODEJNY = [
     address: 'Kutnohorská 532, Praha 10 – Dolní Měcholupy',
     hours: 'Po–Ne 9:00–20:00',
     phone: '+420 272 656 213',
-    photo: '/_blob/41a746eb8527715e36eabc3ff28d6861',
+    photo: '_blob/41a746eb8527715e36eabc3ff28d6861.jpg',
     href: 'https://showroomy.svetspanku.cz/prodejna/sterboholy',
     lat: 50.066794, lng: 14.5492
   },
@@ -487,7 +487,7 @@ const PRODEJNY = [
     address: 'Varenská 50, 702 00 Ostrava',
     hours: 'Po–Ne 9:00–20:00',
     phone: '+420 596 633 911',
-    photo: '/_blob/7a3963f203b8e24fc1abe276d2bfae86',
+    photo: '_blob/7a3963f203b8e24fc1abe276d2bfae86.jpg',
     href: 'https://showroomy.svetspanku.cz/prodejna/ostrava',
     lat: 49.8335365, lng: 18.2680417
   },
@@ -497,7 +497,7 @@ const PRODEJNY = [
     address: 'OC Haná, Kafkova 15, 783 01 Olomouc-Slavonín',
     hours: 'Po–Pá 9:00–20:00 · So–Ne 9:00–19:00',
     phone: '+420 581 277 810',
-    photo: '/_blob/bd63109e110c61ed4bbefa646330bca5',
+    photo: '_blob/bd63109e110c61ed4bbefa646330bca5.jpg',
     href: 'https://showroomy.svetspanku.cz/prodejna/olomouc',
     lat: 49.572849, lng: 17.223726
   }
@@ -521,11 +521,11 @@ class Component extends DCLogic {
     { title: 'Doručení ', titleBold: 's vynáškou včetně odborné montáže', titleAfter: ' našimi techniky', fee: 2050, short: 's vynáškou a montáží' }
   ];
   static PAY = [
-    { id: 'card', title: 'Platba kartou online', logo: '/_blob/d2e02f48c7c21cf75919a5f378eaa600', fee: 0, info: ['Visa, Mastercard i Maestro', 'Platbu zpracuje zabezpečená brána Comgate', 'Objednávku začneme vyřizovat hned po zaplacení'] },
+    { id: 'card', title: 'Platba kartou online', logo: '_blob/d2e02f48c7c21cf75919a5f378eaa600.svg', fee: 0, info: ['Visa, Mastercard i Maestro', 'Platbu zpracuje zabezpečená brána Comgate', 'Objednávku začneme vyřizovat hned po zaplacení'] },
     { id: 'instant', title: 'Okamžitý bankovní převod', icon: 'building-bank', fee: 0, info: ['Zaplatíte přes internetové bankovnictví své banky', 'Peníze dorazí hned, objednávku vyřídíme bez čekání'] },
     { id: 'qr', title: 'QR platba / běžný bankovní převod', icon: 'qrcode', fee: 0, info: ['Platební údaje a QR kód vám pošleme e-mailem', 'Zboží expedujeme po připsání platby na účet'] },
-    { id: 'gpay', title: 'Google Pay', logo: '/_blob/cd147266568c825a4bd1307aa053c17e', fee: 0 },
-    { id: 'klarna', title: 'Klarna', logo: '/_blob/1ae9dd29343c0ca26d205edcb51ff6c6', logoBg: '#FFA8CD', description: 'Zaplaťte ve 3 splátkách bez úroku', fee: 0 },
+    { id: 'gpay', title: 'Google Pay', logo: '_blob/cd147266568c825a4bd1307aa053c17e.svg', fee: 0 },
+    { id: 'klarna', title: 'Klarna', logo: '_blob/1ae9dd29343c0ca26d205edcb51ff6c6.svg', logoBg: '#FFA8CD', description: 'Zaplaťte ve 3 splátkách bez úroku', fee: 0 },
     { id: 'cash', title: 'Hotově', icon: 'cash', fee: 0, allow: ['own', 'store'] },
     { id: 'cod', title: 'Dobírkou', icon: 'package', fee: 79, allow: ['ppl'], info: ['Zaplatíte řidiči PPL při převzetí', 'Hotově i platební kartou'] }
   ];
@@ -556,8 +556,8 @@ class Component extends DCLogic {
     const d = this.state.delivery, k = this.kind(d);
     const stores = this.state.stores;
     const goods = [
-      { title: 'Manželská postel SANTE 45 dvoulůžko', variant: '200 × 180 cm · olej Teak · jádrový buk', qty: 2, unit: 19990, img: '/_blob/6721a0d378d224249b73f0d946656a32' },
-      { title: 'Matrace Spring Variant 22 cm', variant: '180 × 200 cm · tuhost H3', qty: 1, unit: 7590, img: '/_blob/66ef2119f31d8262ba38ce4bea618a8e' }
+      { title: 'Manželská postel SANTE 45 dvoulůžko', variant: '200 × 180 cm · olej Teak · jádrový buk', qty: 2, unit: 19990, img: '_blob/6721a0d378d224249b73f0d946656a32.jpg' },
+      { title: 'Matrace Spring Variant 22 cm', variant: '180 × 200 cm · tuhost H3', qty: 1, unit: 7590, img: '_blob/66ef2119f31d8262ba38ce4bea618a8e.webp' }
     ];
     const goodsSum = goods.reduce((s, g) => s + g.unit * g.qty, 0);
     let delName, delFee;

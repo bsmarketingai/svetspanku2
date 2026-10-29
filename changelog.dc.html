@@ -449,6 +449,11 @@ a:hover{color:var(--ss-link-hover,#21507B);}
 class Component extends DCLogic {
   static DAYS = [
     { date: '29. 10. 2026', entries: [
+      { title: 'Nová stránka Rozcestník',
+        before: 'Stránky a překryvné prvky bylo potřeba hledat po plátně.',
+        after: 'Nová stránka Rozcestník (samostatná záložka plátna): 53 položek v 7 skupinách — homepage a kategorie, detaily, košík a objednávka, ostatní stránky, okna/panely/vyskakovací prvky (16 položek: kde a jak je otevřít + odkaz na samostatný náhled), prezentační přepínače a dokumentace. U každé položky odškrtnutí „prohlédnuto“ s ukazatelem postupu (pamatuje si prohlížeč diváka), tlačítko Začít znovu.',
+        why: 'Požadavek klienta — projít prototyp postupně a nic nepřehlédnout.',
+        files: 'Rozcestnik (nová), canvas.json' },
       { title: 'Děkujeme: newsletter na bílém pozadí',
         before: 'Newsletter měl všude krémový podklad #FAF5EF.',
         after: 'Komponenta Newsletter má prop bg (cream výchozí | white); Děkujeme používá white — grafika dole zůstává (je průhledná, sedí na bílé). Ostatní stránky beze změny.',

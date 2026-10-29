@@ -8,7 +8,7 @@ export const MENU = [
     "groups": [
       {
         "title": "Postele podle rozměrů",
-        "image": "/_blob/9459bc77080c613fe49b26658905c0d9",
+        "image": "_blob/9459bc77080c613fe49b26658905c0d9.webp",
         "href": "Kategorie_Postele.dc.html#s=0",
           "items": [
           {
@@ -55,7 +55,7 @@ export const MENU = [
       },
       {
         "title": "Manželské postele z masivu",
-        "image": "/_blob/cead5c69b22e38051d5480ee3e14c348",
+        "image": "_blob/cead5c69b22e38051d5480ee3e14c348.webp",
         "href": "Kategorie_Postele.dc.html#s=1",
         "items": [
           {
@@ -94,7 +94,7 @@ export const MENU = [
       },
       {
         "title": "Čalouněné postele",
-        "image": "/_blob/83b97877b4eeaa401d7d46a9fa01dd17",
+        "image": "_blob/83b97877b4eeaa401d7d46a9fa01dd17.webp",
         "href": "Kategorie_Postele.dc.html#s=2",
         "items": [
           {
@@ -117,7 +117,7 @@ export const MENU = [
       },
       {
         "title": "Kombinované postele dřevo a čalounění",
-        "image": "/_blob/2b07a10ad8eb024c6ef53104343b301c",
+        "image": "_blob/2b07a10ad8eb024c6ef53104343b301c.webp",
         "href": "Kategorie_Postele.dc.html#s=3",
         "items": [
           {
@@ -132,7 +132,7 @@ export const MENU = [
       },
       {
         "title": "Postele s úložným prostorem",
-        "image": "/_blob/3c98d27c417e1d9ccb47b84ffe13df76",
+        "image": "_blob/3c98d27c417e1d9ccb47b84ffe13df76.webp",
         "href": "Kategorie_Postele.dc.html#s=4",
         "items": [
           {
@@ -151,7 +151,7 @@ export const MENU = [
       },
       {
         "title": "Postele s nočními stolky",
-        "image": "/_blob/bf9ee623a3c7f6bdd65949a31b2b28ab",
+        "image": "_blob/bf9ee623a3c7f6bdd65949a31b2b28ab.webp",
         "href": "Kategorie_Postele.dc.html#s=5",
         "items": [
           {
@@ -162,7 +162,7 @@ export const MENU = [
       },
       {
         "title": "MULTI – modulární postele",
-        "image": "/_blob/0e8664e98d4e03179bcd7446fb1b686c",
+        "image": "_blob/0e8664e98d4e03179bcd7446fb1b686c.webp",
         "href": "Kategorie_Postele.dc.html#s=6",
         "items": [
           {
@@ -181,7 +181,7 @@ export const MENU = [
       },
       {
         "title": "Kontinentální a boxspring postele",
-        "image": "/_blob/c2272a0e9ca10090147050821599f427",
+        "image": "_blob/c2272a0e9ca10090147050821599f427.webp",
         "href": "Kategorie_Postele.dc.html#s=7",
         "items": [
           {
@@ -196,7 +196,7 @@ export const MENU = [
       },
       {
         "title": "Vysoké postele",
-        "image": "/_blob/6bd4fa31ef2d1d29da5b49da70514a96",
+        "image": "_blob/6bd4fa31ef2d1d29da5b49da70514a96.webp",
         "href": "Kategorie_Postele.dc.html#s=8",
         "items": [
           {
@@ -215,13 +215,13 @@ export const MENU = [
       },
       {
         "title": "Patrové postele",
-        "image": "/_blob/796b776bdf1d4a9bf31b094689547727",
+        "image": "_blob/796b776bdf1d4a9bf31b094689547727.webp",
         "href": "Kategorie_Postele.dc.html#s=9",
         "items": []
       },
       {
         "title": "Jednolůžkové postele",
-        "image": "/_blob/cbd39695e60222550587109c72c8c52b",
+        "image": "_blob/cbd39695e60222550587109c72c8c52b.webp",
         "href": "Kategorie_Postele.dc.html#s=10",
         "items": [
           {
@@ -244,7 +244,7 @@ export const MENU = [
       },
       {
         "title": "Dětské postele",
-        "image": "/_blob/372550141951862e0591a3e1d5baab98",
+        "image": "_blob/372550141951862e0591a3e1d5baab98.webp",
         "href": "Kategorie_Postele.dc.html#s=11",
         "items": [
           {
@@ -259,31 +259,31 @@ export const MENU = [
       },
       {
         "title": "Rozkládací postele / pohovky",
-        "image": "/_blob/7248cf07bd3a1e7a83b38dfc5d15d179",
+        "image": "_blob/7248cf07bd3a1e7a83b38dfc5d15d179.webp",
         "href": "Kategorie_Postele.dc.html#s=12",
         "items": []
       },
       {
         "title": "LED osvětlení k posteli",
-        "image": "/_blob/8e840d302ff9d7f742f55c829e285d66",
+        "image": "_blob/8e840d302ff9d7f742f55c829e285d66.webp",
         "href": "Kategorie_Postele.dc.html#s=13",
         "items": []
       },
       {
         "title": "Noční stolky a police",
-        "image": "/_blob/68fdf603437e1500e3757d7ca59801f5",
+        "image": "_blob/68fdf603437e1500e3757d7ca59801f5.webp",
         "href": "Kategorie_Postele.dc.html#s=14",
         "items": []
       },
       {
         "title": "Úložné prostory",
-        "image": "/_blob/706482b09df7c053e95817ed6aee84af",
+        "image": "_blob/706482b09df7c053e95817ed6aee84af.webp",
         "href": "Kategorie_Postele.dc.html#s=15",
         "items": []
       },
       {
         "title": "KOMPLETY / Sety",
-        "image": "/_blob/dfd6a27a2785e850d62aedd773271533",
+        "image": "_blob/dfd6a27a2785e850d62aedd773271533.webp",
         "href": "Kategorie_Postele.dc.html#s=16",
         "items": []
       }
@@ -293,14 +293,14 @@ export const MENU = [
         "label": "Black Friday — nakupte se slevami až 60 %",
         "sub": "Jen do 30. listopadu, na vybrané matrace a komplety",
         "href": "#akce",
-        "image": "/_blob/edd56eee566f1d974d13fb31f14a8118",
+        "image": "_blob/edd56eee566f1d974d13fb31f14a8118.webp",
         "imagePos": "30% 30%"
       },
       {
         "label": "Cenově zvýhodněné komplety se slevou až 30 %",
         "sub": "Postel, rošt a matrace v jedné objednávce",
         "href": "#komplety",
-        "image": "/_blob/8b63107c3b3df97b4c67e750ce6b91cd",
+        "image": "_blob/8b63107c3b3df97b4c67e750ce6b91cd.webp",
         "imagePos": "center 40%"
       }
     ],
@@ -308,12 +308,12 @@ export const MENU = [
       {
         "title": "Jak správně vybrat matraci a na co si dát pozor?",
         "href": "Clanek.dc.html",
-        "image": "/_blob/a4bdfc3ddeb575fee8768a3cf2019524"
+        "image": "_blob/a4bdfc3ddeb575fee8768a3cf2019524.webp"
       },
       {
         "title": "Postel z masivu, nebo čalouněná? Srovnání po pěti letech",
         "href": "Clanek.dc.html",
-        "image": "/_blob/50fbc8ecc5ccb479e539edd24a0148e8"
+        "image": "_blob/50fbc8ecc5ccb479e539edd24a0148e8.jpg"
       }
     ],
     "popular": [
@@ -659,14 +659,14 @@ export const MENU = [
         "label": "Black Friday — nakupte se slevami až 60 %",
         "sub": "Jen do 30. listopadu, na vybrané matrace a komplety",
         "href": "#akce",
-        "image": "/_blob/edd56eee566f1d974d13fb31f14a8118",
+        "image": "_blob/edd56eee566f1d974d13fb31f14a8118.webp",
         "imagePos": "30% 30%"
       },
       {
         "label": "Cenově zvýhodněné komplety se slevou až 30 %",
         "sub": "Postel, rošt a matrace v jedné objednávce",
         "href": "#komplety",
-        "image": "/_blob/8b63107c3b3df97b4c67e750ce6b91cd",
+        "image": "_blob/8b63107c3b3df97b4c67e750ce6b91cd.webp",
         "imagePos": "center 40%"
       }
     ],
@@ -674,12 +674,12 @@ export const MENU = [
       {
         "title": "Jak správně vybrat matraci a na co si dát pozor?",
         "href": "Clanek.dc.html",
-        "image": "/_blob/a4bdfc3ddeb575fee8768a3cf2019524"
+        "image": "_blob/a4bdfc3ddeb575fee8768a3cf2019524.webp"
       },
       {
         "title": "Postel z masivu, nebo čalouněná? Srovnání po pěti letech",
         "href": "Clanek.dc.html",
-        "image": "/_blob/50fbc8ecc5ccb479e539edd24a0148e8"
+        "image": "_blob/50fbc8ecc5ccb479e539edd24a0148e8.jpg"
       }
     ],
     "popular": [
@@ -866,14 +866,14 @@ export const MENU = [
         "label": "Black Friday — nakupte se slevami až 60 %",
         "sub": "Jen do 30. listopadu, na vybrané matrace a komplety",
         "href": "#akce",
-        "image": "/_blob/edd56eee566f1d974d13fb31f14a8118",
+        "image": "_blob/edd56eee566f1d974d13fb31f14a8118.webp",
         "imagePos": "30% 30%"
       },
       {
         "label": "Cenově zvýhodněné komplety se slevou až 30 %",
         "sub": "Postel, rošt a matrace v jedné objednávce",
         "href": "#komplety",
-        "image": "/_blob/8b63107c3b3df97b4c67e750ce6b91cd",
+        "image": "_blob/8b63107c3b3df97b4c67e750ce6b91cd.webp",
         "imagePos": "center 40%"
       }
     ],
@@ -881,12 +881,12 @@ export const MENU = [
       {
         "title": "Jak správně vybrat matraci a na co si dát pozor?",
         "href": "Clanek.dc.html",
-        "image": "/_blob/a4bdfc3ddeb575fee8768a3cf2019524"
+        "image": "_blob/a4bdfc3ddeb575fee8768a3cf2019524.webp"
       },
       {
         "title": "Postel z masivu, nebo čalouněná? Srovnání po pěti letech",
         "href": "Clanek.dc.html",
-        "image": "/_blob/50fbc8ecc5ccb479e539edd24a0148e8"
+        "image": "_blob/50fbc8ecc5ccb479e539edd24a0148e8.jpg"
       }
     ],
     "popular": [
