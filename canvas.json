@@ -1,1423 +1,1485 @@
 {
-  "v": 3,
-  "attachments": {},
-  "boards": {
-    "CasovaOsa.dc.html": {
-      "expand": "fill",
-      "h": 520,
-      "is_interactive": true,
-      "page": "komponenty",
-      "title": "CasovaOsa",
-      "w": 1440,
-      "x": 0,
-      "y": 0
-    },
-    "CenovyFiltr.dc.html": {
-      "h": 180,
-      "is_interactive": true,
-      "page": "komponenty",
-      "title": "CenovyFiltr",
-      "w": 320,
-      "x": 1520,
-      "y": 0
-    },
-    "Checkbox.dc.html": {
-      "h": 80,
-      "is_interactive": true,
-      "page": "komponenty",
-      "title": "Checkbox",
-      "w": 320,
-      "x": 1920,
-      "y": 0
-    },
-    "Chip.dc.html": {
-      "h": 100,
-      "is_interactive": true,
-      "page": "komponenty",
-      "title": "Chip",
-      "w": 320,
-      "x": 2320,
-      "y": 0
-    },
-    "Clanek.dc.html": {
-      "expand": "fill",
-      "h": 3134,
-      "is_interactive": true,
-      "page": "ostatni",
-      "title": "Clanek",
-      "w": 1440,
-      "x": 0,
-      "y": 2531
-    },
-    "Dekujeme.dc.html": {
-      "expand": "fill",
-      "h": 3596,
-      "is_interactive": true,
-      "page": "kosik",
-      "title": "Dekujeme",
-      "w": 1440,
-      "x": 0,
-      "y": 2120
-    },
-    "DesignSystem.dc.html": {
-      "expand": "fill",
-      "h": 900,
-      "is_interactive": true,
-      "page": "dokumentace",
-      "title": "DesignSystem",
-      "w": 1440,
-      "x": 0,
-      "y": 0
-    },
-    "Detail_Komplet_3.0.dc.html": {
-      "expand": "fill",
-      "h": 1000,
-      "is_interactive": true,
-      "page": "detaily",
-      "title": "Detail_Komplet 3.0",
-      "w": 1440,
-      "x": 1520,
-      "y": 0
-    },
-    "Detail_Matrace_3.0.dc.html": {
-      "expand": "fill",
-      "h": 1000,
-      "is_interactive": true,
-      "page": "detaily",
-      "title": "Detail_Matrace 3.0",
-      "w": 1440,
-      "x": 3040,
-      "y": 0
-    },
-    "Detail_Multi_3.0.dc.html": {
-      "expand": "fill",
-      "h": 1000,
-      "is_interactive": true,
-      "page": "detaily",
-      "title": "Detail_Multi 3.0",
-      "w": 1440,
-      "x": 4560,
-      "y": 0
-    },
-    "Detail_Postel_3.0.dc.html": {
-      "expand": "fill",
-      "h": 1000,
-      "is_interactive": true,
-      "page": "detaily",
-      "title": "Detail_Postel 3.0",
-      "w": 1440,
-      "x": 0,
-      "y": 0
-    },
-    "Detail_Produkt_Levita.dc.html": {
-      "expand": "fill",
-      "h": 1000,
-      "is_interactive": true,
-      "page": "detaily",
-      "title": "Detail_Produkt Levita",
-      "w": 1440,
-      "x": 0,
-      "y": 1120
-    },
-    "DopravaZdarma.dc.html": {
-      "h": 160,
-      "is_interactive": true,
-      "page": "komponenty",
-      "title": "DopravaZdarma",
-      "w": 440,
-      "x": 2720,
-      "y": 0
-    },
-    "Drobeckova.dc.html": {
-      "h": 60,
-      "is_interactive": true,
-      "page": "komponenty",
-      "title": "Drobeckova",
-      "w": 720,
-      "x": 3240,
-      "y": 0
-    },
-    "Faq.dc.html": {
-      "h": 400,
-      "is_interactive": true,
-      "page": "komponenty",
-      "title": "Faq",
-      "w": 900,
-      "x": 0,
-      "y": 640
-    },
-    "FiltrDrawer.dc.html": {
-      "h": 720,
-      "is_interactive": true,
-      "page": "komponenty",
-      "title": "FiltrDrawer",
-      "w": 480,
-      "x": 2160,
-      "y": 640
-    },
-    "FiltrDrawer_v1.dc.html": {
-      "h": 720,
-      "is_interactive": true,
-      "page": "stare",
-      "title": "FiltrDrawer_v1 (před B1.4)",
-      "w": 480,
-      "x": 560,
-      "y": 3300
-    },
-    "FiltrObsah.dc.html": {
-      "h": 900,
-      "is_interactive": true,
-      "page": "komponenty",
-      "title": "FiltrObsah",
-      "w": 412,
-      "x": 0,
-      "y": 4720
-    },
-    "FiltrPanel.dc.html": {
-      "h": 720,
-      "is_interactive": true,
-      "page": "komponenty",
-      "title": "FiltrPanel",
-      "w": 320,
-      "x": 2720,
-      "y": 640
-    },
-    "FiltracniLista.dc.html": {
-      "h": 140,
-      "is_interactive": true,
-      "page": "komponenty",
-      "title": "FiltracniLista",
-      "w": 1100,
-      "x": 980,
-      "y": 640
-    },
-    "Galerie.dc.html": {
-      "h": 420,
-      "is_interactive": true,
-      "page": "komponenty",
-      "title": "Galerie",
-      "w": 640,
-      "x": 3120,
-      "y": 640
-    },
-    "Hlavicka.dc.html": {
-      "expand": "fill",
-      "h": 320,
-      "is_interactive": true,
-      "page": "komponenty",
-      "title": "Hlavicka",
-      "w": 1440,
-      "x": 3840,
-      "y": 640
-    },
-    "HlavickaPokladna.dc.html": {
-      "expand": "fill",
-      "h": 160,
-      "is_interactive": true,
-      "page": "komponenty",
-      "title": "HlavickaPokladna",
-      "w": 1280,
-      "x": 1820,
-      "y": 2140
-    },
-    "Hodnoceni.dc.html": {
-      "h": 64,
-      "is_interactive": true,
-      "page": "komponenty",
-      "title": "Hodnoceni",
-      "w": 320,
-      "x": 0,
-      "y": 1480
-    },
-    "Ikony.dc.html": {
-      "expand": "fill",
-      "h": 720,
-      "is_interactive": true,
-      "page": "dokumentace",
-      "title": "Ikony",
-      "w": 1440,
-      "x": 3040,
-      "y": 0
-    },
-    "InfoObsah.dc.html": {
-      "h": 160,
-      "is_interactive": true,
-      "page": "komponenty",
-      "title": "InfoObsah",
-      "w": 288,
-      "x": 492,
-      "y": 5720
-    },
-    "InfoPopover.dc.html": {
-      "h": 260,
-      "is_interactive": true,
-      "page": "komponenty",
-      "title": "InfoPopover",
-      "w": 400,
-      "x": 400,
-      "y": 1480
-    },
-    "InfoPopover_v1.dc.html": {
-      "h": 260,
-      "is_interactive": true,
-      "page": "stare",
-      "title": "InfoPopover_v1 (před B1.6)",
-      "w": 400,
-      "x": 0,
-      "y": 4120
-    },
-    "Input.dc.html": {
-      "h": 140,
-      "is_interactive": true,
-      "page": "komponenty",
-      "title": "Input",
-      "w": 360,
-      "x": 880,
-      "y": 1480
-    },
-    "Karta_Matrace.dc.html": {
-      "expand": "fill",
-      "h": 1000,
-      "is_interactive": true,
-      "page": "detaily",
-      "title": "Karta Matrace",
-      "w": 1440,
-      "x": 1520,
-      "y": 1120
-    },
-    "KaruselNav.dc.html": {
-      "h": 120,
-      "is_interactive": true,
-      "page": "komponenty",
-      "title": "KaruselNav",
-      "w": 240,
-      "x": 860,
-      "y": 5980
-    },
-    "KategorickaDlazdice.dc.html": {
-      "h": 300,
-      "is_interactive": true,
-      "page": "komponenty",
-      "title": "KategorickaDlazdice",
-      "w": 300,
-      "x": 1320,
-      "y": 1480
-    },
-    "Kategorie.dc.html": {
-      "expand": "fill",
-      "h": 6195,
-      "is_interactive": true,
-      "page": "homepage",
-      "title": "Kategorie",
-      "w": 1440,
-      "x": 1520,
-      "y": 0
-    },
-    "Kategorie_Komplety.dc.html": {
-      "expand": "fill",
-      "h": 5154,
-      "is_interactive": true,
-      "page": "homepage",
-      "title": "Kategorie Komplety",
-      "w": 1440,
-      "x": 7668,
-      "y": 0
-    },
-    "Kategorie_Luzkoviny.dc.html": {
-      "expand": "fill",
-      "h": 5254,
-      "is_interactive": true,
-      "page": "homepage",
-      "title": "Kategorie Luzkoviny",
-      "w": 1440,
-      "x": 12393,
-      "y": 0
-    },
-    "Kategorie_Matrace.dc.html": {
-      "expand": "fill",
-      "h": 6568,
-      "is_interactive": true,
-      "page": "homepage",
-      "title": "Kategorie Matrace",
-      "w": 1440,
-      "x": 4560,
-      "y": 0
-    },
-    "Kategorie_Matrace_Tuhost.dc.html": {
-      "expand": "fill",
-      "h": 6568,
-      "is_interactive": true,
-      "page": "homepage",
-      "title": "Kategorie Matrace – podle tuhosti",
-      "w": 1440,
-      "x": 13913,
-      "y": 0
-    },
-    "Kategorie_Nabytek.dc.html": {
-      "expand": "fill",
-      "h": 6683,
-      "is_interactive": true,
-      "page": "homepage",
-      "title": "Kategorie Nabytek",
-      "w": 1440,
-      "x": 9256,
-      "y": 0
-    },
-    "Kategorie_Polstare.dc.html": {
-      "expand": "fill",
-      "h": 5366,
-      "is_interactive": true,
-      "page": "homepage",
-      "title": "Kategorie Polstare",
-      "w": 1440,
-      "x": 10844,
-      "y": 0
-    },
-    "Kategorie_Postele.dc.html": {
-      "expand": "fill",
-      "h": 5962,
-      "is_interactive": true,
-      "page": "homepage",
-      "title": "Kategorie Postele",
-      "w": 1440,
-      "x": 3040,
-      "y": 0
-    },
-    "Kategorie_Rosty.dc.html": {
-      "expand": "fill",
-      "h": 6568,
-      "is_interactive": true,
-      "page": "homepage",
-      "title": "Kategorie Rosty",
-      "w": 1440,
-      "x": 6080,
-      "y": 0
-    },
-    "Kategorie_v1.dc.html": {
-      "expand": "fill",
-      "h": 1200,
-      "is_interactive": true,
-      "page": "stare",
-      "title": "Kategorie v1",
-      "w": 1440,
-      "x": 0,
-      "y": 0
-    },
-    "Komponenty.dc.html": {
-      "expand": "fill",
-      "h": 900,
-      "is_interactive": true,
-      "page": "dokumentace",
-      "title": "Komponenty",
-      "w": 1440,
-      "x": 1520,
-      "y": 0
-    },
-    "KontaktniLista.dc.html": {
-      "expand": "fill",
-      "h": 140,
-      "is_interactive": true,
-      "page": "komponenty",
-      "title": "KontaktniLista",
-      "w": 1200,
-      "x": 1700,
-      "y": 1480
-    },
-    "Kosik.dc.html": {
-      "h": 80,
-      "is_interactive": true,
-      "page": "komponenty",
-      "title": "Kosik",
-      "w": 220,
-      "x": 2980,
-      "y": 1480
-    },
-    "KosikDrawer.dc.html": {
-      "h": 720,
-      "is_interactive": true,
-      "page": "komponenty",
-      "title": "KosikDrawer",
-      "w": 460,
-      "x": 0,
-      "y": 1900
-    },
-    "KosikKrok1.dc.html": {
-      "expand": "fill",
-      "h": 1400,
-      "is_interactive": true,
-      "page": "kosik",
-      "title": "KosikKrok1",
-      "w": 1440,
-      "x": 0,
-      "y": 0
-    },
-    "KosikKrok2.dc.html": {
-      "expand": "fill",
-      "h": 1600,
-      "is_interactive": true,
-      "page": "kosik",
-      "title": "KosikKrok2",
-      "w": 1440,
-      "x": 1520,
-      "y": 0
-    },
-    "KosikKrok3.dc.html": {
-      "expand": "fill",
-      "h": 1600,
-      "is_interactive": true,
-      "page": "kosik",
-      "title": "KosikKrok3",
-      "w": 1440,
-      "x": 3040,
-      "y": 0
-    },
-    "KosikObsah.dc.html": {
-      "h": 640,
-      "is_interactive": true,
-      "page": "komponenty",
-      "title": "KosikObsah",
-      "w": 412,
-      "x": 0,
-      "y": 3720
-    },
-    "KosikPridanoModal.dc.html": {
-      "expand": "fill",
-      "h": 900,
-      "is_interactive": true,
-      "page": "komponenty",
-      "title": "KosikPridanoModal",
-      "w": 1200,
-      "x": 540,
-      "y": 1900
-    },
-    "KosikPridanoModal_v1.dc.html": {
-      "expand": "fill",
-      "h": 900,
-      "is_interactive": true,
-      "page": "stare",
-      "title": "KosikPridanoModal_v1 (před B1.2)",
-      "w": 1200,
-      "x": 0,
-      "y": 1300
-    },
-    "KosikPridanoObsah.dc.html": {
-      "h": 900,
-      "is_interactive": true,
-      "page": "komponenty",
-      "title": "KosikPridanoObsah",
-      "w": 832,
-      "x": 984,
-      "y": 3720
-    },
-    "KrokyObjednavky.dc.html": {
-      "expand": "fill",
-      "h": 120,
-      "is_interactive": true,
-      "page": "komponenty",
-      "title": "KrokyObjednavky",
-      "w": 1200,
-      "x": 1820,
-      "y": 1900
-    },
-    "Kvantifikator.dc.html": {
-      "h": 80,
-      "is_interactive": true,
-      "page": "komponenty",
-      "title": "Kvantifikator",
-      "w": 220,
-      "x": 3100,
-      "y": 1900
-    },
-    "LogoA-Pulz.dc.html": {
-      "h": 200,
-      "is_interactive": true,
-      "page": "komponenty",
-      "title": "LogoA-Pulz",
-      "w": 720,
-      "x": 3400,
-      "y": 1900
-    },
-    "LogoB-DychaniZnaku.dc.html": {
-      "h": 200,
-      "is_interactive": true,
-      "page": "komponenty",
-      "title": "LogoB-DychaniZnaku",
-      "w": 720,
-      "x": 4200,
-      "y": 1900
-    },
-    "LogoC-DychaniCele.dc.html": {
-      "h": 200,
-      "is_interactive": true,
-      "page": "komponenty",
-      "title": "LogoC-DychaniCele",
-      "w": 720,
-      "x": 0,
-      "y": 2920
-    },
-    "LogoD-Prejezd.dc.html": {
-      "h": 200,
-      "is_interactive": true,
-      "page": "komponenty",
-      "title": "LogoD-Prejezd",
-      "w": 720,
-      "x": 800,
-      "y": 2920
-    },
-    "MegaMenu.dc.html": {
-      "expand": "fill",
-      "h": 460,
-      "is_interactive": true,
-      "page": "komponenty",
-      "title": "MegaMenu",
-      "w": 1440,
-      "x": 1600,
-      "y": 2920
-    },
-    "MegaMenu_v1.dc.html": {
-      "expand": "fill",
-      "h": 420,
-      "is_interactive": true,
-      "page": "stare",
-      "title": "MegaMenu v1",
-      "w": 1280,
-      "x": 1520,
-      "y": 0
-    },
-    "MnozstevniSlevy.dc.html": {
-      "h": 300,
-      "is_interactive": true,
-      "page": "komponenty",
-      "title": "MnozstevniSlevy",
-      "w": 520,
-      "x": 3120,
-      "y": 2920
-    },
-    "MobilniMenu.dc.html": {
-      "h": 700,
-      "is_interactive": true,
-      "page": "komponenty",
-      "title": "MobilniMenu",
-      "w": 380,
-      "x": 3720,
-      "y": 2920
-    },
-    "MobilniMenuObsah.dc.html": {
-      "h": 700,
-      "is_interactive": true,
-      "page": "komponenty",
-      "title": "MobilniMenuObsah",
-      "w": 412,
-      "x": 492,
-      "y": 3720
-    },
-    "NakupniBox.dc.html": {
-      "h": 480,
-      "is_interactive": true,
-      "page": "komponenty2",
-      "title": "NakupniBox",
-      "w": 420,
-      "x": 0,
-      "y": 0
-    },
-    "Newsletter.dc.html": {
-      "h": 320,
-      "is_interactive": true,
-      "page": "komponenty2",
-      "title": "Newsletter",
-      "w": 720,
-      "x": 500,
-      "y": 0
-    },
-    "ONas.dc.html": {
-      "expand": "fill",
-      "h": 3441,
-      "is_interactive": true,
-      "page": "ostatni",
-      "title": "ONas",
-      "w": 1440,
-      "x": 4560,
-      "y": 0
-    },
-    "Oblibene.dc.html": {
-      "expand": "fill",
-      "h": 1600,
-      "is_interactive": true,
-      "page": "kosik",
-      "title": "Oblibene",
-      "w": 1440,
-      "x": 1520,
-      "y": 2120
-    },
-    "Overlay.dc.html": {
-      "h": 900,
-      "is_interactive": true,
-      "page": "komponenty2",
-      "title": "Overlay",
-      "w": 1440,
-      "x": 0,
-      "y": 5980
-    },
-    "Paginace.dc.html": {
-      "h": 220,
-      "is_interactive": true,
-      "page": "komponenty2",
-      "title": "Paginace",
-      "w": 720,
-      "x": 1300,
-      "y": 0
-    },
-    "ParametryMatrace.dc.html": {
-      "h": 200,
-      "is_interactive": true,
-      "page": "komponenty2",
-      "title": "ParametryMatrace",
-      "w": 320,
-      "x": 2100,
-      "y": 0
-    },
-    "Paticka.dc.html": {
-      "expand": "fill",
-      "h": 760,
-      "is_interactive": true,
-      "page": "komponenty2",
-      "title": "Paticka",
-      "w": 1440,
-      "x": 2500,
-      "y": 0
-    },
-    "Paticka_v1.dc.html": {
-      "expand": "fill",
-      "h": 760,
-      "is_interactive": true,
-      "page": "stare",
-      "title": "Paticka v1",
-      "w": 1440,
-      "x": 2880,
-      "y": 0
-    },
-    "PlatebniUdaje.dc.html": {
-      "h": 360,
-      "is_interactive": true,
-      "page": "komponenty2",
-      "title": "PlatebniUdaje",
-      "w": 880,
-      "x": 4020,
-      "y": 0
-    },
-    "PolozkaKosiku.dc.html": {
-      "h": 160,
-      "is_interactive": true,
-      "page": "komponenty2",
-      "title": "PolozkaKosiku",
-      "w": 1100,
-      "x": 0,
-      "y": 880
-    },
-    "PoradceBox.dc.html": {
-      "h": 520,
-      "is_interactive": true,
-      "page": "komponenty2",
-      "title": "PoradceBox",
-      "w": 340,
-      "x": 1180,
-      "y": 880
-    },
-    "PoradnaModal.dc.html": {
-      "h": 800,
-      "is_interactive": true,
-      "page": "komponenty2",
-      "title": "PoradnaModal",
-      "w": 900,
-      "x": 1600,
-      "y": 880
-    },
-    "PoradnaModal_v1.dc.html": {
-      "h": 800,
-      "is_interactive": true,
-      "page": "stare",
-      "title": "PoradnaModal_v1 (před B1.3)",
-      "w": 900,
-      "x": 980,
-      "y": 2300
-    },
-    "PoradnaObsah.dc.html": {
-      "h": 800,
-      "is_interactive": true,
-      "page": "komponenty2",
-      "title": "PoradnaObsah",
-      "w": 512,
-      "x": 912,
-      "y": 6980
-    },
-    "Porovnani.dc.html": {
-      "expand": "fill",
-      "h": 2324,
-      "is_interactive": true,
-      "page": "kosik",
-      "title": "Porovnani",
-      "w": 1440,
-      "x": 3040,
-      "y": 2120
-    },
-    "PrazdnyKosik.dc.html": {
-      "expand": "fill",
-      "h": 2000,
-      "is_interactive": true,
-      "page": "kosik",
-      "title": "PrazdnyKosik",
-      "w": 1440,
-      "x": 4560,
-      "y": 0
-    },
-    "PrazdnyStav.dc.html": {
-      "h": 360,
-      "is_interactive": true,
-      "page": "komponenty2",
-      "title": "PrazdnyStav",
-      "w": 720,
-      "x": 2580,
-      "y": 880
-    },
-    "PrezentacniLista.dc.html": {
-      "h": 260,
-      "is_interactive": true,
-      "page": "komponenty2",
-      "title": "PrezentacniLista",
-      "w": 520,
-      "x": 3380,
-      "y": 880
-    },
-    "PrihlaseniModal.dc.html": {
-      "h": 620,
-      "is_interactive": true,
-      "page": "komponenty2",
-      "title": "PrihlaseniModal",
-      "w": 420,
-      "x": 3980,
-      "y": 880
-    },
-    "PrihlaseniObsah.dc.html": {
-      "h": 520,
-      "is_interactive": true,
-      "page": "komponenty2",
-      "title": "PrihlaseniObsah",
-      "w": 372,
-      "x": 1520,
-      "y": 5980
-    },
-    "Prodejny.dc.html": {
-      "expand": "fill",
-      "h": 640,
-      "is_interactive": true,
-      "page": "komponenty2",
-      "title": "Prodejny",
-      "w": 1440,
-      "x": 0,
-      "y": 1800
-    },
-    "ProdejnyMenu.dc.html": {
-      "expand": "fill",
-      "h": 520,
-      "is_interactive": true,
-      "page": "komponenty2",
-      "title": "ProdejnyMenu",
-      "w": 1440,
-      "x": 1520,
-      "y": 1800
-    },
-    "ProduktovaKarta.dc.html": {
-      "h": 640,
-      "is_interactive": true,
-      "page": "komponenty2",
-      "title": "ProduktovaKarta",
-      "w": 340,
-      "x": 3040,
-      "y": 1800
-    },
-    "ProduktovaKarta_v1.dc.html": {
-      "h": 520,
-      "is_interactive": true,
-      "page": "stare",
-      "title": "ProduktovaKarta v1",
-      "w": 320,
-      "x": 4400,
-      "y": 0
-    },
-    "PrubehObjednavky.dc.html": {
-      "h": 260,
-      "is_interactive": true,
-      "page": "komponenty2",
-      "title": "PrubehObjednavky",
-      "w": 880,
-      "x": 3460,
-      "y": 1800
-    },
-    "PruvodceBanner.dc.html": {
-      "expand": "fill",
-      "h": 360,
-      "is_interactive": true,
-      "page": "komponenty2",
-      "title": "PruvodceBanner",
-      "w": 1200,
-      "x": 4420,
-      "y": 1800
-    },
-    "PruvodceMatrace.dc.html": {
-      "expand": "fill",
-      "h": 2400,
-      "is_interactive": true,
-      "page": "ostatni",
-      "title": "Průvodce výběrem matrace",
-      "w": 1440,
-      "x": 6080,
-      "y": 0
-    },
-    "Registrace.dc.html": {
-      "expand": "fill",
-      "h": 1862,
-      "is_interactive": true,
-      "page": "ostatni",
-      "title": "Registrace",
-      "w": 1440,
-      "x": 1520,
-      "y": 0
-    },
-    "RegistracePoNakupu.dc.html": {
-      "h": 760,
-      "is_interactive": true,
-      "page": "komponenty2",
-      "title": "RegistracePoNakupu",
-      "w": 960,
-      "x": 5700,
-      "y": 1800
-    },
-    "Select.dc.html": {
-      "h": 320,
-      "is_interactive": true,
-      "page": "komponenty2",
-      "title": "Select",
-      "w": 320,
-      "x": 0,
-      "y": 2680
-    },
-    "ShrnutiObjednavky.dc.html": {
-      "h": 800,
-      "is_interactive": true,
-      "page": "komponenty2",
-      "title": "ShrnutiObjednavky",
-      "w": 420,
-      "x": 400,
-      "y": 2680
-    },
-    "SkupinaVoleb.dc.html": {
-      "h": 360,
-      "is_interactive": true,
-      "page": "komponenty2",
-      "title": "SkupinaVoleb",
-      "w": 720,
-      "x": 900,
-      "y": 2680
-    },
-    "SlevovyKupon.dc.html": {
-      "h": 160,
-      "is_interactive": true,
-      "page": "komponenty2",
-      "title": "SlevovyKupon",
-      "w": 440,
-      "x": 1700,
-      "y": 2680
-    },
-    "SocialniPrihlaseni.dc.html": {
-      "h": 160,
-      "is_interactive": true,
-      "page": "komponenty2",
-      "title": "SocialniPrihlaseni",
-      "w": 680,
-      "x": 2220,
-      "y": 2680
-    },
-    "SouhrnKosiku.dc.html": {
-      "h": 240,
-      "is_interactive": true,
-      "page": "komponenty2",
-      "title": "SouhrnKosiku",
-      "w": 420,
-      "x": 2980,
-      "y": 2680
-    },
-    "SouvisejiciProdukty.dc.html": {
-      "expand": "fill",
-      "h": 560,
-      "is_interactive": true,
-      "page": "komponenty2",
-      "title": "SouvisejiciProdukty",
-      "w": 1200,
-      "x": 0,
-      "y": 3600
-    },
-    "Stitek.dc.html": {
-      "h": 64,
-      "is_interactive": true,
-      "page": "komponenty2",
-      "title": "Stitek",
-      "w": 320,
-      "x": 1280,
-      "y": 3600
-    },
-    "Telefon.dc.html": {
-      "h": 60,
-      "is_interactive": true,
-      "page": "komponenty",
-      "title": "Telefon",
-      "w": 240,
-      "x": 3180,
-      "y": 2140
-    },
-    "Tlacitko.dc.html": {
-      "h": 120,
-      "is_interactive": true,
-      "page": "komponenty2",
-      "title": "Tlacitko",
-      "w": 360,
-      "x": 1680,
-      "y": 3600
-    },
-    "Tuhost.dc.html": {
-      "h": 160,
-      "is_interactive": true,
-      "page": "komponenty2",
-      "title": "Tuhost",
-      "w": 420,
-      "x": 2120,
-      "y": 3600
-    },
-    "TuhostModal.dc.html": {
-      "h": 900,
-      "is_interactive": true,
-      "page": "komponenty2",
-      "title": "TuhostModal",
-      "w": 900,
-      "x": 2620,
-      "y": 3600
-    },
-    "TuhostModal_v1.dc.html": {
-      "h": 900,
-      "is_interactive": true,
-      "page": "stare",
-      "title": "TuhostModal_v1 (před B1.3)",
-      "w": 900,
-      "x": 0,
-      "y": 2300
-    },
-    "TuhostObsah.dc.html": {
-      "h": 900,
-      "is_interactive": true,
-      "page": "komponenty2",
-      "title": "TuhostObsah",
-      "w": 832,
-      "x": 0,
-      "y": 6980
-    },
-    "Usp.dc.html": {
-      "expand": "fill",
-      "h": 240,
-      "is_interactive": true,
-      "page": "komponenty2",
-      "title": "Usp",
-      "w": 1200,
-      "x": 3600,
-      "y": 3600
-    },
-    "VariantaDrawer.dc.html": {
-      "h": 720,
-      "is_interactive": true,
-      "page": "komponenty2",
-      "title": "VariantaDrawer",
-      "w": 480,
-      "x": 0,
-      "y": 4620
-    },
-    "VariantaDrawer_v1.dc.html": {
-      "h": 720,
-      "is_interactive": true,
-      "page": "stare",
-      "title": "VariantaDrawer_v1 (před B1.4)",
-      "w": 480,
-      "x": 0,
-      "y": 3300
-    },
-    "VariantaObsah.dc.html": {
-      "h": 720,
-      "is_interactive": true,
-      "page": "komponenty2",
-      "title": "VariantaObsah",
-      "w": 412,
-      "x": 0,
-      "y": 7980
-    },
-    "VolbaRadio.dc.html": {
-      "h": 140,
-      "is_interactive": true,
-      "page": "komponenty2",
-      "title": "VolbaRadio",
-      "w": 720,
-      "x": 560,
-      "y": 4620
-    },
-    "VseONakupu.dc.html": {
-      "expand": "fill",
-      "h": 2119,
-      "is_interactive": true,
-      "page": "ostatni",
-      "title": "VseONakupu",
-      "w": 1440,
-      "x": 3040,
-      "y": 0
-    },
-    "VyberVariant.dc.html": {
-      "h": 180,
-      "is_interactive": true,
-      "page": "komponenty2",
-      "title": "VyberVariant",
-      "w": 480,
-      "x": 1360,
-      "y": 4620
-    },
-    "Vyhledavani.dc.html": {
-      "expand": "fill",
-      "h": 620,
-      "is_interactive": true,
-      "page": "komponenty2",
-      "title": "Vyhledavani",
-      "w": 1280,
-      "x": 1920,
-      "y": 4620
-    },
-    "VypisKategorii.dc.html": {
-      "expand": "fill",
-      "h": 420,
-      "is_interactive": true,
-      "page": "komponenty2",
-      "title": "VypisKategorii",
-      "w": 1200,
-      "x": 3280,
-      "y": 4620
-    },
-    "VysledkyVyhledavani.dc.html": {
-      "expand": "fill",
-      "h": 1643,
-      "is_interactive": true,
-      "page": "ostatni",
-      "title": "VysledkyVyhledavani",
-      "w": 1440,
-      "x": 0,
-      "y": 0
-    },
-    "VysledkyVyhledavani_v1.dc.html": {
-      "expand": "fill",
-      "h": 1200,
-      "is_interactive": true,
-      "page": "stare",
-      "title": "VysledkyVyhledavani v1",
-      "w": 1440,
-      "x": 4800,
-      "y": 0
-    },
-    "Zalozky.dc.html": {
-      "h": 420,
-      "is_interactive": true,
-      "page": "komponenty2",
-      "title": "Zalozky",
-      "w": 840,
-      "x": 4560,
-      "y": 4620
-    },
-    "ZpetnaVazba.dc.html": {
-      "h": 420,
-      "is_interactive": true,
-      "page": "komponenty2",
-      "title": "ZpetnaVazba",
-      "w": 880,
-      "x": 0,
-      "y": 5460
-    },
-    "changelog.dc.html": {
-      "expand": "fill",
-      "h": 1000,
-      "is_interactive": true,
-      "page": "dokumentace",
-      "title": "changelog",
-      "w": 1440,
-      "x": 4560,
-      "y": 0
-    },
-    "index.dc.html": {
-      "expand": "fill",
-      "h": 8000,
-      "is_interactive": true,
-      "page": "homepage",
-      "w": 1440,
-      "x": 0,
-      "y": 0
-    },
-    "Rozcestnik.dc.html": {
-      "expand": "fill",
-      "h": 4200,
-      "is_interactive": true,
-      "page": "rozcestnik",
-      "title": "Rozcestník",
-      "w": 1440,
-      "x": 0,
-      "y": 0
-    }
+ "v": 3,
+ "attachments": {},
+ "boards": {
+  "CasovaOsa.dc.html": {
+   "expand": "fill",
+   "h": 520,
+   "is_interactive": true,
+   "page": "komponenty",
+   "title": "CasovaOsa",
+   "w": 1440,
+   "x": 0,
+   "y": 0
   },
-  "createdOnFiles": {
-    "at": "2026-10-19T08:22:11Z",
-    "v": 1
+  "CenovyFiltr.dc.html": {
+   "h": 180,
+   "is_interactive": true,
+   "page": "komponenty",
+   "title": "CenovyFiltr",
+   "w": 320,
+   "x": 1520,
+   "y": 0
   },
-  "designSystems": [],
-  "launch": {
-    "file": "index.dc.html",
-    "view": "focused"
+  "Checkbox.dc.html": {
+   "h": 80,
+   "is_interactive": true,
+   "page": "komponenty",
+   "title": "Checkbox",
+   "w": 320,
+   "x": 1920,
+   "y": 0
   },
-  "notes": {
-    "t_detaily": {
-      "kind": "title1",
-      "maxW": 6000,
-      "page": "detaily",
-      "text": "Detaily produktů",
-      "w": 240,
-      "x": 0,
-      "y": -300
-    },
-    "t_dokumentace": {
-      "kind": "title1",
-      "maxW": 6000,
-      "page": "dokumentace",
-      "text": "Dokumentace",
-      "w": 240,
-      "x": 0,
-      "y": -300
-    },
-    "t_homepage": {
-      "kind": "title1",
-      "maxW": 6000,
-      "page": "homepage",
-      "text": "Homepage a kategorie",
-      "w": 240,
-      "x": 0,
-      "y": -300
-    },
-    "t_komponenty": {
-      "kind": "title1",
-      "maxW": 5280,
-      "page": "komponenty",
-      "text": "Komponenty A–M",
-      "w": 240,
-      "x": 0,
-      "y": -300
-    },
-    "t_komponenty2": {
-      "kind": "title1",
-      "maxW": 6660,
-      "page": "komponenty2",
-      "text": "Komponenty N–Z",
-      "w": 240,
-      "x": 0,
-      "y": -300
-    },
-    "t_kosik": {
-      "kind": "title1",
-      "maxW": 6000,
-      "page": "kosik",
-      "text": "Košík a objednávka",
-      "w": 240,
-      "x": 0,
-      "y": -300
-    },
-    "t_ostatni": {
-      "kind": "title1",
-      "maxW": 6000,
-      "page": "ostatni",
-      "text": "Ostatní stránky",
-      "w": 240,
-      "x": 0,
-      "y": -300
-    },
-    "t_stare": {
-      "kind": "title1",
-      "maxW": 6240,
-      "page": "stare",
-      "text": "Staré verze",
-      "w": 240,
-      "x": 0,
-      "y": -300
-    }
+  "Chip.dc.html": {
+   "h": 100,
+   "is_interactive": true,
+   "page": "komponenty",
+   "title": "Chip",
+   "w": 320,
+   "x": 2320,
+   "y": 0
   },
-  "order": [
-    "Rozcestnik.dc.html",
-    "Detail_Postel_3.0.dc.html",
-    "Detail_Komplet_3.0.dc.html",
-    "Detail_Matrace_3.0.dc.html",
-    "Detail_Multi_3.0.dc.html",
-    "Detail_Produkt_Levita.dc.html",
-    "Karta_Matrace.dc.html",
-    "CasovaOsa.dc.html",
-    "CenovyFiltr.dc.html",
-    "Checkbox.dc.html",
-    "Chip.dc.html",
-    "DopravaZdarma.dc.html",
-    "Drobeckova.dc.html",
-    "Faq.dc.html",
-    "FiltrDrawer.dc.html",
-    "FiltrPanel.dc.html",
-    "FiltracniLista.dc.html",
-    "Galerie.dc.html",
-    "Hlavicka.dc.html",
-    "Hodnoceni.dc.html",
-    "InfoPopover.dc.html",
-    "Input.dc.html",
-    "KategorickaDlazdice.dc.html",
-    "KontaktniLista.dc.html",
-    "Kosik.dc.html",
-    "KosikDrawer.dc.html",
-    "KosikPridanoModal.dc.html",
-    "KrokyObjednavky.dc.html",
-    "HlavickaPokladna.dc.html",
-    "Telefon.dc.html",
-    "Kvantifikator.dc.html",
-    "LogoA-Pulz.dc.html",
-    "LogoB-DychaniZnaku.dc.html",
-    "LogoC-DychaniCele.dc.html",
-    "LogoD-Prejezd.dc.html",
-    "MegaMenu.dc.html",
-    "MnozstevniSlevy.dc.html",
-    "MobilniMenu.dc.html",
-    "NakupniBox.dc.html",
-    "Newsletter.dc.html",
-    "Paginace.dc.html",
-    "ParametryMatrace.dc.html",
-    "Paticka.dc.html",
-    "PlatebniUdaje.dc.html",
-    "PolozkaKosiku.dc.html",
-    "PoradceBox.dc.html",
-    "PoradnaModal.dc.html",
-    "PrazdnyStav.dc.html",
-    "PrezentacniLista.dc.html",
-    "PrihlaseniModal.dc.html",
-    "Prodejny.dc.html",
-    "ProdejnyMenu.dc.html",
-    "ProduktovaKarta.dc.html",
-    "PrubehObjednavky.dc.html",
-    "PruvodceBanner.dc.html",
-    "RegistracePoNakupu.dc.html",
-    "Select.dc.html",
-    "ShrnutiObjednavky.dc.html",
-    "SkupinaVoleb.dc.html",
-    "SlevovyKupon.dc.html",
-    "SocialniPrihlaseni.dc.html",
-    "SouhrnKosiku.dc.html",
-    "SouvisejiciProdukty.dc.html",
-    "Stitek.dc.html",
-    "Tlacitko.dc.html",
-    "Tuhost.dc.html",
-    "TuhostModal.dc.html",
-    "Usp.dc.html",
-    "VariantaDrawer.dc.html",
-    "VolbaRadio.dc.html",
-    "VyberVariant.dc.html",
-    "Vyhledavani.dc.html",
-    "VypisKategorii.dc.html",
-    "Zalozky.dc.html",
-    "ZpetnaVazba.dc.html",
-    "DesignSystem.dc.html",
-    "Komponenty.dc.html",
-    "Ikony.dc.html",
-    "changelog.dc.html",
-    "Kategorie_v1.dc.html",
-    "MegaMenu_v1.dc.html",
-    "Paticka_v1.dc.html",
-    "ProduktovaKarta_v1.dc.html",
-    "VysledkyVyhledavani_v1.dc.html",
-    "VysledkyVyhledavani.dc.html",
-    "Registrace.dc.html",
-    "VseONakupu.dc.html",
-    "PruvodceMatrace.dc.html",
-    "ONas.dc.html",
-    "Clanek.dc.html",
-    "index.dc.html",
-    "Kategorie.dc.html",
-    "Kategorie_Postele.dc.html",
-    "Kategorie_Matrace.dc.html",
-    "Kategorie_Matrace_Tuhost.dc.html",
-    "Kategorie_Rosty.dc.html",
-    "Kategorie_Komplety.dc.html",
-    "Kategorie_Nabytek.dc.html",
-    "Kategorie_Polstare.dc.html",
-    "Kategorie_Luzkoviny.dc.html",
-    "KosikObsah.dc.html",
-    "MobilniMenuObsah.dc.html",
-    "Overlay.dc.html",
-    "PrihlaseniObsah.dc.html",
-    "KosikPridanoObsah.dc.html",
-    "KosikPridanoModal_v1.dc.html",
-    "TuhostObsah.dc.html",
-    "PoradnaObsah.dc.html",
-    "TuhostModal_v1.dc.html",
-    "PoradnaModal_v1.dc.html",
-    "VariantaObsah.dc.html",
-    "FiltrObsah.dc.html",
-    "VariantaDrawer_v1.dc.html",
-    "FiltrDrawer_v1.dc.html",
-    "InfoObsah.dc.html",
-    "InfoPopover_v1.dc.html",
-    "KaruselNav.dc.html",
-    "KosikKrok1.dc.html",
-    "KosikKrok2.dc.html",
-    "KosikKrok3.dc.html",
-    "PrazdnyKosik.dc.html",
-    "Dekujeme.dc.html",
-    "Oblibene.dc.html",
-    "Porovnani.dc.html"
-  ],
-  "pages": [
-    {
-      "id": "rozcestnik",
-      "name": "Rozcestník"
-    },
-    {
-      "id": "homepage",
-      "name": "Homepage a kategorie"
-    },
-    {
-      "id": "detaily",
-      "name": "Detaily produktů"
-    },
-    {
-      "id": "kosik",
-      "name": "Košík a objednávka"
-    },
-    {
-      "id": "ostatni",
-      "name": "Ostatní stránky"
-    },
-    {
-      "id": "komponenty",
-      "name": "Komponenty A–M"
-    },
-    {
-      "id": "komponenty2",
-      "name": "Komponenty N–Z"
-    },
-    {
-      "id": "dokumentace",
-      "name": "Dokumentace"
-    },
-    {
-      "id": "stare",
-      "name": "Staré verze"
-    }
-  ],
-  "title": "Světspánku.cz"
+  "Clanek.dc.html": {
+   "expand": "fill",
+   "h": 3134,
+   "is_interactive": true,
+   "page": "ostatni",
+   "title": "Clanek",
+   "w": 1440,
+   "x": 0,
+   "y": 2531
+  },
+  "Dekujeme.dc.html": {
+   "expand": "fill",
+   "h": 3596,
+   "is_interactive": true,
+   "page": "kosik",
+   "title": "Dekujeme",
+   "w": 1440,
+   "x": 0,
+   "y": 2120
+  },
+  "DesignSystem.dc.html": {
+   "expand": "fill",
+   "h": 900,
+   "is_interactive": true,
+   "page": "dokumentace",
+   "title": "DesignSystem",
+   "w": 1440,
+   "x": 0,
+   "y": 0
+  },
+  "Detail_Komplet_3.0.dc.html": {
+   "expand": "fill",
+   "h": 1000,
+   "is_interactive": true,
+   "page": "detaily",
+   "title": "Detail_Komplet 3.0",
+   "w": 1440,
+   "x": 1520,
+   "y": 0
+  },
+  "Detail_Matrace_3.0.dc.html": {
+   "expand": "fill",
+   "h": 1000,
+   "is_interactive": true,
+   "page": "detaily",
+   "title": "Detail_Matrace 3.0",
+   "w": 1440,
+   "x": 3040,
+   "y": 0
+  },
+  "Detail_Multi_3.0.dc.html": {
+   "expand": "fill",
+   "h": 1000,
+   "is_interactive": true,
+   "page": "detaily",
+   "title": "Detail_Multi 3.0",
+   "w": 1440,
+   "x": 4560,
+   "y": 0
+  },
+  "Detail_Postel_3.0.dc.html": {
+   "expand": "fill",
+   "h": 1000,
+   "is_interactive": true,
+   "page": "detaily",
+   "title": "Detail_Postel 3.0",
+   "w": 1440,
+   "x": 0,
+   "y": 0
+  },
+  "Detail_Produkt_Levita.dc.html": {
+   "expand": "fill",
+   "h": 1000,
+   "is_interactive": true,
+   "page": "detaily",
+   "title": "Detail_Produkt Levita",
+   "w": 1440,
+   "x": 0,
+   "y": 1120
+  },
+  "DopravaZdarma.dc.html": {
+   "h": 160,
+   "is_interactive": true,
+   "page": "komponenty",
+   "title": "DopravaZdarma",
+   "w": 440,
+   "x": 2720,
+   "y": 0
+  },
+  "Drobeckova.dc.html": {
+   "h": 60,
+   "is_interactive": true,
+   "page": "komponenty",
+   "title": "Drobeckova",
+   "w": 720,
+   "x": 3240,
+   "y": 0
+  },
+  "Faq.dc.html": {
+   "h": 400,
+   "is_interactive": true,
+   "page": "komponenty",
+   "title": "Faq",
+   "w": 900,
+   "x": 0,
+   "y": 640
+  },
+  "FiltrDrawer.dc.html": {
+   "h": 720,
+   "is_interactive": true,
+   "page": "komponenty",
+   "title": "FiltrDrawer",
+   "w": 480,
+   "x": 2160,
+   "y": 640
+  },
+  "FiltrDrawer_v1.dc.html": {
+   "h": 720,
+   "is_interactive": true,
+   "page": "stare",
+   "title": "FiltrDrawer_v1 (před B1.4)",
+   "w": 480,
+   "x": 560,
+   "y": 3300
+  },
+  "FiltrObsah.dc.html": {
+   "h": 900,
+   "is_interactive": true,
+   "page": "komponenty",
+   "title": "FiltrObsah",
+   "w": 412,
+   "x": 0,
+   "y": 4720
+  },
+  "FiltrPanel.dc.html": {
+   "h": 720,
+   "is_interactive": true,
+   "page": "komponenty",
+   "title": "FiltrPanel",
+   "w": 320,
+   "x": 2720,
+   "y": 640
+  },
+  "FiltracniLista.dc.html": {
+   "h": 140,
+   "is_interactive": true,
+   "page": "komponenty",
+   "title": "FiltracniLista",
+   "w": 1100,
+   "x": 980,
+   "y": 640
+  },
+  "Galerie.dc.html": {
+   "h": 420,
+   "is_interactive": true,
+   "page": "komponenty",
+   "title": "Galerie",
+   "w": 640,
+   "x": 3120,
+   "y": 640
+  },
+  "Hlavicka.dc.html": {
+   "expand": "fill",
+   "h": 320,
+   "is_interactive": true,
+   "page": "komponenty",
+   "title": "Hlavicka",
+   "w": 1440,
+   "x": 3840,
+   "y": 640
+  },
+  "HlavickaPokladna.dc.html": {
+   "expand": "fill",
+   "h": 160,
+   "is_interactive": true,
+   "page": "komponenty",
+   "title": "HlavickaPokladna",
+   "w": 1280,
+   "x": 1820,
+   "y": 2140
+  },
+  "Hodnoceni.dc.html": {
+   "h": 64,
+   "is_interactive": true,
+   "page": "komponenty",
+   "title": "Hodnoceni",
+   "w": 320,
+   "x": 0,
+   "y": 1480
+  },
+  "Ikony.dc.html": {
+   "expand": "fill",
+   "h": 720,
+   "is_interactive": true,
+   "page": "dokumentace",
+   "title": "Ikony",
+   "w": 1440,
+   "x": 3040,
+   "y": 0
+  },
+  "InfoObsah.dc.html": {
+   "h": 160,
+   "is_interactive": true,
+   "page": "komponenty",
+   "title": "InfoObsah",
+   "w": 288,
+   "x": 492,
+   "y": 5720
+  },
+  "InfoPopover.dc.html": {
+   "h": 260,
+   "is_interactive": true,
+   "page": "komponenty",
+   "title": "InfoPopover",
+   "w": 400,
+   "x": 400,
+   "y": 1480
+  },
+  "InfoPopover_v1.dc.html": {
+   "h": 260,
+   "is_interactive": true,
+   "page": "stare",
+   "title": "InfoPopover_v1 (před B1.6)",
+   "w": 400,
+   "x": 0,
+   "y": 4120
+  },
+  "Input.dc.html": {
+   "h": 140,
+   "is_interactive": true,
+   "page": "komponenty",
+   "title": "Input",
+   "w": 360,
+   "x": 880,
+   "y": 1480
+  },
+  "Karta_Matrace.dc.html": {
+   "expand": "fill",
+   "h": 1000,
+   "is_interactive": true,
+   "page": "detaily",
+   "title": "Karta Matrace",
+   "w": 1440,
+   "x": 1520,
+   "y": 1120
+  },
+  "KaruselNav.dc.html": {
+   "h": 120,
+   "is_interactive": true,
+   "page": "komponenty",
+   "title": "KaruselNav",
+   "w": 240,
+   "x": 860,
+   "y": 5980
+  },
+  "KategorickaDlazdice.dc.html": {
+   "h": 300,
+   "is_interactive": true,
+   "page": "komponenty",
+   "title": "KategorickaDlazdice",
+   "w": 300,
+   "x": 1320,
+   "y": 1480
+  },
+  "Kategorie.dc.html": {
+   "expand": "fill",
+   "h": 6195,
+   "is_interactive": true,
+   "page": "homepage",
+   "title": "Kategorie",
+   "w": 1440,
+   "x": 1520,
+   "y": 0
+  },
+  "Kategorie_Komplety.dc.html": {
+   "expand": "fill",
+   "h": 5154,
+   "is_interactive": true,
+   "page": "homepage",
+   "title": "Kategorie Komplety",
+   "w": 1440,
+   "x": 7668,
+   "y": 0
+  },
+  "Kategorie_Luzkoviny.dc.html": {
+   "expand": "fill",
+   "h": 5254,
+   "is_interactive": true,
+   "page": "homepage",
+   "title": "Kategorie Luzkoviny",
+   "w": 1440,
+   "x": 12393,
+   "y": 0
+  },
+  "Kategorie_Matrace.dc.html": {
+   "expand": "fill",
+   "h": 6568,
+   "is_interactive": true,
+   "page": "homepage",
+   "title": "Kategorie Matrace",
+   "w": 1440,
+   "x": 4560,
+   "y": 0
+  },
+  "Kategorie_Matrace_Tuhost.dc.html": {
+   "expand": "fill",
+   "h": 6568,
+   "is_interactive": true,
+   "page": "homepage",
+   "title": "Kategorie Matrace – podle tuhosti",
+   "w": 1440,
+   "x": 13913,
+   "y": 0
+  },
+  "Kategorie_Nabytek.dc.html": {
+   "expand": "fill",
+   "h": 6683,
+   "is_interactive": true,
+   "page": "homepage",
+   "title": "Kategorie Nabytek",
+   "w": 1440,
+   "x": 9256,
+   "y": 0
+  },
+  "Kategorie_Polstare.dc.html": {
+   "expand": "fill",
+   "h": 5366,
+   "is_interactive": true,
+   "page": "homepage",
+   "title": "Kategorie Polstare",
+   "w": 1440,
+   "x": 10844,
+   "y": 0
+  },
+  "Kategorie_Postele.dc.html": {
+   "expand": "fill",
+   "h": 5962,
+   "is_interactive": true,
+   "page": "homepage",
+   "title": "Kategorie Postele",
+   "w": 1440,
+   "x": 3040,
+   "y": 0
+  },
+  "Kategorie_Rosty.dc.html": {
+   "expand": "fill",
+   "h": 6568,
+   "is_interactive": true,
+   "page": "homepage",
+   "title": "Kategorie Rosty",
+   "w": 1440,
+   "x": 6080,
+   "y": 0
+  },
+  "Kategorie_v1.dc.html": {
+   "expand": "fill",
+   "h": 1200,
+   "is_interactive": true,
+   "page": "stare",
+   "title": "Kategorie v1",
+   "w": 1440,
+   "x": 0,
+   "y": 0
+  },
+  "Komponenty.dc.html": {
+   "expand": "fill",
+   "h": 900,
+   "is_interactive": true,
+   "page": "dokumentace",
+   "title": "Komponenty",
+   "w": 1440,
+   "x": 1520,
+   "y": 0
+  },
+  "KontaktniLista.dc.html": {
+   "expand": "fill",
+   "h": 140,
+   "is_interactive": true,
+   "page": "komponenty",
+   "title": "KontaktniLista",
+   "w": 1200,
+   "x": 1700,
+   "y": 1480
+  },
+  "Kosik.dc.html": {
+   "h": 80,
+   "is_interactive": true,
+   "page": "komponenty",
+   "title": "Kosik",
+   "w": 220,
+   "x": 2980,
+   "y": 1480
+  },
+  "KosikDrawer.dc.html": {
+   "h": 720,
+   "is_interactive": true,
+   "page": "komponenty",
+   "title": "KosikDrawer",
+   "w": 460,
+   "x": 0,
+   "y": 1900
+  },
+  "KosikKrok1.dc.html": {
+   "expand": "fill",
+   "h": 1400,
+   "is_interactive": true,
+   "page": "kosik",
+   "title": "KosikKrok1",
+   "w": 1440,
+   "x": 0,
+   "y": 0
+  },
+  "KosikKrok2.dc.html": {
+   "expand": "fill",
+   "h": 1600,
+   "is_interactive": true,
+   "page": "kosik",
+   "title": "KosikKrok2",
+   "w": 1440,
+   "x": 1520,
+   "y": 0
+  },
+  "KosikKrok3.dc.html": {
+   "expand": "fill",
+   "h": 1600,
+   "is_interactive": true,
+   "page": "kosik",
+   "title": "KosikKrok3",
+   "w": 1440,
+   "x": 3040,
+   "y": 0
+  },
+  "KosikObsah.dc.html": {
+   "h": 640,
+   "is_interactive": true,
+   "page": "komponenty",
+   "title": "KosikObsah",
+   "w": 412,
+   "x": 0,
+   "y": 3720
+  },
+  "KosikPridanoModal.dc.html": {
+   "expand": "fill",
+   "h": 900,
+   "is_interactive": true,
+   "page": "komponenty",
+   "title": "KosikPridanoModal",
+   "w": 1200,
+   "x": 540,
+   "y": 1900
+  },
+  "KosikPridanoModal_v1.dc.html": {
+   "expand": "fill",
+   "h": 900,
+   "is_interactive": true,
+   "page": "stare",
+   "title": "KosikPridanoModal_v1 (před B1.2)",
+   "w": 1200,
+   "x": 0,
+   "y": 1300
+  },
+  "KosikPridanoObsah.dc.html": {
+   "h": 900,
+   "is_interactive": true,
+   "page": "komponenty",
+   "title": "KosikPridanoObsah",
+   "w": 832,
+   "x": 984,
+   "y": 3720
+  },
+  "KrokyObjednavky.dc.html": {
+   "expand": "fill",
+   "h": 120,
+   "is_interactive": true,
+   "page": "komponenty",
+   "title": "KrokyObjednavky",
+   "w": 1200,
+   "x": 1820,
+   "y": 1900
+  },
+  "Kvantifikator.dc.html": {
+   "h": 80,
+   "is_interactive": true,
+   "page": "komponenty",
+   "title": "Kvantifikator",
+   "w": 220,
+   "x": 3100,
+   "y": 1900
+  },
+  "LogoA-Pulz.dc.html": {
+   "h": 200,
+   "is_interactive": true,
+   "page": "komponenty",
+   "title": "LogoA-Pulz",
+   "w": 720,
+   "x": 3400,
+   "y": 1900
+  },
+  "LogoB-DychaniZnaku.dc.html": {
+   "h": 200,
+   "is_interactive": true,
+   "page": "komponenty",
+   "title": "LogoB-DychaniZnaku",
+   "w": 720,
+   "x": 4200,
+   "y": 1900
+  },
+  "LogoC-DychaniCele.dc.html": {
+   "h": 200,
+   "is_interactive": true,
+   "page": "komponenty",
+   "title": "LogoC-DychaniCele",
+   "w": 720,
+   "x": 0,
+   "y": 2920
+  },
+  "LogoD-Prejezd.dc.html": {
+   "h": 200,
+   "is_interactive": true,
+   "page": "komponenty",
+   "title": "LogoD-Prejezd",
+   "w": 720,
+   "x": 800,
+   "y": 2920
+  },
+  "MegaMenu.dc.html": {
+   "expand": "fill",
+   "h": 460,
+   "is_interactive": true,
+   "page": "komponenty",
+   "title": "MegaMenu",
+   "w": 1440,
+   "x": 1600,
+   "y": 2920
+  },
+  "MegaMenu_v1.dc.html": {
+   "expand": "fill",
+   "h": 420,
+   "is_interactive": true,
+   "page": "stare",
+   "title": "MegaMenu v1",
+   "w": 1280,
+   "x": 1520,
+   "y": 0
+  },
+  "MnozstevniSlevy.dc.html": {
+   "h": 300,
+   "is_interactive": true,
+   "page": "komponenty",
+   "title": "MnozstevniSlevy",
+   "w": 520,
+   "x": 3120,
+   "y": 2920
+  },
+  "MobilniMenu.dc.html": {
+   "h": 700,
+   "is_interactive": true,
+   "page": "komponenty",
+   "title": "MobilniMenu",
+   "w": 380,
+   "x": 3720,
+   "y": 2920
+  },
+  "MobilniMenuObsah.dc.html": {
+   "h": 700,
+   "is_interactive": true,
+   "page": "komponenty",
+   "title": "MobilniMenuObsah",
+   "w": 412,
+   "x": 492,
+   "y": 3720
+  },
+  "NakupniBox.dc.html": {
+   "h": 480,
+   "is_interactive": true,
+   "page": "komponenty2",
+   "title": "NakupniBox",
+   "w": 420,
+   "x": 0,
+   "y": 0
+  },
+  "Newsletter.dc.html": {
+   "h": 320,
+   "is_interactive": true,
+   "page": "komponenty2",
+   "title": "Newsletter",
+   "w": 720,
+   "x": 500,
+   "y": 0
+  },
+  "ONas.dc.html": {
+   "expand": "fill",
+   "h": 3441,
+   "is_interactive": true,
+   "page": "ostatni",
+   "title": "ONas",
+   "w": 1440,
+   "x": 4560,
+   "y": 0
+  },
+  "Oblibene.dc.html": {
+   "expand": "fill",
+   "h": 1600,
+   "is_interactive": true,
+   "page": "kosik",
+   "title": "Oblibene",
+   "w": 1440,
+   "x": 1520,
+   "y": 2120
+  },
+  "Overlay.dc.html": {
+   "h": 900,
+   "is_interactive": true,
+   "page": "komponenty2",
+   "title": "Overlay",
+   "w": 1440,
+   "x": 0,
+   "y": 5980
+  },
+  "Paginace.dc.html": {
+   "h": 220,
+   "is_interactive": true,
+   "page": "komponenty2",
+   "title": "Paginace",
+   "w": 720,
+   "x": 1300,
+   "y": 0
+  },
+  "ParametryMatrace.dc.html": {
+   "h": 200,
+   "is_interactive": true,
+   "page": "komponenty2",
+   "title": "ParametryMatrace",
+   "w": 320,
+   "x": 2100,
+   "y": 0
+  },
+  "Paticka.dc.html": {
+   "expand": "fill",
+   "h": 760,
+   "is_interactive": true,
+   "page": "komponenty2",
+   "title": "Paticka",
+   "w": 1440,
+   "x": 2500,
+   "y": 0
+  },
+  "Paticka_v1.dc.html": {
+   "expand": "fill",
+   "h": 760,
+   "is_interactive": true,
+   "page": "stare",
+   "title": "Paticka v1",
+   "w": 1440,
+   "x": 2880,
+   "y": 0
+  },
+  "PlatebniUdaje.dc.html": {
+   "h": 360,
+   "is_interactive": true,
+   "page": "komponenty2",
+   "title": "PlatebniUdaje",
+   "w": 880,
+   "x": 4020,
+   "y": 0
+  },
+  "PolozkaKosiku.dc.html": {
+   "h": 160,
+   "is_interactive": true,
+   "page": "komponenty2",
+   "title": "PolozkaKosiku",
+   "w": 1100,
+   "x": 0,
+   "y": 880
+  },
+  "PoradceBox.dc.html": {
+   "h": 520,
+   "is_interactive": true,
+   "page": "komponenty2",
+   "title": "PoradceBox",
+   "w": 340,
+   "x": 1180,
+   "y": 880
+  },
+  "PoradnaModal.dc.html": {
+   "h": 800,
+   "is_interactive": true,
+   "page": "komponenty2",
+   "title": "PoradnaModal",
+   "w": 900,
+   "x": 1600,
+   "y": 880
+  },
+  "PoradnaModal_v1.dc.html": {
+   "h": 800,
+   "is_interactive": true,
+   "page": "stare",
+   "title": "PoradnaModal_v1 (před B1.3)",
+   "w": 900,
+   "x": 980,
+   "y": 2300
+  },
+  "PoradnaObsah.dc.html": {
+   "h": 800,
+   "is_interactive": true,
+   "page": "komponenty2",
+   "title": "PoradnaObsah",
+   "w": 512,
+   "x": 912,
+   "y": 6980
+  },
+  "Porovnani.dc.html": {
+   "expand": "fill",
+   "h": 2324,
+   "is_interactive": true,
+   "page": "kosik",
+   "title": "Porovnani",
+   "w": 1440,
+   "x": 3040,
+   "y": 2120
+  },
+  "PrazdnyKosik.dc.html": {
+   "expand": "fill",
+   "h": 2000,
+   "is_interactive": true,
+   "page": "kosik",
+   "title": "PrazdnyKosik",
+   "w": 1440,
+   "x": 4560,
+   "y": 0
+  },
+  "PrazdnyStav.dc.html": {
+   "h": 360,
+   "is_interactive": true,
+   "page": "komponenty2",
+   "title": "PrazdnyStav",
+   "w": 720,
+   "x": 2580,
+   "y": 880
+  },
+  "PrezentacniLista.dc.html": {
+   "h": 260,
+   "is_interactive": true,
+   "page": "komponenty2",
+   "title": "PrezentacniLista",
+   "w": 520,
+   "x": 3380,
+   "y": 880
+  },
+  "PrihlaseniModal.dc.html": {
+   "h": 620,
+   "is_interactive": true,
+   "page": "komponenty2",
+   "title": "PrihlaseniModal",
+   "w": 420,
+   "x": 3980,
+   "y": 880
+  },
+  "PrihlaseniObsah.dc.html": {
+   "h": 520,
+   "is_interactive": true,
+   "page": "komponenty2",
+   "title": "PrihlaseniObsah",
+   "w": 372,
+   "x": 1520,
+   "y": 5980
+  },
+  "Prodejny.dc.html": {
+   "expand": "fill",
+   "h": 640,
+   "is_interactive": true,
+   "page": "komponenty2",
+   "title": "Prodejny",
+   "w": 1440,
+   "x": 0,
+   "y": 1800
+  },
+  "ProdejnyMenu.dc.html": {
+   "expand": "fill",
+   "h": 520,
+   "is_interactive": true,
+   "page": "komponenty2",
+   "title": "ProdejnyMenu",
+   "w": 1440,
+   "x": 1520,
+   "y": 1800
+  },
+  "ProduktovaKarta.dc.html": {
+   "h": 640,
+   "is_interactive": true,
+   "page": "komponenty2",
+   "title": "ProduktovaKarta",
+   "w": 340,
+   "x": 3040,
+   "y": 1800
+  },
+  "ProduktovaKarta_v1.dc.html": {
+   "h": 520,
+   "is_interactive": true,
+   "page": "stare",
+   "title": "ProduktovaKarta v1",
+   "w": 320,
+   "x": 4400,
+   "y": 0
+  },
+  "PrubehObjednavky.dc.html": {
+   "h": 260,
+   "is_interactive": true,
+   "page": "komponenty2",
+   "title": "PrubehObjednavky",
+   "w": 880,
+   "x": 3460,
+   "y": 1800
+  },
+  "PruvodceBanner.dc.html": {
+   "expand": "fill",
+   "h": 360,
+   "is_interactive": true,
+   "page": "komponenty2",
+   "title": "PruvodceBanner",
+   "w": 1200,
+   "x": 4420,
+   "y": 1800
+  },
+  "PruvodceMatrace.dc.html": {
+   "expand": "fill",
+   "h": 2400,
+   "is_interactive": true,
+   "page": "ostatni",
+   "title": "Průvodce výběrem matrace",
+   "w": 1440,
+   "x": 6080,
+   "y": 0
+  },
+  "Registrace.dc.html": {
+   "expand": "fill",
+   "h": 1862,
+   "is_interactive": true,
+   "page": "ostatni",
+   "title": "Registrace",
+   "w": 1440,
+   "x": 1520,
+   "y": 0
+  },
+  "RegistracePoNakupu.dc.html": {
+   "h": 760,
+   "is_interactive": true,
+   "page": "komponenty2",
+   "title": "RegistracePoNakupu",
+   "w": 960,
+   "x": 5700,
+   "y": 1800
+  },
+  "Select.dc.html": {
+   "h": 320,
+   "is_interactive": true,
+   "page": "komponenty2",
+   "title": "Select",
+   "w": 320,
+   "x": 0,
+   "y": 2680
+  },
+  "ShrnutiObjednavky.dc.html": {
+   "h": 800,
+   "is_interactive": true,
+   "page": "komponenty2",
+   "title": "ShrnutiObjednavky",
+   "w": 420,
+   "x": 400,
+   "y": 2680
+  },
+  "SkupinaVoleb.dc.html": {
+   "h": 360,
+   "is_interactive": true,
+   "page": "komponenty2",
+   "title": "SkupinaVoleb",
+   "w": 720,
+   "x": 900,
+   "y": 2680
+  },
+  "SlevovyKupon.dc.html": {
+   "h": 160,
+   "is_interactive": true,
+   "page": "komponenty2",
+   "title": "SlevovyKupon",
+   "w": 440,
+   "x": 1700,
+   "y": 2680
+  },
+  "SocialniPrihlaseni.dc.html": {
+   "h": 160,
+   "is_interactive": true,
+   "page": "komponenty2",
+   "title": "SocialniPrihlaseni",
+   "w": 680,
+   "x": 2220,
+   "y": 2680
+  },
+  "SouhrnKosiku.dc.html": {
+   "h": 240,
+   "is_interactive": true,
+   "page": "komponenty2",
+   "title": "SouhrnKosiku",
+   "w": 420,
+   "x": 2980,
+   "y": 2680
+  },
+  "SouvisejiciProdukty.dc.html": {
+   "expand": "fill",
+   "h": 560,
+   "is_interactive": true,
+   "page": "komponenty2",
+   "title": "SouvisejiciProdukty",
+   "w": 1200,
+   "x": 0,
+   "y": 3600
+  },
+  "Stitek.dc.html": {
+   "h": 64,
+   "is_interactive": true,
+   "page": "komponenty2",
+   "title": "Stitek",
+   "w": 320,
+   "x": 1280,
+   "y": 3600
+  },
+  "Telefon.dc.html": {
+   "h": 60,
+   "is_interactive": true,
+   "page": "komponenty",
+   "title": "Telefon",
+   "w": 240,
+   "x": 3180,
+   "y": 2140
+  },
+  "Tlacitko.dc.html": {
+   "h": 120,
+   "is_interactive": true,
+   "page": "komponenty2",
+   "title": "Tlacitko",
+   "w": 360,
+   "x": 1680,
+   "y": 3600
+  },
+  "Tuhost.dc.html": {
+   "h": 160,
+   "is_interactive": true,
+   "page": "komponenty2",
+   "title": "Tuhost",
+   "w": 420,
+   "x": 2120,
+   "y": 3600
+  },
+  "TuhostModal.dc.html": {
+   "h": 900,
+   "is_interactive": true,
+   "page": "komponenty2",
+   "title": "TuhostModal",
+   "w": 900,
+   "x": 2620,
+   "y": 3600
+  },
+  "TuhostModal_v1.dc.html": {
+   "h": 900,
+   "is_interactive": true,
+   "page": "stare",
+   "title": "TuhostModal_v1 (před B1.3)",
+   "w": 900,
+   "x": 0,
+   "y": 2300
+  },
+  "TuhostObsah.dc.html": {
+   "h": 900,
+   "is_interactive": true,
+   "page": "komponenty2",
+   "title": "TuhostObsah",
+   "w": 832,
+   "x": 0,
+   "y": 6980
+  },
+  "Usp.dc.html": {
+   "expand": "fill",
+   "h": 240,
+   "is_interactive": true,
+   "page": "komponenty2",
+   "title": "Usp",
+   "w": 1200,
+   "x": 3600,
+   "y": 3600
+  },
+  "VariantaDrawer.dc.html": {
+   "h": 720,
+   "is_interactive": true,
+   "page": "komponenty2",
+   "title": "VariantaDrawer",
+   "w": 480,
+   "x": 0,
+   "y": 4620
+  },
+  "VariantaDrawer_v1.dc.html": {
+   "h": 720,
+   "is_interactive": true,
+   "page": "stare",
+   "title": "VariantaDrawer_v1 (před B1.4)",
+   "w": 480,
+   "x": 0,
+   "y": 3300
+  },
+  "VariantaObsah.dc.html": {
+   "h": 720,
+   "is_interactive": true,
+   "page": "komponenty2",
+   "title": "VariantaObsah",
+   "w": 412,
+   "x": 0,
+   "y": 7980
+  },
+  "VolbaRadio.dc.html": {
+   "h": 140,
+   "is_interactive": true,
+   "page": "komponenty2",
+   "title": "VolbaRadio",
+   "w": 720,
+   "x": 560,
+   "y": 4620
+  },
+  "VseONakupu.dc.html": {
+   "expand": "fill",
+   "h": 2119,
+   "is_interactive": true,
+   "page": "ostatni",
+   "title": "VseONakupu",
+   "w": 1440,
+   "x": 3040,
+   "y": 0
+  },
+  "VyberVariant.dc.html": {
+   "h": 180,
+   "is_interactive": true,
+   "page": "komponenty2",
+   "title": "VyberVariant",
+   "w": 480,
+   "x": 1360,
+   "y": 4620
+  },
+  "Vyhledavani.dc.html": {
+   "expand": "fill",
+   "h": 620,
+   "is_interactive": true,
+   "page": "komponenty2",
+   "title": "Vyhledavani",
+   "w": 1280,
+   "x": 1920,
+   "y": 4620
+  },
+  "VypisKategorii.dc.html": {
+   "expand": "fill",
+   "h": 420,
+   "is_interactive": true,
+   "page": "komponenty2",
+   "title": "VypisKategorii",
+   "w": 1200,
+   "x": 3280,
+   "y": 4620
+  },
+  "VysledkyVyhledavani.dc.html": {
+   "expand": "fill",
+   "h": 1643,
+   "is_interactive": true,
+   "page": "ostatni",
+   "title": "VysledkyVyhledavani",
+   "w": 1440,
+   "x": 0,
+   "y": 0
+  },
+  "VysledkyVyhledavani_v1.dc.html": {
+   "expand": "fill",
+   "h": 1200,
+   "is_interactive": true,
+   "page": "stare",
+   "title": "VysledkyVyhledavani v1",
+   "w": 1440,
+   "x": 4800,
+   "y": 0
+  },
+  "Zalozky.dc.html": {
+   "h": 420,
+   "is_interactive": true,
+   "page": "komponenty2",
+   "title": "Zalozky",
+   "w": 840,
+   "x": 4560,
+   "y": 4620
+  },
+  "ZpetnaVazba.dc.html": {
+   "h": 420,
+   "is_interactive": true,
+   "page": "komponenty2",
+   "title": "ZpetnaVazba",
+   "w": 880,
+   "x": 0,
+   "y": 5460
+  },
+  "changelog.dc.html": {
+   "expand": "fill",
+   "h": 1000,
+   "is_interactive": true,
+   "page": "dokumentace",
+   "title": "changelog",
+   "w": 1440,
+   "x": 4560,
+   "y": 0
+  },
+  "index.dc.html": {
+   "expand": "fill",
+   "h": 8000,
+   "is_interactive": true,
+   "page": "homepage",
+   "w": 1440,
+   "x": 0,
+   "y": 0
+  },
+  "Rozcestnik.dc.html": {
+   "expand": "fill",
+   "h": 4200,
+   "is_interactive": true,
+   "page": "rozcestnik",
+   "title": "Rozcestník",
+   "w": 1440,
+   "x": 0,
+   "y": 0
+  },
+  "Kontakty.dc.html": {
+   "expand": "fill",
+   "h": 3600,
+   "is_interactive": true,
+   "page": "ostatni",
+   "title": "Kontakty",
+   "w": 1440,
+   "x": 0,
+   "y": 5785
+  },
+  "Chyba404.dc.html": {
+   "expand": "fill",
+   "h": 2600,
+   "is_interactive": true,
+   "page": "ostatni",
+   "title": "Chyba 404",
+   "w": 1440,
+   "x": 1520,
+   "y": 5785
+  },
+  "KontaktniKarta.dc.html": {
+   "h": 340,
+   "is_interactive": true,
+   "page": "komponenty",
+   "title": "KontaktniKarta",
+   "w": 380,
+   "x": 0,
+   "y": 6220
+  },
+  "KontaktniOsoba.dc.html": {
+   "h": 160,
+   "is_interactive": true,
+   "page": "komponenty",
+   "title": "KontaktniOsoba",
+   "w": 880,
+   "x": 460,
+   "y": 6220
+  },
+  "KontaktniFormular.dc.html": {
+   "h": 720,
+   "is_interactive": true,
+   "page": "komponenty",
+   "title": "KontaktniFormular",
+   "w": 600,
+   "x": 1420,
+   "y": 6220
+  },
+  "TextovePole.dc.html": {
+   "h": 200,
+   "is_interactive": true,
+   "page": "komponenty2",
+   "title": "TextovePole",
+   "w": 360,
+   "x": 0,
+   "y": 8820
+  }
+ },
+ "createdOnFiles": {
+  "at": "2026-10-19T08:22:11Z",
+  "v": 1
+ },
+ "designSystems": [],
+ "launch": {
+  "file": "index.dc.html",
+  "view": "focused"
+ },
+ "notes": {
+  "t_detaily": {
+   "kind": "title1",
+   "maxW": 6000,
+   "page": "detaily",
+   "text": "Detaily produktů",
+   "w": 240,
+   "x": 0,
+   "y": -300
+  },
+  "t_dokumentace": {
+   "kind": "title1",
+   "maxW": 6000,
+   "page": "dokumentace",
+   "text": "Dokumentace",
+   "w": 240,
+   "x": 0,
+   "y": -300
+  },
+  "t_homepage": {
+   "kind": "title1",
+   "maxW": 6000,
+   "page": "homepage",
+   "text": "Homepage a kategorie",
+   "w": 240,
+   "x": 0,
+   "y": -300
+  },
+  "t_komponenty": {
+   "kind": "title1",
+   "maxW": 5280,
+   "page": "komponenty",
+   "text": "Komponenty A–M",
+   "w": 240,
+   "x": 0,
+   "y": -300
+  },
+  "t_komponenty2": {
+   "kind": "title1",
+   "maxW": 6660,
+   "page": "komponenty2",
+   "text": "Komponenty N–Z",
+   "w": 240,
+   "x": 0,
+   "y": -300
+  },
+  "t_kosik": {
+   "kind": "title1",
+   "maxW": 6000,
+   "page": "kosik",
+   "text": "Košík a objednávka",
+   "w": 240,
+   "x": 0,
+   "y": -300
+  },
+  "t_ostatni": {
+   "kind": "title1",
+   "maxW": 6000,
+   "page": "ostatni",
+   "text": "Ostatní stránky",
+   "w": 240,
+   "x": 0,
+   "y": -300
+  },
+  "t_stare": {
+   "kind": "title1",
+   "maxW": 6240,
+   "page": "stare",
+   "text": "Staré verze",
+   "w": 240,
+   "x": 0,
+   "y": -300
+  }
+ },
+ "order": [
+  "Rozcestnik.dc.html",
+  "Detail_Postel_3.0.dc.html",
+  "Detail_Komplet_3.0.dc.html",
+  "Detail_Matrace_3.0.dc.html",
+  "Detail_Multi_3.0.dc.html",
+  "Detail_Produkt_Levita.dc.html",
+  "Karta_Matrace.dc.html",
+  "CasovaOsa.dc.html",
+  "CenovyFiltr.dc.html",
+  "Checkbox.dc.html",
+  "Chip.dc.html",
+  "DopravaZdarma.dc.html",
+  "Drobeckova.dc.html",
+  "Faq.dc.html",
+  "FiltrDrawer.dc.html",
+  "FiltrPanel.dc.html",
+  "FiltracniLista.dc.html",
+  "Galerie.dc.html",
+  "Hlavicka.dc.html",
+  "Hodnoceni.dc.html",
+  "InfoPopover.dc.html",
+  "Input.dc.html",
+  "KategorickaDlazdice.dc.html",
+  "KontaktniLista.dc.html",
+  "Kosik.dc.html",
+  "KosikDrawer.dc.html",
+  "KosikPridanoModal.dc.html",
+  "KrokyObjednavky.dc.html",
+  "HlavickaPokladna.dc.html",
+  "Telefon.dc.html",
+  "Kvantifikator.dc.html",
+  "LogoA-Pulz.dc.html",
+  "LogoB-DychaniZnaku.dc.html",
+  "LogoC-DychaniCele.dc.html",
+  "LogoD-Prejezd.dc.html",
+  "MegaMenu.dc.html",
+  "MnozstevniSlevy.dc.html",
+  "MobilniMenu.dc.html",
+  "NakupniBox.dc.html",
+  "Newsletter.dc.html",
+  "Paginace.dc.html",
+  "ParametryMatrace.dc.html",
+  "Paticka.dc.html",
+  "PlatebniUdaje.dc.html",
+  "PolozkaKosiku.dc.html",
+  "PoradceBox.dc.html",
+  "PoradnaModal.dc.html",
+  "PrazdnyStav.dc.html",
+  "PrezentacniLista.dc.html",
+  "PrihlaseniModal.dc.html",
+  "Prodejny.dc.html",
+  "ProdejnyMenu.dc.html",
+  "ProduktovaKarta.dc.html",
+  "PrubehObjednavky.dc.html",
+  "PruvodceBanner.dc.html",
+  "RegistracePoNakupu.dc.html",
+  "Select.dc.html",
+  "ShrnutiObjednavky.dc.html",
+  "SkupinaVoleb.dc.html",
+  "SlevovyKupon.dc.html",
+  "SocialniPrihlaseni.dc.html",
+  "SouhrnKosiku.dc.html",
+  "SouvisejiciProdukty.dc.html",
+  "Stitek.dc.html",
+  "Tlacitko.dc.html",
+  "Tuhost.dc.html",
+  "TuhostModal.dc.html",
+  "Usp.dc.html",
+  "VariantaDrawer.dc.html",
+  "VolbaRadio.dc.html",
+  "VyberVariant.dc.html",
+  "Vyhledavani.dc.html",
+  "VypisKategorii.dc.html",
+  "Zalozky.dc.html",
+  "ZpetnaVazba.dc.html",
+  "DesignSystem.dc.html",
+  "Komponenty.dc.html",
+  "Ikony.dc.html",
+  "changelog.dc.html",
+  "Kategorie_v1.dc.html",
+  "MegaMenu_v1.dc.html",
+  "Paticka_v1.dc.html",
+  "ProduktovaKarta_v1.dc.html",
+  "VysledkyVyhledavani_v1.dc.html",
+  "VysledkyVyhledavani.dc.html",
+  "Registrace.dc.html",
+  "VseONakupu.dc.html",
+  "PruvodceMatrace.dc.html",
+  "ONas.dc.html",
+  "Kontakty.dc.html",
+  "Chyba404.dc.html",
+  "Clanek.dc.html",
+  "index.dc.html",
+  "Kategorie.dc.html",
+  "Kategorie_Postele.dc.html",
+  "Kategorie_Matrace.dc.html",
+  "Kategorie_Matrace_Tuhost.dc.html",
+  "Kategorie_Rosty.dc.html",
+  "Kategorie_Komplety.dc.html",
+  "Kategorie_Nabytek.dc.html",
+  "Kategorie_Polstare.dc.html",
+  "Kategorie_Luzkoviny.dc.html",
+  "KosikObsah.dc.html",
+  "MobilniMenuObsah.dc.html",
+  "Overlay.dc.html",
+  "PrihlaseniObsah.dc.html",
+  "KosikPridanoObsah.dc.html",
+  "KosikPridanoModal_v1.dc.html",
+  "TuhostObsah.dc.html",
+  "PoradnaObsah.dc.html",
+  "TuhostModal_v1.dc.html",
+  "PoradnaModal_v1.dc.html",
+  "VariantaObsah.dc.html",
+  "FiltrObsah.dc.html",
+  "VariantaDrawer_v1.dc.html",
+  "FiltrDrawer_v1.dc.html",
+  "InfoObsah.dc.html",
+  "InfoPopover_v1.dc.html",
+  "KaruselNav.dc.html",
+  "KosikKrok1.dc.html",
+  "KosikKrok2.dc.html",
+  "KosikKrok3.dc.html",
+  "PrazdnyKosik.dc.html",
+  "Dekujeme.dc.html",
+  "Oblibene.dc.html",
+  "Porovnani.dc.html",
+  "KontaktniKarta.dc.html",
+  "KontaktniOsoba.dc.html",
+  "KontaktniFormular.dc.html",
+  "TextovePole.dc.html"
+ ],
+ "pages": [
+  {
+   "id": "rozcestnik",
+   "name": "Rozcestník"
+  },
+  {
+   "id": "homepage",
+   "name": "Homepage a kategorie"
+  },
+  {
+   "id": "detaily",
+   "name": "Detaily produktů"
+  },
+  {
+   "id": "kosik",
+   "name": "Košík a objednávka"
+  },
+  {
+   "id": "ostatni",
+   "name": "Ostatní stránky"
+  },
+  {
+   "id": "komponenty",
+   "name": "Komponenty A–M"
+  },
+  {
+   "id": "komponenty2",
+   "name": "Komponenty N–Z"
+  },
+  {
+   "id": "dokumentace",
+   "name": "Dokumentace"
+  },
+  {
+   "id": "stare",
+   "name": "Staré verze"
+  }
+ ],
+ "title": "Světspánku.cz"
 }

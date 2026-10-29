@@ -507,7 +507,8 @@ class Component extends DCLogic {
         data: { title: it.title, variant: it.variant, qty: it.qty, img: it.img, fit: it.fit, stock: it.stock,
           unitPrice: this.fmt(it.unit), priceBefore: it.before ? this.fmt(it.before) : undefined, total: this.fmt(it.unit * it.qty) },
         onQty: (v) => this.setState(s => ({ items: s.items.map((x, j) => j === idx ? Object.assign({}, x, { qty: v }) : x) })),
-        onRemove: () => this.setState(s => ({ items: s.items.filter((x, j) => j !== idx) }))
+        // Odebrání poslední položky → přechod na stránku Prázdný košík (29. 10. 2026)
+        onRemove: () => { const left = this.state.items.filter((x, j) => j !== idx); this.setState({ items: left }); if (!left.length) (h => { try { const a = document.createElement('a'); a.href = h; a.style.display = 'none'; (document.getElementById('dc-root') || document.body).appendChild(a); a.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true, view: window })); a.remove(); } catch (e) { window.location.href = h; } })('PrazdnyKosik.dc.html'); }
       })),
       bottomCols: wide ? 'minmax(0,1fr) minmax(0,1fr) minmax(360px,440px)' : 'minmax(0,1fr)',
       bottomGap: wide ? '32px' : '24px',

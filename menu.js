@@ -1003,7 +1003,7 @@ export const UTILITY = [
   },
   {
     "label": "Kontakty",
-    "href": "#kontakty"
+    "href": "Kontakty.dc.html"
   }
 ];
 

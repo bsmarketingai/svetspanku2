@@ -457,8 +457,19 @@ html[data-mode="dark"] .ss-rev-badge{--ss-shine:rgba(251,178,85,.14);}
 .ss-mag-lead .ss-hp-art-t{font-size:23px;}
 .ss-mag-cover{position:absolute;inset:0;z-index:1;border-radius:12px;}
 .ss-mag-cover:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
-@media (min-width:820px) and (max-width:1149px){.ss-mag-lead{grid-column:span 2;}.ss-mag-lead .ss-mag-ph{height:360px;}}
-@media (min-width:1150px){.ss-mag-lead{grid-row:span 2;}.ss-mag-lead .ss-mag-ph{flex:1;height:auto;min-height:440px;}}
+@media (min-width:820px) and (max-width:1149px){.ss-mag-lead .ss-mag-ph{height:360px;}}
+@media (min-width:1150px){.ss-mag-lead .ss-mag-ph{flex:1;height:auto;min-height:440px;}}
+/* Magazín M1: hlavní článek pevný s příznakem, malé články se mění po čtveřicích (29. 10. 2026) */
+.ss-mag-flag{position:absolute;top:16px;left:16px;z-index:2;display:flex;pointer-events:none;}
+/* Výměna článků (od 820 px): pás stránek po 4 článcích, celý se posune – staré 4 odjedou vlevo a hned za nimi přijedou další (29. 10. 2026) */
+.ss-mag-clip{overflow:hidden;margin:-4px;padding:4px;}
+.ss-mag-small[data-track="1"]{transition:transform .7s cubic-bezier(.65,0,.35,1);will-change:transform;}
+@media (prefers-reduced-motion:reduce){.ss-mag-small[data-track="1"]{transition:none;}}
+@keyframes ss-mag-down{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+.ss-mag-small[data-more="1"]>.ss-hp-art:nth-child(n+5){animation:ss-mag-down .5s cubic-bezier(.65,0,.35,1) both;}
+.ss-mag-small[data-more="1"]>.ss-hp-art:nth-child(n+6){animation-delay:.08s!important;}
+@media (prefers-reduced-motion:reduce){.ss-mag-small>.ss-hp-art{animation:none!important;}}
+.ss-mag-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;}
 .ss-mag-nav{display:flex;justify-content:flex-end;align-items:center;gap:8px;margin-top:12px;}
 .ss-mag-nav .ss-mag-arrow{border:0;box-sizing:border-box;border-radius:6px;background:var(--ss-action-tonal-bg,#FEEDD4);color:var(--ss-action-tonal-fg,#7A4708);}
 @media (hover:hover) and (pointer:fine){.ss-mag-nav .ss-mag-arrow:hover{background:var(--ss-action-tonal-hover-bg,#FDDCAA);color:var(--ss-action-tonal-hover-fg,#7A4708);}}
@@ -931,37 +942,51 @@ html[data-mode="dark"] .ss-rev-badge{--ss-shine:rgba(251,178,85,.14);}
             <div class="ss-mag-lead">
               <span class="ss-hp-ph ss-mag-ph">
                 <span class="ss-mag-zoom" style="{{ leadPhotoStyle }}"></span>
+                <span class="ss-mag-flag"><dc-import name="Stitek" kind="top" label="{{ leadArticle.flag }}" icon="award" hint-size="130px,28px"></dc-import></span>
                 <span class="ss-mag-cta">Přečíst</span>
-                <sc-if value="{{ navOverlay }}" hint-placeholder-val="{{ false }}">
-                  <button type="button" class="ss-mag-arrow ss-mag-over-prev" onClick="{{ magPrev }}" aria-label="Předchozí články" aria-disabled="{{ magPrevDis }}">
-                    <dc-import name="Ikony" iconName="chevron-left" size="22" hint-size="22px,22px"></dc-import>
-                  </button>
-                  <button type="button" class="ss-mag-arrow ss-mag-over-next" onClick="{{ magNext }}" aria-label="Další články" aria-disabled="{{ magNextDis }}">
-                    <dc-import name="Ikony" iconName="chevron-right" size="22" hint-size="22px,22px"></dc-import>
-                  </button>
-                </sc-if>
               </span>
               <span class="ss-hp-art-t" style="font-family:Oswald,Roboto,sans-serif;font-weight:700;line-height:1.25;transition:color .12s cubic-bezier(.22,.61,.36,1)">{{ leadArticle.title }}</span>
               <span style="font-size:15px;line-height:1.6;color:var(--ss-text-secondary,#3D4750)">{{ leadArticle.perex }}</span>
               <a class="ss-mag-cover" href="{{ leadArticle.href }}" target="_blank" rel="noopener" aria-label="{{ leadArticle.title }}"></a>
             </div>
-            <sc-for list="{{ restArticles }}" as="a" hint-placeholder-count="4">
-              <a class="ss-hp-art" href="{{ a.href }}" target="_blank" rel="noopener">
-                <span class="ss-hp-ph ss-mag-ph">
-                  <span class="ss-mag-zoom" style="{{ a.photoStyle }}"></span>
-                  <span class="ss-mag-cta">Přečíst</span>
-                </span>
-                <span class="ss-hp-art-t" style="font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:19px;line-height:1.25;transition:color .12s cubic-bezier(.22,.61,.36,1)">{{ a.title }}</span>
-                <span style="font-size:14px;line-height:1.55;color:var(--ss-text-secondary,#3D4750)">{{ a.perex }}</span>
-              </a>
-            </sc-for>
+            <div style="position:relative;min-width:0">
+              <div class="ss-mag-clip">
+              <div class="ss-mag-small" data-track="{{ magTrack }}" data-more="{{ magMore }}" role="group" aria-label="{{ magStatus }}" style="{{ magSmallStyle }}">
+                <sc-for list="{{ restArticles }}" as="a" hint-placeholder-count="4">
+                  <a class="ss-hp-art" href="{{ a.href }}" target="_blank" rel="noopener" tabIndex="{{ a.tab }}" aria-hidden="{{ a.hidden }}">
+                    <span class="ss-hp-ph ss-mag-ph">
+                      <span class="ss-mag-zoom" style="{{ a.photoStyle }}"></span>
+                      <span class="ss-mag-cta">Přečíst</span>
+                    </span>
+                    <span class="ss-hp-art-t" style="font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:19px;line-height:1.25;transition:color .12s cubic-bezier(.22,.61,.36,1)">{{ a.title }}</span>
+                    <span style="font-size:14px;line-height:1.55;color:var(--ss-text-secondary,#3D4750)">{{ a.perex }}</span>
+                  </a>
+                </sc-for>
+              </div>
+              </div>
+              <sc-if value="{{ navOverlay }}" hint-placeholder-val="{{ false }}">
+                <button type="button" class="ss-mag-arrow ss-mag-over-prev" onClick="{{ magPrev }}" aria-label="Předchozí články" aria-disabled="{{ magPrevDis }}">
+                  <dc-import name="Ikony" iconName="chevron-left" size="22" hint-size="22px,22px"></dc-import>
+                </button>
+                <button type="button" class="ss-mag-arrow ss-mag-over-next" onClick="{{ magNext }}" aria-label="Další články" aria-disabled="{{ magNextDis }}">
+                  <dc-import name="Ikony" iconName="chevron-right" size="22" hint-size="22px,22px"></dc-import>
+                </button>
+              </sc-if>
+            </div>
           </div>
+          <span class="ss-mag-sr" aria-live="polite">{{ magStatus }}</span>
           <sc-if value="{{ magRowM1 }}" hint-placeholder-val="{{ true }}">
           <div class="ss-mag-nav">
             <sc-if value="{{ magLinkBelow }}" hint-placeholder-val="{{ false }}">
               <div style="margin-right:auto"><dc-import name="Tlacitko" label="Do magazínu" variant="secondary" href="https://blog.svetspanku.cz/" newTab="{{ true }}" iconRight="chevron-right" hint-size="170px,44px"></dc-import></div>
             </sc-if>
-            <sc-if value="{{ magArrowsBelow }}" hint-placeholder-val="{{ true }}">
+            <sc-if value="{{ magMoreText }}" hint-placeholder-val="{{ false }}">
+              <dc-import name="Tlacitko" label="Zobrazit další články" variant="secondary" iconRight="chevron-down" onClick="{{ magLoadMore }}" hint-size="210px,44px"></dc-import>
+            </sc-if>
+            <sc-if value="{{ magMoreIcon }}" hint-placeholder-val="{{ false }}">
+              <dc-import name="Tlacitko" label="Zobrazit další články" variant="secondary" iconLeft="chevron-down" iconOnly="{{ true }}" ariaLabel="Zobrazit další články" onClick="{{ magLoadMore }}" hint-size="44px,44px"></dc-import>
+            </sc-if>
+            <sc-if value="{{ magArrowsM1 }}" hint-placeholder-val="{{ true }}">
               <button type="button" class="ss-mag-arrow" onClick="{{ magPrev }}" aria-label="Předchozí články" aria-disabled="{{ magPrevDis }}">
                 <dc-import name="Ikony" iconName="arrow-left" size="24" hint-size="24px,24px"></dc-import>
               </button>
@@ -1024,11 +1049,15 @@ html[data-mode="dark"] .ss-rev-badge{--ss-shine:rgba(251,178,85,.14);}
 <script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:1000}}">
 class Component extends DCLogic {
   ARTICLES = [
+    { flag: 'Téma měsíce', title: 'Matrace do ložnice pro dva: jedna velká, nebo dvě menší?', perex: 'Vybíráte matraci do společné ložnice? Pak jste nejspíš narazili na otázku, zda koupit jednu velkou matraci, nebo dvě menší. Každá možnost má svá pro i proti a správná volba závisí hlavně na vašich spánkových návycích, váze a preferované tuhosti. Projdeme spáru uprostřed, přenos pohybu, rozdílnou tuhost, matraci pro páry, údržbu, rošty i rozměry a doporučíme vám konkrétní řešení podle typu vašeho páru.', href: 'https://blog.svetspanku.cz/', image: '_blob/a5b2dddd28075d3cff604ededcac5430.webp', imagePos: '62% 70%', perexLong: 'Vybíráte matraci do společné ložnice? Pak jste nejspíš narazili na otázku, zda koupit jednu velkou matraci, nebo dvě menší. Každá možnost má svá pro i proti a správná volba závisí hlavně na vašich spánkových návycích, váze a preferované tuhosti. Projdeme spáru uprostřed, přenos pohybu, rozdílnou tuhost, matraci pro páry, údržbu, rošty i rozměry a doporučíme vám konkrétní řešení podle typu vašeho páru.' },
     { title: 'Proč kvalitní matrace vydrží déle?', perex: 'Levná matrace může ztratit oporu už po pár nocích. Ukážeme, které materiály rozhodují o tom, jestli matrace vydrží dva roky, nebo dlouhá léta.', href: 'https://blog.svetspanku.cz/', image: '_blob/f1610f7d4e46565d090f83df0006d3ea.webp', perexLong: 'Levná matrace může ztratit oporu už po pár nocích. Ukážeme, které materiály rozhodují o tom, jestli matrace vydrží dva roky, nebo dlouhá léta. Rozebíráme hustotu a nosnost pěn, typy pružin, kvalitu potahu i to, proč na nich záleží víc než na ceně. Přidáváme i rady, jak matraci správně větrat a otáčet, aby si tvar a oporu udržela co nejdéle.' },
     { title: 'Nová matrace na starém roštu? Chyba, která může zkrátit její životnost', perex: 'Rošt rozhoduje o tom, jak matrace pracuje i jak dlouho vydrží. Podle čeho poznáte, že je čas vyměnit i jeho.', href: 'https://blog.svetspanku.cz/', image: '_blob/d2bda866ab22bcf876b84e2ab2606821.webp', perexLong: 'Rošt rozhoduje o tom, jak matrace pracuje i jak dlouho vydrží. Prohnuté nebo prasklé lamely, vytahané pouzdra a ztuhlé nastavení tuhosti dokážou novou matraci zdeformovat během pár měsíců. Ukážeme, podle čeho poznáte, že je čas vyměnit i rošt, a jaký typ se hodí k pěnové, pružinové nebo latexové matraci.' },
     { title: 'Proč se vyplatí koupit postelový komplet místo jednotlivých částí', perex: 'Postel, rošt a matrace v jednom balení — ušetříte peníze i čas a všechny části do sebe pasují.', href: 'https://blog.svetspanku.cz/', image: '_blob/4d3ed596486e42d6033d430cd7530f2e.jpg', perexLong: 'Postel, rošt a matrace v jednom balení — ušetříte peníze i čas a všechny části do sebe pasují. Nemusíte hlídat rozměry, výšku ložné plochy ani kompatibilitu roštu s matrací. Spočítali jsme, kolik se na kompletu reálně ušetří a kdy se naopak vyplatí skládat ložnici po částech.' },
     { title: 'Dovezeme, vyneseme, smontujeme. Vše zařídíme za vás', perex: 'Nová ložnice bez starostí — od dopravy až po odvoz obalů. Jak služba funguje a kam všude jezdíme.', href: 'https://blog.svetspanku.cz/', image: '_blob/a73c4563d2d4d8caf4cbb89c6a3d655e.jpg', perexLong: 'Nová ložnice bez starostí — od dopravy až po odvoz obalů. Řidiči postel vynesou do patra, smontují ji na místě a na přání odvezou i starou matraci k ekologické likvidaci. Popisujeme, jak služba funguje, kolik stojí a kam všude po republice jezdíme.' },
     { title: 'Postel s LED osvětlením: praktický pomocník i stylový doplněk ložnice', perex: 'Tlumené světlo u čela postele, které nevzbudí partnera. Jaké má varianty a kolik potřebuje energie.', href: 'https://blog.svetspanku.cz/', image: '_blob/5b07ea44660d8949c792282b6b74a470.jpg', perexLong: 'Tlumené světlo u čela postele, které nevzbudí partnera. LED pásek pod rámem poslouží jako noční orientační světlo i jako dekorace, která ložnici dodá hloubku. Porovnáváme teplé a studené varianty, ovládání dálkovým ovladačem i čidlem a kolik energie osvětlení za rok spotřebuje.' },
+    { title: 'Taštičková, nebo pěnová? V čem se liší jádra matrací', perex: 'Pružiny v taštičkách, studená pěna, latex. Srovnáváme, jak které jádro pruží, větrá a kolik vydrží.', href: 'https://blog.svetspanku.cz/', image: '_blob/aec9689576430d3569ed9070edb37a7d.webp', perexLong: 'Pružiny v taštičkách, studená pěna, latex. Srovnáváme, jak které jádro pruží, větrá a kolik vydrží, a komu se která konstrukce hodí nejvíc.' },
+    { title: 'Jak pečovat o potah matrace, aby zůstal svěží', perex: 'Kdy prát, na kolik stupňů a proč potah nesušit v sušičce. Jednoduchá péče, která matraci prodlouží život.', href: 'https://blog.svetspanku.cz/', image: '_blob/ef1649754e48c2c68be3cda60ee7ec76.jpg', perexLong: 'Kdy prát, na kolik stupňů a proč potah nesušit v sušičce. Jednoduchá péče, která matraci prodlouží život a udrží ji hygienickou.' },
+    { title: 'Postel z masivu: nákup, který vydrží generace', perex: 'Nahlédněte do naší moravské dílny. Proč stavíme postele z masivního dřeva a jak se pozná kvalitní spoj.', href: 'https://blog.svetspanku.cz/', image: '_blob/f604b5e0972b17751a84405118dbb45e.jpg', perexLong: 'Nahlédněte do naší moravské dílny. Proč stavíme postele z masivního dřeva, jak se pozná kvalitní spoj a jak se o masiv starat, aby vydržel po generace.' }
   ];
   state = {
     width: typeof window !== 'undefined' ? document.documentElement.clientWidth : 1440,
@@ -1056,6 +1085,7 @@ class Component extends DCLogic {
   renderVals() {
     const w = this.state.width;
     const narrow = w < 820;
+    const magPool = this.ARTICLES.slice(1), magPages = Math.max(1, Math.ceil(magPool.length / 4)), magPage = Math.min(this.state.mag, magPages - 1);
     const pad = narrow ? '0 16px' : '0 32px';
     const inner = { maxWidth: '1560px', margin: '0 auto', padding: pad };
     const stores = [
@@ -1119,7 +1149,7 @@ class Component extends DCLogic {
       footerTheme: this.state.footer === 'Světlá' ? 'light' : 'blue',
       carNavPosition: this.state.carNav === 'V2' ? 'overlay' : this.state.carNav === 'V3' ? 'peek' : 'belowPeek',
       navBelow: this.state.carNav !== 'V2',
-      navOverlay: this.state.carNav === 'V2',
+      navOverlay: this.state.carNav === 'V2' && w >= 820,
       catVariant: this.state.catV === 'K1' ? 'standard' : 'vystup',
       magM1: this.state.magV !== 'M2',
       magM2: this.state.magV === 'M2',
@@ -1135,22 +1165,36 @@ class Component extends DCLogic {
       m2Lead: Object.assign({}, this.ARTICLES[0], { photoStyle: this.ARTICLES[0].image ? { backgroundImage: 'url(' + this.ARTICLES[0].image + ')', backgroundSize: 'cover', backgroundPosition: 'center' } : { background: 'var(--ss-surface-muted,#F0F3F6)' } }),
       m2Rest: this.ARTICLES.slice(1).map(a => Object.assign({}, a, { photoStyle: a.image ? { backgroundImage: 'url(' + a.image + ')', backgroundSize: 'cover', backgroundPosition: 'center' } : { background: 'var(--ss-surface-muted,#F0F3F6)' } })),
       // Magazín M1: bez dokola — na začátku je šipka vlevo disabled, na posledním článku šipka vpravo
-      magPrev: () => this.setState(s => ({ mag: Math.max(0, s.mag - 1) })),
-      magNext: () => this.setState(s => ({ mag: Math.min(this.ARTICLES.length - 1, s.mag + 1) })),
-      magPrevDis: this.state.mag <= 0 ? 'true' : 'false',
-      magNextDis: this.state.mag >= this.ARTICLES.length - 1 ? 'true' : 'false',
-      leadArticle: this.ARTICLES[this.state.mag % this.ARTICLES.length],
-      leadPhotoStyle: this.ARTICLES[this.state.mag % this.ARTICLES.length].image
-        ? { backgroundImage: 'url(' + this.ARTICLES[this.state.mag % this.ARTICLES.length].image + ')', backgroundSize: 'cover', backgroundPosition: 'center' }
-        : {},
-      restArticles: [1, 2, 3, 4].map(o => {
-        const a = this.ARTICLES[(this.state.mag + o) % this.ARTICLES.length];
-        return Object.assign({}, a, {
-          photoStyle: a.image
-            ? { backgroundImage: 'url(' + a.image + ')', backgroundSize: 'cover', backgroundPosition: 'center' }
-            : { background: 'var(--ss-surface-muted,#F0F3F6)' }
-        });
-      }),
+      magPrev: () => this.setState(s => ({ mag: Math.max(0, s.mag - 1), magDir: 'prev' })),
+      magNext: () => this.setState(s => ({ mag: Math.min(magPages - 1, s.mag + 1), magDir: 'next' })),
+      magDir: this.state.magDir || 'none',
+      // Pod 820 px (jeden sloupec) místo šipek tlačítko Zobrazit další články: přidá zbylé články pod sebe, pak zůstane jen Do magazínu
+      magArrowsM1: this.state.carNav !== 'V2' && w >= 820,
+      magShowMore: w < 820 && !this.state.magMore && magPool.length > 4,
+      // Pod 820 px v jednom řádku s Do magazínu (stejná výška 44); když se text nevejde (pod 420 px), jen ikonové tlačítko
+      magMoreText: w < 820 && w >= 420 && !this.state.magMore && magPool.length > 4,
+      magMoreIcon: w < 420 && !this.state.magMore && magPool.length > 4,
+      magMore: this.state.magMore && w < 820 ? '1' : '0',
+      magLoadMore: () => { this.setState({ magMore: true }); setTimeout(() => { const g = document.querySelector('.ss-mag-small'); const a = g && g.children[4]; if (a && a.focus) a.focus({ preventScroll: true }); }, 50); },
+      magPrevDis: magPage <= 0 ? 'true' : 'false',
+      magNextDis: magPage >= magPages - 1 ? 'true' : 'false',
+      // Hlavní článek (s příznakem) je pevný, šipky listují jen malými články po čtveřicích
+      leadArticle: this.ARTICLES[0],
+      leadPhotoStyle: this.ARTICLES[0].image ? { backgroundImage: 'url(' + this.ARTICLES[0].image + ')', backgroundSize: 'cover', backgroundPosition: this.ARTICLES[0].imagePos || 'center' } : {},
+      magPar: String(magPage % 2),
+      magStatus: w < 820 ? (this.state.magMore ? 'Zobrazeno všech ' + magPool.length + ' článků' : 'Zobrazeny 4 z ' + magPool.length + ' článků') : 'Články ' + (magPage * 4 + 1) + '–' + Math.min(magPool.length, magPage * 4 + 4) + ' z ' + magPool.length,
+      magSmallTemplate: w >= 820 ? 'repeat(2,minmax(0,1fr))' : 'minmax(0,1fr)',
+      magTrack: w >= 820 ? '1' : '0',
+      magSmallStyle: w >= 820
+        ? { display: 'grid', gridTemplateRows: 'auto auto', gridAutoFlow: 'column', gridAutoColumns: 'calc((100% - 40px) / 2)', gap: '40px', transform: 'translateX(calc(' + (-magPage * 100) + '% - ' + (magPage * 40) + 'px))' }
+        : { display: 'grid', gridTemplateColumns: 'minmax(0,1fr)', gap: '40px' },
+      // Od 820 px všechny stránky v jednom pásu (pořadí po sloupcích: 1, 3, 2, 4), mimo aktuální stránku inert
+      restArticles: (w < 820 ? magPool.slice(0, this.state.magMore ? magPool.length : 4).map(a => Object.assign({}, a, { tab: undefined, hidden: undefined }))
+        : magPool.reduce((acc, _, i) => { if (i % 4 === 0) { const pg = magPool.slice(i, i + 4); [0, 2, 1, 3].forEach(k => { if (pg[k]) acc.push(Object.assign({}, pg[k], { tab: (i / 4) === magPage ? undefined : '-1', hidden: (i / 4) === magPage ? undefined : 'true' })); }); } return acc; }, [])).map(a => Object.assign({}, a, {
+        photoStyle: a.image
+          ? { backgroundImage: 'url(' + a.image + ')', backgroundSize: 'cover', backgroundPosition: 'center' }
+          : { background: 'var(--ss-surface-muted,#F0F3F6)' }
+      })),
       inner,
       innerPadded: Object.assign({}, inner, { padding: narrow ? '40px 16px' : '64px 32px' }),
       innerTight: Object.assign({}, inner, { padding: narrow ? '0 16px 40px' : '0 32px 64px' }),
@@ -1201,7 +1245,7 @@ class Component extends DCLogic {
       revArrows: w < 1150,
       revRef: (el) => { this._rev = el; },
       revTrack: () => this._rev,
-      articleTemplate: w >= 1150 ? '1.7fr minmax(0,1fr) minmax(0,1fr)' : w >= 820 ? 'repeat(2,minmax(0,1fr))' : 'minmax(0,1fr)',
+      articleTemplate: w >= 1150 ? 'minmax(0,1.7fr) minmax(0,2fr)' : 'minmax(0,1fr)',
       newsTemplate: w >= 820 ? 'minmax(0,1fr) minmax(0,1fr)' : 'minmax(0,1fr)',
       inspTabs: ['Ložnice', 'Dětský pokoj', 'Penzion'].map((label, i) => ({
         label,

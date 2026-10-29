@@ -222,7 +222,7 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
     <div class="ss-car" ref="{{ trackRef }}">
       <sc-for list="{{ items }}" as="i" hint-placeholder-count="4">
         <div style="{{ cardWrapStyle }}">
-          <dc-import name="ProduktovaKarta" product="{{ i }}" hint-size="100%,480px"></dc-import>
+          <dc-import name="ProduktovaKarta" product="{{ i }}" variant="{{ cardVariant }}" hint-size="100%,480px"></dc-import>
         </div>
       </sc-for>
     </div>
@@ -246,7 +246,7 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
   </sc-if>
 </section>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;: {&quot;width&quot;: 1200, &quot;height&quot;: 560}, &quot;heading&quot;: {&quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;Související produkty&quot;, &quot;tsType&quot;: &quot;string&quot;}, &quot;navPosition&quot;: {&quot;editor&quot;: &quot;enum&quot;, &quot;default&quot;: &quot;overlay&quot;, &quot;options&quot;: [&quot;overlay&quot;, &quot;below&quot;, &quot;peek&quot;, &quot;belowPeek&quot;], &quot;tsType&quot;: &quot;string&quot;}, &quot;linkLabel&quot;: {&quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;&quot;, &quot;tsType&quot;: &quot;string&quot;}, &quot;linkHref&quot;: {&quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;&quot;, &quot;tsType&quot;: &quot;string&quot;}, &quot;items&quot;: {&quot;editor&quot;: null, &quot;tsType&quot;: &quot;Product[]&quot;}, &quot;compact&quot;: {&quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: false, &quot;tsType&quot;: &quot;boolean&quot;}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;: {&quot;width&quot;: 1200, &quot;height&quot;: 560}, &quot;heading&quot;: {&quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;Související produkty&quot;, &quot;tsType&quot;: &quot;string&quot;}, &quot;cardVariant&quot;: {&quot;editor&quot;: &quot;enum&quot;, &quot;default&quot;: &quot;A&quot;, &quot;options&quot;: [&quot;A&quot;, &quot;A2&quot;, &quot;B&quot;, &quot;C&quot;, &quot;D&quot;, &quot;E&quot;], &quot;tsType&quot;: &quot;string&quot;}, &quot;navPosition&quot;: {&quot;editor&quot;: &quot;enum&quot;, &quot;default&quot;: &quot;overlay&quot;, &quot;options&quot;: [&quot;overlay&quot;, &quot;below&quot;, &quot;peek&quot;, &quot;belowPeek&quot;], &quot;tsType&quot;: &quot;string&quot;}, &quot;linkLabel&quot;: {&quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;&quot;, &quot;tsType&quot;: &quot;string&quot;}, &quot;linkHref&quot;: {&quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;&quot;, &quot;tsType&quot;: &quot;string&quot;}, &quot;items&quot;: {&quot;editor&quot;: null, &quot;tsType&quot;: &quot;Product[]&quot;}, &quot;compact&quot;: {&quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: false, &quot;tsType&quot;: &quot;boolean&quot;}}">
 /* data vložena přímo (canvas nenačítá relativní soubory) */
 const __M_produkty = (() => {
 // Ukázková data produktů a kategorií pro prototyp. Fotky jsou zástupné z dodaných podkladů.
@@ -363,6 +363,8 @@ class Component extends DCLogic {
     const gaps = Math.floor(perView) - (peek ? 0 : 1);
     return {
       heading: p.heading || 'Související produkty',
+      // varianta zobrazení parametrů matrace na kartě (A, A2, B, C, D, E) — přepínač v PrezentacniLista detailu
+      cardVariant: p.cardVariant || 'A',
       // compact = uvnitř okna (např. Přidáno do košíku): menší nadpis
       headingSize: p.compact ? (w < 820 ? '20px' : '24px') : (w < 820 ? '26px' : '34px'),
       hasLink: !!p.linkLabel,

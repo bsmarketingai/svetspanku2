@@ -205,7 +205,7 @@ html[data-mode="dark"] main>section.ss-grad-top.ss-grad-glow{background-image:ra
   <sc-if value="{{ hasHeading }}" hint-placeholder-val="{{ true }}">
     <h2 style="{{ headingStyle }}">{{ heading }}</h2>
   </sc-if>
-  <div style="display:grid;grid-template-columns:{{ gridTemplate }};gap:{{ gap }}">
+  <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:{{ gap }}">
     <sc-for list="{{ items }}" as="i" hint-placeholder-count="5">
       <a class="ss-usp-item" href="{{ i.href }}" style="{{ itemStyle }}">
         <span style="{{ i.iconStyle }}"><dc-import name="Ikony" iconName="{{ i.icon }}" size="{{ iconSize }}" strokeWidth="{{ i.stroke }}" hint-size="60px,60px"></dc-import></span>
@@ -248,7 +248,9 @@ class Component extends DCLogic {
     };
     const hrefFor = (it) => it.href || (/doprav|vraceni|platb|nakup/.test(String(it.icon || '')) ? 'VseONakupu.dc.html' : 'ONas.dc.html');
     const items = src.map((it, n) => ({ ...it, href: hrefFor(it), hl: it.highlight && it.title.startsWith(it.highlight) ? it.highlight : '', rest: it.highlight && it.title.startsWith(it.highlight) ? it.title.slice(it.highlight.length) : it.title, stroke: String(it.icon || '').indexOf('usp-') === 0 ? 2.5 : 0.95, iconStyle: iconWrap }));
+    // Neúplný poslední řádek se centruje (flex-wrap + pevná šířka sloupce), 29. 10. 2026
     const cols = w >= 1560 ? Math.min(items.length, 6) : w >= 1150 ? Math.min(items.length, 5) : w >= 820 ? 3 : w >= 550 ? 2 : 1;
+    const gapV = compact ? (tiles ? '10px' : '14px') : (tiles ? '20px' : (w < 820 ? '20px' : '24px'));
     return {
       items,
       iconSize: compact ? 40 : 60,
@@ -267,8 +269,9 @@ class Component extends DCLogic {
         padding: tiles ? 0 : (compact ? '20px 16px' : (w < 820 ? '24px 16px' : '32px'))
       },
       gridTemplate: 'repeat(' + cols + ',minmax(0,1fr))',
-      gap: compact ? (tiles ? '10px' : '14px') : (tiles ? '20px' : (w < 820 ? '20px' : '24px')),
+      gap: gapV,
       itemStyle: {
+        flex: '0 0 calc((100% - ' + (cols - 1) + ' * ' + gapV + ') / ' + cols + ')', boxSizing: 'border-box',
         display: 'flex', flexDirection: compact ? 'row' : 'column', alignItems: compact ? 'center' : (tiles ? 'flex-start' : 'center'),
         textAlign: compact || tiles ? 'left' : 'center', gap: compact ? '14px' : '8px', minWidth: 0,
         background: tiles ? (dark ? 'rgba(255,255,255,.08)' : 'var(--ss-surface-muted,#F3EDE4)') : 'transparent',

@@ -609,7 +609,7 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
             </div>
 
             <div style="padding:20px 0;border-top:1px solid var(--ss-border-subtle,#E1E6EB)">
-              <dc-import name="ParametryMatrace" tuhost="{{ selTuhost }}" zatizeniOd="{{ 50 }}" zatizeniDo="{{ 90 }}" nosnostMax="{{ 110 }}" spankNaBoku="{{ true }}" size="large" tuhostTitle="Tuhost matrace" hint-size="100%,180px"></dc-import>
+              <dc-import name="ParametryMatrace" layout="{{ pmLayout }}" tuhost="{{ selTuhost }}" zatizeniOd="{{ 50 }}" zatizeniDo="{{ 90 }}" nosnostMax="{{ 110 }}" spankNaBoku="{{ true }}" size="large" tuhostTitle="Tuhost matrace" hint-size="100%,180px"></dc-import>
             </div>
 
             <div style="display:grid;grid-template-columns:{{ factsTemplate }};gap:16px 20px;padding:20px 0;border-top:1px solid var(--ss-border-subtle,#E1E6EB);border-bottom:1px solid var(--ss-border-subtle,#E1E6EB)">
@@ -1049,7 +1049,7 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
 
     <section id="souvisejici" style="width:100%;background:transparent">
       <div style="{{ innerPadded }}">
-        <dc-import name="SouvisejiciProdukty" heading="Spáči ještě přikoupili" navPosition="belowPeek" hint-size="100%,560px"></dc-import>
+        <dc-import name="SouvisejiciProdukty" cardVariant="{{ cardAB }}" heading="Spáči ještě přikoupili" navPosition="belowPeek" hint-size="100%,560px"></dc-import>
       </div>
     </section>
   </main>
@@ -1480,9 +1480,12 @@ class Component extends DCLogic {
         { label: 'Fixní sloupec', value: this.state.stickPick || (stick === 'zadny' ? 'Žádný' : 'Galerie'), options: ['Galerie', 'Žádný'] },
         { label: 'Rozměr', value: this.state.sizeUi === 'V2' ? 'Dropdown' : 'Chipy', options: ['Chipy', 'Dropdown'] },
         { label: 'Výška', value: this.state.heightUi === 'V2' ? 'Dropdown' : 'Chipy', options: ['Chipy', 'Dropdown'] },
-        { label: 'Varianty', value: this.state.varUi || 'Karty', options: ['Karty', 'Chipy'] }
+        { label: 'Varianty', value: this.state.varUi || 'Karty', options: ['Karty', 'Chipy'] },
+        { label: 'Karta matrace', value: this.state.cardAB || 'A', options: ['A', 'A2', 'B', 'C', 'D', 'E'] }
       ],
-      onPresPick: (ci, opt) => { if (ci === 0) { if (opt !== 'Matrace 3.0') (h => { try { const a = document.createElement('a'); a.href = h; a.style.display = 'none'; (document.getElementById('dc-root') || document.body).appendChild(a); a.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true, view: window })); a.remove(); } catch (e) { window.location.href = h; } })('Detail_' + String(opt).replace(/ /g, '_') + '.dc.html'); return; } this.setState(ci === 1 ? { stickPick: opt } : ci === 2 ? { sizeUi: opt === 'Dropdown' ? 'V2' : 'V1' } : ci === 3 ? { heightUi: opt === 'Dropdown' ? 'V2' : 'V1' } : ci === 4 ? { varUi: opt } :  { setUi: opt }); },
+      cardAB: this.state.cardAB || 'A',
+      pmLayout: ({ A2: 'bars2', B: 'tiles', C: 'seg', D: 'rada', E: 'kompakt' })[this.state.cardAB] || 'bars',
+      onPresPick: (ci, opt) => { if (ci === 0) { if (opt !== 'Matrace 3.0') (h => { try { const a = document.createElement('a'); a.href = h; a.style.display = 'none'; (document.getElementById('dc-root') || document.body).appendChild(a); a.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true, view: window })); a.remove(); } catch (e) { window.location.href = h; } })('Detail_' + String(opt).replace(/ /g, '_') + '.dc.html'); return; } this.setState(ci === 1 ? { stickPick: opt } : ci === 2 ? { sizeUi: opt === 'Dropdown' ? 'V2' : 'V1' } : ci === 3 ? { heightUi: opt === 'Dropdown' ? 'V2' : 'V1' } : ci === 4 ? { varUi: opt } : ci === 5 ? { cardAB: opt } : { setUi: opt }); },
       stickyChips: [
         { label: this.state.customSize || this.state.size },
         { label: 'Výška ' + vys.label },
