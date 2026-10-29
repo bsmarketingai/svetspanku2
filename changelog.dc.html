@@ -449,6 +449,16 @@ a:hover{color:var(--ss-link-hover,#21507B);}
 class Component extends DCLogic {
   static DAYS = [
     { date: '29. 10. 2026', entries: [
+      { title: 'Mobilní menu: hierarchie úrovní',
+        before: 'Level 1 Roboto 20 px, level 2 Oswald 18 px, level 3 16 px bez odsazení.',
+        after: 'Level 1 condensed font Oswald 22 px (600), level 2 body font Roboto 19 px (600), level 3 Roboto 18 px odsazený o 16 px zleva.',
+        why: 'Klient: jasná hierarchie kategorií a podkategorií.',
+        files: 'MobilniMenuObsah' },
+      { title: 'Mobilní menu: větší písmo',
+        before: 'Hlavní kategorie 15 px (500), podnadpisy 15 px, položky 14 px, servisní odkazy 15 px – na iPhonu 14 Pro Max málo čitelné.',
+        after: 'Hlavní kategorie 20 px tučně (600), výška řádku 52 px; podnadpisy skupin 18 px, položky 16 px, Prodejny 18 px, servisní odkazy 17 px.',
+        why: 'Klient: nadpisy v hamburger menu skoro nečitelné.',
+        files: 'MobilniMenuObsah' },
       { title: 'Detaily: hover segmentového přepínače jako aktivní stav',
         before: 'Nevybraný segment (např. bez / s úložným prostorem) měl na hover meruňkový podklad a hnědý text.',
         after: 'Na hover dostane bílý podklad surface.page jako aktivní segment, barva textu se nemění.',

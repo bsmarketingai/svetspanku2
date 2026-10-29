@@ -225,16 +225,16 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
                   <sc-for list="{{ c.groups }}" as="g" hint-placeholder-count="2">
                     <div style="{{ g.style }}">
                       <sc-if value="{{ g.isList }}" hint-placeholder-val="{{ true }}">
-                        <h3 style="margin:0;padding:12px 0 4px;font-size:15px;line-height:1.3;color:var(--ss-text-secondary,#3D4750)"><a href="{{ g.href }}" style="color:inherit;text-decoration:none">{{ g.title }}</a></h3>
+                        <h3 class="ss-plain" style="margin:0;padding:12px 0 4px;font-family:Roboto,Helvetica,Arial,sans-serif;font-size:19px;font-weight:600;line-height:1.3;color:var(--ss-text-secondary,#3D4750)"><a href="{{ g.href }}" style="color:inherit;text-decoration:none">{{ g.title }}</a></h3>
                         <sc-for list="{{ g.items }}" as="i" hint-placeholder-count="4">
-                          <a class="ss-mob-row" href="{{ i.href }}" style="padding:0;min-height:36px;font-size:14px">
+                          <a class="ss-mob-row" href="{{ i.href }}" style="padding:0 0 0 16px;min-height:40px;font-size:18px">
                             <span style="flex:1;min-width:0">{{ i.label }}</span>
                             <span style="font-size:13px;color:var(--ss-text-muted,#5B6874)">{{ i.count }}</span>
                           </a>
                         </sc-for>
                       </sc-if>
                       <sc-if value="{{ g.isLeaf }}" hint-placeholder-val="{{ false }}">
-                        <a class="ss-mob-row" href="{{ g.href }}" style="padding:0;min-height:44px;font-size:15px;font-weight:600">{{ g.title }}</a>
+                        <a class="ss-mob-row" href="{{ g.href }}" style="padding:0;min-height:44px;font-size:19px;font-weight:600">{{ g.title }}</a>
                       </sc-if>
                     </div>
                   </sc-for>
@@ -248,7 +248,7 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
         </nav>
           <button type="button" class="ss-mob-row" style="color:var(--ss-text-secondary,#3D4750)" onClick="{{ toggleStores }}" aria-expanded="{{ storesExpanded }}">
             <span class="ss-mob-icon"><dc-import name="Ikony" iconName="map-pin" size="20" hint-size="20px,20px"></dc-import></span>
-            <span style="flex:1;min-width:0">Prodejny (5)</span>
+            <span style="flex:1;min-width:0;font-size:18px">Prodejny (5)</span>
             <span class="ss-mob-icon"><dc-import name="Ikony" iconName="{{ storesChevron }}" size="20" hint-size="20px,20px"></dc-import></span>
           </button>
           <sc-if value="{{ storesOpen }}" hint-placeholder-val="{{ false }}">
@@ -258,17 +258,17 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
           </sc-if>
         <div style="border-top:1px solid var(--ss-border-subtle,#E1E6EB);padding:8px 0 24px;display:flex;flex-direction:column">
           <sc-for list="{{ utility }}" as="u" hint-placeholder-count="4">
-            <a class="ss-mob-row" href="{{ u.href }}" style="color:var(--ss-text-secondary,#3D4750)">{{ u.label }}</a>
+            <a class="ss-mob-row" href="{{ u.href }}" style="color:var(--ss-text-secondary,#3D4750);font-size:17px">{{ u.label }}</a>
           </sc-for>
-          <a class="ss-mob-row" href="#prihlaseni" style="color:var(--ss-text-secondary,#3D4750)">
+          <a class="ss-mob-row" href="#prihlaseni" style="color:var(--ss-text-secondary,#3D4750);font-size:17px">
             <span class="ss-mob-icon"><dc-import name="Ikony" iconName="user" size="20" hint-size="20px,20px"></dc-import></span>
             <span>Přihlášení a registrace</span>
           </a>
-          <a class="ss-mob-row" href="#oblibene" style="color:var(--ss-text-secondary,#3D4750)">
+          <a class="ss-mob-row" href="#oblibene" style="color:var(--ss-text-secondary,#3D4750);font-size:17px">
             <span class="ss-mob-icon"><dc-import name="Ikony" iconName="heart" size="20" hint-size="20px,20px"></dc-import></span>
             <span>Oblíbené</span>
           </a>
-          <a class="ss-mob-row" href="#porovnani" style="color:var(--ss-text-secondary,#3D4750)">
+          <a class="ss-mob-row" href="#porovnani" style="color:var(--ss-text-secondary,#3D4750);font-size:17px">
             <span class="ss-mob-icon"><dc-import name="Ikony" iconName="arrows-diff" size="20" hint-size="20px,20px"></dc-import></span>
             <span>Porovnání</span>
           </a>
@@ -1336,8 +1336,8 @@ class Component extends DCLogic {
         href: c.href || '#',
         hasChildren: !!(c.groups && c.groups.length),
         isLeaf: !(c.groups && c.groups.length),
-        style: c.highlight ? { color: 'var(--ss-status-error,#B3261E)', fontWeight: 600 } : { fontWeight: 500 },
-        linkStyle: Object.assign({ width: 'auto', flex: '0 1 auto', paddingRight: '8px' }, c.highlight ? { color: 'var(--ss-status-error,#B3261E)', fontWeight: 600 } : { fontWeight: 500 }),
+        style: Object.assign({ fontFamily: 'Oswald,Roboto,Helvetica,Arial,sans-serif', fontSize: '22px', minHeight: '52px' }, c.highlight ? { color: 'var(--ss-status-error,#B3261E)', fontWeight: 600 } : { fontWeight: 600 }),
+        linkStyle: Object.assign({ width: 'auto', flex: '0 1 auto', paddingRight: '8px', fontFamily: 'Oswald,Roboto,Helvetica,Arial,sans-serif', fontSize: '22px', minHeight: '52px' }, c.highlight ? { color: 'var(--ss-status-error,#B3261E)', fontWeight: 600 } : { fontWeight: 600 }),
         toggleLabel: (oi === i ? 'Sbalit ' : 'Rozbalit ') + c.label,
         isOpen: oi === i,
         expanded: oi === i ? 'true' : 'false',
