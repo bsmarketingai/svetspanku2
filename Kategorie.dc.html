@@ -226,8 +226,8 @@ a:hover{color:var(--ss-hover-text,#A4600C);}
 .ss-sort[aria-pressed="true"]::after{transform:scaleX(1);}
 .ss-promo{position:relative;display:flex;align-items:flex-end;width:100%;border-radius:12px;overflow:hidden;text-decoration:none;color:#FFFFFF;transition:box-shadow .15s cubic-bezier(.22,.61,.36,1);}
 a.ss-promo:hover{color:#FFFFFF;}
-.ss-promo-btn{display:flex;align-items:center;justify-content:center;flex:none;width:52px;height:52px;border-radius:999px;background:#296093;color:#FFFFFF;transition:background-color .12s cubic-bezier(.22,.61,.36,1);}
-@media (hover:hover) and (pointer:fine){.ss-promo:hover{box-shadow:0 4px 12px rgba(19,44,67,.12);}.ss-promo:hover .ss-promo-btn{background:#21507B;}}
+.ss-promo-btn{display:flex;align-items:center;justify-content:center;flex:none;width:52px;height:52px;border-radius:999px;background:#132C43;color:#FFFFFF;transition:background-color .12s cubic-bezier(.22,.61,.36,1);}
+@media (hover:hover) and (pointer:fine){.ss-promo:hover{box-shadow:0 4px 12px rgba(19,44,67,.12);}.ss-promo:hover .ss-promo-btn{background:#296093;}}
 .ss-promo:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
 .ss-tip{width:100%;border:0;font:inherit;text-align:left;cursor:pointer;display:flex;align-items:center;gap:16px;padding:16px;border-radius:12px;background:var(--ss-surface-card,#FFFFFF);text-decoration:none;color:var(--ss-text-primary,#1C2229);height:100%;box-sizing:border-box;transition:box-shadow .15s cubic-bezier(.22,.61,.36,1);}
 @media (hover:hover) and (pointer:fine){.ss-tip:hover{box-shadow:0 4px 12px rgba(19,44,67,.12);color:var(--ss-text-primary,#1C2229);}.ss-tip:hover .ss-tip-t{color:var(--ss-hover-text,#A4600C);}}
@@ -238,7 +238,7 @@ a.ss-promo:hover{color:#FFFFFF;}
 .ss-kg-pvbg{transition:transform .4s cubic-bezier(.22,.61,.36,1);}
 .ss-kg-pvbtn{transition:background-color .12s cubic-bezier(.22,.61,.36,1);}
 .ss-kg-pv:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
-@media (hover:hover) and (pointer:fine){.ss-kg-pv:hover .ss-kg-pvbg{transform:scale(1.06);}.ss-kg-pv:hover .ss-kg-pvbtn{background:#21507B;}}
+@media (hover:hover) and (pointer:fine){.ss-kg-pv:hover .ss-kg-pvbg{transform:scale(1.06);}.ss-kg-pv:hover .ss-kg-pvbtn{background:#296093!important;}}
 @media (prefers-reduced-motion:reduce){.ss-kg-pvbg{transition:none;}.ss-kg-pv:hover .ss-kg-pvbg{transform:none;}}
 </style>
 </helmet>
@@ -292,7 +292,7 @@ a.ss-promo:hover{color:#FFFFFF;}
               <span style="font-family:Oswald,Helvetica,Arial,sans-serif; font-weight:600; font-size:{{ promoSize }}; line-height: 1.2; color:#1C2229; text-wrap:balance">Pomůžeme vám najít tu správnou matraci</span>
               <span style="font-size:15px; line-height:1.5; color: #1C2229">Osm otázek a doporučíme model podle vaší váhy a polohy spánku</span>
             </span>
-            <span class="ss-kg-pvbtn" style="position:relative;flex:none;white-space:nowrap;align-self:flex-start;display:inline-flex;align-items:center;gap:8px;height:44px;padding:0 20px;border-radius:6px;background:#296093;color:#FFFFFF;font-size:15px;font-weight:600">Průvodce výběrem<dc-import name="Ikony" iconName="chevron-right" size="18" hint-size="18px,18px"></dc-import></span>
+            <span class="ss-kg-pvbtn" style="position:relative;flex:none;white-space:nowrap;align-self:flex-start;display:inline-flex;align-items:center;gap:8px;height:44px;padding:0 20px;border-radius:6px;background:#132C43;color:#FFFFFF;font-size:15px;font-weight:600">Průvodce výběrem<dc-import name="Ikony" iconName="chevron-right" size="18" hint-size="18px,18px"></dc-import></span>
           </a>
           </sc-if>
           <sc-if value="{{ promoCompact }}" hint-placeholder-val="{{ false }}">
@@ -358,6 +358,9 @@ a.ss-promo:hover{color:#FFFFFF;}
           </sc-for>
           <sc-if value="{{ hasTiles }}" hint-placeholder-val="{{ true }}">
             <dc-import name="VypisKategorii" items="{{ subcats }}" variant="{{ subVariant }}" dense="{{ true }}" hint-size="100%,380px"></dc-import>
+            <sc-if value="{{ hasSubMore }}" hint-placeholder-val="{{ false }}">
+              <div style="width:100%;margin-top:-12px"><!-- mezera od dlaždic 12 px místo 24 px --><dc-import name="Tlacitko" label="{{ subMoreLabel }}" variant="secondary" iconRight="{{ subMoreIcon }}" fullWidth="{{ true }}" onClick="{{ toggleSubMore }}" hint-size="100%,44px"></dc-import></div>
+            </sc-if>
           </sc-if>
         </nav>
         </sc-if>
@@ -1727,7 +1730,7 @@ class Component extends DCLogic {
     if (level2Chips) chipRows.push({ title: 'Rozměry', href: r.g.href, items: r.g.items });
     const tiles = level2Chips ? [] : children.filter(c => !c.chips).map(c => ({
       label: c.label, href: c.href, variant: 'vystup',
-      sub: Component.SUBS[c.label] ? [Component.SUBS[c.label]] : c.items.length ? [c.items.slice(0, 3).map(i => i.label).join(' · ')] : undefined,
+      // podkategorie pod názvem dlaždice odebrány – jen hlavní kategorie (30. 10. 2026)
       image: c.image || Component.IMAGES[c.label]
     }));
     const crumbs = [{ label: 'Úvod', href: 'index.dc.html' }];
@@ -1745,7 +1748,7 @@ class Component extends DCLogic {
       ledMode: this.state.led ? 'on' : 'off',
       presItems: [{ label: 'LED', value: this.state.led }],
       onPresToggle: () => this.setState(s => ({ led: !s.led })),
-      presChoices: [{ label: 'Kategorie', value: this.state.subV || 'K2', options: ['K1', 'K2'] }, { label: 'Karta S–XXS', value: this.state.cardV || 'Standard', options: ['Standard', 'Řádek'] }, { label: 'Sticky filtrace', value: this.state.stickyF || 'ON', options: ['ON', 'OFF'] }, { label: 'Karta matrace', value: this.state.cardAB || 'A', options: ['A', 'A2', 'B', 'C', 'D', 'E'] }],
+      presChoices: [{ label: 'Kategorie', value: this.state.subV || 'K2', options: ['K1', 'K2'] }, { label: 'Karta S–XXS', value: this.state.cardV || 'Standard', options: ['Standard', 'Řádek'] }, { label: 'Sticky filtrace', value: this.state.stickyF || 'ON', options: ['ON', 'OFF'] }],
       onPresPick: (ci, opt) => this.setState(ci === 0 ? { subV: opt } : ci === 1 ? { cardV: opt } : ci === 2 ? { stickyF: opt } : { cardAB: opt }),
       cardAB: this.state.cardAB || 'A',
       filterMaxH: (this.state.stickyF || 'ON') === 'ON' ? 'calc(100vh - ' + ((this.state.headerH || 0) + 32) + 'px)' : '',
@@ -1787,7 +1790,12 @@ class Component extends DCLogic {
       promoTextMax: narrow ? 'none' : '60%',
       promoSize: narrow ? '24px' : '28px',
       subVariant: (this.state.subV || 'K2') === 'K2' ? 'horizontalni' : 'vystup',
-      subcats: tiles,
+      // Pod 820 px jen první 4 dlaždice + Zobrazit další kategorie (30. 10. 2026)
+      subcats: narrow && !this.state.subMore ? tiles.slice(0, 4) : tiles,
+      hasSubMore: narrow && tiles.length > 4,
+      subMoreIcon: this.state.subMore ? 'chevron-up' : 'chevron-down',
+      subMoreLabel: this.state.subMore ? 'Zobrazit méně kategorií' : 'Zobrazit další kategorie (' + (tiles.length - 4) + ')',
+      toggleSubMore: () => this.setState(s => ({ subMore: !s.subMore })),
      subCols: 'repeat(' + (w >= 1560 ? 8 : w >= 1150 ? 6 : w >= 1000 ? 5 : w >= 820 ? 4 : w >= 420 ? 3 : 2) + ',minmax(0,1fr))',
       subTop: narrow ? '32px' : '48px',
       tipCols: (w >= 820 && w < 1000) || w >= 1150 ? 'repeat(2,minmax(0,1fr))' : 'minmax(0,1fr)',

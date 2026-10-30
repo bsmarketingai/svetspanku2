@@ -685,7 +685,7 @@ class Component extends DCLogic {
       rating: 4.8, ratingCount: 18, price: '7 590 Kč', priceBefore: '9 590 Kč', badge: 'sale', badgeLabel: 'Akce −25 %',
       secondBadge: 'news', secondBadgeLabel: 'Novinka', stock: 'inStock', moreLabel: 'Více rozměrů / stupňů tuhosti',
       mp: { tuhostPct: 70, zatizeniOd: 70, zatizeniDo: 120, nosnostMax: 130, vyska: 28, vyskaJadra: 24, zaruka: 8, spankNaBoku: true },
-      tuhost: 4.5, params: [{ icon: 'weight', label: '200 kg' }, { icon: 'arrow-autofit-height', label: '20 cm' }, { icon: 'color-swatch', label: 'Pěnová' }] } },
+      tuhost: 4, params: [{ icon: 'weight', label: '200 kg' }, { icon: 'arrow-autofit-height', label: '20 cm' }, { icon: 'color-swatch', label: 'Pěnová' }] } },
     { mat: 'pruziny', partner: false, polohovaci: false, data: { id: 'p2', image: '_blob/4d39f39f3e59f9479b2f3fa0c249def9.webp', title: 'Taštičková matrace Leda Duo', href: 'Detail_Matrace_3.0.dc.html', orderNo: '428204',
       perex: 'Sedm zón tuhosti a kokosová deska. Pohyb jednoho spícího druhého neruší.',
       rating: 4.8, ratingCount: 64, price: '9 190 Kč', stock: 'inStock', moreLabel: 'Více rozměrů / stupňů tuhosti',
@@ -700,7 +700,7 @@ class Component extends DCLogic {
       perex: 'Dvě tuhosti v jedné matraci – stačí ji otočit podle ročního období.',
       rating: 4.1, ratingCount: 54, price: '6 190 Kč', stock: 'inStock', moreLabel: 'Více rozměrů / stupňů tuhosti',
       mp: { tuhostPct: 70, zatizeniOd: 60, zatizeniDo: 110, nosnostMax: 120, vyska: 20, vyskaJadra: 18, zaruka: 5, spankNaBoku: true },
-      tuhost: 3.5, params: [{ icon: 'arrows-exchange', label: 'Oboustranná' }, { icon: 'weight', label: '110 kg' }, { icon: 'arrow-autofit-height', label: '18 cm' }] } }
+      tuhost: 4, params: [{ icon: 'arrows-exchange', label: 'Oboustranná' }, { icon: 'weight', label: '110 kg' }, { icon: 'arrow-autofit-height', label: '18 cm' }] } }
   ];
   // U páru se tyto kroky ptají za oba spáče (klíč + '2')
   static PAIR = { vaha: ['Vaše hmotnost', 'Hmotnost druhého spáče'], poloha: ['Jak spíte vy', 'Jak spí druhý spáč'], pocit: ['Co je příjemné vám', 'Co je příjemné druhému spáči'] };
@@ -915,7 +915,7 @@ class Component extends DCLogic {
       if (a.rost === 'polohovaci' && p.polohovaci) score += 6;
       if (a.kdo === 'par' && p.partner) score += rec.split ? 14 : 8;
       score = Math.max(40, Math.min(98, Math.round(score)));
-      const why = ['Tuhost ' + String(p.data.tuhost).replace('.', ',') + ' z 5', p.mat === 'pruziny' ? 'taštičkové pružiny' : 'pěnové jádro'];
+      const why = ['Tuhost ' + Math.round(p.data.tuhost) + ' z 5', p.mat === 'pruziny' ? 'taštičkové pružiny' : 'pěnové jádro'];
       if (a.kdo === 'par' && p.partner) why.push('každá polovina může mít jinou tuhost');
       if (a.rost === 'polohovaci' && p.polohovaci) why.push('vhodná na polohovací rošt');
       return { score, data: p.data, why: why.join(' · ') };

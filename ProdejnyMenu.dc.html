@@ -248,7 +248,7 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
     <sc-if value="{{ wide }}" hint-placeholder-val="{{ true }}">
       <div style="{{ gridStyle }}">
         <sc-for list="{{ stores }}" as="s" hint-placeholder-count="5">
-          <div class="ss-pm-card">
+          <div class="ss-pm-card" style="{{ cardStyle }}">
             <div style="position:relative;border-radius:8px;overflow:hidden;background:var(--ss-surface-muted,#F3EDE4)">
               <img decoding="async" src="{{ s.photo }}" alt="" style="display:block;width:100%;aspect-ratio:4/3;object-fit:cover" />
             </div>
@@ -272,7 +272,7 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
               <span>{{ s.phone }}</span>
             </a>
             <div style="position:relative;z-index:2;margin-top:auto;padding-top:4px">
-              <dc-import name="Tlacitko" label="Detail prodejny" variant="secondary" size="medium" iconRight="chevron-right" href="{{ s.href }}" ariaLabel="{{ s.detailLabel }}" hint-size="100%,44px"></dc-import>
+              <dc-import name="Tlacitko" label="Detail prodejny" variant="secondary" size="{{ btnSize }}" iconRight="chevron-right" href="{{ s.href }}" ariaLabel="{{ s.detailLabel }}" hint-size="100%,44px"></dc-import>
             </div>
           </div>
         </sc-for>
@@ -434,7 +434,10 @@ class Component extends DCLogic {
         boxShadow: this.props.compact ? 'none' : '0 16px 40px rgba(19,44,67,.18)',
         borderRadius: this.props.compact ? '0' : '0 0 12px 12px'
       },
-      innerStyle: { maxWidth: '1560px', margin: '0 auto', padding: narrow ? '0 16px 24px' : '0 32px 32px' },
+      innerStyle: { maxWidth: '1560px', margin: '0 auto', padding: narrow ? '0 16px 24px' : (w < 1150 ? '0 24px 24px' : '0 32px 32px') },
+      // Všech 5 prodejen v jednom řádku od 1000 px (pod ním hlavička přechází na hamburger); pod 1150 px užší mezery a odsazení, pod 1560 px menší tlačítko (30. 10. 2026)
+      cardStyle: { padding: w < 1150 ? '8px' : '10px' },
+      btnSize: w >= 1560 ? 'medium' : 'standard',
       topStyle: {
         display: 'flex', alignItems: 'center', gap: '16px', flexWrap: 'wrap',
         padding: narrow ? '16px 0 12px' : '20px 0 16px',
@@ -442,8 +445,8 @@ class Component extends DCLogic {
       },
       gridStyle: {
         display: 'grid',
-        gridTemplateColumns: 'repeat(' + (w >= 1560 ? 5 : w >= 1150 ? 4 : 3) + ',minmax(0,1fr))',
-        gap: '20px'
+        gridTemplateColumns: 'repeat(' + (w >= 1000 ? 5 : 3) + ',minmax(0,1fr))',
+        gap: w >= 1150 ? '20px' : '12px'
       },
       geoLabel: geo === 'pending' ? 'Hledám polohu…' : (geo === 'idle' ? 'Najít nejbližší prodejnu' : 'Přepočítat vzdálenosti'),
       locate: this.locate,

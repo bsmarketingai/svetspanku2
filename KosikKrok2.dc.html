@@ -581,7 +581,8 @@ class Component extends DCLogic {
       ownOptions: Component.OWN.map(o => ({ title: o.title, titleBold: o.titleBold, titleAfter: o.titleAfter, price: this.fmt(o.fee) })),
       ownSel: k === 'own' ? +d.split('-')[1] : -1,
       ownOpen: this.state.ownOpen,
-      onOwnToggle: (v) => this.setState({ ownOpen: v }),
+      // Klik na hlavičku skupiny (30. 10. 2026): neaktivní skupina se vybere včetně první položky a rozbalí; aktivní se jen sbalí/rozbalí
+      onOwnToggle: (v) => { if (k !== 'own') { this.setState({ ownOpen: true }); this.setDelivery('own-0'); } else this.setState({ ownOpen: v }); },
       onOwnPick: (i) => this.setDelivery('own-' + i),
       pplInfo: ['Doručení v pracovní dny 8:00–18:00', 'Dobírku lze uhradit i platební kartou', 'Doručení můžete změnit na výdejní místo PPL', 'Odkaz na sledování zásilky dostanete e-mailem', 'V den doručení přijde SMS a e-mail s dvouhodinovým oknem'],
       pplChecked: d === 'ppl',
@@ -590,7 +591,7 @@ class Component extends DCLogic {
       storeOptions: stores.map(s => ({ title: 'Prodejna ' + s.city, description: s.address + ' · ' + s.hours, price: 'Zdarma', info: [s.address, s.hours, 'Telefon ' + s.phone] })),
       storeSel: k === 'store' ? stores.findIndex(x => 'store-' + x.id === d) : -1,
       storeOpen: this.state.storeOpen,
-      onStoreToggle: (v) => this.setState({ storeOpen: v }),
+      onStoreToggle: (v) => { if (k !== 'store' && stores[0]) { this.setState({ storeOpen: true }); this.setDelivery('store-' + stores[0].id); } else this.setState({ storeOpen: v }); },
       onStorePick: (i) => { const s = stores[i]; if (s) this.setDelivery('store-' + s.id); },
       payments: Component.PAY.map(m => {
         const disabled = !!m.allow && m.allow.indexOf(k) === -1;

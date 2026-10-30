@@ -578,7 +578,7 @@ a{color:var(--ss-link,#296093);}a:hover{color:var(--ss-hover-text,#A4600C);}
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{}">
 class Component extends DCLogic {
-  state = { width: typeof window !== 'undefined' ? document.documentElement.clientWidth : 1440, led: true, carNav: 'V1' };
+  state = { width: typeof window !== 'undefined' ? document.documentElement.clientWidth : 1440, led: true, carNav: 'V3' };
   componentDidMount() {
     this._resize = () => this.setState({ width: document.documentElement.clientWidth });
     window.addEventListener('resize', this._resize);
@@ -591,8 +591,7 @@ class Component extends DCLogic {
       ledMode: led ? 'on' : 'off',
       presItems: [{ label: 'LED', value: led }],
       onPresToggle: () => this.setState(s => ({ led: s.led === false })),
-      presChoices: [{ label: 'Navigace karuselů', value: this.state.carNav, options: ['V1', 'V2', 'V3'] }],
-      onPresPick: (ci, opt) => this.setState({ carNav: opt }),
+      // Karusel V3 = finální (30. 10. 2026), přepínač odebrán
       carNavPosition: this.state.carNav === 'V2' ? 'overlay' : this.state.carNav === 'V3' ? 'peek' : 'belowPeek',
       four: 4,
       h1Size: w < 820 ? '30px' : w < 1150 ? '38px' : '46px',

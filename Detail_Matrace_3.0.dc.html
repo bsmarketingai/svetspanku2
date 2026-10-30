@@ -1284,6 +1284,8 @@ class Component extends DCLogic {
     if (history.replaceState) history.replaceState(null, '', '#' + id);
   }
   componentDidMount() {
+    this._cv = () => { let v = 'A'; try { v = localStorage.getItem('ss-cardv') || 'A'; } catch (e) {} if (v !== this.state.cardAB) this.setState({ cardAB: v }); };
+    this._cv(); window.addEventListener('ss-cardv', this._cv);
     this._resize = () => this.setState({ width: document.documentElement.clientWidth });
     window.addEventListener('resize', this._resize);
     this._scroll = () => {
@@ -1342,6 +1344,7 @@ class Component extends DCLogic {
     window.addEventListener('keydown', this._key);
   }
   componentWillUnmount() {
+    window.removeEventListener('ss-cardv', this._cv);
     window.removeEventListener('ss-hdhidden', this._hdHidden); document.removeEventListener('click', this._tocClick);
     clearInterval(this._headerTick); window.removeEventListener('resize', this._onResize);
     window.removeEventListener('resize', this._resize);
@@ -1509,11 +1512,11 @@ class Component extends DCLogic {
         { label: 'Fixní sloupec', value: this.state.stickPick || (stick === 'zadny' ? 'Žádný' : 'Galerie'), options: ['Galerie', 'Žádný'] },
         { label: 'Rozměr', value: this.state.sizeUi === 'V2' ? 'Dropdown' : 'Chipy', options: ['Chipy', 'Dropdown'] },
         { label: 'Výška', value: this.state.heightUi === 'V2' ? 'Dropdown' : 'Chipy', options: ['Chipy', 'Dropdown'] },
-        { label: 'Varianty', value: this.state.varUi || 'Karty', options: ['Karty', 'Chipy'] },
-        { label: 'Karta matrace', value: this.state.cardAB || 'A', options: ['A', 'A2', 'B', 'C', 'D', 'E'] }
+        { label: 'Varianty', value: this.state.varUi || 'Karty', options: ['Karty', 'Chipy'] }
       ],
+      // Karta matrace = globální volba Karta v prezentaci (ss-cardv, 30. 10. 2026)
       cardAB: this.state.cardAB || 'A',
-      pmLayout: ({ A2: 'bars2', B: 'tiles', C: 'seg', D: 'rada', E: 'kompakt' })[this.state.cardAB] || 'bars',
+      pmLayout: ({ A2: 'bars2', B: 'tiles', D: 'rada', E: 'kompakt' })[this.state.cardAB] || 'bars',
       onPresPick: (ci, opt) => { if (ci === 0) { if (opt !== 'Matrace 3.0') (h => { try { const a = document.createElement('a'); a.href = h; a.style.display = 'none'; (document.getElementById('dc-root') || document.body).appendChild(a); a.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true, view: window })); a.remove(); } catch (e) { window.location.href = h; } })('Detail_' + String(opt).replace(/ /g, '_') + '.dc.html'); return; } this.setState(ci === 1 ? { stickPick: opt } : ci === 2 ? { sizeUi: opt === 'Dropdown' ? 'V2' : 'V1' } : ci === 3 ? { heightUi: opt === 'Dropdown' ? 'V2' : 'V1' } : ci === 4 ? { varUi: opt } : ci === 5 ? { cardAB: opt } : { setUi: opt }); },
       stickyChips: [
         { label: this.state.customSize || this.state.size },

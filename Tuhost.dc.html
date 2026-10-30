@@ -280,7 +280,8 @@ class Component extends DCLogic {
   renderVals() {
     const p = this.props;
     const raw = Number(p.value ?? 4.5);
-    const v = Math.min(5, Math.max(1, Math.round((isNaN(raw) ? 3 : raw) * 2) / 2));
+    // Tuhost vždy celé číslo 1–5, žádné půlstupně (30. 10. 2026)
+    const v = Math.min(5, Math.max(1, Math.round(isNaN(raw) ? 3 : raw)));
     const track = 'var(--ss-surface-card,#FFFFFF)';
     const ring = 'inset 0 0 0 1px #8DB3D3';
     const segs = [1, 2, 3, 4, 5].map((n, i) => {

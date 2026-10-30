@@ -198,11 +198,11 @@ html[data-mode="dark"] main>section.ss-grad-top.ss-grad-glow{background-image:ra
 </helmet>
 <div style="{{ barStyle }}">
   <div style="display:flex;flex-wrap:wrap;align-items:center;gap:12px;padding:{{ pad }}">
-    <div style="display:flex;flex-wrap:nowrap;align-items:center;gap:12px;flex:1 1 auto;min-width:0">
-      <div style="flex:none">
-        <dc-import name="Tlacitko" label="{{ filterLabel }}" variant="primary" iconLeft="adjustments-horizontal" onClick="{{ onOpen }}" hint-size="140px,44px"></dc-import>
+    <div style="{{ groupStyle }}">
+      <div style="{{ fltStyle }}">
+        <dc-import name="Tlacitko" label="{{ filterLabel }}" variant="primary" iconLeft="adjustments-horizontal" fullWidth="{{ tiny }}" onClick="{{ onOpen }}" hint-size="140px,44px"></dc-import>
       </div>
-      <div style="flex:0 1 240px;min-width:0">
+      <div style="{{ selStyle }}">
         <dc-import name="Select" ariaLabel="Řadit podle" value="{{ sort }}" onChange="{{ onSort }}" options="{{ sortOptions }}" hint-size="100%,44px"></dc-import>
       </div>
     </div>
@@ -234,6 +234,8 @@ class Component extends DCLogic {
   renderVals() {
     const p = this.props;
     const narrow = this.state.width < 820;
+    // Pod 820 px: Filtry vlevo, Řazení vpravo, počet na vlastním řádku vpravo; pod 420 px oboje pod sebou na plnou šířku (30. 10. 2026)
+    const tiny = this.state.width < 420;
     const active = p.active || [];
     const count = p.activeCount ?? active.length;
     return {
@@ -242,6 +244,14 @@ class Component extends DCLogic {
         background: 'var(--ss-surface-page,#FFFFFF)', borderRadius: '12px', boxShadow: '0 2px 8px rgba(19,44,67,.08)'
       },
       pad: narrow ? '12px 16px' : '12px 20px',
+      tiny,
+      groupStyle: tiny
+        ? { display: 'flex', flexDirection: 'column', alignItems: 'stretch', gap: '8px', width: '100%', minWidth: 0 }
+        : narrow
+          ? { display: 'flex', flexWrap: 'nowrap', alignItems: 'center', gap: '12px', width: '100%', minWidth: 0 }
+          : { display: 'flex', flexWrap: 'nowrap', alignItems: 'center', gap: '12px', flex: '1 1 auto', minWidth: 0 },
+      fltStyle: tiny ? { width: '100%' } : { flex: 'none' },
+      selStyle: tiny ? { width: '100%', minWidth: 0 } : narrow ? { flex: 'none', minWidth: 0, marginLeft: 'auto' } /* obal jen na šířku Selectu, aby byl opravdu u pravého okraje */ : { flex: '0 1 240px', minWidth: 0 },
       padChips: narrow ? '0 16px 12px' : '0 20px 12px',
       filterLabel: count > 0 ? 'Filtry (' + count + ')' : 'Filtry',
       sort: p.sort ?? 'doporucene',

@@ -1,0 +1,204 @@
+<title>Finální úpravy Světspánku.cz</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600&family=Roboto:wght@400;500;700&display=swap">
+<style>
+/* Layout: jeden sloupec deníku – den = blok s datem vlevo, záznamy vpravo; pod 820 px pod sebou. Jen světlý režim (jako web). */
+:root{
+  --page:#FFFFFF; --subtle:#FAF5EF; --muted:#F3EDE4;
+  --heading:#0B1F33; --text:#1C2229; --text2:#3D4750; --textMuted:#5B6874;
+  --brand:#132C43; --primary:#296093; --buy:#FBB255; --apricotText:#A4600C;
+  --border:#E1E6EB;
+  --f-head:"Oswald","Arial Narrow",Arial,sans-serif;
+  --f-body:"Roboto",system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+body{background:var(--page);color:var(--text);font-family:var(--f-body);font-size:16px;line-height:1.6}
+.band{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.inner{max-width:960px;margin:0 auto}
+header.band{background:var(--brand);color:#fff;padding-block:48px 40px;
+  background-image:radial-gradient(ellipse 70% 120% at 0% 100%,rgba(251,178,85,.22),rgba(251,178,85,0) 70%)}
+.eyebrow{font-size:13px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--buy);margin:0 0 8px}
+h1{font-family:var(--f-head);font-weight:600;font-size:44px;line-height:1.15;margin:0 0 12px;text-wrap:balance}
+.lead{margin:0;max-width:62ch;color:rgba(255,255,255,.86)}
+.meta{display:flex;flex-wrap:wrap;gap:8px 24px;margin-top:20px;font-size:14px;color:rgba(255,255,255,.75)}
+.meta b{color:#fff;font-weight:500}
+main.band{padding-block:48px 80px;background:linear-gradient(180deg,var(--page),var(--subtle))}
+.how{display:flex;flex-wrap:wrap;gap:8px 20px;font-size:14px;color:var(--textMuted);margin:0 0 40px;padding-bottom:20px;border-bottom:1px solid var(--border)}
+.how span::before{content:"";display:inline-block;width:8px;height:8px;border-radius:999px;margin-right:8px;vertical-align:1px;background:var(--k)}
+.day{display:grid;grid-template-columns:168px 1fr;gap:32px;padding-block:32px;border-top:1px solid var(--border)}
+.day:first-of-type{border-top:0;padding-top:0}
+.date{font-family:var(--f-head);font-weight:500;font-size:22px;color:var(--heading);line-height:1.2}
+.date small{display:block;font-family:var(--f-body);font-size:14px;color:var(--textMuted);margin-top:4px}
+.entries{display:flex;flex-direction:column;gap:20px;min-width:0}
+.entry{background:#fff;border-radius:12px;padding:24px;box-shadow:0 2px 8px rgba(19,44,67,.08)}
+.tag{display:inline-block;font-size:13px;font-weight:500;border-radius:6px;padding:2px 8px;margin-bottom:8px}
+.t-upr{background:#E4EEF6;color:#21507B}
+.t-roz{background:#FEEDD4;color:#7A4708}
+h2{font-family:var(--f-head);font-weight:600;font-size:22px;line-height:1.3;color:var(--heading);margin:0 0 16px;text-wrap:balance}
+dl{display:grid;grid-template-columns:96px 1fr;gap:8px 16px;margin:0}
+dt{font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--textMuted);padding-top:3px}
+dd{margin:0;color:var(--text2);min-width:0}
+.files{font-size:14px;color:var(--textMuted)}
+code{font-size:14px;background:var(--muted);border-radius:4px;padding:1px 6px}
+footer.band{padding-block:24px;font-size:13px;color:var(--textMuted);border-top:1px solid var(--border)}
+@media (max-width:819px){
+  h1{font-size:32px}
+  .day{grid-template-columns:1fr;gap:16px}
+  dl{grid-template-columns:1fr;gap:2px}
+  dd{margin-bottom:8px}
+  .entry{padding:20px}
+}
+</style>
+
+<header class="band">
+  <div class="inner">
+    <p class="eyebrow">Světspánku.cz · designový prototyp</p>
+    <h1>Finální úpravy</h1>
+    <p class="lead">Přehled větších úprav a rozhodnutí ve fázi finalizace. U každé položky je popsáno, co se změnilo, proč a jaké je řešení. Nejnovější den je nahoře.</p>
+    <div class="meta"><span>Naposledy upraveno: <b>30. 10. 2026</b></span><span>Zpracovává: <b>BSSHOP s.r.o.</b></span></div>
+  </div>
+</header>
+
+<main class="band">
+  <div class="inner">
+    <p class="how"><span style="--k:#296093">Úprava – změna v designu nebo prototypu</span><span style="--k:#FBB255">Rozhodnutí – dohodnutý postup</span></p>
+
+    <!-- Nový den vložit NAD tento blok. Záznam: .entry s .tag (t-upr Úprava / t-roz Rozhodnutí), h2, dl Co / Proč / Řešení (+ Soubory). -->
+    <section class="day" aria-labelledby="d-2026-10-30">
+      <div class="date" id="d-2026-10-30">30. 10. 2026<small>pátek</small></div>
+      <div class="entries">
+        <article class="entry">
+          <span class="tag t-upr">Úprava</span>
+          <h2>Volba karty v prezentaci na všech stránkách</h2>
+          <dl>
+            <dt>Co</dt><dd>Prezentační lišta má na všech stránkách přepínač Karta (A, A2, B, D, E, F). Volba platí pro všechny produktové karty na webu najednou a pamatuje si ji i při přechodu mezi stránkami.</dd>
+            <dt>Proč</dt><dd>Na homepage jsou v jednom karuselu matrace i jiné produkty a jejich karty k sobě nepasovaly.</dd>
+            <dt>Řešení</dt><dd>Varianta F je univerzální, takže s ní vypadají všechny karty jednotně. Dřívější přepínače „Karta matrace“ v kategorii a na detailu matrace nahradila tato jedna volba.</dd>
+          </dl>
+        </article>
+        <article class="entry">
+          <span class="tag t-upr">Úprava</span>
+          <h2>Nová univerzální karta F s krátkým popisem</h2>
+          <dl>
+            <dt>Co</dt><dd>Karta F má pod názvem krátký popis produktu na dva řádky. U matrací jsou tuhost a Ideální pro zobrazené jako příznaky vedle výšky, nosnosti a záruky. Od ostatních příznaků je odlišuje modrý podklad.</dd>
+            <dt>Proč</dt><dd>Klient chtěl jednu variantu karty, která funguje pro matrace i ostatní produkty. Příznaky mají být na všech kartách ve stejné výšce a tuhost s váhou mají být výraznější.</dd>
+            <dt>Řešení</dt><dd>Popis má pevnou výšku dvou řádků, takže příznaky začínají na všech kartách na stejném místě.</dd>
+          </dl>
+        </article>
+        <article class="entry">
+          <span class="tag t-upr">Úprava</span>
+          <h2>Košík, krok 2: výběr dopravy</h2>
+          <dl>
+            <dt>Co</dt><dd>Klik na skupinu „Naše vlastní doprava Svět spánku“ nebo „Osobní odběr na prodejně“ ji rovnou vybere i s první položkou. Na mobilu mají název, popis a termín skupiny celý řádek pod ikonou a cenou.</dd>
+            <dt>Proč</dt><dd>Klik na skupinu ji dřív jen rozbalil, doprava zůstala nevybraná. Na nejmenších mobilech se název lámal po jednotlivých slovech.</dd>
+            <dt>Řešení</dt><dd>Úprava je ve sdílené komponentě skupiny voleb. Desktop a tablet vypadají stejně jako dřív.</dd>
+          </dl>
+        </article>
+        <article class="entry">
+          <span class="tag t-upr">Úprava</span>
+          <h2>Filtrační lišta ve výpisu na mobilu</h2>
+          <dl>
+            <dt>Co</dt><dd>Na mobilu je tlačítko Filtry vlevo a řazení Doporučujeme vpravo na stejném řádku. Na nejmenších telefonech (pod 420 px) jsou obě pod sebou na plnou šířku.</dd>
+            <dt>Proč</dt><dd>Pod 320 px řazení vyjíždělo mimo obrazovku.</dd>
+            <dt>Řešení</dt><dd>Lišta se přizpůsobuje šířce displeje, nic už nepřetéká.</dd>
+          </dl>
+        </article>
+        <article class="entry">
+          <span class="tag t-upr">Úprava</span>
+          <h2>Kategorie: jen hlavní kategorie, na mobilu první 4</h2>
+          <dl>
+            <dt>Co</dt><dd>Dlaždice kategorií ve výpisu ukazují jen název hlavní kategorie, bez seznamu podkategorií. Na mobilu se zobrazí první 4 dlaždice a pod nimi tlačítko Zobrazit další kategorie.</dd>
+            <dt>Proč</dt><dd>Na mobilu byl seznam kategorií nekonečně dlouhý a odsouval produkty hluboko pod první obrazovku.</dd>
+            <dt>Řešení</dt><dd>Tlačítko rozbalí zbytek a znovu ho sbalí. Na tabletu a desktopu se zobrazují všechny dlaždice.</dd>
+          </dl>
+        </article>
+        <article class="entry">
+          <span class="tag t-upr">Úprava</span>
+          <h2>Parametry matrace na kartách: sjednocení a zjednodušení</h2>
+          <dl>
+            <dt>Co</dt><dd>Ukazatel tuhosti má 5 dílků od světle po tmavě modrou. Varianta C byla smazána, varianta D přebírá ukazatel zatížení z varianty A, varianta E je bez ikon a podkladu s ukazateli uprostřed. Popisky, čísla i štítky vlastností jsou ve všech variantách písmem Oswald, stejně jako na ostatních kartách.</dd>
+            <dt>Proč</dt><dd>Parametry mají být čitelné na první pohled a vypadat na všech kartách stejně. Číslo tuhosti je výraznější než popis.</dd>
+            <dt>Řešení</dt><dd>Úpravy jsou ve sdílené komponentě, platí ve všech výpisech. V prezentační liště zůstávají varianty A, A2, B, D a E k výběru.</dd>
+          </dl>
+        </article>
+        <article class="entry">
+          <span class="tag t-upr">Úprava</span>
+          <h2>Přepínač poměru fotky na kartě</h2>
+          <dl>
+            <dt>Co</dt><dd>V prezentační liště je nový přepínač Fotka karty: A čtvercová (1:1), B na šířku (4:3). Platí na všech stránkách s produktovými kartami.</dd>
+            <dt>Proč</dt><dd>Fotka 4:3 kartu dál snižuje, klient si může obě podoby porovnat.</dd>
+            <dt>Řešení</dt><dd>U 4:3 se produktové fotky na bílém pozadí (matrace) zobrazují větší, aby nepůsobily ztraceně.</dd>
+          </dl>
+        </article>
+        <article class="entry">
+          <span class="tag t-roz">Rozhodnutí</span>
+          <h2>Tuhost jen celými čísly 1–5</h2>
+          <dl>
+            <dt>Co</dt><dd>Tuhost matrac se na celém webu uvádí jen celými čísly 1 až 5, bez půlstupňů a desetin (např. „4 z 5“, ne „3,5 z 5“). Ukazatele tuhosti a zatížení zároveň přišly o kolečka na koncích.</dd>
+            <dt>Proč</dt><dd>Celá čísla jsou pro zákazníka srozumitelnější a odpovídají tomu, jak tuhost uvádí klient. Kolečka působila jako posuvník, za který se dá táhnout.</dd>
+            <dt>Řešení</dt><dd>Komponenty, které tuhost zobrazují, hodnotu vždy zaokrouhlí na celý stupeň. Pravidlo je zapsané v zásadách projektu.</dd>
+          </dl>
+        </article>
+        <article class="entry">
+          <span class="tag t-upr">Úprava</span>
+          <h2>Nižší produktové karty</h2>
+          <dl>
+            <dt>Co</dt><dd>Produktové karty ve výpisech už nezobrazují krátký popis produktu. Hodnocení se přesunulo přímo na fotku do levého dolního rohu, na poloprůhledný bílý štítek. Karta je celkem asi o 105 px nižší.</dd>
+            <dt>Proč</dt><dd>Karty byly zbytečně vysoké, na obrazovku se jich vešlo málo. Podstatné údaje (parametry, cena, dostupnost) na kartě zůstávají.</dd>
+            <dt>Řešení</dt><dd>Popis byl odebrán ze sdílené karty, takže změna platí ve všech výpisech najednou. Na detailu produktu se popis zobrazuje dál.</dd>
+          </dl>
+        </article>
+        <article class="entry">
+          <span class="tag t-upr">Úprava</span>
+          <h2>Menu Prodejny: všech 5 prodejen v jednom řádku</h2>
+          <dl>
+            <dt>Co</dt><dd>V rozbalovacím menu Prodejny jsou všechny prodejny vedle sebe v jednom řádku od šířky 1000 px. Pod touto šířkou se hlavička mění na hamburger menu.</dd>
+            <dt>Proč</dt><dd>Na středních šířkách se prodejny rozpadaly do dvou řádků (4 + 1, případně 3 + 2) a menu bylo zbytečně vysoké.</dd>
+            <dt>Řešení</dt><dd>Na užších obrazovkách se zmenšily mezery mezi kartami a tlačítko Detail prodejny, aby se vše vešlo do jednoho řádku.</dd>
+          </dl>
+        </article>
+        <article class="entry">
+          <span class="tag t-roz">Rozhodnutí</span>
+          <h2>Finální varianty hlavičky, menu, patičky a homepage</h2>
+          <dl>
+            <dt>Co</dt><dd>Hlavička je na celém webu ve variantě Duo (dva odstíny tmavě modré). Při scrollu dolů se schová a při scrollu nahoru se vrátí (H2). Menu je ve variantě M2 s šipkami u položek s podmenu. Patička je modrá. Na homepage má magazín podobu M1 a prodejny podobu P1. Karusely na homepage a v článku mají ovládání V3: šipky na okrajích a náhled další karty.</dd>
+            <dt>Proč</dt><dd>Klient vybral finální varianty z těch, které šly v prototypu přepínat.</dd>
+            <dt>Řešení</dt><dd>Vybrané varianty jsou nastavené jako výchozí a přepínače Header, Footer, Magazín, Prodejny, Menu, Sticky hlavička a Karusel zmizely z prezentační lišty. Rozhodnutí je konečné.</dd>
+          </dl>
+        </article>
+        <article class="entry">
+          <span class="tag t-upr">Úprava</span>
+          <h2>Nižší a přeskládaná sekce Newsletter</h2>
+          <dl>
+            <dt>Co</dt><dd>Sekce s přihlášením k odběru novinek je nižší. Na šířce 1440 px měla výšku asi 480 px, teď má asi 240 px. Obsah je zarovnaný doleva: nadpis s popisem vlevo, formulář vpravo vedle něj, výhody v řádku pod nimi.</dd>
+            <dt>Proč</dt><dd>Klient chtěl sekci co nejnižší, působila zbytečně velká.</dd>
+            <dt>Řešení</dt><dd>Obsah se přeskládal z jednoho sloupce na střed do dvou sloupců vlevo a zmenšilo se odsazení. Z grafiky v pozadí zůstala jen pravá část (mráčky s obálkami) v pravém dolním rohu, celá a bez ořezu. Sekce je sdílená, takže změna platí na celém webu.</dd>
+          </dl>
+        </article>
+        <article class="entry">
+          <span class="tag t-upr">Úprava</span>
+          <h2>Primární tlačítko je tmavě modré</h2>
+          <dl>
+            <dt>Co</dt><dd>Hlavní tlačítka na celém webu (např. Filtry ve výpisu kategorie, Najít dokonalou matraci na homepage, Průvodce výběrem v kategorii) mají místo světlejší modré #296093 tmavě modrou #132C43. Při najetí myší se zesvětlí na #296093.</dd>
+            <dt>Proč</dt><dd>Tmavě modrá se dosud používala jen u tlačítek na produktových kartách. Vedle světlejší modré jinde to působilo nejednotně. Klient rozhodl, že tmavě modrá bude primární barva tlačítek všude.</dd>
+            <dt>Řešení</dt><dd>Změna je ve sdílené komponentě Tlačítko, takže se projeví všude najednou. Ručně psaná tlačítka byla upravena zvlášť. Odkazy, aktivní stránka v listování, zaškrtávátka a podobné výběrové prvky zůstávají ve světlejší modré značky.</dd>
+          </dl>
+        </article>
+        <article class="entry">
+          <span class="tag t-roz">Rozhodnutí</span>
+          <h2>Založení přehledu finálních úprav</h2>
+          <dl>
+            <dt>Co</dt><dd>Vznikla tato stránka se záznamem úprav a rozhodnutí.</dd>
+            <dt>Proč</dt><dd>Finalizace probíhá ve více pracovních krocích. Klient i tým potřebují mít na jednom místě přehled o tom, co se změnilo a z jakého důvodu.</dd>
+            <dt>Řešení</dt><dd>Každá větší úprava nebo rozhodnutí se sem zapisuje chronologicky. Drobné technické změny zůstávají v changelogu prototypu.</dd>
+          </dl>
+        </article>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer class="band"><div class="inner">Světspánku.cz · LUCKÉ CZ GROUP · ceny v prototypu jsou s DPH</div></footer>

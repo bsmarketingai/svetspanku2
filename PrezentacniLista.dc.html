@@ -256,7 +256,9 @@ class Component extends DCLogic {
     mode: (() => { try { return localStorage.getItem('ss-mode') === 'dark' ? 'dark' : 'light'; } catch (e) { return 'light'; } })(),
     bg: (() => { try { return localStorage.getItem('ss-bg') || 'on'; } catch (e) { return 'on'; } })(),
     logo: (() => { try { return localStorage.getItem('ss-logo') || 'a'; } catch (e) { return 'a'; } })(),
-    hd: (() => { try { return localStorage.getItem('ss-hdmode') === 'H1' ? 'H1' : 'H2'; } catch (e) { return 'H2'; } })()
+    hd: (() => { try { return localStorage.getItem('ss-hdmode') === 'H1' ? 'H1' : 'H2'; } catch (e) { return 'H2'; } })(),
+    photoAR: (() => { try { return localStorage.getItem('ss-photoar') === 'B' ? 'B' : 'A'; } catch (e) { return 'A'; } })(),
+    cardV: (() => { try { return localStorage.getItem('ss-cardv') || 'A'; } catch (e) { return 'A'; } })()
   };
   setAttr(key, attr, v) {
     try { localStorage.setItem(key, v); } catch (e) {}
@@ -277,7 +279,11 @@ class Component extends DCLogic {
     const grp = (label, opts, cur, fn) => ({ label, options: opts.map(([l, v]) => ({ label: l, pressed: cur === v ? 'true' : 'false', onPick: () => fn(v) })) });
     // Tmavý režim zrušen (29. 10. 2026) – přepínač Režim i volba Logo (jen pro tmavý) odebrány
     const base = [];
-    base.push(grp('Sticky hlavička', [['H1', 'H1'], ['H2', 'H2']], this.state.hd, v => { try { localStorage.setItem('ss-hdmode', v); } catch (e) {} window.dispatchEvent(new Event('ss-hdmode')); this.setState({ hd: v }); }));
+    // Sticky hlavička H2 = finální (30. 10. 2026), volba H1/H2 odebrána
+    // Fotka v produktové kartě: A = čtverec 1:1, B = 4:3 (30. 10. 2026) – platí na všech stránkách, uloženo v ss-photoar
+    // Varianta produktové karty (30. 10. 2026) – globálně na všech stránkách (homepage, kategorie, detail, oblíbené…), uloženo v ss-cardv, událost ss-cardv. F = univerzální (popis + příznaky) pro matrace i ostatní produkty
+    base.push(grp('Karta', [['A','A'],['A2','A2'],['B','B'],['D','D'],['E','E'],['F','F']], this.state.cardV, v => { try { localStorage.setItem('ss-cardv', v); } catch (e) {} window.dispatchEvent(new Event('ss-cardv')); this.setState({ cardV: v }); }));
+    base.push(grp('Fotka karty', [['A 1:1', 'A'], ['B 4:3', 'B']], this.state.photoAR, v => { try { localStorage.setItem('ss-photoar', v); } catch (e) {} window.dispatchEvent(new Event('ss-photoar')); this.setState({ photoAR: v }); }));
     return {
       open,
       visible: !this.state.hidden,

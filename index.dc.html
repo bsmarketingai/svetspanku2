@@ -870,7 +870,7 @@ html[data-mode="dark"] .ss-rev-badge{--ss-shine:rgba(251,178,85,.14);}
           <div style="position:relative;display:flex;flex-direction:column;gap:12px;min-width:0">
             <h2 style="margin:0;font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:{{ h2Size }};line-height:1.15;color:#1C2229">Pomůžeme vám najít tu správnou matraci</h2>
             <p style="margin:0;max-width:60ch;font-size:15px;line-height:1.6;color:#3D4750">Odpovíte na osm otázek o váze, poloze spánku a rozpočtu. Doporučíme tři modely a řekneme, proč zrovna je.</p>
-            <div style="margin-top:4px"><dc-import name="Tlacitko" label="Najít dokonalou matraci" variant="buy" size="large" href="PruvodceMatrace.dc.html" iconRight="arrow-right" hint-size="260px,52px"></dc-import></div>
+            <div style="margin-top:4px"><a href="PruvodceMatrace.dc.html" style="display:inline-flex;align-items:center;gap:8px;height:52px;padding:0 24px;border-radius:6px;background:#132C43;color:#FFFFFF;font-size:16px;font-weight:600;text-decoration:none;white-space:nowrap" style-hover="background:#296093">Najít dokonalou matraci<dc-import name="Ikony" iconName="arrow-right" size="18" hint-size="18px,18px"></dc-import></a></div>
           </div>
         </div>
       </div>
@@ -1073,7 +1073,7 @@ class Component extends DCLogic {
   ];
   state = {
     width: typeof window !== 'undefined' ? document.documentElement.clientWidth : 1440,
-    insp: 0, city: 0, hot: true, hot2: false, hot3: false, hot4: false, hot5: false, hot6: false, hot7: false, inspMore: false, email: '', mag: 0, carNav: 'V1',storeV: 'P1', magV: 'M1', m2AtStart: true, m2AtEnd: false, revAtStart: true, revAtEnd: false
+    insp: 0, city: 0, hot: true, hot2: false, hot3: false, hot4: false, hot5: false, hot6: false, hot7: false, inspMore: false, email: '', mag: 0, carNav: 'V3',storeV: 'P1', magV: 'M1', m2AtStart: true, m2AtEnd: false, revAtStart: true, revAtEnd: false
   };
   componentDidMount() {
     this._resize = () => this.setState({ width: document.documentElement.clientWidth });
@@ -1139,26 +1139,19 @@ class Component extends DCLogic {
       presItems: [{ label: 'LED', value: led }],
       onPresToggle: () => this.setState(s => ({ led: s.led === false })),
       presChoices: [
-        { label: 'Karusel', value: this.state.carNav, options: ['V1', 'V2', 'V3'] },
-        { label: 'Header', value: this.state.chrome || 'Modrá', options: ['Světlá', 'Modrá', 'Duo'] },
-        { label: 'Footer', value: this.state.footer || 'Modrá', options: ['Světlá', 'Modrá'] },
-        { label: 'Magazín', value: this.state.magV, options: ['M1', 'M2'] },
-        { label: 'Kategorie', value: this.state.catV || 'K2', options: ['K1', 'K2'] },
-        { label: 'Prodejny', value: this.state.storeV, options: ['P1', 'P2'] },
-        { label: 'Menu', value: this.state.navV || (() => { try { return localStorage.getItem('ss-navvar') === 'M1' ? 'M1' : 'M2'; } catch (e) { return 'M2'; } })(), options: ['M1', 'M2'] }
+        { label: 'Kategorie', value: this.state.catV || 'K2', options: ['K1', 'K2'] }
       ],
       onPresPick: (ci, opt) => {
-        if (ci === 0) this.setState({ carNav: opt });
-        else if (ci === 1) this.setState({ chrome: opt });
-        else if (ci === 2) this.setState({ footer: opt });
-        else if (ci === 3) this.setState({ magV: opt });
-        else if (ci === 4) this.setState({ catV: opt });
-        else if (ci === 5) this.setState({ storeV: opt });
-        else { this.setState({ navV: opt }); try { localStorage.setItem('ss-navvar', opt); window.dispatchEvent(new CustomEvent('ss-navvar')); } catch (e) {} }
+        // Karusel V3 = finální (30. 10. 2026), přepínač odebrán; state.carNav zůstává 'V3'
+        // Magazín M1 = finální (30. 10. 2026), přepínač odebrán; state.magV zůstává 'M1'
+        if (ci === 0) this.setState({ catV: opt });
+        // Prodejny P1 = finální (30. 10. 2026), přepínač odebrán; state.storeV zůstává 'P1'
+        // Menu M2 = finální (30. 10. 2026), přepínač odebrán
       },
-      navVariant: this.state.navV || (() => { try { return localStorage.getItem('ss-navvar') === 'M1' ? 'M1' : 'M2'; } catch (e) { return 'M2'; } })(),
-      chromeTheme: this.state.chrome === 'Světlá' ? 'light' : this.state.chrome === 'Duo' ? 'duo' : 'blue',
-      footerTheme: this.state.footer === 'Světlá' ? 'light' : 'blue',
+      navVariant: 'M2',
+      // Hlavička Duo a patička Modrá – finální rozhodnutí (30. 10. 2026), přepínače z prezentace odebrány
+      chromeTheme: 'duo',
+      footerTheme: 'blue',
       carNavPosition: this.state.carNav === 'V2' ? 'overlay' : this.state.carNav === 'V3' ? 'peek' : 'belowPeek',
       navBelow: this.state.carNav !== 'V2',
       navOverlay: this.state.carNav === 'V2' && w >= 820,
