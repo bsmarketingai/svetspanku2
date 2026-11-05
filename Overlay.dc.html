@@ -299,6 +299,9 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
       <sc-if value="{{ isInfoObsah }}" hint-placeholder-val="{{ false }}">
         <dc-import name="InfoObsah" data="{{ data }}" onEvent="{{ onEvent }}" hint-size="100%,120px"></dc-import>
       </sc-if>
+      <sc-if value="{{ isNahledObsah }}" hint-placeholder-val="{{ false }}">
+        <dc-import name="NahledObsah" data="{{ data }}" onEvent="{{ onEvent }}" hint-size="100%,560px"></dc-import>
+      </sc-if>
     </div>
 
     <sc-if value="{{ hasFooter }}" hint-placeholder-val="{{ true }}">
@@ -325,7 +328,7 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
 // a chování: role=dialog + aria-modal + aria-labelledby, Escape, klik na scrim, focus dovnitř, trap jen přes viditelné prvky,
 // návrat focusu na spouštěč, zámek scrollu (počítadlo, funguje i pro vnořená okna), úklid listenerů při zavření i odmountování.
 // Obsah okna = samostatná komponenta *Obsah s rozhraním data + onEvent(typ, a, b). onEvent('close') zavře okno.
-const OBSAHY = ['PrihlaseniObsah', 'KosikObsah', 'MobilniMenuObsah', 'KosikPridanoObsah', 'TuhostObsah', 'PoradnaObsah', 'VariantaObsah', 'FiltrObsah', 'InfoObsah'];
+const OBSAHY = ['PrihlaseniObsah', 'KosikObsah', 'MobilniMenuObsah', 'KosikPridanoObsah', 'TuhostObsah', 'PoradnaObsah', 'VariantaObsah', 'FiltrObsah', 'InfoObsah', 'NahledObsah'];
 let __ssOvSeq = 0;
 class Component extends DCLogic {
   state = { w: typeof window !== 'undefined' ? document.documentElement.clientWidth : 1440, pop: null };

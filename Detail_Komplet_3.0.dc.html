@@ -678,6 +678,11 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
                             <sc-if value="{{ k.hasSwatch }}" hint-placeholder-val="{{ false }}">
                               <span style="width:22px;height:22px;flex:none;border-radius:999px;background:{{ k.swatch }};box-shadow:inset 0 0 0 1px rgba(19,44,67,.15)"></span>
                             </sc-if>
+                            <sc-if value="{{ k.hasBars }}" hint-placeholder-val="{{ false }}">
+                              <span role="img" aria-label="{{ k.optValue }}" style="display:flex;align-items:flex-end;gap:3px;height:16px;flex:none"><!-- tuhost jako sloupečky z karty matrace E (5. 11. 2026) -->
+                                <sc-for list="{{ k.bars }}" as="kb" hint-placeholder-count="5"><span style="display:block;width:6px;height:{{ kb.h }};border-radius:2px;background:{{ kb.bg }}"></span></sc-for>
+                              </span>
+                            </sc-if>
                             <span>{{ k.optValue }}</span>
                           </span>
                         </span>
@@ -1528,12 +1533,12 @@ class Component extends DCLogic {
       presItems: [{ label: 'LED', value: this.state.led }],
       onPresToggle: () => this.setState(s => ({ led: !s.led })),
       presChoices: [
-        { label: 'Detail', value: 'Komplet 3.0', options: ['Postel 3.0', 'Konfigurátor', 'Komplet 3.0', 'Multi 3.0', 'Matrace 3.0', 'Komoda VIA'] },
+        { label: 'Detail', value: 'Komplet 3.0', options: ['Postel 3.0', 'Multi Konf.', 'Komplet 3.0', 'Multi 3.0', 'Matrace 3.0', 'Komoda VIA'] },
         { label: 'Fixní sloupec', value: this.state.stickPick || (stick === 'zadny' ? 'Žádný' : 'Galerie'), options: ['Galerie', 'Žádný'] },
         { label: 'Rozměr', value: this.state.sizeUi || 'V1', options: ['V1', 'V2'] },
         { label: 'Set', value: this.state.setUi || 'S1', options: ['S1', 'S2', 'S3', 'S4'] }
       ],
-      onPresPick: (ci, opt) => { if (ci === 0) { if (opt !== 'Komplet 3.0') (h => { try { const a = document.createElement('a'); a.href = h; a.style.display = 'none'; (document.getElementById('dc-root') || document.body).appendChild(a); a.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true, view: window })); a.remove(); } catch (e) { window.location.href = h; } })(opt === 'Konfigurátor' ? 'Detail_Postel_3.0-hqdl.dc.html' : 'Detail_' + String(opt).replace(/ /g, '_') + '.dc.html'); return; } ci -= 1; this.setState(ci === 0 ? { stickPick: opt } : ci === 1 ? { sizeUi: opt } : { setUi: opt }); },
+      onPresPick: (ci, opt) => { if (ci === 0) { if (opt !== 'Komplet 3.0') (h => { try { const a = document.createElement('a'); a.href = h; a.style.display = 'none'; (document.getElementById('dc-root') || document.body).appendChild(a); a.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true, view: window })); a.remove(); } catch (e) { window.location.href = h; } })(opt === 'Multi Konf.' ? 'Detail_Postel_3.0-hqdl.dc.html' : 'Detail_' + String(opt).replace(/ /g, '_') + '.dc.html'); return; } ci -= 1; this.setState(ci === 0 ? { stickPick: opt } : ci === 1 ? { sizeUi: opt } : { setUi: opt }); },
       stickyChips: [
         { label: '180 × 200 cm' },
         { label: mat.label, color: mat.color, hasSwatch: true },
@@ -1640,7 +1645,7 @@ class Component extends DCLogic {
       kitItems: KIT.map(it => {
         const open = kitOpen[it.key] !== false;
         const opt = it.key === 'postel' ? { optTitle: 'Materiál a odstín (olej)', optValue: mat.label, optNote: mat.note, hasSwatch: true, swatch: mat.color, onOpt: () => this.setState({ drawer: 'material' }) }
-          : it.key === 'matrace' ? { optTitle: 'Tuhost matrace', optValue: tuh.label, optNote: 'Skladem', hasSwatch: false, swatch: '', onOpt: () => this.setState({ drawer: 'tuhost' }) } : null;
+          : it.key === 'matrace' ? { optTitle: 'Tuhost matrace', optValue: tuh.label, optNote: 'Skladem', hasSwatch: false, swatch: '', hasBars: true, bars: [1, 2, 3, 4, 5].map(i => ({ h: (6 + i * 2) + 'px', bg: i <= Number(String(tuh.id).slice(1)) ? '#296093' : 'var(--ss-surface-strong,#E9E1D5)' })), onOpt: () => this.setState({ drawer: 'tuhost' }) } : null;
         return Object.assign({}, it, { regular: it.count > 1 ? it.count + ' × ' + fmtK(it.unit) + ' = ' + fmtK(it.unit * it.count) : fmtK(it.unit), hasImg: !!it.img, noImg: !it.img, open, expanded: open ? 'true' : 'false', rotate: open ? 'none' : 'rotate(180deg)',
           toggleLabel: (open ? 'Sbalit ' : 'Rozbalit ') + it.title, toggle: kitToggle(it.key), hasOpt: !!opt }, opt || {});
       }),

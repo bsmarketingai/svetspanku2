@@ -473,7 +473,15 @@ class Component extends DCLogic {
     width: typeof window !== 'undefined' ? document.documentElement.clientWidth : 1440,
     led: true, coupon: '',
     items: [
-      { title: 'Manželská postel SANTE 45 dvoulůžko', variant: '200 × 180 cm · olej Teak · jádrový buk', qty: 2, unit: 19990, before: 24990, img: '_blob/6721a0d378d224249b73f0d946656a32.jpg', fit: 'cover', stock: 'inStock' },
+      { title: 'Manželská postel SANTE 45 dvoulůžko', variant: '200 × 180 cm', qty: 2, unit: 19990, before: 24990, img: '_blob/6721a0d378d224249b73f0d946656a32.jpg', fit: 'cover', stock: 'inStock',
+        // příplatková výbava postele – součást položky, cena za 1 postel (5. 11. 2026)
+        extras: [
+          { title: 'Materiál a odstín: Dub – olej Ořech', note: 'masivní dub', unit: 4200, img: '_blob/058506e15ac24e1b0a2e758f8982884e.webp', swatch: true },
+          { title: 'Čalounění čela: Kronos 02', note: 'velur, vínová', unit: 2900, img: '_blob/84a14f4985f21f4fa846ba0c5881db90.webp', swatch: true },
+          { title: 'Úložný prostor s výklopným roštem', note: 'výklop od nohou', unit: 4490, img: '_blob/e58c131539e8ad6860c8e14b3cb0959a.webp' },
+          { title: '2 × Lamelový rošt Villach S', note: '28 lamel · 90 × 200 cm', unit: 2688, img: '_blob/7d9234acbe0f59bf374b86101ea80224.webp' },
+          { title: 'Výška Komfort 45 cm', note: 'zvýšená postel', unit: 900, icon: 'arrow-autofit-height' }
+        ] },
       { title: 'Matrace Spring Variant 22 cm', variant: '180 × 200 cm · tuhost H3', qty: 1, unit: 7590, before: 9590, img: '_blob/66ef2119f31d8262ba38ce4bea618a8e.webp', stock: 'inStock' }
     ]
   };
@@ -488,7 +496,8 @@ class Component extends DCLogic {
     const narrow = w < 820;
     const wide = w >= 1000;
     const items = this.state.items;
-    const sum = items.reduce((s, i) => s + i.unit * i.qty, 0);
+    const exSum = (i) => (i.extras || []).reduce((a, e) => a + e.unit, 0);
+    const sum = items.reduce((s, i) => s + (i.unit + exSum(i)) * i.qty, 0);
     const COUPONS = { SPANEK10: 0.10 };
     const rate = COUPONS[this.state.coupon] || 0;
     const disc = Math.round(sum * rate);
@@ -505,7 +514,8 @@ class Component extends DCLogic {
       hasItems: items.length > 0, isEmpty: items.length === 0,
       items: items.map((it, idx) => ({
         data: { title: it.title, variant: it.variant, qty: it.qty, img: it.img, fit: it.fit, stock: it.stock,
-          unitPrice: this.fmt(it.unit), priceBefore: it.before ? this.fmt(it.before) : undefined, total: this.fmt(it.unit * it.qty) },
+          unitPrice: this.fmt(it.unit), priceBefore: it.before ? this.fmt(it.before) : undefined, total: this.fmt((it.unit + exSum(it)) * it.qty),
+          extrasTitle: 'Zvolená výbava postele', extras: (it.extras || []).map(e => ({ title: e.title, note: e.note, img: e.img, icon: e.icon, swatch: e.swatch, price: e.unit ? '+ ' + this.fmt(e.unit) + (it.qty > 1 ? ' / ks' : '') : '' })) },
         onQty: (v) => this.setState(s => ({ items: s.items.map((x, j) => j === idx ? Object.assign({}, x, { qty: v }) : x) })),
         // Odebrání poslední položky → přechod na stránku Prázdný košík (29. 10. 2026)
         onRemove: () => { const left = this.state.items.filter((x, j) => j !== idx); this.setState({ items: left }); if (!left.length) (h => { try { const a = document.createElement('a'); a.href = h; a.style.display = 'none'; (document.getElementById('dc-root') || document.body).appendChild(a); a.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true, view: window })); a.remove(); } catch (e) { window.location.href = h; } })('PrazdnyKosik.dc.html'); }

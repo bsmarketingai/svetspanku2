@@ -452,8 +452,8 @@ a:focus-visible>.ss-pd-setbtn[data-v="S4"]{box-shadow:0 0 0 3px rgba(41,96,147,.
 .ss-pd-glasswrap[data-v="S4"]{position:relative;border-radius:12px;}
 .ss-pd-glasswrap[data-v="S4"]::before{z-index:1;}
 /* Nákupní řádek stepper + Do košíku (5. 11. 2026): na mobilu zarovnaný vlevo, dokud se vejde v jednom řádku; když se zalomí, stepper má šířku tlačítka */
-.ss-pd-buy{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-left:auto;}
-@media (max-width:999px){.ss-pd-glass{container-type:inline-size;}.ss-pd-buy{margin-left:0;flex-basis:100%;}}
+.ss-pd-buy{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-left:0;flex-basis:100%;} /* vždy zarovnané vlevo, na vlastním řádku pod cenou (5. 11. 2026) */
+.ss-pd-glass{container-type:inline-size;}
 @container (max-width:415px){.ss-pd-buy{display:grid;grid-template-columns:max-content;justify-content:start;}.ss-pd-buy .ss-qty{display:flex;width:100%;}.ss-pd-buy .ss-qty input{flex:1 1 0;width:0!important;min-width:48px;}.ss-pd-buy .ss-btn{width:100%;}}
 .ss-pd-glasswrap:not([data-v="S4"]) .ss-pd-glass,.ss-pd-glasswrap[data-v="S4"]{box-shadow:0 4px 12px rgba(19,44,67,.12),0 16px 40px rgba(19,44,67,.10);}
 html[data-mode="dark"] .ss-pd-glasswrap:not([data-v="S4"]) .ss-pd-glass,html[data-mode="dark"] .ss-pd-glasswrap[data-v="S4"]{box-shadow:0 4px 12px rgba(0,0,0,.28),0 16px 40px rgba(0,0,0,.32);}
@@ -1540,12 +1540,12 @@ class Component extends DCLogic {
       presItems: [{ label: 'LED', value: this.state.led }],
       onPresToggle: () => this.setState(s => ({ led: !s.led })),
       presChoices: [
-        { label: 'Detail', value: 'Multi 3.0', options: ['Postel 3.0', 'Konfigurátor', 'Komplet 3.0', 'Multi 3.0', 'Matrace 3.0', 'Komoda VIA'] },
+        { label: 'Detail', value: 'Multi 3.0', options: ['Postel 3.0', 'Multi Konf.', 'Komplet 3.0', 'Multi 3.0', 'Matrace 3.0', 'Komoda VIA'] },
         { label: 'Fixní sloupec', value: this.state.stickPick || (stick === 'zadny' ? 'Žádný' : 'Galerie'), options: ['Galerie', 'Žádný'] },
         { label: 'Rozměr', value: this.state.sizeUi || 'V1', options: ['V1', 'V2'] },
         { label: 'Set', value: this.state.setUi || 'S1', options: ['S1', 'S2', 'S3', 'S4'] }
       ],
-      onPresPick: (ci, opt) => { if (ci === 0) { if (opt !== 'Multi 3.0') (h => { try { const a = document.createElement('a'); a.href = h; a.style.display = 'none'; (document.getElementById('dc-root') || document.body).appendChild(a); a.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true, view: window })); a.remove(); } catch (e) { window.location.href = h; } })(opt === 'Konfigurátor' ? 'Detail_Postel_3.0-hqdl.dc.html' : 'Detail_' + String(opt).replace(/ /g, '_') + '.dc.html'); return; } this.setState(ci === 1 ? { stickPick: opt } : ci === 2 ? { sizeUi: opt } : { setUi: opt }); },
+      onPresPick: (ci, opt) => { if (ci === 0) { if (opt !== 'Multi 3.0') (h => { try { const a = document.createElement('a'); a.href = h; a.style.display = 'none'; (document.getElementById('dc-root') || document.body).appendChild(a); a.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true, view: window })); a.remove(); } catch (e) { window.location.href = h; } })(opt === 'Multi Konf.' ? 'Detail_Postel_3.0-hqdl.dc.html' : 'Detail_' + String(opt).replace(/ /g, '_') + '.dc.html'); return; } this.setState(ci === 1 ? { stickPick: opt } : ci === 2 ? { sizeUi: opt } : { setUi: opt }); },
       stickyChips: [
         { label: this.state.customSize || this.state.size },
         { label: vys.label },

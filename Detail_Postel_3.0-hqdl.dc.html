@@ -474,8 +474,8 @@ a:focus-visible>.ss-pd-setbtn[data-v="S4"]{box-shadow:0 0 0 3px rgba(41,96,147,.
 .ss-pd-glasswrap[data-v="S4"]{position:relative;border-radius:12px;}
 .ss-pd-glasswrap[data-v="S4"]::before{z-index:1;}
 /* Nákupní řádek stepper + Do košíku (5. 11. 2026): na mobilu zarovnaný vlevo, dokud se vejde v jednom řádku; když se zalomí, stepper má šířku tlačítka */
-.ss-pd-buy{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-left:auto;}
-@media (max-width:999px){.ss-pd-glass{container-type:inline-size;}.ss-pd-buy{margin-left:0;flex-basis:100%;}}
+.ss-pd-buy{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-left:0;flex-basis:100%;} /* vždy zarovnané vlevo, na vlastním řádku pod cenou (5. 11. 2026) */
+.ss-pd-glass{container-type:inline-size;}
 @container (max-width:415px){.ss-pd-buy{display:grid;grid-template-columns:max-content;justify-content:start;}.ss-pd-buy .ss-qty{display:flex;width:100%;}.ss-pd-buy .ss-qty input{flex:1 1 0;width:0!important;min-width:48px;}.ss-pd-buy .ss-btn{width:100%;}}
 .ss-pd-glasswrap:not([data-v="S4"]) .ss-pd-glass,.ss-pd-glasswrap[data-v="S4"]{box-shadow:0 4px 12px rgba(19,44,67,.12),0 16px 40px rgba(19,44,67,.10);}
 html[data-mode="dark"] .ss-pd-glasswrap:not([data-v="S4"]) .ss-pd-glass,html[data-mode="dark"] .ss-pd-glasswrap[data-v="S4"]{box-shadow:0 4px 12px rgba(0,0,0,.28),0 16px 40px rgba(0,0,0,.32);}
@@ -689,7 +689,7 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
               <div class="ss-cfg-head">
                 <span class="ss-cfg-num" aria-hidden="true"><sc-if value="{{ s1IsDone }}" hint-placeholder-val="{{ false }}"><dc-import name="Ikony" iconName="check" size="16" hint-size="16px,16px"></dc-import></sc-if><sc-if value="{{ s1NotDone }}" hint-placeholder-val="{{ true }}"><span>1</span></sc-if></span>
                 <span class="ss-cfg-tx">
-                  <span class="ss-cfg-t">Rozměr postele</span>
+                  <span class="ss-cfg-t">{{ s1Title }}</span>
                   <sc-if value="{{ s1ShowVal }}" hint-placeholder-val="{{ false }}"><span class="ss-cfg-v"><sc-if value="{{ s1HasSwatch }}" hint-placeholder-val="{{ false }}"><span class="ss-cfg-sw" style="background:{{ s1Swatch }}"></span></sc-if><span>{{ s1Value }}</span><sc-if value="{{ s1HasNote }}" hint-placeholder-val="{{ false }}"><span class="ss-cfg-note" style="color:{{ s1NoteColor }}">{{ s1Note }}</span></sc-if></span></sc-if>
                 </span>
                 <sc-if value="{{ s1CanEdit }}" hint-placeholder-val="{{ false }}"><button type="button" class="ss-cfg-edit" onClick="{{ s1Edit }}">Změnit</button></sc-if>
@@ -787,7 +787,7 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
               <div class="ss-cfg-head">
                 <span class="ss-cfg-num" aria-hidden="true"><sc-if value="{{ s2IsDone }}" hint-placeholder-val="{{ false }}"><dc-import name="Ikony" iconName="check" size="16" hint-size="16px,16px"></dc-import></sc-if><sc-if value="{{ s2NotDone }}" hint-placeholder-val="{{ true }}"><span>2</span></sc-if></span>
                 <span class="ss-cfg-tx">
-                  <span class="ss-cfg-t">Výška postele</span>
+                  <span class="ss-cfg-t">{{ s2Title }}</span>
                   <sc-if value="{{ s2ShowVal }}" hint-placeholder-val="{{ false }}"><span class="ss-cfg-v"><span>{{ s2Value }}</span><sc-if value="{{ s2HasNote }}" hint-placeholder-val="{{ false }}"><span class="ss-cfg-note" style="color:{{ s2NoteColor }}">{{ s2Note }}</span></sc-if></span></sc-if>
                 </span>
                 <sc-if value="{{ s2CanEdit }}" hint-placeholder-val="{{ false }}"><button type="button" class="ss-cfg-edit" onClick="{{ s2Edit }}">Změnit</button></sc-if>
@@ -810,7 +810,7 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
               <div class="ss-cfg-head">
                 <span class="ss-cfg-num" aria-hidden="true"><sc-if value="{{ s3IsDone }}" hint-placeholder-val="{{ false }}"><dc-import name="Ikony" iconName="check" size="16" hint-size="16px,16px"></dc-import></sc-if><sc-if value="{{ s3NotDone }}" hint-placeholder-val="{{ true }}"><span>3</span></sc-if></span>
                 <span class="ss-cfg-tx">
-                  <span class="ss-cfg-t">Úložný prostor</span>
+                  <span class="ss-cfg-t">{{ s3Title }}</span>
                   <sc-if value="{{ s3ShowVal }}" hint-placeholder-val="{{ false }}"><span class="ss-cfg-v"><sc-if value="{{ s3HasSwatch }}" hint-placeholder-val="{{ false }}"><span class="ss-cfg-sw" style="background:{{ s3Swatch }}"></span></sc-if><span>{{ s3Value }}</span><sc-if value="{{ s3HasNote }}" hint-placeholder-val="{{ false }}"><span class="ss-cfg-note" style="color:{{ s3NoteColor }}">{{ s3Note }}</span></sc-if></span></sc-if>
                 </span>
                 <sc-if value="{{ s3CanEdit }}" hint-placeholder-val="{{ false }}"><button type="button" class="ss-cfg-edit" onClick="{{ s3Edit }}">Změnit</button></sc-if>
@@ -864,7 +864,7 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
               <div class="ss-cfg-head">
                 <span class="ss-cfg-num" aria-hidden="true"><sc-if value="{{ s4IsDone }}" hint-placeholder-val="{{ false }}"><dc-import name="Ikony" iconName="check" size="16" hint-size="16px,16px"></dc-import></sc-if><sc-if value="{{ s4NotDone }}" hint-placeholder-val="{{ true }}"><span>4</span></sc-if></span>
                 <span class="ss-cfg-tx">
-                  <span class="ss-cfg-t">Rošty</span>
+                  <span class="ss-cfg-t">{{ s4Title }}</span>
                   <sc-if value="{{ s4ShowVal }}" hint-placeholder-val="{{ false }}"><span class="ss-cfg-v"><sc-if value="{{ s4HasSwatch }}" hint-placeholder-val="{{ false }}"><span class="ss-cfg-sw" style="background:{{ s4Swatch }}"></span></sc-if><span>{{ s4Value }}</span><sc-if value="{{ s4HasNote }}" hint-placeholder-val="{{ false }}"><span class="ss-cfg-note" style="color:{{ s4NoteColor }}">{{ s4Note }}</span></sc-if></span></sc-if>
                 </span>
                 <sc-if value="{{ s4CanEdit }}" hint-placeholder-val="{{ false }}"><button type="button" class="ss-cfg-edit" onClick="{{ s4Edit }}">Změnit</button></sc-if>
@@ -881,7 +881,7 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
               <div class="ss-cfg-head">
                 <span class="ss-cfg-num" aria-hidden="true"><sc-if value="{{ s5IsDone }}" hint-placeholder-val="{{ false }}"><dc-import name="Ikony" iconName="check" size="16" hint-size="16px,16px"></dc-import></sc-if><sc-if value="{{ s5NotDone }}" hint-placeholder-val="{{ true }}"><span>5</span></sc-if></span>
                 <span class="ss-cfg-tx">
-                  <span class="ss-cfg-t">Materiál a odstín</span>
+                  <span class="ss-cfg-t">{{ s5Title }}</span>
                   <sc-if value="{{ s5ShowVal }}" hint-placeholder-val="{{ false }}"><span class="ss-cfg-v"><sc-if value="{{ s5HasSwatch }}" hint-placeholder-val="{{ false }}"><span class="ss-cfg-sw" style="background:{{ s5Swatch }}"></span></sc-if><span>{{ s5Value }}</span><sc-if value="{{ s5HasNote }}" hint-placeholder-val="{{ false }}"><span class="ss-cfg-note" style="color:{{ s5NoteColor }}">{{ s5Note }}</span></sc-if></span></sc-if>
                 </span>
                 <sc-if value="{{ s5CanEdit }}" hint-placeholder-val="{{ false }}"><button type="button" class="ss-cfg-edit" onClick="{{ s5Edit }}">Změnit</button></sc-if>
@@ -898,7 +898,7 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
               <div class="ss-cfg-head">
                 <span class="ss-cfg-num" aria-hidden="true"><sc-if value="{{ s6IsDone }}" hint-placeholder-val="{{ false }}"><dc-import name="Ikony" iconName="check" size="16" hint-size="16px,16px"></dc-import></sc-if><sc-if value="{{ s6NotDone }}" hint-placeholder-val="{{ true }}"><span>6</span></sc-if></span>
                 <span class="ss-cfg-tx">
-                  <span class="ss-cfg-t">Čalounění</span>
+                  <span class="ss-cfg-t">{{ s6Title }}</span>
                   <sc-if value="{{ s6ShowVal }}" hint-placeholder-val="{{ false }}"><span class="ss-cfg-v"><sc-if value="{{ s6HasSwatch }}" hint-placeholder-val="{{ false }}"><span class="ss-cfg-sw" style="background:{{ s6Swatch }}"></span></sc-if><span>{{ s6Value }}</span><sc-if value="{{ s6HasNote }}" hint-placeholder-val="{{ false }}"><span class="ss-cfg-note" style="color:{{ s6NoteColor }}">{{ s6Note }}</span></sc-if></span></sc-if>
                 </span>
                 <sc-if value="{{ s6CanEdit }}" hint-placeholder-val="{{ false }}"><button type="button" class="ss-cfg-edit" onClick="{{ s6Edit }}">Změnit</button></sc-if>
@@ -1258,6 +1258,7 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
 
   <dc-import name="VariantaDrawer" open="{{ drawerOpen }}" title="{{ drawerTitle }}" note="{{ drawerNote }}" value="{{ drawerValue }}" groups="{{ drawerGroups }}" rows="{{ drawerRows }}" onPick="{{ onDrawerPick }}" onClose="{{ closeDrawer }}" hint-size="0px,0px"></dc-import>
 
+  <dc-import name="Overlay" open="{{ rostPvOpen }}" variant="modal" size="md" obsah="NahledObsah" title="{{ rostPvTitle }}" icon="photo" closeLabel="okno" initialFocus="close" data="{{ rostPvData }}" onClose="{{ rostPvClose }}" primaryLabel="Vybrat tento rošt" onPrimary="{{ rostPvPick }}" secondaryLabel="Zavřít" onSecondary="{{ rostPvClose }}" hint-size="100%,100%"></dc-import>
   <dc-import name="KosikPridanoModal" open="{{ addedOpen }}" title="Postel LEVITA" qty="{{ qty }}" variant="{{ addedVariant }}" image="_blob/6b546453dfb90e0ec7ddb488eed7e6ec.webp" stockKind="onWay" stockLabel="Vyrobíme během 2–4 týdnů" total="{{ addedTotal }}" onClose="{{ closeAdded }}" hint-size="0px,0px"></dc-import>
 
   <sc-if value="{{ customOpen }}" hint-placeholder-val="{{ false }}">
@@ -1528,7 +1529,7 @@ class Component extends DCLogic {
     const rostDim = ' · ' + rostW + ' × ' + bedL + ' cm';
     const rostRow = (id, label, extra, unit, more) => Object.assign({ id, label, metaStrong: rostPcs + '\u00A0ks', meta: rostDim + (extra ? ' · ' + extra : '') + (rostPcs > 1 ? ' · ' + fmtK(unit) + '/ks' : ''), price: fmtK(unit * rostPcs), stock: 'Skladem' }, more || {});
     const ROSTY = [
-      { id: 'bez', label: 'Bez roštu', meta: 'rošty nejsou součástí postele', price: '0 Kč', stock: '' },
+      { id: 'bez', label: 'Bez roštu', meta: 'rošty nejsou součástí postele', price: '0 Kč', stock: '', noZoom: true },
       rostRow('villach-s', 'Lamelový rošt Villach S', '28 lamel', 1344),
       rostRow('vyklopny-bok', 'Lamelový výklopný rošt – z boku', '', 1190),
       rostRow('vyklopny-nohy', 'Lamelový výklopný rošt – od nohou', '', 1190),
@@ -1735,13 +1736,13 @@ class Component extends DCLogic {
       presItems: [{ label: 'LED', value: this.state.led }, { label: 'Příplatky', value: PP }],
       onPresToggle: (i) => this.setState(s => (i === 1 ? { pp: s.pp === false } : { led: !s.led })),
       presChoices: [
-        { label: 'Detail', value: 'Konfigurátor', options: ['Postel 3.0', 'Konfigurátor', 'Komplet 3.0', 'Multi 3.0', 'Matrace 3.0', 'Komoda VIA'] },
+        { label: 'Detail', value: 'Multi Konf.', options: ['Postel 3.0', 'Multi Konf.', 'Komplet 3.0', 'Multi 3.0', 'Matrace 3.0', 'Komoda VIA'] },
         { label: 'Fixní sloupec', value: this.state.stickPick || (stick === 'zadny' ? 'Žádný' : 'Galerie'), options: ['Galerie', 'Žádný'] },
         { label: 'Rozměr', value: this.state.sizeUi || 'V1', options: ['V1', 'V2'] },
         { label: 'Set', value: this.state.setUi || 'S1', options: ['S1', 'S2', 'S3', 'S4'] },
         { label: 'Materiál a odstín', value: this.state.matUi || 'B', options: ['A', 'B'] }
       ],
-      onPresPick: (ci, opt) => { if (ci === 0) { if (opt !== 'Konfigurátor') (h => { try { const a = document.createElement('a'); a.href = h; a.style.display = 'none'; (document.getElementById('dc-root') || document.body).appendChild(a); a.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true, view: window })); a.remove(); } catch (e) { window.location.href = h; } })(opt === 'Konfigurátor' ? 'Detail_Postel_3.0-hqdl.dc.html' : 'Detail_' + String(opt).replace(/ /g, '_') + '.dc.html'); return; } ci -= 1; this.setState(ci === 0 ? { stickPick: opt } : ci === 1 ? { sizeUi: opt } : ci === 2 ? { setUi: opt } : { matUi: opt }); },
+      onPresPick: (ci, opt) => { if (ci === 0) { if (opt !== 'Multi Konf.') (h => { try { const a = document.createElement('a'); a.href = h; a.style.display = 'none'; (document.getElementById('dc-root') || document.body).appendChild(a); a.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true, view: window })); a.remove(); } catch (e) { window.location.href = h; } })(opt === 'Multi Konf.' ? 'Detail_Postel_3.0-hqdl.dc.html' : 'Detail_' + String(opt).replace(/ /g, '_') + '.dc.html'); return; } ci -= 1; this.setState(ci === 0 ? { stickPick: opt } : ci === 1 ? { sizeUi: opt } : ci === 2 ? { setUi: opt } : { matUi: opt }); },
       // --- krokový konfigurátor ---
       cfgProgText: this.state.done >= 6 ? 'Hotovo – 6 z 6 kroků' : 'Krok ' + Math.min(this.state.done + 1, 6) + ' z 6',
       cfgProgPct: Math.round(this.state.done / 6 * 100) + '%',
@@ -1756,6 +1757,8 @@ class Component extends DCLogic {
           { v: st.done >= 5 ? mat.label : '', note: st.done >= 5 && PP ? mat.note : '', noteColor: mat.note === 'Bez příplatku' ? 'var(--ss-status-success,#157A41)' : 'var(--ss-text-primary,#1C2229)', swatch: mat.color },
           { v: st.done >= 6 ? cal.label : '', note: '', noteColor: '', swatch: cal.color }
         ];
+        const CFG_TITLES = ['Rozměr postele', 'Výška postele', 'Úložný prostor', 'Rošty', 'Materiál a odstín', 'Čalounění'];
+        const CFG_PROMPTS = ['Vyberte rozměr postele', 'Vyberte výšku postele', 'Vyberte úložný prostor', 'Vyberte rošt', 'Vyberte materiál a odstín', 'Vyberte čalounění'];
         for (let n = 1; n <= 6; n++) {
           const done = st.done >= n, active = st.step === n, visible = n <= st.done + 1;
           const x = vals[n - 1];
@@ -1765,6 +1768,8 @@ class Component extends DCLogic {
             ['s' + n + 'ShowVal']: done && !active && !!x.v, ['s' + n + 'Value']: x.v, ['s' + n + 'HasNote']: !!x.note, ['s' + n + 'Note']: x.note, ['s' + n + 'NoteColor']: x.noteColor,
             ['s' + n + 'HasSwatch']: !!x.swatch, ['s' + n + 'Swatch']: x.swatch || '',
             ['s' + n + 'CanEdit']: done && !active,
+            // aktivní krok vybízí k akci (Vyberte …), hotový / čekající jen název (5. 11. 2026)
+            ['s' + n + 'Title']: active ? CFG_PROMPTS[n - 1] : CFG_TITLES[n - 1],
             ['s' + n + 'Edit']: () => this.setState({ step: n })
           });
         }
@@ -1772,8 +1777,14 @@ class Component extends DCLogic {
       })(),
       heights: VYSKY.map(h => ({ label: h.label, extra: PP && h.add ? '+\u00A0' + fmt(h.add) : '', variant: this.state.done >= 2 && vys.id === h.id ? 'primary' : 'outline', pressed: this.state.done >= 2 && vys.id === h.id ? 'true' : 'false', onPick: () => this.advance(2, { vyska: h.id }) })),
       heightHint: this.state.done >= 2 && !!vys.hint, heightHintText: vys.hint || '',
-      rostData: { value: this.state.done >= 4 ? this.state.rost : null, rows: ROSTY.map(r => PP ? r : Object.assign({}, r, { price: '' })) },
-      onRostEvent: (t, id) => { if (t === 'pick') this.advance(4, { rost: id }); },
+      rostData: { value: this.state.done >= 4 ? this.state.rost : null, preview: true, rows: ROSTY.map(r => PP ? r : Object.assign({}, r, { price: '' })) },
+      onRostEvent: (t, id) => { if (t === 'pick') this.advance(4, { rost: id }); else if (t === 'preview') this.setState({ rostPv: id }); },
+      // Náhled roštu (zvětšená fotka + parametry) v Overlay modalu, 5. 11. 2026
+      rostPvOpen: !!this.state.rostPv,
+      rostPvTitle: (ROSTY.find(r => r.id === this.state.rostPv) || {}).label || '',
+      rostPvData: (() => { const r = ROSTY.find(x => x.id === this.state.rostPv) || {}; return Object.assign({}, r, { price: PP ? r.price : '' }); })(),
+      rostPvPick: () => { const id = this.state.rostPv; this.setState({ rostPv: null }); if (id) this.advance(4, { rost: id }); },
+      rostPvClose: () => this.setState({ rostPv: null }),
       matData: { value: this.state.done >= 5 ? this.state.mat : null, groups: MATERIALY },
       onMatEvent: (t, id) => { if (t === 'pick') this.advance(5, { mat: id }); },
       calData: { value: this.state.done >= 6 ? this.state.cal : null, note: 'Cena postele se výběrem látky nemění. Barvy se na obrazovkách liší – odstín si raději ověřte za denního světla na vzorníku v některé z našich prodejen.', groups: LATKY_GROUPS },
