@@ -1743,7 +1743,7 @@ class Component extends DCLogic {
       ],
       onPresPick: (ci, opt) => { if (ci === 0) { if (opt !== 'Konfigurátor') (h => { try { const a = document.createElement('a'); a.href = h; a.style.display = 'none'; (document.getElementById('dc-root') || document.body).appendChild(a); a.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true, view: window })); a.remove(); } catch (e) { window.location.href = h; } })(opt === 'Konfigurátor' ? 'Detail_Postel_3.0-hqdl.dc.html' : 'Detail_' + String(opt).replace(/ /g, '_') + '.dc.html'); return; } ci -= 1; this.setState(ci === 0 ? { stickPick: opt } : ci === 1 ? { sizeUi: opt } : ci === 2 ? { setUi: opt } : { matUi: opt }); },
       // --- krokový konfigurátor ---
-      cfgProgText: this.state.done >= 6 ? 'Hotovo – 6 z 6 kroků' : 'Krok ' + Math.min(this.state.done + 1, 6) + ' z 6' + (this.state.done ? ' · vybráno ' + this.state.done : ''),
+      cfgProgText: this.state.done >= 6 ? 'Hotovo – 6 z 6 kroků' : 'Krok ' + Math.min(this.state.done + 1, 6) + ' z 6',
       cfgProgPct: Math.round(this.state.done / 6 * 100) + '%',
       cfgComplete: this.state.done >= 6,
       ...(() => {
