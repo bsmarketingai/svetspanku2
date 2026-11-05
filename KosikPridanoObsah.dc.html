@@ -394,10 +394,10 @@ class Component extends DCLogic {
       // karusel V1: vykukuje část další karty, šipky pod karuselem (disabled na začátku / konci)
       cardW: xs ? 'calc((100% - 16px) / 1.25)' : 'calc((100% - 32px) / 2.3)',
       hasImage: true, image: d.image || '_blob/6721a0d378d224249b73f0d946656a32.jpg',
-      qtyTitle: d.title || 'Manželská postel SANTE 45 dvoulůžko',
+      qtyTitle: d.title || 'Manželská postel SANTE 45 dvoulůžko 180 × 200 cm, olej Teak, jádrový buk',
       qty,
       setQty: (n) => { this.setState({ qty: n }); if (p.onEvent) p.onEvent('qty', n); },
-      variant: d.variant || '200 × 180 cm · olej Teak · jádrový buk',
+      variant: d.variant || 'Kód: SAN0045180',
       stockKind: d.stockKind || 'onWay',
       stockLabel: d.stockLabel || 'Vyrobíme během 2–4 týdnů',
       total: fmt(totalNum),

@@ -2976,6 +2976,26 @@
       "w": 1440,
       "x": 0,
       "y": 0
+    },
+    "Detail_Skrin_UNI_2D_Konf.dc.html": {
+      "expand": "fill",
+      "h": 1000,
+      "is_interactive": true,
+      "page": "detaily",
+      "title": "Skříň UNI 2D Konf",
+      "w": 1440,
+      "x": 9120,
+      "y": 0
+    },
+    "Detail_Set_Polstar_Povlak.dc.html": {
+      "expand": "fill",
+      "h": 1000,
+      "is_interactive": true,
+      "page": "detaily",
+      "title": "Set polštář + povlak",
+      "w": 1440,
+      "x": 10640,
+      "y": 0
     }
   },
   "createdOnFiles": {
@@ -3376,7 +3396,9 @@
     "Kategorie_Akce_novinky.dc.html",
     "Kategorie_Akce_darkovy-poukaz.dc.html",
     "Kategorie_Akce_darky-k-nakupu.dc.html",
-    "Detail_Postel_3.0-hqdl.dc.html"
+    "Detail_Postel_3.0-hqdl.dc.html",
+    "Detail_Skrin_UNI_2D_Konf.dc.html",
+    "Detail_Set_Polstar_Povlak.dc.html"
   ],
   "pages": [
     {

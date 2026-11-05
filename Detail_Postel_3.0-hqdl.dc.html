@@ -421,6 +421,10 @@ a:hover{color:var(--ss-hover-text,#A4600C);}
 .ss-cfg-prog{display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:600;color:var(--ss-text-secondary,#3D4750);}
 .ss-cfg-bar{display:block;height:4px;border-radius:999px;background:var(--ss-surface-strong,#E9E1D5);overflow:hidden;}
 .ss-cfg-bar>span{display:block;height:100%;border-radius:999px;background:linear-gradient(90deg,#132C43 0%,#296093 100%);transition:width .3s cubic-bezier(.22,.61,.36,1);}
+/* Progress bar rozdělený na tolik dílků, kolik má konfigurátor kroků (5. 11. 2026) */
+.ss-cfg-segs{display:flex;gap:4px;}
+.ss-cfg-seg{flex:1 1 0;height:4px;border-radius:999px;background:var(--ss-surface-strong,#E9E1D5);transition:background-color .3s cubic-bezier(.22,.61,.36,1);}
+.ss-cfg-seg[data-on="true"]{background:#296093;}
 .ss-cfg-step{border:1px solid var(--ss-border-subtle,#E1E6EB);border-radius:12px;background:var(--ss-surface-box,#FFFFFF);transition:border-color .15s,box-shadow .15s;}
 .ss-cfg-step[data-active="true"]{border-color:#296093;box-shadow:0 0 0 1px #296093,0 4px 12px rgba(19,44,67,.10);}
 .ss-cfg-head{display:flex;align-items:center;gap:12px;padding:14px 16px;min-height:56px;}
@@ -683,7 +687,7 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
 
             <!-- Krokový konfigurátor (4. 11. 2026): další krok se objeví po výběru v předchozím, hotové kroky se sbalí na jeden řádek se Změnit; výběr roštů, materiálu a čalounění přímo v kroku (bez bočního panelu) -->
             <div class="ss-cfg" style="display:flex;flex-direction:column;gap:12px">
-              <div class="ss-cfg-prog" aria-live="polite"><span>{{ cfgProgText }}</span><span class="ss-cfg-bar" aria-hidden="true"><span style="width:{{ cfgProgPct }}"></span></span></div>
+              <div class="ss-cfg-prog" aria-live="polite"><span>{{ cfgProgText }}</span><span class="ss-cfg-segs" aria-hidden="true"><sc-for list="{{ cfgSegs }}" as="g" hint-placeholder-count="2"><span class="ss-cfg-seg" data-on="{{ g.on }}"></span></sc-for></span></div>
             <sc-if value="{{ s1Visible }}" hint-placeholder-val="{{ true }}">
             <div class="ss-cfg-step" data-active="{{ s1Active }}" data-done="{{ s1Done }}" id="ss-cfg-1">
               <div class="ss-cfg-head">
@@ -1259,7 +1263,7 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
   <dc-import name="VariantaDrawer" open="{{ drawerOpen }}" title="{{ drawerTitle }}" note="{{ drawerNote }}" value="{{ drawerValue }}" groups="{{ drawerGroups }}" rows="{{ drawerRows }}" onPick="{{ onDrawerPick }}" onClose="{{ closeDrawer }}" hint-size="0px,0px"></dc-import>
 
   <dc-import name="Overlay" open="{{ rostPvOpen }}" variant="modal" size="md" obsah="NahledObsah" title="{{ rostPvTitle }}" icon="photo" closeLabel="okno" initialFocus="close" data="{{ rostPvData }}" onClose="{{ rostPvClose }}" primaryLabel="Vybrat tento rošt" onPrimary="{{ rostPvPick }}" secondaryLabel="Zavřít" onSecondary="{{ rostPvClose }}" hint-size="100%,100%"></dc-import>
-  <dc-import name="KosikPridanoModal" open="{{ addedOpen }}" title="Postel LEVITA" qty="{{ qty }}" variant="{{ addedVariant }}" image="_blob/6b546453dfb90e0ec7ddb488eed7e6ec.webp" stockKind="onWay" stockLabel="Vyrobíme během 2–4 týdnů" total="{{ addedTotal }}" onClose="{{ closeAdded }}" hint-size="0px,0px"></dc-import>
+  <dc-import name="KosikPridanoModal" open="{{ addedOpen }}" title="{{ addedTitle }}" qty="{{ qty }}" variant="{{ addedVariant }}" image="_blob/6b546453dfb90e0ec7ddb488eed7e6ec.webp" stockKind="onWay" stockLabel="Vyrobíme během 2–4 týdnů" total="{{ addedTotal }}" onClose="{{ closeAdded }}" hint-size="0px,0px"></dc-import>
 
   <sc-if value="{{ customOpen }}" hint-placeholder-val="{{ false }}">
     <div class="ss-scrim" style="position:fixed;inset:0;z-index:500;display:flex;align-items:safe center;justify-content:center;overflow-y:auto;padding:24px 16px" onClick="{{ onCustomBackdrop }}">
@@ -1718,7 +1722,10 @@ class Component extends DCLogic {
     const csAdd = csValid && this.state.csOk ? csAddRaw : 0;
     const csErr = !this.state.csOn ? '' : (this.state.csW.length >= 2 && !csWok) ? 'Šířka musí být 80–220 cm.' : (this.state.csL.length >= 3 && !csLok) ? 'Délka musí být 180–240 cm.' : '';
     const price = fmt(now + csAdd);
-    const priceBefore = fmt(before + csAdd);
+    // Cena v konfigurátoru (společné pravidlo 5. 11. 2026): dokud nejsou hotové všechny kroky, „od“ nejlevnější konfigurace; po posledním kroku finální cena sestavy
+    const CFG_MIN_NOW = 24990, CFG_MIN_BEFORE = 27290; // nejlevnější konfigurace (ukázkové ceny)
+    const cfgDone = this.state.done >= 6;
+    const priceBefore = cfgDone ? fmt(before + csAdd) : fmt(CFG_MIN_BEFORE);
     const discount = '−' + Math.round((1 - now / before) * 100) + ' %';
     const sizes = ['90 × 200 cm', '120 × 200 cm', '140 × 200 cm', '160 × 200 cm', '180 × 200 cm', '200 × 200 cm', '180 × 210 cm', '180 × 220 cm'];
     const variants = [
@@ -1736,16 +1743,17 @@ class Component extends DCLogic {
       presItems: [{ label: 'LED', value: this.state.led }, { label: 'Příplatky', value: PP }],
       onPresToggle: (i) => this.setState(s => (i === 1 ? { pp: s.pp === false } : { led: !s.led })),
       presChoices: [
-        { label: 'Detail', value: 'Multi Konf.', options: ['Postel 3.0', 'Multi Konf.', 'Komplet 3.0', 'Multi 3.0', 'Matrace 3.0', 'Komoda VIA'] },
+        { label: 'Detail', value: 'Multi Konf.', options: ['Postel 3.0', 'Multi Konf.', 'Komplet 3.0', 'Multi 3.0', 'Matrace 3.0', 'Komoda VIA', 'Skříň UNI 2D Konf', 'Set polštář'] },
         { label: 'Fixní sloupec', value: this.state.stickPick || (stick === 'zadny' ? 'Žádný' : 'Galerie'), options: ['Galerie', 'Žádný'] },
         { label: 'Rozměr', value: this.state.sizeUi || 'V1', options: ['V1', 'V2'] },
         { label: 'Set', value: this.state.setUi || 'S1', options: ['S1', 'S2', 'S3', 'S4'] },
         { label: 'Materiál a odstín', value: this.state.matUi || 'B', options: ['A', 'B'] }
       ],
-      onPresPick: (ci, opt) => { if (ci === 0) { if (opt !== 'Multi Konf.') (h => { try { const a = document.createElement('a'); a.href = h; a.style.display = 'none'; (document.getElementById('dc-root') || document.body).appendChild(a); a.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true, view: window })); a.remove(); } catch (e) { window.location.href = h; } })(opt === 'Multi Konf.' ? 'Detail_Postel_3.0-hqdl.dc.html' : 'Detail_' + String(opt).replace(/ /g, '_') + '.dc.html'); return; } ci -= 1; this.setState(ci === 0 ? { stickPick: opt } : ci === 1 ? { sizeUi: opt } : ci === 2 ? { setUi: opt } : { matUi: opt }); },
+      onPresPick: (ci, opt) => { if (ci === 0) { if (opt !== 'Multi Konf.') (h => { try { const a = document.createElement('a'); a.href = h; a.style.display = 'none'; (document.getElementById('dc-root') || document.body).appendChild(a); a.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true, view: window })); a.remove(); } catch (e) { window.location.href = h; } })(opt === 'Multi Konf.' ? 'Detail_Postel_3.0-hqdl.dc.html' : (opt === 'Set polštář' ? 'Detail_Set_Polstar_Povlak.dc.html' : opt === 'Skříň UNI 2D Konf' ? 'Detail_Skrin_UNI_2D_Konf.dc.html' : 'Detail_' + String(opt).replace(/ /g, '_') + '.dc.html')); return; } ci -= 1; this.setState(ci === 0 ? { stickPick: opt } : ci === 1 ? { sizeUi: opt } : ci === 2 ? { setUi: opt } : { matUi: opt }); },
       // --- krokový konfigurátor ---
       cfgProgText: this.state.done >= 6 ? 'Hotovo – 6 z 6 kroků' : 'Krok ' + Math.min(this.state.done + 1, 6) + ' z 6',
       cfgProgPct: Math.round(this.state.done / 6 * 100) + '%',
+      cfgSegs: Array.from({ length: 6 }, (_, k) => ({ on: k < this.state.done ? 'true' : 'false' })),
       cfgComplete: this.state.done >= 6,
       ...(() => {
         const st = this.state; const out = {};
@@ -1987,8 +1995,8 @@ class Component extends DCLogic {
         ? 'display:flex;flex-wrap:wrap;align-items:center;gap:12px;text-decoration:none;color:var(--ss-text-primary,#1C2229)'
         : 'display:flex;flex-wrap:wrap;align-items:center;gap:12px;padding:12px 16px;border:1px solid var(--ss-border-error,#B3261E);border-radius:12px;text-decoration:none;color:var(--ss-text-primary,#1C2229)',
       price: this.state.size === '' && this.state.customSize ? 'Zjistit cenu' : price,
-      priceLine: this.state.size === '' && this.state.customSize ? 'Zjistit cenu' : 'od ' + price,
-      priceNote: this.state.size === '' && this.state.customSize ? 'Cenovou nabídku pošleme do 2 pracovních dnů' : 'Cena včetně DPH',
+      priceLine: this.state.size === '' && this.state.customSize ? 'Zjistit cenu' : cfgDone ? price : 'od ' + fmt(CFG_MIN_NOW),
+      priceNote: this.state.size === '' && this.state.customSize ? 'Cenovou nabídku pošleme do 2 pracovních dnů' : cfgDone ? 'Cena sestavy včetně DPH' : 'Cena včetně DPH · nejlevnější konfigurace',
       showBefore: !(this.state.size === '' && this.state.customSize),
       ctaLabel: this.state.size === '' && this.state.customSize ? 'Odeslat poptávku' : 'Přidat do košíku',
       ctaIcon: this.state.size === '' && this.state.customSize ? 'mail' : 'shopping-bag',
@@ -2001,7 +2009,9 @@ class Component extends DCLogic {
       onBuy: () => { if (this.state.done < 6) { const n = this.state.done + 1; this.setState({ step: n }); requestAnimationFrame(() => { try { document.getElementById('ss-cfg-' + n).scrollIntoView({ block: 'center', behavior: 'smooth' }); } catch (e) {} }); return; } if (this.state.size === '' && this.state.customSize) return; this.setState({ added: true }); },
       addedOpen: !!this.state.added,
       closeAdded: () => this.setState({ added: false }),
-      addedVariant: (this.state.size || this.state.customSize || '') + ' · ' + mat.label + ' · ' + cal.label,
+      // název položky v košíku obsahuje rozměr, olej, dřevo a čalounění – nejsou to samostatné položky (5. 11. 2026)
+      addedTitle: 'Postel LEVITA ' + (this.state.size || this.state.customSize || '') + ', olej ' + String(matItem.label).replace(/^olej /i, '') + ', ' + ((t) => { const p = String(t).split(' – '); return p[1] ? p[1] + ' ' + p[0].toLowerCase() : String(t).toLowerCase(); })(matGroup.title) + ', čalounění ' + cal.label,
+      addedVariant: 'Výška ' + vys.label + ' · ' + (this.state.up === 'yes' ? 'S úložným prostorem' : 'Bez úložného prostoru') + ' · Rošt: ' + rost.label,
       addedTotal: fmt((now + csAdd) * (this.state.qty || 1)),
       noop: () => {},
       favIcon: this.state.fav ? 'heart-filled' : 'heart',
