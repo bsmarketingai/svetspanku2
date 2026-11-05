@@ -451,6 +451,10 @@ a:hover{color:var(--ss-hover-text,#A4600C);}
 a:focus-visible>.ss-pd-setbtn[data-v="S4"]{box-shadow:0 0 0 3px rgba(41,96,147,.35),inset 0 0 0 1px var(--ss-border-action,#296093)!important;}
 .ss-pd-glasswrap[data-v="S4"]{position:relative;border-radius:12px;}
 .ss-pd-glasswrap[data-v="S4"]::before{z-index:1;}
+/* Nákupní řádek stepper + Do košíku (5. 11. 2026): na mobilu zarovnaný vlevo, dokud se vejde v jednom řádku; když se zalomí, stepper má šířku tlačítka */
+.ss-pd-buy{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-left:auto;}
+@media (max-width:999px){.ss-pd-glass{container-type:inline-size;}.ss-pd-buy{margin-left:0;flex-basis:100%;}}
+@container (max-width:415px){.ss-pd-buy{display:grid;grid-template-columns:max-content;justify-content:start;}.ss-pd-buy .ss-qty{display:flex;width:100%;}.ss-pd-buy .ss-qty input{flex:1 1 0;width:0!important;min-width:48px;}.ss-pd-buy .ss-btn{width:100%;}}
 .ss-pd-glasswrap:not([data-v="S4"]) .ss-pd-glass,.ss-pd-glasswrap[data-v="S4"]{box-shadow:0 4px 12px rgba(19,44,67,.12),0 16px 40px rgba(19,44,67,.10);}
 html[data-mode="dark"] .ss-pd-glasswrap:not([data-v="S4"]) .ss-pd-glass,html[data-mode="dark"] .ss-pd-glasswrap[data-v="S4"]{box-shadow:0 4px 12px rgba(0,0,0,.28),0 16px 40px rgba(0,0,0,.32);}
 .ss-pd-glasswrap[data-v="S4"] .ss-pd-glass::before{display:none;}
@@ -813,7 +817,7 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
                 <span style="font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:34px;line-height:1.05;color:var(--ss-text-primary,#1C2229)">{{ priceLine }}</span>
                 <span style="font-size:13px;color:var(--ss-text-muted,#5B6874)">{{ priceNote }}</span>
               </div>
-              <div style="display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-left:auto">
+              <div class="ss-pd-buy">
                 <sc-if value="{{ showBefore }}" hint-placeholder-val="{{ true }}">
                   <dc-import name="Kvantifikator" size="{{ qtySize }}" value="{{ qty }}" onChange="{{ onQty }}" hint-size="152px,52px"></dc-import>
                 </sc-if>
