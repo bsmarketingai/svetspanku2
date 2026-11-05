@@ -799,7 +799,7 @@ html[data-mode="dark"] .ss-rev-badge{--ss-shine:rgba(251,178,85,.14);}
       <sc-if value="{{ storeP1 }}" hint-placeholder-val="{{ false }}">
       <div style="{{ innerPadded }}">
         <div style="text-align:center;margin-bottom:24px">
-          <span style="display:block; font-family:Oswald,Helvetica,Arial,sans-serif; font-size: 15px; font-weight:600; letter-spacing:.02em; color:var(--ss-link-hover,#21507B); margin-bottom:8px">Naše prodejny</span>
+          <span style="display:block; font-family: Roboto,Helvetica,Arial,sans-serif; font-size: 15px; font-weight:600; letter-spacing:.02em; color:var(--ss-link-hover,#21507B); margin-bottom:8px">Naše prodejny</span>
           <h2 style="margin:0;font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:{{ h2Size }};line-height:1.15">Přijďte si vše osobně vyzkoušet</h2>
         </div>
         <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-bottom:24px">
@@ -842,7 +842,7 @@ html[data-mode="dark"] .ss-rev-badge{--ss-shine:rgba(251,178,85,.14);}
       <sc-if value="{{ storeP2 }}" hint-placeholder-val="{{ true }}">
       <div style="{{ innerPadded }}">
         <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:32px;max-width:72ch">
-          <span style="font-family:Oswald,Helvetica,Arial,sans-serif; font-size: 15px; font-weight:600; letter-spacing:.02em; color:var(--ss-link-hover,#21507B)">Naše prodejny</span>
+          <span style="font-family: Roboto,Helvetica,Arial,sans-serif; font-size: 15px; font-weight:600; letter-spacing:.02em; color:var(--ss-link-hover,#21507B)">Naše prodejny</span>
           <h2 style="margin:0;font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:{{ h2Size }};line-height:1.15">Přijďte si vše osobně vyzkoušet</h2>
           <p style="margin:4px 0 0;font-size:16px;line-height:1.6;color:var(--ss-text-secondary,#3D4750);text-wrap:pretty">Víme, jak je důležité si postel nebo matraci vyzkoušet. Bez toho to nejde. Proto máme <a href="https://showroomy.svetspanku.cz/" style="text-underline-offset:3px;transition:color .12s cubic-bezier(.22,.61,.36,1)">6 prodejen po celé ČR</a> s kompletním sortimentem.</p>
         </div>
@@ -885,7 +885,7 @@ html[data-mode="dark"] .ss-rev-badge{--ss-shine:rgba(251,178,85,.14);}
             <img decoding="async" src="_blob/4907c546874d7ecee6316ef9e8f2eb5c.webp" alt="Postele z masivu ve výstavní prodejně Světspánku.cz" loading="lazy" style="display:block;width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:12px">
           </div>
           <div style="display:flex;flex-direction:column;gap:14px;min-width:0;padding-left:{{ storyTextPad }};order:{{ storyTextOrder }}">
-            <span style="font-family:Oswald,Helvetica,Arial,sans-serif; font-size: 15px; font-weight:600; letter-spacing:.02em; color:var(--ss-link-hover,#21507B)">O nás</span>
+            <span style="font-family: Roboto,Helvetica,Arial,sans-serif; font-size: 15px; font-weight:600; letter-spacing:.02em; color:var(--ss-link-hover,#21507B)">O nás</span>
             <h2 style="margin:0;font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:{{ h2Size }};line-height:1.15">Poznejte příběh Světa spánku</h2>
             <p style="margin:0;max-width:{{ storyPMax }};font-size:15px;line-height:1.65;color:var(--ss-text-secondary,#3D4750)">Jsme výrobci <strong style="font-weight:700;color:var(--ss-text-primary,#1C2229)">dřevěného nábytku a <a href="#matrace" style="text-underline-offset:3px;transition:color .12s cubic-bezier(.22,.61,.36,1)">matrací</a>.</strong> Naprostou většinu naší nabídky přímo vyrábíme v ČR. Při výrobě nábytku klademe důraz na použití dřeva ve všech jeho prvcích. Jak těch viditelných, tak těch skrytých, konstrukčních. Veškerý nábytek a postele vyrábíme z buku, jasanu a dubu v celkem 14 barevných odstínech.</p>
             <p style="margin:0;max-width:{{ storyPMax }};font-size:15px;line-height:1.65;color:var(--ss-text-secondary,#3D4750)">U matrací je pro nás klíčový výběr kvalitních a spolehlivých materiálů, které zajistí matracím <strong style="font-weight:700;color:var(--ss-text-primary,#1C2229)">vysokou kvalitu a dlouhou životnost.</strong> Samozřejmostí jsou pro nás také vysoké nároky na zdravotní nezávadnost, i proto v matracích používáme vodou ředitelná ekologická lepidla <a href="https://www.simalfa.com/" target="_blank" rel="noopener" style="text-underline-offset:3px;transition:color .12s cubic-bezier(.22,.61,.36,1)">SIMALFA</a>. Kvalita výrobku je pro nás stejně důležitá jako pro naše zákazníky.</p>
@@ -1073,7 +1073,7 @@ class Component extends DCLogic {
   ];
   state = {
     width: typeof window !== 'undefined' ? document.documentElement.clientWidth : 1440,
-    insp: 0, city: 0, hot: true, hot2: false, hot3: false, hot4: false, hot5: false, hot6: false, hot7: false, inspMore: false, email: '', mag: 0, carNav: 'V3',storeV: 'P1', magV: 'M1', m2AtStart: true, m2AtEnd: false, revAtStart: true, revAtEnd: false
+    insp: 0, city: 0, hot: true, hot2: false, hot3: false, hot4: false, hot5: false, hot6: false, hot7: false, inspMore: false, email: '', mag: 0, carNav: 'V1',storeV: 'P1', magV: 'M1', m2AtStart: true, m2AtEnd: false, revAtStart: true, revAtEnd: false
   };
   componentDidMount() {
     this._resize = () => this.setState({ width: document.documentElement.clientWidth });
@@ -1142,7 +1142,7 @@ class Component extends DCLogic {
         { label: 'Kategorie', value: this.state.catV || 'K2', options: ['K1', 'K2'] }
       ],
       onPresPick: (ci, opt) => {
-        // Karusel V3 = finální (30. 10. 2026), přepínač odebrán; state.carNav zůstává 'V3'
+        // Karusel V1 = finální pro celý web (5. 11. 2026), přepínač odebrán; state.carNav zůstává 'V1'
         // Magazín M1 = finální (30. 10. 2026), přepínač odebrán; state.magV zůstává 'M1'
         if (ci === 0) this.setState({ catV: opt });
         // Prodejny P1 = finální (30. 10. 2026), přepínač odebrán; state.storeV zůstává 'P1'

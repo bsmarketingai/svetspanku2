@@ -1731,13 +1731,13 @@ class Component extends DCLogic {
       presItems: [{ label: 'LED', value: this.state.led }, { label: 'Příplatky', value: PP }],
       onPresToggle: (i) => this.setState(s => (i === 1 ? { pp: s.pp === false } : { led: !s.led })),
       presChoices: [
-        { label: 'Detail', value: 'Postel 3.0', options: ['Postel 3.0', 'Komplet 3.0', 'Multi 3.0', 'Matrace 3.0', 'Komoda VIA'] },
+        { label: 'Detail', value: 'Konfigurátor', options: ['Postel 3.0', 'Konfigurátor', 'Komplet 3.0', 'Multi 3.0', 'Matrace 3.0', 'Komoda VIA'] },
         { label: 'Fixní sloupec', value: this.state.stickPick || (stick === 'zadny' ? 'Žádný' : 'Galerie'), options: ['Galerie', 'Žádný'] },
         { label: 'Rozměr', value: this.state.sizeUi || 'V1', options: ['V1', 'V2'] },
         { label: 'Set', value: this.state.setUi || 'S1', options: ['S1', 'S2', 'S3', 'S4'] },
         { label: 'Materiál a odstín', value: this.state.matUi || 'B', options: ['A', 'B'] }
       ],
-      onPresPick: (ci, opt) => { if (ci === 0) { if (opt !== 'Postel 3.0') (h => { try { const a = document.createElement('a'); a.href = h; a.style.display = 'none'; (document.getElementById('dc-root') || document.body).appendChild(a); a.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true, view: window })); a.remove(); } catch (e) { window.location.href = h; } })('Detail_' + String(opt).replace(/ /g, '_') + '.dc.html'); return; } ci -= 1; this.setState(ci === 0 ? { stickPick: opt } : ci === 1 ? { sizeUi: opt } : ci === 2 ? { setUi: opt } : { matUi: opt }); },
+      onPresPick: (ci, opt) => { if (ci === 0) { if (opt !== 'Konfigurátor') (h => { try { const a = document.createElement('a'); a.href = h; a.style.display = 'none'; (document.getElementById('dc-root') || document.body).appendChild(a); a.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true, view: window })); a.remove(); } catch (e) { window.location.href = h; } })(opt === 'Konfigurátor' ? 'Detail_Postel_3.0-hqdl.dc.html' : 'Detail_' + String(opt).replace(/ /g, '_') + '.dc.html'); return; } ci -= 1; this.setState(ci === 0 ? { stickPick: opt } : ci === 1 ? { sizeUi: opt } : ci === 2 ? { setUi: opt } : { matUi: opt }); },
       // --- krokový konfigurátor ---
       cfgProgText: this.state.done >= 6 ? 'Hotovo – 6 z 6 kroků' : 'Krok ' + Math.min(this.state.done + 1, 6) + ' z 6' + (this.state.done ? ' · vybráno ' + this.state.done : ''),
       cfgProgPct: Math.round(this.state.done / 6 * 100) + '%',

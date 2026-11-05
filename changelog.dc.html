@@ -448,6 +448,15 @@ a:hover{color:var(--ss-link-hover,#21507B);}
 <script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {
   static DAYS = [
+    { date: '5. 11. 2026', entries: [
+      { title: 'Karusely: V1 jednotně na celém webu', text: 'Všechny produktové karusely mají ovládání V1: šipky pod karuselem vpravo (vedle Zobrazit vše), pod 1000 px vykukuje část další karty. Homepage a Článek přepnuty z V3 na V1; detaily, košík a okno Přidáno do košíku už V1 měly. Přepínač Karusel z prezentace homepage znovu odebrán.' },
+      { title: 'Detaily: Konfigurátor v přepínači Detail', text: 'V prezentační liště všech detailů (Postel, Komplet, Multi, Matrace, Komoda) má volba Detail novou možnost Konfigurátor, která otevře krokový konfigurátor (plocha Detail_Multi 3.0 Konfigurator, Detail_Postel_3.0-hqdl). Na ploše konfigurátoru je Konfigurátor označený jako aktivní a Postel 3.0 vede na původní detail.' },
+      { title: 'Homepage: přepínač Karusel V1–V3 znovu v Prezentaci', text: 'Přepínač ovládání karuselů (V1 šipky pod karuselem, V2 šipky přes fotky po stranách, V3 karusel přes okraj s uříznutou kartou a šipkami na okrajích) je zpět v prezentační liště homepage, výchozí V3. Slouží k výběru finální varianty pro celý web.' },
+      { title: 'Registrace – nadtitulky bez prostrkání', text: 'Popisky „Co získáte“ a „Máte již účet? Přihlaste se“ nemají letter-spacing (dříve .12em).' },
+      { title: 'Registrace – hierarchie tlačítek', text: 'Tlačítko Registrovat je primární (tmavě modré #132C43) místo nákupního oranžového; Přihlásit se zůstává sekundární (tónové meruňkové), takže je jasné, co je hlavní akce stránky.' },
+      { title: 'Tlačítka na celém webu bez animace a záře', text: 'Sdílená komponenta Tlačítko (primární, nákupní, sekundární…) má na hover i při kliknutí jen změnu barvy: odstraněno nadzvednutí o 1 px, stín pod tlačítkem, posun šipky doprava a zmenšení při kliknutí. Platí na všech stránkách (detaily, košík, průvodce, porovnání, kategorie…); dočasná výjimka v průvodci zrušena.' },
+      { title: 'Průvodce výběrem matrace – tlačítka bez animace a záře', text: 'Na stránce průvodce mají tlačítka (Pokračovat, Začít výběr, Zobrazit doporučené…) na hover jen změnu barvy: bez nadzvednutí, stínu, posunu šipky a zmenšení při kliknutí. Komponenta Tlačítko na ostatních stránkách beze změny.' },
+    ] },
     { date: '4. 11. 2026', entries: [
       { title: 'Banner Rošty a Komplety – fotka postele s roštem a matrací', text: 'Banner „Postel s matrací a roštem“ v hlavičce sekcí Rošty a Komplety (a jejich podkategorií) používá existující fotku rozložené postele z homepage (_blob/8b63107c3b3df97b4c67e750ce6b91cd.webp).' },
       { title: 'Poradíme – fotky u karet v sekci Polštáře', text: 'Karty Poradíme „Jak vybrat polštář podle polohy spánku?“ (anatomický polštář, _blob/f387ffb2a405952a685134bc8536036a.webp) a „Celoroční, nebo zimní přikrývka?“ (přikrývka, _blob/80be2ea69b2ed1ac2de8cdfcb6fcc1d6.webp) mají fotky od klienta; zobrazí se i v okně s radou.' },

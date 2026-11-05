@@ -200,16 +200,14 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
 <helmet>
 <style>
 .ss-btn{box-sizing:border-box;font-family:Roboto,Helvetica,Arial,sans-serif;display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;background:none;margin:0;text-decoration:none;cursor:pointer;border-radius:6px;font-weight:600;white-space:nowrap;transition:background-color .12s cubic-bezier(.22,.61,.36,1),color .12s cubic-bezier(.22,.61,.36,1),border-color .12s cubic-bezier(.22,.61,.36,1),box-shadow .15s cubic-bezier(.22,.61,.36,1),transform .06s cubic-bezier(.22,.61,.36,1);}
-.ss-btn{background:var(--b-bg);color:var(--b-fg);box-shadow:var(--b-ring,0 0 0 0 transparent);transition:background-color .12s cubic-bezier(.22,.61,.36,1),color .12s cubic-bezier(.22,.61,.36,1),box-shadow .15s cubic-bezier(.22,.61,.36,1),transform .15s cubic-bezier(.22,.61,.36,1);}
-.ss-btn-ir{display:inline-flex;transition:transform .15s cubic-bezier(.22,.61,.36,1);}
+.ss-btn{background:var(--b-bg);color:var(--b-fg);box-shadow:var(--b-ring,0 0 0 0 transparent);transition:background-color .12s cubic-bezier(.22,.61,.36,1),color .12s cubic-bezier(.22,.61,.36,1),box-shadow .15s cubic-bezier(.22,.61,.36,1);}
+.ss-btn-ir{display:inline-flex;}
 @media (hover:hover) and (pointer:fine){
 .ss-btn:not([aria-disabled="true"]):hover{background:var(--b-hbg);color:var(--b-hfg);box-shadow:var(--b-hring,var(--b-ring,0 0 0 0 transparent));}
-.ss-btn[data-solid="true"]:not([aria-disabled="true"]):hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(19,44,67,.18);}
-.ss-btn:not([aria-disabled="true"]):hover .ss-btn-ir{transform:translateX(3px);}
 .ss-btn[data-bare="true"]:not([aria-disabled="true"]):hover{text-decoration-thickness:2px;}
 }
 .ss-btn:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35),var(--b-ring,0 0 0 0 transparent);}
-.ss-btn:not([aria-disabled="true"]):active{transform:translateY(0) scale(.98);box-shadow:var(--b-ring,0 0 0 0 transparent);transition-duration:.06s;}
+/* Hover/klik jen změnou barvy – bez nadzvednutí, stínu, posunu šipky a zmenšení (5. 11. 2026, jednotně na celém webu) */
 @media (prefers-reduced-motion:reduce){.ss-btn,.ss-btn-ir{transition:background-color .12s,color .12s;}.ss-btn:hover,.ss-btn:active,.ss-btn:hover .ss-btn-ir{transform:none!important;}}
 .ss-btn[aria-disabled="true"]{opacity:.45;cursor:not-allowed;}
 </style>

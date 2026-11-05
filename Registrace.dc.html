@@ -205,7 +205,7 @@ a:hover{color:var(--ss-hover-text,#A4600C);}
 <body>
 <x-dc>
 <helmet>
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Sans+Condensed:wght@400;500;600;700&display=swap" rel="stylesheet"><style data-ss="tmavy-rezim">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&amp;family=IBM+Plex+Sans+Condensed:wght@400;500;600;700&amp;display=swap" rel="stylesheet"><style data-ss="tmavy-rezim">
 /* Tmavý režim – přepíná html[data-mode="dark"]. Světlý režim = fallback hodnoty v var(). */
 /* Hover ve světlém režimu modrý (6. 10. 2026), v tmavém meruňkový */
 html:not([data-mode="dark"]){--ss-hover-text:#21507B;--ss-hover-bg:#F0F5FA;
@@ -391,8 +391,8 @@ html[data-mode="dark"] main>section.ss-grad-top.ss-grad-glow{background-image:ra
 </style>
 <script>try{var d=document.documentElement;if(localStorage.getItem('ss-mode')==='dark')d.setAttribute('data-mode','dark');d.setAttribute('data-logo',localStorage.getItem('ss-logo')||'a');d.setAttribute('data-font-h','base');d.setAttribute('data-font-b','base');d.setAttribute('data-bg',localStorage.getItem('ss-bg')||'on');}catch(e){}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400..700&family=Roboto:wght@400..700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400..700&amp;family=Roboto:wght@400..700&amp;display=swap" rel="stylesheet">
 <style>
 h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-family:Oswald,Helvetica,Arial,sans-serif!important;font-weight:600!important;text-transform:none;letter-spacing:0;}
 
@@ -418,7 +418,7 @@ a:hover{color:var(--ss-hover-text,#A4600C);}
 
   <main>
     <section style="position:relative;overflow:hidden;width:100%;background:var(--ss-surface-muted,#F3EDE4);border-bottom:1px solid var(--ss-border-subtle,#E1E6EB)">
-      <img decoding="async" src="_blob/6b7f071524246de145d5e3d87eb5c8ca.webp" alt="" aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:70% 45%;pointer-events:none" />
+      <img decoding="async" src="_blob/6b7f071524246de145d5e3d87eb5c8ca.webp" alt="" aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:70% 45%;pointer-events:none">
       <span aria-hidden="true" style="{{ veilStyle }}"></span>
       <div style="{{ innerHead }}">
         <div style="padding:{{ headPad }};display:flex;flex-direction:column;gap:12px">
@@ -440,11 +440,11 @@ a:hover{color:var(--ss-hover-text,#A4600C);}
                   <span>Facebook</span>
                 </a>
                 <a class="ss-reg-soc ss-reg-gg" href="#registrace-google">
-                  <img decoding="async" src="_blob/8e388f9e29b9442880ecdcf7e62aa9cc.svg" alt="" aria-hidden="true" style="display:block;width:22px;height:22px" />
+                  <img decoding="async" src="_blob/8e388f9e29b9442880ecdcf7e62aa9cc.svg" alt="" aria-hidden="true" style="display:block;width:22px;height:22px">
                   <span>Google</span>
                 </a>
                 <a class="ss-reg-soc ss-reg-sz" href="#registrace-seznam">
-                  <img decoding="async" src="_blob/8edc6c2c2895278a238bb3dbb1819e6b.svg" alt="" aria-hidden="true" style="display:block;width:22px;height:22px;object-fit:contain;filter:brightness(0) invert(1)" />
+                  <img decoding="async" src="_blob/8edc6c2c2895278a238bb3dbb1819e6b.svg" alt="" aria-hidden="true" style="display:block;width:22px;height:22px;object-fit:contain;filter:brightness(0) invert(1)">
                   <span>Seznam</span>
                 </a>
                 <a class="ss-reg-soc ss-reg-ap" href="#registrace-apple">
@@ -466,13 +466,13 @@ a:hover{color:var(--ss-hover-text,#A4600C);}
               <dc-import name="Input" label="Heslo (kontrola)" required="{{ true }}" autoComplete="new-password" bordered="{{ true }}" type="password" value="{{ pass2 }}" onChange="{{ onPass2 }}" hint="{{ passError }}" invalid="{{ passInvalid }}" hint-size="100%,72px"></dc-import>
               <dc-import name="Checkbox" label="Nepřeji si dostávat exkluzivní slevy a tipy do e-mailu." checked="{{ noMail }}" onChange="{{ onNoMail }}" hint-size="100%,44px"></dc-import>
               <p style="margin:0;font-size:14px;line-height:1.6;color:var(--ss-text-muted,#5B6874)">Registrací souhlasíte s <a href="#obchodni-podminky">obchodními podmínkami</a> a <a href="#ochrana-udaju">podmínkami ochrany osobních údajů</a>.</p>
-              <dc-import name="Tlacitko" label="Registrovat" variant="buy" size="large" fullWidth="{{ true }}" onClick="{{ submitClick }}" hint-size="100%,52px"></dc-import>
+              <dc-import name="Tlacitko" label="Registrovat" variant="primary" size="large" fullWidth="{{ true }}" onClick="{{ submitClick }}" hint-size="100%,52px"></dc-import>
             </form>
           </div>
 
           <div style="{{ asideStyle }}">
             <div style="display:flex;flex-direction:column;gap:8px">
-              <span style="font-size:15px;color:var(--ss-text-muted,#5B6874)">Co získáte</span>
+              <span style="font-size: 14px; color: #5B6874; font-weight: 500; text-transform: none; font-family: Roboto,Helvetica,Arial,sans-serif">Co získáte</span>
               <h2 style="margin:0;font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:24px">Registrujte se a získejte všechny výhody</h2>
             </div>
             <div style="display:grid;grid-template-columns:{{ benefitTemplate }};gap:28px 40px;align-items:start">
@@ -485,8 +485,12 @@ a:hover{color:var(--ss-hover-text,#A4600C);}
                 </sc-for>
               </ul>
             </div>
-            <div style="display:flex;flex-direction:column;gap:12px;align-items:flex-start;max-width:420px">
-              <span style="font-size:15px;color:var(--ss-text-muted,#5B6874)">Máte již účet? Přihlaste se</span>
+            <div style="display:flex;align-items:center;gap:16px">
+                <span style="flex:1;height:1px;background:var(--ss-surface-strong,#E9E1D5)"></span>
+                <span style="font-size:14px;color:var(--ss-text-muted,#5B6874)">nebo</span>
+                <span style="flex:1;height:1px;background:var(--ss-surface-strong,#E9E1D5)"></span>
+              </div><div style="display:flex;flex-direction:column;gap:12px;align-items:flex-start;max-width:420px">
+              <span style="font-size: 14px; color: #5B6874; font-weight: 500; text-transform: none; font-family: Roboto,Helvetica,Arial,sans-serif">Máte již účet? Přihlaste se</span>
               <div style="width:100%">
                 <dc-import name="Tlacitko" label="Přihlásit se" variant="secondary" size="large" href="#prihlaseni" fullWidth="{{ true }}" hint-size="100%,52px"></dc-import>
               </div>
