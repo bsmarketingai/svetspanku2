@@ -869,13 +869,18 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
                 <span class="ss-cfg-num" aria-hidden="true"><sc-if value="{{ s4IsDone }}" hint-placeholder-val="{{ false }}"><dc-import name="Ikony" iconName="check" size="16" hint-size="16px,16px"></dc-import></sc-if><sc-if value="{{ s4NotDone }}" hint-placeholder-val="{{ true }}"><span>4</span></sc-if></span>
                 <span class="ss-cfg-tx">
                   <span class="ss-cfg-t">{{ s4Title }}</span>
-                  <sc-if value="{{ s4ShowVal }}" hint-placeholder-val="{{ false }}"><span class="ss-cfg-v"><sc-if value="{{ s4HasSwatch }}" hint-placeholder-val="{{ false }}"><span class="ss-cfg-sw" style="background:{{ s4Swatch }}"></span></sc-if><span>{{ s4Value }}</span><sc-if value="{{ s4HasNote }}" hint-placeholder-val="{{ false }}"><span class="ss-cfg-note" style="color:{{ s4NoteColor }}">{{ s4Note }}</span></sc-if></span></sc-if>
+                  <sc-if value="{{ s4ShowVal }}" hint-placeholder-val="{{ false }}"><span class="ss-cfg-v"><span>{{ s4Value }}</span><sc-if value="{{ s4HasNote }}" hint-placeholder-val="{{ false }}"><span class="ss-cfg-note" style="color:{{ s4NoteColor }}">{{ s4Note }}</span></sc-if></span></sc-if>
                 </span>
                 <sc-if value="{{ s4CanEdit }}" hint-placeholder-val="{{ false }}"><button type="button" class="ss-cfg-edit" onClick="{{ s4Edit }}">Změnit</button></sc-if>
               </div>
               <sc-if value="{{ s4IsActive }}" hint-placeholder-val="{{ false }}">
               <div class="ss-cfg-body">
-                <dc-import name="VariantaObsah" data="{{ rostData }}" onEvent="{{ onRostEvent }}" hint-size="100%,300px"></dc-import>
+                <span style="font-size:13px;color:var(--ss-text-muted,#5B6874)">Nejdřív typ roštu, v dalším kroku vyberete konkrétní rošt tohoto typu.</span>
+                <div style="display:flex;flex-wrap:wrap;gap:8px">
+                  <sc-for list="{{ rostTypes }}" as="h" hint-placeholder-count="4">
+                    <dc-import name="Chip" label="{{ h.label }}" count="{{ h.extra }}" size="standard" variant="{{ h.variant }}" ariaPressed="{{ h.pressed }}" check="{{ h.pressed }}" onClick="{{ h.onPick }}" hint-size="170px,36px"></dc-import>
+                  </sc-for>
+                </div>
               </div>
               </sc-if>
             </div>
@@ -892,7 +897,7 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
               </div>
               <sc-if value="{{ s5IsActive }}" hint-placeholder-val="{{ false }}">
               <div class="ss-cfg-body">
-                <dc-import name="VariantaObsah" data="{{ matData }}" onEvent="{{ onMatEvent }}" hint-size="100%,420px"></dc-import>
+                <dc-import name="VariantaObsah" data="{{ rostData }}" onEvent="{{ onRostEvent }}" hint-size="100%,300px"></dc-import>
               </div>
               </sc-if>
             </div>
@@ -908,6 +913,23 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
                 <sc-if value="{{ s6CanEdit }}" hint-placeholder-val="{{ false }}"><button type="button" class="ss-cfg-edit" onClick="{{ s6Edit }}">Změnit</button></sc-if>
               </div>
               <sc-if value="{{ s6IsActive }}" hint-placeholder-val="{{ false }}">
+              <div class="ss-cfg-body">
+                <dc-import name="VariantaObsah" data="{{ matData }}" onEvent="{{ onMatEvent }}" hint-size="100%,420px"></dc-import>
+              </div>
+              </sc-if>
+            </div>
+            </sc-if>
+            <sc-if value="{{ s7Visible }}" hint-placeholder-val="{{ false }}">
+            <div class="ss-cfg-step" data-active="{{ s7Active }}" data-done="{{ s7Done }}" id="ss-cfg-7">
+              <div class="ss-cfg-head">
+                <span class="ss-cfg-num" aria-hidden="true"><sc-if value="{{ s7IsDone }}" hint-placeholder-val="{{ false }}"><dc-import name="Ikony" iconName="check" size="16" hint-size="16px,16px"></dc-import></sc-if><sc-if value="{{ s7NotDone }}" hint-placeholder-val="{{ true }}"><span>7</span></sc-if></span>
+                <span class="ss-cfg-tx">
+                  <span class="ss-cfg-t">{{ s7Title }}</span>
+                  <sc-if value="{{ s7ShowVal }}" hint-placeholder-val="{{ false }}"><span class="ss-cfg-v"><sc-if value="{{ s7HasSwatch }}" hint-placeholder-val="{{ false }}"><span class="ss-cfg-sw" style="background:{{ s7Swatch }}"></span></sc-if><span>{{ s7Value }}</span><sc-if value="{{ s7HasNote }}" hint-placeholder-val="{{ false }}"><span class="ss-cfg-note" style="color:{{ s7NoteColor }}">{{ s7Note }}</span></sc-if></span></sc-if>
+                </span>
+                <sc-if value="{{ s7CanEdit }}" hint-placeholder-val="{{ false }}"><button type="button" class="ss-cfg-edit" onClick="{{ s7Edit }}">Změnit</button></sc-if>
+              </div>
+              <sc-if value="{{ s7IsActive }}" hint-placeholder-val="{{ false }}">
               <div class="ss-cfg-body">
                 <dc-import name="VariantaObsah" data="{{ calData }}" onEvent="{{ onCalEvent }}" hint-size="100%,420px"></dc-import>
               </div>
@@ -1384,7 +1406,7 @@ class Component extends DCLogic {
     width: typeof window !== 'undefined' ? document.documentElement.clientWidth : 1440,
     led: true, photo: 0, lb: null, qty: 1, fav: (() => { try { return JSON.parse(localStorage.getItem('ss-fav') || '[]').includes('levita'); } catch (e) { return false; } })(), cmp: (() => { try { return JSON.parse(localStorage.getItem('ss-cmp') || '[]').includes('levita'); } catch (e) { return false; } })(), perex: false,
     onlyStock: false, size: '180 × 200 cm', up: 'no', variant: 1, faq: 1,
-    rost: 'bez', mat: 'buk-cherry', cal: 'kronos-05',
+    rost: 'bez', rostTyp: 'lamelovy', mat: 'buk-cherry', cal: 'kronos-05',
     custom: false, customW: '', customL: '', customMail: '', customAgree: false, customReg: true,
     customError: false, customSize: null, csOn: false, csW: '', csL: '', csOk: false, csInfo: false,
     moreReviews: false, sticky: false, setUi: 'S4',
@@ -1506,7 +1528,7 @@ class Component extends DCLogic {
   advance(n, patch) {
     this.setState(st => {
       const done = Math.max(st.done, n);
-      const step = done >= 6 ? 0 : done + 1;
+      const step = done >= 7 ? 0 : done + 1;
       return Object.assign({}, patch || {}, { done, step });
     });
     // Po výběru se stránka vrátí na hotový krok, pokud je odscrollovaný nad horní hranou (dlouhé seznamy, např. čalounění; 5. 11. 2026). Na úzkém displeji jinak dorovná další krok do zorného pole.
@@ -1533,13 +1555,21 @@ class Component extends DCLogic {
     const rostW = bedW ? Math.round(bedW / rostPcs) : 90;
     const rostDim = ' · ' + rostW + ' × ' + bedL + ' cm';
     const rostRow = (id, label, extra, unit, more) => Object.assign({ id, label, metaStrong: rostPcs + '\u00A0ks', meta: rostDim + (extra ? ' · ' + extra : '') + (rostPcs > 1 ? ' · ' + fmtK(unit) + '/ks' : ''), price: fmtK(unit * rostPcs), stock: 'Skladem' }, more || {});
-    const ROSTY = [
-      { id: 'bez', label: 'Bez roštu', meta: 'rošty nejsou součástí postele', price: '0 Kč', stock: '', noZoom: true },
-      rostRow('villach-s', 'Lamelový rošt Villach S', '28 lamel', 1344),
-      rostRow('vyklopny-bok', 'Lamelový výklopný rošt – z boku', '', 1190),
-      rostRow('vyklopny-nohy', 'Lamelový výklopný rošt – od nohou', '', 1190),
-      rostRow('polohovaci', 'Polohovací rošt s kováním', 'hlava i nohy', 2890, { stock: 'Na objednání (2–3 týdny)', outOfStock: true })
+    // Typ roštu (krok 4) → konkrétní rošt daného typu (krok 5), 5. 11. 2026 – ukázkové ceny
+    const ROST_TYPY = [
+      { id: 'lamelovy', label: 'Lamelový výklopný' },
+      { id: 'latovy', label: 'Laťový výklopný' },
+      { id: 'lift', label: 'LIFT MULTI' },
+      { id: 'bez', label: 'bez roštu' }
     ];
+    const ROSTY = [
+      { id: 'bez', typ: 'bez', label: 'Bez roštu', meta: 'rošty nejsou součástí postele', price: '0 Kč', stock: '', noZoom: true },
+      rostRow('orthoflex-sg', 'ORTHOFLEX S-G', '', 1690, { typ: 'lamelovy', image: '_blob/e58c131539e8ad6860c8e14b3cb0959a.webp' }),
+      rostRow('villach-sg', 'VILLACH S-G', '28 lamel', 1344, { typ: 'lamelovy', image: '_blob/7d9234acbe0f59bf374b86101ea80224.webp' }),
+      rostRow('latovy-vyklopny', 'Laťový výklopný rošt', '', 990, { typ: 'latovy', image: '_blob/e58c131539e8ad6860c8e14b3cb0959a.webp' }),
+      rostRow('lift-multi', 'LIFT MULTI', 'výklopný rošt pro postel MULTI', 2490, { typ: 'lift', image: '_blob/e93df98a5542f295113f3ff8460f56a7.webp', stock: 'Na objednání (2–3 týdny)', outOfStock: true })
+    ];
+
     // Fotky roštů v panelu výběru (29. 10. 2026)
     const ROST_IMG = { 'bez': '_blob/5b3128d05b5f6d37a3ccef94d03779cf.webp', 'villach-s': '_blob/7d9234acbe0f59bf374b86101ea80224.webp', 'vyklopny-bok': '_blob/e58c131539e8ad6860c8e14b3cb0959a.webp', 'vyklopny-nohy': '_blob/e58c131539e8ad6860c8e14b3cb0959a.webp', 'polohovaci': '_blob/e93df98a5542f295113f3ff8460f56a7.webp' };
     ROSTY.forEach(r => { if (ROST_IMG[r.id]) r.image = ROST_IMG[r.id]; });
@@ -1725,7 +1755,7 @@ class Component extends DCLogic {
     const price = fmt(now + csAdd);
     // Cena v konfigurátoru (společné pravidlo 5. 11. 2026): dokud nejsou hotové všechny kroky, „od“ nejlevnější konfigurace; po posledním kroku finální cena sestavy
     const CFG_MIN_NOW = 24990, CFG_MIN_BEFORE = 27290; // nejlevnější konfigurace (ukázkové ceny)
-    const cfgDone = this.state.done >= 6;
+    const cfgDone = this.state.done >= 7;
     const priceBefore = cfgDone ? fmt(before + csAdd) : fmt(CFG_MIN_BEFORE);
     const discount = '−' + Math.round((1 - now / before) * 100) + ' %';
     const sizes = ['90 × 200 cm', '120 × 200 cm', '140 × 200 cm', '160 × 200 cm', '180 × 200 cm', '200 × 200 cm', '180 × 210 cm', '180 × 220 cm'];
@@ -1752,23 +1782,24 @@ class Component extends DCLogic {
       ],
       onPresPick: (ci, opt) => { if (ci === 0) { if (opt !== 'Multi Konf.') (h => { try { const a = document.createElement('a'); a.href = h; a.style.display = 'none'; (document.getElementById('dc-root') || document.body).appendChild(a); a.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true, view: window })); a.remove(); } catch (e) { window.location.href = h; } })(opt === 'Multi Konf.' ? 'Detail_Postel_3.0-hqdl.dc.html' : (opt === 'Set polštář' ? 'Detail_Set_Polstar_Povlak.dc.html' : opt === 'Skříň UNI 2D Konf' ? 'Detail_Skrin_UNI_2D_Konf.dc.html' : 'Detail_' + String(opt).replace(/ /g, '_') + '.dc.html')); return; } ci -= 1; this.setState(ci === 0 ? { stickPick: opt } : ci === 1 ? { sizeUi: opt } : ci === 2 ? { setUi: opt } : { matUi: opt }); },
       // --- krokový konfigurátor ---
-      cfgProgText: this.state.done >= 6 ? 'Hotovo – 6 z 6 kroků' : 'Krok ' + Math.min(this.state.done + 1, 6) + ' z 6',
+      cfgProgText: this.state.done >= 7 ? 'Hotovo – 7 ze 7 kroků' : 'Krok ' + Math.min(this.state.done + 1, 7) + ' ze 7',
       cfgProgPct: Math.round(this.state.done / 6 * 100) + '%',
-      cfgSegs: Array.from({ length: 6 }, (_, k) => ({ on: k < this.state.done ? 'true' : 'false' })),
-      cfgComplete: this.state.done >= 6,
+      cfgSegs: Array.from({ length: 7 }, (_, k) => ({ on: k < this.state.done ? 'true' : 'false' })),
+      cfgComplete: this.state.done >= 7,
       ...(() => {
         const st = this.state; const out = {};
         const vals = [
           { v: picked1 ? (st.csOn && st.csOk ? 'Vlastní rozměr ' + csWn + ' × ' + csLn + ' cm' : (st.customSize || st.size)) : '', note: PP && !st.csOn && SIZE_ADD[st.size] ? '+ ' + fmt(SIZE_ADD[st.size]) : '', noteColor: 'var(--ss-text-primary,#1C2229)' },
           { v: st.done >= 2 ? vys.label : '', note: st.done >= 2 && PP ? (vys.add ? '+ ' + fmt(vys.add) : 'Bez příplatku') : '', noteColor: vys.add ? 'var(--ss-text-primary,#1C2229)' : 'var(--ss-status-success,#157A41)' },
           { v: picked2 ? (st.up === 'yes' ? 'S úložným prostorem' : 'Bez úložného prostoru') : '', note: picked2 && st.up === 'yes' && PP ? '+ ' + fmt(upDiff) : '', noteColor: 'var(--ss-text-primary,#1C2229)' },
-          { v: st.done >= 4 ? rost.label : '', note: st.done >= 4 && PP ? rost.note : '', noteColor: rost.note === 'Bez příplatku' ? 'var(--ss-status-success,#157A41)' : 'var(--ss-text-primary,#1C2229)' },
-          { v: st.done >= 5 ? mat.label : '', note: st.done >= 5 && PP ? mat.note : '', noteColor: mat.note === 'Bez příplatku' ? 'var(--ss-status-success,#157A41)' : 'var(--ss-text-primary,#1C2229)', swatch: mat.color },
-          { v: st.done >= 6 ? cal.label : '', note: '', noteColor: '', swatch: cal.color }
+          { v: st.done >= 4 ? (ROST_TYPY.find(t => t.id === st.rostTyp) || ROST_TYPY[0]).label.replace(/^b/, 'B') : '', note: '', noteColor: '' },
+          { v: st.done >= 5 ? rost.label : '', note: st.done >= 5 && PP ? rost.note : '', noteColor: rost.note === 'Bez příplatku' ? 'var(--ss-status-success,#157A41)' : 'var(--ss-text-primary,#1C2229)' },
+          { v: st.done >= 6 ? mat.label : '', note: st.done >= 6 && PP ? mat.note : '', noteColor: mat.note === 'Bez příplatku' ? 'var(--ss-status-success,#157A41)' : 'var(--ss-text-primary,#1C2229)', swatch: mat.color },
+          { v: st.done >= 7 ? cal.label : '', note: '', noteColor: '', swatch: cal.color }
         ];
-        const CFG_TITLES = ['Rozměr postele', 'Výška postele', 'Úložný prostor', 'Rošty', 'Materiál a odstín', 'Čalounění'];
-        const CFG_PROMPTS = ['Vyberte rozměr postele', 'Vyberte výšku postele', 'Vyberte úložný prostor', 'Vyberte rošt', 'Vyberte materiál a odstín', 'Vyberte čalounění'];
-        for (let n = 1; n <= 6; n++) {
+        const CFG_TITLES = ['Rozměr postele', 'Výška postele', 'Úložný prostor', 'Typ roštu', 'Rošt', 'Materiál a odstín', 'Čalounění'];
+        const CFG_PROMPTS = ['Vyberte rozměr postele', 'Vyberte výšku postele', 'Vyberte úložný prostor', 'Vyberte typ roštu', 'Vyberte rošt', 'Vyberte materiál a odstín', 'Vyberte čalounění'];
+        for (let n = 1; n <= 7; n++) {
           const done = st.done >= n, active = st.step === n, visible = n <= st.done + 1;
           const x = vals[n - 1];
           Object.assign(out, {
@@ -1784,20 +1815,35 @@ class Component extends DCLogic {
         }
         return out;
       })(),
-      heights: VYSKY.map(h => ({ label: h.label, extra: PP && h.add ? '+\u00A0' + fmt(h.add) : '', variant: this.state.done >= 2 && vys.id === h.id ? 'primary' : 'outline', pressed: this.state.done >= 2 && vys.id === h.id ? 'true' : 'false', onPick: () => this.advance(2, { vyska: h.id }) })),
+      // Příplatky u čipů výšky se nezobrazují (komentář klienta 5. 11. 2026)
+      heights: VYSKY.map(h => ({ label: h.label, extra: '', variant: this.state.done >= 2 && vys.id === h.id ? 'primary' : 'outline', pressed: this.state.done >= 2 && vys.id === h.id ? 'true' : 'false', onPick: () => this.advance(2, { vyska: h.id }) })),
       heightHint: this.state.done >= 2 && !!vys.hint, heightHintText: vys.hint || '',
-      rostData: { value: this.state.done >= 4 ? this.state.rost : null, preview: true, rows: ROSTY.map(r => PP ? r : Object.assign({}, r, { price: '' })) },
-      onRostEvent: (t, id) => { if (t === 'pick') this.advance(4, { rost: id }); else if (t === 'preview') this.setState({ rostPv: id }); },
+      // Krok 4 typ roštu: bez roštu dokončí i krok 5; změna typu po výběru roštu otevře krok 5 s prvním roštem nového typu
+      rostTypes: ROST_TYPY.map(t => {
+        const on = this.state.done >= 4 && this.state.rostTyp === t.id;
+        const rows = ROSTY.filter(r => r.typ === t.id);
+        const from = t.id === 'bez' ? 0 : Math.min.apply(null, rows.map(r => parseInt(String(r.price).replace(/[^0-9]/g, ''), 10) || 0));
+        return { label: t.label, extra: '', // ceny „od“ u typů roštu se nezobrazují (komentář klienta 5. 11. 2026)
+           variant: on ? 'primary' : 'outline', pressed: on ? 'true' : 'false',
+          onPick: () => {
+            if (t.id === 'bez') { this.advance(5, { rostTyp: 'bez', rost: 'bez' }); return; }
+            const keep = rows.some(r => r.id === this.state.rost);
+            if (this.state.done >= 5 && !keep) { this.setState({ rostTyp: t.id, rost: rows[0].id, step: 5 }); return; }
+            this.advance(4, { rostTyp: t.id, rost: keep ? this.state.rost : rows[0].id });
+          } };
+      }),
+      rostData: { value: this.state.done >= 5 ? this.state.rost : null, preview: true, rows: ROSTY.filter(r => r.typ === (this.state.rostTyp || 'lamelovy')).map(r => PP ? r : Object.assign({}, r, { price: '' })) },
+      onRostEvent: (t, id) => { if (t === 'pick') this.advance(5, { rost: id }); else if (t === 'preview') this.setState({ rostPv: id }); },
       // Náhled roštu (zvětšená fotka + parametry) v Overlay modalu, 5. 11. 2026
       rostPvOpen: !!this.state.rostPv,
       rostPvTitle: (ROSTY.find(r => r.id === this.state.rostPv) || {}).label || '',
       rostPvData: (() => { const r = ROSTY.find(x => x.id === this.state.rostPv) || {}; return Object.assign({}, r, { price: PP ? r.price : '' }); })(),
-      rostPvPick: () => { const id = this.state.rostPv; this.setState({ rostPv: null }); if (id) this.advance(4, { rost: id }); },
+      rostPvPick: () => { const id = this.state.rostPv; this.setState({ rostPv: null }); if (id) this.advance(5, { rost: id }); },
       rostPvClose: () => this.setState({ rostPv: null }),
-      matData: { value: this.state.done >= 5 ? this.state.mat : null, groups: MATERIALY },
-      onMatEvent: (t, id) => { if (t === 'pick') this.advance(5, { mat: id }); },
-      calData: { value: this.state.done >= 6 ? this.state.cal : null, note: 'Cena postele se výběrem látky nemění. Barvy se na obrazovkách liší – odstín si raději ověřte za denního světla na vzorníku v některé z našich prodejen.', groups: LATKY_GROUPS },
-      onCalEvent: (t, id) => { if (t === 'pick') this.advance(6, { cal: id }); },
+      matData: { value: this.state.done >= 6 ? this.state.mat : null, groups: MATERIALY },
+      onMatEvent: (t, id) => { if (t === 'pick') this.advance(6, { mat: id }); },
+      calData: { value: this.state.done >= 7 ? this.state.cal : null, note: 'Cena postele se výběrem látky nemění. Barvy se na obrazovkách liší – odstín si raději ověřte za denního světla na vzorníku v některé z našich prodejen.', groups: LATKY_GROUPS },
+      onCalEvent: (t, id) => { if (t === 'pick') this.advance(7, { cal: id }); },
       stickyChips: [
         { label: this.state.customSize || this.state.size },
         { label: this.state.done >= 2 ? 'Výška ' + vys.label.replace(/^\w+ /, '') : '' },
@@ -2007,7 +2053,7 @@ class Component extends DCLogic {
       upYesDiff: PP ? '+\u00A0' + fmt(upDiff) : '',
       qty: this.state.qty,
       onQty: (v) => this.setState({ qty: v }),
-      onBuy: () => { if (this.state.done < 6) { const n = this.state.done + 1; this.setState({ step: n }); requestAnimationFrame(() => { try { document.getElementById('ss-cfg-' + n).scrollIntoView({ block: 'center', behavior: 'smooth' }); } catch (e) {} }); return; } if (this.state.size === '' && this.state.customSize) return; this.setState({ added: true }); },
+      onBuy: () => { if (this.state.done < 7) { const n = this.state.done + 1; this.setState({ step: n }); requestAnimationFrame(() => { try { document.getElementById('ss-cfg-' + n).scrollIntoView({ block: 'center', behavior: 'smooth' }); } catch (e) {} }); return; } if (this.state.size === '' && this.state.customSize) return; this.setState({ added: true }); },
       addedOpen: !!this.state.added,
       closeAdded: () => this.setState({ added: false }),
       // název položky v košíku obsahuje rozměr, olej, dřevo a čalounění – nejsou to samostatné položky (5. 11. 2026)
