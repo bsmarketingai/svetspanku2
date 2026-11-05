@@ -302,12 +302,14 @@ html[data-mode="dark"] .ss-pc-fav-in{background:var(--ss-surface-card,#0E1F2F);c
         <div><dc-import name="Tuhost" value="{{ tuhost }}" size="compact" hint-size="200px,24px"></dc-import></div>
       </sc-if>
       <sc-if value="{{ hasParams }}" hint-placeholder-val="{{ true }}">
-        <div style="display:flex;flex-wrap:wrap;gap:8px">
+        <div class="ss-pc-chips" style="display:flex;flex-wrap:wrap;gap:8px"><!-- řádek: stejné příznaky jako mřížka (segmenty tuhosti u F, tooltipy), 5. 11. 2026 -->
           <sc-for list="{{ params }}" as="pm" hint-placeholder-count="4">
-            <span class="ss-pc-chip" data-hl="{{ pm.hl }}">
-              <span style="display:flex;color:var(--ss-text-heading,#0B1F33);flex:none"><dc-import name="Ikony" iconName="{{ pm.icon }}" size="16" hint-size="16px,16px"></dc-import></span>
+            <button type="button" class="ss-pc-chip" data-hl="{{ pm.hl }}" aria-describedby="{{ pm.tipId }}">
+              <sc-if value="{{ pm.hasRing }}" hint-placeholder-val="{{ false }}"><span class="ss-pc-bars" role="img" aria-label="{{ pm.label }}"><sc-for list="{{ pm.bars }}" as="b" hint-placeholder-count="5"><span data-on="{{ b.on }}"></span></sc-for></span></sc-if>
+              <sc-if value="{{ pm.hasIcon }}" hint-placeholder-val="{{ true }}"><span style="display:flex;color:var(--ss-text-heading,#0B1F33);flex:none"><dc-import name="Ikony" iconName="{{ pm.icon }}" size="16" hint-size="16px,16px"></dc-import></span></sc-if>
               <span>{{ pm.label }}</span>
-            </span>
+              <sc-if value="{{ pm.hasTip }}" hint-placeholder-val="{{ true }}"><span class="ss-pc-tip" role="tooltip" id="{{ pm.tipId }}">{{ pm.tip }}</span></sc-if>
+            </button>
           </sc-for>
         </div>
       </sc-if>

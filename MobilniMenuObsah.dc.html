@@ -334,14 +334,14 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
     <sc-if value="{{ hasExtra }}" hint-placeholder-val="{{ false }}">
       <div class="ss-mob-extra">
         <sc-if value="{{ hasTile }}" hint-placeholder-val="{{ false }}">
-          <a class="ss-mob-tile" data-kind="{{ tile.kind }}" href="{{ tile.href }}" target="{{ tile.target }}" rel="{{ tile.rel }}">
+          <a class="ss-mob-tile" data-kind="{{ tile.kind }}" href="{{ tile.href }}" target="{{ tile.target }}" rel="{{ tile.rel }}" onClick="{{ tile.onClick }}">
             <sc-if value="{{ tile.hasImage }}" hint-placeholder-val="{{ false }}"><span class="ss-mob-ph" aria-hidden="true"><span style="{{ tile.imgStyle }}"></span></span></sc-if>
             <sc-if value="{{ tile.hasIcon }}" hint-placeholder-val="{{ true }}"><span class="ss-mob-tile-ico" aria-hidden="true"><dc-import name="Ikony" iconName="{{ tile.icon }}" size="22" hint-size="22px,22px"></dc-import></span></sc-if>
             <span style="flex:1;min-width:0"><span class="ss-mob-tile-k">{{ tile.kicker }}</span><span class="ss-mob-tile-t">{{ tile.title }}</span><sc-if value="{{ tile.hasSub }}" hint-placeholder-val="{{ false }}"><span class="ss-mob-tile-s">{{ tile.sub }}</span></sc-if></span>
           </a>
         </sc-if>
         <sc-for list="{{ articles }}" as="a" hint-placeholder-count="2">
-          <a class="ss-mob-art" href="{{ a.href }}" target="{{ a.target }}" rel="{{ a.rel }}">
+          <a class="ss-mob-art" href="{{ a.href }}" target="{{ a.target }}" rel="{{ a.rel }}" onClick="{{ a.onClick }}">
             <span class="ss-mob-icon"><dc-import name="Ikony" iconName="book" size="20" hint-size="20px,20px"></dc-import></span>
             <span style="flex:1;min-width:0">Poradíme: {{ a.title }}</span>
           </a>
@@ -1950,7 +1950,7 @@ class Component extends DCLogic {
       const KICK = { promo: 'Tip', guide: 'Průvodce', article: 'Poradíme' };
       const ext = (h) => /^https?:/.test(h || ''); // externí články (blog) v nové záložce (4. 11. 2026)
       const t = top.find(x => x.kind === 'guide') || top.find(x => x.kind === 'promo');
-      const articles = top.filter(x => x.kind === 'article').slice(0, 2).map(a => ({ title: a.title || a.label, href: a.href || '#', target: ext(a.href) ? '_blank' : undefined, rel: ext(a.href) ? 'noopener' : undefined }));
+      const articles = top.filter(x => x.kind === 'article').slice(0, 2).map(a => ({ title: a.title || a.label, href: a.href || '#', target: ext(a.href) ? '_blank' : undefined, rel: ext(a.href) ? 'noopener' : undefined, onClick: ext(a.href) ? (e => { if (e && e.preventDefault) e.preventDefault(); try { window.open(a.href, '_blank', 'noopener'); } catch (err) { window.location.href = a.href; } }) : undefined }));
       Object.assign(vals, {
         secLabel: sec.label,
         allLabel: (sec.all && sec.all.label) || ('Zobrazit vše v sekci ' + sec.label),
@@ -1958,7 +1958,7 @@ class Component extends DCLogic {
         rows,
         hasExtra: !!t || articles.length > 0,
         hasTile: !!t,
-        tile: t ? { kind: t.kind, href: t.href || '#', target: ext(t.href) ? '_blank' : undefined, rel: ext(t.href) ? 'noopener' : undefined, kicker: KICK[t.kind] || 'Tip', title: t.title || t.label || '', sub: t.sub || '', hasSub: !!t.sub, hasImage: !!t.image, imgStyle: bg(t.image, t.imageFit), hasIcon: !t.image, icon: t.kind === 'guide' ? 'help-circle' : 'tag' } : {},
+        tile: t ? { kind: t.kind, href: t.href || '#', target: ext(t.href) ? '_blank' : undefined, rel: ext(t.href) ? 'noopener' : undefined, onClick: ext(t.href) ? (e => { if (e && e.preventDefault) e.preventDefault(); try { window.open(t.href, '_blank', 'noopener'); } catch (err) { window.location.href = t.href; } }) : undefined, kicker: KICK[t.kind] || 'Tip', title: t.title || t.label || '', sub: t.sub || '', hasSub: !!t.sub, hasImage: !!t.image, imgStyle: bg(t.image, t.imageFit), hasIcon: !t.image, icon: t.kind === 'guide' ? 'help-circle' : 'tag' } : {},
         articles
       });
     }

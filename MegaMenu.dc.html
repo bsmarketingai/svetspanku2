@@ -269,7 +269,7 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
     <sc-if value="{{ hasTop }}" hint-placeholder-val="{{ true }}">
       <div class="ss-mm-top" data-chips="{{ hasChipsStr }}">
         <sc-for list="{{ tops }}" as="t" hint-placeholder-count="3">
-          <a class="ss-mm-tile" data-kind="{{ t.kind }}" href="{{ t.href }}" target="{{ t.target }}" rel="{{ t.rel }}">
+          <a class="ss-mm-tile" data-kind="{{ t.kind }}" href="{{ t.href }}" target="{{ t.target }}" rel="{{ t.rel }}" onClick="{{ t.onClick }}">
             <sc-if value="{{ t.hasImage }}" hint-placeholder-val="{{ true }}"><span class="ss-mm-tile-img" aria-hidden="true" style="{{ t.imgStyle }}"></span></sc-if>
             <sc-if value="{{ t.hasIcon }}" hint-placeholder-val="{{ false }}"><span class="ss-mm-tile-ico" aria-hidden="true"><dc-import name="Ikony" iconName="{{ t.icon }}" size="22" hint-size="22px,22px"></dc-import></span></sc-if>
             <span class="ss-mm-tile-tx"><span class="ss-mm-tile-k">{{ t.kicker }}</span><span class="ss-mm-tile-t">{{ t.title }}</span><sc-if value="{{ t.hasSub }}" hint-placeholder-val="{{ false }}"><span class="ss-mm-tile-s">{{ t.sub }}</span></sc-if></span>
@@ -1900,6 +1900,8 @@ class Component extends DCLogic {
       kind: t.kind || 'promo', href: t.href || '#', kicker: KICK[t.kind] || 'Tip',
       // externí články (blog) v nové záložce (4. 11. 2026)
       target: /^https?:/.test(t.href || '') ? '_blank' : undefined, rel: /^https?:/.test(t.href || '') ? 'noopener' : undefined,
+      // externí články: nová záložka i tam, kde runtime atribut target nerespektuje (5. 11. 2026)
+      onClick: /^https?:/.test(t.href || '') ? (e => { if (e && e.preventDefault) e.preventDefault(); try { window.open(t.href, '_blank', 'noopener'); } catch (err) { window.location.href = t.href; } }) : undefined,
       title: t.title || t.label || '', sub: t.sub || '', hasSub: !!t.sub,
       hasImage: !!t.image, imgStyle: t.image ? { backgroundImage: 'url(' + t.image + ')', backgroundPosition: t.imagePos || 'center', backgroundSize: t.imageFit || 'cover', backgroundRepeat: 'no-repeat' } : {},
       hasIcon: !t.image, icon: t.kind === 'guide' ? 'help-circle' : t.kind === 'article' ? 'book' : 'tag'

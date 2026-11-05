@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+<!-- ss-head -->
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Sans+Condensed:wght@400;500;600;700&display=swap" rel="stylesheet"><style data-ss="tmavy-rezim">
+/* Tmavý režim – přepíná html[data-mode="dark"]. Světlý režim = fallback hodnoty v var(). */
+/* Hover ve světlém režimu modrý (6. 10. 2026), v tmavém meruňkový */
+html:not([data-mode="dark"]){--ss-hover-text:#21507B;--ss-hover-bg:#F0F5FA;
+  /* Teplé meruňkové podklady (7. 10. 2026) */
+  --ss-surface-page:#FFFFFF;--ss-surface-subtle:#FAF5EF;--ss-surface-muted:#F3EDE4;--ss-surface-strong:#E9E1D5;--ss-surface-card:#FFFFFF;--ss-surface-box:#FFFFFF;--ss-text-heading:#0B1F33;
+  /* Sekundární tlačítko tonální meruňkové (7. 10. 2026) */
+  --ss-action-tonal-bg:#FEEDD4;--ss-action-tonal-hover-bg:#FDDCAA;--ss-action-tonal-fg:#7A4708;--ss-action-tonal-hover-fg:#7A4708;}
+html:not([data-mode="dark"]),html:not([data-mode="dark"]) body{background:#FFFFFF;}
+html[data-mode="dark"]{color-scheme:dark;
+  --ss-surface-tint:rgba(251,178,85,.04);
+  --ss-pm-range:linear-gradient(90deg,#4F82B0 0%,#8DB3D3 100%);
+  --ss-border-accent-subtle:#5A4425;
+  --ss-border-action:#8DB3D3;
+  --ss-action-tonal-bg:rgba(141,179,211,.16);
+  --ss-action-tonal-hover-bg:rgba(141,179,211,.26);
+  --ss-action-tonal-fg:#B9D0E5;
+  --ss-action-tonal-hover-fg:#FBB255;
+  --ss-border-action-hover:#B9D0E5;
+  --ss-border-error:#F4A39C;
+  --ss-border-error-subtle:#7A3A35;
+  --ss-border-faint:#1E3850;
+  --ss-border-hover:#5B8FBC;
+  --ss-border-strong:#3A5A7A;
+  --ss-border-subtle:#24405B;
+  --ss-border-success-subtle:#2C5A40;
+  --ss-link:#8DB3D3;
+  --ss-link-hover:#B9D0E5;
+  --ss-usp-from-c:#8DB3D3;
+  --ss-usp-to-c:#FBB255;
+  --ss-text-apricot:#FBB255;
+  --ss-usp-title:#FBB255;
+  --ss-hover-text:#FBB255;
+  --ss-hover-bg:rgba(251,178,85,.12);
+  --ss-status-error:#F4A39C;
+  --ss-status-error-strong:#F4B6B1;
+  --ss-status-error-surface:#3A1A18;
+  --ss-status-success:#71CC92;
+  --ss-status-success-strong:#A8E1BB;
+  --ss-status-success-surface:#12301F;
+  --ss-status-success-chip:#12301F;
+  --ss-status-success-chip-fg:#A8E1BB;
+  --ss-status-warning:#FCC77D;
+  --ss-surface-accent:#2B2318;
+  --ss-surface-accent-strong:#3A2C17;
+  --ss-surface-hover:#1A3A58;
+  --ss-surface-muted:#183049;
+  --ss-surface-page:#0E1F2F;
+  --ss-surface-card:#0E1F2F;
+  --ss-surface-box:#13283C;
+  --ss-surface-selected:#1F4669;
+  --ss-surface-strong:#22405C;
+  --ss-surface-subtle:#13283C;
+  --ss-text-decor:#4A6683;
+  --ss-text-disabled:#7F94A8;
+  --ss-text-muted:#9DB0C2;
+  --ss-text-primary:#EEF3F8;
+  --ss-text-heading:#EEF3F8;
+  --ss-text-secondary:#C5D2DE;
+}
+html[data-mode="dark"],html[data-mode="dark"] body{background:#0E1F2F;}
+html[data-mode="dark"] .ss-hd-logo-pos{display:none!important;}
+html[data-mode="dark"] .ss-hd-logo-neg{display:block!important;}
+html[data-mode="dark"][data-logo="a"] .ss-hd-logo-neg,html[data-mode="dark"][data-logo="b"] .ss-hd-logo-neg,html[data-mode="dark"][data-logo="c"] .ss-hd-logo-neg,html[data-mode="dark"][data-logo="d"] .ss-hd-logo-neg{display:none!important;}
+html[data-mode="dark"][data-logo="a"] .ss-hd-logo-a,html[data-mode="dark"][data-logo="b"] .ss-hd-logo-b,html[data-mode="dark"][data-logo="c"] .ss-hd-logo-c,html[data-mode="dark"][data-logo="d"] .ss-hd-logo-d{display:block!important;}
+html[data-mode="dark"] img{filter:none;}
+
+/* Oddělení hlavičky a overlay panelů v tmavém režimu */
+html[data-mode="dark"] .ss-hd{box-shadow:0 1px 0 rgba(141,179,211,.18),0 8px 24px rgba(0,0,0,.45)!important;}
+/* Hlavička: horní lišta a hlavní řádek průsvitné s background blur, menu (.ss-hd-nav) zůstává plné */
+html[data-mode="dark"] .ss-hd{background:transparent!important;}
+html[data-mode="dark"] .ss-hd-topbar{background-color:rgba(19,40,60,.72)!important;-webkit-backdrop-filter:blur(16px) saturate(140%);backdrop-filter:blur(16px) saturate(140%);}
+html[data-mode="dark"] .ss-hd-main{background-color:rgba(14,31,47,.72)!important;-webkit-backdrop-filter:blur(16px) saturate(140%);backdrop-filter:blur(16px) saturate(140%);}
+html[data-mode="dark"] .ss-hd-topbar{border-bottom-color:transparent!important;}
+html[data-mode="dark"] .ss-hd-nav{border-top-color:transparent!important;background-color:#13283C!important;background-image:linear-gradient(180deg,#13283C 0%,#102336 100%)!important;}
+html[data-mode="dark"] .ss-mm{background:#13283C!important;box-shadow:inset 0 1px 0 rgba(141,179,211,.18),0 0 0 1px rgba(141,179,211,.14),0 24px 48px rgba(0,0,0,.6)!important;}
+html[data-mode="dark"] .ss-hd .ss-pm{background:#13283C!important;box-shadow:inset 0 1px 0 rgba(141,179,211,.18),0 0 0 1px rgba(141,179,211,.14),0 24px 48px rgba(0,0,0,.6)!important;}
+html[data-mode="dark"] .ss-pm-card{background:#13283C;}
+html[data-mode="dark"] .ss-pm-card:hover{background:#13283C!important;box-shadow:none!important;color:inherit!important;}
+html[data-mode="dark"] .ss-pm-row:hover{background:transparent!important;box-shadow:none!important;color:inherit!important;}
+
+/* Ostrůvek světlého režimu (popupy nad fotkami – produktové fotky mají bílé pozadí) */
+html[data-mode="dark"] .ss-light{color-scheme:light;
+  --ss-hover-text:#21507B;
+  --ss-hover-bg:#F0F5FA;
+  --ss-text-apricot:initial;
+  --ss-usp-title:initial;
+  --ss-border-accent-subtle:initial;
+  --ss-border-action:initial;
+  --ss-action-tonal-bg:initial;
+  --ss-action-tonal-hover-bg:initial;
+  --ss-action-tonal-fg:initial;
+  --ss-border-action-hover:initial;
+  --ss-border-error:initial;
+  --ss-border-error-subtle:initial;
+  --ss-border-faint:initial;
+  --ss-border-hover:initial;
+  --ss-border-strong:initial;
+  --ss-border-subtle:initial;
+  --ss-border-success-subtle:initial;
+  --ss-link:initial;
+  --ss-link-hover:initial;
+  --ss-status-error:initial;
+  --ss-status-error-strong:initial;
+  --ss-status-error-surface:initial;
+  --ss-status-success:initial;
+  --ss-status-success-strong:initial;
+  --ss-status-success-surface:initial;
+  --ss-status-warning:initial;
+  --ss-surface-accent:initial;
+  --ss-surface-accent-strong:initial;
+  --ss-surface-hover:initial;
+  --ss-surface-muted:initial;
+  --ss-surface-page:initial;
+  --ss-surface-selected:initial;
+  --ss-surface-strong:initial;
+  --ss-surface-subtle:initial;
+  --ss-text-decor:initial;
+  --ss-text-disabled:initial;
+  --ss-text-muted:initial;
+  --ss-text-primary:initial;
+  --ss-text-secondary:initial;
+}
+
+/* Hlavička v tmavém režimu: bez dělicí linky nad menu */
+html[data-mode="dark"] .ss-hd-nav{border-top-color:transparent!important;}
+/* Karty: v tmavém režimu bez hover podkladu a stínu, mění se jen barva nadpisu */
+html[data-mode="dark"] .ss-ct:hover,html[data-mode="dark"] .ss-cat:hover,html[data-mode="dark"] .ss-art:hover,html[data-mode="dark"] .ss-mm-ban:hover,html[data-mode="dark"] .ss-pc:hover,html[data-mode="dark"] .ss-hp-tile:hover{box-shadow:none!important;}
+/* Produktová karta: v tmavém režimu bez podkladu, tmavá modrá jen na hover; karty blíž k sobě */
+html[data-mode="dark"] .ss-pc{background:transparent;padding:18px;transition:background-color .15s cubic-bezier(.22,.61,.36,1);}
+@media (hover:hover) and (pointer:fine){html[data-mode="dark"] .ss-pc:hover{background:#0E1F2F;}}
+html[data-mode="dark"] .ss-car{gap:8px;}
+html[data-mode="dark"] .ss-pgrid{gap:4px!important;}
+/* Hover obtažení: 1px gradientní linka, světle modré světlo z levého horního rohu */
+html[data-mode="dark"] .ss-pc::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;pointer-events:none;background:radial-gradient(ellipse 90% 70% at 0% 0%,rgba(141,179,211,.95) 0%,rgba(141,179,211,.45) 35%,rgba(141,179,211,.16) 65%,rgba(141,179,211,.06) 100%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0);opacity:0;transition:opacity .15s cubic-bezier(.22,.61,.36,1);}
+@media (hover:hover) and (pointer:fine){html[data-mode="dark"] .ss-pc:hover::before{opacity:1;}}
+html[data-mode="dark"] .ss-pm-card:hover .ss-pm-title,html[data-mode="dark"] .ss-pm-row:hover .ss-pm-title,html[data-mode="dark"] .ss-pc:hover .ss-pc-title,html[data-mode="dark"] .ss-mm-ban:hover{color:#FBB255!important;}
+
+/* Podklad webu: jemný radiální gradient ze středu viewportu (hloubka). Fixní → plynule přes všechny sekce. */
+/* Vinětace (Elevace) odebrána 12. 10. 2026 – plné podklady, stíny karet zůstávají vždy */
+
+
+/* Gradient Zap: elevace všech ploch, které by na gradientu splývaly (karty, filtry, video, boxy). Gradient Vyp = beze změny. */
+html .ss-elev,html .ss-ct:not([data-pop="true"]),html .ss-cat,html .ss-hp-tile,html .ss-pd-row,html .ss-mm-art{box-shadow:0 2px 8px rgba(19,44,67,.08)!important;}
+html[data-mode="dark"] .ss-elev,html[data-mode="dark"] .ss-ct:not([data-pop="true"]),html[data-mode="dark"] .ss-cat,html[data-mode="dark"] .ss-hp-tile,html[data-mode="dark"] .ss-pd-row{box-shadow:inset 0 1px 0 rgba(141,179,211,.14),0 0 0 1px rgba(141,179,211,.10),0 2px 8px rgba(0,0,0,.35)!important;}
+@media (hover:hover) and (pointer:fine){
+html a.ss-elev:hover,html button.ss-elev:hover,html .ss-ct:not([data-pop="true"]):hover,html .ss-cat:hover,html .ss-hp-tile:hover,html .ss-pd-row:hover{box-shadow:0 4px 12px rgba(19,44,67,.12)!important;}
+html[data-mode="dark"] a.ss-elev:hover,html[data-mode="dark"] button.ss-elev:hover,html[data-mode="dark"] .ss-ct:not([data-pop="true"]):hover,html[data-mode="dark"] .ss-cat:hover,html[data-mode="dark"] .ss-hp-tile:hover,html[data-mode="dark"] .ss-pd-row:hover{box-shadow:inset 0 1px 0 rgba(141,179,211,.18),0 0 0 1px rgba(141,179,211,.14),0 8px 24px rgba(0,0,0,.45)!important;}
+}
+html .ss-ct[data-pop="true"]::before{box-shadow:0 2px 8px rgba(19,44,67,.08);}
+html[data-mode="dark"] .ss-ct[data-pop="true"]::before{box-shadow:inset 0 1px 0 rgba(141,179,211,.14),0 0 0 1px rgba(141,179,211,.10),0 2px 8px rgba(0,0,0,.35);}
+@media (hover:hover) and (pointer:fine){html .ss-ct[data-pop="true"]:hover::before{box-shadow:0 4px 12px rgba(19,44,67,.12);}html[data-mode="dark"] .ss-ct[data-pop="true"]:hover::before{box-shadow:inset 0 1px 0 rgba(141,179,211,.18),0 0 0 1px rgba(141,179,211,.14),0 8px 24px rgba(0,0,0,.45);}}
+html .ss-elev:focus-visible{box-shadow:0 0 0 3px rgba(41,96,147,.35)!important;}
+
+/* Prezentační přepínač fontů – html[data-font-h|data-font-b]="alt" */
+html[data-font-h="alt"] h1:not(.ss-plain),html[data-font-h="alt"] h2:not(.ss-plain),html[data-font-h="alt"] h3:not(.ss-plain),html[data-font-h="alt"] h4:not(.ss-plain),html[data-font-h="alt"] [style*="Oswald"]{font-family:'Barlow Condensed',Oswald,Helvetica,Arial,sans-serif!important;}
+html[data-font-b="alt"] body,html[data-font-b="alt"] [style*="Roboto"]:not([style*="Archivo"]):not([style*="Oswald"]),html[data-font-b="alt"] input,html[data-font-b="alt"] button,html[data-font-b="alt"] select,html[data-font-b="alt"] textarea{font-family:'IBM Plex Sans Condensed',Roboto,Helvetica,Arial,sans-serif!important;}
+html[data-mode="dark"] .ss-ct:hover .ss-ct-title,html[data-mode="dark"] .ss-hp-art:hover .ss-hp-art-t,html[data-mode="dark"] .ss-mag-lead:hover .ss-hp-art-t{color:#FBB255;}
+
+/* Centrální scrim pro všechny modály a drawery (oba režimy): blur 16 px, diagonální závoj, teplé bodové světlo z levého horního rohu */
+.ss-scrim{background:radial-gradient(ellipse 75% 65% at 0% 0%,rgba(251,178,85,.34) 0%,rgba(251,178,85,.12) 40%,rgba(251,178,85,0) 70%),radial-gradient(ellipse 70% 60% at 100% 100%,rgba(240,154,44,.36) 0%,rgba(240,154,44,.12) 40%,rgba(240,154,44,0) 70%),linear-gradient(135deg,rgba(9,18,27,.6) 0%,rgba(9,18,27,.74) 50%,rgba(6,12,18,.8) 100%);-webkit-backdrop-filter:blur(16px) saturate(.9);backdrop-filter:blur(16px) saturate(.9);}
+/* Vyhledávání v hlavičce: teplé bodové světlo na podkladu pole (tmavý režim) */
+html[data-mode="dark"] .ss-hd .ss-input{background-image:radial-gradient(ellipse 45% 140% at 0% 0%,rgba(251,178,85,.20) 0%,rgba(251,178,85,.07) 45%,rgba(251,178,85,0) 75%)!important;}
+html[data-mode="dark"] .ss-hd .ss-input:focus{background-image:radial-gradient(ellipse 55% 160% at 0% 0%,rgba(251,178,85,.28) 0%,rgba(251,178,85,.10) 45%,rgba(251,178,85,0) 80%)!important;}
+
+html[data-mode="dark"] .ss-hd-tab[aria-current="page"]{color:#FBB255;}
+
+/* Filtrační panel: světlý bílý (surface.card), tmavý zůstává surface.subtle */
+html[data-mode="dark"] .ss-filtr{background:var(--ss-surface-subtle,#13283C)!important;}
+
+/* Úvodní sekce s gradientem (Kategorie): surface.page nahoře → surface.muted dole; vrství se pod vinětaci */
+main>section.ss-grad-top{background-image:linear-gradient(180deg,var(--ss-surface-page,#FFFFFF) 0%,var(--ss-surface-muted,#F3EDE4) 100%)!important;background-attachment:scroll!important;}
+
+
+
+/* Nadpisy: světlý režim tmavá modrá z hlavičky #0B1F33 (inline barva vyhrává – bílé nadpisy na tmavých pásech zůstávají) */
+h1,h2,h3,h4{color:var(--ss-text-heading,#0B1F33);}
+
+/* Sekce s meruňkovým podsvícením zespoda – poloviční radiál od spodní hrany, vrstvený nad .ss-grad-top */
+main>section.ss-grad-top.ss-grad-glow{background-image:radial-gradient(ellipse 55% 100% at 50% 100%,rgba(251,178,85,.22) 0%,rgba(251,178,85,.09) 45%,rgba(251,178,85,0) 75%),linear-gradient(180deg,var(--ss-surface-page,#FFFFFF) 0%,var(--ss-surface-muted,#F3EDE4) 100%)!important;background-size:100% 520px,auto!important;background-position:center bottom,center!important;background-repeat:no-repeat!important;background-attachment:scroll!important;}
+html[data-mode="dark"] main>section.ss-grad-top.ss-grad-glow{background-image:radial-gradient(ellipse 55% 100% at 50% 100%,rgba(251,178,85,.14) 0%,rgba(251,178,85,.05) 45%,rgba(251,178,85,0) 75%),linear-gradient(180deg,var(--ss-surface-page,#0E1F2F) 0%,var(--ss-surface-muted,#183049) 100%)!important;}
+
+
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400..700&family=Roboto:wght@400..700&display=swap" rel="stylesheet">
+<script>try{var d=document.documentElement;if(localStorage.getItem('ss-mode')==='dark')d.setAttribute('data-mode','dark');}catch(e){}</script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+.ss-pm-t{position:relative;z-index:2;display:flex;width:100%;margin:0;padding:0;border:0;background:none;font:inherit;color:inherit;text-align:left;cursor:help;border-radius:6px;}
+.ss-pm-t:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
+.ss-pm-tip{position:absolute;left:0;bottom:calc(100% + 8px);z-index:300;width:max-content;max-width:240px;padding:8px 12px;border-radius:6px;background:#132C43;color:#FFFFFF;font-size:13px;font-weight:400;line-height:1.45;box-shadow:0 16px 40px rgba(19,44,67,.18);display:none;pointer-events:none;text-wrap:pretty;}
+@keyframes ss-pm-tip-in{from{opacity:0;transform:translateY(4px);}to{opacity:1;transform:none;}}
+/* Tooltip nikdy nepřeteče kartu ani viewport: max šířka = šířka tlačítka, u čipů šířka řádku čipů (kotva = řádek). */
+.ss-pm-tip{max-width:min(240px,100%);}
+.ss-pm-facts{position:relative;}
+.ss-pm-facts .ss-pm-t{position:static;}
+.ss-pm-t:focus-visible .ss-pm-tip{display:block;animation:ss-pm-tip-in .12s cubic-bezier(.22,.61,.36,1);}
+@media (hover:hover) and (pointer:fine){.ss-pm-t:hover .ss-pm-tip{display:block;animation:ss-pm-tip-in .12s cubic-bezier(.22,.61,.36,1);}}
+/* Varianta B (A/B test karty): tuhost a váha jako dvě malé karty ve dvou sloupcích */
+.ss-pm-tiles{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:8px;width:100%;}
+.ss-pm-tiles .ss-pm-t{position:static;}
+.ss-pm-tile{align-items:center;gap:8px;min-width:0;padding:8px 10px;border-radius:8px;background:var(--ss-surface-subtle,#FAF5EF);}
+.ss-pm-ico{flex:none;display:flex;align-items:center;justify-content:center;width:36px;height:36px;}
+.ss-pm-ph{display:flex;align-items:center;justify-content:center;width:36px;height:36px;box-sizing:border-box;border:1.5px dashed var(--ss-border-strong,#C8D0D8);border-radius:8px;font-size:11px;font-weight:600;color:var(--ss-text-muted,#5B6874);}
+.ss-pm-tx{display:flex;flex-direction:column;min-width:0;line-height:1.3;}
+.ss-pm-tl{font-family:Oswald,Roboto,sans-serif;font-size:14px;color:var(--ss-text-muted,#5B6874);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.ss-pm-tv{font-family:Oswald,Roboto,sans-serif;font-size:17px;font-weight:600;color:var(--ss-text-primary,#1C2229);white-space:nowrap;}
+/* Varianty C/D/E (29. 10. 2026): ukazatele bez táhel */
+@keyframes pm-grow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes pm-growy{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+@keyframes pm-in{from{opacity:0;transform:translateY(4px)}}
+.pm-fill{transform-origin:left center;animation:pm-grow .4s cubic-bezier(.22,.61,.36,1) both}
+.pm-band{transform-origin:left center;animation:pm-grow .6s cubic-bezier(.22,.61,.36,1) .45s both}
+.pm-bar{transform-origin:bottom center;animation:pm-growy .3s cubic-bezier(.22,.61,.36,1) both}
+.pm-in{animation:pm-in .3s cubic-bezier(.22,.61,.36,1) both}
+.pm-on{border-radius:8px;background:#FEEDD4;box-shadow:inset 0 0 0 1.5px #F2B544}
+.pm-rule{display:flex;justify-content:space-between;align-items:baseline;gap:8px;font-family:Oswald,Roboto,sans-serif;font-size:15px;color:var(--ss-text-secondary,#3D4750)}
+.pm-rule strong{font-weight:600;color:var(--ss-text-primary,#1C2229)}
+.pm-sub{display:flex;justify-content:space-between;font-size:12px;color:var(--ss-text-muted,#5B6874)}
+@keyframes pm-d1{0%{d:path("M3 18H5C10.5 18 11 25 16 25C21 25 21.5 18 27 18H29");animation-timing-function:cubic-bezier(0.45,0,0.55,1)}28%{d:path("M3 18H5C10.5 18 11 25 16 25C21 25 21.5 18 27 18H29");animation-timing-function:cubic-bezier(0.2,0.7,0.4,1)}32%{d:path("M3 18H5C10.5 18 11 18 16 18C21 18 21.5 18 27 18H29");animation-timing-function:cubic-bezier(0.2,0.7,0.4,1)}35%{d:path("M3 18H5C10.5 18 11 17.65 16 17.65C21 17.65 21.5 18 27 18H29");animation-timing-function:cubic-bezier(0.2,0.7,0.4,1)}37%{d:path("M3 18H5C10.5 18 11 18 16 18C21 18 21.5 18 27 18H29");animation-timing-function:cubic-bezier(0.45,0,0.55,1)}51%{d:path("M3 18H5C10.5 18 11 18 16 18C21 18 21.5 18 27 18H29");animation-timing-function:cubic-bezier(0.5,0,0.8,0.4)}59%{d:path("M3 18H5C10.5 18 11 18 16 18C21 18 21.5 18 27 18H29");animation-timing-function:cubic-bezier(0.2,0.7,0.4,1)}62%{d:path("M3 18H5C10.5 18 11 26.26 16 26.26C21 26.26 21.5 18 27 18H29");animation-timing-function:cubic-bezier(0.45,0,0.55,1)}65%{d:path("M3 18H5C10.5 18 11 24.51 16 24.51C21 24.51 21.5 18 27 18H29");animation-timing-function:cubic-bezier(0.45,0,0.55,1)}69%{d:path("M3 18H5C10.5 18 11 25 16 25C21 25 21.5 18 27 18H29");animation-timing-function:cubic-bezier(0.45,0,0.55,1)}100%{d:path("M3 18H5C10.5 18 11 25 16 25C21 25 21.5 18 27 18H29")}}
+@keyframes pm-b1{0%{transform:translateY(0px);animation-timing-function:cubic-bezier(0.45,0,0.55,1)}28%{transform:translateY(0px);animation-timing-function:cubic-bezier(0.2,0.7,0.4,1)}32%{transform:translateY(-4.2px);animation-timing-function:cubic-bezier(0.2,0.7,0.4,1)}35%{transform:translateY(-10.2px);animation-timing-function:cubic-bezier(0.2,0.7,0.4,1)}37%{transform:translateY(-11px);animation-timing-function:cubic-bezier(0.45,0,0.55,1)}51%{transform:translateY(-11px);animation-timing-function:cubic-bezier(0.5,0,0.8,0.4)}59%{transform:translateY(-7px);animation-timing-function:cubic-bezier(0.2,0.7,0.4,1)}62%{transform:translateY(1.26px);animation-timing-function:cubic-bezier(0.45,0,0.55,1)}65%{transform:translateY(-0.49px);animation-timing-function:cubic-bezier(0.45,0,0.55,1)}69%{transform:translateY(0px);animation-timing-function:cubic-bezier(0.45,0,0.55,1)}100%{transform:translateY(0px)}}
+.pm-d1{animation:pm-d1 5s infinite}.pm-b1{animation:pm-b1 5s infinite}
+@keyframes pm-d2{0%{d:path("M3 18H6C11 18 11 23.2 16 23.2C21 23.2 21 18 26 18H29");animation-timing-function:cubic-bezier(0.45,0,0.55,1)}30%{d:path("M3 18H6C11 18 11 23.2 16 23.2C21 23.2 21 18 26 18H29");animation-timing-function:cubic-bezier(0.2,0.7,0.4,1)}34%{d:path("M3 18H6C11 18 11 18 16 18C21 18 21 18 26 18H29");animation-timing-function:cubic-bezier(0.2,0.7,0.4,1)}37%{d:path("M3 18H6C11 18 11 17.65 16 17.65C21 17.65 21 18 26 18H29");animation-timing-function:cubic-bezier(0.2,0.7,0.4,1)}39%{d:path("M3 18H6C11 18 11 18 16 18C21 18 21 18 26 18H29");animation-timing-function:cubic-bezier(0.45,0,0.55,1)}53%{d:path("M3 18H6C11 18 11 18 16 18C21 18 21 18 26 18H29");animation-timing-function:cubic-bezier(0.5,0,0.8,0.4)}61%{d:path("M3 18H6C11 18 11 18 16 18C21 18 21 18 26 18H29");animation-timing-function:cubic-bezier(0.2,0.7,0.4,1)}64%{d:path("M3 18H6C11 18 11 24.14 16 24.14C21 24.14 21 18 26 18H29");animation-timing-function:cubic-bezier(0.45,0,0.55,1)}67%{d:path("M3 18H6C11 18 11 22.84 16 22.84C21 22.84 21 18 26 18H29");animation-timing-function:cubic-bezier(0.45,0,0.55,1)}71%{d:path("M3 18H6C11 18 11 23.2 16 23.2C21 23.2 21 18 26 18H29");animation-timing-function:cubic-bezier(0.45,0,0.55,1)}100%{d:path("M3 18H6C11 18 11 23.2 16 23.2C21 23.2 21 18 26 18H29")}}
+@keyframes pm-b2{0%{transform:translateY(0px);animation-timing-function:cubic-bezier(0.45,0,0.55,1)}30%{transform:translateY(0px);animation-timing-function:cubic-bezier(0.2,0.7,0.4,1)}34%{transform:translateY(-3.12px);animation-timing-function:cubic-bezier(0.2,0.7,0.4,1)}37%{transform:translateY(-8.4px);animation-timing-function:cubic-bezier(0.2,0.7,0.4,1)}39%{transform:translateY(-9.2px);animation-timing-function:cubic-bezier(0.45,0,0.55,1)}53%{transform:translateY(-9.2px);animation-timing-function:cubic-bezier(0.5,0,0.8,0.4)}61%{transform:translateY(-5.2px);animation-timing-function:cubic-bezier(0.2,0.7,0.4,1)}64%{transform:translateY(0.94px);animation-timing-function:cubic-bezier(0.45,0,0.55,1)}67%{transform:translateY(-0.36px);animation-timing-function:cubic-bezier(0.45,0,0.55,1)}71%{transform:translateY(0px);animation-timing-function:cubic-bezier(0.45,0,0.55,1)}100%{transform:translateY(0px)}}
+.pm-d2{animation:pm-d2 5s infinite}.pm-b2{animation:pm-b2 5s infinite}
+@keyframes pm-d3{0%{d:path("M3 18H7C11.5 18 11 21.6 16 21.6C21 21.6 20.5 18 25 18H29");animation-timing-function:cubic-bezier(0.45,0,0.55,1)}32%{d:path("M3 18H7C11.5 18 11 21.6 16 21.6C21 21.6 20.5 18 25 18H29");animation-timing-function:cubic-bezier(0.2,0.7,0.4,1)}36%{d:path("M3 18H7C11.5 18 11 18 16 18C21 18 20.5 18 25 18H29");animation-timing-function:cubic-bezier(0.2,0.7,0.4,1)}39%{d:path("M3 18H7C11.5 18 11 17.65 16 17.65C21 17.65 20.5 18 25 18H29");animation-timing-function:cubic-bezier(0.2,0.7,0.4,1)}41%{d:path("M3 18H7C11.5 18 11 18 16 18C21 18 20.5 18 25 18H29");animation-timing-function:cubic-bezier(0.45,0,0.55,1)}55%{d:path("M3 18H7C11.5 18 11 18 16 18C21 18 20.5 18 25 18H29");animation-timing-function:cubic-bezier(0.5,0,0.8,0.4)}63%{d:path("M3 18H7C11.5 18 11 18 16 18C21 18 20.5 18 25 18H29");animation-timing-function:cubic-bezier(0.2,0.7,0.4,1)}66%{d:path("M3 18H7C11.5 18 11 22.25 16 22.25C21 22.25 20.5 18 25 18H29");animation-timing-function:cubic-bezier(0.45,0,0.55,1)}69%{d:path("M3 18H7C11.5 18 11 21.35 16 21.35C21 21.35 20.5 18 25 18H29");animation-timing-function:cubic-bezier(0.45,0,0.55,1)}73%{d:path("M3 18H7C11.5 18 11 21.6 16 21.6C21 21.6 20.5 18 25 18H29");animation-timing-function:cubic-bezier(0.45,0,0.55,1)}100%{d:path("M3 18H7C11.5 18 11 21.6 16 21.6C21 21.6 20.5 18 25 18H29")}}
+@keyframes pm-b3{0%{transform:translateY(0px);animation-timing-function:cubic-bezier(0.45,0,0.55,1)}32%{transform:translateY(0px);animation-timing-function:cubic-bezier(0.2,0.7,0.4,1)}36%{transform:translateY(-2.16px);animation-timing-function:cubic-bezier(0.2,0.7,0.4,1)}39%{transform:translateY(-6.8px);animation-timing-function:cubic-bezier(0.2,0.7,0.4,1)}41%{transform:translateY(-7.6px);animation-timing-function:cubic-bezier(0.45,0,0.55,1)}55%{transform:translateY(-7.6px);animation-timing-function:cubic-bezier(0.5,0,0.8,0.4)}63%{transform:translateY(-3.6px);animation-timing-function:cubic-bezier(0.2,0.7,0.4,1)}66%{transform:translateY(0.65px);animation-timing-function:cubic-bezier(0.45,0,0.55,1)}69%{transform:translateY(-0.25px);animation-timing-function:cubic-bezier(0.45,0,0.55,1)}73%{transform:translateY(0px);animation-timing-function:cubic-bezier(0.45,0,0.55,1)}100%{transform:translateY(0px)}}
+.pm-d3{animation:pm-d3 5s infinite}.pm-b3{animation:pm-b3 5s infinite}
+@keyframes pm-d4{0%{d:path("M3 18H8C12 18 11 20 16 20C21 20 20 18 24 18H29");animation-timing-function:cubic-bezier(0.45,0,0.55,1)}34%{d:path("M3 18H8C12 18 11 20 16 20C21 20 20 18 24 18H29");animation-timing-function:cubic-bezier(0.2,0.7,0.4,1)}38%{d:path("M3 18H8C12 18 11 18 16 18C21 18 20 18 24 18H29");animation-timing-function:cubic-bezier(0.2,0.7,0.4,1)}41%{d:path("M3 18H8C12 18 11 17.65 16 17.65C21 17.65 20 18 24 18H29");animation-timing-function:cubic-bezier(0.2,0.7,0.4,1)}43%{d:path("M3 18H8C12 18 11 18 16 18C21 18 20 18 24 18H29");animation-timing-function:cubic-bezier(0.45,0,0.55,1)}57%{d:path("M3 18H8C12 18 11 18 16 18C21 18 20 18 24 18H29");animation-timing-function:cubic-bezier(0.5,0,0.8,0.4)}65%{d:path("M3 18H8C12 18 11 18 16 18C21 18 20 18 24 18H29");animation-timing-function:cubic-bezier(0.2,0.7,0.4,1)}68%{d:path("M3 18H8C12 18 11 20.36 16 20.36C21 20.36 20 18 24 18H29");animation-timing-function:cubic-bezier(0.45,0,0.55,1)}71%{d:path("M3 18H8C12 18 11 19.86 16 19.86C21 19.86 20 18 24 18H29");animation-timing-function:cubic-bezier(0.45,0,0.55,1)}75%{d:path("M3 18H8C12 18 11 20 16 20C21 20 20 18 24 18H29");animation-timing-function:cubic-bezier(0.45,0,0.55,1)}100%{d:path("M3 18H8C12 18 11 20 16 20C21 20 20 18 24 18H29")}}
+@keyframes pm-b4{0%{transform:translateY(0px);animation-timing-function:cubic-bezier(0.45,0,0.55,1)}34%{transform:translateY(0px);animation-timing-function:cubic-bezier(0.2,0.7,0.4,1)}38%{transform:translateY(-1.2px);animation-timing-function:cubic-bezier(0.2,0.7,0.4,1)}41%{transform:translateY(-5.2px);animation-timing-function:cubic-bezier(0.2,0.7,0.4,1)}43%{transform:translateY(-6px);animation-timing-function:cubic-bezier(0.45,0,0.55,1)}57%{transform:translateY(-6px);animation-timing-function:cubic-bezier(0.5,0,0.8,0.4)}65%{transform:translateY(-2px);animation-timing-function:cubic-bezier(0.2,0.7,0.4,1)}68%{transform:translateY(0.36px);animation-timing-function:cubic-bezier(0.45,0,0.55,1)}71%{transform:translateY(-0.14px);animation-timing-function:cubic-bezier(0.45,0,0.55,1)}75%{transform:translateY(0px);animation-timing-function:cubic-bezier(0.45,0,0.55,1)}100%{transform:translateY(0px)}}
+.pm-d4{animation:pm-d4 5s infinite}.pm-b4{animation:pm-b4 5s infinite}
+@keyframes pm-d5{0%{d:path("M3 18H9C12.5 18 11 18.6 16 18.6C21 18.6 19.5 18 23 18H29");animation-timing-function:cubic-bezier(0.45,0,0.55,1)}36%{d:path("M3 18H9C12.5 18 11 18.6 16 18.6C21 18.6 19.5 18 23 18H29");animation-timing-function:cubic-bezier(0.2,0.7,0.4,1)}40%{d:path("M3 18H9C12.5 18 11 18 16 18C21 18 19.5 18 23 18H29");animation-timing-function:cubic-bezier(0.2,0.7,0.4,1)}43%{d:path("M3 18H9C12.5 18 11 17.65 16 17.65C21 17.65 19.5 18 23 18H29");animation-timing-function:cubic-bezier(0.2,0.7,0.4,1)}45%{d:path("M3 18H9C12.5 18 11 18 16 18C21 18 19.5 18 23 18H29");animation-timing-function:cubic-bezier(0.45,0,0.55,1)}59%{d:path("M3 18H9C12.5 18 11 18 16 18C21 18 19.5 18 23 18H29");animation-timing-function:cubic-bezier(0.5,0,0.8,0.4)}67%{d:path("M3 18H9C12.5 18 11 18 16 18C21 18 19.5 18 23 18H29");animation-timing-function:cubic-bezier(0.2,0.7,0.4,1)}70%{d:path("M3 18H9C12.5 18 11 18.71 16 18.71C21 18.71 19.5 18 23 18H29");animation-timing-function:cubic-bezier(0.45,0,0.55,1)}73%{d:path("M3 18H9C12.5 18 11 18.56 16 18.56C21 18.56 19.5 18 23 18H29");animation-timing-function:cubic-bezier(0.45,0,0.55,1)}77%{d:path("M3 18H9C12.5 18 11 18.6 16 18.6C21 18.6 19.5 18 23 18H29");animation-timing-function:cubic-bezier(0.45,0,0.55,1)}100%{d:path("M3 18H9C12.5 18 11 18.6 16 18.6C21 18.6 19.5 18 23 18H29")}}
+@keyframes pm-b5{0%{transform:translateY(0px);animation-timing-function:cubic-bezier(0.45,0,0.55,1)}36%{transform:translateY(0px);animation-timing-function:cubic-bezier(0.2,0.7,0.4,1)}40%{transform:translateY(-0.36px);animation-timing-function:cubic-bezier(0.2,0.7,0.4,1)}43%{transform:translateY(-3.8px);animation-timing-function:cubic-bezier(0.2,0.7,0.4,1)}45%{transform:translateY(-4.6px);animation-timing-function:cubic-bezier(0.45,0,0.55,1)}59%{transform:translateY(-4.6px);animation-timing-function:cubic-bezier(0.5,0,0.8,0.4)}67%{transform:translateY(-0.6px);animation-timing-function:cubic-bezier(0.2,0.7,0.4,1)}70%{transform:translateY(0.11px);animation-timing-function:cubic-bezier(0.45,0,0.55,1)}73%{transform:translateY(-0.04px);animation-timing-function:cubic-bezier(0.45,0,0.55,1)}77%{transform:translateY(0px);animation-timing-function:cubic-bezier(0.45,0,0.55,1)}100%{transform:translateY(0px)}}
+.pm-d5{animation:pm-d5 5s infinite}.pm-b5{animation:pm-b5 5s infinite}
+@media (prefers-reduced-motion:reduce){.pm-fill,.pm-band,.pm-bar,.pm-in,.pm-d1,.pm-b1,.pm-d2,.pm-b2,.pm-d3,.pm-b3,.pm-d4,.pm-b4,.pm-d5,.pm-b5{animation:none}}
+/* bg m 1 na buňkách A2 vyzkoušeno a vráceno 30. 10. 2026 – buňky zůstávají surface.subtle */
+</style>
+</helmet>
+<div class="pm-root" data-l="{{ layoutName }}" data-lg="{{ lgStr }}" style="display:grid;grid-template-columns:{{ rootCols }};gap:{{ rootGap }};column-gap:{{ colGap }};align-items:start;width:100%;min-width:0;font-family:Roboto,Helvetica,Arial,sans-serif;color:var(--ss-text-secondary,#3D4750)">
+  <sc-if value="{{ plainTuhost }}" hint-placeholder-val="{{ false }}">
+    <span style="display:flex;flex-direction:column;gap:8px;width:100%">
+      <span style="display:flex;justify-content:space-between;align-items:baseline;gap:8px;width:100%;font-family:{{ lblFont }};font-size:{{ lblSize }};line-height:1.35">
+        <span style="flex:none;white-space:nowrap">{{ tuhostTitle }}</span>
+        <span style="flex:none;white-space:nowrap;font-weight:600;color:var(--ss-text-primary,#1C2229)">{{ tuhostLabel }}</span>
+      </span>
+      <span aria-hidden="true" style="display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:4px;width:100%;padding:4px 0">
+        <sc-for list="{{ tSegs }}" as="ts" hint-placeholder-count="5"><span style="display:block;height:4px;border-radius:2px;background:{{ ts.bg }}"></span></sc-for>
+      </span>
+    </span>
+  </sc-if>
+  <!-- Varianta C (seg) smazána 30. 10. 2026 na pokyn klienta -->
+  <sc-if value="{{ radaL }}" hint-placeholder-val="{{ false }}">
+    <div style="grid-column:1/-1;display:flex;flex-direction:column;gap:14px">
+      <div style="display:flex;flex-direction:column;gap:6px">
+        <div class="pm-rule"><span>{{ tuhostTitle }}</span><span style="display:inline-flex;align-items:baseline;gap:6px"><span style="color:var(--ss-text-muted,#5B6874)">{{ tWord }}</span><strong style="font-size:17px">{{ tNum }}/5</strong></span></div>
+        <div role="img" aria-label="{{ tAria }}" style="display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:4px">
+          <span class="pm-in {{ rd.c1 }}" style="display:flex;justify-content:center;padding:2px 0;opacity:{{ rd.o1 }};animation-delay:0ms"><svg width="40" height="32" viewBox="0 4 32 26" aria-hidden="true" style="overflow:visible"><path class="{{ rd.pd1 }}" d="M3 18H5C10.5 18 11 25 16 25C21 25 21.5 18 27 18H29" fill="none" stroke="{{ rd.s1 }}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><circle class="{{ rd.pb1 }}" cx="16" cy="19.5" r="4.5" fill="{{ rd.f1 }}"></circle></svg></span>
+          <span class="pm-in {{ rd.c2 }}" style="display:flex;justify-content:center;padding:2px 0;opacity:{{ rd.o2 }};animation-delay:60ms"><svg width="40" height="32" viewBox="0 4 32 26" aria-hidden="true" style="overflow:visible"><path class="{{ rd.pd2 }}" d="M3 18H6C11 18 11 23.2 16 23.2C21 23.2 21 18 26 18H29" fill="none" stroke="{{ rd.s2 }}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><circle class="{{ rd.pb2 }}" cx="16" cy="17.7" r="4.5" fill="{{ rd.f2 }}"></circle></svg></span>
+          <span class="pm-in {{ rd.c3 }}" style="display:flex;justify-content:center;padding:2px 0;opacity:{{ rd.o3 }};animation-delay:120ms"><svg width="40" height="32" viewBox="0 4 32 26" aria-hidden="true" style="overflow:visible"><path class="{{ rd.pd3 }}" d="M3 18H7C11.5 18 11 21.6 16 21.6C21 21.6 20.5 18 25 18H29" fill="none" stroke="{{ rd.s3 }}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><circle class="{{ rd.pb3 }}" cx="16" cy="16.1" r="4.5" fill="{{ rd.f3 }}"></circle></svg></span>
+          <span class="pm-in {{ rd.c4 }}" style="display:flex;justify-content:center;padding:2px 0;opacity:{{ rd.o4 }};animation-delay:180ms"><svg width="40" height="32" viewBox="0 4 32 26" aria-hidden="true" style="overflow:visible"><path class="{{ rd.pd4 }}" d="M3 18H8C12 18 11 20 16 20C21 20 20 18 24 18H29" fill="none" stroke="{{ rd.s4 }}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><circle class="{{ rd.pb4 }}" cx="16" cy="14.5" r="4.5" fill="{{ rd.f4 }}"></circle></svg></span>
+          <span class="pm-in {{ rd.c5 }}" style="display:flex;justify-content:center;padding:2px 0;opacity:{{ rd.o5 }};animation-delay:240ms"><svg width="40" height="32" viewBox="0 4 32 26" aria-hidden="true" style="overflow:visible"><path class="{{ rd.pd5 }}" d="M3 18H9C12.5 18 11 18.6 16 18.6C21 18.6 19.5 18 23 18H29" fill="none" stroke="{{ rd.s5 }}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><circle class="{{ rd.pb5 }}" cx="16" cy="13.1" r="4.5" fill="{{ rd.f5 }}"></circle></svg></span>
+        </div>
+        <div class="pm-sub" aria-hidden="true"><span>měkká</span><span>tvrdá</span></div>
+      </div>
+      <!-- D: Ideální pro (váha) převzato z varianty A – ukazatel rozsahu pod blokem (30. 10. 2026) -->
+    </div>
+  </sc-if>
+  <sc-if value="{{ kompaktL }}" hint-placeholder-val="{{ false }}">
+    <dl style="grid-column:1/-1;margin:0;display:flex;flex-direction:column;padding:0"><!-- E: bez podkladu a odsazení (30. 10. 2026) -->
+      <div style="display:grid;grid-template-columns:1fr auto 1fr;align-items:center;column-gap:10px;min-height:44px;border-bottom:{{ kBorder }}">
+        <!-- E: ikony (kulička, váha) odebrány, Oswald; sloupečky tuhosti uprostřed řádku (30. 10. 2026) -->
+        <dt style="min-width:0;font-family:Oswald,Roboto,sans-serif;font-size:15px;color:var(--ss-text-secondary,#3D4750)">{{ tuhostTitle }}</dt>
+        <dd style="margin:0;display:contents">
+          <span role="img" aria-label="{{ tAria }}" style="display:flex;align-items:flex-end;gap:3px;height:16px">
+            <sc-for list="{{ kbars }}" as="kb" hint-placeholder-count="5">
+              <span style="position:relative;width:6px;height:{{ kb.h }};border-radius:2px;background:var(--ss-surface-strong,#E9E1D5);overflow:hidden"><span class="pm-bar" style="position:absolute;left:0;right:0;bottom:0;height:{{ kb.f }};background:#296093;animation-delay:{{ kb.d }}"></span></span>
+            </sc-for>
+          </span>
+          <strong style="font-family:Oswald,Roboto,sans-serif;font-size:17px;font-weight:600;min-width:28px;text-align:right;justify-self:end;color:var(--ss-text-primary,#1C2229)">{{ tNum }}</strong>
+        </dd>
+      </div>
+      <sc-if value="{{ hasZatizeni }}" hint-placeholder-val="{{ true }}">
+        <!-- E: rozsah zatížení jako ukazatel z varianty A uprostřed řádku, tloušťka 6 px jako sloupečky tuhosti (30. 10. 2026) -->
+        <div style="display:grid;grid-template-columns:1fr auto 1fr;align-items:center;column-gap:10px;min-height:44px">
+          <dt style="min-width:0;font-family:Oswald,Roboto,sans-serif;font-size:15px;color:var(--ss-text-secondary,#3D4750)">{{ idealLabel }}</dt>
+          <dd style="margin:0;display:contents">
+            <span role="img" aria-label="{{ tipZ }}" style="position:relative;display:block;width:72px;height:6px;border-radius:999px;background:var(--ss-surface-strong,#E9E1D5)"><span style="position:absolute;top:0;bottom:0;left:{{ odPos }}%;width:{{ rangeW }}%;border-radius:999px;background:var(--ss-pm-range,linear-gradient(90deg,#132C43 0%,#296093 100%))"></span></span>
+            <strong style="font-family:Oswald,Roboto,sans-serif;font-size:17px;font-weight:600;white-space:nowrap;justify-self:end;color:var(--ss-text-primary,#1C2229)">{{ zatizeniLabel }}</strong>
+          </dd>
+        </div>
+      </sc-if>
+    </dl>
+  </sc-if>
+  <sc-if value="{{ tiles }}" hint-placeholder-val="{{ false }}">
+    <div class="ss-pm-tiles" style="grid-column:1/-1">
+      <sc-if value="{{ hasTuhost }}" hint-placeholder-val="{{ true }}">
+        <button type="button" class="ss-pm-t ss-pm-tile" aria-describedby="{{ idT }}">
+          <span class="ss-pm-ico" aria-hidden="true">
+            <sc-if value="{{ hasTIcon }}" hint-placeholder-val="{{ false }}"><img src="{{ tIcon }}" alt="" width="36" height="36" style="display:block;width:36px;height:36px"></sc-if>
+            <sc-if value="{{ noTIcon }}" hint-placeholder-val="{{ true }}"><span class="ss-pm-ph">{{ tLevelTag }}</span></sc-if>
+          </span>
+          <span class="ss-pm-tx"><span class="ss-pm-tl">{{ tuhostTitle }}</span><span class="ss-pm-tv">{{ tuhostLabel }}</span></span>
+          <span class="ss-pm-tip" role="tooltip" id="{{ idT }}">Tuhost matrace na stupnici 1–5. Čím vyšší číslo, tím tužší matrace.</span>
+        </button>
+      </sc-if>
+      <sc-if value="{{ hasZatizeni }}" hint-placeholder-val="{{ true }}">
+        <button type="button" class="ss-pm-t ss-pm-tile" aria-describedby="{{ idZ }}">
+          <span class="ss-pm-ico" aria-hidden="true" style="color:#2E3F7F"><dc-import name="Ikony" iconName="weight" size="28" hint-size="28px,28px"></dc-import></span>
+          <span class="ss-pm-tx"><span class="ss-pm-tl">Ideální pro váhu</span><span class="ss-pm-tv">{{ zatizeniLabel }}</span></span>
+          <span class="ss-pm-tip" role="tooltip" id="{{ idZ }}">{{ tipZ }}</span>
+        </button>
+      </sc-if>
+    </div>
+  </sc-if>
+  <sc-if value="{{ btnTuhost }}" hint-placeholder-val="{{ true }}">
+    <button type="button" class="ss-pm-t pm-cell" aria-describedby="{{ idT }}" style="flex-direction:column;gap:8px;box-sizing:border-box;height:100%;padding:{{ cellPad }};background:{{ cellBg }};border-radius:{{ cellRad }}">
+      <span style="display:flex;flex-wrap:{{ lblWrap }};justify-content:space-between;align-items:baseline;column-gap:8px;width:100%;font-family:{{ lblFont }};font-size:{{ lblSize }};line-height:1.35">
+        <span style="flex:none;white-space:nowrap;font-weight:{{ lblWeight }};color:{{ lblColor }}">{{ tuhostTitle }}</span>
+        <span style="flex:none;white-space:nowrap;font-weight:600;font-size:{{ valSize }};color:var(--ss-text-primary,#1C2229)">{{ tuhostLabel }}</span>
+      </span>
+      <!-- Tuhost: 5 dílků, každý další tmavší (světlá → tmavá modrá), nevyplněné šedé; bez kolečka (30. 10. 2026) -->
+      <span aria-hidden="true" style="display:grid;grid-template-columns:repeat(5,minmax(0,1fr));align-items:center;gap:4px;width:100%;height:{{ knob }}px">
+        <sc-for list="{{ tSegs }}" as="ts" hint-placeholder-count="5"><span style="display:block;height:{{ track }}px;border-radius:3px;background:{{ ts.bg }}"></span></sc-for>
+      </span>
+      <sc-if value="{{ large }}" hint-placeholder-val="{{ false }}">
+        <span aria-hidden="true" style="display:flex;justify-content:space-between;width:100%;font-size:13px;line-height:1.2;color:var(--ss-text-muted,#5B6874)"><span>Měkká</span><span>Tuhá</span></span>
+      </sc-if>
+      <sc-if value="{{ scaleT }}" hint-placeholder-val="{{ false }}">
+        <span aria-hidden="true" style="display:flex;justify-content:space-between;width:100%;margin-top:-4px;font-size:13px;line-height:1.2;color:var(--ss-text-muted,#5B6874)"><span>1</span><span>5</span></span>
+      </sc-if>
+      <span class="ss-pm-tip" role="tooltip" id="{{ idT }}">Tuhost matrace na stupnici 1–5. Čím vyšší číslo, tím tužší matrace.</span>
+    </button>
+  </sc-if>
+  <sc-if value="{{ barZatizeni }}" hint-placeholder-val="{{ true }}">
+    <button type="button" class="ss-pm-t pm-cell" aria-describedby="{{ idZ }}" style="flex-direction:column;gap:8px;box-sizing:border-box;height:100%;padding:{{ cellPad }};background:{{ cellBg }};border-radius:{{ cellRad }}">
+      <span style="display:flex;flex-wrap:{{ lblWrap }};justify-content:space-between;align-items:baseline;column-gap:8px;width:100%;font-family:{{ lblFont }};font-size:{{ lblSize }};line-height:1.35">
+        <span style="flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:{{ lblWeight }};color:{{ lblColor }}">{{ idealLabel }}</span>
+        <span style="flex:none;white-space:nowrap;font-weight:600;font-size:{{ valSize }};color:var(--ss-text-primary,#1C2229)">{{ zatizeniLabel }}</span>
+      </span>
+      <span aria-hidden="true" style="display:flex;flex-direction:column;gap:4px;width:100%">
+        <span style="position:relative;display:block;height:{{ knob }}px">
+          <span style="position:absolute;left:0;right:0;top:{{ trackTop }}px;height:{{ track }}px;border-radius:999px;background:{{ emptyBg }}"></span>
+          <span style="position:absolute;top:{{ trackTop }}px;height:{{ track }}px;left:{{ odPos }}%;width:{{ rangeW }}%;border-radius:999px;background:var(--ss-pm-range,linear-gradient(90deg,#132C43 0%,#296093 100%))"></span>
+          <!-- kolečka na začátku a konci rozsahu odebrána 30. 10. 2026 – ukazatel nesmí vypadat jako posuvník -->
+        </span>
+        <sc-if value="{{ scaleZ }}" hint-placeholder-val="{{ true }}">
+        <span style="display:flex;justify-content:space-between;font-size:13px;line-height:1.2;color:var(--ss-text-muted,#5B6874)">
+          <span>0</span>
+          <span>{{ scaleLabel }}</span>
+        </span>
+        </sc-if>
+      </span>
+      <span class="ss-pm-tip" role="tooltip" id="{{ idZ }}">{{ tipZ }}</span>
+    </button>
+  </sc-if>
+  <div class="ss-pm-facts" style="grid-column:1/-1;display:flex;flex-wrap:wrap;gap:8px;font-size:13px;font-weight:500;line-height:1.35">
+    <sc-for list="{{ facts }}" as="f" hint-placeholder-count="3">
+      <button type="button" class="ss-pm-t" aria-describedby="{{ f.id }}" style="width:auto;align-items:center;gap:8px;padding:6px 10px;background:var(--ss-surface-subtle,#FAF5EF);color:var(--ss-text-secondary,#3D4750)">
+        <span style="display:flex;color:var(--ss-text-heading,#0B1F33);flex:none"><dc-import name="Ikony" iconName="{{ f.icon }}" size="16" hint-size="16px,16px"></dc-import></span>
+        <span style="white-space:nowrap;font-family:Oswald,Roboto,sans-serif;font-size:14px;font-weight:600;line-height:1.35">{{ f.label }}</span>
+        <span class="ss-pm-tip" role="tooltip" id="{{ f.id }}">{{ f.tip }}</span>
+      </button>
+    </sc-for>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:320,&quot;height&quot;:200},&quot;layout&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;bars&quot;,&quot;bars2&quot;,&quot;tiles&quot;,&quot;seg&quot;,&quot;rada&quot;,&quot;kompakt&quot;],&quot;default&quot;:&quot;bars&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;tuhost&quot;:{&quot;editor&quot;:&quot;float&quot;,&quot;default&quot;:4.5,&quot;min&quot;:0,&quot;max&quot;:5,&quot;step&quot;:0.1,&quot;tsType&quot;:&quot;number&quot;},&quot;tuhostPct&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:90,&quot;min&quot;:0,&quot;max&quot;:100,&quot;tsType&quot;:&quot;number&quot;},&quot;zatizeniOd&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:70,&quot;tsType&quot;:&quot;number&quot;},&quot;zatizeniDo&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:100,&quot;tsType&quot;:&quot;number&quot;},&quot;nosnostMax&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:120,&quot;tsType&quot;:&quot;number&quot;},&quot;vyska&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:19,&quot;tsType&quot;:&quot;number&quot;},&quot;vyskaJadra&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:16,&quot;tsType&quot;:&quot;number&quot;},&quot;zaruka&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:8,&quot;tsType&quot;:&quot;number&quot;},&quot;spankNaBoku&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;plain&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;size&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;standard&quot;,&quot;options&quot;:[&quot;standard&quot;,&quot;large&quot;],&quot;tsType&quot;:&quot;string&quot;},&quot;tuhostTitle&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Tuhost&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  uid = 'pm' + Math.random().toString(36).slice(2, 8);
+  // Animované ikony tuhosti H1 (velmi měkká) – H5 (velmi tvrdá) od klienta (tvrdost-Hx-animovana.svg), vložené inline:
+  // úložiště assetů z nahraných SVG odstraňuje <animate>. d/cy = klidový stav, dv/cv = hodnoty animace (5 s, smyčka).
+  // Klidové profily ikon tuhosti H1–H5 (pro varianty D a E)
+  static PROFILES = {"1": {"d": "M3 18H5C10.5 18 11 25 16 25C21 25 21.5 18 27 18H29", "cy": "19.5"}, "2": {"d": "M3 18H6C11 18 11 23.2 16 23.2C21 23.2 21 18 26 18H29", "cy": "17.7"}, "3": {"d": "M3 18H7C11.5 18 11 21.6 16 21.6C21 21.6 20.5 18 25 18H29", "cy": "16.1"}, "4": {"d": "M3 18H8C12 18 11 20 16 20C21 20 20 18 24 18H29", "cy": "14.5"}, "5": {"d": "M3 18H9C12.5 18 11 18.6 16 18.6C21 18.6 19.5 18 23 18H29", "cy": "13.1"}};
+  static TUHOST_ICONS = {
+    "1": {
+      "d": "M3 18H5C10.5 18 11 25 16 25C21 25 21.5 18 27 18H29",
+      "cy": "19.5",
+      "kt": "0;0.28;0.32;0.35;0.37;0.51;0.59;0.62;0.65;0.69;1",
+      "ks": "0.45 0 0.55 1;0.2 0.7 0.4 1;0.2 0.7 0.4 1;0.2 0.7 0.4 1;0.45 0 0.55 1;0.5 0 0.8 0.4;0.2 0.7 0.4 1;0.45 0 0.55 1;0.45 0 0.55 1;0.45 0 0.55 1",
+      "dv": "M3 18H5C10.5 18 11 25 16 25C21 25 21.5 18 27 18H29;M3 18H5C10.5 18 11 25 16 25C21 25 21.5 18 27 18H29;M3 18H5C10.5 18 11 18 16 18C21 18 21.5 18 27 18H29;M3 18H5C10.5 18 11 17.65 16 17.65C21 17.65 21.5 18 27 18H29;M3 18H5C10.5 18 11 18 16 18C21 18 21.5 18 27 18H29;M3 18H5C10.5 18 11 18 16 18C21 18 21.5 18 27 18H29;M3 18H5C10.5 18 11 18 16 18C21 18 21.5 18 27 18H29;M3 18H5C10.5 18 11 26.26 16 26.26C21 26.26 21.5 18 27 18H29;M3 18H5C10.5 18 11 24.51 16 24.51C21 24.51 21.5 18 27 18H29;M3 18H5C10.5 18 11 25 16 25C21 25 21.5 18 27 18H29;M3 18H5C10.5 18 11 25 16 25C21 25 21.5 18 27 18H29",
+      "cv": "19.5;19.5;15.3;9.3;8.5;8.5;12.5;20.76;19.01;19.5;19.5"
+    },
+    "2": {
+      "d": "M3 18H6C11 18 11 23.2 16 23.2C21 23.2 21 18 26 18H29",
+      "cy": "17.7",
+      "kt": "0;0.3;0.34;0.37;0.39;0.53;0.61;0.64;0.67;0.71;1",
+      "ks": "0.45 0 0.55 1;0.2 0.7 0.4 1;0.2 0.7 0.4 1;0.2 0.7 0.4 1;0.45 0 0.55 1;0.5 0 0.8 0.4;0.2 0.7 0.4 1;0.45 0 0.55 1;0.45 0 0.55 1;0.45 0 0.55 1",
+      "dv": "M3 18H6C11 18 11 23.2 16 23.2C21 23.2 21 18 26 18H29;M3 18H6C11 18 11 23.2 16 23.2C21 23.2 21 18 26 18H29;M3 18H6C11 18 11 18 16 18C21 18 21 18 26 18H29;M3 18H6C11 18 11 17.65 16 17.65C21 17.65 21 18 26 18H29;M3 18H6C11 18 11 18 16 18C21 18 21 18 26 18H29;M3 18H6C11 18 11 18 16 18C21 18 21 18 26 18H29;M3 18H6C11 18 11 18 16 18C21 18 21 18 26 18H29;M3 18H6C11 18 11 24.14 16 24.14C21 24.14 21 18 26 18H29;M3 18H6C11 18 11 22.84 16 22.84C21 22.84 21 18 26 18H29;M3 18H6C11 18 11 23.2 16 23.2C21 23.2 21 18 26 18H29;M3 18H6C11 18 11 23.2 16 23.2C21 23.2 21 18 26 18H29",
+      "cv": "17.7;17.7;14.58;9.3;8.5;8.5;12.5;18.64;17.34;17.7;17.7"
+    },
+    "3": {
+      "d": "M3 18H7C11.5 18 11 21.6 16 21.6C21 21.6 20.5 18 25 18H29",
+      "cy": "16.1",
+      "kt": "0;0.32;0.36;0.39;0.41;0.55;0.63;0.66;0.69;0.73;1",
+      "ks": "0.45 0 0.55 1;0.2 0.7 0.4 1;0.2 0.7 0.4 1;0.2 0.7 0.4 1;0.45 0 0.55 1;0.5 0 0.8 0.4;0.2 0.7 0.4 1;0.45 0 0.55 1;0.45 0 0.55 1;0.45 0 0.55 1",
+      "dv": "M3 18H7C11.5 18 11 21.6 16 21.6C21 21.6 20.5 18 25 18H29;M3 18H7C11.5 18 11 21.6 16 21.6C21 21.6 20.5 18 25 18H29;M3 18H7C11.5 18 11 18 16 18C21 18 20.5 18 25 18H29;M3 18H7C11.5 18 11 17.65 16 17.65C21 17.65 20.5 18 25 18H29;M3 18H7C11.5 18 11 18 16 18C21 18 20.5 18 25 18H29;M3 18H7C11.5 18 11 18 16 18C21 18 20.5 18 25 18H29;M3 18H7C11.5 18 11 18 16 18C21 18 20.5 18 25 18H29;M3 18H7C11.5 18 11 22.25 16 22.25C21 22.25 20.5 18 25 18H29;M3 18H7C11.5 18 11 21.35 16 21.35C21 21.35 20.5 18 25 18H29;M3 18H7C11.5 18 11 21.6 16 21.6C21 21.6 20.5 18 25 18H29;M3 18H7C11.5 18 11 21.6 16 21.6C21 21.6 20.5 18 25 18H29",
+      "cv": "16.1;16.1;13.94;9.3;8.5;8.5;12.5;16.75;15.85;16.1;16.1"
+    },
+    "4": {
+      "d": "M3 18H8C12 18 11 20 16 20C21 20 20 18 24 18H29",
+      "cy": "14.5",
+      "kt": "0;0.34;0.38;0.41;0.43;0.57;0.65;0.68;0.71;0.75;1",
+      "ks": "0.45 0 0.55 1;0.2 0.7 0.4 1;0.2 0.7 0.4 1;0.2 0.7 0.4 1;0.45 0 0.55 1;0.5 0 0.8 0.4;0.2 0.7 0.4 1;0.45 0 0.55 1;0.45 0 0.55 1;0.45 0 0.55 1",
+      "dv": "M3 18H8C12 18 11 20 16 20C21 20 20 18 24 18H29;M3 18H8C12 18 11 20 16 20C21 20 20 18 24 18H29;M3 18H8C12 18 11 18 16 18C21 18 20 18 24 18H29;M3 18H8C12 18 11 17.65 16 17.65C21 17.65 20 18 24 18H29;M3 18H8C12 18 11 18 16 18C21 18 20 18 24 18H29;M3 18H8C12 18 11 18 16 18C21 18 20 18 24 18H29;M3 18H8C12 18 11 18 16 18C21 18 20 18 24 18H29;M3 18H8C12 18 11 20.36 16 20.36C21 20.36 20 18 24 18H29;M3 18H8C12 18 11 19.86 16 19.86C21 19.86 20 18 24 18H29;M3 18H8C12 18 11 20 16 20C21 20 20 18 24 18H29;M3 18H8C12 18 11 20 16 20C21 20 20 18 24 18H29",
+      "cv": "14.5;14.5;13.3;9.3;8.5;8.5;12.5;14.86;14.36;14.5;14.5"
+    },
+    "5": {
+      "d": "M3 18H9C12.5 18 11 18.6 16 18.6C21 18.6 19.5 18 23 18H29",
+      "cy": "13.1",
+      "kt": "0;0.36;0.4;0.43;0.45;0.59;0.67;0.7;0.73;0.77;1",
+      "ks": "0.45 0 0.55 1;0.2 0.7 0.4 1;0.2 0.7 0.4 1;0.2 0.7 0.4 1;0.45 0 0.55 1;0.5 0 0.8 0.4;0.2 0.7 0.4 1;0.45 0 0.55 1;0.45 0 0.55 1;0.45 0 0.55 1",
+      "dv": "M3 18H9C12.5 18 11 18.6 16 18.6C21 18.6 19.5 18 23 18H29;M3 18H9C12.5 18 11 18.6 16 18.6C21 18.6 19.5 18 23 18H29;M3 18H9C12.5 18 11 18 16 18C21 18 19.5 18 23 18H29;M3 18H9C12.5 18 11 17.65 16 17.65C21 17.65 19.5 18 23 18H29;M3 18H9C12.5 18 11 18 16 18C21 18 19.5 18 23 18H29;M3 18H9C12.5 18 11 18 16 18C21 18 19.5 18 23 18H29;M3 18H9C12.5 18 11 18 16 18C21 18 19.5 18 23 18H29;M3 18H9C12.5 18 11 18.71 16 18.71C21 18.71 19.5 18 23 18H29;M3 18H9C12.5 18 11 18.56 16 18.56C21 18.56 19.5 18 23 18H29;M3 18H9C12.5 18 11 18.6 16 18.6C21 18.6 19.5 18 23 18H29;M3 18H9C12.5 18 11 18.6 16 18.6C21 18.6 19.5 18 23 18H29",
+      "cv": "13.1;13.1;12.74;9.3;8.5;8.5;12.5;13.21;13.06;13.1;13.1"
+    }
+  };
+  // SVG ikony jako data URI v <img> (SMIL animace v obrázku běží, úložiště assetů by <animate> odstranilo)
+  static tuhostSvg(t, anim) {
+    if (!t) return '';
+    const a = (attr, vals) => anim ? '<animate attributeName="' + attr + '" dur="5s" repeatCount="indefinite" calcMode="spline" keyTimes="' + t.kt + '" keySplines="' + t.ks + '" values="' + vals + '"/>' : '';
+    const svg = '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">'
+      + '<path d="' + t.d + '" fill="none" stroke="#2E3F7F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' + a('d', t.dv) + '</path>'
+      + '<circle cx="16" cy="' + t.cy + '" r="4.5" fill="#F2B544">' + a('cy', t.cv) + '</circle></svg>';
+    return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
+  }
+  renderVals() {
+    const p = this.props, u = this.uid;
+    const lg = p.size === 'large';
+    const k = lg ? 16 : 12, tr = lg ? 6 : 4;
+    const nb = '\u00A0';
+    const pct = typeof p.tuhostPct === 'number' ? p.tuhostPct : (typeof p.tuhost === 'number' ? p.tuhost / 5 * 100 : null);
+    // Tuhost vždy celé číslo 1–5 (30. 10. 2026)
+    const t = pct === null ? null : Math.max(1, Math.min(5, Math.round(pct / 20)));
+    const od = p.zatizeniOd, dd = p.zatizeniDo;
+    const hasZ = typeof od === 'number' && typeof dd === 'number';
+    const max = Math.max(p.nosnostMax || 0, hasZ ? dd : 0) || 1;
+    const clamp = (v) => Math.max(0, Math.min(100, v));
+    const poloha = [];
+    if (pct !== null && pct >= 50) poloha.push('na zádech');
+    if (p.spankNaBoku) poloha.push('na boku');
+    const polohaLabel = poloha.join(' i ');
+    const tLvl = t === null ? 3 : Math.max(1, Math.min(5, Math.round(t)));
+    const isBars = !p.layout || p.layout === 'bars' || p.layout === 'bars2';
+    // nevyplněná část ukazatelů vždy surface.strong (bílá v A2 zkoušena a vrácena 30. 10. 2026 – méně výrazné)
+    const emptyBg = 'var(--ss-surface-strong,#E9E1D5)';
+    // Omezený pohyb (WCAG 2.3.3): bez animace, jen klidový stav ikony
+    const tAnim = !(typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+    const wordsL = ['velmi měkká', 'měkká', 'středně tvrdá', 'tvrdá', 'velmi tvrdá'];
+    const tWordLow = wordsL[tLvl - 1];
+    const tWordCap = tWordLow.charAt(0).toUpperCase() + tWordLow.slice(1);
+    const tNumStr = t === null ? '' : String(t).replace('.', ',');
+    const ticks = [];
+    for (let v = 0; v <= max; v += 10) ticks.push({ x: 'calc(' + (v / max * 100).toFixed(2) + '% - ' + (v >= max ? 1 : 0) + 'px)', h: v % 50 === 0 ? '12px' : '6px' });
+    const rd = {};
+    for (let k = 1; k <= 5; k++) {
+      const on = k === tLvl;
+      rd['c' + k] = on ? 'pm-on' : ''; rd['o' + k] = on ? 1 : 0.4;
+      rd['pd' + k] = on ? 'pm-d' + k : ''; rd['pb' + k] = on ? 'pm-b' + k : '';
+      rd['s' + k] = on ? '#2E3F7F' : '#5B6874'; rd['f' + k] = on ? '#F2B544' : '#9AA6B2';
+    }
+    [50, 70, 90, 110, 130].forEach((w, j) => {
+      const on = hasZ && w >= od && (j === 4 ? dd >= 130 : w <= dd);
+      rd['mc' + j] = on ? 'pm-on' : ''; rd['mo' + j] = on ? 1 : 0.35; rd['ms' + j] = on ? '#2E3F7F' : '#5B6874';
+      rd['mw' + j] = on ? 600 : 400; rd['ml' + j] = j === 4 ? '130+' : String(w);
+    });
+    const facts = [];
+    if (p.vyska) facts.push({ icon: 'arrow-autofit-height', label: p.vyska + nb + 'cm', tip: 'Celková výška matrace včetně potahu' + (p.vyskaJadra ? ', jádro ' + p.vyskaJadra + nb + 'cm.' : '.') });
+    if (p.nosnostMax) facts.push({ icon: 'weight', label: 'max' + nb + p.nosnostMax + nb + 'kg', tip: 'Maximální nosnost na jednu osobu.' });
+    if (p.zaruka) facts.push({ icon: 'shield-check', label: p.zaruka + nb + (p.zaruka === 1 ? 'rok' : p.zaruka < 5 ? 'roky' : 'let'), tip: 'Délka záruky na matraci.' });
+    facts.forEach((f, i) => { f.id = u + 'f' + i; });
+    return {
+      idT: u + 't', idZ: u + 'z',
+      rootGap: lg ? '20px' : '12px',
+      lblSmall: lg ? '15px' : '13px',
+      large: lg, tuhostTitle: p.tuhostTitle || 'Tuhost',
+      // Popisky ukazatelů (Tuhost + číslo, Ideální pro + váha) na kartě Oswaldem (30. 10. 2026, zkouška); Oswald je úzký → 15 px
+      lblFont: lg ? 'Roboto,Helvetica,Arial,sans-serif' : 'Oswald,Roboto,sans-serif',
+      lblSize: '15px', lblWeight: lg ? 700 : 400, lblColor: lg ? 'var(--ss-text-primary,#1C2229)' : 'inherit', valSize: lg ? '17px' : '15px',
+      knob: k, knobHalf: k / 2, track: tr, trackTop: (k - tr) / 2,
+      hasTuhost: t !== null,
+      plainTuhost: t !== null && !!p.plain && isBars, btnTuhost: t !== null && !p.plain && isBars,
+      tuhostLabel: t === null ? '' : String(t).replace('.', ',') + ' z 5',
+      tuhostPos: t === null ? 0 : t * 20, // poloha podle celého stupně, aby odpovídala číslu
+      // A / A2: dílky tuhosti 1–5, odstíny od světlé po tmavou (stejná škála jako komponenta Tuhost)
+      tSegs: ['#B9D0E5', '#8DB3D3', '#296093', '#21507B', '#132C43'].map((c, i) => ({ bg: t !== null && i < t ? c : emptyBg })),
+      emptyBg,
+      hasZatizeni: hasZ,
+      zatizeniLabel: hasZ ? od + '–' + dd + nb + 'kg' : '',
+      odPos: hasZ ? clamp(od / max * 100) : 0,
+      doPos: hasZ ? clamp(dd / max * 100) : 0,
+      rangeW: hasZ ? clamp((dd - od) / max * 100) : 0,
+      scaleLabel: max + nb + 'kg',
+      idealLabel: 'Ideální pro váhu',
+      tiles: p.layout === 'tiles',
+      // C = segmenty + pravítko, D = řada profilů a postav, E = kompaktní řádky (bez táhel)
+      radaL: t !== null && p.layout === 'rada', kompaktL: t !== null && p.layout === 'kompakt',
+      tWord: tWordCap, tNum: tNumStr, tAria: 'Tuhost ' + tNumStr + ' z 5, ' + tWordLow,
+      segs: [1, 2, 3, 4, 5].map((i) => ({ w: Math.round(Math.max(0, Math.min(1, (t || 0) - (i - 1))) * 100) + '%', d: (i - 1) * 90 + 'ms' })),
+      kbars: [1, 2, 3, 4, 5].map((i) => ({ h: (6 + i * 2) + 'px', f: Math.round(Math.max(0, Math.min(1, (t || 0) - (i - 1))) * 100) + '%', d: (i - 1) * 70 + 'ms' })),
+      ticks: ticks, scaleMid: Math.round(max / 2),
+      kIcon: Component.PROFILES[tLvl], kBorder: hasZ ? '1px solid var(--ss-surface-strong,#E9E1D5)' : '0',
+      rd: rd,
+      // Varianta A2 (bars2): tuhost a „Ideální pro váhu“ ve dvou sloupcích vedle sebe; popisek a hodnota se v úzkém sloupci zalomí pod sebe
+      rootCols: p.layout === 'bars2' ? 'minmax(0,1fr) minmax(0,1fr)' : 'minmax(0,1fr)',
+      colGap: p.layout === 'bars2' ? '8px' : (lg ? '20px' : '12px'),
+      lblWrap: p.layout === 'bars2' ? 'wrap' : 'nowrap',
+      // A2: stupnice 1–5 pod tuhostí a podbarvené buňky jako dlaždice ve variantě B
+      // A2: stupnice 1–5 i 0–130 kg pod ukazateli odebrány kvůli nižší kartě (30. 10. 2026)
+      scaleT: false,
+      layoutName: p.layout || 'bars', lgStr: lg ? 'true' : 'false',
+      scaleZ: p.layout !== 'bars2' || lg,
+      cellBg: p.layout === 'bars2' ? 'var(--ss-surface-subtle,#FAF5EF)' : 'none',
+      cellPad: p.layout === 'bars2' ? '10px 12px' : '0',
+      cellRad: p.layout === 'bars2' ? '8px' : '6px',
+      barZatizeni: hasZ && (isBars || p.layout === 'rada'),
+      tLevelTag: 'H' + tLvl,
+      tIcon: Component.tuhostSvg(Component.TUHOST_ICONS[tLvl], tAnim),
+      hasTIcon: !!Component.TUHOST_ICONS[tLvl], noTIcon: !Component.TUHOST_ICONS[tLvl],
+      tipZ: 'Doporučená váha jednoho spáče' + (hasZ ? ' (' + od + '–' + dd + nb + 'kg).' : '.'),
+      facts
+    };
+  }
+}
+</script>
+</body>
+</html>

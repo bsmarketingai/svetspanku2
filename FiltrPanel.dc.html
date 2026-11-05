@@ -201,7 +201,8 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
 <style>
 /* Poslední sekce filtru bez spodní čáry (4. 11. 2026) */
 .ss-fp-secs>.ss-fp-sec:last-child,.ss-fp-secs>*:last-child>.ss-fp-sec:last-child{border-bottom:0!important;}
-.ss-fp-head{display:flex;align-items:center;gap:8px;width:100%;min-height:44px;padding:0;border:0;background:none;font:inherit;font-family:Roboto,Helvetica,Arial,sans-serif;font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ss-text-secondary,#3D4750);text-align:left;cursor:pointer;border-radius:6px;transition:color .12s cubic-bezier(.22,.61,.36,1);}
+/* Nadpisy sekcí filtru jako nadpisy: Oswald 17 px, bez verzálek a prostrkání (5. 11. 2026) */
+.ss-fp-head{display:flex;align-items:center;gap:8px;width:100%;min-height:44px;padding:0;border:0;background:none;font:inherit;font-family:Oswald,Roboto,sans-serif;font-size:17px;font-weight:600;letter-spacing:0;text-transform:none;color:var(--ss-text-heading,#0B1F33);text-align:left;cursor:pointer;border-radius:6px;transition:color .12s cubic-bezier(.22,.61,.36,1);}
 @media (hover:hover) and (pointer:fine){.ss-fp-head:hover{color:var(--ss-hover-text,#A4600C);}}
 .ss-fp-head:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
 .ss-fp-chev{display:flex;margin-left:auto;color:var(--ss-text-muted,#55616C);transition:transform .15s cubic-bezier(.22,.61,.36,1);}

@@ -215,7 +215,7 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
   <span style="font-size:14px;color:var(--ss-text-muted,#5B6874)">{{ summary }}</span>
 
   <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:4px">
-    <dc-import name="Tlacitko" label="{{ prevLabel }}" variant="ghost" size="standard" iconLeft="chevron-left" disabled="{{ prevDisabled }}" onClick="{{ onPrev }}" hint-size="120px,36px"></dc-import>
+    <dc-import name="Tlacitko" label="{{ prevLabel }}" variant="ghost" size="medium" iconOnly="{{ navIconOnly }}" ariaLabel="Předchozí stránka" iconLeft="chevron-left" disabled="{{ prevDisabled }}" onClick="{{ onPrev }}" hint-size="120px,44px"></dc-import>
     <sc-for list="{{ pages }}" as="p" hint-placeholder-count="5">
       <sc-if value="{{ p.isPage }}" hint-placeholder-val="{{ true }}">
         <button type="button" class="ss-pg-num" onClick="{{ p.onClick }}" aria-current="{{ p.current }}" aria-label="{{ p.aria }}">{{ p.label }}</button>
@@ -224,7 +224,7 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
         <span class="ss-pg-gap" aria-hidden="true">…</span>
       </sc-if>
     </sc-for>
-    <dc-import name="Tlacitko" label="{{ nextLabel }}" variant="ghost" size="standard" iconRight="chevron-right" disabled="{{ nextDisabled }}" onClick="{{ onNext }}" hint-size="120px,36px"></dc-import>
+    <dc-import name="Tlacitko" label="{{ nextLabel }}" variant="ghost" size="medium" iconOnly="{{ navIconOnly }}" ariaLabel="Další stránka" iconRight="chevron-right" disabled="{{ nextDisabled }}" onClick="{{ onNext }}" hint-size="120px,44px"></dc-import>
   </div>
 </nav>
 </x-dc>
@@ -263,8 +263,10 @@ class Component extends DCLogic {
       summary: 'Zobrazeno ' + shown + ' z ' + totalItems + ' produktů',
       showLoadMore: shown < totalItems,
       onLoadMore: () => { if (p.onLoadMore) p.onLoadMore(); },
-      prevLabel: w < 550 ? '' : 'Předchozí',
-      nextLabel: w < 550 ? '' : 'Další',
+      // Předchozí/Další stejně vysoké jako čísla stránek (44 px), na mobilu čtverec 44 × 44 jen s ikonou (5. 11. 2026)
+      navIconOnly: w < 550,
+      prevLabel: w < 550 ? 'Předchozí stránka' : 'Předchozí',
+      nextLabel: w < 550 ? 'Další stránka' : 'Další',
       prevDisabled: page <= 1,
       nextDisabled: page >= total,
       onPrev: go(Math.max(1, page - 1)),
