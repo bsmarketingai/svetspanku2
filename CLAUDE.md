@@ -122,6 +122,7 @@ Platí pro všechny detaily s krokovým výběrem (Multi 3.0 Konfigurátor `Deta
 - **Progress bar má tolik dílků, kolik má konfigurátor kroků** (`cfgSegs`, třídy `.ss-cfg-segs` / `.ss-cfg-seg`), hotový krok = modrý dílek #296093. Nad ním text „Krok N z M“ / „Hotovo – M z M kroků“.
 - **Cena**: dokud nejsou hotové všechny kroky, hlavní cena je „od X Kč“ = nejlevnější konfigurace (`CFG_MIN_NOW` / `CFG_MIN_BEFORE`), poznámka „Cena včetně DPH · nejlevnější konfigurace“. Po posledním kroku finální cena zvolené sestavy bez „od“, přeškrtnutá cena podle sestavy, poznámka „Cena sestavy včetně DPH“.
 - Přidat do košíku před dokončením neskládá košík, ale otevře první nevyřízený krok.
+- **Po výběru se stránka vrátí na hotový krok**: když je jeho hlavička po výběru nad horní hranou okna (dlouhý seznam, např. čalounění), plynule se odscrolluje tak, aby byl krok těsně pod hlavičkou webu (metoda `advance`). Na úzkém displeji se jinak jen dorovná další krok.
 - Název položky v košíku obsahuje rozměr, olej a dřevo (a čalounění) – materiál není samostatná položka.
 
 ## Obsahová pravidla

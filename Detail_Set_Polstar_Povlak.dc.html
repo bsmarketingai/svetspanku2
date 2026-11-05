@@ -1261,7 +1261,8 @@ class Component extends DCLogic {
   // Krokový výběr: po výběru v kroku n se krok sbalí a otevře další nevyřízený (2 kroky)
   advance(n, patch) {
     this.setState(st => { const done = Math.max(st.done, n); return Object.assign({}, patch || {}, { done, step: done >= 2 ? 0 : done + 1 }); });
-    requestAnimationFrame(() => { try { const el = document.getElementById('ss-cfg-' + Math.min(2, Math.max(this.state.done, n) + 1)); if (el && this.state.width < 820) el.scrollIntoView({ block: 'nearest', behavior: 'smooth' }); } catch (e) {} });
+    // Po výběru se stránka vrátí na hotový krok, pokud je odscrollovaný nad horní hranou (dlouhé seznamy, např. čalounění; 5. 11. 2026). Na úzkém displeji jinak dorovná další krok do zorného pole.
+    setTimeout(() => { try { const el = document.getElementById('ss-cfg-' + n); if (!el) return; const hd = document.querySelector('header.ss-hd'); const off = (hd ? Math.round(hd.getBoundingClientRect().height) : 0) + 16; const top = el.getBoundingClientRect().top; if (top < off) window.scrollTo({ top: Math.max(0, window.scrollY + top - off), behavior: 'smooth' }); else if (this.state.width < 820) { const nx = document.getElementById('ss-cfg-' + (n + 1)); if (nx) nx.scrollIntoView({ block: 'nearest', behavior: 'smooth' }); } } catch (e) {} }, 60);
   }
   renderVals() {
     const w = this.state.width;
