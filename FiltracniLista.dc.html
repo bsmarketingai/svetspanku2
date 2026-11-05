@@ -206,7 +206,7 @@ html[data-mode="dark"] main>section.ss-grad-top.ss-grad-glow{background-image:ra
         <dc-import name="Select" ariaLabel="Řadit podle" value="{{ sort }}" onChange="{{ onSort }}" options="{{ sortOptions }}" hint-size="100%,44px"></dc-import>
       </div>
     </div>
-    <span style="margin-left:auto;font-size:14px;color:var(--ss-text-secondary,#3D4750);white-space:nowrap">{{ totalText }}</span>
+    <sc-if value="{{ showTotal }}" hint-placeholder-val="{{ true }}"><span style="margin-left:auto;font-size:14px;color:var(--ss-text-secondary,#3D4750);white-space:nowrap">{{ totalText }}</span></sc-if>
   </div>
   <sc-if value="{{ hasActive }}" hint-placeholder-val="{{ false }}">
     <div style="display:flex;flex-wrap:wrap;align-items:center;gap:8px;padding:{{ padChips }}">
@@ -266,6 +266,7 @@ class Component extends DCLogic {
       inStockOnly: !!p.inStockOnly,
       onToggleStock: (v) => { if (p.onToggleInStock) p.onToggleInStock(v); },
       totalText: this.plural(p.total ?? 128),
+      showTotal: !narrow, // na mobilu bez počtu produktů – zbytečný řádek (4. 11. 2026); počet zůstává v paginaci
       hasActive: active.length > 0,
       active: active.map(a => ({
         label: a.label,

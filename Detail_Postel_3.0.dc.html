@@ -207,7 +207,7 @@ html[data-mode="dark"] .ss-pd-glass::before,html[data-mode="dark"] .ss-pd-glassw
 <body>
 <x-dc>
 <helmet>
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Sans+Condensed:wght@400;500;600;700&display=swap" rel="stylesheet"><style data-ss="tmavy-rezim">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&amp;family=IBM+Plex+Sans+Condensed:wght@400;500;600;700&amp;display=swap" rel="stylesheet"><style data-ss="tmavy-rezim">
 /* Tmavý režim – přepíná html[data-mode="dark"]. Světlý režim = fallback hodnoty v var(). */
 /* Hover ve světlém režimu modrý (6. 10. 2026), v tmavém meruňkový */
 html:not([data-mode="dark"]){--ss-hover-text:#21507B;--ss-hover-bg:#F0F5FA;
@@ -393,8 +393,8 @@ html[data-mode="dark"] main>section.ss-grad-top.ss-grad-glow{background-image:ra
 </style>
 <script>try{var d=document.documentElement;if(localStorage.getItem('ss-mode')==='dark')d.setAttribute('data-mode','dark');d.setAttribute('data-logo',localStorage.getItem('ss-logo')||'a');d.setAttribute('data-font-h','base');d.setAttribute('data-font-b','base');d.setAttribute('data-bg',localStorage.getItem('ss-bg')||'on');}catch(e){}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400..700&family=Roboto:wght@400..700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400..700&amp;family=Roboto:wght@400..700&amp;display=swap" rel="stylesheet">
 <style>
 h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-family:Oswald,Helvetica,Arial,sans-serif!important;font-weight:600!important;text-transform:none;letter-spacing:0;}
 html,body{margin:0!important;padding:0!important;}
@@ -536,7 +536,7 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
             <div style="position:relative">
               <button type="button" class="ss-pd-ph" style="aspect-ratio:4/3" onClick="{{ openMain }}" aria-label="{{ mainAlt }}">
                 <sc-if value="{{ mainIsPhoto }}" hint-placeholder-val="{{ true }}">
-                  <img decoding="async" src="{{ mainSrc }}" alt="{{ mainAlt }}" style="width:100%;height:100%;object-fit:{{ mainFit }};display:block" />
+                  <img decoding="async" src="{{ mainSrc }}" alt="{{ mainAlt }}" style="width:100%;height:100%;object-fit:{{ mainFit }};display:block">
                 </sc-if>
                 <sc-if value="{{ mainIsVideo }}" hint-placeholder-val="{{ false }}">
                   <span style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;width:100%;height:100%;background:var(--ss-surface-muted,#F3EDE4);color:var(--ss-text-muted,#5B6874)">
@@ -567,7 +567,7 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
                 <sc-for list="{{ thumbs }}" as="t" hint-placeholder-count="6">
                   <button type="button" class="ss-pd-thumb" onClick="{{ t.pick }}" aria-label="{{ t.aria }}" aria-current="{{ t.current }}" style="box-shadow:{{ t.ring }}">
                     <sc-if value="{{ t.isPhoto }}" hint-placeholder-val="{{ true }}">
-                      <img decoding="async" src="{{ t.src }}" alt="" style="width:100%;height:100%;object-fit:cover;display:block" />
+                      <img decoding="async" src="{{ t.src }}" alt="" style="width:100%;height:100%;object-fit:cover;display:block">
                     </sc-if>
                     <sc-if value="{{ t.isVideo }}" hint-placeholder-val="{{ false }}">
                       <span style="display:flex;align-items:center;justify-content:center;width:100%;height:100%;background:var(--ss-surface-muted,#F3EDE4);color:var(--ss-link,#296093)"><dc-import name="Ikony" iconName="player-play" size="28" hint-size="28px,28px"></dc-import></span>
@@ -580,10 +580,10 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
             <sc-if value="{{ wideGallery }}" hint-placeholder-val="{{ true }}">
             <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px">
               <button type="button" class="ss-pd-ph" style="aspect-ratio:4/3" onClick="{{ openSub1 }}" aria-label="LEVITA v ložnici s komodou a vínovým přehozem">
-                <img decoding="async" src="_blob/5d284e9d65729ad7719aa1d43749b751.jpg" alt="LEVITA v ložnici s komodou a vínovým přehozem" style="width:100%;height:100%;object-fit:cover;display:block" />
+                <img decoding="async" src="_blob/5d284e9d65729ad7719aa1d43749b751.jpg" alt="LEVITA v ložnici s komodou a vínovým přehozem" style="width:100%;height:100%;object-fit:cover;display:block">
               </button>
               <button type="button" class="ss-pd-ph" style="aspect-ratio:4/3;background:#FFFFFF" onClick="{{ openSub2 }}" aria-label="Schéma rozměrů postele LEVITA">
-                <img decoding="async" src="_blob/e334b477f4cdda9c9ebd7473bab882be.webp" alt="Schéma rozměrů postele LEVITA" style="width:100%;height:100%;object-fit:contain;display:block" />
+                <img decoding="async" src="_blob/e334b477f4cdda9c9ebd7473bab882be.webp" alt="Schéma rozměrů postele LEVITA" style="width:100%;height:100%;object-fit:contain;display:block">
               </button>
             </div>
             </sc-if>
@@ -643,7 +643,7 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
                 <sc-for list="{{ variants }}" as="v" hint-placeholder-count="3">
                   <button type="button" class="ss-pd-var" onClick="{{ v.onPick }}" aria-pressed="{{ v.pressed }}">
                     <span class="ss-pd-var-ph" style="box-shadow:{{ v.ring }}">
-                      <img decoding="async" src="{{ v.src }}" alt="" style="display:block;width:100%;aspect-ratio:4/3;object-fit:cover" />
+                      <img decoding="async" src="{{ v.src }}" alt="" style="display:block;width:100%;aspect-ratio:4/3;object-fit:cover">
                       <sc-if value="{{ v.selected }}" hint-placeholder-val="{{ false }}">
                         <span class="ss-pd-var-check"><dc-import name="Ikony" iconName="check" size="16" hint-size="16px,16px"></dc-import></span>
                       </sc-if>
@@ -706,7 +706,7 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
                       <span style="font-size:13px;font-weight:600;color:var(--ss-text-secondary,#3D4750)">Šířka</span>
                       <span class="ss-pd-cs-f">
                         <span class="ss-pd-cs-ic"><dc-import name="Ikony" iconName="arrows-horizontal" size="20" hint-size="20px,20px"></dc-import></span>
-                        <input class="ss-pd-cs-in" type="text" inputmode="numeric" placeholder="např. 150" ref="{{ csWRef }}" value="{{ csW }}" onChange="{{ onCsW }}" aria-invalid="{{ csWInvalid }}" />
+                        <input class="ss-pd-cs-in" type="text" inputmode="numeric" placeholder="např. 150" ref="{{ csWRef }}" value="{{ csW }}" onChange="{{ onCsW }}" aria-invalid="{{ csWInvalid }}">
                         <span class="ss-pd-cs-u">cm</span>
                       </span>
                     </label>
@@ -714,7 +714,7 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
                       <span style="font-size:13px;font-weight:600;color:var(--ss-text-secondary,#3D4750)">Délka</span>
                       <span class="ss-pd-cs-f">
                         <span class="ss-pd-cs-ic"><dc-import name="Ikony" iconName="arrows-vertical" size="20" hint-size="20px,20px"></dc-import></span>
-                        <input class="ss-pd-cs-in" type="text" inputmode="numeric" placeholder="např. 210" value="{{ csL }}" onChange="{{ onCsL }}" aria-invalid="{{ csLInvalid }}" />
+                        <input class="ss-pd-cs-in" type="text" inputmode="numeric" placeholder="např. 210" value="{{ csL }}" onChange="{{ onCsL }}" aria-invalid="{{ csLInvalid }}">
                         <span class="ss-pd-cs-u">cm</span>
                       </span>
                     </label>
@@ -833,7 +833,7 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
               </div>
               <div style="display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-left:auto">
                 <sc-if value="{{ showBefore }}" hint-placeholder-val="{{ true }}">
-                  <dc-import name="Kvantifikator" value="{{ qty }}" onChange="{{ onQty }}" hint-size="132px,44px"></dc-import>
+                  <dc-import name="Kvantifikator" size="{{ qtySize }}" value="{{ qty }}" onChange="{{ onQty }}" hint-size="152px,52px"></dc-import>
                 </sc-if>
                 <dc-import name="Tlacitko" label="{{ ctaLabel }}" variant="buy" size="{{ ctaSize }}" iconLeft="{{ ctaIcon }}" onClick="{{ onBuy }}" hint-size="220px,52px"></dc-import>
               </div>
@@ -843,9 +843,9 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
             <a href="#komplety" style="{{ setBannerStyle }}">
               <sc-if value="{{ setNotS4 }}" hint-placeholder-val="{{ true }}">
               <span style="display:flex;align-items:center;gap:8px;flex:none">
-                <img decoding="async" src="_blob/bc7007f08af1d6737c56db995538cb91.webp" alt="" style="display:block;width:64px;height:48px;object-fit:contain" />
+                <img decoding="async" src="_blob/bc7007f08af1d6737c56db995538cb91.webp" alt="" style="display:block;width:64px;height:48px;object-fit:contain">
                 <span style="font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:26px;line-height:1;color:var(--ss-status-error,#B3261E)">+</span>
-                <img decoding="async" src="_blob/7d9234acbe0f59bf374b86101ea80224.webp" alt="" style="display:block;width:64px;height:48px;object-fit:contain" />
+                <img decoding="async" src="_blob/7d9234acbe0f59bf374b86101ea80224.webp" alt="" style="display:block;width:64px;height:48px;object-fit:contain">
               </span>
               </sc-if>
               <sc-if value="{{ setIsS4 }}" hint-placeholder-val="{{ false }}">
@@ -905,7 +905,7 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
           <div style="min-width:0;display:flex;flex-direction:column;gap:20px">
             <h2 style="margin:0;font-size:{{ h2Size }};line-height:1.15">Vyrobeno v České republice a navrženo našimi designéry</h2>
             <p style="margin:0;font-size:16px;line-height:1.7;color:var(--ss-text-secondary,#3D4750)">Dřevěná postel LEVITA působí díky kombinaci masivního dřeva a čalounění velmi elegantně a současně robustně a pevně. Představuje čisté řešení ložnice, ve které je postel perfektně sladěná s nočními stolky se zásuvkami, jež jsou součástí čela postele. Mezi čalouněnými opěrkami v čele vyniká působivá dřevěná „mozaika“, která dotváří celkový dojem.</p>
-            <img decoding="async" src="_blob/5d284e9d65729ad7719aa1d43749b751.jpg" alt="Postel LEVITA v ložnici z dubového masivu" style="display:block;width:100%;border-radius:12px;aspect-ratio:4/3;object-fit:cover" />
+            <img decoding="async" src="_blob/5d284e9d65729ad7719aa1d43749b751.jpg" alt="Postel LEVITA v ložnici z dubového masivu" style="display:block;width:100%;border-radius:12px;aspect-ratio:4/3;object-fit:cover">
           </div>
           <div style="min-width:0;display:flex;flex-direction:column;gap:16px">
             <h3 style="margin:0;font-size:{{ h3Size }};line-height:1.2">Parametry</h3>
@@ -941,7 +941,7 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
             </ul>
           </div>
           <div style="min-width:0">
-            <img decoding="async" src="_blob/e334b477f4cdda9c9ebd7473bab882be.webp" alt="Schéma rozměrů postele LEVITA v provedení 180 × 200 cm" style="display:block;width:100%;border-radius:12px;background:var(--ss-surface-subtle,#FAF5EF)" />
+            <img decoding="async" src="_blob/e334b477f4cdda9c9ebd7473bab882be.webp" alt="Schéma rozměrů postele LEVITA v provedení 180 × 200 cm" style="display:block;width:100%;border-radius:12px;background:var(--ss-surface-subtle,#FAF5EF)">
           </div>
         </div>
       </div>
@@ -966,10 +966,10 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
             </div>
           </div>
           <div style="min-width:0;display:flex;flex-direction:column;gap:16px">
-            <img decoding="async" src="_blob/70effb58e28fd2449c59b5d4beb57cbd.jpg" alt="Detail masivního rámu postele LEVITA" style="display:block;width:100%;border-radius:12px;aspect-ratio:16/9;object-fit:cover" />
+            <img decoding="async" src="_blob/70effb58e28fd2449c59b5d4beb57cbd.jpg" alt="Detail masivního rámu postele LEVITA" style="display:block;width:100%;border-radius:12px;aspect-ratio:16/9;object-fit:cover">
             <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px">
-              <img decoding="async" src="_blob/b063f85293a9bbca2a4787911ec6fd73.jpg" alt="Detail dřevěné mozaiky v čele postele" style="display:block;width:100%;border-radius:12px;aspect-ratio:4/3;object-fit:cover" />
-              <img decoding="async" src="_blob/0fe9fb83b34eb082696b1cc067e4fc91.jpg" alt="Vzorník čalounických látek Kronos" style="display:block;width:100%;border-radius:12px;aspect-ratio:4/3;object-fit:cover" />
+              <img decoding="async" src="_blob/b063f85293a9bbca2a4787911ec6fd73.jpg" alt="Detail dřevěné mozaiky v čele postele" style="display:block;width:100%;border-radius:12px;aspect-ratio:4/3;object-fit:cover">
+              <img decoding="async" src="_blob/0fe9fb83b34eb082696b1cc067e4fc91.jpg" alt="Vzorník čalounických látek Kronos" style="display:block;width:100%;border-radius:12px;aspect-ratio:4/3;object-fit:cover">
             </div>
           </div>
         </div>
@@ -1007,7 +1007,7 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
             <div><dc-import name="Tlacitko" label="Ložnice na míru" variant="primary" size="large" href="#loznice-na-miru" hint-size="200px,52px"></dc-import></div>
           </div>
           <div style="min-width:0">
-            <img decoding="async" src="_blob/827bda76a4305353740be28bd19199c5.jpg" alt="Ložnice s postelí LEVITA upravenou na míru" style="display:block;width:100%;border-radius:12px;aspect-ratio:4/3;object-fit:cover" />
+            <img decoding="async" src="_blob/827bda76a4305353740be28bd19199c5.jpg" alt="Ložnice s postelí LEVITA upravenou na míru" style="display:block;width:100%;border-radius:12px;aspect-ratio:4/3;object-fit:cover">
           </div>
         </div>
       </div>
@@ -1089,7 +1089,7 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
       <div style="{{ inner }}">
         <sc-if value="{{ stickyWide }}" hint-placeholder-val="{{ true }}">
           <div style="display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px;padding:10px 0">
-            <img decoding="async" src="_blob/6b546453dfb90e0ec7ddb488eed7e6ec.webp" alt="" style="width:56px;height:44px;object-fit:cover;border-radius:6px;flex:none;background:var(--ss-surface-subtle,#FAF5EF)" />
+            <img decoding="async" src="_blob/6b546453dfb90e0ec7ddb488eed7e6ec.webp" alt="" style="width:56px;height:44px;object-fit:cover;border-radius:6px;flex:none;background:var(--ss-surface-subtle,#FAF5EF)">
             <div style="display:flex;flex-direction:column;gap:2px;min-width:0;flex:1">
               <span style="font-size:14px;font-weight:600;line-height:1.3">LEVITA – dřevěná postel s „levitujícím“ rámem a nočními stolky</span>
               <span style="display:flex;flex-wrap:wrap;gap:6px;margin-top:4px">
@@ -1177,11 +1177,11 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
                 <span>Facebook</span>
               </a>
               <a class="ss-pd-soc ss-pd-gg" href="#registrace-google">
-                <img decoding="async" src="_blob/8e388f9e29b9442880ecdcf7e62aa9cc.svg" alt="" aria-hidden="true" style="display:block;width:20px;height:20px" />
+                <img decoding="async" src="_blob/8e388f9e29b9442880ecdcf7e62aa9cc.svg" alt="" aria-hidden="true" style="display:block;width:20px;height:20px">
                 <span>Google</span>
               </a>
               <a class="ss-pd-soc ss-pd-sz" href="#registrace-seznam">
-                <img decoding="async" src="_blob/8edc6c2c2895278a238bb3dbb1819e6b.svg" alt="" aria-hidden="true" style="display:block;width:22px;height:22px;object-fit:contain;filter:brightness(0) invert(1)" />
+                <img decoding="async" src="_blob/8edc6c2c2895278a238bb3dbb1819e6b.svg" alt="" aria-hidden="true" style="display:block;width:22px;height:22px;object-fit:contain;filter:brightness(0) invert(1)">
                 <span>Seznam</span>
               </a>
               <a class="ss-pd-soc ss-pd-ap" href="#registrace-apple">
@@ -1213,7 +1213,7 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
         </div>
         <div style="position:relative;flex:1;min-height:0;display:flex;align-items:center;justify-content:center">
           <sc-if value="{{ lbIsPhoto }}" hint-placeholder-val="{{ true }}">
-            <img decoding="async" src="{{ lbSrc }}" alt="{{ lbAlt }}" style="max-width:100%;max-height:100%;object-fit:contain;border-radius:12px" />
+            <img decoding="async" src="{{ lbSrc }}" alt="{{ lbAlt }}" style="max-width:100%;max-height:100%;object-fit:contain;border-radius:12px">
           </sc-if>
           <sc-if value="{{ lbIsVideo }}" hint-placeholder-val="{{ false }}">
             <span style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;width:min(100%,900px);aspect-ratio:16/9;border-radius:12px;background:#12202D;color:#8DB3D3">
@@ -1232,7 +1232,7 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
           <sc-for list="{{ lbThumbs }}" as="t" hint-placeholder-count="6">
             <button type="button" class="ss-pd-lbth" onClick="{{ t.onPick }}" aria-current="{{ t.current }}" aria-label="{{ t.aria }}">
               <sc-if value="{{ t.isPhoto }}" hint-placeholder-val="{{ true }}">
-                <img decoding="async" src="{{ t.src }}" alt="" style="width:100%;height:100%;object-fit:cover;display:block" />
+                <img decoding="async" src="{{ t.src }}" alt="" style="width:100%;height:100%;object-fit:cover;display:block">
               </sc-if>
               <sc-if value="{{ t.isVideo }}" hint-placeholder-val="{{ false }}">
                 <span style="display:flex;align-items:center;justify-content:center;width:100%;height:100%;color:#FFFFFF"><dc-import name="Ikony" iconName="player-play" size="20" hint-size="20px,20px"></dc-import></span>
@@ -1786,6 +1786,7 @@ class Component extends DCLogic {
       },
       setBannerVisible: (this.state.setUi || 'S1') !== 'S3',
       ctaSize: (this.state.setUi || 'S1') === 'S2' ? 'medium' : 'large',
+      qtySize: (this.state.setUi || 'S1') === 'S2' ? 'standard' : 'large', // stepper stejně vysoký jako tlačítko Do košíku (4. 11. 2026)
       setBtnStyle: this.state.setUi === 'S4'
         ? 'display:inline-flex;align-items:center;gap:8px;flex:none;border-radius:6px;background:var(--ss-surface-page,#FFFFFF);color:var(--ss-link,#296093);box-shadow:inset 0 0 0 1px var(--ss-border-action,#296093),0 1px 2px rgba(19,44,67,.08);font-weight:600;min-height:44px;padding:0 16px;font-size:14px'
         : 'display:inline-flex;align-items:center;gap:8px;flex:none;border-radius:6px;background:#B3261E;color:#FFFFFF;font-weight:700;letter-spacing:.01em;'

@@ -200,6 +200,10 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
 <helmet>
 <style>
 .ss-chip{font-family:Roboto,Helvetica,Arial,sans-serif;display:inline-flex;align-items:center;gap:8px;border:0;margin:0;background:none;text-decoration:none;cursor:pointer;border-radius:999px;font-weight:600;white-space:nowrap;transition:background-color .12s cubic-bezier(.22,.61,.36,1),color .12s cubic-bezier(.22,.61,.36,1),box-shadow .15s cubic-bezier(.22,.61,.36,1),transform .06s cubic-bezier(.22,.61,.36,1);}
+/* Příznak TIP (místo hvězdičky, 4. 11. 2026) */
+.ss-tipbadge{display:inline-flex;align-items:center;flex:none;height:20px;padding:0 7px;border-radius:4px;background:#FBB255;color:#1C2229;font-family:Roboto,Helvetica,Arial,sans-serif;font-size:11px;font-weight:700;letter-spacing:.08em;line-height:1;text-transform:uppercase;}
+/* V chipu jako pill, zarovnaný k pravému okraji (4. 11. 2026) */
+.ss-chip .ss-tipbadge{height:20px;padding:0 8px;margin-right:-10px;border-radius:999px;}
 .ss-chip:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
 .ss-chip:not([aria-disabled="true"]):active{transform:scale(.98);}
 .ss-chip[aria-disabled="true"]{opacity:.45;cursor:not-allowed;}
@@ -215,6 +219,7 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
   <a class="ss-chip" href="{{ href }}" style="{{ chipStyle }}" style-hover="{{ hoverStyle }}">
     <sc-if value="{{ hasIcon }}" hint-placeholder-val="{{ false }}"><dc-import name="Ikony" iconName="{{ icon }}" size="{{ iconSize }}" hint-size="18px,18px"></dc-import></sc-if>
     <span>{{ label }}</span>
+    <sc-if value="{{ tip }}" hint-placeholder-val="{{ false }}"><span class="ss-tipbadge">Tip</span></sc-if>
     <sc-if value="{{ showCount }}" hint-placeholder-val="{{ false }}"><span style="{{ countStyle }}">{{ count }}</span></sc-if>
   </a>
 </sc-if>
@@ -265,6 +270,7 @@ class Component extends DCLogic {
       href: p.href || '#',
       label: p.label ?? 'Chip',
       stretch: !!p.stretch, plainLabel: !p.stretch,
+      tip: p.tip === true || p.tip === 'true',
       hasIcon: !!p.icon, icon: p.icon, iconSize: s.icon,
       showCount: p.count !== undefined && p.count !== null && p.count !== '',
       count: p.count,

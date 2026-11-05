@@ -199,6 +199,8 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
 <x-dc>
 <helmet>
 <style>
+/* Příznak TIP (místo hvězdičky, 4. 11. 2026) */
+.ss-tipbadge{display:inline-flex;align-items:center;flex:none;height:20px;padding:0 7px;border-radius:4px;background:#FBB255;color:#1C2229;font-family:Roboto,Helvetica,Arial,sans-serif;font-size:11px;font-weight:700;letter-spacing:.08em;line-height:1;text-transform:uppercase;}
 .ss-ct{font-family:Roboto,Helvetica,Arial,sans-serif;position:relative;display:flex;background:var(--ss-surface-card,#FFFFFF);border-radius:12px;text-decoration:none;color:var(--ss-text-primary,#1C2229);min-width:0;transition:box-shadow .15s cubic-bezier(.22,.61,.36,1);}
 .sc-host:has(>.ss-ct){display:flex;width:100%;height:100%;min-width:0;}
 .ss-ct{flex:1;box-sizing:border-box;}
@@ -214,9 +216,8 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
 .ss-ct-media{position:relative;overflow:hidden;background:transparent;border-radius:8px;display:flex;align-items:center;justify-content:center;color:var(--ss-text-decor,#C8D0D8);}
 .ss-ct-img{width:100%;height:100%;object-fit:contain;display:block;transition:transform .4s cubic-bezier(.22,.61,.36,1);}
 @media (hover:hover) and (pointer:fine){.ss-ct:hover .ss-ct-img{transform:scale(1.08);}}
-.ss-ct-std .ss-ct-img{scale:1.45;}
-.ss-ct-img[data-zoom="true"]{scale:1.25;}
-.ss-ct-std .ss-ct-img[data-zoom="true"]{scale:1.6;}
+/* Fotky produktů se nikdy neořezávají. Desktop: dlaždice „výstup“ (fotka vystupuje nad kartu, nic se neořízne) o 20 % větší fotka (4. 11. 2026) */
+@media (min-width:820px){.ss-ct[data-pop="true"] .ss-ct-std>.ss-ct-media .ss-ct-img{scale:1.2;}}
 @media (min-width:820px){.ss-ct-std{gap:4px!important;}.ss-ct-title[data-std="true"]{font-size:20px!important;}}
 @media (max-width:1559px){.ss-ct-std{gap:0!important;}.ss-ct-std>.ss-ct-media{margin-bottom:-12px;}.ss-ct-std>.ss-ct-media+span{position:relative;}}
 .ss-ct-std>.ss-ct-media+span{margin-top:auto;}
@@ -232,7 +233,8 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
 .ss-ct[data-dense="true"],.ss-ct[data-dense="true"]::before{border-radius:6px;}
 .ss-ct[data-dense="true"] .ss-ct-media{border-radius:4px;}
 .ss-ct[data-pop="true"] .ss-ct-media{overflow:visible;overflow-x:clip;flex:none;min-height:0;}
-@media (max-width:819px){.ss-ct-std>.ss-ct-media{aspect-ratio:3/2!important;margin-bottom:0!important;}.ss-ct-title[data-std="true"]{font-size:15px!important;}.ss-ct[data-pop="true"]::before{top:calc(12px + (100cqw - 32px) * .3333);}}
+/* Mobil: nižší pole fotky a menší mezera k názvu – bez ořezu (fotka vystupuje nad kartu), 4. 11. 2026 */
+@media (max-width:819px){.ss-ct-std>.ss-ct-media{aspect-ratio:2/1!important;margin-bottom:0!important;}.ss-ct[data-pop="true"] .ss-ct-std>.ss-ct-media .ss-ct-img{scale:1.2;}.ss-ct-title[data-std="true"]{font-size:15px!important;min-height:2em!important;}.ss-ct[data-pop="true"]::before{top:calc(12px + (100cqw - 32px) * .25);}.ss-ct[data-pop="true"] .ss-ct-std>.ss-ct-media+span{margin-top:8px;}}
 .ss-ct-chev{transition:transform .15s cubic-bezier(.22,.61,.36,1),color .12s cubic-bezier(.22,.61,.36,1);}
 @media (hover:hover) and (pointer:fine){.ss-ct:hover .ss-ct-chev{color:var(--ss-hover-text,#21507B);transform:translateX(2px);}}
 @media (prefers-reduced-motion:reduce){.ss-ct-chev{transition:none;}.ss-ct:hover .ss-ct-chev{transform:none;}}
@@ -251,6 +253,7 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
       </span>
       <span style="display:flex;flex-direction:column;gap:2px;min-width:0">
         <span class="ss-ct-title" data-sub="{{ subStr }}" style="font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:17px;line-height:1.25;text-align:center;text-wrap:balance;display:flex;align-items:center;justify-content:center;min-height:2.5em" data-std="true">{{ label }}</span>
+        <sc-if value="{{ tip }}" hint-placeholder-val="{{ false }}"><span class="ss-tipbadge" style="align-self:center">Tip</span></sc-if>
         <sc-if value="{{ hasSub }}" hint-placeholder-val="{{ true }}">
           <span style="font-size:13px;color:var(--ss-text-muted,#5B6874);line-height:1.45;text-align:center;text-wrap:balance;min-height:2.9em">{{ subText }}</span>
         </sc-if>
@@ -280,7 +283,7 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
           <dc-import name="Ikony" iconName="photo" size="20" hint-size="20px,20px"></dc-import>
         </sc-if>
       </span>
-      <span class="ss-ct-title" style="font-size:15px;font-weight:600;line-height:1.35;min-width:0">{{ label }}</span>
+      <span class="ss-ct-title" style="font-size:15px;font-weight:600;line-height:1.35;min-width:0">{{ label }}</span><sc-if value="{{ tip }}" hint-placeholder-val="{{ false }}"><span class="ss-tipbadge">Tip</span></sc-if>
       <sc-if value="{{ hasCount }}" hint-placeholder-val="{{ true }}">
         <span style="margin-left:auto;padding-right:8px;font-size:13px;color:var(--ss-text-muted,#5B6874);white-space:nowrap">{{ count }}</span>
       </sc-if>
@@ -298,6 +301,7 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
       </span>
       <span style="display:flex;flex-direction:column;gap:2px;min-width:0">
         <span class="ss-ct-title" style="font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:16px;line-height:1.2;text-wrap:balance">{{ label }}</span>
+        <sc-if value="{{ tip }}" hint-placeholder-val="{{ false }}"><span class="ss-tipbadge" style="align-self:flex-start;margin-top:2px">Tip</span></sc-if>
         <sc-if value="{{ hasSub }}" hint-placeholder-val="{{ true }}">
           <span style="font-size:13px;color:var(--ss-text-muted,#5B6874);line-height:1.35;text-wrap:pretty">{{ subText }}</span>
         </sc-if>
@@ -323,6 +327,7 @@ class Component extends DCLogic {
       zoomStr: p.zoom ? 'true' : 'false',
       noImage: !p.image,
       label: p.label || 'Manželské postele z masivu',
+      tip: p.tip === true || p.tip === 'true',
       isStandard: !compact && !photo && !horiz,
       isHoriz: horiz,
       isPhoto: photo,

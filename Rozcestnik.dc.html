@@ -292,13 +292,27 @@ class Component extends DCLogic {
       ['Kategorie_Rosty.dc.html', 'Kategorie – Rošty', ''],
       ['Kategorie_Komplety.dc.html', 'Kategorie – Komplety', ''],
       ['Kategorie_Nabytek.dc.html', 'Kategorie – Nábytek', ''],
-      ['Kategorie_Polstare.dc.html', 'Kategorie – Polštáře', ''],
-      ['Kategorie_Luzkoviny.dc.html', 'Kategorie – Lůžkoviny', '']
+      ['Kategorie_Polstare.dc.html', 'Kategorie – Polštáře a přikrývky', ''],
+      ['Kategorie_Luzkoviny.dc.html', 'Kategorie – Povlečení a prostěradla', ''],
+      ['Kategorie_Akce.dc.html', 'Kategorie – Akce / Výprodej', 'Aktuální akce, výprodej, novinky, dárkový poukaz, dárky k nákupu.']
+    ] },
+    { id: 'rz-sub', title: 'Podkategorie (vzorové stránky)', desc: 'Každý odkaz z menu i z chipů na stránce kategorie vede na vlastní stránku s nadpisem H1 podle Excelu kategorií a správnou drobečkovou navigací. Celkem 173 stránek – všechny jsou na stránce plátna „Podkategorie“; tady je ukázka z každé sekce.', items: [
+      ['Kategorie_Postele_manzelske-postele-z-masivu.dc.html', 'Postele › Manželské postele', 'Úroveň 2: dlaždice podkategorií třetí úrovně nad výpisem.'],
+      ['Kategorie_Postele_postele-180x200.dc.html', 'Postele › 180 × 200', 'Úroveň 3 z řady rozměrů (chip).'],
+      ['Kategorie_Matrace_nejprodavanejsi-matrace.dc.html', 'Matrace › Nejprodávanější', ''],
+      ['Kategorie_Matrace_stredne-tvrde-matrace.dc.html', 'Matrace › Středně tvrdé', 'Úroveň 3 z řady tvrdostí.'],
+      ['Kategorie_Rosty_podle-rozmeru.dc.html', 'Rošty › Podle rozměru', ''],
+      ['Kategorie_Komplety_komplet-postel-s-matracemi.dc.html', 'Komplety › Postel s matrací a roštem', ''],
+      ['Kategorie_Nabytek_nocni-stolky-a-police.dc.html', 'Nábytek › Noční stolky a police', ''],
+      ['Kategorie_Polstare_podle-rozmeru.dc.html', 'Polštáře › Podle rozměru', ''],
+      ['Kategorie_Luzkoviny_povlaky-40x70.dc.html', 'Povlečení › Povlaky na polštář 40 × 70', ''],
+      ['Kategorie_Akce_aktualni-akce.dc.html', 'Akce › Aktuální akce', '']
     ] },
     { id: 'rz-det', title: 'Detaily produktů', desc: 'Detail v pěti typech produktu (postel, komplet, matrace, multi, komoda) a konkrétní postel Levita. Vyzkoušejte výběr rozměru, materiálu a oleje, roštů a čalounění, přepočet ceny i přidání do košíku.', items: [
       ['Detail_Postel_3.0.dc.html', 'Detail – Postel', 'Výběr rozměru, úložného prostoru, roštů, dřeva s olejem a čalounění. Cena se přepočítá podle rozměru, roštů a dřeva.'],
       ['Detail_Komplet_3.0.dc.html', 'Detail – Komplet', 'Postel s matracemi a rošty v sadě, výběr dřeva a oleje jako u postele, video v sekci Ložnice na míru.'],
       ['Detail_Matrace_3.0.dc.html', 'Detail – Matrace', 'Výška, rozměr, varianty tuhosti, parametry, potahy.'],
+      ['Detail_Postel_3.0-hqdl.dc.html', 'Detail – Multi 3.0 Konfigurátor', 'Krokový konfigurátor: rozměr → výška → úložný prostor → rošty → materiál a odstín → čalounění. Další krok se objeví po výběru, hotové kroky se sbalí se Změnit, výběr vždy přímo na stránce.'],
       ['Detail_Multi_3.0.dc.html', 'Detail – Multi', 'Postel MULTI BENE: rozměr, výška, rošty, dřevo a olej. Cena se přepočítá podle výběru.'],
       ['Detail_Komoda_VIA.dc.html', 'Detail – Komoda VIA 3Z', 'Nábytek: rozměr 90/120 cm, dřevo a olej, skryté plnovýsuvy.'],
       ['Detail_Produkt_Levita.dc.html', 'Detail – Postel Levita', 'Konkrétní produkt s reálnými fotkami a vzorníkem látek Kronos, Vega, Wind.'],
@@ -324,8 +338,8 @@ class Component extends DCLogic {
       ['Clanek.dc.html', 'Článek magazínu', '']
     ] },
     { id: 'rz-ovl', title: 'Okna, panely a vyskakovací prvky', desc: 'Prvky, které nejsou vidět, dokud na něco neklepnete. U každého je, kde a jak ho vyvolat, a odkaz na samostatný náhled komponenty.', overlay: true, items: [
-      ['index.dc.html', 'Mega menu', 'Rozbalovací menu kategorií s obrázky podkategorií (desktop).', 'V hlavičce najeďte nebo klikněte na Postele, Matrace, Rošty…', 'MegaMenu.dc.html', 'Panel'],
-      ['index.dc.html', 'Mobilní menu', 'Vysouvací panel s celou navigací na mobilu.', 'Zúžte okno pod 820 px a klikněte na ikonu menu (tři čárky).', 'MobilniMenuObsah.dc.html', 'Drawer'],
+      ['index.dc.html', 'Mega menu', 'Menu v2: nahoře průvodce, tipy a Poradíme, pak rozměry jako tlačítka a sloupce kategorií s fotkou (desktop, tablet na šířku).', 'V hlavičce najeďte (zpoždění 200 ms) nebo klikněte na Postele, Matrace, Rošty…; na tabletu první ťuknutí otevře, druhé vede na sekci.', 'MegaMenu.dc.html', 'Panel'],
+      ['index.dc.html', 'Mobilní menu', 'Menu v2 na celou obrazovku: sekce s fotkou a zkratky, po ťuknutí seznam kategorií se Zobrazit vše, rozměry jako tlačítka, promo a Poradíme na konci.', 'Zúžte okno pod 1000 px a klikněte na ikonu menu (tři čárky), pak ťukněte na sekci.', 'MobilniMenuObsah.dc.html', 'Drawer'],
       ['index.dc.html', 'Našeptávač vyhledávání', 'Návrhy produktů, kategorií a článků při psaní.', 'Do pole „Co hledáte?“ v hlavičce napište aspoň dvě písmena (např. „ma“).', 'Vyhledavani.dc.html', 'Popover'],
       ['index.dc.html', 'Prodejny v hlavičce', 'Rozbalovací přehled prodejen s otevírací dobou.', 'V horní liště hlavičky klikněte na „Prodejny“.', 'ProdejnyMenu.dc.html', 'Panel'],
       ['index.dc.html', 'Přihlášení', 'Vysouvací panel s přihlášením e-mailem a přes sociální sítě.', 'V hlavičce klikněte na ikonu účtu (postavička).', 'PrihlaseniObsah.dc.html', 'Drawer'],

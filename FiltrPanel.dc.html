@@ -199,6 +199,8 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
 <x-dc>
 <helmet>
 <style>
+/* Poslední sekce filtru bez spodní čáry (4. 11. 2026) */
+.ss-fp-secs>.ss-fp-sec:last-child,.ss-fp-secs>*:last-child>.ss-fp-sec:last-child{border-bottom:0!important;}
 .ss-fp-head{display:flex;align-items:center;gap:8px;width:100%;min-height:44px;padding:0;border:0;background:none;font:inherit;font-family:Roboto,Helvetica,Arial,sans-serif;font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ss-text-secondary,#3D4750);text-align:left;cursor:pointer;border-radius:6px;transition:color .12s cubic-bezier(.22,.61,.36,1);}
 @media (hover:hover) and (pointer:fine){.ss-fp-head:hover{color:var(--ss-hover-text,#A4600C);}}
 .ss-fp-head:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
@@ -221,8 +223,8 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
 </div>
 <div class="ss-fp-scroll" style="flex:1 1 auto;min-height:0;overflow-y:{{ scrollY }};padding:{{ innerPad }};display:flex;flex-direction:column">
 
-  <div style="display:flex;flex-direction:column;border-top:1px solid var(--ss-border-subtle,#E1E6EB)">
-    <div style="padding:8px 0;border-bottom:1px solid var(--ss-border-subtle,#E1E6EB)">
+  <div class="ss-fp-secs" style="display:flex;flex-direction:column;border-top:1px solid var(--ss-border-subtle,#E1E6EB)">
+    <div class="ss-fp-sec" style="padding:8px 0;border-bottom:1px solid var(--ss-border-subtle,#E1E6EB)">
       <button type="button" class="ss-fp-head" aria-expanded="{{ priceExpanded }}" onClick="{{ togglePrice }}">
         <span>Cena</span>
         <span class="ss-fp-chev"><dc-import name="Ikony" iconName="chevron-down" size="18" hint-size="18px,18px"></dc-import></span>
@@ -235,7 +237,7 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
     </div>
 
     <sc-for list="{{ facets }}" as="f" hint-placeholder-count="4">
-      <div style="padding:8px 0;border-bottom:1px solid var(--ss-border-subtle,#E1E6EB)">
+      <div class="ss-fp-sec" style="padding:8px 0;border-bottom:1px solid var(--ss-border-subtle,#E1E6EB)">
         <button type="button" class="ss-fp-head" aria-expanded="{{ f.expanded }}" onClick="{{ f.onToggleSection }}">
           <span>{{ f.title }}</span>
           <span class="ss-fp-chev"><dc-import name="Ikony" iconName="chevron-down" size="18" hint-size="18px,18px"></dc-import></span>
@@ -307,9 +309,9 @@ const PRODUKTY = [
 ];
 
 const KATEGORIE = [
-  { label: 'Manželské postele z masivu', href: 'Kategorie_Postele.dc.html#s=1', count: 42, image: '_blob/cead5c69b22e38051d5480ee3e14c348.webp', sub: ['180 × 200', 'S úložným prostorem'] },
-  { label: 'Jednolůžka z masivu', href: 'Kategorie_Postele.dc.html#s=10', count: 24, image: '_blob/cbd39695e60222550587109c72c8c52b.webp', sub: ['90 × 200', 'Dětské', 'Buk'] },
-  { label: 'Čalouněné postele', href: 'Kategorie_Postele.dc.html#s=2', count: 31, image: '_blob/83b97877b4eeaa401d7d46a9fa01dd17.webp', sub: ['S roštem', 'Boxspring'] },
+  { label: 'Manželské postele z masivu', href: 'Kategorie_Postele_manzelske-postele-z-masivu.dc.html', count: 42, image: '_blob/cead5c69b22e38051d5480ee3e14c348.webp', sub: ['180 × 200', 'S úložným prostorem'] },
+  { label: 'Jednolůžka z masivu', href: 'Kategorie_Postele_jednoluzkove-postele-z-masivu.dc.html', count: 24, image: '_blob/cbd39695e60222550587109c72c8c52b.webp', sub: ['90 × 200', 'Dětské', 'Buk'] },
+  { label: 'Čalouněné postele', href: 'Kategorie_Postele_calounene-masivni-postele.dc.html', count: 31, image: '_blob/83b97877b4eeaa401d7d46a9fa01dd17.webp', sub: ['S roštem', 'Boxspring'] },
   { label: 'Matrace', href: 'Kategorie_Matrace.dc.html', count: 112, image: '_blob/c5a374fbd36fa4495aacd11898012a93.webp', zoom: true, sub: ['Taštičkové', 'Pěnové', 'Latexové'] },
   { label: 'Rošty', href: 'Kategorie_Rosty.dc.html', count: 54, image: '_blob/e58c131539e8ad6860c8e14b3cb0959a.webp', zoom: true, sub: ['Lamelové', 'Polohovací'] },
   { label: 'Nábytek z masivu', href: 'Kategorie_Nabytek.dc.html', count: 73, image: '_blob/62799eee782850a7f388b83455378566.webp', sub: ['Noční stolky', 'Komody'] }
