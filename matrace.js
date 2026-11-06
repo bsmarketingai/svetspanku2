@@ -7,5 +7,5 @@ export const MATRACE_PARAMETRY = [
 export const MATRACE_POPISKY = {
  vyska: 'Výška matrace', vyskaJadra: 'Výška jádra', nosnostMax: 'Max. nosnost na osobu', zatizeni: 'Doporučené zatížení na osobu',
  tuhost: 'Tuhost (1–5)', tuhostPct: 'Tuhost v %', komprimace: 'Dodáváme srolovanou', atyp: 'Atypický rozměr na míru',
- noci30: '30 nocí na výměnu jádra', noci90: '90 nocí na vyzkoušení', zaruka: 'Záruka', alergici: 'Vhodné pro alergiky', spankNaBoku: 'Vhodnější pro spánek na boku'
+ noci30: '30 nocí jistoty (výměna jádra za jinou tvrdost)', noci90: '(nepoužívá se)', zaruka: 'Záruka', alergici: 'Vhodné pro alergiky', spankNaBoku: 'Vhodnější pro spánek na boku'
 };

@@ -1604,13 +1604,13 @@ class Component extends DCLogic {
       presItems: [{ label: 'LED', value: this.state.led }, { label: 'Příplatky', value: PP }],
       onPresToggle: (i) => this.setState(s => (i === 1 ? { pp: s.pp === false } : { led: !s.led })),
       presChoices: [
-        { label: 'Detail', value: 'Postel 3.0', options: ['Postel 3.0', 'Multi Konf.', 'Komplet 3.0', 'Multi 3.0', 'Matrace 3.0', 'Komoda VIA', 'Skříň UNI 2D Konf', 'Set polštář'] },
+        { label: 'Detail – Simple', value: 'Postel 3.0', options: ['Postel 3.0', 'Komplet 3.0', 'Multi 3.0', 'Matrace 3.0', 'Komoda VIA'] }, { label: 'Detail – Konfigurátor', value: 'Postel 3.0', options: ['Multi Konf.', 'Skříň UNI 2D Konf', 'Set polštář'] },
         { label: 'Fixní sloupec', value: this.state.stickPick || (stick === 'zadny' ? 'Žádný' : 'Galerie'), options: ['Galerie', 'Žádný'] },
         { label: 'Rozměr', value: this.state.sizeUi || 'V1', options: ['V1', 'V2'] },
         { label: 'Set', value: this.state.setUi || 'S1', options: ['S1', 'S2', 'S3', 'S4'] },
         { label: 'Materiál a odstín', value: this.state.matUi || 'B', options: ['A', 'B'] }
       ],
-      onPresPick: (ci, opt) => { if (ci === 0) { if (opt !== 'Postel 3.0') (h => { try { const a = document.createElement('a'); a.href = h; a.style.display = 'none'; (document.getElementById('dc-root') || document.body).appendChild(a); a.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true, view: window })); a.remove(); } catch (e) { window.location.href = h; } })(opt === 'Multi Konf.' ? 'Detail_Postel_3.0-hqdl.dc.html' : (opt === 'Set polštář' ? 'Detail_Set_Polstar_Povlak.dc.html' : opt === 'Skříň UNI 2D Konf' ? 'Detail_Skrin_UNI_2D_Konf.dc.html' : 'Detail_' + String(opt).replace(/ /g, '_') + '.dc.html')); return; } ci -= 1; this.setState(ci === 0 ? { stickPick: opt } : ci === 1 ? { sizeUi: opt } : ci === 2 ? { setUi: opt } : { matUi: opt }); },
+      onPresPick: (ci, opt) => { if (ci === 1) ci = 0; else if (ci > 1) ci -= 1; /* Detail rozdělen na Simple a Konfigurátor (6. 11. 2026) */ if (ci === 0) { if (opt !== 'Postel 3.0') (h => { try { const a = document.createElement('a'); a.href = h; a.style.display = 'none'; (document.getElementById('dc-root') || document.body).appendChild(a); a.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true, view: window })); a.remove(); } catch (e) { window.location.href = h; } })(opt === 'Multi Konf.' ? 'Detail_Postel_3.0-hqdl.dc.html' : (opt === 'Set polštář' ? 'Detail_Set_Polstar_Povlak.dc.html' : opt === 'Skříň UNI 2D Konf' ? 'Detail_Skrin_UNI_2D_Konf.dc.html' : 'Detail_' + String(opt).replace(/ /g, '_') + '.dc.html')); return; } ci -= 1; this.setState(ci === 0 ? { stickPick: opt } : ci === 1 ? { sizeUi: opt } : ci === 2 ? { setUi: opt } : { matUi: opt }); },
       stickyChips: [
         { label: this.state.customSize || this.state.size },
         { label: this.state.up === 'yes' ? 'S úložným prostorem' : 'Bez úložného prostoru' },
@@ -1846,8 +1846,7 @@ class Component extends DCLogic {
       uspItems: [
         { icon: 'duo-map-pin', title: 'České matrace', text: 'za ceny přímo do výrobce' },
         { icon: 'duo-arrow-autofit-height', title: 'Anatomicky správná podpora', text: 'a prodyšnost po celou noc' },
-        { icon: 'duo-refresh', title: '30 dní jistoty', text: 'možnost výměny tuhosti jádra matrace zdarma' },
-        { icon: 'duo-calendar-time', title: '90 dní na vyzkoušení', text: 'pro rozměr 90 × 200 cm' },
+        { icon: 'duo-refresh', title: '30 nocí jistoty', text: 'možnost výměny tuhosti jádra matrace zdarma' },
         { icon: 'duo-shield-check', title: 'Zdravotně nezávadné materiály', text: 'certifikované pěny i potahy' },
         { icon: 'duo-ruler-3', title: 'Úpravy na míru', text: 'vyrobíme na centimetr přesně' }
       ],

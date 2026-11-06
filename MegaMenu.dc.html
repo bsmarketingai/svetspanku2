@@ -262,11 +262,24 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
 .ss-mm a.ss-mm-all:hover{color:var(--ss-hover-text,#A4600C);}
 .ss-mm a.ss-mm-all:hover>span{text-decoration:underline;text-underline-offset:3px;}
 .ss-mm-all:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
+/* Varianta B (6. 11. 2026): karty Tip / Poradíme a Zobrazit vše ve vlastním sloupci úplně vpravo */
+.ss-mm-wrap[data-v="B"]{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:32px;align-items:stretch;} /* sloupec vpravo i jeho svislá linka v plné výšce mega menu (6. 11. 2026) */
+.ss-mm-wrap[data-v="B"] .ss-mm-chips:first-child{margin-top:24px;}
+/* Varianta B: nadpis řady (Postele podle rozměru) na vlastním řádku, čipy pod ním (6. 11. 2026) */
+.ss-mm-wrap[data-v="B"] .ss-mm-chips::before{content:"";flex-basis:100%;height:0;order:1;}
+.ss-mm-wrap[data-v="B"] .ss-mm-chips-t{order:0;}
+.ss-mm-wrap[data-v="B"] .ss-mm-chips>.ss-mm-chip,.ss-mm-wrap[data-v="B"] .ss-mm-chips>.ss-mm-chip-sep{order:2;}
+.ss-mm-side{display:flex;flex-direction:column;gap:12px;align-self:stretch;box-sizing:border-box;padding:24px 0 24px 24px;border-left:1px solid var(--ss-border-subtle,#E1E6EB);}
+.ss-mm-side .ss-mm-tile{flex:none;max-width:none;}
+.ss-mm-side .ss-mm-allsec{margin:4px 0 0;align-self:flex-start;padding-left:0;}
+.ss-mm-side .ss-mm-allsec[data-strong="true"]{padding:0 16px;}
 </style>
 </helmet>
 <div class="ss-mm" style="width:100%;background:var(--ss-surface-card,#FFFFFF);font-family:Roboto,Helvetica,Arial,sans-serif">
   <div style="max-width:1560px;margin:0 auto;padding:0 32px">
-    <sc-if value="{{ hasTop }}" hint-placeholder-val="{{ true }}">
+    <div class="ss-mm-wrap" data-v="{{ mmv }}">
+    <div class="ss-mm-main" style="min-width:0">
+    <sc-if value="{{ hasTopA }}" hint-placeholder-val="{{ true }}">
       <div class="ss-mm-top" data-chips="{{ hasChipsStr }}">
         <sc-for list="{{ tops }}" as="t" hint-placeholder-count="3">
           <a class="ss-mm-tile" data-kind="{{ t.kind }}" href="{{ t.href }}" target="{{ t.target }}" rel="{{ t.rel }}" onClick="{{ t.onClick }}">
@@ -308,6 +321,20 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
           </sc-if>
         </div>
       </sc-for>
+    </div>
+    </div>
+    <sc-if value="{{ hasTopB }}" hint-placeholder-val="{{ false }}">
+      <aside class="ss-mm-side" aria-label="Tipy a poradna">
+        <sc-for list="{{ tops }}" as="t" hint-placeholder-count="4">
+          <a class="ss-mm-tile" data-kind="{{ t.kind }}" href="{{ t.href }}" target="{{ t.target }}" rel="{{ t.rel }}" onClick="{{ t.onClick }}">
+            <sc-if value="{{ t.hasImage }}" hint-placeholder-val="{{ true }}"><span class="ss-mm-tile-img" aria-hidden="true" style="{{ t.imgStyle }}"></span></sc-if>
+            <sc-if value="{{ t.hasIcon }}" hint-placeholder-val="{{ false }}"><span class="ss-mm-tile-ico" aria-hidden="true"><dc-import name="Ikony" iconName="{{ t.icon }}" size="22" hint-size="22px,22px"></dc-import></span></sc-if>
+            <span class="ss-mm-tile-tx"><span class="ss-mm-tile-k">{{ t.kicker }}</span><span class="ss-mm-tile-t">{{ t.title }}</span><sc-if value="{{ t.hasSub }}" hint-placeholder-val="{{ false }}"><span class="ss-mm-tile-s">{{ t.sub }}</span></sc-if></span>
+          </a>
+        </sc-for>
+        <a class="ss-mm-allsec" href="{{ allHref }}" data-strong="{{ allStrong }}"><span>{{ allLabel }}</span><dc-import name="Ikony" iconName="arrow-right" size="18" hint-size="18px,18px"></dc-import></a>
+      </aside>
+    </sc-if>
     </div>
   </div>
 </div>
@@ -1858,13 +1885,16 @@ return { MENU, UTILITY, QUICK };
 })();
 class Component extends DCLogic {
   // Mega menu v2 (4. 11. 2026): props category (sekce z menu.js), touch (tablet bez najetí myší → Zobrazit vše jako tlačítko), maxItems (výchozí 4; tvrdost celá).
-  state = { demo: null, width: typeof window !== 'undefined' ? document.documentElement.clientWidth : 1440 };
+  // Varianta mega menu A/B (6. 11. 2026) – globálně z prezentační lišty, uloženo v ss-mmv, událost ss-mmv; prop variant ji přebije
+  state = { demo: null, width: typeof window !== 'undefined' ? document.documentElement.clientWidth : 1440, mmv: (() => { try { return localStorage.getItem('ss-mmv') === 'B' ? 'B' : 'A'; } catch (e) { return 'A'; } })() };
   componentDidMount() {
     if (!this.props.category) Promise.resolve(__M_menu).then(m => this.setState({ demo: m.MENU[0] }));
     this._resize = () => this.setState({ width: document.documentElement.clientWidth });
     window.addEventListener('resize', this._resize);
+    this._mmv = () => { try { this.setState({ mmv: localStorage.getItem('ss-mmv') === 'B' ? 'B' : 'A' }); } catch (e) {} };
+    window.addEventListener('ss-mmv', this._mmv);
   }
-  componentWillUnmount() { window.removeEventListener('resize', this._resize); }
+  componentWillUnmount() { window.removeEventListener('resize', this._resize); window.removeEventListener('ss-mmv', this._mmv); }
   renderVals() {
     const cat = this.props.category || this.state.demo || {};
     const w = this.state.width;
@@ -1872,11 +1902,12 @@ class Component extends DCLogic {
     const all = cat.groups || [];
     const chipGroups = all.filter(g => g.chips && g.chips !== 'hardness');
     const colGroups = all.filter(g => !(g.chips && g.chips !== 'hardness'));
-    const cols = Math.max(1, Math.min(colGroups.length, w >= 1300 ? 5 : w >= 1150 ? 4 : 3 /* XXL max 5 sloupců – 6 zalamovalo názvy (4. 11. 2026) */));
+    const V = this.props.variant || this.state.mmv;
+    const cols = Math.max(1, Math.min(colGroups.length, V === 'B' ? (w >= 1300 ? 4 : 3) : w >= 1300 ? 5 : w >= 1150 ? 4 : 3 /* XXL max 5 sloupců – 6 zalamovalo názvy (4. 11. 2026) */));
     const bg = (src, size) => ({ display: 'block', width: '100%', height: '100%', background: src ? 'url(' + src + ') center / ' + (size || 'cover') + ' no-repeat' : 'none' });
     // Odkazy do jiné sekce (link) až za vlastní položky, před první oddělovač (4. 11. 2026)
     const order = (arr) => { const a = (arr || []).filter(i => !i.link), b = (arr || []).filter(i => i.link); return a.concat(b); };
-    const withSep = (arr) => arr.map((i, k) => Object.assign({}, i, { sepBefore: !!i.link && k > 0 && !arr[k - 1].link }));
+    const withSep = (arr) => arr.map((i, k) => Object.assign({}, i, { sepBefore: false /* odkazy do jiné sekce bez oddělovače, jako běžná podkategorie (6. 11. 2026) */ }));
     const groups = colGroups.map(g => {
       const items = order(g.items);
       const keep = g.chips === 'hardness' ? items.length : max;
@@ -1909,6 +1940,7 @@ class Component extends DCLogic {
     const allItem = cat.all || { label: 'Zobrazit vše', href: cat.href || '#' };
     return {
       hasTop: tops.length > 0 || !!cat.all,
+      mmv: V, hasTopA: V !== 'B' && (tops.length > 0 || !!cat.all), hasTopB: V === 'B' && (tops.length > 0 || !!cat.all),
       tops,
       allLabel: allItem.label, allHref: allItem.href || cat.href || '#',
       allStrong: this.props.touch ? 'true' : 'false',

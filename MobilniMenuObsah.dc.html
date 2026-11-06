@@ -282,7 +282,7 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
     </sc-if>
     <div style="border-top:1px solid var(--ss-border-subtle,#E1E6EB);padding:8px 0 24px;display:flex;flex-direction:column">
       <sc-for list="{{ utility }}" as="u" hint-placeholder-count="1">
-        <a class="ss-mob-row" href="{{ u.href }}" style="color:var(--ss-text-secondary,#3D4750)">{{ u.label }}</a>
+        <a class="ss-mob-row" href="{{ u.href }}" style="color:var(--ss-text-secondary,#3D4750)"><span class="ss-mob-icon"><dc-import name="Ikony" iconName="phone" size="20" hint-size="20px,20px"></dc-import></span><span>{{ u.label }}</span></a>
       </sc-for>
       <a class="ss-mob-row" href="#prihlaseni" style="color:var(--ss-text-secondary,#3D4750)">
         <span class="ss-mob-icon"><dc-import name="Ikony" iconName="user" size="20" hint-size="20px,20px"></dc-import></span>
@@ -1942,10 +1942,10 @@ class Component extends DCLogic {
       const cat = (g) => ({ isCat: true, isChips: false, title: g.title, href: g.href || '#', imgStyle: thumb(g.image), linkStr: g.link ? 'true' : 'false', bestStr: g.best ? 'true' : 'false', isBest: !!g.best, chev: 'chevron-right', sepBefore: false });
       best.forEach(g => rows.push(cat(g)));
       const order = (arr) => { const a = (arr || []).filter(i => !i.link), b = (arr || []).filter(i => i.link); return a.concat(b); };
-      chips.forEach(g => { const it = order(g.items); rows.push({ isChips: true, isCat: false, title: g.title, href: g.href || '#', imgStyle: thumb(g.image), items: it.map((i, k) => ({ label: i.label, href: i.href || '#', linkStr: i.link ? 'true' : 'false', sepBefore: !!i.link && k > 0 && !it[k - 1].link })) }); });
+      chips.forEach(g => { const it = order(g.items); rows.push({ isChips: true, isCat: false, title: g.title, href: g.href || '#', imgStyle: thumb(g.image), items: it.map((i, k) => ({ label: i.label, href: i.href || '#', linkStr: i.link ? 'true' : 'false', sepBefore: false /* odkazy do jiné sekce bez oddělovače, jako běžná podkategorie (6. 11. 2026) */ })) }); });
       // odkazy do jiné sekce až na konec, oddělené čarou
       const restO = order(rest);
-      restO.forEach((g, k) => rows.push(Object.assign(cat(g), { sepBefore: !!g.link && (k > 0 || rows.length > 0) && !(restO[k - 1] && restO[k - 1].link) })));
+      restO.forEach((g, k) => rows.push(Object.assign(cat(g), { sepBefore: false /* odkazy do jiné sekce bez oddělovače, jako běžná podkategorie (6. 11. 2026) */ })));
       const top = sec.top || [];
       const KICK = { promo: 'Tip', guide: 'Průvodce', article: 'Poradíme' };
       const ext = (h) => /^https?:/.test(h || ''); // externí články (blog) v nové záložce (4. 11. 2026)

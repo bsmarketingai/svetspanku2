@@ -426,7 +426,7 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
         </button>
       </div>
       <sc-if value="{{ megaOpen }}" hint-placeholder-val="{{ false }}">
-        <div style="position:absolute;top:100%;left:0;right:0;z-index:300;max-height:calc(100vh - 100%);overflow-y:auto;overscroll-behavior:contain;background:var(--ss-surface-card,#FFFFFF);box-shadow:0 16px 40px rgba(19,44,67,.18);border-radius:0 0 12px 12px">
+        <div ref="{{ megaRef }}" style="position:absolute;top:100%;left:0;right:0;z-index:300;overflow-y:auto;overscroll-behavior:contain;background:var(--ss-surface-card,#FFFFFF);box-shadow:0 16px 40px rgba(19,44,67,.18);border-radius:0 0 12px 12px">
           <dc-import name="MegaMenu" category="{{ megaCategory }}" touch="{{ megaTouch }}" hint-size="100%,380px"></dc-import>
         </div>
       </sc-if>
@@ -2171,6 +2171,7 @@ class Component extends DCLogic {
     if (l !== !!this.state.navL || r !== !!this.state.navR) this.setState({ navL: l, navR: r });
   }
   componentWillUnmount() {
+    if (this._megaFit) { window.removeEventListener('resize', this._megaFit); window.removeEventListener('scroll', this._megaFit); }
     window.removeEventListener('ss-open-search', this._openSearch);
     if (this._navRO) this._navRO.disconnect();
     if (this._nav && this._navWheel) this._nav.removeEventListener('wheel', this._navWheel);
@@ -2343,6 +2344,14 @@ class Component extends DCLogic {
         href: c.href || 'Kategorie.dc.html'
       })),
       megaOpen: !narrow && openIndex >= 0 && !!(cats[openIndex] && cats[openIndex].groups),
+      // Mega menu vyšší než okno: výška panelu = od jeho horní hrany po spodek okna, uvnitř se scrolluje až na konec (6. 11. 2026)
+      megaRef: this._megaRef || (this._megaRef = (el) => {
+        if (this._megaFit) { window.removeEventListener('resize', this._megaFit); window.removeEventListener('scroll', this._megaFit); this._megaFit = null; }
+        if (!el) return;
+        this._megaFit = () => { try { const t = el.getBoundingClientRect().top; el.style.maxHeight = Math.max(240, window.innerHeight - Math.max(0, t) - 8) + 'px'; } catch (e) {} };
+        this._megaFit(); requestAnimationFrame(this._megaFit); setTimeout(this._megaFit, 300);
+        window.addEventListener('resize', this._megaFit); window.addEventListener('scroll', this._megaFit, { passive: true });
+      }),
       megaCategory: cats[openIndex],
       megaTouch: this._touch(),
       // Mobilní menu v2: otevřená sekce (název v hlavičce okna, šipka zpět) (4. 11. 2026)

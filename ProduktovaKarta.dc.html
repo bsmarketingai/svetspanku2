@@ -243,6 +243,12 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
 .ss-pc[data-layout="row"] .ss-pc-fav:not(.ss-pc-fav-out){top:8px;left:8px;right:auto;}
 .ss-pc-fav-in{top:12px;right:12px;background:rgba(255,255,255,.2);box-shadow:0 1px 3px rgba(19,44,67,.16);}
 .ss-pc-fav-in[aria-pressed="true"]{background:rgba(255,255,255,.2)!important;}
+/* Oblíbené sjednoceno s detailem produktu (6. 11. 2026): bílý kruh 44 px, jemný stín, srdce 22 px modré, uložené meruňkové, hover meruňkový podklad */
+.ss-pc-fav,.ss-pc-fav-in,.ss-pc-fav-in[aria-pressed="true"],.ss-pc-fav[aria-pressed="true"]{width:44px;height:44px;border-radius:999px;background:#FFFFFF!important;box-shadow:0 2px 8px rgba(19,44,67,.08);}
+.ss-pc-fav{color:#21507B;}
+@media (hover:hover) and (pointer:fine){.ss-pc-fav[aria-pressed="false"]:hover{background:#FFF5E6!important;color:#A4600C;}}
+.ss-pc-fav:active{transform:scale(.96);}
+.ss-pc-fav:focus-visible{box-shadow:0 0 0 3px rgba(41,96,147,.35);}
 html[data-mode="dark"] .ss-pc-mediawrap{margin:-18px -18px 14px!important;}
 html[data-mode="dark"] .ss-pc-fav-in{background:var(--ss-surface-card,#0E1F2F);color:var(--ss-text-primary,#EEF3F8);}
 .ss-pc-img{transition:transform .4s cubic-bezier(.22,.61,.36,1);}
@@ -273,7 +279,7 @@ html[data-mode="dark"] .ss-pc-fav-in{background:var(--ss-surface-card,#0E1F2F);c
           </sc-if>
         </div>
           <button type="button" class="ss-pc-fav ss-pc-fav-out" onClick="{{ toggleFav }}" aria-label="{{ favLabel }}" aria-pressed="{{ favPressed }}">
-            <dc-import name="Ikony" iconName="{{ favIcon }}" size="20" hint-size="20px,20px"></dc-import>
+            <dc-import name="Ikony" iconName="{{ favIcon }}" size="22" hint-size="22px,22px"></dc-import>
           </button>
         </div>
         <div style="display:flex;flex-direction:column;gap:8px;min-width:0">
@@ -343,7 +349,7 @@ html[data-mode="dark"] .ss-pc-fav-in{background:var(--ss-surface-card,#0E1F2F);c
   </sc-if>
   <sc-if value="{{ notRemovable }}" hint-placeholder-val="{{ true }}">
   <button type="button" class="ss-pc-fav ss-pc-fav-in" onClick="{{ toggleFav }}" aria-label="{{ favLabel }}" aria-pressed="{{ favPressed }}">
-    <dc-import name="Ikony" iconName="{{ favIcon }}" size="20" hint-size="20px,20px"></dc-import>
+    <dc-import name="Ikony" iconName="{{ favIcon }}" size="22" hint-size="22px,22px"></dc-import>
   </button>
   </sc-if>
   <sc-if value="{{ removable }}" hint-placeholder-val="{{ false }}">

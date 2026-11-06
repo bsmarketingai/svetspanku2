@@ -126,8 +126,8 @@
       "page": "detaily",
       "title": "Detail_Multi 3.0 Konfigurator",
       "w": 1440,
-      "x": 7600,
-      "y": 0
+      "x": 0,
+      "y": 2540
     },
     "Detail_Postel_3.0.dc.html": {
       "expand": "fill",
@@ -2984,8 +2984,8 @@
       "page": "detaily",
       "title": "Skříň UNI 2D Konf",
       "w": 1440,
-      "x": 9120,
-      "y": 0
+      "x": 1520,
+      "y": 2540
     },
     "Detail_Set_Polstar_Povlak.dc.html": {
       "expand": "fill",
@@ -2994,8 +2994,8 @@
       "page": "detaily",
       "title": "Set polštář + povlak",
       "w": 1440,
-      "x": 10640,
-      "y": 0
+      "x": 3040,
+      "y": 2540
     }
   },
   "createdOnFiles": {
@@ -3022,7 +3022,7 @@
       "kind": "title1",
       "maxW": 6000,
       "page": "detaily",
-      "text": "Detaily produktů",
+      "text": "Detaily produktů – Simple",
       "w": 240,
       "x": 0,
       "y": -300
@@ -3089,6 +3089,14 @@
       "w": 240,
       "x": 0,
       "y": -300
+    },
+    "t_detaily_konf": {
+      "kind": "title1",
+      "maxW": 4480,
+      "page": "detaily",
+      "text": "Detaily produktů – Konfigurátor",
+      "x": 0,
+      "y": 2240
     }
   },
   "order": [
