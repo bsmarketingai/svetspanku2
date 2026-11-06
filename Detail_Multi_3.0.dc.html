@@ -670,11 +670,25 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
                   <div><dc-import name="Checkbox" label="Zobrazit pouze skladové varianty" checked="{{ onlyStock }}" onChange="{{ setOnlyStock }}" hint-size="260px,44px"></dc-import></div>
                 </div>
                 <sc-if value="{{ sizeChips }}" hint-placeholder-val="{{ true }}">
-                  <div style="display:flex;flex-wrap:wrap;gap:8px">
-                    <sc-for list="{{ sizes }}" as="s" hint-placeholder-count="4">
-                      <dc-import name="Chip" label="{{ s.label }}" size="standard" variant="{{ s.variant }}" ariaPressed="{{ s.pressed }}" check="{{ s.pressed }}" onClick="{{ s.onPick }}" hint-size="120px,36px"></dc-import>
-                    </sc-for>
-                    <dc-import name="Chip" label="{{ customLinkLabel }}" icon="rozmer-postele" size="standard" variant="{{ customChipVariant }}" ariaPressed="{{ customChipPressed }}" check="{{ customChipPressed }}" onClick="{{ openCustom }}" hint-size="150px,36px"></dc-import>
+                  <!-- 6. 11. 2026: rozdělení na standardní a prodloužené rozměry jako u Postel 3.0 -->
+                  <div style="display:flex;flex-direction:column;gap:16px">
+                    <div role="group" aria-labelledby="ss-pd-sz-std" style="display:flex;flex-direction:column;gap:8px">
+                      <span id="ss-pd-sz-std" style="font-size:13px;font-weight:600;line-height:1.3;color:var(--ss-text-secondary,#3D4750)">Standardní rozměry</span>
+                      <div style="display:flex;flex-wrap:wrap;gap:8px">
+                        <sc-for list="{{ sizesStd }}" as="s" hint-placeholder-count="5">
+                          <dc-import name="Chip" label="{{ s.label }}" size="standard" variant="{{ s.variant }}" ariaPressed="{{ s.pressed }}" check="{{ s.pressed }}" onClick="{{ s.onPick }}" hint-size="120px,36px"></dc-import>
+                        </sc-for>
+                      </div>
+                    </div>
+                    <div role="group" aria-labelledby="ss-pd-sz-ext" style="display:flex;flex-direction:column;gap:8px;padding-top:16px;border-top:1px solid var(--ss-border-subtle,#E1E6EB)">
+                      <span id="ss-pd-sz-ext" style="font-size:13px;font-weight:600;line-height:1.3;color:var(--ss-text-secondary,#3D4750)">Prodloužené a nestandardní rozměry</span>
+                      <div style="display:flex;flex-wrap:wrap;gap:8px">
+                        <sc-for list="{{ sizesExt }}" as="s" hint-placeholder-count="3">
+                          <dc-import name="Chip" label="{{ s.label }}" size="standard" variant="{{ s.variant }}" ariaPressed="{{ s.pressed }}" check="{{ s.pressed }}" onClick="{{ s.onPick }}" hint-size="140px,36px"></dc-import>
+                        </sc-for>
+                        <dc-import name="Chip" label="{{ customLinkLabel }}" icon="rozmer-postele" size="standard" variant="{{ customChipVariant }}" ariaPressed="{{ customChipPressed }}" check="{{ customChipPressed }}" onClick="{{ openCustom }}" hint-size="150px,36px"></dc-import>
+                      </div>
+                    </div>
                   </div>
                 </sc-if>
                 <sc-if value="{{ sizeSelect }}" hint-placeholder-val="{{ false }}">
@@ -1290,7 +1304,10 @@ class Component extends DCLogic {
     window.addEventListener('resize', this._resize);
     this._scroll = () => {
       const y = window.scrollY || document.documentElement.scrollTop;
-      const on = y > 900;
+      // 6. 11. 2026: plovoucí panel vždy, když není celý vidět box s cenou a CTA Koupit (i nahoře stránky na malém okně)
+      const box = document.querySelector('.ss-pd-glass');
+      let on = y > 900;
+      if (box) { const r = box.getBoundingClientRect(); const topLine = this.state.headerH || 0; on = r.top < topLine - 4 || r.bottom > window.innerHeight + 4; }
       if (on !== this.state.sticky) this.setState({ sticky: on });
       const tn = document.querySelector('nav[aria-label="Obsah produktu"]');
       const line = (tn ? Math.max(0, tn.getBoundingClientRect().bottom) : (this.state.headerH || 0)) + 24;
@@ -1299,6 +1316,9 @@ class Component extends DCLogic {
       if (act !== this.state.activeSec) { this.setState({ activeSec: act }); this.scrollToc(act); }
     };
     window.addEventListener('scroll', this._scroll, { passive: true });
+    this._resizeSticky = () => this._scroll();
+    window.addEventListener('resize', this._resizeSticky);
+    [0, 300, 1200].forEach(t => setTimeout(() => { try { this._scroll(); } catch (e) {} }, t));
     this._measureHeader = () => {
       const h = document.querySelector('header.ss-hd');
       const full = h ? Math.round(h.getBoundingClientRect().height) : 0;
@@ -1348,6 +1368,7 @@ class Component extends DCLogic {
     clearInterval(this._headerTick); window.removeEventListener('resize', this._onResize);
     window.removeEventListener('resize', this._resize);
     window.removeEventListener('scroll', this._scroll);
+    window.removeEventListener('resize', this._resizeSticky);
     window.removeEventListener('keydown', this._key);
     document.body.style.overflow = '';
   }
@@ -1419,6 +1440,9 @@ class Component extends DCLogic {
       { id: 'vyklopny-nohy', label: 'Lamelový výklopný rošt – od nohou', meta: '90 × 200 cm', price: '1 190 Kč', stock: 'Skladem' },
       { id: 'polohovaci', label: 'Polohovací rošt s kováním', meta: '90 × 200 cm · hlava i nohy', price: '2 890 Kč', stock: 'Na objednání (2–3 týdny)', outOfStock: true }
     ];
+    // Fotky roštů v panelu výběru s možností zvětšení (6. 11. 2026, jako Postel 3.0)
+    const ROST_IMG = { 'bez': '_blob/5b3128d05b5f6d37a3ccef94d03779cf.webp', 'villach-s': '_blob/7d9234acbe0f59bf374b86101ea80224.webp', 'vyklopny-bok': '_blob/e58c131539e8ad6860c8e14b3cb0959a.webp', 'vyklopny-nohy': '_blob/e58c131539e8ad6860c8e14b3cb0959a.webp', 'polohovaci': '_blob/e93df98a5542f295113f3ff8460f56a7.webp' };
+    ROSTY.forEach(r => { if (ROST_IMG[r.id]) r.image = ROST_IMG[r.id]; });
     const ODSTINY = [
       { id: 'cherry', label: 'Cherry', color: '#8A4B2A' },
       { id: 'eben', label: 'Eben', color: '#332A24' },
@@ -1630,6 +1654,10 @@ class Component extends DCLogic {
         if (v === '__custom') { this.openCsForm(); return; }
         this.setState({ size: v, csOn: false, csOk: false });
       },
+      // Standardní rozměry do 180 × 200 cm, nad to prodloužené (spolu s vlastním rozměrem) – jako Postel 3.0
+      ...(() => { const ext = (x) => { const m = String(x).match(/(\d+)\s*×\s*(\d+)/); return !!m && (+m[1] > 180 || +m[2] > 200); };
+        const chip = (s) => ({ label: s, variant: this.state.size === s && !this.state.csOn ? 'primary' : 'outlineBox', pressed: this.state.size === s && !this.state.csOn ? 'true' : 'false', onPick: () => this.setState({ size: s, csOn: false, csOk: false }) });
+        return { sizesStd: sizes.filter(x => !ext(x)).map(chip), sizesExt: sizes.filter(ext).map(chip) }; })(),
       sizes: sizes.map(s => ({
         label: s,
         variant: this.state.size === s && !this.state.csOn ? 'primary' : 'outlineBox',

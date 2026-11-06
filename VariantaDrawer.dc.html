@@ -215,10 +215,11 @@ class Component extends DCLogic {
       icon: pvRow ? 'photo' : 'color-swatch',
       title: pvRow ? pvRow.label : (p.title || 'Výběr varianty'),
       data: pvRow ? pvRow : { note: p.note, value: p.value, groups: p.groups, rows: p.rows, preview: true },
-      onEvent: (t, a) => { if (t === 'pick' && p.onPick) p.onPick(a); else if (t === 'preview') this.setState({ pv: a }); },
+      // 6. 11. 2026: klik na variantu ji vybere a drawer rovnou zavře
+      onEvent: (t, a) => { if (t === 'pick') { if (p.onPick) p.onPick(a); closeAll(); } else if (t === 'preview') this.setState({ pv: a }); },
       back: pvRow ? (() => this.setState({ pv: null })) : undefined,
       primaryLabel: pvRow ? 'Vybrat tuto variantu' : 'Hotovo',
-      primary: pvRow ? (() => { const id = pvRow.id; this.setState({ pv: null }); if (p.onPick) p.onPick(id); }) : closeAll,
+      primary: pvRow ? (() => { const id = pvRow.id; if (p.onPick) p.onPick(id); closeAll(); }) : closeAll,
       close: closeAll
     };
   }
