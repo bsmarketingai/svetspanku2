@@ -204,6 +204,15 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
 .ss-tipbadge{display:inline-flex;align-items:center;flex:none;height:20px;padding:0 7px;border-radius:4px;background:#FBB255;color:#1C2229;font-family:Roboto,Helvetica,Arial,sans-serif;font-size:11px;font-weight:700;letter-spacing:.08em;line-height:1;text-transform:uppercase;}
 /* V chipu jako pill, zarovnaný k pravému okraji (4. 11. 2026) */
 .ss-chip .ss-tipbadge{height:20px;padding:0 8px;margin-right:-10px;border-radius:999px;}
+/* Hover plných variant přes CSS (9. 11. 2026) – aktivní filtr, primary, Zrušit filtry, accent */
+@media (hover:hover) and (pointer:fine){
+.ss-chip[data-v="filterActive"]:not([aria-disabled="true"]):hover{background:#296093!important;color:#FFFFFF!important;}
+/* 9. 11. 2026: neaktivní výběrový chip (outline) na hover tmavý jako aktivní, aktivní (primary) se na hover nemění */
+.ss-chip[data-v="primary"]:not([aria-disabled="true"]):hover{background:#132C43!important;color:#FFFFFF!important;}
+.ss-chip[data-v="outline"]:not([aria-disabled="true"]):hover,.ss-chip[data-v="outlineBox"]:not([aria-disabled="true"]):hover{background:#132C43!important;color:#FFFFFF!important;box-shadow:inset 0 0 0 1px #132C43!important;}
+.ss-chip[data-v="sale"]:not([aria-disabled="true"]):hover{background:#8E1E18!important;color:#FFFFFF!important;}
+.ss-chip[data-v="accent"]:not([aria-disabled="true"]):hover{background:#F09A2C!important;}
+}
 .ss-chip:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
 .ss-chip:not([aria-disabled="true"]):active{transform:scale(.98);}
 .ss-chip[aria-disabled="true"]{opacity:.45;cursor:not-allowed;}
@@ -216,7 +225,7 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
 </style>
 </helmet>
 <sc-if value="{{ isLink }}" hint-placeholder-val="{{ false }}">
-  <a class="ss-chip" href="{{ href }}" style="{{ chipStyle }}" style-hover="{{ hoverStyle }}">
+  <a class="ss-chip" data-v="{{ vKey }}" href="{{ href }}" style="{{ chipStyle }}" style-hover="{{ hoverStyle }}">
     <sc-if value="{{ hasIcon }}" hint-placeholder-val="{{ false }}"><dc-import name="Ikony" iconName="{{ icon }}" size="{{ iconSize }}" hint-size="18px,18px"></dc-import></sc-if>
     <span>{{ label }}</span>
     <sc-if value="{{ tip }}" hint-placeholder-val="{{ false }}"><span class="ss-tipbadge">Tip</span></sc-if>
@@ -224,7 +233,7 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
   </a>
 </sc-if>
 <sc-if value="{{ isButton }}" hint-placeholder-val="{{ true }}">
-  <button type="button" class="ss-chip" style="{{ chipStyle }}" style-hover="{{ hoverStyle }}" onClick="{{ handleClick }}" aria-pressed="{{ ariaPressed }}" aria-disabled="{{ ariaDisabled }}">
+  <button type="button" class="ss-chip" data-v="{{ vKey }}" style="{{ chipStyle }}" style-hover="{{ hoverStyle }}" onClick="{{ handleClick }}" aria-pressed="{{ ariaPressed }}" aria-disabled="{{ ariaDisabled }}">
     <sc-if value="{{ showCheck }}" hint-placeholder-val="{{ false }}"><span aria-hidden="true" style="display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;flex:none;border-radius:999px;background:#FBB255;color:#1C2229"><dc-import name="Ikony" iconName="check" size="14" hint-size="14px,14px"></dc-import></span></sc-if>
     <sc-if value="{{ hasIcon }}" hint-placeholder-val="{{ false }}"><dc-import name="Ikony" iconName="{{ icon }}" size="{{ iconSize }}" hint-size="18px,18px"></dc-import></sc-if>
     <sc-if value="{{ plainLabel }}" hint-placeholder-val="{{ true }}"><span>{{ label }}</span></sc-if>
@@ -239,7 +248,7 @@ class Component extends DCLogic {
   static VARIANTS = {
     filter:          { bg: 'var(--ss-surface-page,#FFFFFF)', fg: 'var(--ss-text-secondary,#3D4750)', border: 'var(--ss-border-strong,#C8D0D8)', hoverBg: 'var(--ss-hover-bg,#FFF5E6)', hoverFg: 'var(--ss-hover-text,#A4600C)', hoverBorder: 'var(--ss-hover-text,#A4600C)' },
     filterActive:    { bg: '#132C43', fg: '#FFFFFF', hoverBg: '#0B1F33' },
-    primary:         { bg: '#132C43', fg: '#FFFFFF', hoverBg: '#0B1F33' },
+    primary:         { bg: '#132C43', fg: '#FFFFFF', hoverBg: '#132C43' },
     secondary:       { bg: 'var(--ss-surface-hover,#F0F5FA)', fg: 'var(--ss-link-hover,#21507B)', hoverBg: 'var(--ss-hover-bg,#FFF5E6)', hoverFg: 'var(--ss-hover-text,#A4600C)' },
     secondaryOutline:{ bg: 'var(--ss-surface-page,#FFFFFF)', fg: 'var(--ss-link-hover,#21507B)', border: 'var(--ss-border-hover,#8DB3D3)', hoverBg: 'var(--ss-hover-bg,#FFF5E6)', hoverFg: 'var(--ss-hover-text,#A4600C)', hoverBorder: 'var(--ss-hover-text,#A4600C)' },
     outline:         { bg: 'var(--ss-surface-page,#FFFFFF)', fg: 'var(--ss-text-secondary,#3D4750)', border: 'var(--ss-border-strong,#C8D0D8)', hoverBg: 'var(--ss-hover-bg,#FFF5E6)', hoverFg: 'var(--ss-hover-text,#A4600C)', hoverBorder: 'var(--ss-hover-text,#A4600C)' },
@@ -279,7 +288,7 @@ class Component extends DCLogic {
       showRemove: p.variant === 'filter' && active && !p.href,
       ariaPressed: p.ariaPressed || (p.variant === 'filter' ? (active ? 'true' : 'false') : undefined),
       ariaDisabled: disabled ? 'true' : undefined,
-      chipStyle, hoverStyle,
+      chipStyle, hoverStyle, vKey: key,
       handleClick: disabled ? (e) => e.preventDefault() : (p.onClick || (() => {}))
     };
   }

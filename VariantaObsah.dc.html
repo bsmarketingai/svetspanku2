@@ -282,10 +282,7 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
                   <span style="font-size:13px;color:var(--ss-text-muted,#5B6874)"><sc-if value="{{ r.hasMetaStrong }}" hint-placeholder-val="{{ false }}"><strong style="font-weight:700;color:var(--ss-text-primary,#1C2229)">{{ r.metaStrong }}</strong></sc-if>{{ r.meta }}</span>
                 </sc-if>
                 <sc-if value="{{ r.hasStock }}" hint-placeholder-val="{{ true }}">
-                <span style="display:flex;align-items:center;gap:6px;font-size:13px;color:{{ r.stockColor }}">
-                  <span style="display:flex;color:{{ r.stockColor }}"><dc-import name="Ikony" iconName="{{ r.stockIcon }}" size="16" hint-size="16px,16px"></dc-import></span>
-                  <span>{{ r.stock }}</span>
-                </span>
+                <dc-import name="Skladovost" kind="{{ r.stockKind }}" label="{{ r.stock }}" size="sm" hint-size="120px,18px"></dc-import>
                 </sc-if>
               </span>
               <span style="font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:17px;color:var(--ss-text-primary,#1C2229);white-space:nowrap">{{ r.price }}</span>
@@ -339,6 +336,7 @@ class Component extends DCLogic {
         label: r.label, meta: r.meta, hasMeta: !!(r.meta || r.metaStrong), metaStrong: r.metaStrong, hasMetaStrong: !!r.metaStrong, price: r.price,
         image: r.image, hasImage: !!r.image, noImage: !r.image,
         stock: r.stock || 'Skladem', hasStock: r.stock !== '',
+        stockKind: r.stockKind || (r.outOfStock ? (/nedostup|vyprod/i.test(r.stock || '') ? 'outOfStock' : 'onOrder') : 'inStock'),
         stockIcon: r.outOfStock ? 'clock' : 'circle-check',
         stockColor: r.outOfStock ? 'var(--ss-text-muted,#5B6874)' : 'var(--ss-status-success,#157A41)',
         selected: sel, pressed: sel ? 'true' : 'false',

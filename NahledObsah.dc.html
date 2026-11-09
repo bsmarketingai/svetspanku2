@@ -210,7 +210,7 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
     <div style="display:flex;flex-direction:column;gap:6px;min-width:0;flex:1 1 240px">
       <span style="font-family:Oswald,Roboto,sans-serif;font-weight:600;font-size:20px;line-height:1.25;color:var(--ss-text-heading,#0B1F33)">{{ label }}</span>
       <sc-if value="{{ hasMeta }}" hint-placeholder-val="{{ true }}"><span style="font-size:14px;line-height:1.5;color:var(--ss-text-secondary,#3D4750)">{{ meta }}</span></sc-if>
-      <sc-if value="{{ hasStock }}" hint-placeholder-val="{{ true }}"><span style="display:flex;align-items:center;gap:6px;font-size:14px;color:{{ stockColor }}"><span style="display:flex"><dc-import name="Ikony" iconName="{{ stockIcon }}" size="16" hint-size="16px,16px"></dc-import></span><span>{{ stock }}</span></span></sc-if>
+      <sc-if value="{{ hasStock }}" hint-placeholder-val="{{ true }}"><dc-import name="Skladovost" kind="{{ stockKind }}" label="{{ stock }}" size="sm" hint-size="140px,18px"></dc-import></sc-if>
     </div>
     <sc-if value="{{ hasPrice }}" hint-placeholder-val="{{ true }}"><span style="font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:22px;white-space:nowrap">{{ price }}</span></sc-if>
   </div>
@@ -227,6 +227,7 @@ class Component extends DCLogic {
       meta, hasMeta: !!meta,
       price: d.price || '', hasPrice: !!d.price,
       stock: d.stock || '', hasStock: !!d.stock,
+      stockKind: d.stockKind || (d.outOfStock ? (/nedostup|vyprod/i.test(d.stock || '') ? 'outOfStock' : 'onOrder') : 'inStock'),
       stockIcon: d.outOfStock ? 'clock' : 'circle-check',
       stockColor: d.outOfStock ? 'var(--ss-text-muted,#5B6874)' : 'var(--ss-status-success,#157A41)'
     };

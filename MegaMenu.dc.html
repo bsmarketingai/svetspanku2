@@ -262,17 +262,36 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
 .ss-mm a.ss-mm-all:hover{color:var(--ss-hover-text,#A4600C);}
 .ss-mm a.ss-mm-all:hover>span{text-decoration:underline;text-underline-offset:3px;}
 .ss-mm-all:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
-/* Varianta B (6. 11. 2026): karty Tip / Poradíme a Zobrazit vše ve vlastním sloupci úplně vpravo */
-.ss-mm-wrap[data-v="B"]{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:32px;align-items:stretch;} /* sloupec vpravo i jeho svislá linka v plné výšce mega menu (6. 11. 2026) */
-.ss-mm-wrap[data-v="B"] .ss-mm-chips:first-child{margin-top:24px;}
+/* Varianta C (dříve B, 6. 11. 2026): karty Tip / Poradíme a Zobrazit vše ve vlastním sloupci úplně vpravo */
+:is(.ss-mm-wrap[data-v="C"],.ss-mm-wrap[data-v="D"]){display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:32px;align-items:stretch;} /* sloupec vpravo i jeho svislá linka v plné výšce mega menu (6. 11. 2026) */
+:is(.ss-mm-wrap[data-v="C"],.ss-mm-wrap[data-v="D"]) .ss-mm-chips:first-child{margin-top:24px;}
 /* Varianta B: nadpis řady (Postele podle rozměru) na vlastním řádku, čipy pod ním (6. 11. 2026) */
-.ss-mm-wrap[data-v="B"] .ss-mm-chips::before{content:"";flex-basis:100%;height:0;order:1;}
-.ss-mm-wrap[data-v="B"] .ss-mm-chips-t{order:0;}
-.ss-mm-wrap[data-v="B"] .ss-mm-chips>.ss-mm-chip,.ss-mm-wrap[data-v="B"] .ss-mm-chips>.ss-mm-chip-sep{order:2;}
+:is(.ss-mm-wrap[data-v="C"],.ss-mm-wrap[data-v="D"]) .ss-mm-chips::before{content:"";flex-basis:100%;height:0;order:1;}
+:is(.ss-mm-wrap[data-v="C"],.ss-mm-wrap[data-v="D"]) .ss-mm-chips-t{order:0;}
+:is(.ss-mm-wrap[data-v="C"],.ss-mm-wrap[data-v="D"]) .ss-mm-chips>.ss-mm-chip,:is(.ss-mm-wrap[data-v="C"],.ss-mm-wrap[data-v="D"]) .ss-mm-chips>.ss-mm-chip-sep{order:2;}
+/* Varianta B (9. 11. 2026): jako A, ale karty Tip / Poradíme a Zobrazit vše až pod položkami mega menu */
+.ss-mm-wrap[data-v="B"] .ss-mm-chips:first-child{margin-top:24px;}
+.ss-mm-wrap[data-v="B"] .ss-mm-cols{padding-bottom:20px;}
+.ss-mm-top[data-pos="bottom"]{border-top:1px solid var(--ss-border-subtle,#E1E6EB);padding:20px 0 24px;}
+/* Varianta C (9. 11. 2026): poznámka u položky (např. váha u tvrdosti) na vlastním řádku pod názvem */
+:is(.ss-mm-wrap[data-v="C"],.ss-mm-wrap[data-v="D"]) .ss-mm-link:has(.ss-mm-note){flex-direction:column;align-items:flex-start;gap:0;}
+:is(.ss-mm-wrap[data-v="C"],.ss-mm-wrap[data-v="D"]) .ss-mm-link:has(.ss-mm-note)>span:first-child{white-space:nowrap;}
 .ss-mm-side{display:flex;flex-direction:column;gap:12px;align-self:stretch;box-sizing:border-box;padding:24px 0 24px 24px;border-left:1px solid var(--ss-border-subtle,#E1E6EB);}
 .ss-mm-side .ss-mm-tile{flex:none;max-width:none;}
 .ss-mm-side .ss-mm-allsec{margin:4px 0 0;align-self:flex-start;padding-left:0;}
 .ss-mm-side .ss-mm-allsec[data-strong="true"]{padding:0 16px;}
+/* Varianta D: banner průvodce / promo z hlavičky kategorie jako fotka nahoře ve sloupci vpravo, pod ním odkazy (9. 11. 2026) */
+.ss-mm-ban{position:relative;display:flex;flex-direction:column;justify-content:flex-end;flex:none;min-height:228px;border-radius:12px;overflow:hidden;background:#132C43;color:#FFFFFF;text-decoration:none;box-shadow:0 2px 8px rgba(19,44,67,.08);transition:box-shadow .15s cubic-bezier(.22,.61,.36,1);}
+.ss-mm-ban-img{position:absolute;inset:0;background-size:cover;background-position:right center;background-repeat:no-repeat;transition:transform .3s cubic-bezier(.22,.61,.36,1);}
+.ss-mm-ban[data-img="true"]{background:#FFFFFF;color:var(--ss-text-primary,#1C2229);}
+.ss-mm-ban[data-img="true"]::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(255,255,255,.96) 0%,rgba(255,255,255,.85) 38%,rgba(255,255,255,0) 72%);pointer-events:none;}
+.ss-mm-ban-tx{position:relative;z-index:1;display:flex;flex-direction:column;align-items:flex-start;gap:4px;padding:16px;}
+.ss-mm-ban-t{font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:21px;line-height:1.15;}
+.ss-mm-ban-s{font-size:14px;line-height:1.4;opacity:.85;}
+.ss-mm-ban-cta{display:inline-flex;align-items:center;gap:6px;margin-top:10px;height:40px;padding:0 14px 0 16px;border-radius:6px;background:#296093;color:#FFFFFF;font-size:15px;font-weight:700;}
+.ss-mm-ban[data-img="false"] .ss-mm-ban-cta{background:#FBB255;color:#1C2229;}
+@media (hover:hover) and (pointer:fine){.ss-mm-ban:hover{box-shadow:0 4px 12px rgba(19,44,67,.12);}.ss-mm-ban:hover .ss-mm-ban-img{transform:scale(1.03);}.ss-mm-ban:hover .ss-mm-ban-cta{background:#21507B;}.ss-mm-ban[data-img="false"]:hover .ss-mm-ban-cta{background:#F09A2C;}}
+.ss-mm-ban:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
 </style>
 </helmet>
 <div class="ss-mm" style="width:100%;background:var(--ss-surface-card,#FFFFFF);font-family:Roboto,Helvetica,Arial,sans-serif">
@@ -322,10 +341,28 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
         </div>
       </sc-for>
     </div>
+    <sc-if value="{{ hasTopBottom }}" hint-placeholder-val="{{ false }}">
+      <div class="ss-mm-top" data-pos="bottom">
+        <sc-for list="{{ tops }}" as="t" hint-placeholder-count="3">
+          <a class="ss-mm-tile" data-kind="{{ t.kind }}" href="{{ t.href }}" target="{{ t.target }}" rel="{{ t.rel }}" onClick="{{ t.onClick }}">
+            <sc-if value="{{ t.hasImage }}" hint-placeholder-val="{{ true }}"><span class="ss-mm-tile-img" aria-hidden="true" style="{{ t.imgStyle }}"></span></sc-if>
+            <sc-if value="{{ t.hasIcon }}" hint-placeholder-val="{{ false }}"><span class="ss-mm-tile-ico" aria-hidden="true"><dc-import name="Ikony" iconName="{{ t.icon }}" size="22" hint-size="22px,22px"></dc-import></span></sc-if>
+            <span class="ss-mm-tile-tx"><span class="ss-mm-tile-k">{{ t.kicker }}</span><span class="ss-mm-tile-t">{{ t.title }}</span><sc-if value="{{ t.hasSub }}" hint-placeholder-val="{{ false }}"><span class="ss-mm-tile-s">{{ t.sub }}</span></sc-if></span>
+          </a>
+        </sc-for>
+        <a class="ss-mm-allsec" href="{{ allHref }}" data-strong="{{ allStrong }}"><span>{{ allLabel }}</span><dc-import name="Ikony" iconName="arrow-right" size="18" hint-size="18px,18px"></dc-import></a>
+      </div>
+    </sc-if>
     </div>
-    <sc-if value="{{ hasTopB }}" hint-placeholder-val="{{ false }}">
+    <sc-if value="{{ hasTopSide }}" hint-placeholder-val="{{ false }}">
       <aside class="ss-mm-side" aria-label="Tipy a poradna">
-        <sc-for list="{{ tops }}" as="t" hint-placeholder-count="4">
+        <sc-if value="{{ hasBanner }}" hint-placeholder-val="{{ false }}">
+          <a class="ss-mm-ban" data-img="{{ banImgStr }}" href="{{ banHref }}">
+            <sc-if value="{{ banHasImg }}" hint-placeholder-val="{{ true }}"><span class="ss-mm-ban-img" aria-hidden="true" style="{{ banImgStyle }}"></span></sc-if>
+            <span class="ss-mm-ban-tx"><span class="ss-mm-ban-t">{{ banTitle }}</span><sc-if value="{{ banHasSub }}" hint-placeholder-val="{{ true }}"><span class="ss-mm-ban-s">{{ banSub }}</span></sc-if><span class="ss-mm-ban-cta"><span>{{ banCta }}</span><dc-import name="Ikony" iconName="chevron-right" size="18" hint-size="18px,18px"></dc-import></span></span>
+          </a>
+        </sc-if>
+        <sc-for list="{{ sideTops }}" as="t" hint-placeholder-count="4">
           <a class="ss-mm-tile" data-kind="{{ t.kind }}" href="{{ t.href }}" target="{{ t.target }}" rel="{{ t.rel }}" onClick="{{ t.onClick }}">
             <sc-if value="{{ t.hasImage }}" hint-placeholder-val="{{ true }}"><span class="ss-mm-tile-img" aria-hidden="true" style="{{ t.imgStyle }}"></span></sc-if>
             <sc-if value="{{ t.hasIcon }}" hint-placeholder-val="{{ false }}"><span class="ss-mm-tile-ico" aria-hidden="true"><dc-import name="Ikony" iconName="{{ t.icon }}" size="22" hint-size="22px,22px"></dc-import></span></sc-if>
@@ -1485,7 +1522,8 @@ const MENU = [
           },
           {
             "label": "Článek: Chrápání a spánková apnoe",
-            "href": "Clanek.dc.html",
+            "href": "https://blog.svetspanku.cz/chrapani-a-spankova-apnoe",
+            "image": "magazin-matrace-pro-dva.webp",
             "link": true
           }
         ]
@@ -1885,13 +1923,13 @@ return { MENU, UTILITY, QUICK };
 })();
 class Component extends DCLogic {
   // Mega menu v2 (4. 11. 2026): props category (sekce z menu.js), touch (tablet bez najetí myší → Zobrazit vše jako tlačítko), maxItems (výchozí 4; tvrdost celá).
-  // Varianta mega menu A/B (6. 11. 2026) – globálně z prezentační lišty, uloženo v ss-mmv, událost ss-mmv; prop variant ji přebije
-  state = { demo: null, width: typeof window !== 'undefined' ? document.documentElement.clientWidth : 1440, mmv: (() => { try { return localStorage.getItem('ss-mmv') === 'B' ? 'B' : 'A'; } catch (e) { return 'A'; } })() };
+  // Varianta mega menu A/B/C/D (D = jako C, nahoře banner z hlavičky kategorie jako fotka, 9. 11. 2026; A 6. 11., B pod položkami 9. 11., C = dřívější B s tipy vpravo) – globálně z prezentační lišty, uloženo v ss-mmv, událost ss-mmv; prop variant ji přebije
+  state = { demo: null, width: typeof window !== 'undefined' ? document.documentElement.clientWidth : 1440, mmv: (() => { try { return (v => ['A', 'B', 'C', 'D'].includes(v) ? v : 'A')(localStorage.getItem('ss-mmv')); } catch (e) { return 'A'; } })() };
   componentDidMount() {
     if (!this.props.category) Promise.resolve(__M_menu).then(m => this.setState({ demo: m.MENU[0] }));
     this._resize = () => this.setState({ width: document.documentElement.clientWidth });
     window.addEventListener('resize', this._resize);
-    this._mmv = () => { try { this.setState({ mmv: localStorage.getItem('ss-mmv') === 'B' ? 'B' : 'A' }); } catch (e) {} };
+    this._mmv = () => { try { this.setState({ mmv: (v => ['A', 'B', 'C', 'D'].includes(v) ? v : 'A')(localStorage.getItem('ss-mmv')) }); } catch (e) {} };
     window.addEventListener('ss-mmv', this._mmv);
   }
   componentWillUnmount() { window.removeEventListener('resize', this._resize); window.removeEventListener('ss-mmv', this._mmv); }
@@ -1902,11 +1940,14 @@ class Component extends DCLogic {
     const all = cat.groups || [];
     const chipGroups = all.filter(g => g.chips && g.chips !== 'hardness');
     const colGroups = all.filter(g => !(g.chips && g.chips !== 'hardness'));
-    const V = this.props.variant || this.state.mmv;
+    const V = ['A', 'B', 'C', 'D'].includes(this.props.variant) ? this.props.variant : this.state.mmv;
     const cols = Math.max(1, Math.min(colGroups.length, V === 'B' ? (w >= 1300 ? 4 : 3) : w >= 1300 ? 5 : w >= 1150 ? 4 : 3 /* XXL max 5 sloupců – 6 zalamovalo názvy (4. 11. 2026) */));
     const bg = (src, size) => ({ display: 'block', width: '100%', height: '100%', background: src ? 'url(' + src + ') center / ' + (size || 'cover') + ' no-repeat' : 'none' });
     // Odkazy do jiné sekce (link) až za vlastní položky, před první oddělovač (4. 11. 2026)
-    const order = (arr) => { const a = (arr || []).filter(i => !i.link), b = (arr || []).filter(i => i.link); return a.concat(b); };
+    // Odkazy na články (label „Článek: …“ nebo article: true) nepatří mezi podkategorie – jdou do řady Tip / Poradíme (A, B, C) jako karta článku (9. 11. 2026)
+    const isArt = (i) => !!(i && (i.article || /^Článek\s*:/i.test(i.label || '')));
+    const artItems = all.reduce((acc, g) => acc.concat((g.items || []).filter(isArt)), []);
+    const order = (arr) => { const src = (arr || []).filter(i => !isArt(i)); const a = src.filter(i => !i.link), b = src.filter(i => i.link); return a.concat(b); };
     const withSep = (arr) => arr.map((i, k) => Object.assign({}, i, { sepBefore: false /* odkazy do jiné sekce bez oddělovače, jako běžná podkategorie (6. 11. 2026) */ }));
     const groups = colGroups.map(g => {
       const items = order(g.items);
@@ -1927,7 +1968,7 @@ class Component extends DCLogic {
     });
     const chipRows = chipGroups.map(g => ({ title: g.title, href: g.href || '#', hasIcon: g.chips === 'sizes' || g.chips === 'prices', iconKind: g.chips, items: withSep(order(g.items)).map(i => ({ label: i.label, tip: !!i.tip, href: i.href || '#', linkStr: i.link ? 'true' : 'false', sepBefore: i.sepBefore })) }));
     const KICK = { promo: 'Tip', guide: 'Průvodce', article: 'Poradíme' };
-    const tops = (cat.top || []).map(t => ({
+    const tops = (cat.top || []).concat(artItems.filter(i => !(cat.top || []).some(t => (t.title || t.label || '') === (i.label || '').replace(/^Článek\s*:\s*/i, ''))).map(i => ({ kind: 'article', title: (i.label || '').replace(/^Článek\s*:\s*/i, ''), sub: i.sub || '', href: i.href, image: i.image }))).map(t => ({
       kind: t.kind || 'promo', href: t.href || '#', kicker: KICK[t.kind] || 'Tip',
       // externí články (blog) v nové záložce (4. 11. 2026)
       target: /^https?:/.test(t.href || '') ? '_blank' : undefined, rel: /^https?:/.test(t.href || '') ? 'noopener' : undefined,
@@ -1937,10 +1978,18 @@ class Component extends DCLogic {
       hasImage: !!t.image, imgStyle: t.image ? { backgroundImage: 'url(' + t.image + ')', backgroundPosition: t.imagePos || 'center', backgroundSize: t.imageFit || 'cover', backgroundRepeat: 'no-repeat' } : {},
       hasIcon: !t.image, icon: t.kind === 'guide' ? 'help-circle' : t.kind === 'article' ? 'book' : 'tag'
     }));
+    // Banner pro variantu D = stejný jako banner v hlavičce kategorie (Kategorie.dc.html: průvodce, jinak první promo; matrace vlastní)
+    const BANNER_IMG = { polstare: '_blob/fa4d884bcc1b3485b3454907adc00d83.webp', rosty: '_blob/8b63107c3b3df97b4c67e750ce6b91cd.webp', komplety: '_blob/8b63107c3b3df97b4c67e750ce6b91cd.webp' };
+    const topB = (cat.top || []).find(x => x.kind === 'guide') || (cat.top || []).find(x => x.kind === 'promo');
+    const tileOf = (x) => tops[(cat.top || []).indexOf(x)];
+    const ban = cat.slug === 'matrace' ? { title: 'Pomůžeme vám najít tu správnou matraci', sub: 'Osm otázek a doporučíme model podle vaší váhy a polohy spánku', cta: 'Průvodce výběrem', href: 'PruvodceMatrace.dc.html', image: '_blob/495987b626d0ed8642df24b67f4055ed.webp', tile: topB && topB.kind === 'guide' ? tileOf(topB) : null }
+      : topB ? { title: topB.title || topB.label || '', sub: topB.sub || '', cta: topB.kind === 'guide' ? 'Spustit průvodce' : 'Zjistit více', href: topB.href || '#', image: BANNER_IMG[cat.slug] || topB.image || '', tile: tileOf(topB) } : null;
     const allItem = cat.all || { label: 'Zobrazit vše', href: cat.href || '#' };
     return {
       hasTop: tops.length > 0 || !!cat.all,
-      mmv: V, hasTopA: V !== 'B' && (tops.length > 0 || !!cat.all), hasTopB: V === 'B' && (tops.length > 0 || !!cat.all),
+      mmv: V, hasTopA: V === 'A' && (tops.length > 0 || !!cat.all), hasTopBottom: V === 'B' && (tops.length > 0 || !!cat.all), hasTopSide: (V === 'C' || V === 'D') && (tops.length > 0 || !!cat.all), sideTops: V === 'D' && ban ? tops.filter(x => x !== ban.tile) : tops,
+      hasBanner: V === 'D' && !!ban, banHref: ban ? ban.href : '#', banTitle: ban ? ban.title : '', banSub: ban ? ban.sub : '', banHasSub: !!(ban && ban.sub), banCta: ban ? ban.cta : '',
+      banHasImg: !!(ban && ban.image), banImgStr: ban && ban.image ? 'true' : 'false', banImgStyle: ban && ban.image ? { backgroundImage: 'url(' + ban.image + ')' } : {},
       tops,
       allLabel: allItem.label, allHref: allItem.href || cat.href || '#',
       allStrong: this.props.touch ? 'true' : 'false',

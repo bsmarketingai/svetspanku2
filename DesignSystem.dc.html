@@ -550,8 +550,8 @@ a:hover{color:var(--ss-link-hover,#21507B);}
         </div>
         <div style="background:var(--ss-surface-page,#FFFFFF);border-radius:12px;padding:20px;box-shadow:0 0 0 1px var(--ss-border-subtle,#E1E6EB)">
           <span style="display:block;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ss-text-muted,#55616C);font-weight:600;margin-bottom:10px">stock · 13/18 600</span>
-          <span style="display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--ss-status-success,#157A41)"><span style="width:8px;height:8px;border-radius:999px;background:#157A41"></span>Skladem · odesíláme do 24 h</span>
-          <p style="margin:8px 0 0;font-size:13px;color:var(--ss-text-muted,#5B6874)">Význam nese text i tvar, nikdy jen barva.</p>
+          <dc-import name="Skladovost" kind="inStock" note="· odesíláme do 24 h" hint-size="220px,18px"></dc-import>
+          <p style="margin:8px 0 0;font-size:13px;color:var(--ss-text-muted,#5B6874)">Komponenta Skladovost – ikona + text, význam nikdy jen barvou. Přehled všech stavů v Komponentách.</p>
         </div>
         <div style="background:var(--ss-surface-page,#FFFFFF);border-radius:12px;padding:20px;box-shadow:0 0 0 1px var(--ss-border-subtle,#E1E6EB)">
           <span style="display:block;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ss-text-muted,#55616C);font-weight:600;margin-bottom:10px">orderNo · 13 mono</span>
@@ -700,7 +700,7 @@ a:hover{color:var(--ss-link-hover,#21507B);}
       <ul style="margin:16px 0 0;padding-left:20px;display:flex;flex-direction:column;gap:10px;font-size:15px;color:#DCE8F2;max-width:88ch">
         <li>Jen světlý režim. Dark mode se nedělá.</li>
         <li>Písmo Archivo + Archivo Narrow. Nimbus Sans L Condensed zůstává v logu a v tiskových výstupech.</li>
-        <li>Konverzní barva je meruňková (apricot-400, tmavý text). Zelená = success (skladem, pozitivní oznámení), červená = error (nedostupné, negativní oznámení, odebrat).</li>
+        <li>Konverzní barva je meruňková (apricot-400, tmavý text). Zelená = success (skladem, pozitivní oznámení), červená = error (negativní oznámení, odebrat). Nedostupné zboží je šedé (stock.outOfStock), ne červené.</li>
         <li>Ceny s DPH, jen CZK, jen čeština. Přepínač měny ani jazyka v prototypu není.</li>
         <li>Názvosloví pásem XXS–XXL. Slova mobil / tablet / desktop se nepoužívají.</li>
         <li>Ikony jen z registru Ikony.dc.html, sada Tabler, 24 × 24, stroke 2.</li>
@@ -764,13 +764,16 @@ class Component extends DCLogic {
       ['action.buy', '#FBB255', 'Koupit, Do košíku (tmavý text)', 'text.onBuy', '#1C2229'],
       ['action.buy.hover', '#F09A2C', 'Koupit hover', 'text.onBuy', '#1C2229'],
       ['action.danger', '#B3261E', 'odebrat, zrušit (bílý text, = status.error)', 'text.onDanger', '#FFFFFF'],
+      ['border.input', '#8A96A3', 'rámeček formulářových polí (Input, Select outline, Textové pole, Checkbox, Radio) – 3 : 1 vůči podkladu; hover #296093', 'surface.page', '#FFFFFF'],
       ['status.success', '#157A41', 'pozitivní oznámení, potvrzení', 'surface.page', '#FFFFFF'],
       ['status.success.surface', '#EEF9F1', 'podklad pozitivního oznámení', null, null],
       ['status.error', '#B3261E', 'chyba, negativní oznámení', 'surface.page', '#FFFFFF'],
       ['status.error.surface', '#FDF0EF', 'podklad negativního oznámení', null, null],
-      ['status.inStock', '#157A41', 'Skladem (= status.success)', 'surface.page', '#FFFFFF'],
-      ['status.lowStock', '#A4600C', 'Poslední kusy', 'surface.page', '#FFFFFF'],
-      ['status.outOfStock', '#B3261E', 'Nedostupné (= status.error)', 'surface.page', '#FFFFFF'],
+      ['stock.inStock', '#157A41', 'Skladem · ikona circle-check (= status.success) · tmavý režim #71CC92', 'surface.page', '#FFFFFF'],
+      ['stock.lowStock', '#A4600C', 'Poslední kusy · ikona alert-circle (= status.warning) · tmavý režim #FCC77D', 'surface.page', '#FFFFFF'],
+      ['stock.onWay', '#21507B', 'Na cestě k nám · ikona truck · tmavý režim #8DB3D3', 'surface.page', '#FFFFFF'],
+      ['stock.onOrder', '#21507B', 'Na objednání / Vyrobíme během … · ikona clock · tmavý režim #8DB3D3', 'surface.page', '#FFFFFF'],
+      ['stock.outOfStock', '#55616C', 'Nedostupné · ikona circle-x (šedá, ne chybová červená) · tmavý režim #9DB0C2', 'surface.page', '#FFFFFF'],
       ['commerce.priceNow', '#1C2229', 'aktuální cena s DPH', 'surface.page', '#FFFFFF'],
       ['commerce.priceBefore', '#5B6874', 'původní cena, přeškrtnutá', 'surface.page', '#FFFFFF'],
       ['commerce.sale', '#B3261E', 'sleva, akční štítek (bílý text)', 'text.onSale', '#FFFFFF'],

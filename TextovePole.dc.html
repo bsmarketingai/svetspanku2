@@ -238,9 +238,9 @@ class Component extends DCLogic {
       describedBy: p.hint ? id + '-hint' : undefined,
       taStyle: {
         background: bordered ? 'var(--ss-surface-page,#FFFFFF)' : 'var(--ss-surface-subtle,#FAF5EF)',
-        boxShadow: 'inset 0 0 0 1px ' + (invalid ? 'var(--ss-border-error,#B3261E)' : (bordered ? 'var(--ss-border-subtle,#E1E6EB)' : 'transparent'))
+        boxShadow: 'inset 0 0 0 1px ' + (invalid ? 'var(--ss-border-error,#B3261E)' : (bordered ? 'var(--ss-border-input,#8A96A3)' : 'transparent')) /* 3 : 1 (9. 11. 2026) */
       },
-      hoverStyle: p.disabled ? {} : (bordered ? { boxShadow: 'inset 0 0 0 1px ' + (invalid ? 'var(--ss-border-error,#B3261E)' : 'var(--ss-border-strong,#C8D0D8)') } : { background: 'var(--ss-surface-muted,#F3EDE4)' }),
+      hoverStyle: p.disabled ? {} : (bordered ? { boxShadow: 'inset 0 0 0 1px ' + (invalid ? 'var(--ss-border-error,#B3261E)' : 'var(--ss-border-action,#296093)') } : { background: 'var(--ss-surface-muted,#F3EDE4)' }),
       handleChange: (e) => { if (p.onChange) p.onChange(e.target.value); },
       handleBlur: (e) => { if (p.onBlur) p.onBlur(e.target.value); }
     };

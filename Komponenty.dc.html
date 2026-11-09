@@ -395,6 +395,8 @@ html,body{margin:0!important;padding:0!important;}
 #dc-root{margin:0!important;padding:0!important;width:100%!important;max-width:none!important;border:0!important;}
 #dc-root>.sc-host{margin:0!important;padding:0!important;width:100%!important;}
 a{color:var(--ss-link,#296093);}a:hover{color:var(--ss-hover-text,#A4600C);}
+/* Skladovost – přehled stavů (9. 11. 2026) */
+.ss-skr{display:grid;grid-template-columns:180px 240px 170px 170px 130px minmax(0,1fr);gap:20px;align-items:center;padding:16px 0;border-top:1px solid var(--ss-border-subtle,#E1E6EB);}.ss-skr-h{font-size:12px;letter-spacing:.06em;text-transform:uppercase;font-weight:600;color:var(--ss-text-muted,#55616C);border-top:0;padding-top:0;}@media (max-width:1100px){.ss-skr{grid-template-columns:1fr 1fr;}.ss-skr-h{display:none;}}
 </style>
 </helmet>
 <div style="width:100%;background:var(--ss-surface-page,#FFFFFF);color:var(--ss-text-primary,#1C2229);font-family:Roboto,Helvetica,Arial,sans-serif;font-size:15px;line-height:1.55">
@@ -526,20 +528,69 @@ a{color:var(--ss-link,#296093);}a:hover{color:var(--ss-hover-text,#A4600C);}
     </div>
   </section>
 
+  <!-- Skladovost (9. 11. 2026): jediná komponenta dostupnosti, přehled všech stavů -->
+  <section style="width:100%" id="skladovost">
+    <div style="max-width:1560px;margin:0 auto;padding:48px 32px">
+      <div style="display:flex;flex-wrap:wrap;align-items:baseline;gap:12px;margin-bottom:8px">
+        <h2 style="margin:0;font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:28px">Skladovost</h2>
+        <code style="font-family:ui-monospace,Menlo,monospace;font-size:13px;color:var(--ss-text-muted,#55616C)">Skladovost.dc.html</code>
+      </div>
+      <p style="margin:0 0 24px;max-width:80ch;color:var(--ss-text-secondary,#3D4750)">Jediná komponenta dostupnosti na celém webu. Ikona + text, každý stav má jiný tvar ikony, takže význam nikdy nenese jen barva. Velikost <strong>md</strong> (ikona 20, text 16) jen na detailu nad CTA, <strong>sm</strong> (ikona 16, text 13) všude jinde – karty, plovoucí lišta, košík, drawery variant. Volitelná poznámka (<code>note</code>) je šedá a normální řez. Stitek s kind="inStock/lowStock/onWay/outOfStock" kreslí totéž.</p>
+      <div style="background:var(--ss-surface-box,#FFFFFF);border-radius:12px;padding:24px 28px">
+          <div class="ss-skr ss-skr-h"><span>Stav</span><span>md · detail</span><span>sm · ostatní</span><span>tmavý režim</span><span>barva světlá / tmavá</span><span>kdy použít</span></div>
+          <div class="ss-skr">
+            <div style="display:flex;flex-direction:column;gap:4px"><span style="font-weight:600">Skladem</span><code style="font-family:ui-monospace,Menlo,monospace;font-size:12px;color:var(--ss-text-muted,#55616C)">kind="inStock" · circle-check</code></div>
+            <div><dc-import name="Skladovost" kind="inStock" note="(3 ks)" size="md" hint-size="200px,24px"></dc-import></div>
+            <div><dc-import name="Skladovost" kind="inStock" size="sm" hint-size="140px,18px"></dc-import></div>
+            <div style="background:#0E1F2F;border-radius:8px;padding:8px 12px;display:inline-flex;align-items:center;gap:5px;color:#71CC92;font-size:13px;font-weight:600;width:max-content"><span style="display:flex"><dc-import name="Ikony" iconName="circle-check" size="16" hint-size="16px,16px"></dc-import></span>Skladem</div>
+            <div style="display:flex;flex-direction:column;gap:4px;font-size:13px"><span style="display:inline-flex;align-items:center;gap:6px"><span style="width:14px;height:14px;border-radius:4px;background:#157A41"></span><code style="font-family:ui-monospace,Menlo,monospace">#157A41</code></span><span style="display:inline-flex;align-items:center;gap:6px"><span style="width:14px;height:14px;border-radius:4px;background:#71CC92;box-shadow:inset 0 0 0 1px rgba(19,44,67,.15)"></span><code style="font-family:ui-monospace,Menlo,monospace">#71CC92</code></span></div>
+            <div style="font-size:13px;line-height:1.45;color:var(--ss-text-secondary,#3D4750)">Zboží je na skladě. Volitelně počet kusů nebo „· odesíláme do 24 h“.</div>
+          </div>
+          <div class="ss-skr">
+            <div style="display:flex;flex-direction:column;gap:4px"><span style="font-weight:600">Poslední kusy</span><code style="font-family:ui-monospace,Menlo,monospace;font-size:12px;color:var(--ss-text-muted,#55616C)">kind="lowStock" · alert-circle</code></div>
+            <div><dc-import name="Skladovost" kind="lowStock" note="(2 ks)" size="md" hint-size="200px,24px"></dc-import></div>
+            <div><dc-import name="Skladovost" kind="lowStock" size="sm" hint-size="140px,18px"></dc-import></div>
+            <div style="background:#0E1F2F;border-radius:8px;padding:8px 12px;display:inline-flex;align-items:center;gap:5px;color:#FCC77D;font-size:13px;font-weight:600;width:max-content"><span style="display:flex"><dc-import name="Ikony" iconName="alert-circle" size="16" hint-size="16px,16px"></dc-import></span>Poslední kusy</div>
+            <div style="display:flex;flex-direction:column;gap:4px;font-size:13px"><span style="display:inline-flex;align-items:center;gap:6px"><span style="width:14px;height:14px;border-radius:4px;background:#A4600C"></span><code style="font-family:ui-monospace,Menlo,monospace">#A4600C</code></span><span style="display:inline-flex;align-items:center;gap:6px"><span style="width:14px;height:14px;border-radius:4px;background:#FCC77D;box-shadow:inset 0 0 0 1px rgba(19,44,67,.15)"></span><code style="font-family:ui-monospace,Menlo,monospace">#FCC77D</code></span></div>
+            <div style="font-size:13px;line-height:1.45;color:var(--ss-text-secondary,#3D4750)">Na skladě zbývá málo kusů (do 3). Neznamená slevu.</div>
+          </div>
+          <div class="ss-skr">
+            <div style="display:flex;flex-direction:column;gap:4px"><span style="font-weight:600">Na cestě k nám</span><code style="font-family:ui-monospace,Menlo,monospace;font-size:12px;color:var(--ss-text-muted,#55616C)">kind="onWay" · truck</code></div>
+            <div><dc-import name="Skladovost" kind="onWay" note="(do 14 dnů)" size="md" hint-size="200px,24px"></dc-import></div>
+            <div><dc-import name="Skladovost" kind="onWay" size="sm" hint-size="140px,18px"></dc-import></div>
+            <div style="background:#0E1F2F;border-radius:8px;padding:8px 12px;display:inline-flex;align-items:center;gap:5px;color:#8DB3D3;font-size:13px;font-weight:600;width:max-content"><span style="display:flex"><dc-import name="Ikony" iconName="truck" size="16" hint-size="16px,16px"></dc-import></span>Na cestě k nám</div>
+            <div style="display:flex;flex-direction:column;gap:4px;font-size:13px"><span style="display:inline-flex;align-items:center;gap:6px"><span style="width:14px;height:14px;border-radius:4px;background:#21507B"></span><code style="font-family:ui-monospace,Menlo,monospace">#21507B</code></span><span style="display:inline-flex;align-items:center;gap:6px"><span style="width:14px;height:14px;border-radius:4px;background:#8DB3D3;box-shadow:inset 0 0 0 1px rgba(19,44,67,.15)"></span><code style="font-family:ui-monospace,Menlo,monospace">#8DB3D3</code></span></div>
+            <div style="font-size:13px;line-height:1.45;color:var(--ss-text-secondary,#3D4750)">Zboží je objednané u dodavatele a brzy dorazí.</div>
+          </div>
+          <div class="ss-skr">
+            <div style="display:flex;flex-direction:column;gap:4px"><span style="font-weight:600">Na objednání</span><code style="font-family:ui-monospace,Menlo,monospace;font-size:12px;color:var(--ss-text-muted,#55616C)">kind="onOrder" · clock</code></div>
+            <div><dc-import name="Skladovost" kind="onOrder" note="(2–3 týdny)" size="md" hint-size="200px,24px"></dc-import></div>
+            <div><dc-import name="Skladovost" kind="onOrder" size="sm" hint-size="140px,18px"></dc-import></div>
+            <div style="background:#0E1F2F;border-radius:8px;padding:8px 12px;display:inline-flex;align-items:center;gap:5px;color:#8DB3D3;font-size:13px;font-weight:600;width:max-content"><span style="display:flex"><dc-import name="Ikony" iconName="clock" size="16" hint-size="16px,16px"></dc-import></span>Na objednání</div>
+            <div style="display:flex;flex-direction:column;gap:4px;font-size:13px"><span style="display:inline-flex;align-items:center;gap:6px"><span style="width:14px;height:14px;border-radius:4px;background:#21507B"></span><code style="font-family:ui-monospace,Menlo,monospace">#21507B</code></span><span style="display:inline-flex;align-items:center;gap:6px"><span style="width:14px;height:14px;border-radius:4px;background:#8DB3D3;box-shadow:inset 0 0 0 1px rgba(19,44,67,.15)"></span><code style="font-family:ui-monospace,Menlo,monospace">#8DB3D3</code></span></div>
+            <div style="font-size:13px;line-height:1.45;color:var(--ss-text-secondary,#3D4750)">Vyrábí se nebo objednává až po objednávce – vlastní text, např. „Vyrobíme během 2–4 týdnů“.</div>
+          </div>
+          <div class="ss-skr">
+            <div style="display:flex;flex-direction:column;gap:4px"><span style="font-weight:600">Nedostupné</span><code style="font-family:ui-monospace,Menlo,monospace;font-size:12px;color:var(--ss-text-muted,#55616C)">kind="outOfStock" · circle-x</code></div>
+            <div><dc-import name="Skladovost" kind="outOfStock" note="" size="md" hint-size="200px,24px"></dc-import></div>
+            <div><dc-import name="Skladovost" kind="outOfStock" size="sm" hint-size="140px,18px"></dc-import></div>
+            <div style="background:#0E1F2F;border-radius:8px;padding:8px 12px;display:inline-flex;align-items:center;gap:5px;color:#9DB0C2;font-size:13px;font-weight:600;width:max-content"><span style="display:flex"><dc-import name="Ikony" iconName="circle-x" size="16" hint-size="16px,16px"></dc-import></span>Nedostupné</div>
+            <div style="display:flex;flex-direction:column;gap:4px;font-size:13px"><span style="display:inline-flex;align-items:center;gap:6px"><span style="width:14px;height:14px;border-radius:4px;background:#55616C"></span><code style="font-family:ui-monospace,Menlo,monospace">#55616C</code></span><span style="display:inline-flex;align-items:center;gap:6px"><span style="width:14px;height:14px;border-radius:4px;background:#9DB0C2;box-shadow:inset 0 0 0 1px rgba(19,44,67,.15)"></span><code style="font-family:ui-monospace,Menlo,monospace">#9DB0C2</code></span></div>
+            <div style="font-size:13px;line-height:1.45;color:var(--ss-text-secondary,#3D4750)">Nelze koupit. Šedá, ne chybová červená. CTA se mění na „Hlídat dostupnost“.</div>
+          </div>
+      </div>
+      <p style="margin:16px 0 0;max-width:80ch;font-size:13px;color:var(--ss-text-muted,#5B6874)">Kontrast na bílé: Skladem 5,4 : 1 · Poslední kusy 4,9 : 1 · Na cestě / Na objednání 8,4 : 1 · Nedostupné 6,3 : 1 – vše AA i na béžovém podkladu.</p>
+    </div>
+  </section>
+
   <section style="width:100%">
     <div style="max-width:1560px;margin:0 auto;padding:48px 32px">
       <div style="display:flex;flex-wrap:wrap;align-items:baseline;gap:12px;margin-bottom:8px">
         <h2 style="margin:0;font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:28px">Štítky a hodnocení</h2>
         <code style="font-family:ui-monospace,Menlo,monospace;font-size:13px;color:var(--ss-text-muted,#55616C)">Stitek.dc.html · Hodnoceni.dc.html</code>
       </div>
-      <p style="margin:0 0 24px;max-width:76ch;color:var(--ss-text-secondary,#3D4750)">Skladovost nese tečku i text – význam nikdy jen barvou. Formulace jsou ustálené a nemění se napříč webem.</p>
+      <p style="margin:0 0 24px;max-width:76ch;color:var(--ss-text-secondary,#3D4750)">Obchodní a informační příznaky. Skladovost má vlastní komponentu – viz sekce Skladovost výše.</p>
       <div style="background:var(--ss-surface-box,#FFFFFF);border-radius:12px;padding:28px;display:flex;flex-direction:column;gap:20px">
-        <div style="display:flex;flex-wrap:wrap;gap:20px;align-items:center">
-          <dc-import name="Stitek" kind="inStock" hint-size="220px,20px"></dc-import>
-          <dc-import name="Stitek" kind="lowStock" hint-size="120px,20px"></dc-import>
-          <dc-import name="Stitek" kind="onWay" hint-size="130px,20px"></dc-import>
-          <dc-import name="Stitek" kind="outOfStock" hint-size="110px,20px"></dc-import>
-        </div>
         <div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center">
           <dc-import name="Stitek" kind="sale" hint-size="90px,26px"></dc-import>
           <dc-import name="Stitek" kind="news" hint-size="80px,26px"></dc-import>

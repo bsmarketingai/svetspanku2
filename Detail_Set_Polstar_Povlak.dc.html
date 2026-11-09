@@ -564,7 +564,7 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
 
           <div style="{{ galleryStyle }}">
             <div style="position:relative">
-              <button type="button" class="ss-pd-ph" style="aspect-ratio:4/3" onClick="{{ openMain }}" aria-label="{{ mainAlt }}">
+              <button type="button" class="ss-pd-ph" style="aspect-ratio:4/3;background:#FFFFFF" onClick="{{ openMain }}" aria-label="{{ mainAlt }}">
                 <sc-if value="{{ mainIsPhoto }}" hint-placeholder-val="{{ true }}">
                   <img decoding="async" src="{{ mainSrc }}" alt="{{ mainAlt }}" style="width:100%;height:100%;object-fit:{{ mainFit }};display:block">
                 </sc-if>
@@ -1503,10 +1503,10 @@ class Component extends DCLogic {
       presItems: [{ label: 'LED', value: this.state.led }, { label: 'Příplatky', value: PP }],
       onPresToggle: (i) => this.setState(s => (i === 1 ? { pp: s.pp === false } : { led: !s.led })),
       presChoices: [
-        { label: 'Detail – Simple', value: 'Set polštář', options: ['Postel 3.0', 'Komplet 3.0', 'Multi 3.0', 'Matrace 3.0', 'Komoda VIA'] }, { label: 'Detail – Konfigurátor', value: 'Set polštář', options: ['Multi Konf.', 'Skříň UNI 2D Konf', 'Set polštář'] },
+        { label: 'Detail – Simple', value: 'Set polštář Konf', options: ['Postel 3.0', 'Komplet 3.0', 'Multi 3.0', 'Matrace 3.0', 'Komoda VIA', 'Set polštář'] }, { label: 'Detail – Konfigurátor', value: 'Set polštář Konf', options: ['Multi Konf.', 'Skříň UNI 2D Konf', 'Set polštář Konf'] },
         { label: 'Fixní sloupec', value: this.state.stickPick || (stick === 'zadny' ? 'Žádný' : 'Galerie'), options: ['Galerie', 'Žádný'] },
       ],
-      onPresPick: (ci, opt) => { if (ci === 1) ci = 0; else if (ci > 1) ci -= 1; /* Detail rozdělen na Simple a Konfigurátor (6. 11. 2026) */ if (ci === 0) { if (opt !== 'Set polštář') (h => { try { const a = document.createElement('a'); a.href = h; a.style.display = 'none'; (document.getElementById('dc-root') || document.body).appendChild(a); a.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true, view: window })); a.remove(); } catch (e) { window.location.href = h; } })(opt === 'Multi Konf.' ? 'Detail_Postel_3.0-hqdl.dc.html' : (opt === 'Set polštář' ? 'Detail_Set_Polstar_Povlak.dc.html' : opt === 'Skříň UNI 2D Konf' ? 'Detail_Skrin_UNI_2D_Konf.dc.html' : 'Detail_' + String(opt).replace(/ /g, '_') + '.dc.html')); return; } ci -= 1; this.setState({ stickPick: opt }); },
+      onPresPick: (ci, opt) => { if (ci === 1) ci = 0; else if (ci > 1) ci -= 1; /* Detail rozdělen na Simple a Konfigurátor (6. 11. 2026) */ if (ci === 0) { if (opt !== 'Set polštář Konf') (h => { try { const a = document.createElement('a'); a.href = h; a.style.display = 'none'; (document.getElementById('dc-root') || document.body).appendChild(a); a.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true, view: window })); a.remove(); } catch (e) { window.location.href = h; } })(opt === 'Multi Konf.' ? 'Detail_Postel_3.0-hqdl.dc.html' : (opt === 'Set polštář Konf' ? 'Detail_Set_Polstar_Povlak.dc.html' : opt === 'Set polštář' ? 'Detail_Set_Polstar.dc.html' : opt === 'Skříň UNI 2D Konf' ? 'Detail_Skrin_UNI_2D_Konf.dc.html' : 'Detail_' + String(opt).replace(/ /g, '_') + '.dc.html')); return; } ci -= 1; this.setState({ stickPick: opt }); },
       // --- krokový výběr setu ---
       cfgProgText: this.state.done >= 2 ? 'Hotovo – 2 ze 2 kroků' : 'Krok ' + Math.min(this.state.done + 1, 2) + ' ze 2',
       cfgProgPct: Math.round(this.state.done / 2 * 100) + '%',

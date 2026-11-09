@@ -238,6 +238,8 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
 .ss-ct-chev{transition:transform .15s cubic-bezier(.22,.61,.36,1),color .12s cubic-bezier(.22,.61,.36,1);}
 @media (hover:hover) and (pointer:fine){.ss-ct:hover .ss-ct-chev{color:var(--ss-hover-text,#21507B);transform:translateX(2px);}}
 @media (prefers-reduced-motion:reduce){.ss-ct-chev{transition:none;}.ss-ct:hover .ss-ct-chev{transform:none;}}
+/* Horizontální dlaždice podkategorií větší (9. 11. 2026): název 19 px, fotka 56 px; mobil 17 px / 48 px */
+@media (max-width:549px){.ss-ct-htitle{font-size:17px!important;}.ss-ct-hmedia{width:48px!important;height:48px!important;}.ss-ct-hsub{font-size:13px!important;}}
 </style>
 </helmet>
 <a class="ss-ct" href="{{ href }}" data-photo="{{ photoStr }}" data-pop="{{ popStr }}" data-dense="{{ denseStr }}" style="{{ wrapStyle }}">
@@ -291,7 +293,7 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
   </sc-if>
   <sc-if value="{{ isHoriz }}" hint-placeholder-val="{{ false }}">
     <span style="display:flex;align-items:center;gap:12px;width:100%;min-width:0">
-      <span class="ss-ct-media" style="width:48px;height:48px;flex:none">
+      <span class="ss-ct-media ss-ct-hmedia" style="width:56px;height:56px;flex:none">
         <sc-if value="{{ hasImage }}" hint-placeholder-val="{{ false }}">
           <img decoding="async" class="ss-ct-img" src="{{ image }}" data-zoom="{{ zoomStr }}" alt="" aria-hidden="true" />
         </sc-if>
@@ -300,10 +302,10 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
         </sc-if>
       </span>
       <span style="display:flex;flex-direction:column;gap:2px;min-width:0">
-        <span class="ss-ct-title" style="font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:16px;line-height:1.2;text-wrap:balance">{{ label }}</span>
+        <span class="ss-ct-title ss-ct-htitle" style="font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:19px;line-height:1.2;text-wrap:balance">{{ label }}</span>
         <sc-if value="{{ tip }}" hint-placeholder-val="{{ false }}"><span class="ss-tipbadge" style="align-self:flex-start;margin-top:2px">Tip</span></sc-if>
         <sc-if value="{{ hasSub }}" hint-placeholder-val="{{ true }}">
-          <span style="font-size:13px;color:var(--ss-text-muted,#5B6874);line-height:1.35;text-wrap:pretty">{{ subText }}</span>
+          <span class="ss-ct-hsub" style="font-size:14px;color:var(--ss-text-muted,#5B6874);line-height:1.35;text-wrap:pretty">{{ subText }}</span>
         </sc-if>
       </span>
       <span class="ss-ct-chev" aria-hidden="true" style="margin-left:auto;flex:none;display:flex;color:var(--ss-link,#296093)"><dc-import name="Ikony" iconName="chevron-right" size="20" hint-size="20px,20px"></dc-import></span>

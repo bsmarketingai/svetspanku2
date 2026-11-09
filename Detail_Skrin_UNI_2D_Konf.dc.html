@@ -402,7 +402,21 @@ html,body{margin:0!important;padding:0!important;}
 #dc-root>.sc-host{margin:0!important;padding:0!important;width:100%!important;}
 a{color:var(--ss-link,#296093);}
 a:hover{color:var(--ss-hover-text,#A4600C);}
-.ss-pd-ph{display:block;width:100%;border:0;padding:0;background:var(--ss-surface-subtle,#FAF5EF);border-radius:12px;overflow:hidden;cursor:zoom-in;position:relative;box-shadow:0 2px 8px rgba(19,44,67,.08);}
+/* Galerie (9. 11. 2026): přepnutí fotky posunem – nová fotka vytlačí starou doleva (zpět doprava), ease-in-out 300 ms */
+.ss-gal-stage{position:relative;display:block;width:100%;height:100%;overflow:hidden;}
+.ss-gal-in,.ss-gal-out{position:absolute;inset:0;width:100%;height:100%;display:block;}
+.ss-gal-in[data-dir="next"],.ss-gal-out[data-dir="next"]{--ss-gd:100%;}
+.ss-gal-in[data-dir="prev"],.ss-gal-out[data-dir="prev"]{--ss-gd:-100%;}
+.ss-gal-in[data-k="a"]{animation:ssGalInA .3s cubic-bezier(.45,0,.55,1) both;}
+.ss-gal-in[data-k="b"]{animation:ssGalInB .3s cubic-bezier(.45,0,.55,1) both;}
+.ss-gal-out[data-k="a"]{animation:ssGalOutA .3s cubic-bezier(.45,0,.55,1) both;}
+.ss-gal-out[data-k="b"]{animation:ssGalOutB .3s cubic-bezier(.45,0,.55,1) both;}
+@keyframes ssGalInA{from{transform:translateX(var(--ss-gd));}to{transform:translateX(0);}}
+@keyframes ssGalInB{from{transform:translateX(var(--ss-gd));}to{transform:translateX(0);}}
+@keyframes ssGalOutA{from{transform:translateX(0);}to{transform:translateX(calc(var(--ss-gd) * -1));}}
+@keyframes ssGalOutB{from{transform:translateX(0);}to{transform:translateX(calc(var(--ss-gd) * -1));}}
+@media (prefers-reduced-motion:reduce){.ss-gal-in,.ss-gal-out{animation:none!important;}.ss-gal-out{display:none;}}
+.ss-pd-ph{display:block;width:100%;border:0;padding:0;background:#FFFFFF;border-radius:12px;overflow:hidden;cursor:zoom-in;position:relative;box-shadow:0 2px 8px rgba(19,44,67,.08);}
 .ss-pd-ph:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
 .ss-pd-thumbs{display:flex;gap:8px;overflow-x:auto;scroll-snap-type:x proximity;scroll-padding-inline:16px;scrollbar-width:none;margin:0 -16px;padding:2px 16px;}
 .ss-pd-thumbs::-webkit-scrollbar{display:none;}
@@ -432,7 +446,7 @@ a:hover{color:var(--ss-hover-text,#A4600C);}
 .ss-cfg-step[data-active="true"] .ss-cfg-num{background:#132C43;color:#FFFFFF;}
 .ss-cfg-step[data-done="true"] .ss-cfg-num{background:#FBB255;color:#1C2229;}
 .ss-cfg-tx{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px;}
-.ss-cfg-t{font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:17px;line-height:1.2;color:var(--ss-text-primary,#1C2229);}
+.ss-cfg-t{font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:19px;line-height:1.2;color:var(--ss-text-primary,#1C2229);}
 .ss-cfg-v{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;font-size:14px;color:var(--ss-text-secondary,#3D4750);}
 .ss-cfg-sw{width:18px;height:18px;flex:none;border-radius:999px;background-size:cover;background-position:center;box-shadow:inset 0 0 0 1px rgba(19,44,67,.15);}
 .ss-cfg-note{font-weight:600;white-space:nowrap;}
@@ -443,6 +457,10 @@ a:hover{color:var(--ss-hover-text,#A4600C);}
 .ss-cfg-body .ss-vd-tile img,.ss-cfg-body .ss-vd-ph{max-width:100%;}
 .ss-cfg-ok{display:flex;align-items:center;gap:8px;padding:12px 16px;border-radius:12px;background:var(--ss-status-success-surface,#E8F5EE);color:var(--ss-status-success,#157A41);font-size:14px;font-weight:600;}
 @media (max-width:819px){.ss-cfg-head{padding:12px 12px;}.ss-cfg-body{padding:12px 12px 12px;}}
+.ss-pd-row[data-warn="true"]{box-shadow:inset 0 0 0 2px #B3261E!important;background:#FDF0EF!important;}
+.ss-pk-msg{color:#B3261E;font-size:14px;font-weight:600;}
+.ss-led-box[data-warn="true"]{box-shadow:inset 0 0 0 2px #B3261E!important;background:#FDF0EF!important;}
+.ss-pk-alert{flex-basis:100%;color:#B3261E;font-size:14px;font-weight:600;line-height:1.4;background:#FDF0EF;border-radius:8px;padding:10px 12px;}
 .ss-pd-row{display:flex;align-items:center;gap:16px;width:100%;text-align:left;padding:14px 16px;border:1px solid var(--ss-border-subtle,#E1E6EB);border-radius:12px;background:var(--ss-surface-box,#FFFFFF);cursor:pointer;font-family:inherit;transition:box-shadow .15s cubic-bezier(.22,.61,.36,1),border-color .12s cubic-bezier(.22,.61,.36,1);}
 @media (hover:hover) and (pointer:fine){.ss-pd-row:hover svg{color:var(--ss-hover-text,#A4600C);}.ss-pd-row:hover{border-color:var(--ss-hover-text,#A4600C);box-shadow:0 4px 12px rgba(19,44,67,.12);}}
 .ss-pd-row:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
@@ -566,7 +584,7 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
             <div style="position:relative">
               <button type="button" class="ss-pd-ph" style="aspect-ratio:4/3" onClick="{{ openMain }}" aria-label="{{ mainAlt }}">
                 <sc-if value="{{ mainIsPhoto }}" hint-placeholder-val="{{ true }}">
-                  <img decoding="async" src="{{ mainSrc }}" alt="{{ mainAlt }}" style="width:100%;height:100%;object-fit:{{ mainFit }};display:block">
+                  <span class="ss-gal-stage"><sc-if value="{{ slideHasPrev }}" hint-placeholder-val="{{ false }}"><img decoding="async" class="ss-gal-out" data-dir="{{ slideDir }}" data-k="{{ slideK }}" src="{{ slidePrevSrc }}" alt="" aria-hidden="true" style="object-fit:{{ slidePrevFit }}" /></sc-if><img decoding="async" class="ss-gal-in" data-dir="{{ slideDir }}" data-k="{{ slideK }}" src="{{ mainSrc }}" alt="{{ mainAlt }}" style="object-fit:{{ mainFit }}" /></span>
                 </sc-if>
                 <sc-if value="{{ mainIsVideo }}" hint-placeholder-val="{{ false }}">
                   <span style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;width:100%;height:100%;background:var(--ss-surface-muted,#F3EDE4);color:var(--ss-text-muted,#5B6874)">
@@ -667,16 +685,18 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
             <sc-if value="{{ showVariants }}" hint-placeholder-val="{{ false }}">
             <div style="display:flex;flex-direction:column;gap:12px">
               <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 16px">
-                <span style="font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:17px">Další varianty</span>
+                <span style="font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:19px">Další varianty</span>
               </div>
               <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px">
                 <sc-for list="{{ variants }}" as="v" hint-placeholder-count="3">
                   <button type="button" class="ss-pd-var" onClick="{{ v.onPick }}" aria-pressed="{{ v.pressed }}">
                     <span class="ss-pd-var-ph" style="box-shadow:{{ v.ring }}">
                       <img decoding="async" src="{{ v.src }}" alt="" style="display:block;width:100%;aspect-ratio:4/3;object-fit:cover">
-                      <sc-if value="{{ v.selected }}" hint-placeholder-val="{{ false }}">
-                        <span class="ss-pd-var-check"><dc-import name="Ikony" iconName="check" size="16" hint-size="16px,16px"></dc-import></span>
-                      </sc-if>
+                      <!-- 9. 11. 2026: výběr jako karty Set polštář B – zaškrtnutí / prázdné kolečko vlevo nahoře, bez modrého rámečku -->
+                      <span style="position:absolute;top:8px;left:8px;display:flex" aria-hidden="true">
+                        <sc-if value="{{ v.selected }}" hint-placeholder-val="{{ false }}"><span class="ss-pd-var-check" style="position:static"><dc-import name="Ikony" iconName="check" size="16" hint-size="16px,16px"></dc-import></span></sc-if>
+                        <sc-if value="{{ v.notSelected }}" hint-placeholder-val="{{ true }}"><span class="ss-pd-cs-dot"></span></sc-if>
+                      </span>
                     </span>
                     <span style="display:block;font-size:13px;line-height:1.35;color:{{ v.labelColor }};font-weight:{{ v.labelWeight }}">{{ v.label }}</span>
                   </button>
@@ -685,171 +705,87 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
             </div>
             </sc-if>
 
-            <!-- Krokový konfigurátor (4. 11. 2026): další krok se objeví po výběru v předchozím, hotové kroky se sbalí na jeden řádek se Změnit; výběr roštů, materiálu a čalounění přímo v kroku (bez bočního panelu) -->
-            <div class="ss-cfg" style="display:flex;flex-direction:column;gap:12px">
-              <div class="ss-cfg-prog" aria-live="polite"><span>{{ cfgProgText }}</span><span class="ss-cfg-segs" aria-hidden="true"><sc-for list="{{ cfgSegs }}" as="g" hint-placeholder-count="2"><span class="ss-cfg-seg" data-on="{{ g.on }}"></span></sc-for></span></div>
-            <sc-if value="{{ s1Visible }}" hint-placeholder-val="{{ true }}">
-            <div class="ss-cfg-step" data-active="{{ s1Active }}" data-done="{{ s1Done }}" id="ss-cfg-1">
-              <div class="ss-cfg-head">
-                <span class="ss-cfg-num" aria-hidden="true"><sc-if value="{{ s1IsDone }}" hint-placeholder-val="{{ false }}"><dc-import name="Ikony" iconName="check" size="16" hint-size="16px,16px"></dc-import></sc-if><sc-if value="{{ s1NotDone }}" hint-placeholder-val="{{ true }}"><span>1</span></sc-if></span>
-                <span class="ss-cfg-tx">
-                  <span class="ss-cfg-t">{{ s1Title }}</span>
-                  <sc-if value="{{ s1ShowVal }}" hint-placeholder-val="{{ false }}"><span class="ss-cfg-v"><sc-if value="{{ s1HasSwatch }}" hint-placeholder-val="{{ false }}"><span class="ss-cfg-sw" style="background:{{ s1Swatch }}"></span></sc-if><span>{{ s1Value }}</span><sc-if value="{{ s1HasNote }}" hint-placeholder-val="{{ false }}"><span class="ss-cfg-note" style="color:{{ s1NoteColor }}">{{ s1Note }}</span></sc-if></span></sc-if>
-                </span>
-                <sc-if value="{{ s1CanEdit }}" hint-placeholder-val="{{ false }}"><button type="button" class="ss-cfg-edit" onClick="{{ s1Edit }}">Změnit</button></sc-if>
-              </div>
-              <sc-if value="{{ s1IsActive }}" hint-placeholder-val="{{ true }}">
-              <div class="ss-cfg-body">
-                <span style="font-size:13px;color:var(--ss-text-muted,#5B6874)">Celková šířka skříně se dvěma posuvnými dveřmi, hloubka 65 cm</span>
-                <div style="display:flex;flex-wrap:wrap;gap:8px">
-                  <sc-for list="{{ widths }}" as="h" hint-placeholder-count="2">
-                    <dc-import name="Chip" label="{{ h.label }}" count="{{ h.extra }}" size="standard" variant="{{ h.variant }}" ariaPressed="{{ h.pressed }}" check="{{ h.pressed }}" onClick="{{ h.onPick }}" hint-size="140px,36px"></dc-import>
-                  </sc-for>
+            <!-- Skříň UNI 2D jako běžný detail (9. 11. 2026): šířka a výška čipy, ostatní výběry v draweru, nic předvybraného -->
+            <div style="display:flex;flex-direction:column;gap:20px">
+              <sc-for list="{{ skDims }}" as="g" hint-placeholder-count="2">
+                <div style="display:flex;flex-direction:column;gap:10px">
+                  <div style="display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px"><span id="{{ g.id }}" style="font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:19px">{{ g.title }}</span><sc-if value="{{ g.warn }}" hint-placeholder-val="{{ false }}"><span class="ss-pk-msg">{{ g.msg }}</span></sc-if></div>
+                  <div style="display:flex;flex-wrap:wrap;gap:8px">
+                    <sc-for list="{{ g.items }}" as="h" hint-placeholder-count="3">
+                      <dc-import name="Chip" label="{{ h.label }}" count="{{ h.extra }}" size="standard" variant="{{ h.variant }}" ariaPressed="{{ h.pressed }}" check="{{ h.pressed }}" onClick="{{ h.onPick }}" hint-size="120px,40px"></dc-import>
+                    </sc-for>
+                  </div>
+                  <sc-if value="{{ g.hasHint }}" hint-placeholder-val="{{ false }}"><span style="font-size:13px;color:var(--ss-text-muted,#5B6874)">{{ g.hint }}</span></sc-if>
                 </div>
-              </div>
-              </sc-if>
-            </div>
-            </sc-if>
-            <sc-if value="{{ s2Visible }}" hint-placeholder-val="{{ false }}">
-            <div class="ss-cfg-step" data-active="{{ s2Active }}" data-done="{{ s2Done }}" id="ss-cfg-2">
-              <div class="ss-cfg-head">
-                <span class="ss-cfg-num" aria-hidden="true"><sc-if value="{{ s2IsDone }}" hint-placeholder-val="{{ false }}"><dc-import name="Ikony" iconName="check" size="16" hint-size="16px,16px"></dc-import></sc-if><sc-if value="{{ s2NotDone }}" hint-placeholder-val="{{ true }}"><span>2</span></sc-if></span>
-                <span class="ss-cfg-tx">
-                  <span class="ss-cfg-t">{{ s2Title }}</span>
-                  <sc-if value="{{ s2ShowVal }}" hint-placeholder-val="{{ false }}"><span class="ss-cfg-v"><span>{{ s2Value }}</span><sc-if value="{{ s2HasNote }}" hint-placeholder-val="{{ false }}"><span class="ss-cfg-note" style="color:{{ s2NoteColor }}">{{ s2Note }}</span></sc-if></span></sc-if>
-                </span>
-                <sc-if value="{{ s2CanEdit }}" hint-placeholder-val="{{ false }}"><button type="button" class="ss-cfg-edit" onClick="{{ s2Edit }}">Změnit</button></sc-if>
-              </div>
-              <sc-if value="{{ s2IsActive }}" hint-placeholder-val="{{ false }}">
-              <div class="ss-cfg-body">
-                <span style="font-size:13px;color:var(--ss-text-muted,#5B6874)">Celková výška skříně od podlahy</span>
-                <div style="display:flex;flex-wrap:wrap;gap:8px">
-                  <sc-for list="{{ heights }}" as="h" hint-placeholder-count="4">
-                    <dc-import name="Chip" label="{{ h.label }}" count="{{ h.extra }}" size="standard" variant="{{ h.variant }}" ariaPressed="{{ h.pressed }}" check="{{ h.pressed }}" onClick="{{ h.onPick }}" hint-size="140px,36px"></dc-import>
-                  </sc-for>
-                </div>
-                <sc-if value="{{ heightHint }}" hint-placeholder-val="{{ false }}"><span style="font-size:13px;color:var(--ss-text-secondary,#3D4750)">{{ heightHintText }}</span></sc-if>
-              </div>
-              </sc-if>
-            </div>
-            </sc-if>
-            <sc-if value="{{ s3Visible }}" hint-placeholder-val="{{ false }}">
-            <div class="ss-cfg-step" data-active="{{ s3Active }}" data-done="{{ s3Done }}" id="ss-cfg-3">
-              <div class="ss-cfg-head">
-                <span class="ss-cfg-num" aria-hidden="true"><sc-if value="{{ s3IsDone }}" hint-placeholder-val="{{ false }}"><dc-import name="Ikony" iconName="check" size="16" hint-size="16px,16px"></dc-import></sc-if><sc-if value="{{ s3NotDone }}" hint-placeholder-val="{{ true }}"><span>3</span></sc-if></span>
-                <span class="ss-cfg-tx">
-                  <span class="ss-cfg-t">{{ s3Title }}</span>
-                  <sc-if value="{{ s3ShowVal }}" hint-placeholder-val="{{ false }}"><span class="ss-cfg-v"><sc-if value="{{ s3HasSwatch }}" hint-placeholder-val="{{ false }}"><span class="ss-cfg-sw" style="background:{{ s3Swatch }}"></span></sc-if><span>{{ s3Value }}</span><sc-if value="{{ s3HasNote }}" hint-placeholder-val="{{ false }}"><span class="ss-cfg-note" style="color:{{ s3NoteColor }}">{{ s3Note }}</span></sc-if></span></sc-if>
-                </span>
-                <sc-if value="{{ s3CanEdit }}" hint-placeholder-val="{{ false }}"><button type="button" class="ss-cfg-edit" onClick="{{ s3Edit }}">Změnit</button></sc-if>
-              </div>
-              <sc-if value="{{ s3IsActive }}" hint-placeholder-val="{{ false }}">
-              <div class="ss-cfg-body">
-                <dc-import name="VariantaObsah" data="{{ matData }}" onEvent="{{ onMatEvent }}" hint-size="100%,420px"></dc-import>
-              </div>
-              </sc-if>
-            </div>
-            </sc-if>
-            <sc-if value="{{ s4Visible }}" hint-placeholder-val="{{ false }}">
-            <div class="ss-cfg-step" data-active="{{ s4Active }}" data-done="{{ s4Done }}" id="ss-cfg-4">
-              <div class="ss-cfg-head">
-                <span class="ss-cfg-num" aria-hidden="true"><sc-if value="{{ s4IsDone }}" hint-placeholder-val="{{ false }}"><dc-import name="Ikony" iconName="check" size="16" hint-size="16px,16px"></dc-import></sc-if><sc-if value="{{ s4NotDone }}" hint-placeholder-val="{{ true }}"><span>4</span></sc-if></span>
-                <span class="ss-cfg-tx">
-                  <span class="ss-cfg-t">{{ s4Title }}</span>
-                  <sc-if value="{{ s4ShowVal }}" hint-placeholder-val="{{ false }}"><span class="ss-cfg-v"><sc-if value="{{ s4HasSwatch }}" hint-placeholder-val="{{ false }}"><span class="ss-cfg-sw" style="background:{{ s4Swatch }}"></span></sc-if><span>{{ s4Value }}</span><sc-if value="{{ s4HasNote }}" hint-placeholder-val="{{ false }}"><span class="ss-cfg-note" style="color:{{ s4NoteColor }}">{{ s4Note }}</span></sc-if></span></sc-if>
-                </span>
-                <sc-if value="{{ s4CanEdit }}" hint-placeholder-val="{{ false }}"><button type="button" class="ss-cfg-edit" onClick="{{ s4Edit }}">Změnit</button></sc-if>
-              </div>
-              <sc-if value="{{ s4IsActive }}" hint-placeholder-val="{{ false }}">
-              <div class="ss-cfg-body">
-                <span style="font-size:13px;color:var(--ss-text-muted,#5B6874)">Sekce za levými dveřmi, šířka podle zvolené šířky skříně. Kliknutím na nákres ho zvětšíte.</span>
-                <dc-import name="VariantaObsah" data="{{ layLData }}" onEvent="{{ onLayLEvent }}" hint-size="100%,560px"></dc-import>
-              </div>
-              </sc-if>
-            </div>
-            </sc-if>
-            <sc-if value="{{ s5Visible }}" hint-placeholder-val="{{ false }}">
-            <div class="ss-cfg-step" data-active="{{ s5Active }}" data-done="{{ s5Done }}" id="ss-cfg-5">
-              <div class="ss-cfg-head">
-                <span class="ss-cfg-num" aria-hidden="true"><sc-if value="{{ s5IsDone }}" hint-placeholder-val="{{ false }}"><dc-import name="Ikony" iconName="check" size="16" hint-size="16px,16px"></dc-import></sc-if><sc-if value="{{ s5NotDone }}" hint-placeholder-val="{{ true }}"><span>5</span></sc-if></span>
-                <span class="ss-cfg-tx">
-                  <span class="ss-cfg-t">{{ s5Title }}</span>
-                  <sc-if value="{{ s5ShowVal }}" hint-placeholder-val="{{ false }}"><span class="ss-cfg-v"><sc-if value="{{ s5HasSwatch }}" hint-placeholder-val="{{ false }}"><span class="ss-cfg-sw" style="background:{{ s5Swatch }}"></span></sc-if><span>{{ s5Value }}</span><sc-if value="{{ s5HasNote }}" hint-placeholder-val="{{ false }}"><span class="ss-cfg-note" style="color:{{ s5NoteColor }}">{{ s5Note }}</span></sc-if></span></sc-if>
-                </span>
-                <sc-if value="{{ s5CanEdit }}" hint-placeholder-val="{{ false }}"><button type="button" class="ss-cfg-edit" onClick="{{ s5Edit }}">Změnit</button></sc-if>
-              </div>
-              <sc-if value="{{ s5IsActive }}" hint-placeholder-val="{{ false }}">
-              <div class="ss-cfg-body">
-                <span style="font-size:13px;color:var(--ss-text-muted,#5B6874)">Sekce za pravými dveřmi – může být vybavená jinak než levá. Kliknutím na nákres ho zvětšíte.</span>
-                <dc-import name="VariantaObsah" data="{{ layRData }}" onEvent="{{ onLayREvent }}" hint-size="100%,560px"></dc-import>
-              </div>
-              </sc-if>
-            </div>
-            </sc-if>
-            <sc-if value="{{ s6Visible }}" hint-placeholder-val="{{ false }}">
-            <div class="ss-cfg-step" data-active="{{ s6Active }}" data-done="{{ s6Done }}" id="ss-cfg-6">
-              <div class="ss-cfg-head">
-                <span class="ss-cfg-num" aria-hidden="true"><sc-if value="{{ s6IsDone }}" hint-placeholder-val="{{ false }}"><dc-import name="Ikony" iconName="check" size="16" hint-size="16px,16px"></dc-import></sc-if><sc-if value="{{ s6NotDone }}" hint-placeholder-val="{{ true }}"><span>6</span></sc-if></span>
-                <span class="ss-cfg-tx">
-                  <span class="ss-cfg-t">{{ s6Title }}</span>
-                  <sc-if value="{{ s6ShowVal }}" hint-placeholder-val="{{ false }}"><span class="ss-cfg-v"><sc-if value="{{ s6HasSwatch }}" hint-placeholder-val="{{ false }}"><span class="ss-cfg-sw" style="background:{{ s6Swatch }}"></span></sc-if><span>{{ s6Value }}</span><sc-if value="{{ s6HasNote }}" hint-placeholder-val="{{ false }}"><span class="ss-cfg-note" style="color:{{ s6NoteColor }}">{{ s6Note }}</span></sc-if></span></sc-if>
-                </span>
-                <sc-if value="{{ s6CanEdit }}" hint-placeholder-val="{{ false }}"><button type="button" class="ss-cfg-edit" onClick="{{ s6Edit }}">Změnit</button></sc-if>
-              </div>
-              <sc-if value="{{ s6IsActive }}" hint-placeholder-val="{{ false }}">
-              <div class="ss-cfg-body">
-                <div class="ss-pd-segwrap">
-                  <button type="button" class="ss-pd-seg" onClick="{{ pickUpNo }}" aria-pressed="{{ upNoPressed }}">
-                    <span style="display:flex;align-items:center;gap:12px;width:100%;min-width:0">
-                      <span style="display:flex;align-items:center;justify-content:center;width:26px;flex:none">
-                        <sc-if value="{{ upNoSelected }}" hint-placeholder-val="{{ false }}"><span class="ss-pd-var-check" style="position:static"><dc-import name="Ikony" iconName="check" size="16" hint-size="16px,16px"></dc-import></span></sc-if>
-                        <sc-if value="{{ upNoUnsel }}" hint-placeholder-val="{{ true }}"><span class="ss-pd-var-check" style="position:static;background:transparent;box-shadow:inset 0 0 0 1.5px var(--ss-text-muted,#5B6874);color:var(--ss-text-primary,#1C2229)"><dc-import name="Ikony" iconName="minus" size="16" hint-size="16px,16px"></dc-import></span></sc-if>
-                      </span>
-                      <span style="display:flex;flex-direction:column;gap:2px;min-width:0;text-align:left">
-                        <span style="font-size:16px;font-weight:600;color:var(--ss-text-primary,#1C2229)">bez LED osvětlení</span>
-                        <span style="font-size:13px;color:var(--ss-status-success,#157A41)">{{ upNoDiff }}</span>
-                      </span>
+              </sc-for>
+              <div style="display:flex;flex-direction:column;gap:12px">
+              <sc-for list="{{ skPickers }}" as="p" hint-placeholder-count="4">
+                <button type="button" class="ss-pd-row" id="{{ p.pkId }}" data-warn="{{ p.warnStr }}" onClick="{{ p.onOpen }}" aria-haspopup="dialog">
+                  <sc-if value="{{ p.isOn }}" hint-placeholder-val="{{ false }}"><span class="ss-pd-var-check" aria-hidden="true" style="position:static;align-self:center;flex:none"><dc-import name="Ikony" iconName="check" size="16" hint-size="16px,16px"></dc-import></span></sc-if>
+                  <sc-if value="{{ p.isOff }}" hint-placeholder-val="{{ true }}"><span class="ss-pd-cs-dot" aria-hidden="true" style="align-self:center"></span></sc-if>
+                  <span style="flex:1;min-width:0;display:flex;flex-direction:column;gap:4px">
+                    <span style="font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:19px;color:var(--ss-text-primary,#1C2229)">{{ p.title }}</span>
+                    <span style="display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-size:14px;color:var(--ss-text-secondary,#3D4750)">
+                      <sc-if value="{{ p.hasSwatch }}" hint-placeholder-val="{{ false }}"><span style="width:22px;height:22px;flex:none;border-radius:999px;background:{{ p.swatch }};box-shadow:inset 0 0 0 1px rgba(19,44,67,.15)"></span></sc-if>
+                      <span>{{ p.value }}</span>
                     </span>
-                  </button>
-                  <button type="button" class="ss-pd-seg" onClick="{{ pickUpYes }}" aria-pressed="{{ upYesPressed }}">
-                    <span style="display:flex;align-items:center;gap:12px;width:100%;min-width:0">
-                      <span style="display:flex;align-items:center;justify-content:center;width:26px;flex:none">
-                        <sc-if value="{{ upYesSelected }}" hint-placeholder-val="{{ false }}"><span class="ss-pd-var-check" style="position:static"><dc-import name="Ikony" iconName="check" size="16" hint-size="16px,16px"></dc-import></span></sc-if>
-                        <sc-if value="{{ upYesUnsel }}" hint-placeholder-val="{{ true }}"><span class="ss-pd-var-check" style="position:static;background:transparent;box-shadow:inset 0 0 0 1.5px var(--ss-text-muted,#5B6874);color:var(--ss-text-primary,#1C2229)"><dc-import name="Ikony" iconName="plus" size="16" hint-size="16px,16px"></dc-import></span></sc-if>
-                      </span>
-                      <span style="display:flex;flex-direction:column;gap:2px;min-width:0;text-align:left">
-                        <span style="font-size:16px;font-weight:600;color:var(--ss-text-primary,#1C2229)">s LED osvětlením</span>
-                        <span style="font-size:13px;color:var(--ss-text-muted,#5B6874)">LED pásek v obou sekcích, tvar podle nákresu</span>
-                        <span style="font-size:13px;font-weight:600;color:var(--ss-text-primary,#1C2229)">{{ upYesDiff }}</span>
-                      </span>
-                    </span>
-                  </button>
-                </div>
+                  </span>
+                  <span style="flex:none;font-size:15px;font-weight:600;color:{{ p.noteColor }};white-space:nowrap">{{ p.note }}</span>
+                  <span style="display:flex;color:var(--ss-text-heading,#0B1F33);flex:none"><dc-import name="Ikony" iconName="chevron-right" size="22" hint-size="22px,22px"></dc-import></span>
+                </button>
+              </sc-for>
               </div>
-              </sc-if>
-            </div>
-            </sc-if>
-              <sc-if value="{{ cfgComplete }}" hint-placeholder-val="{{ false }}">
-                <div class="ss-cfg-ok" role="status"><dc-import name="Ikony" iconName="circle-check" size="20" hint-size="20px,20px"></dc-import><span>Konfigurace je kompletní – zkontrolujte cenu a vložte skříň do košíku.</span></div>
-              </sc-if>
+              <div class="ss-elev ss-led-box" id="ss-pk-led" data-warn="{{ ledWarnStr }}" style="background:var(--ss-surface-box,#FFFFFF);border:1px solid var(--ss-border-subtle,#E1E6EB);border-radius:12px;padding:20px;display:flex;flex-direction:column;gap:14px">
+              <button type="button" class="ss-pd-cs-radio" role="radio" aria-checked="{{ ledYesPressed }}" onClick="{{ toggleLed }}">
+                <span class="ss-pd-cs-dot"></span>
+                <span class="ss-pd-cs-t" style="font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:19px;line-height:1.2;transition:color .12s">Chcete skříň s LED osvětlením?</span>
+              </button>
+              <sc-if value="{{ ledWarn }}" hint-placeholder-val="{{ false }}"><span class="ss-pk-msg">Vyberte, zda chcete LED osvětlení</span></sc-if>
+              <div class="ss-pd-segwrap">
+                <button type="button" class="ss-pd-seg" onClick="{{ pickLedNo }}" aria-pressed="{{ ledNoPressed }}">
+                  <span style="display:flex;align-items:center;gap:12px;width:100%;min-width:0">
+                    <span style="display:flex;align-items:center;justify-content:center;width:26px;flex:none">
+                      <sc-if value="{{ ledNoSel }}" hint-placeholder-val="{{ false }}"><span class="ss-pd-var-check" style="position:static"><dc-import name="Ikony" iconName="check" size="16" hint-size="16px,16px"></dc-import></span></sc-if>
+                      <sc-if value="{{ ledYesSel }}" hint-placeholder-val="{{ false }}"><span class="ss-pd-var-check" style="position:static;background:transparent;box-shadow:inset 0 0 0 1.5px var(--ss-text-muted,#5B6874);color:var(--ss-text-primary,#1C2229)"><dc-import name="Ikony" iconName="minus" size="16" hint-size="16px,16px"></dc-import></span></sc-if>
+                      <sc-if value="{{ ledNone }}" hint-placeholder-val="{{ true }}"><span class="ss-pd-cs-dot" aria-hidden="true"></span></sc-if>
+                    </span>
+                    <span style="display:flex;flex-direction:column;gap:2px;min-width:0;text-align:left">
+                      <span style="font-size:16px;font-weight:600;color:var(--ss-text-primary,#1C2229)">bez LED osvětlení</span>
+                                            <span style="font-size:13px;color:var(--ss-status-success,#157A41)">{{ ledNoDiff }}</span>
+                    </span>
+                  </span>
+                </button>
+                <button type="button" class="ss-pd-seg" onClick="{{ pickLedYes }}" aria-pressed="{{ ledYesPressed }}">
+                  <span style="display:flex;align-items:center;gap:12px;width:100%;min-width:0">
+                    <span style="display:flex;align-items:center;justify-content:center;width:26px;flex:none">
+                      <sc-if value="{{ ledYesSel }}" hint-placeholder-val="{{ false }}"><span class="ss-pd-var-check" style="position:static"><dc-import name="Ikony" iconName="check" size="16" hint-size="16px,16px"></dc-import></span></sc-if>
+                      <sc-if value="{{ ledNoSel }}" hint-placeholder-val="{{ false }}"><span class="ss-pd-var-check" style="position:static;background:transparent;box-shadow:inset 0 0 0 1.5px var(--ss-text-muted,#5B6874);color:var(--ss-text-primary,#1C2229)"><dc-import name="Ikony" iconName="plus" size="16" hint-size="16px,16px"></dc-import></span></sc-if>
+                      <sc-if value="{{ ledNone }}" hint-placeholder-val="{{ true }}"><span class="ss-pd-cs-dot" aria-hidden="true"></span></sc-if>
+                    </span>
+                    <span style="display:flex;flex-direction:column;gap:2px;min-width:0;text-align:left">
+                      <span style="font-size:16px;font-weight:600;color:var(--ss-text-primary,#1C2229)">s LED osvětlením</span>
+                      <span style="font-size:13px;color:var(--ss-text-muted,#5B6874)">LED pásek v obou sekcích</span>
+                      <span style="font-size:13px;font-weight:600;color:var(--ss-text-primary,#1C2229)">{{ ledYesDiff }}</span>
+                    </span>
+                  </span>
+                </button>
+              </div>
+              </div>
             </div>
 
             <div style="display:flex;flex-direction:column;gap:8px;padding:16px 0">
               <div style="display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px">
-                <span style="display:flex;align-items:center;gap:4px;font-size:16px;font-weight:600;color:var(--ss-status-success,#157A41)">
-                  <span style="display:flex;color:var(--ss-status-success,#157A41)"><dc-import name="Ikony" iconName="circle-check" size="20" hint-size="20px,20px"></dc-import></span>
-                  <span>Skladem <span style="font-weight:400;color:var(--ss-text-secondary,#3D4750)">(3 ks)</span></span>
-                </span>
+                <dc-import name="Skladovost" kind="inStock" label="Skladem" note="(3 ks)" size="md" hint-size="150px,24px"></dc-import>
                 <span style="font-size:14px;color:var(--ss-text-secondary,#3D4750)">22. 10. u vás</span>
-                <a href="#dostupnost" style="font-size:14px">Zobrazit dostupnost</a>
+                <a href="#dostupnost" style="font-size:14px" onClick="{{ openDost }}" aria-haspopup="dialog">Zobrazit dostupnost</a>
               </div>
               <span style="display:flex;align-items:center;gap:8px;font-size:14px;color:var(--ss-text-secondary,#3D4750);padding-left:2px">
                 <span style="display:flex;color:var(--ss-text-muted,#5B6874);flex:none"><dc-import name="Ikony" iconName="map-pin" size="16" hint-size="16px,16px"></dc-import></span>
-                <span>Můžete mít hned na <a href="#prodejny">3 prodejnách</a></span>
+                <span>Můžete mít hned na <a href="#prodejny" onClick="{{ openStores }}" aria-haspopup="dialog">3 prodejnách</a></span>
               </span>
               <span style="display:flex;align-items:center;gap:8px;font-size:14px;color:var(--ss-text-secondary,#3D4750);padding-left:2px">
                 <span style="display:flex;color:var(--ss-text-muted,#5B6874);flex:none"><dc-import name="Ikony" iconName="map-pin" size="16" hint-size="16px,16px"></dc-import></span>
-                <span>Vyzkoušejte osobně na <a href="#prodejny">5 specializovaných prodejnách</a></span>
+                <span>Vyzkoušejte osobně na <a href="#prodejny" onClick="{{ openTry }}" aria-haspopup="dialog">5 specializovaných prodejnách</a></span>
               </span>
             </div>
 
@@ -865,6 +801,7 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
                 <span style="font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:34px;line-height:1.05;color:var(--ss-text-primary,#1C2229)">{{ priceLine }}</span>
                 <span style="font-size:13px;color:var(--ss-text-muted,#5B6874)">{{ priceNote }}</span>
               </div>
+              <sc-if value="{{ warnOn }}" hint-placeholder-val="{{ false }}"><div class="ss-pk-alert" role="alert">Vyberte prosím zvýrazněné položky – pak můžete přidat do košíku.</div></sc-if>
               <div class="ss-pd-buy">
                 <sc-if value="{{ showBefore }}" hint-placeholder-val="{{ true }}">
                   <dc-import name="Kvantifikator" size="{{ qtySize }}" value="{{ qty }}" onChange="{{ onQty }}" hint-size="152px,52px"></dc-import>
@@ -1123,7 +1060,7 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
       <div style="{{ inner }}">
         <sc-if value="{{ stickyWide }}" hint-placeholder-val="{{ true }}">
           <div style="display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px;padding:10px 0">
-            <img decoding="async" src="_blob/516426492f8c754c043b7417686ae6d5.webp" alt="" style="width:56px;height:44px;object-fit:cover;border-radius:6px;flex:none;background:var(--ss-surface-subtle,#FAF5EF)">
+            <img decoding="async" src="_blob/516426492f8c754c043b7417686ae6d5.webp" alt="" style="width:56px;height:44px;object-fit:cover;border-radius:6px;flex:none;background:#FFFFFF">
             <div style="display:flex;flex-direction:column;gap:2px;min-width:0;flex:1">
               <span style="font-size:14px;font-weight:600;line-height:1.3">Skříň UNI PD – šatní skříň z masivu s dvojími posuvnými dveřmi</span>
               <span style="display:flex;flex-wrap:wrap;gap:6px;margin-top:4px">
@@ -1139,16 +1076,15 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
             </div>
             <div style="display:flex;flex-direction:column;gap:2px;text-align:right">
               <span style="font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:21px">{{ price }}</span>
-              <span style="display:flex;align-items:center;justify-content:flex-end;gap:6px;font-size:13px;color:var(--ss-status-success,#157A41)"><span style="width:8px;height:8px;border-radius:999px;background:#157A41"></span>Skladem</span>
+              <span style="display:flex;justify-content:flex-end"><dc-import name="Skladovost" kind="inStock" label="Skladem" size="sm" hint-size="90px,18px"></dc-import></span>
             </div>
             <dc-import name="Tlacitko" label="{{ ctaLabel }}" variant="buy" size="large" iconLeft="{{ ctaIcon }}" onClick="{{ onBuy }}" hint-size="180px,52px"></dc-import>
           </div>
         </sc-if>
         <sc-if value="{{ stickyNarrow }}" hint-placeholder-val="{{ false }}">
-          <div style="display:flex;flex-direction:column;gap:8px;padding:10px 0">
-            <span style="font-size:14px;font-weight:600;line-height:1.3;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Skříň UNI PD – šatní skříň z masivu s dvojími posuvnými dveřmi</span>
+          <div style="display:flex;flex-direction:column;gap:6px;padding:8px 0">
             <div class="ss-pd-stchips" style="display:flex;align-items:center;gap:6px;overflow-x:auto;scrollbar-width:none;white-space:nowrap;margin:0 -16px;padding:0 16px">
-              <span style="display:inline-flex;align-items:center;gap:6px;flex:none;font-size:13px;color:var(--ss-status-success,#157A41);margin-right:4px"><span style="width:8px;height:8px;border-radius:999px;background:#157A41;flex:none"></span>Skladem</span>
+              <span style="display:inline-flex;flex:none;margin-right:4px"><dc-import name="Skladovost" kind="inStock" label="Skladem" size="sm" hint-size="90px,18px"></dc-import></span>
               <sc-for list="{{ stickyChips }}" as="ch" hint-placeholder-count="4">
                 <span style="display:inline-flex;align-items:center;gap:6px;flex:none;height:24px;padding:0 10px;border-radius:999px;background:var(--ss-surface-subtle,#FAF5EF);box-shadow:inset 0 0 0 1px var(--ss-border-subtle,#E1E6EB);font-size:13px;color:var(--ss-text-secondary,#3D4750)">
                   <sc-if value="{{ ch.hasSwatch }}" hint-placeholder-val="{{ false }}">
@@ -1164,10 +1100,10 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
                   <sc-if value="{{ showBefore }}" hint-placeholder-val="{{ true }}">
                     <span style="font-size:14px;color:var(--ss-text-muted,#5B6874);text-decoration:line-through">{{ priceBefore }}</span>
                   </sc-if>
-                  <span style="font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:24px;line-height:1">{{ price }}</span>
+                  <span style="font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:22px;line-height:1">{{ price }}</span>
                 </div>
               </div>
-              <dc-import name="Tlacitko" label="Do košíku" variant="buy" size="large" onClick="{{ onBuy }}" hint-size="150px,52px"></dc-import>
+              <dc-import name="Tlacitko" label="Do košíku" variant="buy" size="medium" onClick="{{ onBuy }}" hint-size="150px,44px"></dc-import>
             </div>
           </div>
         </sc-if>
@@ -1178,7 +1114,8 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
   <dc-import name="VariantaDrawer" open="{{ drawerOpen }}" title="{{ drawerTitle }}" note="{{ drawerNote }}" value="{{ drawerValue }}" groups="{{ drawerGroups }}" rows="{{ drawerRows }}" onPick="{{ onDrawerPick }}" onClose="{{ closeDrawer }}" hint-size="0px,0px"></dc-import>
 
   <dc-import name="Overlay" open="{{ rostPvOpen }}" variant="modal" size="lg" obsah="NahledObsah" title="{{ rostPvTitle }}" icon="photo" closeLabel="okno" initialFocus="close" data="{{ rostPvData }}" onClose="{{ rostPvClose }}" primaryLabel="{{ rostPvPickLabel }}" onPrimary="{{ rostPvPick }}" secondaryLabel="Zavřít" onSecondary="{{ rostPvClose }}" hint-size="100%,100%"></dc-import>
-  <dc-import name="KosikPridanoModal" open="{{ addedOpen }}" title="{{ addedTitle }}" qty="{{ qty }}" variant="{{ addedVariant }}" image="_blob/516426492f8c754c043b7417686ae6d5.webp" stockKind="onWay" stockLabel="Vyrobíme během 4–6 týdnů" total="{{ addedTotal }}" onClose="{{ closeAdded }}" hint-size="0px,0px"></dc-import>
+  <dc-import name="Overlay" open="{{ dostOpen }}" variant="modal" size="sm" obsah="DostupnostObsah" title="{{ dostTitle }}" icon="building-store" closeLabel="okno" initialFocus="close" data="{{ dostData }}" onClose="{{ closeDost }}" hint-size="100%,100%"></dc-import>
+  <dc-import name="KosikPridanoModal" open="{{ addedOpen }}" title="{{ addedTitle }}" qty="{{ qty }}" variant="{{ addedVariant }}" image="_blob/516426492f8c754c043b7417686ae6d5.webp" stockKind="onOrder" stockLabel="Vyrobíme během 4–6 týdnů" total="{{ addedTotal }}" onClose="{{ closeAdded }}" hint-size="0px,0px"></dc-import>
 
   <sc-if value="{{ customOpen }}" hint-placeholder-val="{{ false }}">
     <div class="ss-scrim" style="position:fixed;inset:0;z-index:500;display:flex;align-items:safe center;justify-content:center;overflow-y:auto;padding:24px 16px" onClick="{{ onCustomBackdrop }}">
@@ -1239,14 +1176,14 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
 
   <sc-if value="{{ lbOpen }}" hint-placeholder-val="{{ false }}">
     <div style="position:fixed;inset:0;z-index:500;background:rgba(9,18,27,.88);display:flex;flex-direction:column" onClick="{{ onBackdrop }}">
-      <div role="dialog" aria-modal="true" aria-label="Galerie fotek skříně UNI PD" ref="{{ dialogRef }}" style="display:flex;flex-direction:column;flex:1;min-height:0;padding:16px;gap:12px">
+      <div role="dialog" aria-modal="true" aria-label="Galerie fotek – Skříň UNI PD – šatní skříň z masivu s dvojími posuvnými dveřmi" ref="{{ dialogRef }}" style="display:flex;flex-direction:column;flex:1;min-height:0;padding:16px;gap:12px">
         <div style="display:flex;align-items:center;justify-content:space-between;gap:16px">
-          <span style="color:#FFFFFF;font-size:14px">{{ lbCounter }}</span>
-          <button type="button" class="ss-pd-round" onClick="{{ closeLb }}" ref="{{ closeRef }}" aria-label="Zavřít galerii">
+          <span style="display:flex;flex-direction:column;gap:2px;min-width:0"><span style="color:#FFFFFF;font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:20px;line-height:1.2">Skříň UNI PD – šatní skříň z masivu s dvojími posuvnými dveřmi</span><span style="color:#DCE8F2;font-size:14px">{{ lbCounter }}</span></span>
+          <button type="button" class="ss-pd-round" style="border-radius:6px" onClick="{{ closeLb }}" ref="{{ closeRef }}" aria-label="Zavřít galerii">
             <dc-import name="Ikony" iconName="x" size="22" hint-size="22px,22px"></dc-import>
           </button>
         </div>
-        <div style="position:relative;flex:1;min-height:0;display:flex;align-items:center;justify-content:center">
+        <div style="position:relative;flex:1;min-height:0;display:flex;align-items:center;justify-content:center;margin:0 -16px;padding:0 60px">
           <sc-if value="{{ lbIsPhoto }}" hint-placeholder-val="{{ true }}">
             <img decoding="async" src="{{ lbSrc }}" alt="{{ lbAlt }}" style="max-width:100%;max-height:100%;object-fit:contain;border-radius:12px">
           </sc-if>
@@ -1256,10 +1193,10 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
               <span style="font-size:14px">Video produktu – dodá klient</span>
             </span>
           </sc-if>
-          <button type="button" class="ss-pd-arrow" style="left:0" onClick="{{ lbPrev }}" aria-label="Předchozí fotka">
+          <button type="button" class="ss-pd-arrow" style="left:0;border-radius:0 6px 6px 0;background:linear-gradient(var(--ss-surface-tint,rgba(251,178,85,.05)),var(--ss-surface-tint,rgba(251,178,85,.05))),var(--ss-surface-page,#FFFFFF);box-shadow:none" onClick="{{ lbPrev }}" aria-label="Předchozí fotka">
             <dc-import name="Ikony" iconName="chevron-left" size="22" hint-size="22px,22px"></dc-import>
           </button>
-          <button type="button" class="ss-pd-arrow" style="right:0" onClick="{{ lbNext }}" aria-label="Další fotka">
+          <button type="button" class="ss-pd-arrow" style="right:0;border-radius:6px 0 0 6px;background:linear-gradient(var(--ss-surface-tint,rgba(251,178,85,.05)),var(--ss-surface-tint,rgba(251,178,85,.05))),var(--ss-surface-page,#FFFFFF);box-shadow:none" onClick="{{ lbNext }}" aria-label="Další fotka">
             <dc-import name="Ikony" iconName="chevron-right" size="22" hint-size="22px,22px"></dc-import>
           </button>
         </div>
@@ -1294,7 +1231,7 @@ class Component extends DCLogic {
   state = {
     width: typeof window !== 'undefined' ? document.documentElement.clientWidth : 1440,
     led: true, photo: 0, lb: null, qty: 1, fav: (() => { try { return JSON.parse(localStorage.getItem('ss-fav') || '[]').includes('skrin-uni-pd'); } catch (e) { return false; } })(), cmp: (() => { try { return JSON.parse(localStorage.getItem('ss-cmp') || '[]').includes('skrin-uni-pd'); } catch (e) { return false; } })(), perex: false,
-    onlyStock: false, size: '180 × 200 cm', up: 'yes', sirka: '150', layL: 'S1', layR: 'PZ2', lay: null, variant: 1, faq: 1,
+    onlyStock: false, pk: { led: true }, warn: false, size: '180 × 200 cm', up: 'no', sirka: '150', layL: 'S1', layR: 'PZ2', lay: null, variant: 1, faq: 1,
     rost: 'bez', mat: 'buk-cherry', cal: 'kronos-05',
     custom: false, customW: '', customL: '', customMail: '', customAgree: false, customReg: true,
     customError: false, customSize: null, csOn: false, csW: '', csL: '', csOk: false, csInfo: false,
@@ -1307,10 +1244,16 @@ class Component extends DCLogic {
     window.addEventListener('resize', this._resize);
     this._scroll = () => {
       const y = window.scrollY || document.documentElement.scrollTop;
-      const on = y > 900;
+      // 9. 11. 2026 (jako Multi 3.0): plovoucí panel vždy, když není celý vidět box s cenou a CTA Koupit
+      const box = document.querySelector('.ss-pd-glass');
+      let on = y > 900;
+      if (box) { const r = box.getBoundingClientRect(); const topLine = this.state.headerH || 0; on = r.top < topLine - 4 || r.bottom > window.innerHeight + 4; }
       if (on !== this.state.sticky) this.setState({ sticky: on });
     };
     window.addEventListener('scroll', this._scroll, { passive: true });
+    this._resizeSticky = () => this._scroll();
+    window.addEventListener('resize', this._resizeSticky);
+    [0, 300, 1200].forEach(t => setTimeout(() => { try { this._scroll(); } catch (e) {} }, t));
     this._measureHeader = () => {
       const h = document.querySelector('header.ss-hd');
       const full = h ? Math.round(h.getBoundingClientRect().height) : 0;
@@ -1360,6 +1303,7 @@ class Component extends DCLogic {
     clearInterval(this._headerTick); window.removeEventListener('resize', this._onResize);
     window.removeEventListener('resize', this._resize);
     window.removeEventListener('scroll', this._scroll);
+    window.removeEventListener('resize', this._resizeSticky);
     window.removeEventListener('keydown', this._key);
     document.body.style.overflow = '';
   }
@@ -1432,6 +1376,14 @@ class Component extends DCLogic {
     const PH = this.photos();
     const n = PH.length;
     const i = this.state.photo % n;
+    // Posun fotky v galerii (9. 11. 2026): zapamatuje předchozí fotku a směr, data-k a/b restartuje animaci
+    if (this._galI === undefined) this._galI = i;
+    if (this._galI !== i) {
+      const from = this._galI, fwd = (i > from && !(from === 0 && i === n - 1)) || (from === n - 1 && i === 0);
+      this._gal = { src: (PH[from] && !PH[from].video && PH[from].src) || '', fit: (PH[from] && PH[from].fit) || 'cover', dir: fwd ? 'next' : 'prev', k: this._gal && this._gal.k === 'a' ? 'b' : 'a' };
+      this._galI = i;
+    }
+    const GAL = this._gal || { src: '', fit: 'cover', dir: 'next', k: '' };
     const stick = this.props.fixniSloupec ?? 'galerie';
     const canStick = w >= 1000;
     const crumbH = 0;
@@ -1645,9 +1597,9 @@ class Component extends DCLogic {
     const layR = layRows.find(r => r.id === this.state.layR) || layRows[0];
     const _num = (t) => parseInt(String(t || '').replace(/[^0-9]/g, ''), 10) || 0;
     const upDiff = 2990; // LED osvětlení
-    const dn = this.state.done;
-    const optAdd = (dn >= 1 ? sir.add : 0) + (dn >= 2 ? vys.add : 0) + (String(wood.note).indexOf('+') === 0 ? _num(wood.note) : 0)
-      + (dn >= 4 ? layL.add : 0) + (dn >= 5 ? layR.add : 0) + (dn >= 6 && this.state.up === 'yes' ? upDiff : 0);
+    const PK = this.state.pk || {};
+    const optAdd = (PK.sir ? sir.add : 0) + (PK.vys ? vys.add : 0) + (PK.mat && String(wood.note).indexOf('+') === 0 ? _num(wood.note) : 0)
+      + (PK.layL ? layL.add : 0) + (PK.layR ? layR.add : 0) + (PK.led && this.state.up === 'yes' ? upDiff : 0);
     const now = 38990 + optAdd, before = 41990 + optAdd;
     const csWn = 0, csLn = 0, csWok = false, csLok = false, csValid = false, csAddRaw = 0, csAdd = 0, csErr = '';
     const price = fmt(now);
@@ -1668,17 +1620,23 @@ class Component extends DCLogic {
       { question: 'Jde vnitřní uspořádání později změnit?', answer: 'Police lze posunout o ±15 cm, konstrukční police zůstávají pevné. Zásuvkovou vložku nebo šatní tyč doobjednáte i dodatečně.' }
     ];
     return {
+      // okno Dostupnost (9. 11. 2026)
+      dostOpen: !!this.state.dost, dostTitle: this.state.dost === 'stores' ? 'Skladem na prodejnách' : this.state.dost === 'tryout' ? 'Vyzkoušejte na prodejně' : 'Dostupnost', dostData: { storeIds: null, kind: this.state.dost === 'stores' || this.state.dost === 'tryout' ? this.state.dost : 'inStock', qty: 3, store: 'Praha – Chodov', pickup: 'ihned', delivery: 'zítra' },
+      openDost: (e) => { if (e && e.preventDefault) e.preventDefault(); this.setState({ dost: true }); },
+      openTry: (e) => { if (e && e.preventDefault) e.preventDefault(); this.setState({ dost: 'tryout' }); },
+      openStores: (e) => { if (e && e.preventDefault) e.preventDefault(); this.setState({ dost: 'stores' }); },
+      closeDost: () => this.setState({ dost: false }),
       ledMode: this.state.led ? 'on' : 'off',
       presItems: [{ label: 'LED', value: this.state.led }, { label: 'Příplatky', value: PP }],
       onPresToggle: (i) => this.setState(s => (i === 1 ? { pp: s.pp === false } : { led: !s.led })),
       presChoices: [
-        { label: 'Detail – Simple', value: 'Skříň UNI 2D Konf', options: ['Postel 3.0', 'Komplet 3.0', 'Multi 3.0', 'Matrace 3.0', 'Komoda VIA'] }, { label: 'Detail – Konfigurátor', value: 'Skříň UNI 2D Konf', options: ['Multi Konf.', 'Skříň UNI 2D Konf', 'Set polštář'] },
+        { label: 'Detail – Simple', value: 'Skříň UNI 2D', options: ['Postel 3.0', 'Komplet 3.0', 'Multi 3.0', 'Matrace 3.0', 'Komoda VIA', 'Set polštář + povlak A', 'Set polštář + povlak B', 'Set polštář + přikrývka', 'Set 1+1 polštáře', 'Čalouněná', 'Airflex SET', 'Skříň UNI 2D'] }, { label: 'Krokový Konfig.', value: 'Skříň UNI 2D', options: ['Multi Konf.'] },
         { label: 'Fixní sloupec', value: this.state.stickPick || (stick === 'zadny' ? 'Žádný' : 'Galerie'), options: ['Galerie', 'Žádný'] },
         { label: 'Rozměr', value: this.state.sizeUi || 'V1', options: ['V1', 'V2'] },
         { label: 'Set', value: this.state.setUi || 'S1', options: ['S1', 'S2', 'S3', 'S4'] },
         { label: 'Materiál a odstín', value: this.state.matUi || 'B', options: ['A', 'B'] }
       ],
-      onPresPick: (ci, opt) => { if (ci === 1) ci = 0; else if (ci > 1) ci -= 1; /* Detail rozdělen na Simple a Konfigurátor (6. 11. 2026) */ if (ci === 0) { if (opt !== 'Skříň UNI 2D Konf') (h => { try { const a = document.createElement('a'); a.href = h; a.style.display = 'none'; (document.getElementById('dc-root') || document.body).appendChild(a); a.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true, view: window })); a.remove(); } catch (e) { window.location.href = h; } })(opt === 'Multi Konf.' ? 'Detail_Postel_3.0-hqdl.dc.html' : (opt === 'Set polštář' ? 'Detail_Set_Polstar_Povlak.dc.html' : opt === 'Skříň UNI 2D Konf' ? 'Detail_Skrin_UNI_2D_Konf.dc.html' : 'Detail_' + String(opt).replace(/ /g, '_') + '.dc.html')); return; } ci -= 1; this.setState(ci === 0 ? { stickPick: opt } : ci === 1 ? { sizeUi: opt } : ci === 2 ? { setUi: opt } : { matUi: opt }); },
+      onPresPick: (ci, opt) => { if (ci === 1) ci = 0; else if (ci > 1) ci -= 1; /* Detail rozdělen na Simple a Konfigurátor (6. 11. 2026) */ if (ci === 0) { if (opt !== 'Skříň UNI 2D') (h => { try { const a = document.createElement('a'); a.href = h; a.style.display = 'none'; (document.getElementById('dc-root') || document.body).appendChild(a); a.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true, view: window })); a.remove(); } catch (e) { window.location.href = h; } })(opt === 'Multi Konf.' ? 'Detail_Postel_3.0-hqdl.dc.html' : (opt === 'Set polštář + povlak A' ? 'Detail_Set_Polstar.dc.html' : opt === 'Set polštář + povlak B' ? 'Detail_Set_Polstar_B.dc.html' : opt === 'Set polštář + přikrývka' ? 'Detail_Set_Bamboo.dc.html' : opt === 'Čalouněná' ? 'Detail_Calounena_Postel.dc.html' : opt === 'Airflex SET' ? 'Detail_Matrace_Airflex_Set.dc.html' : opt === 'Set 1+1 polštáře' ? 'Detail_Set_Polstare_1plus1.dc.html' : opt === 'Skříň UNI 2D' ? 'Detail_Skrin_UNI_2D_Konf.dc.html' : 'Detail_' + String(opt).replace(/ /g, '_') + '.dc.html')); return; } ci -= 1; this.setState(ci === 0 ? { stickPick: opt } : ci === 1 ? { sizeUi: opt } : ci === 2 ? { setUi: opt } : { matUi: opt }); },
       // --- krokový konfigurátor ---
       cfgProgText: this.state.done >= 6 ? 'Hotovo – 6 z 6 kroků' : 'Krok ' + Math.min(this.state.done + 1, 6) + ' z 6',
       cfgProgPct: Math.round(this.state.done / 6 * 100) + '%',
@@ -1767,6 +1725,7 @@ class Component extends DCLogic {
       tocTop,
       showVariants: this.props.zobrazitVarianty ?? false,
       mainSrc: PH[i].src || '',
+      slideHasPrev: !!GAL.src && !!GAL.k, slidePrevSrc: GAL.src, slidePrevFit: GAL.fit, slideDir: GAL.dir, slideK: GAL.k,
       mainFit: PH[i].fit || 'cover',
       mainAlt: PH[i].alt,
       mainIsVideo: !!PH[i].video,
@@ -1803,7 +1762,7 @@ class Component extends DCLogic {
         const sel = (this.state.variantLabel || 'LEVITA s nočními stolky') === v.label;
         return {
           label: v.label, src: v.src, selected: sel,
-          ring: sel ? 'inset 0 0 0 2px #296093' : 'none',
+          ring: sel ? '0 0 0 1px var(--ss-border-subtle,#E1E6EB), 0 2px 8px rgba(19,44,67,.08)' : 'none', notSelected: !sel, // aktivní karta: jemný okraj + stín jako karty Set polštář B
           labelColor: sel ? 'var(--ss-text-primary,#1C2229)' : 'var(--ss-text-secondary,#3D4750)',
           labelWeight: sel ? '600' : '400',
           pressed: sel ? 'true' : 'false',
@@ -2060,7 +2019,48 @@ class Component extends DCLogic {
         aria: p.video ? 'Video produktu' : 'Fotka ' + (k + 1),
         current: this.state.lb === k ? 'true' : 'false',
         onPick: (e) => { if (e) e.stopPropagation(); this.setState({ lb: k, photo: k }); }
-      }))
+      })),
+      // --- Skříň UNI 2D jako běžný detail (9. 11. 2026) – přepisuje krokový konfigurátor ---
+      ...(() => {
+        const PKs = this.state.pk || {}, W = !!this.state.warn, set = (k, patch) => this.setState(st => Object.assign({}, patch, { pk: Object.assign({}, st.pk, { [k]: true }) }));
+        const miss = [];
+        const dims = [
+          { id: 'ss-pk-sir', title: 'Šířka skříně', k: 'sir', msg: 'Vyberte šířku', list: SIRKY, cur: sir, field: 'sirka' },
+          { id: 'ss-pk-vys', title: 'Výška skříně', k: 'vys', msg: 'Vyberte výšku', list: VYSKY, cur: vys, field: 'vyska' }
+        ].map(g => { if (!PKs[g.k]) miss.push(g.id); return { id: g.id, title: g.title, warn: W && !PKs[g.k], msg: g.msg, hasHint: g.k === 'vys' && !!PKs.vys && !!vys.hint, hint: vys.hint || '',
+          items: g.list.map(h => { const on = !!PKs[g.k] && g.cur.id === h.id; return { label: h.label, extra: PP && h.add ? '+ ' + fmt(h.add) : '', variant: on ? 'primary' : 'outline', pressed: on ? 'true' : 'false', onPick: () => set(g.k, { [g.field]: h.id }) }; }) }; });
+        const nC = (t) => !t || /bez p/i.test(t) ? 'var(--ss-status-success,#157A41)' : 'var(--ss-text-primary,#1C2229)';
+        const rows = [
+          { k: 'mat', title: 'Materiál a odstín', value: mat.label, note: PP ? mat.note : '', swatch: mat.color },
+          { k: 'layL', title: 'Vnitřní uspořádání – levá část', value: layL.label, note: PP ? layL.price : '' },
+          { k: 'layR', title: 'Vnitřní uspořádání – pravá část', value: layR.label, note: PP ? layR.price : '' }
+        ].map(r => { const ok = !!PKs[r.k]; if (!ok) miss.push('ss-pk-' + r.k); return { title: r.title, value: ok ? r.value : 'Nevybráno', note: ok ? r.note : '', noteColor: nC(r.note), hasSwatch: ok && !!r.swatch, swatch: r.swatch || '',
+          isOn: ok, isOff: !ok, pkId: 'ss-pk-' + r.k, warnStr: W && !ok ? 'true' : 'false', onOpen: () => this.setState({ drawer: 'sk-' + r.k }) }; });
+        if (!PKs.led) miss.push('ss-pk-led');
+        const done = miss.length === 0, d = this.state.drawer || '';
+        const LED_ROWS = [{ id: 'no', label: 'Bez LED osvětlení', meta: 'skříň bez osvětlení', price: 'bez příplatku', stock: '' }, { id: 'yes', label: 'S LED osvětlením', meta: 'LED pásek v obou sekcích, tvar podle nákresu', price: '+ ' + fmt(upDiff), stock: '' }];
+        return {
+          skDims: dims, skPickers: rows,
+          ledNone: !PKs.led, ledNoSel: !!PKs.led && this.state.up === 'no', ledYesSel: !!PKs.led && this.state.up === 'yes',
+          ledNoPressed: PKs.led && this.state.up === 'no' ? 'true' : 'false', ledYesPressed: PKs.led && this.state.up === 'yes' ? 'true' : 'false',
+          ledNoDiff: PP ? 'Bez příplatku' : '', ledYesDiff: PP ? '+\u00A0' + fmt(upDiff) : '',
+          ledWarn: W && !PKs.led, ledWarnStr: W && !PKs.led ? 'true' : 'false',
+          pickLedNo: () => set('led', { up: 'no' }), pickLedYes: () => set('led', { up: 'yes' }),
+          toggleLed: () => set('led', { up: PKs.led && this.state.up === 'yes' ? 'no' : 'yes' }),
+          get warnOn() { return W && !done; },
+          priceLine: done ? price : 'od ' + price,
+          priceNote: done ? 'Cena sestavy včetně DPH' : 'Cena včetně DPH · zatím vybrané volby + nejlevnější zbytek',
+          drawerOpen: d.indexOf('sk-') === 0,
+          drawerTitle: ({ 'sk-mat': 'Materiál a odstín', 'sk-layL': 'Vnitřní uspořádání – levá část', 'sk-layR': 'Vnitřní uspořádání – pravá část', 'sk-led': 'LED osvětlení' })[d] || '',
+          drawerNote: d === 'sk-layL' || d === 'sk-layR' ? 'Kliknutím na nákres ho zvětšíte.' : '',
+          drawerValue: ({ 'sk-mat': PKs.mat ? this.state.mat : '', 'sk-layL': PKs.layL ? this.state.layL : '', 'sk-layR': PKs.layR ? this.state.layR : '', 'sk-led': PKs.led ? this.state.up : '' })[d] || '',
+          drawerGroups: d === 'sk-mat' ? MATERIALY : [],
+          drawerRows: (d === 'sk-layL' || d === 'sk-layR' ? layRows : d === 'sk-led' ? LED_ROWS : []).map(r => PP ? r : Object.assign({}, r, { price: '' })),
+          onDrawerPick: (id) => { const m = { 'sk-mat': ['mat', 'mat'], 'sk-layL': ['layL', 'layL'], 'sk-layR': ['layR', 'layR'], 'sk-led': ['led', 'up'] }[this.state.drawer]; if (m) set(m[0], { [m[1]]: id }); },
+          closeDrawer: () => this.setState({ drawer: null }),
+          onBuy: () => { if (!done) { this.setState({ warn: true }); requestAnimationFrame(() => { try { const el = miss.map(id => document.getElementById(id)).filter(Boolean).sort((a, b) => a.getBoundingClientRect().top - b.getBoundingClientRect().top)[0]; if (el) el.scrollIntoView({ block: 'center', behavior: 'smooth' }); } catch (e) {} }); return; } this.setState({ added: true }); }
+        };
+      })()
     };
   }
 }

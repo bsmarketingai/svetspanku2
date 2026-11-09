@@ -241,9 +241,9 @@ a.ss-promo:hover{color:#FFFFFF;}
 @media (hover:hover) and (pointer:fine){.ss-kg-pv:hover .ss-kg-pvbg{transform:scale(1.06);}.ss-kg-pv:hover .ss-kg-pvbtn{background:#296093!important;}}
 @media (prefers-reduced-motion:reduce){.ss-kg-pvbg{transition:none;}.ss-kg-pv:hover .ss-kg-pvbg{transform:none;}}
 /* Chipy podkategorií: hover jako v megamenu (4. 11. 2026) */
-.ss-kat-chips-t{display:inline-flex;align-items:center;gap:4px;color:var(--ss-link,#296093);text-decoration:none;border-radius:4px;transition:color .12s cubic-bezier(.22,.61,.36,1);}
+.ss-kat-chips-t{display:inline-flex;align-items:center;gap:4px;color:var(--ss-text-heading,#0B1F33);text-decoration:none;border-radius:4px;transition:color .12s cubic-bezier(.22,.61,.36,1);}
 .ss-kat-chips-chev{display:inline-flex;color:var(--ss-text-muted,#5B6874);transition:transform .15s cubic-bezier(.22,.61,.36,1),color .12s cubic-bezier(.22,.61,.36,1);}
-@media (hover:hover) and (pointer:fine){.ss-kat-chips-t:hover{color:var(--ss-hover-text,#A4600C);}.ss-kat-chips-t:hover>span:first-child{text-decoration:underline;text-underline-offset:4px;}.ss-kat-chips-t:hover .ss-kat-chips-chev{transform:translateX(4px);color:var(--ss-hover-text,#A4600C);}}
+@media (hover:hover) and (pointer:fine){.ss-kat-chips-t:hover{color:var(--ss-text-heading,#0B1F33);} /* 9. 11. 2026: nadpis řady čipů bez modré, hover jen podtržení */.ss-kat-chips-t:hover>span:first-child{text-decoration:underline;text-underline-offset:4px;}.ss-kat-chips-t:hover .ss-kat-chips-chev{transform:translateX(4px);color:var(--ss-hover-text,#A4600C);}}
 .ss-kat-chips-t:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
 @media (hover:hover) and (pointer:fine){.ss-kat-chips .ss-chip:hover{background:var(--ss-hover-bg,#F0F5FA)!important;box-shadow:inset 0 0 0 1px var(--ss-border-action,#296093)!important;color:var(--ss-hover-text,#21507B)!important;}}
 </style>
@@ -304,9 +304,10 @@ a.ss-promo:hover{color:#FFFFFF;}
         <sc-if value="{{ hasSub }}" hint-placeholder-val="{{ true }}">
         <nav aria-label="Podkategorie" style="display:flex;flex-direction:column;gap:24px;margin-bottom:{{ subGapBelow }}">
           <sc-for list="{{ chipRows }}" as="r" hint-placeholder-count="0">
-            <div style="display:flex;flex-direction:column;gap:12px">
-              <h2 style="margin:0;font-size:21px;line-height:1.2;color:var(--ss-text-heading,#0B1F33)"><a class="ss-kat-chips-t" href="{{ r.href }}"><span>{{ r.title }}</span><span class="ss-kat-chips-chev" aria-hidden="true"><dc-import name="Ikony" iconName="chevron-right" size="20" hint-size="20px,20px"></dc-import></span></a></h2>
-              <div class="ss-kat-chips" style="display:flex;flex-wrap:wrap;gap:8px">
+            <!-- 9. 11. 2026: čipy hned vedle nadpisu, co se nevejde, zalomí se na další řádek -->
+            <div style="display:flex;flex-wrap:wrap;align-items:center;gap:8px">
+              <h2 style="margin:0 8px 0 0;font-size:21px;line-height:1.2;color:var(--ss-text-heading,#0B1F33)"><a class="ss-kat-chips-t" href="{{ r.href }}"><span>{{ r.title }}</span><span class="ss-kat-chips-chev" aria-hidden="true"><dc-import name="Ikony" iconName="chevron-right" size="20" hint-size="20px,20px"></dc-import></span></a></h2>
+              <div class="ss-kat-chips" style="display:contents">
                 <sc-for list="{{ r.items }}" as="i" hint-placeholder-count="8">
                   <dc-import name="Chip" label="{{ i.label }}" href="{{ i.href }}" tip="{{ i.tip }}" variant="outline" hint-size="110px,40px"></dc-import>
                 </sc-for>
@@ -330,7 +331,7 @@ a.ss-promo:hover{color:#FFFFFF;}
           </sc-if>
 
           <div style="min-width:0;display:flex;flex-direction:column;gap:20px">
-            <sc-if value="{{ hasActive }}" hint-placeholder-val="{{ false }}">
+            <sc-if value="{{ hasActiveTop }}" hint-placeholder-val="{{ false }}">
               <div role="region" aria-label="Aktivní filtry" style="display:flex;flex-wrap:wrap;align-items:center;gap:8px">
                 <ul style="list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px">
                   <sc-for list="{{ activeChips }}" as="c" hint-placeholder-count="2">
@@ -351,6 +352,17 @@ a.ss-promo:hover{color:#FFFFFF;}
             <sc-if value="{{ noSidebar }}" hint-placeholder-val="{{ false }}">
               <dc-import name="FiltracniLista" total="{{ total }}" sort="{{ sort }}" sortOptions="{{ sortOptions }}" onSort="{{ onSort }}" inStockOnly="{{ inStockOnly }}" onToggleInStock="{{ onToggleStock }}" onOpenFilters="{{ openFilters }}" hint-size="100%,72px"></dc-import>
             </sc-if>
+            <!-- 9. 11. 2026: tablet a mobil – aktivní filtry pod tlačítky Filtry / Řazení, blíž k nim (mezera 8 px) -->
+            <sc-if value="{{ hasActiveBottom }}" hint-placeholder-val="{{ false }}">
+              <div role="region" aria-label="Aktivní filtry" style="display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:-12px">
+                <ul style="list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px">
+                  <sc-for list="{{ activeChips }}" as="c" hint-placeholder-count="2">
+                    <li><dc-import name="Chip" label="{{ c.label }}" variant="filter" active="{{ true }}" size="small" onClick="{{ c.onRemove }}" hint-size="120px,32px"></dc-import></li>
+                  </sc-for>
+                </ul>
+                <dc-import name="Chip" label="Zrušit všechny filtry" variant="sale" size="small" icon="trash" onClick="{{ onClearAll }}" hint-size="170px,32px"></dc-import>
+              </div>
+            </sc-if>
 
             <h2 style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0">Produkty</h2>
             <div class="ss-pgrid" style="display:grid;grid-template-columns:{{ productTemplate }};gap:20px">
@@ -359,7 +371,7 @@ a.ss-promo:hover{color:#FFFFFF;}
               </sc-for>
             </div>
 
-            <dc-import name="Paginace" page="{{ page }}" totalPages="{{ 2 }}" perPage="{{ 24 }}" totalItems="{{ total }}" onPage="{{ onPage }}" onLoadMore="{{ onLoadMore }}" hint-size="100%,160px"></dc-import>
+            <dc-import name="Paginace" page="{{ pageShown }}" totalPages="{{ totalPages }}" perPage="{{ 12 }}" totalItems="{{ total }}" onPage="{{ onPage }}" onLoadMore="{{ onLoadMore }}" hint-size="100%,160px"></dc-import>
 
             <!-- Dlouhý popis a FAQ z Excelu kategorií – až pod paginací, ve sloupci výpisu (4. 11. 2026) -->
             <sc-if value="{{ hasLong }}" hint-placeholder-val="{{ true }}">
@@ -6792,7 +6804,8 @@ const MENU = [
           },
           {
             "label": "Článek: Chrápání a spánková apnoe",
-            "href": "Clanek.dc.html",
+            "href": "https://blog.svetspanku.cz/chrapani-a-spankova-apnoe",
+            "image": "magazin-matrace-pro-dva.webp",
             "link": true
           }
         ]
@@ -7374,11 +7387,16 @@ class Component extends DCLogic {
     const isMat = slug === 'matrace';
     const flt = Component.FILTERS[slug] || (() => true);
     const mat = base.filter(flt);
-    let products = [];
-    while (mat.length && products.length < 12) products = products.concat(mat);
-    products = products.slice(0, 12);
+    // Stránkování a Načíst další (9. 11. 2026): 12 produktů na stránku, každá stránka jiný výřez (prototyp opakuje vzorové produkty)
+    const PER = 12;
     const selected = this.state.selected;
-    const total = r && r.level === 1 ? (Component.TOTALS[slug] || products.length) : products.length;
+    const total = r && r.level === 1 ? (Component.TOTALS[slug] || 12) : Math.max(36, mat.length);
+    const totalPages = Math.max(1, Math.ceil(total / PER));
+    const page = Math.min(this.state.page || 1, totalPages);
+    const lastPage = Math.min(totalPages, page + (this.state.more || 0));
+    const pageItems = (n) => { const out = []; if (!mat.length) return out; const left = Math.min(PER, total - (n - 1) * PER); for (let i = 0; i < left; i++) out.push(mat[((n - 1) * PER + i * 5 + n) % mat.length]); return out; };
+    let products = [];
+    for (let n = page; n <= lastPage; n++) products = products.concat(pageItems(n));
     const level = r ? r.level : 1;
     const children = !r ? [] : level === 1 ? (r.cat.groups || []).map(g => ({ label: g.title, href: g.href, chips: !!g.chips, items: g.items || [], image: g.image, tip: !!g.best }))
       : level === 2 ? (r.g.items || []).map(i => ({ label: i.label, href: i.href, items: [], tip: !!i.tip })) : [];
@@ -7503,6 +7521,8 @@ class Component extends DCLogic {
       onClearAll: () => this.setState({ selected: {}, priceFrom: 0, priceTo: 40000 }),
       activeChips: this.activeChips(),
       hasActive: this.activeChips().length > 0,
+      hasActiveTop: sidebar && this.activeChips().length > 0,
+      hasActiveBottom: !sidebar && this.activeChips().length > 0,
       priceFrom: this.state.priceFrom,
       priceTo: this.state.priceTo,
       onPrice: (from, to) => this.setState({ priceFrom: from, priceTo: to }),
@@ -7533,9 +7553,9 @@ class Component extends DCLogic {
       total,
       totalText: this.plural(total),
       products: products.map((d, i) => ({ data: d, onFav: () => {} })),
-      page: this.state.page,
-      onPage: (p) => this.setState({ page: p }),
-      onLoadMore: () => {},
+      page, pageShown: lastPage, totalPages,
+      onPage: (p) => { this.setState({ page: p, more: 0 }); requestAnimationFrame(() => { try { const g = document.querySelector('.ss-pgrid'); if (g) { const hd = document.querySelector('header.ss-hd'); const off = (hd ? hd.getBoundingClientRect().height : 0) + 24; window.scrollTo({ top: g.getBoundingClientRect().top + window.scrollY - off, behavior: 'smooth' }); } } catch (e) {} }); },
+      onLoadMore: () => this.setState(st => ({ more: (st.more || 0) + 1 })),
       filtersOpen: this.state.filtersOpen,
       openFilters: () => this.setState({ filtersOpen: true }),
       closeFilters: () => this.setState({ filtersOpen: false })

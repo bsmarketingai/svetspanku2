@@ -140,6 +140,11 @@ Varianty produktů (rozměr, tuhost, barva) · množstevní slevy · porovnává
 První kolo stránek: **Homepage**.
 
 ## Rozhodnuto – nevracet se k tomu
+- **Simple detaily bez předvýběru** (9. 11. 2026): rozměr, výška, materiál, rošty, čalounění nejsou předvybrané (řádek „Nevybráno“ s prázdným kolečkem). Koupit s nevybranou položkou nepřidá do košíku – nevybrané řádky červeně zvýrazní (`data-warn`), u nadpisu rozměru/výšky „Vyberte …“, nad tlačítkem upozornění a posun k první chybějící. Logika `pkWrap` / `pkCheck`, stav `pk`. Konfigurátory to řeší kroky, Sety mají vlastní „od“ logiku.
+- **Rámeček formulářových polí `--ss-border-input` #8A96A3** (9. 11. 2026, WCAG 1.4.11 ≈ 3 : 1 i na béžovém podkladu): Input, TextovePole, Select (outline), Checkbox, VolbaRadio; hover/focus rámeček #296093. Řazení na kategorii = Select outline (bílé pole s rámečkem).
+- **Skladovost = jen komponenta `Skladovost`** (9. 11. 2026): ikona + text, stavy `inStock` (circle-check, #157A41 / tmavý #71CC92), `lowStock` (alert-circle, #A4600C / #FCC77D), `onWay` (truck, #21507B / #8DB3D3), `onOrder` (clock, #21507B / #8DB3D3, i „Vyrobíme během …“), `outOfStock` (circle-x, šedá #55616C / #9DB0C2 – ne červená). Velikost `md` jen detail nad CTA, jinak `sm`. Žádné ručně psané tečky ani ikony skladovosti ve stránkách; `Stitek` se stock kind deleguje na `Skladovost`. Přehled stavů: Komponenty → Skladovost.
+- **Produktové fotky vždy na bílém podkladu** (`#FFFFFF`, 9. 11. 2026): placeholdery fotek, galerie, miniatury v plovoucí liště i v kartách – nikdy béžový `surface-subtle/muted`, aby kolem fotky nevznikaly béžové okraje. Platí i v tmavém režimu.
+- **Plovoucí CTA lišta na detailu** (9. 11. 2026, všechny `Detail_*`): ukáže se vždy, když není celý vidět box s cenou a Koupit (`.ss-pd-glass` schovaný pod hlavičkou nebo pod spodní hranou okna), i nahoře stránky na menším okně; přepočítá se při scrollu a změně velikosti okna. Nové detaily přebírají stejnou logiku v `_scroll`.
 
 - **Hlavička Duo, patička Modrá, magazín M1, prodejny P1, menu M2, sticky hlavička H2, karusely V3** (30. 10. 2026, finální). Karusely na homepage a v Článku natrvalo V3 (peek), přepínač odebrán. `Hlavicka` má výchozí `theme="duo"` na celém webu, menu vždy M2 a sticky režim vždy H2 (uložené `ss-navvar` a `ss-hdmode` se ignorují); `Paticka` výchozí `blue`; homepage magazín M1 a prodejny P1. Přepínače Header, Footer, Magazín, Prodejny, Menu (homepage) a Sticky hlavička (`PrezentacniLista`) odebrány.
 - **Web je jen světlý** (29. 10. 2026). Tmavý režim zrušen, přepínač v `PrezentacniLista` odebrán; uložené `ss-mode=dark` lišta při načtení vrátí na světlý.
@@ -194,3 +199,5 @@ Data (plain JS): `menu.js` (struktura menu), `produkty.js`, `prodejny.js`, `kosi
 
 - **Struktura menu**: naplněna podle screenshotů z Muralu (8. 10. 2026) v `menu.js`. Otevřené: skupina „Podle materiálu“ u polštářů (v Muralu otazníky), zda ponechat „Akce a výprodej“, zvýraznění „Průvodce výběrem matrace“.
 - Poslední dny práce (7. 10. 2026): přesměrování detailu na Postel 3.0, teplé meruňkové podklady sekcí homepage (`.ss-grad-top` + `.ss-grad-glow`), bílé boxy konfigurace na detailu, sticky hlavička H1/H2, počty v porovnání/oblíbených v hlavičce. Podrobnosti v `changelog.dc.html`.
+
+- Nadpisy všech výběrů v nákupní části detailu (Rozměr postele, Výška, Vlastní rozměr, Chcete … úložný prostor / LED, Rošty, Materiál a odstín, Čalounění, Sestavte si set, položky kompletu, Další varianty): jednotně Oswald 700, 19 px (9. 11. 2026).

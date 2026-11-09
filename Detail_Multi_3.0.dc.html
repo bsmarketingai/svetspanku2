@@ -402,7 +402,21 @@ html,body{margin:0!important;padding:0!important;}
 #dc-root>.sc-host{margin:0!important;padding:0!important;width:100%!important;}
 a{color:var(--ss-link,#296093);}
 a:hover{color:var(--ss-hover-text,#A4600C);}
-.ss-pd-ph{display:block;width:100%;border:0;padding:0;background:var(--ss-surface-subtle,#FAF5EF);border-radius:12px;overflow:hidden;cursor:zoom-in;position:relative;box-shadow:0 2px 8px rgba(19,44,67,.08);}
+/* Galerie (9. 11. 2026): přepnutí fotky posunem – nová fotka vytlačí starou doleva (zpět doprava), ease-in-out 300 ms */
+.ss-gal-stage{position:relative;display:block;width:100%;height:100%;overflow:hidden;}
+.ss-gal-in,.ss-gal-out{position:absolute;inset:0;width:100%;height:100%;display:block;}
+.ss-gal-in[data-dir="next"],.ss-gal-out[data-dir="next"]{--ss-gd:100%;}
+.ss-gal-in[data-dir="prev"],.ss-gal-out[data-dir="prev"]{--ss-gd:-100%;}
+.ss-gal-in[data-k="a"]{animation:ssGalInA .3s cubic-bezier(.45,0,.55,1) both;}
+.ss-gal-in[data-k="b"]{animation:ssGalInB .3s cubic-bezier(.45,0,.55,1) both;}
+.ss-gal-out[data-k="a"]{animation:ssGalOutA .3s cubic-bezier(.45,0,.55,1) both;}
+.ss-gal-out[data-k="b"]{animation:ssGalOutB .3s cubic-bezier(.45,0,.55,1) both;}
+@keyframes ssGalInA{from{transform:translateX(var(--ss-gd));}to{transform:translateX(0);}}
+@keyframes ssGalInB{from{transform:translateX(var(--ss-gd));}to{transform:translateX(0);}}
+@keyframes ssGalOutA{from{transform:translateX(0);}to{transform:translateX(calc(var(--ss-gd) * -1));}}
+@keyframes ssGalOutB{from{transform:translateX(0);}to{transform:translateX(calc(var(--ss-gd) * -1));}}
+@media (prefers-reduced-motion:reduce){.ss-gal-in,.ss-gal-out{animation:none!important;}.ss-gal-out{display:none;}}
+.ss-pd-ph{display:block;width:100%;border:0;padding:0;background:#FFFFFF;border-radius:12px;overflow:hidden;cursor:zoom-in;position:relative;box-shadow:0 2px 8px rgba(19,44,67,.08);}
 .ss-pd-ph:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
 .ss-pd-thumbs{display:flex;gap:8px;overflow-x:auto;scroll-snap-type:x proximity;scroll-padding-inline:16px;scrollbar-width:none;margin:0 -16px;padding:2px 16px;}
 .ss-pd-thumbs::-webkit-scrollbar{display:none;}
@@ -417,6 +431,10 @@ a:hover{color:var(--ss-hover-text,#A4600C);}
 @media (hover:hover) and (pointer:fine){.ss-pd-round:not([aria-pressed]):hover{background:var(--ss-hover-bg,#FFF5E6)!important;color:var(--ss-hover-text,#A4600C);}.ss-pd-round[aria-pressed="false"]:hover{background:#FFF5E6!important;}.ss-pd-round[aria-pressed="false"]:hover span{color:#A4600C!important;}.ss-pd-round[aria-pressed="true"]:hover span{color:#F09A2C!important;}}
 .ss-pd-round:active{transform:scale(.96);}
 .ss-pd-round:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
+/* Nic předvybraného (9. 11. 2026): nevybrané položky po kliknutí na Koupit zvýrazněné červeně */
+.ss-pd-row[data-warn="true"]{box-shadow:inset 0 0 0 2px #B3261E!important;background:#FDF0EF!important;}
+.ss-pk-msg{color:#B3261E;font-size:14px;font-weight:600;}
+.ss-pk-alert{flex-basis:100%;color:#B3261E;font-size:14px;font-weight:600;line-height:1.4;background:#FDF0EF;border-radius:8px;padding:10px 12px;}
 .ss-pd-row{display:flex;align-items:center;gap:16px;width:100%;text-align:left;padding:14px 16px;border:1px solid var(--ss-border-subtle,#E1E6EB);border-radius:12px;background:var(--ss-surface-box,#FFFFFF);cursor:pointer;font-family:inherit;transition:box-shadow .15s cubic-bezier(.22,.61,.36,1),border-color .12s cubic-bezier(.22,.61,.36,1);}
 @media (hover:hover) and (pointer:fine){.ss-pd-row:hover svg{color:var(--ss-hover-text,#A4600C);}.ss-pd-row:hover{border-color:var(--ss-hover-text,#A4600C);box-shadow:0 4px 12px rgba(19,44,67,.12);}}
 .ss-pd-row:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
@@ -544,7 +562,7 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
             <div style="position:relative">
               <button type="button" class="ss-pd-ph" style="aspect-ratio:4/3" onClick="{{ openMain }}" aria-label="{{ mainAlt }}">
                 <sc-if value="{{ mainIsPhoto }}" hint-placeholder-val="{{ true }}">
-                  <img decoding="async" src="{{ mainSrc }}" alt="{{ mainAlt }}" style="width:100%;height:100%;object-fit:{{ mainFit }};display:block">
+                  <span class="ss-gal-stage"><sc-if value="{{ slideHasPrev }}" hint-placeholder-val="{{ false }}"><img decoding="async" class="ss-gal-out" data-dir="{{ slideDir }}" data-k="{{ slideK }}" src="{{ slidePrevSrc }}" alt="" aria-hidden="true" style="object-fit:{{ slidePrevFit }}" /></sc-if><img decoding="async" class="ss-gal-in" data-dir="{{ slideDir }}" data-k="{{ slideK }}" src="{{ mainSrc }}" alt="{{ mainAlt }}" style="object-fit:{{ mainFit }}" /></span>
                 </sc-if>
                 <sc-if value="{{ mainIsVideo }}" hint-placeholder-val="{{ false }}">
                   <span style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;width:100%;height:100%;background:var(--ss-surface-muted,#F3EDE4);color:var(--ss-text-muted,#5B6874)">
@@ -645,16 +663,18 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
             <sc-if value="{{ showVariants }}" hint-placeholder-val="{{ false }}">
             <div style="display:flex;flex-direction:column;gap:12px">
               <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 16px">
-                <span style="font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:17px">Další varianty</span>
+                <span style="font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:19px">Další varianty</span>
               </div>
               <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px">
                 <sc-for list="{{ variants }}" as="v" hint-placeholder-count="3">
                   <button type="button" class="ss-pd-var" onClick="{{ v.onPick }}" aria-pressed="{{ v.pressed }}">
                     <span class="ss-pd-var-ph" style="box-shadow:{{ v.ring }}">
                       <img decoding="async" src="{{ v.src }}" alt="" style="display:block;width:100%;aspect-ratio:4/3;object-fit:cover">
-                      <sc-if value="{{ v.selected }}" hint-placeholder-val="{{ false }}">
-                        <span class="ss-pd-var-check"><dc-import name="Ikony" iconName="check" size="16" hint-size="16px,16px"></dc-import></span>
-                      </sc-if>
+                      <!-- 9. 11. 2026: výběr jako karty Set polštář B – zaškrtnutí / prázdné kolečko vlevo nahoře, bez modrého rámečku -->
+                      <span style="position:absolute;top:8px;left:8px;display:flex" aria-hidden="true">
+                        <sc-if value="{{ v.selected }}" hint-placeholder-val="{{ false }}"><span class="ss-pd-var-check" style="position:static"><dc-import name="Ikony" iconName="check" size="16" hint-size="16px,16px"></dc-import></span></sc-if>
+                        <sc-if value="{{ v.notSelected }}" hint-placeholder-val="{{ true }}"><span class="ss-pd-cs-dot"></span></sc-if>
+                      </span>
                     </span>
                     <span style="display:block;font-size:13px;line-height:1.35;color:{{ v.labelColor }};font-weight:{{ v.labelWeight }}">{{ v.label }}</span>
                   </button>
@@ -666,7 +686,7 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
             <div style="display:flex;flex-direction:column;gap:20px">
               <div style="display:flex;flex-direction:column;gap:10px">
                 <div style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 24px">
-                  <span style="font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:17px">Rozměr postele</span>
+                  <span id="ss-pk-size" style="font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:19px">Rozměr postele</span><sc-if value="{{ warnSize }}" hint-placeholder-val="{{ false }}"><span class="ss-pk-msg">Vyberte rozměr</span></sc-if>
                   <div><dc-import name="Checkbox" label="Zobrazit pouze skladové varianty" checked="{{ onlyStock }}" onChange="{{ setOnlyStock }}" hint-size="260px,44px"></dc-import></div>
                 </div>
                 <sc-if value="{{ sizeChips }}" hint-placeholder-val="{{ true }}">
@@ -686,7 +706,6 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
                         <sc-for list="{{ sizesExt }}" as="s" hint-placeholder-count="3">
                           <dc-import name="Chip" label="{{ s.label }}" size="standard" variant="{{ s.variant }}" ariaPressed="{{ s.pressed }}" check="{{ s.pressed }}" onClick="{{ s.onPick }}" hint-size="140px,36px"></dc-import>
                         </sc-for>
-                        <dc-import name="Chip" label="{{ customLinkLabel }}" icon="rozmer-postele" size="standard" variant="{{ customChipVariant }}" ariaPressed="{{ customChipPressed }}" check="{{ customChipPressed }}" onClick="{{ openCustom }}" hint-size="150px,36px"></dc-import>
                       </div>
                     </div>
                   </div>
@@ -702,7 +721,7 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
                   <button type="button" id="ss-pd-cs" class="ss-pd-cs-radio" role="radio" aria-checked="{{ csChecked }}" aria-controls="ss-pd-cs-form" onClick="{{ toggleCs }}">
                     <span class="ss-pd-cs-dot"></span>
                     <span style="display:flex;flex-direction:column;gap:2px;min-width:0">
-                      <span class="ss-pd-cs-t" style="font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:21px;line-height:1.2;transition:color .12s">Vlastní rozměr</span>
+                      <span class="ss-pd-cs-t" style="font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:19px;line-height:1.2;transition:color .12s">Vlastní rozměr</span>
                       <span style="font-size:13px;color:var(--ss-text-muted,#5B6874)">Vyrobíme na míru, šířka 80–220 cm, délka 180–240 cm</span>
                     </span>
                   </button>
@@ -710,7 +729,7 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
                   <button type="button" class="ss-pd-cs-info" aria-label="Informace o vlastním rozměru" aria-expanded="{{ csInfoExp }}" aria-controls="ss-pd-cs-info" onClick="{{ toggleCsInfo }}"><dc-import name="Ikony" iconName="info-circle" size="22" hint-size="22px,22px"></dc-import></button>
                 </div>
                 <sc-if value="{{ csInfo }}" hint-placeholder-val="{{ false }}">
-                  <p id="ss-pd-cs-info" style="margin:0;display:flex;justify-content:flex-start;text-align:left;gap:10px;padding:12px 16px;border-radius:6px;background:var(--ss-surface-page,#FFFFFF);font-size:14px;line-height:1.55;color:var(--ss-text-secondary,#3D4750)">Kvůli změnám rozměrů se může změnit dodací lhůta a cena. O všem vás budeme informovat e-mailem.</p>
+                  <p id="ss-pd-cs-info" style="margin:0;display:flex;justify-content:flex-start;text-align:left;gap:10px;padding:12px 16px;border-radius:6px;background:#EAF2FA;box-shadow:inset 0 0 0 1px #CFE0F0;font-size:14px;line-height:1.55;color:#1C3A57">Kvůli změnám rozměrů se může změnit dodací lhůta a cena. O všem vás budeme informovat e-mailem.</p>
                 </sc-if>
                 <sc-if value="{{ csOn }}" hint-placeholder-val="{{ false }}">
                   <div id="ss-pd-cs-form" style="display:flex;flex-direction:column;gap:12px">
@@ -752,7 +771,7 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
               </div>
 
               <div style="display:flex;flex-direction:column;gap:10px">
-                <span style="font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:17px">Výška postele (horní hrana rámu)</span>
+                <span id="ss-pk-vyska" style="font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:19px">Výška postele (horní hrana rámu)</span><sc-if value="{{ warnVyska }}" hint-placeholder-val="{{ false }}"><span class="ss-pk-msg">Vyberte výšku</span></sc-if>
                 <sc-if value="{{ sizeChips }}" hint-placeholder-val="{{ true }}">
                   <div style="display:flex;flex-wrap:wrap;gap:8px">
                     <sc-for list="{{ heights }}" as="h" hint-placeholder-count="3">
@@ -768,16 +787,19 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
                 <div style="display:flex;flex-direction:column;gap:10px">
                   <sc-if value="{{ p.hasHead }}" hint-placeholder-val="{{ true }}">
                     <div style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 16px">
-                      <span style="font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:17px">{{ p.head }}</span>
+                      <span style="font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:19px">{{ p.head }}</span>
                       <sc-if value="{{ p.hasLink }}" hint-placeholder-val="{{ false }}">
                         <dc-import name="Tlacitko" label="{{ p.linkLabel }}" variant="text" size="standard" onClick="{{ p.onLink }}" hint-size="130px,24px"></dc-import>
                       </sc-if>
                     </div>
                   </sc-if>
-                  <button type="button" class="ss-pd-row" onClick="{{ p.onOpen }}" aria-haspopup="dialog" aria-label="{{ p.aria }}">
+                  <button type="button" class="ss-pd-row" id="{{ p.pkId }}" data-warn="{{ p.warnStr }}" onClick="{{ p.onOpen }}" aria-haspopup="dialog" aria-label="{{ p.aria }}">
+                    <!-- 9. 11. 2026: zaškrtnutí vlevo jako Postel 3.0 -->
+                    <sc-if value="{{ p.isOn }}" hint-placeholder-val="{{ true }}"><span class="ss-pd-var-check" aria-hidden="true" style="position:static;align-self:center;flex:none"><dc-import name="Ikony" iconName="check" size="16" hint-size="16px,16px"></dc-import></span></sc-if>
+                    <sc-if value="{{ p.isOff }}" hint-placeholder-val="{{ false }}"><span class="ss-pd-cs-dot" aria-hidden="true" style="align-self:center"></span></sc-if>
                     <span style="flex:1;min-width:0;display:flex;flex-direction:column;gap:4px">
                       <sc-if value="{{ p.hasTitle }}" hint-placeholder-val="{{ false }}">
-                        <span style="font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:16px;color:var(--ss-text-primary,#1C2229)">{{ p.title }}</span>
+                        <span style="font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:19px;color:var(--ss-text-primary,#1C2229)">{{ p.title }}</span>
                       </sc-if>
                       <span style="display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;font-size:15px;color:var(--ss-text-primary,#1C2229)">
                         <span style="display:flex;align-items:center;gap:8px;min-width:0">
@@ -802,20 +824,17 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
 
             <div style="display:flex;flex-direction:column;gap:8px;padding:16px 0">
               <div style="display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px">
-                <span style="display:flex;align-items:center;gap:4px;font-size:16px;font-weight:600;color:var(--ss-status-success,#157A41)">
-                  <span style="display:flex;color:var(--ss-status-success,#157A41)"><dc-import name="Ikony" iconName="circle-check" size="20" hint-size="20px,20px"></dc-import></span>
-                  <span>Skladem <span style="font-weight:400;color:var(--ss-text-secondary,#3D4750)">(3 ks)</span></span>
-                </span>
+                <dc-import name="Skladovost" kind="inStock" label="Skladem" note="(3 ks)" size="md" hint-size="150px,24px"></dc-import>
                 <span style="font-size:14px;color:var(--ss-text-secondary,#3D4750)">22. 10. u vás</span>
-                <a href="#dostupnost" style="font-size:14px">Zobrazit dostupnost</a>
+                <a href="#dostupnost" style="font-size:14px" onClick="{{ openDost }}" aria-haspopup="dialog">Zobrazit dostupnost</a>
               </div>
               <span style="display:flex;align-items:center;gap:8px;font-size:14px;color:var(--ss-text-secondary,#3D4750);padding-left:2px">
                 <span style="display:flex;color:var(--ss-text-muted,#5B6874);flex:none"><dc-import name="Ikony" iconName="map-pin" size="16" hint-size="16px,16px"></dc-import></span>
-                <span>Můžete mít hned na <a href="#prodejny">3 prodejnách</a></span>
+                <span>Můžete mít hned na <a href="#prodejny" onClick="{{ openStores }}" aria-haspopup="dialog">3 prodejnách</a></span>
               </span>
               <span style="display:flex;align-items:center;gap:8px;font-size:14px;color:var(--ss-text-secondary,#3D4750);padding-left:2px">
                 <span style="display:flex;color:var(--ss-text-muted,#5B6874);flex:none"><dc-import name="Ikony" iconName="map-pin" size="16" hint-size="16px,16px"></dc-import></span>
-                <span>Vyzkoušejte osobně na <a href="#prodejny">5 specializovaných prodejnách</a></span>
+                <span>Vyzkoušejte osobně na <a href="#prodejny" onClick="{{ openTry }}" aria-haspopup="dialog">5 specializovaných prodejnách</a></span>
               </span>
             </div>
 
@@ -831,6 +850,7 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
                 <span style="font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:34px;line-height:1.05;color:var(--ss-text-primary,#1C2229)">{{ priceLine }}</span>
                 <span style="font-size:13px;color:var(--ss-text-muted,#5B6874)">{{ priceNote }}</span>
               </div>
+              <sc-if value="{{ warnOn }}" hint-placeholder-val="{{ false }}"><div class="ss-pk-alert" role="alert">Vyberte prosím zvýrazněné položky – pak můžete přidat do košíku.</div></sc-if>
               <div class="ss-pd-buy">
                 <sc-if value="{{ showBefore }}" hint-placeholder-val="{{ true }}">
                   <dc-import name="Kvantifikator" size="{{ qtySize }}" value="{{ qty }}" onChange="{{ onQty }}" hint-size="152px,52px"></dc-import>
@@ -941,7 +961,7 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
             </ul>
           </div>
           <div style="min-width:0">
-            <img decoding="async" src="_blob/e334b477f4cdda9c9ebd7473bab882be.webp" alt="Schéma rozměrů postele MULTI BENE v provedení 180 × 200 cm" style="display:block;width:100%;border-radius:12px;background:var(--ss-surface-subtle,#FAF5EF)">
+            <img decoding="async" src="_blob/e334b477f4cdda9c9ebd7473bab882be.webp" alt="Schéma rozměrů postele MULTI BENE v provedení 180 × 200 cm" style="display:block;width:100%;border-radius:12px;background:#FFFFFF">
           </div>
         </div>
       </div>
@@ -1089,11 +1109,11 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
       <div style="{{ inner }}">
         <sc-if value="{{ stickyWide }}" hint-placeholder-val="{{ true }}">
           <div style="display:grid;grid-template-columns:minmax(0,1fr) auto auto;align-items:center;gap:8px 24px;padding:10px 0">
-            <div style="display:flex;flex-direction:column;gap:2px;min-width:0">
-              <div style="display:flex;align-items:center;gap:16px;min-width:0">
-                <img decoding="async" src="_blob/6b546453dfb90e0ec7ddb488eed7e6ec.webp" alt="" style="width:64px;height:48px;object-fit:cover;border-radius:6px;flex:none;background:var(--ss-surface-subtle,#FAF5EF)">
-                <span style="font-size:15px;font-weight:600;line-height:1.3;color:var(--ss-text-primary,#1C2229);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Modulární postel z masivu MULTI BENE</span>
-              </div>
+            <!-- 9. 11. 2026: fotka ve vlastním sloupci, vedle pod sebou název a chipy (jednotně se Set polštář) -->
+            <div style="display:flex;align-items:center;gap:16px;min-width:0">
+              <img decoding="async" src="_blob/6b546453dfb90e0ec7ddb488eed7e6ec.webp" alt="" style="width:64px;height:48px;object-fit:cover;border-radius:6px;flex:none;background:#FFFFFF">
+              <div style="display:flex;flex-direction:column;gap:2px;min-width:0;flex:1">
+              <span style="font-size:15px;font-weight:600;line-height:1.3;color:var(--ss-text-primary,#1C2229);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Modulární postel z masivu MULTI BENE</span>
               <span style="display:flex;flex-wrap:wrap;gap:6px;margin-top:4px">
                 <sc-for list="{{ stickyChips }}" as="ch" hint-placeholder-count="4">
                   <span style="display:inline-flex;align-items:center;gap:6px;height:26px;padding:0 10px;border-radius:999px;background:var(--ss-surface-subtle,#FAF5EF);box-shadow:inset 0 0 0 1px var(--ss-border-subtle,#E1E6EB);font-size:13px;color:var(--ss-text-secondary,#3D4750);white-space:nowrap">
@@ -1105,21 +1125,21 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
                 </sc-for>
               </span>
             </div>
+            </div>
             <div style="display:flex;flex-direction:column;gap:2px;text-align:right">
               <sc-if value="{{ showBefore }}" hint-placeholder-val="{{ true }}">
                 <span style="font-size:13px;color:var(--ss-text-muted,#5B6874);text-decoration:line-through">{{ priceBefore }}</span>
               </sc-if>
               <span style="font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:24px;line-height:1.1">{{ price }}</span>
-              <span style="display:flex;align-items:center;justify-content:flex-end;gap:6px;font-size:13px;color:var(--ss-status-success,#157A41)"><span style="width:8px;height:8px;border-radius:999px;background:#157A41"></span>Skladem</span>
+              <span style="display:flex;justify-content:flex-end"><dc-import name="Skladovost" kind="inStock" label="Skladem" size="sm" hint-size="90px,18px"></dc-import></span>
             </div>
             <dc-import name="Tlacitko" label="{{ ctaLabel }}" variant="buy" size="large" iconLeft="{{ ctaIcon }}" onClick="{{ onBuy }}" hint-size="200px,52px"></dc-import>
           </div>
         </sc-if>
         <sc-if value="{{ stickyNarrow }}" hint-placeholder-val="{{ false }}">
-          <div style="display:flex;flex-direction:column;gap:8px;padding:10px 0">
-            <span style="font-size:14px;font-weight:600;line-height:1.3;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Modulární postel z masivu MULTI BENE</span>
+          <div style="display:flex;flex-direction:column;gap:6px;padding:8px 0">
             <div class="ss-pd-stchips" style="display:flex;align-items:center;gap:6px;overflow-x:auto;scrollbar-width:none;white-space:nowrap;margin:0 -16px;padding:0 16px">
-              <span style="display:inline-flex;align-items:center;gap:6px;flex:none;font-size:13px;color:var(--ss-status-success,#157A41);margin-right:4px"><span style="width:8px;height:8px;border-radius:999px;background:#157A41;flex:none"></span>Skladem</span>
+              <span style="display:inline-flex;flex:none;margin-right:4px"><dc-import name="Skladovost" kind="inStock" label="Skladem" size="sm" hint-size="90px,18px"></dc-import></span>
               <sc-for list="{{ stickyChips }}" as="ch" hint-placeholder-count="4">
                 <span style="display:inline-flex;align-items:center;gap:6px;flex:none;height:24px;padding:0 10px;border-radius:999px;background:var(--ss-surface-subtle,#FAF5EF);box-shadow:inset 0 0 0 1px var(--ss-border-subtle,#E1E6EB);font-size:13px;color:var(--ss-text-secondary,#3D4750)">
                   <sc-if value="{{ ch.hasSwatch }}" hint-placeholder-val="{{ false }}">
@@ -1135,10 +1155,10 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
                   <sc-if value="{{ showBefore }}" hint-placeholder-val="{{ true }}">
                     <span style="font-size:14px;color:var(--ss-text-muted,#5B6874);text-decoration:line-through">{{ priceBefore }}</span>
                   </sc-if>
-                  <span style="font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:24px;line-height:1">{{ price }}</span>
+                  <span style="font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:22px;line-height:1">{{ price }}</span>
                 </div>
               </div>
-              <dc-import name="Tlacitko" label="Do košíku" variant="buy" size="large" onClick="{{ onBuy }}" hint-size="150px,52px"></dc-import>
+              <dc-import name="Tlacitko" label="Do košíku" variant="buy" size="medium" onClick="{{ onBuy }}" hint-size="150px,44px"></dc-import>
             </div>
           </div>
         </sc-if>
@@ -1148,7 +1168,8 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
 
   <dc-import name="VariantaDrawer" open="{{ drawerOpen }}" title="{{ drawerTitle }}" note="{{ drawerNote }}" value="{{ drawerValue }}" groups="{{ drawerGroups }}" rows="{{ drawerRows }}" onPick="{{ onDrawerPick }}" onClose="{{ closeDrawer }}" hint-size="0px,0px"></dc-import>
 
-  <dc-import name="KosikPridanoModal" open="{{ addedOpen }}" title="{{ addedTitle }}" qty="{{ qty }}" variant="{{ addedVariant }}" image="_blob/6b546453dfb90e0ec7ddb488eed7e6ec.webp" stockKind="onWay" stockLabel="Vyrobíme během 2–4 týdnů" total="{{ addedTotal }}" onClose="{{ closeAdded }}" hint-size="0px,0px"></dc-import>
+  <dc-import name="Overlay" open="{{ dostOpen }}" variant="modal" size="sm" obsah="DostupnostObsah" title="{{ dostTitle }}" icon="building-store" closeLabel="okno" initialFocus="close" data="{{ dostData }}" onClose="{{ closeDost }}" hint-size="100%,100%"></dc-import>
+  <dc-import name="KosikPridanoModal" open="{{ addedOpen }}" title="{{ addedTitle }}" qty="{{ qty }}" variant="{{ addedVariant }}" image="_blob/6b546453dfb90e0ec7ddb488eed7e6ec.webp" stockKind="onOrder" stockLabel="Vyrobíme během 2–4 týdnů" total="{{ addedTotal }}" onClose="{{ closeAdded }}" hint-size="0px,0px"></dc-import>
 
   <sc-if value="{{ customOpen }}" hint-placeholder-val="{{ false }}">
     <div class="ss-scrim" style="position:fixed;inset:0;z-index:500;display:flex;align-items:safe center;justify-content:center;overflow-y:auto;padding:24px 16px" onClick="{{ onCustomBackdrop }}">
@@ -1209,14 +1230,14 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
 
   <sc-if value="{{ lbOpen }}" hint-placeholder-val="{{ false }}">
     <div style="position:fixed;inset:0;z-index:500;background:rgba(9,18,27,.88);display:flex;flex-direction:column" onClick="{{ onBackdrop }}">
-      <div role="dialog" aria-modal="true" aria-label="Galerie fotek produktu MULTI BENE" ref="{{ dialogRef }}" style="display:flex;flex-direction:column;flex:1;min-height:0;padding:16px;gap:12px">
+      <div role="dialog" aria-modal="true" aria-label="Galerie fotek – Modulární postel z masivu MULTI BENE" ref="{{ dialogRef }}" style="display:flex;flex-direction:column;flex:1;min-height:0;padding:16px;gap:12px">
         <div style="display:flex;align-items:center;justify-content:space-between;gap:16px">
-          <span style="color:#FFFFFF;font-size:14px">{{ lbCounter }}</span>
-          <button type="button" class="ss-pd-round" onClick="{{ closeLb }}" ref="{{ closeRef }}" aria-label="Zavřít galerii">
+          <span style="display:flex;flex-direction:column;gap:2px;min-width:0"><span style="color:#FFFFFF;font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:20px;line-height:1.2">Modulární postel z masivu MULTI BENE</span><span style="color:#DCE8F2;font-size:14px">{{ lbCounter }}</span></span>
+          <button type="button" class="ss-pd-round" style="border-radius:6px" onClick="{{ closeLb }}" ref="{{ closeRef }}" aria-label="Zavřít galerii">
             <dc-import name="Ikony" iconName="x" size="22" hint-size="22px,22px"></dc-import>
           </button>
         </div>
-        <div style="position:relative;flex:1;min-height:0;display:flex;align-items:center;justify-content:center">
+        <div style="position:relative;flex:1;min-height:0;display:flex;align-items:center;justify-content:center;margin:0 -16px;padding:0 60px">
           <sc-if value="{{ lbIsPhoto }}" hint-placeholder-val="{{ true }}">
             <img decoding="async" src="{{ lbSrc }}" alt="{{ lbAlt }}" style="max-width:100%;max-height:100%;object-fit:contain;border-radius:12px">
           </sc-if>
@@ -1226,10 +1247,10 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
               <span style="font-size:14px">Video produktu – dodá klient</span>
             </span>
           </sc-if>
-          <button type="button" class="ss-pd-arrow" style="left:0" onClick="{{ lbPrev }}" aria-label="Předchozí fotka">
+          <button type="button" class="ss-pd-arrow" style="left:0;border-radius:0 6px 6px 0;background:linear-gradient(var(--ss-surface-tint,rgba(251,178,85,.05)),var(--ss-surface-tint,rgba(251,178,85,.05))),var(--ss-surface-page,#FFFFFF);box-shadow:none" onClick="{{ lbPrev }}" aria-label="Předchozí fotka">
             <dc-import name="Ikony" iconName="chevron-left" size="22" hint-size="22px,22px"></dc-import>
           </button>
-          <button type="button" class="ss-pd-arrow" style="right:0" onClick="{{ lbNext }}" aria-label="Další fotka">
+          <button type="button" class="ss-pd-arrow" style="right:0;border-radius:6px 0 0 6px;background:linear-gradient(var(--ss-surface-tint,rgba(251,178,85,.05)),var(--ss-surface-tint,rgba(251,178,85,.05))),var(--ss-surface-page,#FFFFFF);box-shadow:none" onClick="{{ lbNext }}" aria-label="Další fotka">
             <dc-import name="Ikony" iconName="chevron-right" size="22" hint-size="22px,22px"></dc-import>
           </button>
         </div>
@@ -1279,7 +1300,7 @@ class Component extends DCLogic {
   state = {
     width: typeof window !== 'undefined' ? document.documentElement.clientWidth : 1440,
     led: true, photo: 0, lb: null, qty: 1, fav: (() => { try { return JSON.parse(localStorage.getItem('ss-fav') || '[]').includes('multi-bene'); } catch (e) { return false; } })(), cmp: (() => { try { return JSON.parse(localStorage.getItem('ss-cmp') || '[]').includes('multi-bene'); } catch (e) { return false; } })(), perex: false,
-    onlyStock: false, size: '90 × 200 cm', vyska: 'komfort', up: 'yes', variant: 1, faq: 1,
+    onlyStock: false, pk: {}, warn: false, size: '90 × 200 cm', vyska: 'komfort', up: 'yes', variant: 1, faq: 1,
     rost: 'bez', mat: 'buk-cherry', cal: 'k26',
     custom: false, customW: '', customL: '', customMail: '', customAgree: false, customReg: true,
     customError: false, customSize: null, csOn: false, csW: '', csL: '', csOk: false, csInfo: false,
@@ -1421,13 +1442,40 @@ class Component extends DCLogic {
     const n = this.photos().length;
     this.setState(s => ({ lb: (s.lb + d + n) % n, photo: (s.lb + d + n) % n }));
   }
+  // Nevybraná položka výběru (9. 11. 2026): bez předvýběru, po Koupit zvýraznit a posunout k první
+  pkWrap(p) {
+    const ok = !p.dk || !!(this.state.pk || {})[p.dk];
+    if (ok) return Object.assign(p, { warnStr: 'false', pkId: 'ss-pk-' + (p.dk || 'x') });
+    this._pkMiss.push('ss-pk-' + p.dk);
+    return Object.assign(p, { value: 'Nevybráno', note: '', on: 'false', hasSwatch: false, warnStr: this.state.warn ? 'true' : 'false', pkId: 'ss-pk-' + p.dk });
+  }
+  pkCheck() {
+    const m = this._pkMiss || [];
+    if (!m.length) return true;
+    this.setState({ warn: true });
+    requestAnimationFrame(() => { try { const el = m.map(id => document.getElementById(id)).filter(Boolean).sort((a, b) => a.getBoundingClientRect().top - b.getBoundingClientRect().top)[0]; if (el) el.scrollIntoView({ block: 'center', behavior: 'smooth' }); } catch (e) {} }); // k nejvýše položené chybějící
+    return false;
+  }
   renderVals() {
+    this._pkMiss = [];
+    const PKS = !!(this.state.pk || {}).size || !!this.state.csOn;
+    if (!PKS) this._pkMiss.push('ss-pk-size');
+    const PKV = !!(this.state.pk || {}).vyska;
+    if (!PKV) this._pkMiss.push('ss-pk-vyska');
     const w = this.state.width;
     const narrow = w < 820;
     const inner = { maxWidth: '1560px', margin: '0 auto', padding: narrow ? '0 16px' : '0 32px' };
     const PH = this.photos();
     const n = PH.length;
     const i = this.state.photo % n;
+    // Posun fotky v galerii (9. 11. 2026): zapamatuje předchozí fotku a směr, data-k a/b restartuje animaci
+    if (this._galI === undefined) this._galI = i;
+    if (this._galI !== i) {
+      const from = this._galI, fwd = (i > from && !(from === 0 && i === n - 1)) || (from === n - 1 && i === 0);
+      this._gal = { src: (PH[from] && !PH[from].video && PH[from].src) || '', fit: (PH[from] && PH[from].fit) || 'cover', dir: fwd ? 'next' : 'prev', k: this._gal && this._gal.k === 'a' ? 'b' : 'a' };
+      this._galI = i;
+    }
+    const GAL = this._gal || { src: '', fit: 'cover', dir: 'next', k: '' };
     const stick = this.props.fixniSloupec ?? 'galerie';
     const canStick = w >= 1000;
     const crumbH = 0;
@@ -1559,17 +1607,26 @@ class Component extends DCLogic {
       { question: 'Lze postel doplnit o úložný prostor i dodatečně?', answer: 'Ano. Noha postele je nastavitelná ve dvou pozicích – základní a pro kombinaci s úložným prostorem. Celoplošný úložný box pro MULTI BENE dokoupíte kdykoli později, přestavba zabere pár minut a nevyžaduje žádné úpravy rámu.' },
       { question: 'Jak vysoko budu na posteli ležet?', answer: 'Horní hrana bočnice je ve výšce 45 cm a kování roštu je výškově stavitelné v rozsahu 12–19 cm. S doporučenou matrací 15–18 cm se dostanete na obvyklou výšku ložné plochy kolem 50–55 cm.' }
     ];
+    const PKW = () => !!this.state.warn && this._pkMiss.length > 0;
     return {
+      // okno Dostupnost (9. 11. 2026)
+      dostOpen: !!this.state.dost, dostTitle: this.state.dost === 'stores' ? 'Skladem na prodejnách' : this.state.dost === 'tryout' ? 'Vyzkoušejte na prodejně' : 'Dostupnost', dostData: { storeIds: null, kind: this.state.dost === 'stores' || this.state.dost === 'tryout' ? this.state.dost : 'inStock', qty: 3, store: 'Praha – Chodov', pickup: 'ihned', delivery: 'zítra' },
+      openDost: (e) => { if (e && e.preventDefault) e.preventDefault(); this.setState({ dost: true }); },
+      openTry: (e) => { if (e && e.preventDefault) e.preventDefault(); this.setState({ dost: 'tryout' }); },
+      openStores: (e) => { if (e && e.preventDefault) e.preventDefault(); this.setState({ dost: 'stores' }); },
+      closeDost: () => this.setState({ dost: false }),
+      warnSize: !!this.state.warn && !PKS, warnVyska: !!this.state.warn && !PKV,
+      get warnOn() { return PKW(); },
       ledMode: this.state.led ? 'on' : 'off',
       presItems: [{ label: 'LED', value: this.state.led }],
       onPresToggle: () => this.setState(s => ({ led: !s.led })),
       presChoices: [
-        { label: 'Detail – Simple', value: 'Multi 3.0', options: ['Postel 3.0', 'Komplet 3.0', 'Multi 3.0', 'Matrace 3.0', 'Komoda VIA'] }, { label: 'Detail – Konfigurátor', value: 'Multi 3.0', options: ['Multi Konf.', 'Skříň UNI 2D Konf', 'Set polštář'] },
+        { label: 'Detail – Simple', value: 'Multi 3.0', options: ['Postel 3.0', 'Komplet 3.0', 'Multi 3.0', 'Matrace 3.0', 'Komoda VIA', 'Set polštář + povlak A', 'Set polštář + povlak B', 'Set polštář + přikrývka', 'Set 1+1 polštáře', 'Čalouněná', 'Airflex SET', 'Skříň UNI 2D'] }, { label: 'Krokový Konfig.', value: 'Multi 3.0', options: ['Multi Konf.'] },
         { label: 'Fixní sloupec', value: this.state.stickPick || (stick === 'zadny' ? 'Žádný' : 'Galerie'), options: ['Galerie', 'Žádný'] },
         { label: 'Rozměr', value: this.state.sizeUi || 'V1', options: ['V1', 'V2'] },
         { label: 'Set', value: this.state.setUi || 'S1', options: ['S1', 'S2', 'S3', 'S4'] }
       ],
-      onPresPick: (ci, opt) => { if (ci === 1) ci = 0; else if (ci > 1) ci -= 1; /* Detail rozdělen na Simple a Konfigurátor (6. 11. 2026) */ if (ci === 0) { if (opt !== 'Multi 3.0') (h => { try { const a = document.createElement('a'); a.href = h; a.style.display = 'none'; (document.getElementById('dc-root') || document.body).appendChild(a); a.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true, view: window })); a.remove(); } catch (e) { window.location.href = h; } })(opt === 'Multi Konf.' ? 'Detail_Postel_3.0-hqdl.dc.html' : (opt === 'Set polštář' ? 'Detail_Set_Polstar_Povlak.dc.html' : opt === 'Skříň UNI 2D Konf' ? 'Detail_Skrin_UNI_2D_Konf.dc.html' : 'Detail_' + String(opt).replace(/ /g, '_') + '.dc.html')); return; } this.setState(ci === 1 ? { stickPick: opt } : ci === 2 ? { sizeUi: opt } : { setUi: opt }); },
+      onPresPick: (ci, opt) => { if (ci === 1) ci = 0; else if (ci > 1) ci -= 1; /* Detail rozdělen na Simple a Konfigurátor (6. 11. 2026) */ if (ci === 0) { if (opt !== 'Multi 3.0') (h => { try { const a = document.createElement('a'); a.href = h; a.style.display = 'none'; (document.getElementById('dc-root') || document.body).appendChild(a); a.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true, view: window })); a.remove(); } catch (e) { window.location.href = h; } })(opt === 'Multi Konf.' ? 'Detail_Postel_3.0-hqdl.dc.html' : (opt === 'Set polštář + povlak A' ? 'Detail_Set_Polstar.dc.html' : opt === 'Set polštář + povlak B' ? 'Detail_Set_Polstar_B.dc.html' : opt === 'Set polštář + přikrývka' ? 'Detail_Set_Bamboo.dc.html' : opt === 'Čalouněná' ? 'Detail_Calounena_Postel.dc.html' : opt === 'Airflex SET' ? 'Detail_Matrace_Airflex_Set.dc.html' : opt === 'Set 1+1 polštáře' ? 'Detail_Set_Polstare_1plus1.dc.html' : opt === 'Skříň UNI 2D' ? 'Detail_Skrin_UNI_2D_Konf.dc.html' : 'Detail_' + String(opt).replace(/ /g, '_') + '.dc.html')); return; } this.setState(ci === 1 ? { stickPick: opt } : ci === 2 ? { sizeUi: opt } : { setUi: opt }); },
       stickyChips: [
         { label: this.state.customSize || this.state.size },
         { label: vys.label },
@@ -1603,6 +1660,7 @@ class Component extends DCLogic {
       tocTop,
       showVariants: this.props.zobrazitVarianty ?? false,
       mainSrc: PH[i].src || '',
+      slideHasPrev: !!GAL.src && !!GAL.k, slidePrevSrc: GAL.src, slidePrevFit: GAL.fit, slideDir: GAL.dir, slideK: GAL.k,
       mainFit: PH[i].fit || 'cover',
       mainAlt: PH[i].alt,
       mainIsVideo: !!PH[i].video,
@@ -1639,7 +1697,7 @@ class Component extends DCLogic {
         const sel = (this.state.variantLabel || 'MULTI BENE s nočními stolky') === v.label;
         return {
           label: v.label, src: v.src, selected: sel,
-          ring: sel ? 'inset 0 0 0 2px #296093' : 'none',
+          ring: sel ? '0 0 0 1px var(--ss-border-subtle,#E1E6EB), 0 2px 8px rgba(19,44,67,.08)' : 'none', notSelected: !sel, // aktivní karta: jemný okraj + stín jako karty Set polštář B
           labelColor: sel ? 'var(--ss-text-primary,#1C2229)' : 'var(--ss-text-secondary,#3D4750)',
           labelWeight: sel ? '600' : '400',
           pressed: sel ? 'true' : 'false',
@@ -1652,17 +1710,17 @@ class Component extends DCLogic {
       sizeOptions: sizes.map(s => ({ value: s, label: s })).concat([{ value: '__custom', label: this.state.customSize ? 'Vlastní rozměr: ' + this.state.customSize : 'Vlastní rozměr…' }]),
       onSizeSelect: (v) => {
         if (v === '__custom') { this.openCsForm(); return; }
-        this.setState({ size: v, csOn: false, csOk: false });
+        this.setState(st => ({ size: v, csOn: false, csOk: false, pk: Object.assign({}, st.pk, { size: true }) }));
       },
       // Standardní rozměry do 180 × 200 cm, nad to prodloužené (spolu s vlastním rozměrem) – jako Postel 3.0
       ...(() => { const ext = (x) => { const m = String(x).match(/(\d+)\s*×\s*(\d+)/); return !!m && (+m[1] > 180 || +m[2] > 200); };
-        const chip = (s) => ({ label: s, variant: this.state.size === s && !this.state.csOn ? 'primary' : 'outlineBox', pressed: this.state.size === s && !this.state.csOn ? 'true' : 'false', onPick: () => this.setState({ size: s, csOn: false, csOk: false }) });
+        const chip = (s) => ({ label: s, variant: this.state.size === s && !this.state.csOn && !!(this.state.pk || {}).size ? 'primary' : 'outlineBox', pressed: this.state.size === s && !this.state.csOn && !!(this.state.pk || {}).size ? 'true' : 'false', onPick: () => this.setState(st => ({ size: s, csOn: false, csOk: false, pk: Object.assign({}, st.pk, { size: true }) })) });
         return { sizesStd: sizes.filter(x => !ext(x)).map(chip), sizesExt: sizes.filter(ext).map(chip) }; })(),
       sizes: sizes.map(s => ({
         label: s,
-        variant: this.state.size === s && !this.state.csOn ? 'primary' : 'outlineBox',
-        pressed: this.state.size === s && !this.state.csOn ? 'true' : 'false',
-        onPick: () => this.setState({ size: s, csOn: false, csOk: false })
+        variant: this.state.size === s && !this.state.csOn && !!(this.state.pk || {}).size ? 'primary' : 'outlineBox',
+        pressed: this.state.size === s && !this.state.csOn && !!(this.state.pk || {}).size ? 'true' : 'false',
+        onPick: () => this.setState(st => ({ size: s, csOn: false, csOk: false, pk: Object.assign({}, st.pk, { size: true }) }))
       })),
       upNoBorder: this.state.up === 'no' ? '#296093' : '#E1E6EB',
       upNoWidth: this.state.up === 'no' ? '2px' : '1px',
@@ -1678,17 +1736,17 @@ class Component extends DCLogic {
       pickUpYes: () => this.setState({ up: 'yes' }),
       toggleUp: () => this.setState(s => ({ up: s.up === 'yes' ? 'no' : 'yes' })),
       onlyStock,
-      heights: stockFilter(VYSKY).map(h => ({ label: h.label, variant: vys.id === h.id ? 'primary' : 'outlineBox', pressed: vys.id === h.id ? 'true' : 'false', onPick: () => this.setState({ vyska: h.id }) })),
+      heights: stockFilter(VYSKY).map(h => ({ label: h.label, variant: (vys.id === h.id && !!(this.state.pk || {}).vyska) ? 'primary' : 'outlineBox', pressed: (vys.id === h.id && !!(this.state.pk || {}).vyska) ? 'true' : 'false', onPick: () => this.setState(st => ({ vyska: h.id, pk: Object.assign({}, st.pk, { vyska: true }) })) })),
       heightValue: vys.id,
       heightOptions: stockFilter(VYSKY).map(h => ({ value: h.id, label: h.label + (h.add ? ' (+ ' + fmt(h.add) + ')' : '') })),
       onHeightSelect: (v) => this.setState({ vyska: v }),
       setOnlyStock: (v) => this.setState({ onlyStock: v }),
       pickers: [
         { hasHead: false, head: '', hasLink: false, linkLabel: '', onLink: null, hasTitle: true, title: 'Materiál a odstín (olej)',
-          value: mat.label, note: mat.note, hasDot: false, noteColor: okColor(mat.note), hasSwatch: true, swatch: mat.color, onOpen: () => this.setState({ drawer: 'material' }) },
+          value: mat.label, note: mat.note, hasDot: false, noteColor: okColor(mat.note), hasSwatch: true, swatch: mat.color, dk: 'material', onOpen: () => this.setState({ drawer: 'material' }) },
         { hasHead: false, head: '', hasLink: false, linkLabel: '', onLink: null, hasTitle: true, title: 'Rošty',
-          value: rostData.id === 'bez' ? 'Bez roštů (rošty nejsou součástí postele)' : rost.label, note: rost.note, hasDot: false, noteColor: okColor(rost.note), hasSwatch: false, swatch: '', onOpen: () => this.setState({ drawer: 'rosty' }) }
-      ].map(p => Object.assign(p, { aria: (p.head || p.title) + ': ' + p.value + ', ' + p.note + '. Změnit' })),
+          value: rostData.id === 'bez' ? 'Bez roštů (rošty nejsou součástí postele)' : rost.label, note: rost.note, hasDot: false, noteColor: okColor(rost.note), hasSwatch: false, swatch: '', dk: 'rosty', onOpen: () => this.setState({ drawer: 'rosty' }) }
+      ].map(p => this.pkWrap(p)).map((p, k) => Object.assign(p, { isOn: p.on !== 'false' && (k === 0 || rostData.id !== 'bez'), isOff: !(p.on !== 'false' && (k === 0 || rostData.id !== 'bez')), aria: (p.head || p.title) + ': ' + p.value + ', ' + p.note + '. Změnit' })),
       drawerOpen: !!this.state.drawer,
       drawerTitle: ({ rozmer: 'Rozměr postele', vyska: 'Výška postele', rosty: 'Rošt(y)', material: 'Materiál a odstín dřeva' })[this.state.drawer] || '',
       drawerNote: onlyStock && this.state.drawer && this.state.drawer !== 'material' ? 'Zobrazujeme jen skladové varianty.' : '',
@@ -1696,6 +1754,7 @@ class Component extends DCLogic {
       drawerGroups: this.state.drawer === 'material' ? MATERIALY : [],
       drawerRows: this.state.drawer === 'rosty' ? stockFilter(ROSTY) : this.state.drawer === 'rozmer' ? stockFilter(ROZMERY).map(fmtRow) : this.state.drawer === 'vyska' ? stockFilter(VYSKY).map(fmtRow) : [],
       onDrawerPick: (id) => {
+        this.setState(st => ({ pk: Object.assign({}, st.pk, { [st.drawer]: true }) }));
         const k = this.state.drawer;
         this.setState(k === 'rosty' ? { rost: id } : k === 'material' ? { mat: id } : k === 'vyska' ? { vyska: id } : { size: id, customSize: null });
       },
@@ -1771,7 +1830,7 @@ class Component extends DCLogic {
       upNoDiff: '−' + fmt(upDiff),
       qty: this.state.qty,
       onQty: (v) => this.setState({ qty: v }),
-      onBuy: () => { if (this.state.size === '' && this.state.customSize) return; this.setState({ added: true }); },
+      onBuy: () => { if (this.state.size === '' && this.state.customSize) return; if (this.pkCheck()) this.setState({ added: true }); },
       addedOpen: !!this.state.added,
       closeAdded: () => this.setState({ added: false }),
       // název položky v košíku obsahuje rozměr, olej, dřevo a čalounění – nejsou to samostatné položky (5. 11. 2026)

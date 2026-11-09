@@ -215,12 +215,8 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
   <div style="{{ gridStyle }}">
     <div style="background:#FFFFFF;color:#1C2229;border-radius:12px;padding:20px;display:flex;flex-direction:column;gap:8px;min-width:0;box-shadow:0 2px 8px rgba(19,44,67,.08)">
       <h3 style="color:#0B1F33;margin:0 0 4px;font-size:16px;line-height:1.3">Chcete poradit on-line?</h3>
-      <a href="tel:+420543212855" style="font-family:Oswald,Roboto,sans-serif;font-size:21px;font-weight:700;text-decoration:none">+420 543 212 855</a>
-      <span style="display:inline-flex;align-items:center;gap:8px;font-size:13px;color:#3D4750">
-        <sc-if value="{{ isOn }}" hint-placeholder-val="{{ true }}"><span class="ss-pbx-led" role="img" aria-label="Právě jsme online"></span></sc-if>
-        <span>Po–Pá 9:00–17:00</span>
-      </span>
-      <a href="mailto:podpora@svetspanku.cz" style="font-size:15px;text-decoration:underline;text-underline-offset:3px;overflow-wrap:anywhere">podpora@svetspanku.cz</a>
+      <dc-import name="Telefon" ledMode="{{ ledMode }}" hint-size="190px,44px" style="color: #1F5C99"></dc-import>
+      <a href="mailto:podpora@svetspanku.cz" style="display:inline-flex;align-items:center;gap:8px;font-size:15px;text-decoration:underline;text-underline-offset:3px;overflow-wrap:anywhere"><span style="display:flex;flex:none;color:#1F5C99"><dc-import name="Ikony" iconName="mail" size="20" hint-size="20px,20px"></dc-import></span><span>podpora@svetspanku.cz</span></a>
     </div>
     <div style="background:#FFFFFF;color:#1C2229;border-radius:12px;padding:20px;display:flex;flex-direction:column;gap:16px;align-items:flex-start;min-width:0;box-shadow:0 2px 8px rgba(19,44,67,.08)">
       <h3 style="color:#0B1F33;margin:0;font-size:16px;line-height:1.3;text-wrap:balance">Chcete si produkty vyzkoušet osobně na pobočce?</h3>
@@ -235,7 +231,7 @@ class Component extends DCLogic {
     const p = this.props;
     const row = !!p.horizontal;
     return {
-      isOn: (p.ledMode || 'on') === 'on',
+      isOn: (p.ledMode || 'on') === 'on', ledMode: p.ledMode || 'on',
       gridStyle: { display: 'grid', gridTemplateColumns: row ? 'repeat(2,minmax(0,1fr))' : 'minmax(0,1fr)', gap: '12px' },
       boxStyle: { boxSizing: 'border-box', width: '100%', fontFamily: 'Roboto,Helvetica,Arial,sans-serif', color: 'var(--ss-text-primary,#1C2229)', background: '#0B1F33', borderRadius: '12px', padding: '24px', display: 'flex', flexDirection: 'column', gap: '20px' }
     };

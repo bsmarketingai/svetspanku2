@@ -203,10 +203,10 @@ html[data-mode="dark"] main>section.ss-grad-top.ss-grad-glow{background-image:ra
         <dc-import name="Tlacitko" label="{{ filterLabel }}" variant="primary" iconLeft="adjustments-horizontal" fullWidth="{{ tiny }}" onClick="{{ onOpen }}" hint-size="140px,44px"></dc-import>
       </div>
       <div style="{{ selStyle }}">
-        <dc-import name="Select" ariaLabel="Řadit podle" value="{{ sort }}" onChange="{{ onSort }}" options="{{ sortOptions }}" hint-size="100%,44px"></dc-import>
+        <dc-import name="Select" variant="outline" ariaLabel="Řadit podle" value="{{ sort }}" onChange="{{ onSort }}" options="{{ sortOptions }}" hint-size="100%,44px"></dc-import>
       </div>
     </div>
-    <sc-if value="{{ showTotal }}" hint-placeholder-val="{{ true }}"><span style="margin-left:auto;font-size:14px;color:var(--ss-text-secondary,#3D4750);white-space:nowrap">{{ totalText }}</span></sc-if>
+    <sc-if value="{{ showTotal }}" hint-placeholder-val="{{ true }}"><span style="flex-basis:100%;margin-top:-4px;text-align:right;font-size:14px;color:var(--ss-text-secondary,#3D4750);white-space:nowrap">{{ totalText }}</span></sc-if>
   </div>
   <sc-if value="{{ hasActive }}" hint-placeholder-val="{{ false }}">
     <div style="display:flex;flex-wrap:wrap;align-items:center;gap:8px;padding:{{ padChips }}">
@@ -241,18 +241,19 @@ class Component extends DCLogic {
     return {
       barStyle: {
         position: 'sticky', top: p.stickyTop ?? '0px', zIndex: 100, width: '100%',
-        background: 'var(--ss-surface-page,#FFFFFF)', borderRadius: '12px', boxShadow: '0 2px 8px rgba(19,44,67,.08)'
+        background: 'transparent' // 9. 11. 2026: bez bílého boxu a odsazení, tlačítka mají víc místa
       },
-      pad: narrow ? '12px 16px' : '12px 20px',
+      pad: '0', // 9. 11. 2026: bez odsazení na všech šířkách, Řazení vždy úplně vpravo, počet produktů pod ním vpravo
       tiny,
       groupStyle: tiny
-        ? { display: 'flex', flexDirection: 'column', alignItems: 'stretch', gap: '8px', width: '100%', minWidth: 0 }
+        // 9. 11. 2026: i pod 420 px Filtry a Řazení vedle sebe, pod sebe až když se opravdu nevejdou
+        ? { display: 'flex', flexWrap: 'wrap', alignItems: 'stretch', gap: '8px', width: '100%', minWidth: 0 }
         : narrow
           ? { display: 'flex', flexWrap: 'nowrap', alignItems: 'center', gap: '12px', width: '100%', minWidth: 0 }
-          : { display: 'flex', flexWrap: 'nowrap', alignItems: 'center', gap: '12px', flex: '1 1 auto', minWidth: 0 },
-      fltStyle: tiny ? { width: '100%' } : { flex: 'none' },
-      selStyle: tiny ? { width: '100%', minWidth: 0 } : narrow ? { flex: 'none', minWidth: 0, marginLeft: 'auto' } /* obal jen na šířku Selectu, aby byl opravdu u pravého okraje */ : { flex: '0 1 240px', minWidth: 0 },
-      padChips: narrow ? '0 16px 12px' : '0 20px 12px',
+          : { display: 'flex', flexWrap: 'nowrap', alignItems: 'center', gap: '12px', width: '100%', minWidth: 0 },
+      fltStyle: tiny ? { flex: '1 1 110px', minWidth: '110px' } : { flex: 'none' },
+      selStyle: tiny ? { flex: '1 1 170px', minWidth: '170px' } : { flex: 'none', minWidth: 0, marginLeft: 'auto' } /* obal jen na šířku Selectu, aby byl opravdu u pravého okraje */,
+      padChips: '8px 0 0',
       filterLabel: count > 0 ? 'Filtry (' + count + ')' : 'Filtry',
       sort: p.sort ?? 'doporucene',
       sortOptions: p.sortOptions || [

@@ -79,6 +79,26 @@
       "x": 0,
       "y": 0
     },
+    "DesignSystemHub.dc.html": {
+      "expand": "fill",
+      "h": 1000,
+      "is_interactive": true,
+      "page": "dokumentace",
+      "title": "DesignSystemHub",
+      "w": 1440,
+      "x": 6080,
+      "y": 0
+    },
+    "Detail_Calounena_Postel.dc.html": {
+      "expand": "fill",
+      "h": 1000,
+      "is_interactive": true,
+      "page": "detaily",
+      "title": "Čalouněná postel",
+      "w": 1440,
+      "x": 12160,
+      "y": 0
+    },
     "Detail_Komoda_VIA.dc.html": {
       "expand": "fill",
       "h": 1000,
@@ -107,6 +127,16 @@
       "title": "Detail_Matrace 3.0",
       "w": 1440,
       "x": 3040,
+      "y": 0
+    },
+    "Detail_Matrace_Airflex_Set.dc.html": {
+      "expand": "fill",
+      "h": 1000,
+      "is_interactive": true,
+      "page": "detaily",
+      "title": "Matrace Airflex SET 1 + 1",
+      "w": 1440,
+      "x": 13680,
       "y": 0
     },
     "Detail_Multi_3.0.dc.html": {
@@ -148,6 +178,56 @@
       "w": 1440,
       "x": 0,
       "y": 1120
+    },
+    "Detail_Set_Bamboo.dc.html": {
+      "expand": "fill",
+      "h": 1000,
+      "is_interactive": true,
+      "page": "detaily",
+      "title": "Set polštář + přikrývka",
+      "w": 1440,
+      "x": 10640,
+      "y": 0
+    },
+    "Detail_Set_Polstar.dc.html": {
+      "expand": "fill",
+      "h": 1000,
+      "is_interactive": true,
+      "page": "detaily",
+      "title": "Set polštář + povlak A",
+      "w": 1440,
+      "x": 7600,
+      "y": 0
+    },
+    "Detail_Set_Polstar_B.dc.html": {
+      "expand": "fill",
+      "h": 1000,
+      "is_interactive": true,
+      "page": "detaily",
+      "title": "Set polštář + povlak B",
+      "w": 1440,
+      "x": 9120,
+      "y": 0
+    },
+    "Detail_Set_Polstare_1plus1.dc.html": {
+      "expand": "fill",
+      "h": 1000,
+      "is_interactive": true,
+      "page": "detaily",
+      "title": "SET polštářů 1 + 1",
+      "w": 1440,
+      "x": 15200,
+      "y": 0
+    },
+    "Detail_Skrin_UNI_2D_Konf.dc.html": {
+      "expand": "fill",
+      "h": 1000,
+      "is_interactive": true,
+      "page": "detaily",
+      "title": "Skříň UNI 2D",
+      "w": 1440,
+      "x": 16720,
+      "y": 0
     },
     "DopravaZdarma.dc.html": {
       "h": 160,
@@ -2408,6 +2488,12 @@
       "x": 492,
       "y": 3720
     },
+    "NahledObsah.dc.html": {
+      "h": 560,
+      "w": 560,
+      "x": 67740,
+      "y": 0
+    },
     "NakupniBox.dc.html": {
       "h": 480,
       "is_interactive": true,
@@ -2717,6 +2803,15 @@
       "x": 400,
       "y": 2680
     },
+    "Skladovost.dc.html": {
+      "h": 48,
+      "is_interactive": true,
+      "page": "komponenty2",
+      "title": "Skladovost",
+      "w": 320,
+      "x": 1280,
+      "y": 3760
+    },
     "SkupinaVoleb.dc.html": {
       "h": 360,
       "is_interactive": true,
@@ -2977,25 +3072,15 @@
       "x": 0,
       "y": 0
     },
-    "Detail_Skrin_UNI_2D_Konf.dc.html": {
+    "Dostupnost_Popup.dc.html": {
       "expand": "fill",
-      "h": 1000,
+      "h": 1500,
       "is_interactive": true,
       "page": "detaily",
-      "title": "Skříň UNI 2D Konf",
-      "w": 1440,
-      "x": 1520,
-      "y": 2540
-    },
-    "Detail_Set_Polstar_Povlak.dc.html": {
-      "expand": "fill",
-      "h": 1000,
-      "is_interactive": true,
-      "page": "detaily",
-      "title": "Set polštář + povlak",
-      "w": 1440,
+      "w": 1000,
       "x": 3040,
-      "y": 2540
+      "y": 1120,
+      "title": "Okno Dostupnost"
     }
   },
   "createdOnFiles": {
@@ -3015,7 +3100,8 @@
     "t_komponenty2",
     "t_kosik",
     "t_ostatni",
-    "t_stare"
+    "t_stare",
+    "t_detaily_konf"
   ],
   "notes": {
     "t_detaily": {
@@ -3026,6 +3112,15 @@
       "w": 240,
       "x": 0,
       "y": -300
+    },
+    "t_detaily_konf": {
+      "kind": "title1",
+      "maxW": 4480,
+      "page": "detaily",
+      "text": "Detaily produktů – Konfigurátor",
+      "w": 240,
+      "x": 0,
+      "y": 2240
     },
     "t_dokumentace": {
       "kind": "title1",
@@ -3089,14 +3184,6 @@
       "w": 240,
       "x": 0,
       "y": -300
-    },
-    "t_detaily_konf": {
-      "kind": "title1",
-      "maxW": 4480,
-      "page": "detaily",
-      "text": "Detaily produktů – Konfigurátor",
-      "x": 0,
-      "y": 2240
     }
   },
   "order": [
@@ -3108,6 +3195,7 @@
     "Detail_Komoda_VIA.dc.html",
     "Detail_Produkt_Levita.dc.html",
     "Karta_Matrace.dc.html",
+    "Dostupnost_Popup.dc.html",
     "CasovaOsa.dc.html",
     "CenovyFiltr.dc.html",
     "Checkbox.dc.html",
@@ -3165,6 +3253,7 @@
     "SouhrnKosiku.dc.html",
     "SouvisejiciProdukty.dc.html",
     "Stitek.dc.html",
+    "Skladovost.dc.html",
     "Tlacitko.dc.html",
     "Tuhost.dc.html",
     "TuhostModal.dc.html",
@@ -3404,9 +3493,16 @@
     "Kategorie_Akce_novinky.dc.html",
     "Kategorie_Akce_darkovy-poukaz.dc.html",
     "Kategorie_Akce_darky-k-nakupu.dc.html",
+    "Detail_Set_Polstar.dc.html",
+    "Detail_Set_Polstar_B.dc.html",
+    "Detail_Set_Bamboo.dc.html",
+    "Detail_Calounena_Postel.dc.html",
+    "Detail_Matrace_Airflex_Set.dc.html",
+    "Detail_Set_Polstare_1plus1.dc.html",
     "Detail_Postel_3.0-hqdl.dc.html",
     "Detail_Skrin_UNI_2D_Konf.dc.html",
-    "Detail_Set_Polstar_Povlak.dc.html"
+    "DesignSystemHub.dc.html",
+    "NahledObsah.dc.html"
   ],
   "pages": [
     {

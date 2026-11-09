@@ -269,6 +269,7 @@ class Component extends DCLogic {
     const uid = this._id || (this._id = Math.random().toString(36).slice(2, 8));
     const id = p.id || ('ss-input-' + uid);
     const hint = p.hint;
+    const FOC = this.state.focused && !p.disabled ? (invalid ? '0 0 0 3px rgba(179,38,30,.25), inset 0 0 0 1.5px var(--ss-border-error,#B3261E)' : '0 0 0 3px rgba(41,96,147,.35), inset 0 0 0 1.5px var(--ss-border-action,#296093)') : '';
     return {
       id, hintId: id + '-hint',
       hasLabel: !!p.label, label: p.label ?? 'Popisek pole',
@@ -289,13 +290,14 @@ class Component extends DCLogic {
       ariaInvalid: invalid ? 'true' : undefined,
       describedBy: hint ? id + '-hint' : undefined,
       wrapStyle: { width: p.fullWidth === false ? undefined : '100%' },
-      inputStyle: {
+      inputStyle: (FOC => ({
         height: h + 'px', fontSize: (compact ? 14 : 15) + 'px',
         padding: '0 ' + (p.iconRight ? (p.clearable && p.value ? 84 : 48) : 14) + 'px 0 ' + (p.icon && !p.iconRight ? 38 : 14) + 'px',
         background: p.white ? 'var(--ss-surface-box,#FFFFFF)' : p.bordered ? 'var(--ss-surface-page,#FFFFFF)' : 'var(--ss-surface-subtle,#FAF5EF)',
-        boxShadow: 'inset 0 0 0 1px ' + (invalid ? 'var(--ss-border-error,#B3261E)' : (p.bordered ? 'var(--ss-border-subtle,#E1E6EB)' : 'transparent'))
-      },
-      hoverStyle: p.disabled ? {} : (p.bordered ? { boxShadow: 'inset 0 0 0 1px ' + (invalid ? 'var(--ss-border-error,#B3261E)' : 'var(--ss-border-strong,#C8D0D8)') } : { background: 'var(--ss-surface-muted,#F3EDE4)' }),
+        boxShadow: FOC ? FOC : 'inset 0 0 0 1px ' + (invalid ? 'var(--ss-border-error,#B3261E)' : (p.bordered ? 'var(--ss-border-input,#8A96A3)' : 'transparent')) /* rámeček formulářových polí 3 : 1 (9. 11. 2026) */
+      }))(FOC),
+      // Focus: inline boxShadow přebíjel CSS :focus-visible → focus ring řešen ve stylu (9. 11. 2026)
+      hoverStyle: p.disabled ? {} : FOC ? { boxShadow: FOC } : (p.bordered ? { boxShadow: 'inset 0 0 0 1px ' + (invalid ? 'var(--ss-border-error,#B3261E)' : 'var(--ss-border-action,#296093)') } : { background: 'var(--ss-surface-muted,#F3EDE4)' }),
       handleChange: (e) => { if (p.onChange) p.onChange(e.target.value); },
       handleBlur: (e) => { this.setState({ focused: false }); if (p.onBlur) p.onBlur(e.target.value); },
       handleFocus: () => this.setState({ focused: true }),

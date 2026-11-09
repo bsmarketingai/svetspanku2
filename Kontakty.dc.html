@@ -416,8 +416,8 @@ a:hover{color:var(--ss-hover-text,#21507B);}
         <h1 style="{{ h1Style }}">Kontakty</h1>
         <p style="{{ leadStyle }}">Ozvěte se přímo týmu, který vám pomůže nejrychleji. Na telefonu i e-mailu jsme každý všední den.</p>
         <div style="{{ cardsGrid }}">
-          <div style="min-width:0; display: flex; flex-direction: column"><dc-import name="KontaktniKarta" icon="truck" photo="_blob/59a7a7ac122c04987bc542c6a0779e8f.webp" title="Stav objednávek a expedice" phone="+420 241 080 340" phoneNote="Po–Pá 9:00–18:00" email="expedice@svetspanku.cz" emailNote="Odpovídáme do 24 hodin" hint-size="100%,300px" style="flex: 1 1 auto; height: 100%"></dc-import></div>
-          <div style="min-width:0; display: flex; flex-direction: column"><dc-import name="KontaktniKarta" icon="edit" photo="_blob/bbda5eb9806ef216fd0e67da284f1bbe.webp" title="Změny v objednávkách" phone="+420 241 080 340" phoneNote="Po–Pá 9:00–18:00" email="objednavky@svetspanku.cz" emailNote="Odpovídáme do 24 hodin" hint-size="100%,300px" style="flex: 1 1 auto; height: 100%"></dc-import></div>
+          <div style="min-width:0; display: flex; flex-direction: column"><dc-import name="KontaktniKarta" icon="truck" photo="_blob/59a7a7ac122c04987bc542c6a0779e8f.webp" title="Stav objednávek a expedice" phone="+420 241 080 340" phoneNote="Po–Pá 9:00–18:00" led="{{ true }}" ledMode="{{ ledMode }}" email="expedice@svetspanku.cz" emailNote="Odpovídáme do 24 hodin" hint-size="100%,300px" style="flex: 1 1 auto; height: 100%"></dc-import></div>
+          <div style="min-width:0; display: flex; flex-direction: column"><dc-import name="KontaktniKarta" icon="edit" photo="_blob/bbda5eb9806ef216fd0e67da284f1bbe.webp" title="Změny v objednávkách" phone="+420 241 080 340" phoneNote="Po–Pá 9:00–18:00" led="{{ true }}" ledMode="{{ ledMode }}" email="objednavky@svetspanku.cz" emailNote="Odpovídáme do 24 hodin" hint-size="100%,300px" style="flex: 1 1 auto; height: 100%"></dc-import></div>
           <div style="{{ cell3 }}"><dc-import name="KontaktniKarta" icon="help-circle" photo="_blob/9ae88a1ee18f69de979ef15121c45771.webp" title="Nevíte si rady s výběrem?" text="Naši spánkoví specialisté vám poradí on-line nebo přímo na pobočce." phone="+420 543 212 855" phoneNote="Po–Pá 9:00–17:00" led="{{ true }}" ledMode="{{ ledMode }}" email="podpora@svetspanku.cz" emailNote="Odpovídáme do 24 hodin" hint-size="100%,300px" style="flex: 1 1 auto; height: 100%"></dc-import></div>
         </div>
       </div>
@@ -431,7 +431,7 @@ a:hover{color:var(--ss-hover-text,#21507B);}
 
     <section aria-labelledby="ss-ko-b2b" style="width:100%; background-color: #0E1F2F; color: #FFFFFF">
       <div style="{{ innerB2b }}">
-        <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 48px; max-width: 1120px; margin: 0 auto; box-sizing: border-box; width: 100%">
+        <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 48px; box-sizing: border-box; width: 100%">
         <div style="display:flex; flex-direction:column; gap:32px; min-width:0; flex: 1 1 440px">
         <div style="display:flex;flex-direction:column;gap:12px;max-width:60ch">
           <h2 id="ss-ko-b2b" style="{{ h2StyleLight }}">Velkoobchod – Svět spánku pro firmy</h2>
@@ -439,14 +439,14 @@ a:hover{color:var(--ss-hover-text,#21507B);}
         </div>
         <div style="max-width:480px"><dc-import name="KontaktniOsoba" stacked="{{ true }}" profile="{{ true }}" person="Miroslav Stehlík" headingLevel="3" photo="_blob/3abff85cef4b72e8ba6981a19bff8561.webp" role="B2B Business Leader" phone="+420 776 200 422" email="stehlik@svetspanku.cz" hint-size="100%,300px" style="color: #FFFFFF"></dc-import></div>
         </div>
-        <div style="flex: 1 1 440px; min-width: 0; max-width: 520px"><img decoding="async" src="_blob/c581202bbc44c72a9d879fe5cc4bcc0a.webp" alt="Kamion Světspánku.cz – rozvoz po celé ČR" style="{{ b2bImg }}"></div>
+        <div style="flex: 1 1 440px; min-width: 0; max-width: 640px"><img decoding="async" src="_blob/c581202bbc44c72a9d879fe5cc4bcc0a.webp" alt="Kamion Světspánku.cz – rozvoz po celé ČR" style="{{ b2bImg }}"></div>
         </div>
       </div>
     </section>
 
     <section style="width:100%" class="ss-bg-m2">
       <div style="{{ innerForm }}">
-        <div style="max-width: 1120px; margin: 0 auto; box-sizing: border-box; width: 100%; justify-content: center; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(380px, 100%), 1fr)); gap: 48px; align-items: start">
+        <div style="box-sizing: border-box; width: 100%; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(380px, 100%), 1fr)); gap: 48px; align-items: start">
           <div style="min-width:0"><dc-import name="KontaktniFormular" hint-size="100%,720px"></dc-import></div>
           <section aria-labelledby="ss-ko-firma" style="display:flex;flex-direction:column;gap:24px;min-width:0">
             <h2 id="ss-ko-firma" style="{{ h2Style }}">Obchodní kontakty</h2>

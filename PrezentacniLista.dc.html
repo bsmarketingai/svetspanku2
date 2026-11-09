@@ -259,7 +259,7 @@ class Component extends DCLogic {
     hd: (() => { try { return localStorage.getItem('ss-hdmode') === 'H1' ? 'H1' : 'H2'; } catch (e) { return 'H2'; } })(),
     photoAR: (() => { try { return localStorage.getItem('ss-photoar') === 'B' ? 'B' : 'A'; } catch (e) { return 'A'; } })(),
     cardV: (() => { try { return localStorage.getItem('ss-cardv') || 'A'; } catch (e) { return 'A'; } })(),
-    mmv: (() => { try { return localStorage.getItem('ss-mmv') === 'B' ? 'B' : 'A'; } catch (e) { return 'A'; } })()
+    mmv: (() => { try { return (v => ['A', 'B', 'C', 'D'].includes(v) ? v : 'A')(localStorage.getItem('ss-mmv')); } catch (e) { return 'A'; } })()
   };
   setAttr(key, attr, v) {
     try { localStorage.setItem(key, v); } catch (e) {}
@@ -284,8 +284,8 @@ class Component extends DCLogic {
     // Fotka v produktové kartě: A = čtverec 1:1, B = 4:3 (30. 10. 2026) – platí na všech stránkách, uloženo v ss-photoar
     // Varianta produktové karty (30. 10. 2026) – globálně na všech stránkách (homepage, kategorie, detail, oblíbené…), uloženo v ss-cardv, událost ss-cardv. F = univerzální (popis + příznaky) pro matrace i ostatní produkty
     base.push(grp('Karta', [['A','A'],['A2','A2'],['B','B'],['D','D'],['E','E'],['F','F']], this.state.cardV, v => { try { localStorage.setItem('ss-cardv', v); } catch (e) {} window.dispatchEvent(new Event('ss-cardv')); this.setState({ cardV: v }); }));
-    // Mega menu A = karty Tip / Poradíme nahoře v řadě, B = ve vlastním sloupci vpravo (6. 11. 2026) – globálně, uloženo v ss-mmv, událost ss-mmv
-    base.push(grp('Megamenu', [['A', 'A'], ['B', 'B']], this.state.mmv, v => { try { localStorage.setItem('ss-mmv', v); } catch (e) {} window.dispatchEvent(new Event('ss-mmv')); this.setState({ mmv: v }); }));
+    // Mega menu A = karty Tip / Poradíme nahoře v řadě, B = dole pod položkami (9. 11. 2026), C = ve vlastním sloupci vpravo (6. 11. 2026) – globálně, uloženo v ss-mmv, událost ss-mmv
+    base.push(grp('Megamenu', [['A', 'A'], ['B', 'B'], ['C', 'C'], ['D', 'D']], this.state.mmv, v => { try { localStorage.setItem('ss-mmv', v); } catch (e) {} window.dispatchEvent(new Event('ss-mmv')); this.setState({ mmv: v }); }));
     base.push(grp('Fotka karty', [['A 1:1', 'A'], ['B 4:3', 'B']], this.state.photoAR, v => { try { localStorage.setItem('ss-photoar', v); } catch (e) {} window.dispatchEvent(new Event('ss-photoar')); this.setState({ photoAR: v }); }));
     return {
       open,

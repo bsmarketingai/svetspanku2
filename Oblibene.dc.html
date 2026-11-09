@@ -205,7 +205,7 @@ a:hover{color:var(--ss-hover-text,#21507B);}
 <body>
 <x-dc>
 <helmet>
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Sans+Condensed:wght@400;500;600;700&display=swap" rel="stylesheet"><style data-ss="tmavy-rezim">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&amp;family=IBM+Plex+Sans+Condensed:wght@400;500;600;700&amp;display=swap" rel="stylesheet"><style data-ss="tmavy-rezim">
 /* Tmavý režim – přepíná html[data-mode="dark"]. Světlý režim = fallback hodnoty v var(). */
 /* Hover ve světlém režimu modrý (6. 10. 2026), v tmavém meruňkový */
 html:not([data-mode="dark"]){--ss-hover-text:#21507B;--ss-hover-bg:#F0F5FA;
@@ -391,8 +391,8 @@ html[data-mode="dark"] main>section.ss-grad-top.ss-grad-glow{background-image:ra
 </style>
 <script>try{var d=document.documentElement;if(localStorage.getItem('ss-mode')==='dark')d.setAttribute('data-mode','dark');d.setAttribute('data-logo',localStorage.getItem('ss-logo')||'a');d.setAttribute('data-font-h','base');d.setAttribute('data-font-b','base');}catch(e){}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400..700&family=Roboto:wght@400..700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400..700&amp;family=Roboto:wght@400..700&amp;display=swap" rel="stylesheet">
 <style>
 h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-family:Oswald,Helvetica,Arial,sans-serif!important;font-weight:600!important;text-transform:none;letter-spacing:0;}
 html,body{margin:0!important;padding:0!important;}
@@ -410,7 +410,10 @@ a:hover{color:var(--ss-hover-text,#21507B);}
     <section class="ss-grad-top" style="width:100%;background-color:var(--ss-surface-page,#FFFFFF)">
       <div style="{{ innerTop }}">
         <dc-import name="Drobeckova" items="{{ crumbs }}" hint-size="100%,56px"></dc-import>
-        <h1 style="{{ h1Style }}">Můj wishlist <span style="font-weight:400;color:var(--ss-text-muted,#5B6874)">({{ count }})</span></h1>
+        <div style="{{ topGrid }}">
+          <div style="display:flex;flex-direction:column;gap:12px;min-width:0"><h1 style="{{ h1Style }}">Můj wishlist <span style="font-weight:400;color:var(--ss-text-muted,#5B6874)">({{ count }})</span></h1><p style="margin:0;max-width:56ch;font-size:17px;line-height:1.55;color:var(--ss-text-secondary,#3D4750);text-wrap:pretty">Produkty, které se vám zalíbily, máte pohromadě. Sdílejte je s partnerem nebo rodinou, v klidu je porovnejte a ten pravý kousek pak přidejte do košíku.</p></div>
+          <dc-import name="PoradceBox" ledMode="{{ ledMode }}" horizontal="{{ asideRow }}" hint-size="100%,300px"></dc-import>
+        </div>
       </div>
     </section>
 
@@ -433,9 +436,6 @@ a:hover{color:var(--ss-hover-text,#21507B);}
             <sc-if value="{{ isEmpty }}" hint-placeholder-val="{{ false }}">
               <dc-import name="PrazdnyStav" icon="heart" title="Wishlist je prázdný" text="Produkty si do oblíbených uložíte srdíčkem na kartě produktu nebo v jeho detailu." suggestions="{{ emptySugg }}" primaryLabel="Prohlédnout matrace" primaryHref="Kategorie_Matrace.dc.html" onPrimary="{{ goMatrace }}" secondaryLabel="Průvodce výběrem" hint-size="100%,340px"></dc-import>
             </sc-if>
-          </div>
-          <div style="{{ asideWrap }}">
-            <dc-import name="PoradceBox" ledMode="{{ ledMode }}" horizontal="{{ asideRow }}" hint-size="100%,460px"></dc-import>
           </div>
         </div>
       </div>
@@ -558,7 +558,7 @@ class Component extends DCLogic {
     const ids = this.state.ids || [];
     const items = ids.map(id => all.find(p => String(p.id) === id)).filter(Boolean)
       .map(p => ({ data: Object.assign({}, p, { ctaLabel: 'Vybrat variantu', fav: true }), onRemove: () => this.remove(String(p.id)) }));
-    const cols = wide ? 3 : w >= 820 ? 3 : w >= 550 ? 2 : 1;
+    const cols = wide ? 4 : w >= 820 ? 3 : w >= 550 ? 2 : 1;
     return {
       ledMode: this.state.led ? 'on' : 'off',
       presItems: [{ label: 'LED', value: this.state.led }],
@@ -570,10 +570,12 @@ class Component extends DCLogic {
       innerBody: box(narrow ? '32px' : '48px', narrow ? '48px' : '80px'),
       innerNews: box(narrow ? '40px' : '64px', narrow ? '40px' : '64px'),
       narrowNews: w < 1000,
-      layoutStyle: { display: 'grid', gridTemplateColumns: wide ? 'minmax(0,3fr) minmax(0,1fr)' : 'minmax(0,1fr)', gap: wide ? '20px' : '32px', alignItems: 'start' },
+      layoutStyle: { display: 'grid', gridTemplateColumns: 'minmax(0,1fr)', gap: '32px', alignItems: 'start' },
+      // poradce v hlavičce stránky jako na Porovnání (9. 11. 2026)
+      topGrid: { display: 'grid', gridTemplateColumns: wide ? 'minmax(0,1fr) minmax(0,700px)' : 'minmax(0,1fr)', gap: narrow ? '24px' : '48px', alignItems: 'start' },
       gridStyle: { display: 'grid', gridTemplateColumns: 'repeat(' + cols + ',minmax(0,1fr))', gap: '20px' },
       asideWrap: wide ? { minWidth: 0, position: 'sticky', top: '24px' } : { minWidth: 0, order: -1 },
-      asideRow: !wide && w >= 480,
+      asideRow: w >= 550,
       items, hasItems: items.length > 0, isEmpty: !!this.state.all && items.length === 0,
       emptySugg: [{ label: 'Matrace', href: 'Kategorie_Matrace.dc.html' }, { label: 'Postele z masivu', href: 'Kategorie_Postele.dc.html' }, { label: 'Rošty', href: 'Kategorie_Rosty.dc.html' }],
       goMatrace: () => { (h => { try { const a = document.createElement('a'); a.href = h; a.style.display = 'none'; (document.getElementById('dc-root') || document.body).appendChild(a); a.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true, view: window })); a.remove(); } catch (e) { window.location.href = h; } })('Kategorie_Matrace.dc.html'); },

@@ -402,7 +402,21 @@ html,body{margin:0!important;padding:0!important;}
 #dc-root>.sc-host{margin:0!important;padding:0!important;width:100%!important;}
 a{color:var(--ss-link,#296093);}
 a:hover{color:var(--ss-hover-text,#A4600C);}
-.ss-pd-ph{display:block;width:100%;border:0;padding:0;background:var(--ss-surface-subtle,#FAF5EF);border-radius:12px;overflow:hidden;cursor:zoom-in;position:relative;box-shadow:0 2px 8px rgba(19,44,67,.08);}
+/* Galerie (9. 11. 2026): přepnutí fotky posunem – nová fotka vytlačí starou doleva (zpět doprava), ease-in-out 300 ms */
+.ss-gal-stage{position:relative;display:block;width:100%;height:100%;overflow:hidden;}
+.ss-gal-in,.ss-gal-out{position:absolute;inset:0;width:100%;height:100%;display:block;}
+.ss-gal-in[data-dir="next"],.ss-gal-out[data-dir="next"]{--ss-gd:100%;}
+.ss-gal-in[data-dir="prev"],.ss-gal-out[data-dir="prev"]{--ss-gd:-100%;}
+.ss-gal-in[data-k="a"]{animation:ssGalInA .3s cubic-bezier(.45,0,.55,1) both;}
+.ss-gal-in[data-k="b"]{animation:ssGalInB .3s cubic-bezier(.45,0,.55,1) both;}
+.ss-gal-out[data-k="a"]{animation:ssGalOutA .3s cubic-bezier(.45,0,.55,1) both;}
+.ss-gal-out[data-k="b"]{animation:ssGalOutB .3s cubic-bezier(.45,0,.55,1) both;}
+@keyframes ssGalInA{from{transform:translateX(var(--ss-gd));}to{transform:translateX(0);}}
+@keyframes ssGalInB{from{transform:translateX(var(--ss-gd));}to{transform:translateX(0);}}
+@keyframes ssGalOutA{from{transform:translateX(0);}to{transform:translateX(calc(var(--ss-gd) * -1));}}
+@keyframes ssGalOutB{from{transform:translateX(0);}to{transform:translateX(calc(var(--ss-gd) * -1));}}
+@media (prefers-reduced-motion:reduce){.ss-gal-in,.ss-gal-out{animation:none!important;}.ss-gal-out{display:none;}}
+.ss-pd-ph{display:block;width:100%;border:0;padding:0;background:#FFFFFF;border-radius:12px;overflow:hidden;cursor:zoom-in;position:relative;box-shadow:0 2px 8px rgba(19,44,67,.08);}
 .ss-pd-ph:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
 .ss-pd-thumbs{display:flex;gap:8px;overflow-x:auto;scroll-snap-type:x proximity;scroll-padding-inline:16px;scrollbar-width:none;margin:0 -16px;padding:2px 16px;}
 .ss-pd-thumbs::-webkit-scrollbar{display:none;}
@@ -548,7 +562,7 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
             <div style="position:relative">
               <button type="button" class="ss-pd-ph" style="aspect-ratio:4/3" onClick="{{ openMain }}" aria-label="{{ mainAlt }}">
                 <sc-if value="{{ mainIsPhoto }}" hint-placeholder-val="{{ true }}">
-                  <img decoding="async" src="{{ mainSrc }}" alt="{{ mainAlt }}" style="width:100%;height:100%;object-fit:{{ mainFit }};display:block" />
+                  <span class="ss-gal-stage"><sc-if value="{{ slideHasPrev }}" hint-placeholder-val="{{ false }}"><img decoding="async" class="ss-gal-out" data-dir="{{ slideDir }}" data-k="{{ slideK }}" src="{{ slidePrevSrc }}" alt="" aria-hidden="true" style="object-fit:{{ slidePrevFit }}" /></sc-if><img decoding="async" class="ss-gal-in" data-dir="{{ slideDir }}" data-k="{{ slideK }}" src="{{ mainSrc }}" alt="{{ mainAlt }}" style="object-fit:{{ mainFit }}" /></span>
                 </sc-if>
                 <sc-if value="{{ mainIsVideo }}" hint-placeholder-val="{{ false }}">
                   <span style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;width:100%;height:100%;background:var(--ss-surface-muted,#F3EDE4);color:var(--ss-text-muted,#5B6874)">
@@ -658,7 +672,7 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
                       <span aria-hidden="true" style="display:flex;align-items:center;justify-content:center;width:88px;height:88px;flex:none;border-radius:8px;background:var(--ss-surface-muted,#F3EDE4);color:var(--ss-text-muted,#5B6874)"><dc-import name="Ikony" iconName="photo" size="24" hint-size="24px,24px"></dc-import></span>
                     </sc-if>
                     <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:6px">
-                      <h3 style="margin:0;font-size:17px;line-height:1.3;color:var(--ss-text-heading,#0B1F33)">{{ k.title }}</h3>
+                      <h3 style="margin:0;font-size:19px;line-height:1.3;color:var(--ss-text-heading,#0B1F33)">{{ k.title }}</h3>
                       <span style="font-size:14px;color:var(--ss-text-muted,#5B6874)">Cena samostatně {{ k.regular }}</span>
                       <span style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 12px;font-size:14px">
                         <span style="display:flex;align-items:center;gap:4px;font-weight:600;color:var(--ss-status-success,#157A41)"><span style="display:flex"><dc-import name="Ikony" iconName="circle-check" size="18" hint-size="18px,18px"></dc-import></span>Skladem <span style="font-weight:400;color:var(--ss-text-secondary,#3D4750)">({{ k.qty }})</span></span>
@@ -673,7 +687,7 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
                       <button type="button" class="ss-pd-row" onClick="{{ k.onOpt }}" aria-expanded="false">
                         <span class="ss-pd-var-check" aria-hidden="true" style="position:static;align-self:center;flex:none"><dc-import name="Ikony" iconName="check" size="16" hint-size="16px,16px"></dc-import></span>
                         <span style="flex:1;min-width:0;display:flex;flex-direction:column;gap:4px">
-                          <span style="font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:16px;color:var(--ss-text-primary,#1C2229)">{{ k.optTitle }}</span>
+                          <span style="font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:19px;color:var(--ss-text-primary,#1C2229)">{{ k.optTitle }}</span>
                           <span style="display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-size:14px;color:var(--ss-text-secondary,#3D4750)">
                             <sc-if value="{{ k.hasSwatch }}" hint-placeholder-val="{{ false }}">
                               <span style="width:22px;height:22px;flex:none;border-radius:999px;background:{{ k.swatch }};box-shadow:inset 0 0 0 1px rgba(19,44,67,.15)"></span>
@@ -697,20 +711,17 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
 
             <div style="display:flex;flex-direction:column;gap:8px;padding:16px 0">
               <div style="display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px">
-                <span style="display:flex;align-items:center;gap:4px;font-size:16px;font-weight:600;color:var(--ss-status-success,#157A41)">
-                  <span style="display:flex;color:var(--ss-status-success,#157A41)"><dc-import name="Ikony" iconName="circle-check" size="20" hint-size="20px,20px"></dc-import></span>
-                  <span>Skladem <span style="font-weight:400;color:var(--ss-text-secondary,#3D4750)">(3 ks)</span></span>
-                </span>
+                <dc-import name="Skladovost" kind="inStock" label="Skladem" note="(3 ks)" size="md" hint-size="150px,24px"></dc-import>
                 <span style="font-size:14px;color:var(--ss-text-secondary,#3D4750)">22. 10. u vás</span>
-                <a href="#dostupnost" style="font-size:14px">Zobrazit dostupnost</a>
+                <a href="#dostupnost" style="font-size:14px" onClick="{{ openDost }}" aria-haspopup="dialog">Zobrazit dostupnost</a>
               </div>
               <span style="display:flex;align-items:center;gap:8px;font-size:14px;color:var(--ss-text-secondary,#3D4750);padding-left:2px">
                 <span style="display:flex;color:var(--ss-text-muted,#5B6874);flex:none"><dc-import name="Ikony" iconName="map-pin" size="16" hint-size="16px,16px"></dc-import></span>
-                <span>Můžete mít hned na <a href="#prodejny">3 prodejnách</a></span>
+                <span>Můžete mít hned na <a href="#prodejny" onClick="{{ openStores }}" aria-haspopup="dialog">3 prodejnách</a></span>
               </span>
               <span style="display:flex;align-items:center;gap:8px;font-size:14px;color:var(--ss-text-secondary,#3D4750);padding-left:2px">
                 <span style="display:flex;color:var(--ss-text-muted,#5B6874);flex:none"><dc-import name="Ikony" iconName="map-pin" size="16" hint-size="16px,16px"></dc-import></span>
-                <span>Vyzkoušejte osobně na <a href="#prodejny">5 specializovaných prodejnách</a></span>
+                <span>Vyzkoušejte osobně na <a href="#prodejny" onClick="{{ openTry }}" aria-haspopup="dialog">5 specializovaných prodejnách</a></span>
               </span>
             </div>
 
@@ -831,7 +842,7 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
             </ul>
           </div>
           <div style="min-width:0">
-            <img decoding="async" src="_blob/e334b477f4cdda9c9ebd7473bab882be.webp" alt="Schéma rozměrů postele LEVITA v provedení 180 × 200 cm" style="display:block;width:100%;border-radius:12px;background:var(--ss-surface-subtle,#FAF5EF)" />
+            <img decoding="async" src="_blob/e334b477f4cdda9c9ebd7473bab882be.webp" alt="Schéma rozměrů postele LEVITA v provedení 180 × 200 cm" style="display:block;width:100%;border-radius:12px;background:#FFFFFF" />
           </div>
         </div>
       </div>
@@ -980,12 +991,12 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
     <div style="position:fixed;left:0;right:0;bottom:0;z-index:100;background:var(--ss-surface-page,#FFFFFF);border-top:1px solid var(--ss-border-subtle,#E1E6EB);box-shadow:0 -2px 8px rgba(19,44,67,.08),0 -16px 40px rgba(19,44,67,.06)">
       <div style="{{ inner }}">
         <sc-if value="{{ stickyWide }}" hint-placeholder-val="{{ true }}">
-          <div style="display:grid;grid-template-columns:minmax(0,1fr) auto auto;align-items:center;gap:8px 24px;padding:10px 0 0">
-            <div style="display:flex;flex-direction:column;gap:2px;min-width:0">
-              <div style="display:flex;align-items:center;gap:16px;min-width:0">
-                <img decoding="async" src="_blob/bf9ee623a3c7f6bdd65949a31b2b28ab.webp" alt="" style="width:64px;height:48px;object-fit:contain;border-radius:6px;flex:none;background:#FFFFFF" />
-                <span style="font-size:15px;font-weight:600;line-height:1.3;color:var(--ss-text-primary,#1C2229);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Postel LEVITA 180 × 200 + matrace Viscoair a 2 rošty Villach S</span>
-              </div>
+          <div style="display:grid;grid-template-columns:minmax(0,1fr) auto auto;align-items:center;gap:8px 24px;padding:10px 0">
+            <!-- 9. 11. 2026: fotka ve vlastním sloupci, vedle pod sebou název a chipy (jednotně se Set polštář) -->
+            <div style="display:flex;align-items:center;gap:16px;min-width:0">
+              <img decoding="async" src="_blob/bf9ee623a3c7f6bdd65949a31b2b28ab.webp" alt="" style="width:64px;height:48px;object-fit:contain;border-radius:6px;flex:none;background:#FFFFFF" />
+              <div style="display:flex;flex-direction:column;gap:2px;min-width:0;flex:1">
+              <span style="font-size:15px;font-weight:600;line-height:1.3;color:var(--ss-text-primary,#1C2229);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Postel LEVITA 180 × 200 + matrace Viscoair a 2 rošty Villach S</span>
               <span style="display:flex;flex-wrap:wrap;gap:6px;margin-top:4px">
                 <sc-for list="{{ stickyChips }}" as="ch" hint-placeholder-count="4">
                   <span style="display:inline-flex;align-items:center;gap:6px;height:26px;padding:0 10px;border-radius:999px;background:var(--ss-surface-subtle,#FAF5EF);box-shadow:inset 0 0 0 1px var(--ss-border-subtle,#E1E6EB);font-size:13px;color:var(--ss-text-secondary,#3D4750);white-space:nowrap">
@@ -997,19 +1008,19 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
                 </sc-for>
               </span>
             </div>
+            </div>
             <div style="display:flex;flex-direction:column;gap:2px;text-align:right">
               <span style="font-size:13px;color:var(--ss-text-muted,#5B6874);text-decoration:line-through">{{ kitBefore }}</span>
               <span style="font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:24px;line-height:1.1">{{ kitPriceFmt }}</span>
-              <span style="display:flex;align-items:center;justify-content:flex-end;gap:6px;font-size:13px;color:var(--ss-status-success,#157A41)"><span style="width:8px;height:8px;border-radius:999px;background:#157A41"></span>Skladem</span>
+              <span style="display:flex;justify-content:flex-end"><dc-import name="Skladovost" kind="inStock" label="Skladem" size="sm" hint-size="90px,18px"></dc-import></span>
             </div>
             <dc-import name="Tlacitko" label="{{ ctaLabel }}" variant="buy" size="large" iconLeft="{{ ctaIcon }}" onClick="{{ onBuy }}" hint-size="200px,52px"></dc-import>
           </div>
         </sc-if>
         <sc-if value="{{ stickyNarrow }}" hint-placeholder-val="{{ false }}">
-          <div style="display:flex;flex-direction:column;gap:8px;padding:10px 0">
-            <span style="font-size:14px;font-weight:600;line-height:1.3;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Postel LEVITA 180 × 200 + matrace Viscoair a 2 rošty Villach S</span>
+          <div style="display:flex;flex-direction:column;gap:6px;padding:8px 0">
             <div class="ss-pd-stchips" style="display:flex;align-items:center;gap:6px;overflow-x:auto;scrollbar-width:none;white-space:nowrap;margin:0 -16px;padding:0 16px">
-              <span style="display:inline-flex;align-items:center;gap:6px;flex:none;font-size:13px;color:var(--ss-status-success,#157A41);margin-right:4px"><span style="width:8px;height:8px;border-radius:999px;background:#157A41;flex:none"></span>Skladem</span>
+              <span style="display:inline-flex;flex:none;margin-right:4px"><dc-import name="Skladovost" kind="inStock" label="Skladem" size="sm" hint-size="90px,18px"></dc-import></span>
               <sc-for list="{{ stickyChips }}" as="ch" hint-placeholder-count="4">
                 <span style="display:inline-flex;align-items:center;gap:6px;flex:none;height:24px;padding:0 10px;border-radius:999px;background:var(--ss-surface-subtle,#FAF5EF);box-shadow:inset 0 0 0 1px var(--ss-border-subtle,#E1E6EB);font-size:13px;color:var(--ss-text-secondary,#3D4750)">
                   <sc-if value="{{ ch.hasSwatch }}" hint-placeholder-val="{{ false }}">
@@ -1028,7 +1039,7 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
                   <span style="font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:24px;line-height:1">{{ kitPriceFmt }}</span>
                 </div>
               </div>
-              <dc-import name="Tlacitko" label="Do košíku" variant="buy" size="large" onClick="{{ onBuy }}" hint-size="150px,52px"></dc-import>
+              <dc-import name="Tlacitko" label="Do košíku" variant="buy" size="medium" onClick="{{ onBuy }}" hint-size="150px,44px"></dc-import>
             </div>
           </div>
         </sc-if>
@@ -1038,7 +1049,8 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
 
   <dc-import name="VariantaDrawer" open="{{ drawerOpen }}" title="{{ drawerTitle }}" note="{{ drawerNote }}" value="{{ drawerValue }}" groups="{{ drawerGroups }}" rows="{{ drawerRows }}" onPick="{{ onDrawerPick }}" onClose="{{ closeDrawer }}" hint-size="0px,0px"></dc-import>
 
-  <dc-import name="KosikPridanoModal" open="{{ addedOpen }}" title="{{ addedTitle }}" qty="{{ qty }}" variant="{{ addedVariant }}" image="_blob/6b546453dfb90e0ec7ddb488eed7e6ec.webp" stockKind="onWay" stockLabel="Vyrobíme během 2–4 týdnů" total="{{ addedTotal }}" onClose="{{ closeAdded }}" hint-size="0px,0px"></dc-import>
+  <dc-import name="Overlay" open="{{ dostOpen }}" variant="modal" size="sm" obsah="DostupnostObsah" title="{{ dostTitle }}" icon="building-store" closeLabel="okno" initialFocus="close" data="{{ dostData }}" onClose="{{ closeDost }}" hint-size="100%,100%"></dc-import>
+  <dc-import name="KosikPridanoModal" open="{{ addedOpen }}" title="{{ addedTitle }}" qty="{{ qty }}" variant="{{ addedVariant }}" image="_blob/6b546453dfb90e0ec7ddb488eed7e6ec.webp" stockKind="onOrder" stockLabel="Vyrobíme během 2–4 týdnů" total="{{ addedTotal }}" onClose="{{ closeAdded }}" hint-size="0px,0px"></dc-import>
 
   <sc-if value="{{ customOpen }}" hint-placeholder-val="{{ false }}">
     <div class="ss-scrim" style="position:fixed;inset:0;z-index:500;display:flex;align-items:safe center;justify-content:center;overflow-y:auto;padding:24px 16px" onClick="{{ onCustomBackdrop }}">
@@ -1099,14 +1111,14 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
 
   <sc-if value="{{ lbOpen }}" hint-placeholder-val="{{ false }}">
     <div style="position:fixed;inset:0;z-index:500;background:rgba(9,18,27,.88);display:flex;flex-direction:column" onClick="{{ onBackdrop }}">
-      <div role="dialog" aria-modal="true" aria-label="Galerie fotek produktu LEVITA" ref="{{ dialogRef }}" style="display:flex;flex-direction:column;flex:1;min-height:0;padding:16px;gap:12px">
+      <div role="dialog" aria-modal="true" aria-label="Galerie fotek – Postel LEVITA 180 × 200 + matrace Viscoair a 2 rošty Villach S" ref="{{ dialogRef }}" style="display:flex;flex-direction:column;flex:1;min-height:0;padding:16px;gap:12px">
         <div style="display:flex;align-items:center;justify-content:space-between;gap:16px">
-          <span style="color:#FFFFFF;font-size:14px">{{ lbCounter }}</span>
-          <button type="button" class="ss-pd-round" onClick="{{ closeLb }}" ref="{{ closeRef }}" aria-label="Zavřít galerii">
+          <span style="display:flex;flex-direction:column;gap:2px;min-width:0"><span style="color:#FFFFFF;font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:20px;line-height:1.2">Postel LEVITA 180 × 200 + matrace Viscoair a 2 rošty Villach S</span><span style="color:#DCE8F2;font-size:14px">{{ lbCounter }}</span></span>
+          <button type="button" class="ss-pd-round" style="border-radius:6px" onClick="{{ closeLb }}" ref="{{ closeRef }}" aria-label="Zavřít galerii">
             <dc-import name="Ikony" iconName="x" size="22" hint-size="22px,22px"></dc-import>
           </button>
         </div>
-        <div style="position:relative;flex:1;min-height:0;display:flex;align-items:center;justify-content:center">
+        <div style="position:relative;flex:1;min-height:0;display:flex;align-items:center;justify-content:center;margin:0 -16px;padding:0 60px">
           <sc-if value="{{ lbIsPhoto }}" hint-placeholder-val="{{ true }}">
             <img decoding="async" src="{{ lbSrc }}" alt="{{ lbAlt }}" style="max-width:100%;max-height:100%;object-fit:contain;border-radius:12px" />
           </sc-if>
@@ -1116,10 +1128,10 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
               <span style="font-size:14px">Video produktu – dodá klient</span>
             </span>
           </sc-if>
-          <button type="button" class="ss-pd-arrow" style="left:0" onClick="{{ lbPrev }}" aria-label="Předchozí fotka">
+          <button type="button" class="ss-pd-arrow" style="left:0;border-radius:0 6px 6px 0;background:linear-gradient(var(--ss-surface-tint,rgba(251,178,85,.05)),var(--ss-surface-tint,rgba(251,178,85,.05))),var(--ss-surface-page,#FFFFFF);box-shadow:none" onClick="{{ lbPrev }}" aria-label="Předchozí fotka">
             <dc-import name="Ikony" iconName="chevron-left" size="22" hint-size="22px,22px"></dc-import>
           </button>
-          <button type="button" class="ss-pd-arrow" style="right:0" onClick="{{ lbNext }}" aria-label="Další fotka">
+          <button type="button" class="ss-pd-arrow" style="right:0;border-radius:6px 0 0 6px;background:linear-gradient(var(--ss-surface-tint,rgba(251,178,85,.05)),var(--ss-surface-tint,rgba(251,178,85,.05))),var(--ss-surface-page,#FFFFFF);box-shadow:none" onClick="{{ lbNext }}" aria-label="Další fotka">
             <dc-import name="Ikony" iconName="chevron-right" size="22" hint-size="22px,22px"></dc-import>
           </button>
         </div>
@@ -1194,7 +1206,10 @@ class Component extends DCLogic {
     window.addEventListener('resize', this._resize);
     this._scroll = () => {
       const y = window.scrollY || document.documentElement.scrollTop;
-      const on = y > 900;
+      // 9. 11. 2026 (jako Multi 3.0): plovoucí panel vždy, když není celý vidět box s cenou a CTA Koupit
+      const box = document.querySelector('.ss-pd-glass');
+      let on = y > 900;
+      if (box) { const r = box.getBoundingClientRect(); const topLine = this.state.headerH || 0; on = r.top < topLine - 4 || r.bottom > window.innerHeight + 4; }
       if (on !== this.state.sticky) this.setState({ sticky: on });
       const tn = document.querySelector('nav[aria-label="Obsah produktu"]');
       const line = (tn ? Math.max(0, tn.getBoundingClientRect().bottom) : (this.state.headerH || 0)) + 24;
@@ -1203,6 +1218,9 @@ class Component extends DCLogic {
       if (act !== this.state.activeSec) { this.setState({ activeSec: act }); this.scrollToc(act); }
     };
     window.addEventListener('scroll', this._scroll, { passive: true });
+    this._resizeSticky = () => this._scroll();
+    window.addEventListener('resize', this._resizeSticky);
+    [0, 300, 1200].forEach(t => setTimeout(() => { try { this._scroll(); } catch (e) {} }, t));
     this._measureHeader = () => {
       const h = document.querySelector('header.ss-hd');
       const full = h ? Math.round(h.getBoundingClientRect().height) : 0;
@@ -1252,6 +1270,7 @@ class Component extends DCLogic {
     clearInterval(this._headerTick); window.removeEventListener('resize', this._onResize);
     window.removeEventListener('resize', this._resize);
     window.removeEventListener('scroll', this._scroll);
+    window.removeEventListener('resize', this._resizeSticky);
     window.removeEventListener('keydown', this._key);
     document.body.style.overflow = '';
   }
@@ -1311,6 +1330,14 @@ class Component extends DCLogic {
     const PH = this.photos();
     const n = PH.length;
     const i = this.state.photo % n;
+    // Posun fotky v galerii (9. 11. 2026): zapamatuje předchozí fotku a směr, data-k a/b restartuje animaci
+    if (this._galI === undefined) this._galI = i;
+    if (this._galI !== i) {
+      const from = this._galI, fwd = (i > from && !(from === 0 && i === n - 1)) || (from === n - 1 && i === 0);
+      this._gal = { src: (PH[from] && !PH[from].video && PH[from].src) || '', fit: (PH[from] && PH[from].fit) || 'cover', dir: fwd ? 'next' : 'prev', k: this._gal && this._gal.k === 'a' ? 'b' : 'a' };
+      this._galI = i;
+    }
+    const GAL = this._gal || { src: '', fit: 'cover', dir: 'next', k: '' };
     const stick = this.props.fixniSloupec ?? 'galerie';
     const canStick = w >= 1000;
     const crumbH = 0;
@@ -1529,16 +1556,22 @@ class Component extends DCLogic {
       { question: 'Jak vysoko budu na posteli ležet?', answer: 'Horní hrana bočnice je ve výšce 45 cm a kování roštu je výškově stavitelné v rozsahu 12–19 cm. S doporučenou matrací 15–18 cm se dostanete na obvyklou výšku ložné plochy kolem 50–55 cm.' }
     ];
     return {
+      // okno Dostupnost (9. 11. 2026)
+      dostOpen: !!this.state.dost, dostTitle: this.state.dost === 'stores' ? 'Skladem na prodejnách' : this.state.dost === 'tryout' ? 'Vyzkoušejte na prodejně' : 'Dostupnost', dostData: { storeIds: null, kind: this.state.dost === 'stores' || this.state.dost === 'tryout' ? this.state.dost : 'inStock', qty: 3, store: 'Praha – Chodov', pickup: 'ihned', delivery: 'zítra' },
+      openDost: (e) => { if (e && e.preventDefault) e.preventDefault(); this.setState({ dost: true }); },
+      openTry: (e) => { if (e && e.preventDefault) e.preventDefault(); this.setState({ dost: 'tryout' }); },
+      openStores: (e) => { if (e && e.preventDefault) e.preventDefault(); this.setState({ dost: 'stores' }); },
+      closeDost: () => this.setState({ dost: false }),
       ledMode: this.state.led ? 'on' : 'off',
       presItems: [{ label: 'LED', value: this.state.led }],
       onPresToggle: () => this.setState(s => ({ led: !s.led })),
       presChoices: [
-        { label: 'Detail – Simple', value: 'Komplet 3.0', options: ['Postel 3.0', 'Komplet 3.0', 'Multi 3.0', 'Matrace 3.0', 'Komoda VIA'] }, { label: 'Detail – Konfigurátor', value: 'Komplet 3.0', options: ['Multi Konf.', 'Skříň UNI 2D Konf', 'Set polštář'] },
+        { label: 'Detail – Simple', value: 'Komplet 3.0', options: ['Postel 3.0', 'Komplet 3.0', 'Multi 3.0', 'Matrace 3.0', 'Komoda VIA', 'Set polštář + povlak A', 'Set polštář + povlak B', 'Set polštář + přikrývka', 'Set 1+1 polštáře', 'Čalouněná', 'Airflex SET', 'Skříň UNI 2D'] }, { label: 'Krokový Konfig.', value: 'Komplet 3.0', options: ['Multi Konf.'] },
         { label: 'Fixní sloupec', value: this.state.stickPick || (stick === 'zadny' ? 'Žádný' : 'Galerie'), options: ['Galerie', 'Žádný'] },
         { label: 'Rozměr', value: this.state.sizeUi || 'V1', options: ['V1', 'V2'] },
         { label: 'Set', value: this.state.setUi || 'S1', options: ['S1', 'S2', 'S3', 'S4'] }
       ],
-      onPresPick: (ci, opt) => { if (ci === 1) ci = 0; else if (ci > 1) ci -= 1; /* Detail rozdělen na Simple a Konfigurátor (6. 11. 2026) */ if (ci === 0) { if (opt !== 'Komplet 3.0') (h => { try { const a = document.createElement('a'); a.href = h; a.style.display = 'none'; (document.getElementById('dc-root') || document.body).appendChild(a); a.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true, view: window })); a.remove(); } catch (e) { window.location.href = h; } })(opt === 'Multi Konf.' ? 'Detail_Postel_3.0-hqdl.dc.html' : (opt === 'Set polštář' ? 'Detail_Set_Polstar_Povlak.dc.html' : opt === 'Skříň UNI 2D Konf' ? 'Detail_Skrin_UNI_2D_Konf.dc.html' : 'Detail_' + String(opt).replace(/ /g, '_') + '.dc.html')); return; } ci -= 1; this.setState(ci === 0 ? { stickPick: opt } : ci === 1 ? { sizeUi: opt } : { setUi: opt }); },
+      onPresPick: (ci, opt) => { if (ci === 1) ci = 0; else if (ci > 1) ci -= 1; /* Detail rozdělen na Simple a Konfigurátor (6. 11. 2026) */ if (ci === 0) { if (opt !== 'Komplet 3.0') (h => { try { const a = document.createElement('a'); a.href = h; a.style.display = 'none'; (document.getElementById('dc-root') || document.body).appendChild(a); a.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true, view: window })); a.remove(); } catch (e) { window.location.href = h; } })(opt === 'Multi Konf.' ? 'Detail_Postel_3.0-hqdl.dc.html' : (opt === 'Set polštář + povlak A' ? 'Detail_Set_Polstar.dc.html' : opt === 'Set polštář + povlak B' ? 'Detail_Set_Polstar_B.dc.html' : opt === 'Set polštář + přikrývka' ? 'Detail_Set_Bamboo.dc.html' : opt === 'Čalouněná' ? 'Detail_Calounena_Postel.dc.html' : opt === 'Airflex SET' ? 'Detail_Matrace_Airflex_Set.dc.html' : opt === 'Set 1+1 polštáře' ? 'Detail_Set_Polstare_1plus1.dc.html' : opt === 'Skříň UNI 2D' ? 'Detail_Skrin_UNI_2D_Konf.dc.html' : 'Detail_' + String(opt).replace(/ /g, '_') + '.dc.html')); return; } ci -= 1; this.setState(ci === 0 ? { stickPick: opt } : ci === 1 ? { sizeUi: opt } : { setUi: opt }); },
       stickyChips: [
         { label: '180 × 200 cm' },
         { label: mat.label, color: mat.color, hasSwatch: true },
@@ -1572,6 +1605,7 @@ class Component extends DCLogic {
       tocTop,
       showVariants: this.props.zobrazitVarianty ?? false,
       mainSrc: PH[i].src || '',
+      slideHasPrev: !!GAL.src && !!GAL.k, slidePrevSrc: GAL.src, slidePrevFit: GAL.fit, slideDir: GAL.dir, slideK: GAL.k,
       mainFit: PH[i].fit || 'cover',
       mainAlt: PH[i].alt,
       mainIsVideo: !!PH[i].video,

@@ -196,20 +196,23 @@ html[data-mode="dark"] main>section.ss-grad-top.ss-grad-glow{background-image:ra
 <x-dc>
 <helmet>
 </helmet>
+<!-- Skladovost (inStock/lowStock/onWay/onOrder/outOfStock) kreslí od 9. 11. 2026 komponenta Skladovost – jeden vzhled na celém webu -->
+<sc-if value="{{ isStock }}" hint-placeholder-val="{{ false }}">
+<dc-import name="Skladovost" kind="{{ kind }}" label="{{ stockLabel }}" note="{{ stockNote }}" size="{{ stockSize }}" hint-size="160px,22px"></dc-import>
+</sc-if>
+<sc-if value="{{ notStock }}" hint-placeholder-val="{{ true }}">
 <span style="{{ style }}">
-  <sc-if value="{{ hasDot }}" hint-placeholder-val="{{ false }}">
-    <span style="{{ dotStyle }}"></span>
-  </sc-if>
   <sc-if value="{{ hasIcon }}" hint-placeholder-val="{{ false }}">
     <dc-import name="Ikony" iconName="{{ icon }}" size="16" hint-size="16px,16px"></dc-import>
   </sc-if>
   <span>{{ label }}</span>
 </span>
+</sc-if>
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:320,&quot;height&quot;:64},&quot;kind&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;inStock&quot;,&quot;options&quot;:[&quot;inStock&quot;,&quot;lowStock&quot;,&quot;onWay&quot;,&quot;outOfStock&quot;,&quot;sale&quot;,&quot;news&quot;,&quot;freeShip&quot;,&quot;tip&quot;,&quot;recommended&quot;,&quot;madeToOrder&quot;,&quot;bestseller&quot;,&quot;clearance&quot;,&quot;top&quot;,&quot;warranty&quot;,&quot;orthopedic&quot;,&quot;antiallergic&quot;,&quot;firmness&quot;,&quot;bogo&quot;],&quot;tsType&quot;:&quot;string&quot;},&quot;label&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;size&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;standard&quot;,&quot;options&quot;:[&quot;standard&quot;,&quot;small&quot;],&quot;tsType&quot;:&quot;string&quot;},&quot;icon&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
 class Component extends DCLogic {
   static KINDS = {
-    inStock:    { label: 'Skladem · odesíláme do 24 h', fg: 'var(--ss-status-success,#157A41)', bg: 'transparent', dot: '#157A41', plain: true },
+    inStock:    { label: 'Skladem', fg: 'var(--ss-status-success,#157A41)', bg: 'transparent', dot: '#157A41', plain: true },
     lowStock:   { label: 'Poslední kusy', fg: 'var(--ss-status-warning,#A4600C)', bg: 'transparent', dot: '#D07C13', plain: true },
     onWay:      { label: 'Na cestě k nám', fg: 'var(--ss-link-hover,#21507B)', bg: 'transparent', dot: '#5B8FBC', plain: true },
     outOfStock: { label: 'Nedostupné', fg: 'var(--ss-text-muted,#55616C)', bg: 'transparent', dot: '#9AA6B2', plain: true },
@@ -232,7 +235,10 @@ class Component extends DCLogic {
     const p = this.props;
     const k = Component.KINDS[p.kind] || Component.KINDS.inStock;
     const small = p.size === 'small';
+    const isStock = ['inStock', 'lowStock', 'onWay', 'onOrder', 'outOfStock'].includes(p.kind || 'inStock');
     return {
+      isStock, notStock: !isStock, kind: p.kind || 'inStock',
+      stockLabel: p.label || '', stockNote: '', stockSize: p.size === 'small' ? 'sm' : 'card', /* na kartách velikost card – mezi sm a md (9. 11. 2026) */ // bez „odesíláme do 24 h“ – jednotně jen „Skladem“ jako ve výpisu a detailu (9. 11. 2026)
       label: p.label || k.label,
       hasDot: !!k.dot,
       hasIcon: !!(p.icon || k.icon),
