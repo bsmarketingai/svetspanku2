@@ -468,7 +468,9 @@ a:focus-visible>.ss-pd-setbtn[data-v="S4"]{box-shadow:0 0 0 3px rgba(41,96,147,.
 /* Nákupní řádek stepper + Do košíku (5. 11. 2026): na mobilu zarovnaný vlevo, dokud se vejde v jednom řádku; když se zalomí, stepper má šířku tlačítka */
 .ss-pd-buy{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-left:0;flex-basis:100%;} /* vždy zarovnané vlevo, na vlastním řádku pod cenou (5. 11. 2026) */
 .ss-pd-glass{container-type:inline-size;}
-@container (max-width:415px){.ss-pd-buy{display:grid;grid-template-columns:max-content;justify-content:start;}.ss-pd-buy .ss-qty{display:flex;width:100%;}.ss-pd-buy .ss-qty input{flex:1 1 0;width:0!important;min-width:48px;}.ss-pd-buy .ss-btn{width:100%;}}
+/* 10. 11. 2026: stepper + Do košíku v jednom řádku i na velkých telefonech (užší stepper), pod sebe až pod 300 px */
+@container (max-width:415px){.ss-pd-buy{flex-wrap:nowrap;gap:10px;}.ss-pd-buy .ss-qty{flex:none;}.ss-pd-buy .ss-qty button{width:40px!important;}.ss-pd-buy .ss-qty input{width:36px!important;}.ss-pd-buy .ss-btn{flex:1 1 auto;min-width:0;padding-left:16px!important;padding-right:16px!important;}}
+@container (max-width:299px){.ss-pd-buy{display:grid;grid-template-columns:max-content;justify-content:start;}.ss-pd-buy .ss-qty{display:flex;width:100%;}.ss-pd-buy .ss-qty input{flex:1 1 0;width:0!important;min-width:48px;}.ss-pd-buy .ss-btn{width:100%;}}
 .ss-pd-glasswrap:not([data-v="S4"]) .ss-pd-glass,.ss-pd-glasswrap[data-v="S4"]{box-shadow:0 4px 12px rgba(19,44,67,.12),0 16px 40px rgba(19,44,67,.10);}
 html[data-mode="dark"] .ss-pd-glasswrap:not([data-v="S4"]) .ss-pd-glass,html[data-mode="dark"] .ss-pd-glasswrap[data-v="S4"]{box-shadow:0 4px 12px rgba(0,0,0,.28),0 16px 40px rgba(0,0,0,.32);}
 .ss-pd-glasswrap[data-v="S4"] .ss-pd-glass::before{display:none;}
@@ -551,7 +553,7 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
         <div style="display:grid;grid-template-columns:{{ topTemplate }};gap:{{ topGap }};padding:8px 0 0;align-items:start">
 
           <div style="{{ galleryStyle }}">
-            <div style="position:relative">
+            <div style="position:relative;touch-action:pan-y" onTouchStart="{{ galTs }}" onTouchEnd="{{ galTe }}">
               <button type="button" class="ss-pd-ph" style="aspect-ratio:4/3" onClick="{{ openMain }}" aria-label="{{ mainAlt }}">
                 <sc-if value="{{ mainIsPhoto }}" hint-placeholder-val="{{ true }}">
                   <span class="ss-gal-stage"><sc-if value="{{ slideHasPrev }}" hint-placeholder-val="{{ false }}"><img decoding="async" class="ss-gal-out" data-dir="{{ slideDir }}" data-k="{{ slideK }}" src="{{ slidePrevSrc }}" alt="" aria-hidden="true" style="object-fit:{{ slidePrevFit }}" /></sc-if><img decoding="async" class="ss-gal-in" data-dir="{{ slideDir }}" data-k="{{ slideK }}" src="{{ mainSrc }}" alt="{{ mainAlt }}" style="object-fit:{{ mainFit }}" /></span>
@@ -1070,6 +1072,8 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
 
   <dc-import name="Paticka" ledMode="{{ ledMode }}" hint-size="100%,700px"></dc-import>
 
+  <!-- místo pod plovoucí lištou, aby šlo doscrollovat na konec stránky (10. 11. 2026) -->
+  <sc-if value="{{ stickyOn }}" hint-placeholder-val="{{ false }}"><div aria-hidden="true" style="height:{{ stickySpacer }}"></div></sc-if>
   <sc-if value="{{ stickyOn }}" hint-placeholder-val="{{ false }}">
     <div style="position:fixed;left:0;right:0;bottom:0;z-index:100;background:var(--ss-surface-page,#FFFFFF);border-top:1px solid var(--ss-border-subtle,#E1E6EB);box-shadow:0 -2px 8px rgba(19,44,67,.08),0 -16px 40px rgba(19,44,67,.06)">
       <div style="{{ inner }}">
@@ -1197,7 +1201,7 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
             <dc-import name="Ikony" iconName="x" size="22" hint-size="22px,22px"></dc-import>
           </button>
         </div>
-        <div style="position:relative;flex:1;min-height:0;display:flex;align-items:center;justify-content:center;margin:0 -16px;padding:0 60px">
+        <div style="position:relative;flex:1;min-height:0;display:flex;align-items:center;justify-content:center;margin:0 -16px;padding:0 60px;touch-action:pan-y" onTouchStart="{{ galTs }}" onTouchEnd="{{ lbTe }}">
           <sc-if value="{{ lbIsPhoto }}" hint-placeholder-val="{{ true }}">
             <img decoding="async" src="{{ lbSrc }}" alt="{{ lbAlt }}" style="max-width:100%;max-height:100%;object-fit:contain;border-radius:12px" />
           </sc-if>
@@ -1333,6 +1337,7 @@ class Component extends DCLogic {
     else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
   }
   openLightbox(i) {
+    if (this._swiped && Date.now() - this._swiped < 450) return;
     this._lastFocus = document.activeElement;
     document.body.style.overflow = 'hidden';
     this.setState({ lb: i, photo: i });
@@ -1625,6 +1630,10 @@ class Component extends DCLogic {
       counter: (i + 1) + ' / ' + n,
       prevPhoto: () => this.setState({ photo: (i - 1 + n) % n }),
       nextPhoto: () => this.setState({ photo: (i + 1) % n }),
+      // swipe v galerii a v lightboxu (10. 11. 2026)
+      galTs: (e) => { const q = e && e.touches && e.touches[0]; this._tx = q ? q.clientX : null; this._ty = q ? q.clientY : null; },
+      galTe: (e) => { const q = e && e.changedTouches && e.changedTouches[0]; if (!q || this._tx == null) return; const dx = q.clientX - this._tx, dy = q.clientY - this._ty; this._tx = null; if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy) * 1.2) { this._swiped = Date.now(); this.setState({ photo: (i + (dx < 0 ? 1 : -1) + n) % n }); } },
+      lbTe: (e) => { const q = e && e.changedTouches && e.changedTouches[0]; if (!q || this._tx == null) return; const dx = q.clientX - this._tx, dy = q.clientY - this._ty; this._tx = null; if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy) * 1.2) { this._swiped = Date.now(); this.moveLb(dx < 0 ? 1 : -1); } },
       openMain: () => this.openLightbox(i),
       openSub1: () => this.openLightbox(Math.max(0, this.photos().findIndex(p => p.src === '_blob/5d284e9d65729ad7719aa1d43749b751.jpg'))),
       openSub2: () => this.openLightbox(Math.max(0, this.photos().findIndex(p => p.src === '_blob/e334b477f4cdda9c9ebd7473bab882be.webp'))),
@@ -1878,6 +1887,7 @@ class Component extends DCLogic {
       toggleReviews: () => this.setState(s => ({ moreReviews: !s.moreReviews })),
       faqs: faqData.map(q => ({ question: q.question, answer: q.answer })),
       faqNarrow: narrow,
+      stickySpacer: (this.state.width || 1440) < 820 ? 'calc(112px + env(safe-area-inset-bottom))' : '104px',
       stickyOn: (this.props.stickyLista ?? true) && this.state.sticky && this.state.lb === null,
       stickyWide: w >= 820,
       stickyNarrow: w < 820,

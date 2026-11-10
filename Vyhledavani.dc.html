@@ -262,9 +262,9 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
         <sc-for list="{{ products }}" as="p" hint-placeholder-count="6">
           <a class="ss-sg-prod" href="{{ p.href }}">
             <sc-if value="{{ p.hasImage }}" hint-placeholder-val="{{ false }}"><span aria-hidden="true" style="{{ p.imgStyle }}"></span></sc-if><sc-if value="{{ p.noImage }}" hint-placeholder-val="{{ true }}"><span style="width:104px;height:104px;flex:none;border-radius:8px;background:var(--ss-surface-muted,#F3EDE4);display:flex;align-items:center;justify-content:center;color:var(--ss-text-decor,#C8D0D8)"><dc-import name="Ikony" iconName="photo" size="24" hint-size="24px,24px"></dc-import></span></sc-if>
-            <span style="display:flex;flex-direction:column;gap:10px;min-width:0;padding-top:6px">
+            <span style="display:flex;flex-direction:column;gap:8px;min-width:0;padding-top:6px">
               <span class="ss-sg-prod-t" style="font-size:15px;font-weight:500;line-height:1.35;transition:color .12s cubic-bezier(.22,.61,.36,1)">{{ p.title }}</span>
-              <span style="display:flex;flex-wrap:wrap;align-items:center;gap:14px">
+              <span style="display:flex;flex-direction:column;align-items:flex-start;gap:4px">
                 <span style="font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:20px;white-space:nowrap">{{ p.price }}</span>
                 <dc-import name="Stitek" kind="{{ p.stock }}" label="{{ p.stockLabel }}" size="small" hint-size="90px,18px"></dc-import>
               </span>

@@ -2090,6 +2090,9 @@ class Component extends DCLogic {
   state = { width: typeof window !== 'undefined' ? document.documentElement.clientWidth : 1440, open: -1, mobileOpen: false, query: '', cats: null, util: [], cmpN: (() => { try { return (JSON.parse(localStorage.getItem('ss-cmp') || '[]')).length; } catch (e) { return 0; } })(), hdMode: 'H2' /* sticky H2 = finální (30. 10. 2026) */, hdHidden: false, favN: (() => { try { return (JSON.parse(localStorage.getItem('ss-fav') || '[]')).length; } catch (e) { return 0; } })() };
 
   componentDidMount() {
+    // Našeptávač na mobilu: výška podle viditelné plochy (visualViewport), aby šlo doscrollovat i s vysunutou klávesnicí (10. 11. 2026)
+    this._vv = () => { try { const v = window.visualViewport; if (v) this.setState({ vvh: Math.round(v.height + v.offsetTop) }); } catch (e) {} };
+    try { if (window.visualViewport) { window.visualViewport.addEventListener('resize', this._vv); window.visualViewport.addEventListener('scroll', this._vv); } } catch (e) {}
     this._fav = () => { try { this.setState({ favN: (JSON.parse(localStorage.getItem('ss-fav') || '[]')).length }); } catch (e) {} };
     this._cmp = () => { try { this.setState({ cmpN: (JSON.parse(localStorage.getItem('ss-cmp') || '[]')).length }); } catch (e) {} };
     window.addEventListener('ss-fav', this._fav); window.addEventListener('storage', this._fav);
@@ -2172,6 +2175,7 @@ class Component extends DCLogic {
     if (l !== !!this.state.navL || r !== !!this.state.navR) this.setState({ navL: l, navR: r });
   }
   componentWillUnmount() {
+    try { if (window.visualViewport && this._vv) { window.visualViewport.removeEventListener('resize', this._vv); window.visualViewport.removeEventListener('scroll', this._vv); } } catch (e) {}
     if (this._megaFit) { window.removeEventListener('resize', this._megaFit); window.removeEventListener('scroll', this._megaFit); }
     window.removeEventListener('ss-open-search', this._openSearch);
     if (this._navRO) this._navRO.disconnect();
@@ -2310,7 +2314,7 @@ class Component extends DCLogic {
       suggestOpen: open || (!!this.state.searchIntro && q.length < 2),
       // Mobil: našeptávač vyplní stránku až dolů, aby pod ním nebyl vidět e-shop
       suggestWrapStyle: narrow
-        ? { position: 'absolute', top: '100%', left: 0, right: 0, zIndex: 300, height: 'calc(100dvh - ' + Math.max(0, Math.round(this._header ? this._header.getBoundingClientRect().bottom : (this.state.headerH || 120))) + 'px)', overflowY: 'auto', overscrollBehavior: 'contain', WebkitOverflowScrolling: 'touch', touchAction: 'pan-y', background: 'var(--ss-surface-page,#FFFFFF)' }
+        ? { position: 'absolute', top: '100%', left: 0, right: 0, zIndex: 300, height: (hb => this.state.vvh ? Math.max(160, this.state.vvh - hb) + 'px' : 'calc(100dvh - ' + hb + 'px)')(Math.max(0, Math.round(this._header ? this._header.getBoundingClientRect().bottom : (this.state.headerH || 120)))), paddingBottom: '24px', boxSizing: 'border-box', overflowY: 'auto', overscrollBehavior: 'contain', WebkitOverflowScrolling: 'touch', touchAction: 'pan-y', background: 'var(--ss-surface-page,#FFFFFF)' }
         : { position: 'absolute', top: '100%', left: 0, right: 0, zIndex: 300 },
       suggestProducts: this.state.searchIntro && q.length < 2 ? undefined : suggestProducts,
       suggestCategories: this.state.searchIntro && q.length < 2 ? undefined : suggestCategories,

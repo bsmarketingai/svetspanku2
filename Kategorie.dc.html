@@ -242,6 +242,8 @@ a.ss-promo:hover{color:#FFFFFF;}
 @media (prefers-reduced-motion:reduce){.ss-kg-pvbg{transition:none;}.ss-kg-pv:hover .ss-kg-pvbg{transform:none;}}
 /* Chipy podkategorií: hover jako v megamenu (4. 11. 2026) */
 .ss-kat-chips-t{display:inline-flex;align-items:center;gap:4px;color:var(--ss-text-heading,#0B1F33);text-decoration:none;border-radius:4px;transition:color .12s cubic-bezier(.22,.61,.36,1);}
+/* Mobil: nadpis skupiny čipů na vlastním řádku, čipy až pod ním (10. 11. 2026) */
+@media (max-width:819px){.ss-kat-chiprow>h2{flex-basis:100%;margin:0 0 4px!important;}}
 .ss-kat-chips-chev{display:inline-flex;color:var(--ss-text-muted,#5B6874);transition:transform .15s cubic-bezier(.22,.61,.36,1),color .12s cubic-bezier(.22,.61,.36,1);}
 @media (hover:hover) and (pointer:fine){.ss-kat-chips-t:hover{color:var(--ss-text-heading,#0B1F33);} /* 9. 11. 2026: nadpis řady čipů bez modré, hover jen podtržení */.ss-kat-chips-t:hover>span:first-child{text-decoration:underline;text-underline-offset:4px;}.ss-kat-chips-t:hover .ss-kat-chips-chev{transform:translateX(4px);color:var(--ss-hover-text,#A4600C);}}
 .ss-kat-chips-t:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
@@ -305,7 +307,7 @@ a.ss-promo:hover{color:#FFFFFF;}
         <nav aria-label="Podkategorie" style="display:flex;flex-direction:column;gap:24px;margin-bottom:{{ subGapBelow }}">
           <sc-for list="{{ chipRows }}" as="r" hint-placeholder-count="0">
             <!-- 9. 11. 2026: čipy hned vedle nadpisu, co se nevejde, zalomí se na další řádek -->
-            <div style="display:flex;flex-wrap:wrap;align-items:center;gap:8px">
+            <div class="ss-kat-chiprow" style="display:flex;flex-wrap:wrap;align-items:center;gap:8px">
               <h2 style="margin:0 8px 0 0;font-size:21px;line-height:1.2;color:var(--ss-text-heading,#0B1F33)"><a class="ss-kat-chips-t" href="{{ r.href }}"><span>{{ r.title }}</span><span class="ss-kat-chips-chev" aria-hidden="true"><dc-import name="Ikony" iconName="chevron-right" size="20" hint-size="20px,20px"></dc-import></span></a></h2>
               <div class="ss-kat-chips" style="display:contents">
                 <sc-for list="{{ r.items }}" as="i" hint-placeholder-count="8">

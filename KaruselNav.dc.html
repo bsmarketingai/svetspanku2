@@ -198,14 +198,15 @@ html[data-mode="dark"] main>section.ss-grad-top.ss-grad-glow{background-image:ra
 <style>
 /* KaruselNav – sdílené ovládání všech karuselů (šipky + chování). Vzhled 1:1 s původními variantami. */
 .ss-kn-group{display:flex;align-items:center;gap:8px;}
-/* below: tonální čtvercové šipky pod karuselem */
-.ss-kn-flat{position:static;transform:none;pointer-events:auto;display:flex;align-items:center;justify-content:center;width:44px;height:44px;flex:none;border:0;box-sizing:border-box;border-radius:6px;background:var(--ss-action-tonal-bg,#FEEDD4);box-shadow:none;color:var(--ss-action-tonal-fg,#7A4708);cursor:pointer;transition:background-color .12s cubic-bezier(.22,.61,.36,1),color .12s cubic-bezier(.22,.61,.36,1);}
-@media (hover:hover) and (pointer:fine){.ss-kn-flat:hover{background:var(--ss-action-tonal-hover-bg,#FDDCAA);color:var(--ss-action-tonal-hover-fg,#7A4708);}}
+/* below: čtvercové šipky pod karuselem – ve stylu sekundárního tlačítka (10. 11. 2026) */
+.ss-kn-flat{position:static;transform:none;pointer-events:auto;display:flex;align-items:center;justify-content:center;width:44px;height:44px;flex:none;border:0;box-sizing:border-box;border-radius:6px;background:var(--ss-surface-subtle,#FAF5EF);box-shadow:inset 0 0 0 1px var(--ss-border-strong,#D9CCBA);color:var(--ss-link-hover,#21507B);-webkit-tap-highlight-color:transparent;cursor:pointer;transition:background-color .12s cubic-bezier(.22,.61,.36,1),color .12s cubic-bezier(.22,.61,.36,1);}
+@media (hover:hover) and (pointer:fine){.ss-kn-flat:hover{background:var(--ss-surface-muted,#F3EDE4);color:var(--ss-link-hover,#21507B);}}
+.ss-kn-flat:not([aria-disabled="true"]):active,.ss-kn-peek:active{background:var(--ss-surface-muted,#F3EDE4);}
 .ss-kn-flat:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
 /* peek: tonální šipky po stranách karuselu, schované na začátku / konci */
-.ss-kn-peek{position:absolute;z-index:3;transform:translateY(-50%);display:flex;align-items:center;justify-content:center;width:44px;height:44px;border:0;box-sizing:border-box;border-radius:6px;background:var(--ss-action-tonal-bg,#FEEDD4);color:var(--ss-action-tonal-fg,#7A4708);box-shadow:0 4px 12px rgba(19,44,67,.12);cursor:pointer;transition:background-color .12s cubic-bezier(.22,.61,.36,1),color .12s cubic-bezier(.22,.61,.36,1);}
+.ss-kn-peek{position:absolute;z-index:3;transform:translateY(-50%);display:flex;align-items:center;justify-content:center;width:44px;height:44px;border:0;box-sizing:border-box;border-radius:6px;background:var(--ss-surface-subtle,#FAF5EF);color:var(--ss-link-hover,#21507B);box-shadow:inset 0 0 0 1px var(--ss-border-strong,#D9CCBA),0 4px 12px rgba(19,44,67,.12);-webkit-tap-highlight-color:transparent;cursor:pointer;transition:background-color .12s cubic-bezier(.22,.61,.36,1),color .12s cubic-bezier(.22,.61,.36,1);}
 .ss-kn-peek > *{display:flex;line-height:0;}
-@media (hover:hover) and (pointer:fine){.ss-kn-peek:hover{background:var(--ss-action-tonal-hover-bg,#FDDCAA);color:var(--ss-action-tonal-hover-fg,#7A4708);}}
+@media (hover:hover) and (pointer:fine){.ss-kn-peek:hover{background:var(--ss-surface-muted,#F3EDE4);color:var(--ss-link-hover,#21507B);}}
 .ss-kn-peek:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
 /* overlay: kulaté bílé šipky v půlce fotky produktové karty (výška overlaye = polovina čtvercové fotky) */
 .ss-kn-nav{position:absolute;top:16px;left:0;right:0;height:0;padding-top:calc((100% - 32px) / 2);pointer-events:none;}
@@ -223,7 +224,7 @@ html[data-mode="dark"] main>section.ss-grad-top.ss-grad-glow{background-image:ra
 .ss-kn-arrow:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
 /* Šipky na začátku / konci: disabled (opacity .45, cursor not-allowed, bez hoveru) */
 .ss-kn-flat[aria-disabled="true"],.ss-kn-arrow[aria-disabled="true"]{opacity:.45;cursor:not-allowed;}
-@media (hover:hover) and (pointer:fine){.ss-kn-flat[aria-disabled="true"]:hover{background:var(--ss-action-tonal-bg,#FEEDD4);color:var(--ss-action-tonal-fg,#7A4708);}.ss-kn-arrow[aria-disabled="true"]:hover{background:var(--ss-surface-page,#FFFFFF);color:inherit;}}
+@media (hover:hover) and (pointer:fine){.ss-kn-flat[aria-disabled="true"]:hover{background:var(--ss-surface-subtle,#FAF5EF);color:var(--ss-link-hover,#21507B);}.ss-kn-arrow[aria-disabled="true"]:hover{background:var(--ss-surface-page,#FFFFFF);color:inherit;}}
 </style>
 </helmet>
 <sc-if value="{{ isBelow }}" hint-placeholder-val="{{ true }}">

@@ -567,7 +567,7 @@ html[data-mode="dark"] .ss-rev-badge{--ss-shine:rgba(251,178,85,.14);}
             <span aria-hidden="true" style="position:absolute;inset:0;z-index:-1;background:linear-gradient(to top,rgba(9,18,27,.92) 0%,rgba(9,18,27,.72) 35%,rgba(9,18,27,.2) 70%,rgba(9,18,27,0) 90%)"></span>
             <span class="ss-hp-t" style="font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:21px;line-height:1.2">Najít moji matraci</span>
             <span class="ss-hp-p" style="font-size:14px;color:#DCE8F2">Osm otázek a doporučíme model podle vaší váhy a polohy spánku</span>
-            <div style="margin-top:4px"><dc-import name="Tlacitko" label="Průvodce výběrem" variant="primary" href="PruvodceMatrace.dc.html" iconRight="arrow-right" hint-size="200px,44px"></dc-import></div>
+            <div style="margin-top:4px"><dc-import name="Tlacitko" label="Průvodce výběrem" variant="light" href="PruvodceMatrace.dc.html" iconRight="arrow-right" hint-size="200px,44px"></dc-import></div>
           </div>
           <sc-if value="{{ bannerInGrid }}" hint-placeholder-val="{{ false }}">
             <div class="ss-hp-tile" style="background:#132C43;color:#FFFFFF;overflow:hidden;isolation:isolate">
@@ -575,7 +575,7 @@ html[data-mode="dark"] .ss-rev-badge{--ss-shine:rgba(251,178,85,.14);}
             <span aria-hidden="true" style="position:absolute;inset:0;z-index:-1;background:linear-gradient(to top,rgba(9,18,27,.92) 0%,rgba(9,18,27,.72) 35%,rgba(9,18,27,.2) 70%,rgba(9,18,27,0) 90%)"></span>
               <h2 style="margin:0;font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:21px;line-height:1.2;color:#FFFFFF">Stylové povlečení</h2>
               <span style="font-size:14px;color:#DCE8F2">Proměníme vaši ložnici v oázu klidu. Prémiové materiály, moderní design a maximální pohodlí pro váš spánek.</span>
-              <div style="margin-top:4px"><dc-import name="Tlacitko" label="Zobrazit povlečení" variant="primary" href="#luzkoviny" iconRight="arrow-right" hint-size="200px,44px"></dc-import></div>
+              <div style="margin-top:4px"><dc-import name="Tlacitko" label="Zobrazit povlečení" variant="light" href="#luzkoviny" iconRight="arrow-right" hint-size="200px,44px"></dc-import></div>
             </div>
           </sc-if>
         </div>
@@ -586,7 +586,7 @@ html[data-mode="dark"] .ss-rev-badge{--ss-shine:rgba(251,178,85,.14);}
           <div style="position:relative;display:flex;flex-direction:column;gap:16px;max-width:min(100%,560px);padding:{{ bannerPad }}">
             <h2 style="margin:0;font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:{{ bannerTitle }};line-height:1.02;letter-spacing:-0.01em;color:#FFFFFF">Stylové povlečení</h2>
             <p style="margin:0;font-size:{{ bannerText }};line-height:1.55;color:#FFFFFF;max-width:46ch">Proměníme vaši ložnici v oázu klidu. Prémiové materiály, moderní design a maximální pohodlí pro váš spánek.</p>
-            <div><dc-import name="Tlacitko" label="Zobrazit povlečení" variant="primary" size="large" href="#luzkoviny" iconRight="arrow-right" hint-size="220px,52px"></dc-import></div>
+            <div><dc-import name="Tlacitko" label="Zobrazit povlečení" variant="light" size="large" href="#luzkoviny" iconRight="arrow-right" hint-size="220px,52px"></dc-import></div>
           </div>
         <style>@media (max-width: 600px) { .ss-banner-wide { min-height: 220px !important; } .ss-banner-wide > div:last-child { padding: 24px 20px !important; gap: 12px !important; } }</style></div>
         </sc-if>
@@ -829,6 +829,7 @@ html[data-mode="dark"] .ss-rev-badge{--ss-shine:rgba(251,178,85,.14);}
             </sc-if>
           </div>
           <div class="ss-hp-ph ss-hp-map" style="position:relative;overflow:hidden;min-height:{{ storeMediaHeight }}">
+            <sc-if value="{{ mapLive }}" hint-placeholder-val="{{ false }}"><iframe src="{{ storeMapEmbed }}" title="{{ storeMapTitle }}" loading="lazy" referrerpolicy="no-referrer-when-downgrade" style="position:absolute;inset:0;width:100%;height:100%;border:0"></iframe></sc-if>
             <sc-if value="{{ hasStoreMap }}" hint-placeholder-val="{{ false }}">
               <a href="{{ storeMap }}" target="_blank" rel="noopener" aria-label="{{ storeMapTitle }} – otevřít v Google Mapách (nové okno)" style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;background:var(--ss-surface-muted,#EEF2F6);color:var(--ss-link,#296093);text-decoration:none;font-weight:600;font-size:16px"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11a3 3 0 1 0 6 0a3 3 0 0 0 -6 0"></path><path d="M17.657 16.657l-4.243 4.243a2 2 0 0 1 -2.827 0l-4.244 -4.243a8 8 0 1 1 11.314 0z"></path></svg><span>Zobrazit na mapě</span></a>
             </sc-if>
@@ -864,13 +865,27 @@ html[data-mode="dark"] .ss-rev-badge{--ss-shine:rgba(251,178,85,.14);}
       </div>
       </sc-if>
       <div style="{{ innerTight }}">
-        <div class="ss-elev ss-pv" style="background:#F2F2F0;border-radius:12px;padding:{{ ctaPad }};display:grid;grid-template-columns:{{ ctaTemplate }};gap:24px;align-items:center;min-height:320px;box-sizing:border-box;position:relative">
-          <span aria-hidden="true" style="position:absolute;inset:0;border-radius:inherit;overflow:hidden;pointer-events:none"><span class="ss-pv-bg" style="position:absolute;inset:0;background:url(_blob/495987b626d0ed8642df24b67f4055ed.webp) {{ ctaPhotoPos }} / cover no-repeat"></span><span style="position:absolute;inset:0;background:{{ ctaVeil }}"></span></span>
-          <img decoding="async" src="_blob/599f824abb2eafbe2a46219892a0c14e.webp" alt="" aria-hidden="true" style="position:absolute;top:-8px;right:{{ tagRight }};width:{{ tagWidth }};height:auto;pointer-events:none;filter:drop-shadow(0 4px 6px rgba(19,44,67,.18))">
-          <div style="position:relative;display:flex;flex-direction:column;gap:12px;min-width:0">
-            <h2 style="margin:0;font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:{{ h2Size }};line-height:1.15;color:#1C2229">Pomůžeme vám najít tu správnou matraci</h2>
-            <p style="margin:0;max-width:60ch;font-size:15px;line-height:1.6;color:#3D4750">Odpovíte na osm otázek o váze, poloze spánku a rozpočtu. Doporučíme tři modely a řekneme, proč zrovna je.</p>
-            <div style="margin-top:4px"><a href="PruvodceMatrace.dc.html" style="display:inline-flex;align-items:center;gap:8px;height:52px;padding:0 24px;border-radius:6px;background:#132C43;color:#FFFFFF;font-size:16px;font-weight:600;text-decoration:none;white-space:nowrap" style-hover="background:#296093">Najít dokonalou matraci<dc-import name="Ikony" iconName="arrow-right" size="18" hint-size="18px,18px"></dc-import></a></div>
+        <!-- Průvodce výběrem matrace (10. 11. 2026): fotka jako samostatný obrázek (mobil nahoře, desktop vpravo), text na čistém podkladu, fakta, ochutnávka první otázky -->
+        <div class="ss-pv" style="display:grid;grid-template-columns:{{ storyTemplate }};gap:32px;align-items:center;box-sizing:border-box"><!-- 10. 11. 2026: bez karty, fotka a text zarovnané stejně jako sekce O nás pod tím -->
+          <div aria-hidden="true" style="position:relative;overflow:hidden;border-radius:12px;order:{{ pvPhOrder }};aspect-ratio:{{ pvPhRatio }};min-height:{{ pvPhMin }}"><span class="ss-pv-bg" style="position:absolute;inset:0;background:url(_blob/495987b626d0ed8642df24b67f4055ed.webp) {{ ctaPhotoPos }} / cover no-repeat"></span></div>
+          <div style="display:flex; flex-direction:column; align-items:flex-start; gap:14px; padding:0; min-width:0; box-sizing:border-box; justify-content:center">
+            <span style="display:inline-flex;align-items:center;height:26px;padding:0 10px;border-radius:999px;background:var(--ss-surface-subtle,#FAF5EF);box-shadow:inset 0 0 0 1px var(--ss-border-strong,#D9CCBA);font-size:13px;font-weight:600;color:var(--ss-link-hover,#21507B)">Zdarma · bez registrace</span>
+            <h2 style="margin:0;font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:{{ h2Size }};line-height:1.15;color:var(--ss-text-heading,#0B1F33)">Pomůžeme vám najít tu správnou matraci</h2>
+            <p style="margin:0;max-width:60ch;font-size:15px;line-height:1.6;color:var(--ss-text-secondary,#3D4750)">Odpovíte na pár otázek o váze, poloze spánku a rozpočtu. Doporučíme tři modely a řekneme, proč zrovna je.</p>
+            <div style="display:flex;flex-wrap:wrap;gap:8px 20px;font-size:14px;font-weight:600;color:var(--ss-text-primary,#1C2229)">
+              <span style="display:inline-flex;align-items:center;gap:6px"><span style="display:flex;color:var(--ss-link,#296093)"><dc-import name="Ikony" iconName="help-circle" size="18" hint-size="18px,18px"></dc-import></span>8 otázek</span>
+              <span style="display:inline-flex;align-items:center;gap:6px"><span style="display:flex;color:var(--ss-link,#296093)"><dc-import name="Ikony" iconName="clock" size="18" hint-size="18px,18px"></dc-import></span>2 minuty</span>
+              <span style="display:inline-flex;align-items:center;gap:6px"><span style="display:flex;color:var(--ss-link,#296093)"><dc-import name="Ikony" iconName="circle-check" size="18" hint-size="18px,18px"></dc-import></span>3 doporučené matrace</span>
+            </div>
+            <div style="display:flex; flex-direction:column; gap: clamp(12px, 1.2vw, 16px); width:100%; box-sizing:border-box; padding:14px 16px; border-radius:12px; background:var(--ss-surface-subtle,#FAF5EF)">
+              <span style="font-size: 18px; font-weight: 700; color:var(--ss-text-heading,#0B1F33); line-height: 1.3">Začněte hned: Jak nejčastěji spíte?</span>
+              <div style="display:flex; flex-wrap: wrap; gap: 10px; flex-direction: row; align-items: center">
+                <dc-import name="Chip" label="Na zádech" variant="outline" href="PruvodceMatrace.dc.html" hint-size="110px,40px"></dc-import>
+                <dc-import name="Chip" label="Na boku" variant="outline" href="PruvodceMatrace.dc.html" hint-size="100px,40px"></dc-import>
+                <dc-import name="Chip" label="Na břiše" variant="outline" href="PruvodceMatrace.dc.html" hint-size="100px,40px"></dc-import>
+              </div>
+            </div>
+            <div style="{{ pvBtnWrap }}"><dc-import name="Tlacitko" label="Najít dokonalou matraci" variant="primary" size="large" href="PruvodceMatrace.dc.html" iconRight="arrow-right" fullWidth="{{ pvBtnFull }}" hint-size="260px,52px"></dc-import></div>
           </div>
         </div>
       </div>
@@ -880,7 +895,7 @@ html[data-mode="dark"] .ss-rev-badge{--ss-shine:rgba(251,178,85,.14);}
       <div style="{{ inner }}">
         <div style="display:grid;grid-template-columns:{{ storyTemplate }};gap:32px;align-items:center">
           <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px">
-            <div style="position:relative;grid-column:span 2;aspect-ratio:16/9;border-radius:12px;overflow:hidden;background:#132C43"><a href="https://www.youtube.com/watch?v=2rdMJMSvv0g" target="_blank" rel="noopener" aria-label="Video: příběh Světa spánku – přehrát na YouTube (otevře se v novém okně)" style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;background:#132C43;color:#FFFFFF;text-decoration:none;font-weight:600;font-size:16px"><svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path><path d="M10 9l5 3l-5 3z" fill="currentColor"></path></svg><span>příběh Světa spánku</span><span style="font-weight:400;font-size:14px;opacity:.85">Přehrát na YouTube</span></a></div>
+            <div style="position:relative;grid-column:span 2;aspect-ratio:16/9;border-radius:12px;overflow:hidden;background:#132C43"><sc-if value="{{ embedLive }}" hint-placeholder-val="{{ false }}"><iframe src="https://www.youtube-nocookie.com/embed/2rdMJMSvv0g?rel=0" title="Video: příběh Světa spánku" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;inset:0;width:100%;height:100%;border:0"></iframe></sc-if><sc-if value="{{ embedOff }}" hint-placeholder-val="{{ true }}"><a href="https://www.youtube.com/watch?v=2rdMJMSvv0g" target="_blank" rel="noopener" aria-label="Video: příběh Světa spánku – přehrát na YouTube (otevře se v novém okně)" style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;background:#132C43;color:#FFFFFF;text-decoration:none;font-weight:600;font-size:16px"><svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path><path d="M10 9l5 3l-5 3z" fill="currentColor"></path></svg><span>příběh Světa spánku</span><span style="font-weight:400;font-size:14px;opacity:.85">Přehrát na YouTube</span></a></sc-if></div>
             <img decoding="async" src="_blob/de20077a93461976fd0adac46dc0b7be.jpg" alt="Truhlář při výrobě masivního nábytku v dílně" loading="lazy" style="display:block;width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:12px">
             <img decoding="async" src="_blob/4907c546874d7ecee6316ef9e8f2eb5c.webp" alt="Postele z masivu ve výstavní prodejně Světspánku.cz" loading="lazy" style="display:block;width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:12px">
           </div>
@@ -1236,12 +1251,13 @@ class Component extends DCLogic {
       ].map(s => Object.assign({}, s, { bgStyle: s.photo ? { backgroundImage: 'url(' + s.photo + ')' } : {} })),
       storeTemplate: w >= 1150 ? 'minmax(0,1fr) minmax(0,1fr) minmax(0,1fr)' : w >= 550 ? 'minmax(0,1fr) minmax(0,1fr)' : 'minmax(0,1fr)',
       storeMediaHeight: narrow ? '200px' : '280px',
-      ctaTemplate: w >= 820 ? 'minmax(0,1.2fr) minmax(0,1fr)' : 'minmax(0,1fr)',
+      ctaTemplate: w >= 820 ? 'minmax(0,1fr) minmax(0,1.15fr)' : 'minmax(0,1fr)',
+      pvBtnFull: w < 550, pvBtnWrap: { width: w < 550 ? '100%' : 'auto' }, pvPhOrder: w >= 1000 ? 2 : 0, /* desktop: text vlevo, fotka vpravo; mobil fotka nahoře (10. 11. 2026) */ pvPhRatio: w >= 1000 ? '4 / 3' : '16 / 9', pvPhMin: '0',
       ctaPad: narrow ? '24px' : '40px',
       tagWidth: narrow ? '90px' : '140px',
       tagRight: narrow ? '16px' : '64px',
       ctaVeil: narrow ? 'rgba(255,255,255,.82)' : 'linear-gradient(90deg,rgba(255,255,255,.94) 0%,rgba(255,255,255,.8) 40%,rgba(255,255,255,0) 70%)',
-      ctaPhotoPos: narrow ? '70% center' : 'right center',
+      ctaPhotoPos: '80% 35%', /* výřez na dlaň na matraci (10. 11. 2026) */
       storyTextPad: w >= 1000 ? '32px' : '0',
       storyTextOrder: w >= 1000 ? 0 : -1,
       storyPMax: w >= 1000 ? '66ch' : 'none',
@@ -1282,7 +1298,11 @@ class Component extends DCLogic {
       hasStorePhoto: !!store.photo,
       noStorePhoto: !store.photo,
       storeMap: store.map,
-      hasStoreMap: !!store.map,
+      // Mapa a videa: na ostrém webu vložené (iframe), v artefaktu na claude.ai jen odkaz – sandbox iframy blokuje (10. 11. 2026)
+      embedLive: (() => { try { return !/claude\.ai|claudeusercontent|anthropic/i.test(window.location.hostname || ''); } catch (e) { return false; } })(), embedOff: !(() => { try { return !/claude\.ai|claudeusercontent|anthropic/i.test(window.location.hostname || ''); } catch (e) { return false; } })(),
+      mapLive: !!store.map && (() => { try { return !/claude\.ai|claudeusercontent|anthropic/i.test(window.location.hostname || ''); } catch (e) { return false; } })(),
+      storeMapEmbed: store.map ? 'https://maps.google.com/maps?q=' + encodeURIComponent((store.map.match(/ll=([0-9.,]+)/) || [])[1] || store.title) + '&z=15&hl=cs&output=embed' : '',
+      hasStoreMap: !!store.map && !(() => { try { return !/claude\.ai|claudeusercontent|anthropic/i.test(window.location.hostname || ''); } catch (e) { return false; } })(),
       noStoreMap: !store.map,
       storeMapTitle: 'Mapa – ' + store.title,
       hotOpen: this.state.hot,

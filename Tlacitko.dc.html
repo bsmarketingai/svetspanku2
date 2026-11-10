@@ -206,6 +206,11 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
 .ss-btn:not([aria-disabled="true"]):hover{background:var(--b-hbg);color:var(--b-hfg);box-shadow:var(--b-hring,var(--b-ring,0 0 0 0 transparent));}
 .ss-btn[data-bare="true"]:not([aria-disabled="true"]):hover{text-decoration-thickness:2px;}
 }
+/* Dotyk (10. 11. 2026): bez šedého iOS zvýraznění a bez zděděné barvy odkazu při tapnutí – text vždy kontrastní */
+.ss-btn{-webkit-tap-highlight-color:transparent;}
+a.ss-btn,a.ss-btn:visited,a.ss-btn:hover,a.ss-btn:focus,a.ss-btn:active{color:var(--b-fg)!important;text-decoration:none;}
+@media (hover:hover) and (pointer:fine){.ss-btn:not([aria-disabled="true"]):hover{color:var(--b-hfg)!important;}}
+.ss-btn:not([aria-disabled="true"]):active{background:var(--b-hbg);color:var(--b-hfg)!important;}
 .ss-btn:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35),var(--b-ring,0 0 0 0 transparent);}
 /* Hover/klik jen změnou barvy – bez nadzvednutí, stínu, posunu šipky a zmenšení (5. 11. 2026, jednotně na celém webu) */
 @media (prefers-reduced-motion:reduce){.ss-btn,.ss-btn-ir{transition:background-color .12s,color .12s;}.ss-btn:hover,.ss-btn:active,.ss-btn:hover .ss-btn-ir{transform:none!important;}}
@@ -227,18 +232,21 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
   </button>
 </sc-if>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:360,&quot;height&quot;:120},&quot;label&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Do košíku&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;variant&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;primary&quot;,&quot;options&quot;:[&quot;primary&quot;,&quot;dark&quot;,&quot;secondary&quot;,&quot;buy&quot;,&quot;danger&quot;,&quot;dangerSecondary&quot;,&quot;ghost&quot;,&quot;text&quot;,&quot;textDanger&quot;,&quot;ontint&quot;],&quot;tsType&quot;:&quot;string&quot;},&quot;size&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;medium&quot;,&quot;options&quot;:[&quot;standard&quot;,&quot;medium&quot;,&quot;large&quot;],&quot;tsType&quot;:&quot;string&quot;},&quot;iconLeft&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Ikony&quot;},&quot;iconRight&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Ikony&quot;},&quot;iconOnly&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Ikony&quot;},&quot;ariaLabel&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Ikony&quot;},&quot;sublabel&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;href&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;fullWidth&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;disabled&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;onClick&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;() =&gt; void&quot;}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:360,&quot;height&quot;:120},&quot;label&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Do košíku&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;variant&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;primary&quot;,&quot;options&quot;:[&quot;primary&quot;,&quot;light&quot;,&quot;dark&quot;,&quot;secondary&quot;,&quot;buy&quot;,&quot;danger&quot;,&quot;dangerSecondary&quot;,&quot;ghost&quot;,&quot;text&quot;,&quot;textDanger&quot;,&quot;ontint&quot;],&quot;tsType&quot;:&quot;string&quot;},&quot;size&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;medium&quot;,&quot;options&quot;:[&quot;standard&quot;,&quot;medium&quot;,&quot;large&quot;],&quot;tsType&quot;:&quot;string&quot;},&quot;iconLeft&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Ikony&quot;},&quot;iconRight&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Ikony&quot;},&quot;iconOnly&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Ikony&quot;},&quot;ariaLabel&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Ikony&quot;},&quot;sublabel&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;href&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;fullWidth&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;disabled&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;onClick&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;() =&gt; void&quot;}}">
 class Component extends DCLogic {
   static VARIANTS = {
     primary:         { bg: '#132C43', fg: '#FFFFFF', hoverBg: '#296093' },
     dark:            { bg: '#132C43', fg: '#FFFFFF', hoverBg: '#296093' },
-    secondary:       { bg: 'var(--ss-action-tonal-bg,#FEEDD4)', fg: 'var(--ss-action-tonal-fg,#7A4708)', hoverBg: 'var(--ss-action-tonal-hover-bg,#FDDCAA)', hoverFg: 'var(--ss-action-tonal-hover-fg,#7A4708)' },
+    // sekundární ve schématu kvantifikátoru (10. 11. 2026): teplý podklad, tmavě modrý text, jemný rámeček kvůli kontrastu na meruňkových plochách
+    secondary:       { bg: 'var(--ss-surface-subtle,#FAF5EF)', fg: 'var(--ss-link-hover,#21507B)', hoverBg: 'var(--ss-surface-muted,#F3EDE4)', hoverFg: 'var(--ss-link-hover,#21507B)', border: '1px solid var(--ss-border-strong,#D9CCBA)' },
     buy:             { bg: '#FBB255', fg: '#1C2229', hoverBg: '#F09A2C' },
     danger:          { bg: '#B3261E', fg: '#FFFFFF', hoverBg: '#8E1E18' },
     dangerSecondary: { bg: 'var(--ss-surface-page,#FFFFFF)', fg: 'var(--ss-status-error,#B3261E)', hoverBg: 'var(--ss-status-error-surface,#FCF2F1)', border: '1px solid var(--ss-border-error-subtle,#E3B9B6)', hoverBorder: '1px solid var(--ss-border-error,#B3261E)' },
     ghost:           { bg: 'transparent', fg: 'var(--ss-link-hover,#21507B)', hoverBg: 'var(--ss-surface-hover,#F0F5FA)' },
     text:            { bg: 'transparent', fg: 'var(--ss-link,#296093)', hoverBg: 'transparent', hoverFg: 'var(--ss-link-hover,#21507B)', bare: true, underline: true },
     textDanger:      { bg: 'transparent', fg: 'var(--ss-status-error,#B3261E)', hoverBg: 'transparent', hoverFg: 'var(--ss-status-error-strong,#8E1E18)', bare: true, underline: true },
+    // light = bílé tlačítko na tmavé fotce / tmavém pásu (hero dlaždice, bannery), 10. 11. 2026
+    light:           { bg: '#FFFFFF', fg: '#132C43', hoverBg: '#F3EDE4', hoverFg: '#132C43' },
     ontint:          { bg: 'rgba(255,255,255,.14)', fg: '#FFFFFF', hoverBg: 'rgba(255,255,255,.26)', border: '1px solid rgba(255,255,255,.55)' }
   };
   static SIZES = {
@@ -273,7 +281,7 @@ class Component extends DCLogic {
       textDecoration: v.underline ? 'underline' : 'none',
       textUnderlineOffset: v.underline ? '3px' : undefined
     };
-    const solid = ['primary', 'buy', 'danger'].indexOf(p.variant || 'primary') >= 0 ? 'true' : 'false';
+    const solid = ['primary', 'buy', 'danger', 'light'].indexOf(p.variant || 'primary') >= 0 ? 'true' : 'false';
     const bare = v.bare ? 'true' : 'false';
     return {
       isLink: !!p.href && !disabled,

@@ -239,48 +239,49 @@ class Component extends DCLogic {
       { icon: 'usp-prodejny', title: '5 prodejen po celé ČR', text: 'Přijďte si matraci osobně vyzkoušet' }
     ];
     // Mobil (1 sloupec): kompaktní řádky – ikona vlevo, text vedle
-    const compact = w < 550;
+    // Mobil: USP ve 2 sloupcích, ikona nad textem, vše na střed (10. 11. 2026); dlaždice zůstávají řádky
+    const mob = w < 550, compact = mob && tiles;
     const iconWrap = {
-      display: 'flex', alignItems: 'center', justifyContent: 'center', width: compact ? '44px' : '64px', height: compact ? '44px' : '64px', flexShrink: 0, '--ss-icon-knock': tiles ? (dark ? '#24394D' : 'var(--ss-surface-muted,#F3EDE4)') : (dark ? '#132C43' : 'var(--ss-surface-page,#FFFFFF)'),
-      marginBottom: compact ? 0 : '4px',
+      display: 'flex', alignItems: 'center', justifyContent: 'center', width: mob ? '44px' : '64px', height: mob ? '44px' : '64px', flexShrink: 0, '--ss-icon-knock': tiles ? (dark ? '#24394D' : 'var(--ss-surface-muted,#F3EDE4)') : (dark ? '#132C43' : 'var(--ss-surface-page,#FFFFFF)'),
+      marginBottom: mob ? 0 : '4px',
       color: dark ? '#8DB3D3' : 'var(--ss-usp-from-c,#1F5C99)',
       '--ss-usp-accent': dark ? '#FBB255' : 'var(--ss-usp-to-c,#EE8A0E)'
     };
     const hrefFor = (it) => it.href || (/doprav|vraceni|platb|nakup/.test(String(it.icon || '')) ? 'VseONakupu.dc.html' : 'ONas.dc.html');
     const items = src.map((it, n) => ({ ...it, href: hrefFor(it), hl: it.highlight && it.title.startsWith(it.highlight) ? it.highlight : '', rest: it.highlight && it.title.startsWith(it.highlight) ? it.title.slice(it.highlight.length) : it.title, stroke: String(it.icon || '').indexOf('usp-') === 0 ? 2.5 : 0.95, iconStyle: iconWrap }));
     // Neúplný poslední řádek se centruje (flex-wrap + pevná šířka sloupce), 29. 10. 2026
-    const cols = w >= 1560 ? Math.min(items.length, 6) : w >= 1150 ? Math.min(items.length, 5) : w >= 820 ? 3 : w >= 550 ? 2 : 1;
-    const gapV = compact ? (tiles ? '10px' : '14px') : (tiles ? '20px' : (w < 820 ? '20px' : '24px'));
+    const cols = w >= 1560 ? Math.min(items.length, 6) : w >= 1150 ? Math.min(items.length, 5) : w >= 820 ? 3 : w >= 550 ? 2 : (tiles ? 1 : 2);
+    const gapV = mob ? (tiles ? '10px' : '20px') : (tiles ? '20px' : (w < 820 ? '20px' : '24px'));
     return {
       items,
-      iconSize: compact ? 40 : 60,
-      textColStyle: { display: 'flex', flexDirection: 'column', gap: compact ? '2px' : '8px', minWidth: 0, alignItems: compact || tiles ? 'flex-start' : 'center' },
+      iconSize: mob ? 40 : 60,
+      textColStyle: { display: 'flex', flexDirection: 'column', gap: compact ? '2px' : mob ? '4px' : '8px', minWidth: 0, alignItems: compact || tiles ? 'flex-start' : 'center' },
       hasHeading: !!p.heading,
       heading: p.heading,
       headingStyle: {
-        margin: compact ? '0 0 16px' : '0 0 24px', fontFamily: "Oswald, Roboto, sans-serif", fontWeight: 700,
-        fontSize: compact ? '22px' : (w < 820 ? '26px' : '34px'), lineHeight: 1.15, textAlign: 'center',
+        margin: mob ? '0 0 16px' : '0 0 24px', fontFamily: "Oswald, Roboto, sans-serif", fontWeight: 700,
+        fontSize: w < 820 ? '26px' : '34px', lineHeight: 1.15, textAlign: 'center', /* jako ostatní nadpisy sekcí (10. 11. 2026) */
         color: dark ? '#FFFFFF' : 'var(--ss-text-primary,#1C2229)'
       },
       wrapStyle: {
         fontFamily: 'Roboto, Helvetica, Arial, sans-serif', width: '100%', minWidth: 0, boxSizing: 'border-box',
         background: dark ? '#132C43' : 'transparent',
         borderRadius: tiles ? 0 : '12px',
-        padding: tiles ? 0 : (compact ? '20px 16px' : (w < 820 ? '24px 16px' : '32px'))
+        padding: tiles ? 0 : (mob ? '20px 12px' : (w < 820 ? '24px 16px' : '32px'))
       },
       gridTemplate: 'repeat(' + cols + ',minmax(0,1fr))',
       gap: gapV,
       itemStyle: {
         flex: '0 0 calc((100% - ' + (cols - 1) + ' * ' + gapV + ') / ' + cols + ')', boxSizing: 'border-box',
         display: 'flex', flexDirection: compact ? 'row' : 'column', alignItems: compact ? 'center' : (tiles ? 'flex-start' : 'center'),
-        textAlign: compact || tiles ? 'left' : 'center', gap: compact ? '14px' : '8px', minWidth: 0,
+        textAlign: compact || tiles ? 'left' : 'center', gap: compact ? '14px' : mob ? '6px' : '8px', minWidth: 0, /* mobil: ikona těsně nad nadpisem (10. 11. 2026) */
         background: tiles ? (dark ? 'rgba(255,255,255,.08)' : 'var(--ss-surface-muted,#F3EDE4)') : 'transparent',
         borderRadius: tiles ? '12px' : 0,
         padding: tiles ? (compact ? '12px 14px' : '20px') : 0
       },
       hlStyle: { color: dark ? '#FBB255' : 'var(--ss-text-heading,#0B1F33)' },
-      titleStyle: { fontFamily: "Oswald, Roboto, sans-serif", fontWeight: 700, fontSize: compact ? '16px' : '17px', lineHeight: 1.25, color: dark ? '#FBB255' : 'var(--ss-text-heading,#0B1F33)' },
-      textStyle: { fontSize: compact ? '13px' : '14px', lineHeight: compact ? 1.4 : 1.5, color: dark ? '#DCE8F2' : 'var(--ss-text-secondary,#3D4750)' }
+      titleStyle: { fontFamily: "Oswald, Roboto, sans-serif", fontWeight: 700, fontSize: mob ? '16px' : '17px', lineHeight: 1.25, color: dark ? '#FBB255' : 'var(--ss-text-heading,#0B1F33)' },
+      textStyle: { fontSize: mob ? '13px' : '14px', lineHeight: mob ? 1.4 : 1.5, color: dark ? '#DCE8F2' : 'var(--ss-text-secondary,#3D4750)' }
     };
   }
 }
