@@ -200,10 +200,12 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
 <helmet>
 <style>
 .ss-pg-num{display:inline-flex;align-items:center;justify-content:center;min-width:44px;height:44px;padding:0 10px;border:0;border-radius:6px;background:none;font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:16px;color:var(--ss-text-primary,#1C2229);cursor:pointer;transition:background-color .12s cubic-bezier(.22,.61,.36,1),color .12s cubic-bezier(.22,.61,.36,1);}
-.ss-pg-num:hover{background:var(--ss-hover-bg,#FFF5E6);color:var(--ss-hover-text,#A4600C);}
+/* hover čísel jako sekundární tlačítko (11. 11. 2026) */
+.ss-pg-num:hover{background:var(--ss-surface-muted,#F3EDE4);color:var(--ss-link-hover,#21507B);box-shadow:inset 0 0 0 1px var(--ss-border-strong,#D9CCBA);}
+.ss-pg-num:not([aria-current="page"]):active{background:var(--ss-surface-muted,#F3EDE4);color:var(--ss-link-hover,#21507B);}
 .ss-pg-num:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
 .ss-pg-num[aria-current="page"]{background:#132C43;color:#FFFFFF;} /* aktivní stránka tmavě modrá jako primární tlačítko (4. 11. 2026) */
-.ss-pg-num[aria-current="page"]:hover{background:#0B1F33;color:#FFFFFF;}
+.ss-pg-num[aria-current="page"]:hover{background:#0B1F33;color:#FFFFFF;box-shadow:none;}
 .ss-pg-gap{display:inline-flex;align-items:center;justify-content:center;min-width:24px;height:44px;color:var(--ss-text-disabled,#9AA6B2);}
 </style>
 </helmet>
@@ -215,7 +217,7 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
   <span style="font-size:14px;color:var(--ss-text-muted,#5B6874)">{{ summary }}</span>
 
   <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:4px">
-    <dc-import name="Tlacitko" label="{{ prevLabel }}" variant="ghost" size="medium" iconOnly="{{ navIconOnly }}" ariaLabel="Předchozí stránka" iconLeft="chevron-left" disabled="{{ prevDisabled }}" onClick="{{ onPrev }}" hint-size="120px,44px"></dc-import>
+    <dc-import name="Tlacitko" label="{{ prevLabel }}" variant="ghostSecondary" size="medium" iconOnly="{{ navIconOnly }}" ariaLabel="Předchozí stránka" iconLeft="chevron-left" disabled="{{ prevDisabled }}" onClick="{{ onPrev }}" hint-size="120px,44px"></dc-import>
     <sc-for list="{{ pages }}" as="p" hint-placeholder-count="5">
       <sc-if value="{{ p.isPage }}" hint-placeholder-val="{{ true }}">
         <button type="button" class="ss-pg-num" onClick="{{ p.onClick }}" aria-current="{{ p.current }}" aria-label="{{ p.aria }}">{{ p.label }}</button>
@@ -224,7 +226,7 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
         <span class="ss-pg-gap" aria-hidden="true">…</span>
       </sc-if>
     </sc-for>
-    <dc-import name="Tlacitko" label="{{ nextLabel }}" variant="ghost" size="medium" iconOnly="{{ navIconOnly }}" ariaLabel="Další stránka" iconRight="chevron-right" disabled="{{ nextDisabled }}" onClick="{{ onNext }}" hint-size="120px,44px"></dc-import>
+    <dc-import name="Tlacitko" label="{{ nextLabel }}" variant="ghostSecondary" size="medium" iconOnly="{{ navIconOnly }}" ariaLabel="Další stránka" iconRight="chevron-right" disabled="{{ nextDisabled }}" onClick="{{ onNext }}" hint-size="120px,44px"></dc-import>
   </div>
 </nav>
 </x-dc>

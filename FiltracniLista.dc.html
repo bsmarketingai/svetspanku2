@@ -200,7 +200,11 @@ html[data-mode="dark"] main>section.ss-grad-top.ss-grad-glow{background-image:ra
   <div style="display:flex;flex-wrap:wrap;align-items:center;gap:12px;padding:{{ pad }}">
     <div style="{{ groupStyle }}">
       <div style="{{ fltStyle }}">
-        <dc-import name="Tlacitko" label="{{ filterLabel }}" variant="primary" iconLeft="adjustments-horizontal" fullWidth="{{ tiny }}" onClick="{{ onOpen }}" hint-size="140px,44px"></dc-import>
+        <dc-import name="Tlacitko" label="{{ filterLabel }}" variant="primary" iconLeft="adjustments-horizontal" fullWidth="{{ tiny }}" onClick="{{ onOpen }}" ariaLabel="{{ filterAria }}" hint-size="140px,44px"></dc-import>
+        <!-- 11. 11. 2026: počet aktivních filtrů jako žluté kolečko v pravém horním rohu tlačítka -->
+        <sc-if value="{{ hasCount }}" hint-placeholder-val="{{ false }}">
+          <span aria-hidden="true" style="position:absolute;top:-7px;right:-7px;z-index:1;display:inline-flex;align-items:center;justify-content:center;min-width:22px;height:22px;padding:0 6px;box-sizing:border-box;border-radius:999px;background:#FBB255;color:#1C2229;font-family:Roboto,Helvetica,Arial,sans-serif;font-size:12px;font-weight:700;line-height:1;box-shadow:0 0 0 2px var(--ss-surface-page,#FFFFFF);pointer-events:none">{{ countLabel }}</span>
+        </sc-if>
       </div>
       <div style="{{ selStyle }}">
         <dc-import name="Select" variant="outline" ariaLabel="Řadit podle" value="{{ sort }}" onChange="{{ onSort }}" options="{{ sortOptions }}" hint-size="100%,44px"></dc-import>
@@ -251,10 +255,11 @@ class Component extends DCLogic {
         : narrow
           ? { display: 'flex', flexWrap: 'nowrap', alignItems: 'center', gap: '12px', width: '100%', minWidth: 0 }
           : { display: 'flex', flexWrap: 'nowrap', alignItems: 'center', gap: '12px', width: '100%', minWidth: 0 },
-      fltStyle: tiny ? { flex: '1 1 110px', minWidth: '110px' } : { flex: 'none' },
+      fltStyle: tiny ? { position: 'relative', flex: '1 1 110px', minWidth: '110px' } : { position: 'relative', flex: 'none' },
       selStyle: tiny ? { flex: '1 1 170px', minWidth: '170px' } : { flex: 'none', minWidth: 0, marginLeft: 'auto' } /* obal jen na šířku Selectu, aby byl opravdu u pravého okraje */,
       padChips: '8px 0 0',
-      filterLabel: count > 0 ? 'Filtry (' + count + ')' : 'Filtry',
+      filterLabel: 'Filtry', hasCount: count > 0, countLabel: String(count),
+      filterAria: count > 0 ? 'Filtry, aktivních ' + count : 'Filtry',
       sort: p.sort ?? 'doporucene',
       sortOptions: p.sortOptions || [
         { value: 'doporucene', label: 'Doporučené' },

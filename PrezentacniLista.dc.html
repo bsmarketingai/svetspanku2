@@ -283,10 +283,9 @@ class Component extends DCLogic {
     // Sticky hlavička H2 = finální (30. 10. 2026), volba H1/H2 odebrána
     // Fotka v produktové kartě: A = čtverec 1:1, B = 4:3 (30. 10. 2026) – platí na všech stránkách, uloženo v ss-photoar
     // Varianta produktové karty (30. 10. 2026) – globálně na všech stránkách (homepage, kategorie, detail, oblíbené…), uloženo v ss-cardv, událost ss-cardv. F = univerzální (popis + příznaky) pro matrace i ostatní produkty
-    base.push(grp('Karta', [['A','A'],['A2','A2'],['B','B'],['D','D'],['E','E'],['F','F']], this.state.cardV, v => { try { localStorage.setItem('ss-cardv', v); } catch (e) {} window.dispatchEvent(new Event('ss-cardv')); this.setState({ cardV: v }); }));
+    // 11. 11. 2026: volba Karta (A–F) skryta, na celém webu platí karta A (ss-cardv se ignoruje)
     // Mega menu A = karty Tip / Poradíme nahoře v řadě, B = dole pod položkami (9. 11. 2026), C = ve vlastním sloupci vpravo (6. 11. 2026) – globálně, uloženo v ss-mmv, událost ss-mmv
     base.push(grp('Megamenu', [['A', 'A'], ['B', 'B'], ['C', 'C'], ['D', 'D']], this.state.mmv, v => { try { localStorage.setItem('ss-mmv', v); } catch (e) {} window.dispatchEvent(new Event('ss-mmv')); this.setState({ mmv: v }); }));
-    base.push(grp('Fotka karty', [['A 1:1', 'A'], ['B 4:3', 'B']], this.state.photoAR, v => { try { localStorage.setItem('ss-photoar', v); } catch (e) {} window.dispatchEvent(new Event('ss-photoar')); this.setState({ photoAR: v }); }));
     return {
       open,
       visible: !this.state.hidden,
@@ -301,7 +300,8 @@ class Component extends DCLogic {
         dot: it.value ? '#157A41' : '#5B6874',
         onToggle: () => { if (p.onToggle) p.onToggle(idx); }
       })),
-      choices: base.concat((p.choices || []).map((ch, ci) => ({
+      // 11. 11. 2026: volba „Fixní sloupec“ skryta (výchozí Galerie); původní index ci zůstává, aby onPick stránek fungoval beze změn
+      choices: base.concat((p.choices || []).map((ch, ci) => ({ ch, ci })).filter(x => x.ch.label !== 'Fixní sloupec').map(({ ch, ci }) => ({
         label: ch.label,
         options: (ch.options || []).map(opt => ({
           label: opt,

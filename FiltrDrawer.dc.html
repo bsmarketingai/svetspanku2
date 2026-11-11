@@ -197,9 +197,9 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
 </head>
 <body>
 <x-dc>
-<dc-import name="Overlay" open="{{ open }}" variant="drawer" obsah="FiltrObsah" title="Filtry" icon="filter" closeLabel="filtry" initialFocus="close" data="{{ data }}" onEvent="{{ onEvent }}" onClose="{{ close }}" footerRow="{{ true }}" primaryLabel="{{ applyLabel }}" onPrimary="{{ close }}" secondaryLabel="Smazat vše" onSecondary="{{ clear }}" hint-size="100%,100%"></dc-import>
+<dc-import name="Overlay" open="{{ open }}" variant="drawer" obsah="FiltrObsah" title="Filtry" icon="filter" badge="{{ badge }}" closeLabel="filtry" initialFocus="close" data="{{ data }}" onEvent="{{ onEvent }}" onClose="{{ close }}" footerRow="{{ true }}" primaryLabel="{{ applyLabel }}" onPrimary="{{ close }}" secondaryLabel="Zrušit filtry" secondaryVariant="dangerSecondary" onSecondary="{{ clear }}" hint-size="100%,100%"></dc-import>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;: {&quot;width&quot;: 480, &quot;height&quot;: 720}, &quot;open&quot;: {&quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;tsType&quot;: &quot;boolean&quot;}, &quot;resultCount&quot;: {&quot;editor&quot;: &quot;int&quot;, &quot;default&quot;: 128, &quot;min&quot;: 0, &quot;max&quot;: 9999, &quot;tsType&quot;: &quot;number&quot;}, &quot;priceFrom&quot;: {&quot;editor&quot;: &quot;int&quot;, &quot;default&quot;: 0, &quot;min&quot;: 0, &quot;max&quot;: 100000, &quot;tsType&quot;: &quot;number&quot;}, &quot;priceTo&quot;: {&quot;editor&quot;: &quot;int&quot;, &quot;default&quot;: 40000, &quot;min&quot;: 0, &quot;max&quot;: 100000, &quot;tsType&quot;: &quot;number&quot;}, &quot;facets&quot;: {&quot;editor&quot;: null, &quot;tsType&quot;: &quot;Facet[]&quot;}, &quot;selected&quot;: {&quot;editor&quot;: null, &quot;tsType&quot;: &quot;Record&lt;string,string[]&gt;&quot;}, &quot;onToggleOption&quot;: {&quot;editor&quot;: null, &quot;tsType&quot;: &quot;(group: string, option: string) =&gt; void&quot;}, &quot;onPriceChange&quot;: {&quot;editor&quot;: null, &quot;tsType&quot;: &quot;(from: number, to: number) =&gt; void&quot;}, &quot;onClearAll&quot;: {&quot;editor&quot;: null, &quot;tsType&quot;: &quot;() =&gt; void&quot;}, &quot;onClose&quot;: {&quot;editor&quot;: null, &quot;tsType&quot;: &quot;() =&gt; void&quot;}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;: {&quot;width&quot;: 480, &quot;height&quot;: 720}, &quot;open&quot;: {&quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;tsType&quot;: &quot;boolean&quot;}, &quot;resultCount&quot;: {&quot;editor&quot;: &quot;int&quot;, &quot;default&quot;: 128, &quot;min&quot;: 0, &quot;max&quot;: 9999, &quot;tsType&quot;: &quot;number&quot;}, &quot;priceFrom&quot;: {&quot;editor&quot;: &quot;int&quot;, &quot;default&quot;: 0, &quot;min&quot;: 0, &quot;max&quot;: 100000, &quot;tsType&quot;: &quot;number&quot;}, &quot;priceTo&quot;: {&quot;editor&quot;: &quot;int&quot;, &quot;default&quot;: 40000, &quot;min&quot;: 0, &quot;max&quot;: 100000, &quot;tsType&quot;: &quot;number&quot;}, &quot;facets&quot;: {&quot;editor&quot;: null, &quot;tsType&quot;: &quot;Facet[]&quot;}, &quot;selected&quot;: {&quot;editor&quot;: null, &quot;tsType&quot;: &quot;Record&lt;string,string[]&gt;&quot;}, &quot;onToggleOption&quot;: {&quot;editor&quot;: null, &quot;tsType&quot;: &quot;(group: string, option: string) =&gt; void&quot;}, &quot;onPriceChange&quot;: {&quot;editor&quot;: null, &quot;tsType&quot;: &quot;(from: number, to: number) =&gt; void&quot;}, &quot;onClearAll&quot;: {&quot;editor&quot;: null, &quot;tsType&quot;: &quot;() =&gt; void&quot;}, &quot;onClose&quot;: {&quot;editor&quot;: null, &quot;tsType&quot;: &quot;() =&gt; void&quot;}, &quot;active&quot;: {&quot;editor&quot;: null, &quot;tsType&quot;: &quot;{label: string, onRemove: () =&gt; void}[]&quot;}}">
 // Panel Filtry = Overlay (drawer 460, tlačítka vedle sebe) + FiltrObsah. API pro stránky zůstává stejné.
 // Zpět na původní verzi: obsah FiltrDrawer_v1.dc.html zkopírovat sem (příkaz „vrať B1.4“).
 class Component extends DCLogic {
@@ -207,10 +207,12 @@ class Component extends DCLogic {
     const p = this.props;
     return {
       open: !!p.open,
-      data: { selected: p.selected, facets: p.facets, priceFrom: p.priceFrom, priceTo: p.priceTo, priceMin: p.priceMin, priceMax: p.priceMax },
+      badge: (p.active || []).length || undefined, // žluté kolečko s počtem aktivních filtrů u ikony v hlavičce (11. 11. 2026)
+      data: { selected: p.selected, facets: p.facets, priceFrom: p.priceFrom, priceTo: p.priceTo, priceMin: p.priceMin, priceMax: p.priceMax, active: p.active },
       onEvent: (t, a, b) => {
         if (t === 'toggle' && p.onToggleOption) p.onToggleOption(a, b);
         else if (t === 'price' && p.onPriceChange) p.onPriceChange(a, b);
+        else if (t === 'clear' && p.onClearAll) p.onClearAll();
       },
       applyLabel: p.resultCount !== undefined ? 'Zobrazit ' + p.resultCount + ' produktů' : 'Zobrazit výsledky',
       clear: () => { if (p.onClearAll) p.onClearAll(); },

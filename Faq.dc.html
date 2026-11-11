@@ -201,7 +201,7 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
 <style>
 .ss-faq-q{display:flex;align-items:center;justify-content:space-between;gap:16px;width:100%;text-align:left;padding:18px 0;border:0;background:none;cursor:pointer;font-family:inherit;}
 .ss-faq-q:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
-@media (hover:hover) and (pointer:fine){.ss-faq-q:hover .ss-faq-t{color:var(--ss-hover-text,#21507B);}.ss-faq-q:hover .ss-faq-i{background:var(--ss-action-tonal-hover-bg,#FDDCAA);color:var(--ss-action-tonal-hover-fg,#7A4708);}}
+@media (hover:hover) and (pointer:fine){.ss-faq-q:hover .ss-faq-t{color:var(--ss-hover-text,#21507B);}.ss-faq-q:hover .ss-faq-i{background:var(--ss-surface-muted,#F3EDE4)!important;color:var(--ss-link-hover,#21507B)!important;}}
 .ss-faq-i{transition:background-color .12s cubic-bezier(.22,.61,.36,1),color .12s cubic-bezier(.22,.61,.36,1);}
 .ss-faq-t{transition:color .12s cubic-bezier(.22,.61,.36,1);}
 </style>
@@ -249,7 +249,7 @@ class Component extends DCLogic {
         open: open === k,
         expanded: open === k ? 'true' : 'false',
         chevStyle: { display: 'flex', transform: open === k ? 'rotate(180deg)' : 'none', transition: 'transform .15s cubic-bezier(.22,.61,.36,1)' },
-        iconStyle: { display: 'flex', alignItems: 'center', justifyContent: 'center', width: '44px', height: '44px', flex: 'none', borderRadius: '6px', background: open === k ? 'var(--ss-action-tonal-hover-bg,#FDDCAA)' : 'var(--ss-action-tonal-bg,#FEEDD4)', color: 'var(--ss-action-tonal-fg,#7A4708)' },
+        iconStyle: { display: 'flex', alignItems: 'center', justifyContent: 'center', width: '44px', height: '44px', flex: 'none', borderRadius: '6px', boxSizing: 'border-box', border: '1px solid var(--ss-border-strong,#D9CCBA)', background: open === k ? 'var(--ss-surface-muted,#F3EDE4)' : 'var(--ss-surface-subtle,#FAF5EF)', color: 'var(--ss-link-hover,#21507B)' }, // sekundární tlačítko (11. 11. 2026)
         onToggle: () => this.setState(s => ({ open: s.open === k ? -1 : k }))
       })),
       hasMore: !!p.moreLabel, moreText: p.moreText || '', moreLabel: p.moreLabel || '', moreHref: p.moreHref || '#'

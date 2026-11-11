@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="cs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Finální úpravy – changelog | Svět spánku</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#132C43;--ink:#1C2229;--text:#3D4750;--muted:#5B6874;--line:#E1E6EB;--warm:#FAF5EF;--warm2:#F3EDE4;--apricot:#FBB255;--blue:#21507B;--green:#157A41}
+*{box-sizing:border-box}
+body{margin:0;background:var(--warm);color:var(--ink);font:16px/1.6 Roboto,Helvetica,Arial,sans-serif}
+header{background:var(--navy);color:#fff}
+.wrap{max-width:960px;margin:0 auto;padding:0 20px}
+header .wrap{padding-top:40px;padding-bottom:36px}
+.kicker{color:var(--apricot);font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase}
+h1{font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:clamp(30px,5vw,44px);line-height:1.1;margin:8px 0 12px}
+header p{margin:0;color:#DCE8F2;max-width:62ch}
+.meta{display:flex;flex-wrap:wrap;gap:8px 20px;margin-top:18px;font-size:14px;color:#DCE8F2}
+.meta b{color:#fff}
+main .wrap{padding-top:32px;padding-bottom:64px}
+.legend{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:28px}
+.tag{display:inline-flex;align-items:center;height:24px;padding:0 10px;border-radius:999px;font-size:12px;font-weight:700;letter-spacing:.02em}
+.t-upr{background:#E8F0F8;color:var(--blue)}
+.t-roz{background:#FEEDD4;color:#7A4708}
+.t-opr{background:#E7F4EC;color:var(--green)}
+.day{margin-bottom:36px}
+.day h2{font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:24px;margin:0 0 14px;color:#0B1F33}
+.entry{background:#fff;border-radius:12px;box-shadow:0 2px 8px rgba(19,44,67,.08);padding:20px 22px;margin-bottom:12px}
+.entry-h{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;margin-bottom:8px}
+.entry h3{margin:0;font-size:18px;line-height:1.3;color:#0B1F33}
+.entry p{margin:6px 0 0;color:var(--text)}
+.entry ul{margin:8px 0 0;padding-left:20px;color:var(--text)}
+.entry .files{margin-top:10px;font-size:13px;color:var(--muted)}
+.empty{background:#fff;border:1px dashed #D9CCBA;border-radius:12px;padding:24px;color:var(--muted);text-align:center}
+.base{background:var(--warm2);border-radius:12px;padding:16px 20px;color:var(--text);font-size:15px;margin-bottom:28px}
+footer{border-top:1px solid var(--line);color:var(--muted);font-size:13px}
+footer .wrap{padding-top:18px;padding-bottom:28px}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <div class="kicker">Svět spánku · redesign e-shopu</div>
+  <h1>Finální úpravy – changelog</h1>
+  <p>Přehled všech změn proti stavu, který byl v repozitáři k 10. 11. 2026. Nejnovější změny jsou nahoře.</p>
+  <div class="meta"><span>Výchozí stav: <b>synchronizace 10. 11. 2026</b></span><span>Naposledy upraveno: <b id="updated">11. 11. 2026</b></span></div>
+</div></header>
+<main><div class="wrap">
+  <div class="base"><b>Výchozí stav</b> – návrh odpovídá poslední synchronizaci do repozitáře z 10. 11. 2026 (homepage s novým blokem Průvodce výběrem matrace, bílá tlačítka na tmavých fotkách, vložená mapa a videa na webu, mobilní úpravy detailu, našeptávače a USP). Vše níže je změna oproti tomuto stavu.</div>
+  <div class="legend"><span class="tag t-upr">Úprava</span><span class="tag t-opr">Oprava</span><span class="tag t-roz">Rozhodnutí</span></div>
+
+  <!-- NOVÝ DEN: vložit blok <section class="day"> sem, nad ostatní dny. Záznam = <article class="entry"> s tagem, nadpisem, popisem a soubory. -->
+  <section class="day" id="d-2026-11-11">
+    <h2>11. 11. 2026</h2>
+    <article class="entry">
+      <div class="entry-h"><span class="tag t-upr">Úprava</span><h3>Řádková karta produktu na malých telefonech</h3></div>
+      <p>Na telefonech užších než 550 px se produkty ve všech výpisech zobrazují jako řádková karta (fotka vlevo, informace vpravo). Kategorie, výsledky vyhledávání i Oblíbené se chovají stejně. Na větších displejích zůstává klasická karta ve 2–4 sloupcích. Přepínač „Karta S–XXS“ v prezentační liště byl odstraněn.</p>
+      <div class="files">Soubory: Kategorie.dc.html, VysledkyVyhledavani.dc.html, Oblibene.dc.html</div>
+    </article>
+    <article class="entry">
+      <div class="entry-h"><span class="tag t-roz">Rozhodnutí</span><h3>Fotky na kartách produktů zůstávají čtvercové (1 : 1)</h3></div>
+      <p>Varianta karty s fotkou 4 : 3 je skrytá a z prezentační lišty zmizel přepínač „Fotka karty“. Důvod: všechny produktové fotky na webu jsou čtvercové a jejich výměna teď není v plánu.</p>
+      <div class="files">Soubory: ProduktovaKarta.dc.html, PrezentacniLista.dc.html</div>
+    </article>
+    <article class="entry">
+      <div class="entry-h"><span class="tag t-opr">Oprava</span><h3>Štítky na řádkové kartě shodné s kartou na výšku</h3></div>
+      <p>Řádková karta teď ukazuje všechny štítky produktu včetně „Akce“, stejně jako běžná karta. Zrušen byl samostatný dopočítaný štítek se slevou u ceny, který mohl ukazovat jiné procento. Karta umí až 3 štítky. Ukázkový produkt v kategorii má Akce, Novinka a Doprava zdarma a jeho sleva odpovídá cenám (−21 %).</p>
+      <div class="files">Soubory: ProduktovaKarta.dc.html, Kategorie.dc.html</div>
+    </article>
+    <article class="entry">
+      <div class="entry-h"><span class="tag t-upr">Úprava</span><h3>Bez stupnice váhy na kartách ve výpisu</h3></div>
+      <p>Pod ukazatelem „Ideální pro váhu“ na kartě matrace ve výpisu už není stupnice 0 – 120 kg. Rozsah váhy zůstává vedle popisku a celá stupnice se zobrazuje jen na detailu produktu.</p>
+      <div class="files">Soubory: ParametryMatrace.dc.html</div>
+    </article>
+    <article class="entry">
+      <div class="entry-h"><span class="tag t-upr">Úprava</span><h3>Ukazatel „Ideální pro váhu“ s mezerami</h3></div>
+      <p>Modrý rozsah váhy je od béžové linky oddělený mezerou zleva i zprava, stejně jako dílky ukazatele tuhosti. Výška ukazatele zůstala původní; zkoušené zvýšení modré části bylo příliš výrazné. Platí pro karty ve výpisu i pro detail produktu.</p>
+      <div class="files">Soubory: ParametryMatrace.dc.html</div>
+    </article>
+    <article class="entry">
+      <div class="entry-h"><span class="tag t-upr">Úprava</span><h3>Menší fotka na řádkové kartě</h3></div>
+      <p>Na řádkové kartě (telefony užší než 550 px) zabírá fotka produktu třetinu šířky místo poloviny, takže je asi o třetinu menší. Na text, štítky a cenu tak zbývá víc místa.</p>
+      <div class="files">Soubory: ProduktovaKarta.dc.html</div>
+    </article>
+    <article class="entry">
+      <div class="entry-h"><span class="tag t-upr">Úprava</span><h3>Srdíčko na řádkové kartě vlevo</h3></div>
+      <p>Tlačítko pro přidání do oblíbených (srdíčko) je na řádkové kartě v levém horním rohu fotky místo v pravém.</p>
+      <div class="files">Soubory: ProduktovaKarta.dc.html</div>
+    </article>
+    <article class="entry">
+      <div class="entry-h"><span class="tag t-upr">Úprava</span><h3>Tlačítko Zobrazit na řádkové kartě</h3></div>
+      <p>Na řádkové kartě je dole místo odkazu „Více rozměrů / stupňů tuhosti“ tlačítko Zobrazit. Je zarovnané vlevo na stejnou linii jako název a cena, ne přes celou šířku. Funguje stejně jako tlačítko na běžné kartě: u produktu, který není skladem, se zobrazí „Hlídat dostupnost“.</p>
+      <div class="files">Soubory: ProduktovaKarta.dc.html</div>
+    </article>
+    <article class="entry">
+      <div class="entry-h"><span class="tag t-opr">Oprava</span><h3>Sticky filtr končí s výpisem produktů</h3></div>
+      <p>Postranní filtr v kategorii zůstává při scrollování viditelný jen do konce výpisu (pod stránkováním). Popis kategorie a časté dotazy pod výpisem už se čtou bez filtru vedle. Text zůstává zarovnaný pod sloupec s produkty.</p>
+      <div class="files">Soubory: Kategorie.dc.html</div>
+    </article>
+    <article class="entry">
+      <div class="entry-h"><span class="tag t-upr">Úprava</span><h3>Stránkování a FAQ ve stylu sekundárního tlačítka</h3></div>
+      <p>V stránkování mají čísla stránek a tlačítka Předchozí / Další při najetí myší vzhled sekundárního tlačítka (teplý podklad, jemný rámeček, tmavě modrý text), stejně jako „Načíst další produkty“. Aktivní stránka zůstává tmavě modrá. Rozbalovací šipky u častých dotazů jsou také sekundární tlačítka. Všechny prvky pod výpisem tak vypadají jednotně.</p>
+      <div class="files">Soubory: Paginace.dc.html, Tlacitko.dc.html (nová varianta ghostSecondary), Faq.dc.html</div>
+    </article>
+    <article class="entry">
+      <div class="entry-h"><span class="tag t-upr">Úprava</span><h3>Banner v záhlaví kategorie ve stylu hero dlaždic</h3></div>
+      <p>Banner vedle tipů v záhlaví kategorie má tmavý závoj přes fotku, bílý text a bílé tlačítko, stejně jako dlaždice v hero sekci na homepage. Hover je sjednocený: při najetí na banner se fotka jemně přiblíží a tlačítko změní barvu (na teplou béžovou) až při najetí přímo na něj.</p>
+      <div class="files">Soubory: Kategorie.dc.html</div>
+    </article>
+    <article class="entry">
+      <div class="entry-h"><span class="tag t-upr">Úprava</span><h3>Sticky lišta Filtry / Řazení na mobilu a tabletu</h3></div>
+      <p>Na mobilu a tabletu zůstává lišta s tlačítky Filtry a Řazení při scrollování výpisem přichycená nahoře. Když se hlavička při scrollu dolů schová, lišta plynule vyjede až k hornímu okraji. Když se hlavička znovu ukáže, lišta se posune pod ni. Lišta končí s výpisem, takže popis kategorie pod ním už nepřekrývá.</p>
+      <div class="files">Soubory: Kategorie.dc.html</div>
+    </article>
+    <article class="entry">
+      <div class="entry-h"><span class="tag t-upr">Úprava</span><h3>Počet aktivních filtrů na tlačítku Filtry</h3></div>
+      <p>Na mobilu a tabletu má tlačítko Filtry v pravém horním rohu žluté kolečko s počtem aktivních filtrů. Zobrazí se jen tehdy, když je nějaký filtr zapnutý. Text tlačítka zůstává krátký, „Filtry“, bez čísla v závorce.</p>
+      <div class="files">Soubory: FiltracniLista.dc.html, Kategorie.dc.html</div>
+    </article>
+    <article class="entry">
+      <div class="entry-h"><span class="tag t-upr">Úprava</span><h3>Aktivní filtry i v panelu Filtry</h3></div>
+      <p>V panelu Filtry na mobilu a tabletu jsou pod nadpisem čipy s aktivními filtry, stejné jako nad výpisem. Klepnutím na čip se filtr zruší a výpis se hned aktualizuje. Na konci řádku je červený čip „Zrušit všechny filtry“ s košem, stejně jako nad výpisem.</p>
+      <div class="files">Soubory: FiltrObsah.dc.html, FiltrDrawer.dc.html, Kategorie.dc.html</div>
+    </article>
+    <article class="entry">
+      <div class="entry-h"><span class="tag t-upr">Úprava</span><h3>„Zrušit filtry“ jako destruktivní tlačítko</h3></div>
+      <p>Tlačítko v patičce panelu Filtry má nový text „Zrušit filtry“ (dříve „Smazat vše“) a je červené (destruktivní sekundární varianta, bez ikony). Je tak jasné, že zruší všechny filtry. Komponenta Overlay nově umí nastavit variantu sekundárního tlačítka.</p>
+      <div class="files">Soubory: FiltrDrawer.dc.html, Overlay.dc.html</div>
+    </article>
+    <article class="entry">
+      <div class="entry-h"><span class="tag t-upr">Úprava</span><h3>Panel Filtry: počet aktivních filtrů a větší nadpisy</h3></div>
+      <p>V hlavičce panelu Filtry je u ikony filtru žluté kolečko s počtem aktivních filtrů, stejně jako na tlačítku Filtry. Nadpisy skupin v panelu (Cena, Dostupnost, Rozměr…) jsou o úroveň větší (19 px místo 16 px), bez verzálek a prostrkání, jako ostatní nadpisy výběru na webu.</p>
+      <div class="files">Soubory: FiltrDrawer.dc.html, FiltrObsah.dc.html</div>
+    </article>
+    <article class="entry">
+      <div class="entry-h"><span class="tag t-roz">Rozhodnutí</span><h3>Produktová karta varianty A na celém webu</h3></div>
+      <p>Na všech stránkách (kategorie, vyhledávání, oblíbené, související produkty na detailu) se používá karta A s ukazateli tuhosti a ideální váhy. Přepínač „Karta A / A2 / B / D / E / F“ byl z prezentační lišty odstraněn.</p>
+      <div class="files">Soubory: PrezentacniLista.dc.html, ProduktovaKarta.dc.html, Detail_Matrace_3.0.dc.html, Detail_Matrace_Airflex_Set.dc.html</div>
+    </article>
+    <article class="entry">
+      <div class="entry-h"><span class="tag t-roz">Rozhodnutí</span><h3>Fixní sloupec na detailu: galerie</h3></div>
+      <p>Na detailech produktů zůstává při scrollování přichycená galerie. Přepínač „Fixní sloupec“ byl z prezentační lišty odstraněn ze všech detailů.</p>
+      <div class="files">Soubory: PrezentacniLista.dc.html</div>
+    </article>
+    <article class="entry">
+      <div class="entry-h"><span class="tag t-upr">Úprava</span><h3>Výběr tuhosti matrace</h3></div>
+      <p>Sekce „Další varianty“ na detailu matrace se nově jmenuje „Tuhost“. Její karty nemají název ani fotku (u všech variant byla stejná), protože jde o varianty tuhosti stejné matrace. Karta je teď nízká: výběrové kolečko, číslo tuhosti (bez opakovaného popisku „Tuhost“) a ukazatel. Každá karta ukazuje svou tuhost (S měkká, M středně tvrdá, L tvrdá, XL velmi tvrdá). Ukazatel tuhosti je vidět na všech kartách, ne jen na vybrané. Barevné schéma je stejné jako u čipů: vybraná varianta je tmavě modrá se světlým ukazatelem tuhosti a bílým číslem, ostatní jsou bílé s šedým rámečkem.</p>
+      <div class="files">Soubory: Detail_Matrace_3.0.dc.html, ParametryMatrace.dc.html (nová vlastnost inverse)</div>
+    </article>
+    <article class="entry">
+      <div class="entry-h"><span class="tag t-upr">Úprava</span><h3>Tuhost jen číslem</h3></div>
+      <p>U ukazatele tuhosti se vypisuje jen číslo (1, 2, 3, 4, 5), bez „z 5“ nebo „/5“. Stupnici ukazují dílky ukazatele. Platí na kartách ve výpisu, nahoře na detailu matrace i u karet variant.</p>
+      <div class="files">Soubory: ParametryMatrace.dc.html</div>
+    </article>
+    <article class="entry">
+      <div class="entry-h"><span class="tag t-upr">Úprava</span><h3>Doporučená váha podle zvolené tuhosti</h3></div>
+      <p>Na detailu matrace se s výběrem varianty tuhosti mění i „Ideální pro váhu“: S 50–80 kg, M 65–95 kg, L 80–115 kg, XL 95–140 kg. Maximální nosnost je 140 kg. Hodnoty jsou ukázkové a doplní se podle skutečných parametrů.</p>
+      <div class="files">Soubory: Detail_Matrace_3.0.dc.html</div>
+    </article>
+    <article class="entry">
+      <div class="entry-h"><span class="tag t-upr">Úprava</span><h3>Tuhost a váha písmem Oswald i na detailu</h3></div>
+      <p>Popisky a hodnoty tuhosti a ideální váhy nahoře na detailu matrace jsou písmem Oswald, stejně jako na kartách ve výpisu. Dříve tam byl Roboto.</p>
+      <div class="files">Soubory: ParametryMatrace.dc.html</div>
+    </article>
+    <article class="entry">
+      <div class="entry-h"><span class="tag t-roz">Rozhodnutí</span><h3>Magazín a prodejny ve stejné záložce</h3></div>
+      <p>Na přání klienta se odkazy na magazín (články na homepage, tlačítka „Do magazínu“, články v megamenu a mobilním menu) a na detail prodejny otevírají ve stejné záložce. V nové záložce zůstávají jen Google Mapy (navigace) a YouTube videa.</p>
+      <div class="files">Soubory: index.dc.html, MegaMenu.dc.html, MobilniMenuObsah.dc.html, DostupnostObsah.dc.html</div>
+    </article>
+    <article class="entry">
+      <div class="entry-h"><span class="tag t-upr">Úprava</span><h3>Box „Nevíte si rady s výběrem?“ vedle popisu kategorie</h3></div>
+      <p>Ve všech kategoriích je vedle dlouhého popisu a častých dotazů pod výpisem úzký pravý sloupec s boxem „Nevíte si rady s výběrem?“. Obsahuje telefon, e-mail a tlačítko Vybrat pobočku pod sebou. Při scrollu zůstává box přichycený. Na tabletu a mobilu je pod častými dotazy.</p>
+      <div class="files">Soubory: Kategorie.dc.html</div>
+    </article>
+    <article class="entry">
+      <div class="entry-h"><span class="tag t-roz">Rozhodnutí</span><h3>Set polštář + povlak: platí varianta B</h3></div>
+      <p>Pro set polštáře s povlakem platí detail ve variantě B (polštář a povlak jako dvě karty s velkou fotkou). Varianta A byla z přepínače detailů v prezentační liště i z rozcestníku odebrána a B se jmenuje jen „Set polštář + povlak“.</p>
+      <div class="files">Soubory: všechny Detail_*.dc.html (přepínač detailů), Rozcestnik.dc.html</div>
+    </article>
+    <article class="entry">
+      <div class="entry-h"><span class="tag t-upr">Úprava</span><h3>Sety polštářů: tlačítka v kartách</h3></div>
+      <p>V kartách setů (polštář + povlak, polštář + přikrývka, 1 + 1) je tlačítko „Vybrat“ primární (tmavě modré), dokud položka není vybraná. Po výběru se změní na sekundární „Změnit“. „Zobrazit“ u přikrývky zdarma je také sekundární. Dříve byla tlačítka meruňková. U přikrývky Bamboo zmizel zelený text „zdarma“, protože to už říká nadpis karty. Placeholder fotky před výběrem má bílý podklad.</p>
+      <div class="files">Soubory: Detail_Set_Polstar_B.dc.html, Detail_Set_Bamboo.dc.html, Detail_Set_Polstare_1plus1.dc.html</div>
+    </article>
+    <article class="entry">
+      <div class="entry-h"><span class="tag t-upr">Úprava</span><h3>Sety polštářů: karty v řádku pod sebou</h3></div>
+      <p>Karty setu (polštář + povlak, polštář + přikrývka, set polštářů 1 + 1) jsou pod sebou jako řádky. Vlevo je menší fotka (zhruba 2/3 původní velikosti), uprostřed název, zvolená varianta a příplatek, vpravo tlačítko. U setů polštář + povlak a polštář + přikrývka jsou obě položky v jednom společném boxu, oddělené tenkou linkou, a malé bílé + na lince je spojuje. Set 1 + 1 má obě položky také v jednom boxu, jen bez znaménka +. Na malých telefonech je tlačítko pod textem.</p>
+      <div class="files">Soubory: Detail_Set_Polstar_B.dc.html, Detail_Set_Bamboo.dc.html, Detail_Set_Polstare_1plus1.dc.html</div>
+    </article>
+  </section>
+
+</div></main>
+<footer><div class="wrap">Svět spánku · changelog finálních úprav · soubor <code>changelog-finalni-upravy.html</code> v repozitáři</div></footer>
+</body>
+</html>

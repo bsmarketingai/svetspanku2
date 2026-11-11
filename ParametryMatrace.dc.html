@@ -251,12 +251,12 @@ html[data-mode="dark"] main>section.ss-grad-top.ss-grad-glow{background-image:ra
 @media (hover:hover) and (pointer:fine){.ss-pm-hov:hover>.ss-pm-tip{display:block;animation:ss-pm-tip-in .12s cubic-bezier(.22,.61,.36,1);}}
 </style>
 </helmet>
-<div class="pm-root" data-l="{{ layoutName }}" data-lg="{{ lgStr }}" style="display:grid;grid-template-columns:{{ rootCols }};gap:{{ rootGap }};column-gap:{{ colGap }};align-items:start;width:100%;min-width:0;font-family:Roboto,Helvetica,Arial,sans-serif;color:var(--ss-text-secondary,#3D4750)">
+<div class="pm-root" data-l="{{ layoutName }}" data-lg="{{ lgStr }}" style="display:grid;grid-template-columns:{{ rootCols }};gap:{{ rootGap }};column-gap:{{ colGap }};align-items:start;width:100%;min-width:0;font-family:Roboto,Helvetica,Arial,sans-serif;color:{{ rootColor }}">
   <sc-if value="{{ plainTuhost }}" hint-placeholder-val="{{ false }}">
     <span style="display:flex;flex-direction:column;gap:8px;width:100%">
       <span style="display:flex;justify-content:space-between;align-items:baseline;gap:8px;width:100%;font-family:{{ lblFont }};font-size:{{ lblSize }};line-height:1.35">
-        <span style="flex:none;white-space:nowrap">{{ tuhostTitle }}</span>
-        <span style="flex:none;white-space:nowrap;font-weight:600;color:var(--ss-text-primary,#1C2229)">{{ tuhostLabel }}</span>
+        <sc-if value="{{ plainShowTitle }}" hint-placeholder-val="{{ true }}"><span style="flex:none;white-space:nowrap">{{ tuhostTitle }}</span></sc-if>
+        <span style="flex:none;white-space:nowrap;font-weight:600;font-size:{{ plainValSize }};color:{{ plainValColor }}">{{ tuhostLabel }}</span>
       </span>
       <span aria-hidden="true" style="display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:4px;width:100%;padding:4px 0">
         <sc-for list="{{ tSegs }}" as="ts" hint-placeholder-count="5"><span style="display:block;height:4px;border-radius:2px;background:{{ ts.bg }}"></span></sc-for>
@@ -268,7 +268,7 @@ html[data-mode="dark"] main>section.ss-grad-top.ss-grad-glow{background-image:ra
     <div style="grid-column:1/-1;display:flex;flex-direction:column;gap:14px">
       <div class="ss-pm-hov" tabindex="0" aria-describedby="{{ idT }}" style="display:flex;flex-direction:column;gap:6px">
         <span class="ss-pm-tip" role="tooltip" id="{{ idT }}">Tuhost matrace na stupnici 1–5. Čím vyšší číslo, tím tužší matrace.</span>
-        <div class="pm-rule"><span>{{ tuhostTitle }}</span><span style="display:inline-flex;align-items:baseline;gap:6px"><span style="color:var(--ss-text-muted,#5B6874)">{{ tWord }}</span><strong style="font-size:17px">{{ tNum }}/5</strong></span></div>
+        <div class="pm-rule"><span>{{ tuhostTitle }}</span><span style="display:inline-flex;align-items:baseline;gap:6px"><span style="color:var(--ss-text-muted,#5B6874)">{{ tWord }}</span><strong style="font-size:17px">{{ tNum }}</strong></span></div>
         <div role="img" aria-label="{{ tAria }}" style="display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:4px">
           <span class="pm-in {{ rd.c1 }}" style="display:flex;justify-content:center;padding:2px 0;opacity:{{ rd.o1 }};animation-delay:0ms"><svg width="40" height="32" viewBox="0 4 32 26" aria-hidden="true" style="overflow:visible"><path class="{{ rd.pd1 }}" d="M3 18H5C10.5 18 11 25 16 25C21 25 21.5 18 27 18H29" fill="none" stroke="{{ rd.s1 }}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><circle class="{{ rd.pb1 }}" cx="16" cy="19.5" r="4.5" fill="{{ rd.f1 }}"></circle></svg></span>
           <span class="pm-in {{ rd.c2 }}" style="display:flex;justify-content:center;padding:2px 0;opacity:{{ rd.o2 }};animation-delay:60ms"><svg width="40" height="32" viewBox="0 4 32 26" aria-hidden="true" style="overflow:visible"><path class="{{ rd.pd2 }}" d="M3 18H6C11 18 11 23.2 16 23.2C21 23.2 21 18 26 18H29" fill="none" stroke="{{ rd.s2 }}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><circle class="{{ rd.pb2 }}" cx="16" cy="17.7" r="4.5" fill="{{ rd.f2 }}"></circle></svg></span>
@@ -357,8 +357,10 @@ html[data-mode="dark"] main>section.ss-grad-top.ss-grad-glow{background-image:ra
       </span>
       <span aria-hidden="true" style="display:flex;flex-direction:column;gap:4px;width:100%">
         <span style="position:relative;display:block;height:{{ knob }}px">
-          <span style="position:absolute;left:0;right:0;top:{{ trackTop }}px;height:{{ track }}px;border-radius:999px;background:{{ emptyBg }}"></span>
-          <span style="position:absolute;top:{{ trackTop }}px;height:{{ track }}px;left:{{ odPos }}%;width:{{ rangeW }}%;border-radius:999px;background:var(--ss-pm-range,linear-gradient(90deg,#132C43 0%,#296093 100%))"></span>
+          <!-- 11. 11. 2026: béžová linka přerušená 4px mezerou před a za modrým rozsahem (jako dílky tuhosti) -->
+          <sc-if value="{{ hasEmptyL }}" hint-placeholder-val="{{ true }}"><span style="position:absolute;left:0;width:calc({{ odPos }}% - 4px);top:{{ trackTop }}px;height:{{ track }}px;border-radius:999px;background:{{ emptyBg }}"></span></sc-if>
+          <sc-if value="{{ hasEmptyR }}" hint-placeholder-val="{{ true }}"><span style="position:absolute;left:calc({{ doPos }}% + 4px);right:0;top:{{ trackTop }}px;height:{{ track }}px;border-radius:999px;background:{{ emptyBg }}"></span></sc-if>
+          <span style="position:absolute;top:{{ rangeTop }}px;height:{{ rangeH }}px;left:{{ odPos }}%;width:{{ rangeW }}%;border-radius:999px;background:var(--ss-pm-range,linear-gradient(90deg,#132C43 0%,#296093 100%))"></span>
           <!-- kolečka na začátku a konci rozsahu odebrána 30. 10. 2026 – ukazatel nesmí vypadat jako posuvník -->
         </span>
         <sc-if value="{{ scaleZ }}" hint-placeholder-val="{{ true }}">
@@ -382,7 +384,7 @@ html[data-mode="dark"] main>section.ss-grad-top.ss-grad-glow{background-image:ra
   </div>
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:320,&quot;height&quot;:200},&quot;layout&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;bars&quot;,&quot;bars2&quot;,&quot;tiles&quot;,&quot;seg&quot;,&quot;rada&quot;,&quot;kompakt&quot;],&quot;default&quot;:&quot;bars&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;tuhost&quot;:{&quot;editor&quot;:&quot;float&quot;,&quot;default&quot;:4.5,&quot;min&quot;:0,&quot;max&quot;:5,&quot;step&quot;:0.1,&quot;tsType&quot;:&quot;number&quot;},&quot;tuhostPct&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:90,&quot;min&quot;:0,&quot;max&quot;:100,&quot;tsType&quot;:&quot;number&quot;},&quot;zatizeniOd&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:70,&quot;tsType&quot;:&quot;number&quot;},&quot;zatizeniDo&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:100,&quot;tsType&quot;:&quot;number&quot;},&quot;nosnostMax&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:120,&quot;tsType&quot;:&quot;number&quot;},&quot;vyska&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:19,&quot;tsType&quot;:&quot;number&quot;},&quot;vyskaJadra&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:16,&quot;tsType&quot;:&quot;number&quot;},&quot;zaruka&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:8,&quot;tsType&quot;:&quot;number&quot;},&quot;spankNaBoku&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;plain&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;size&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;standard&quot;,&quot;options&quot;:[&quot;standard&quot;,&quot;large&quot;],&quot;tsType&quot;:&quot;string&quot;},&quot;tuhostTitle&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Tuhost&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:320,&quot;height&quot;:200},&quot;layout&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;bars&quot;,&quot;bars2&quot;,&quot;tiles&quot;,&quot;seg&quot;,&quot;rada&quot;,&quot;kompakt&quot;],&quot;default&quot;:&quot;bars&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;tuhost&quot;:{&quot;editor&quot;:&quot;float&quot;,&quot;default&quot;:4.5,&quot;min&quot;:0,&quot;max&quot;:5,&quot;step&quot;:0.1,&quot;tsType&quot;:&quot;number&quot;},&quot;tuhostPct&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:90,&quot;min&quot;:0,&quot;max&quot;:100,&quot;tsType&quot;:&quot;number&quot;},&quot;zatizeniOd&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:70,&quot;tsType&quot;:&quot;number&quot;},&quot;zatizeniDo&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:100,&quot;tsType&quot;:&quot;number&quot;},&quot;nosnostMax&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:120,&quot;tsType&quot;:&quot;number&quot;},&quot;vyska&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:19,&quot;tsType&quot;:&quot;number&quot;},&quot;vyskaJadra&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:16,&quot;tsType&quot;:&quot;number&quot;},&quot;zaruka&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:8,&quot;tsType&quot;:&quot;number&quot;},&quot;spankNaBoku&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;plain&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;inverse&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;numOnly&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;size&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;standard&quot;,&quot;options&quot;:[&quot;standard&quot;,&quot;large&quot;],&quot;tsType&quot;:&quot;string&quot;},&quot;tuhostTitle&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Tuhost&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
 class Component extends DCLogic {
   uid = 'pm' + Math.random().toString(36).slice(2, 8);
   // Animované ikony tuhosti H1 (velmi měkká) – H5 (velmi tvrdá) od klienta (tvrdost-Hx-animovana.svg), vložené inline:
@@ -491,15 +493,22 @@ class Component extends DCLogic {
       lblSmall: lg ? '15px' : '13px',
       large: lg, tuhostTitle: p.tuhostTitle || 'Tuhost',
       // Popisky ukazatelů (Tuhost + číslo, Ideální pro + váha) na kartě Oswaldem (30. 10. 2026, zkouška); Oswald je úzký → 15 px
-      lblFont: lg ? 'Roboto,Helvetica,Arial,sans-serif' : 'Oswald,Roboto,sans-serif',
+      lblFont: 'Oswald,Roboto,sans-serif', // 11. 11. 2026: tuhost i váha Oswaldem i na detailu (dříve Roboto)
       lblSize: '15px', lblWeight: lg ? 700 : 400, lblColor: lg ? 'var(--ss-text-primary,#1C2229)' : 'inherit', valSize: lg ? '17px' : '15px',
       knob: k, knobHalf: k / 2, track: tr, trackTop: (k - tr) / 2,
+      rangeTop: (k - tr) / 2, rangeH: tr, // zvýšení o 2 px vráceno (11. 11. 2026)
+      hasEmptyL: hasZ ? od / max * 100 > 3 : true, hasEmptyR: hasZ ? dd / max * 100 < 97 : true,
       hasTuhost: t !== null,
       plainTuhost: t !== null && !!p.plain && isBars, btnTuhost: t !== null && !p.plain && isBars,
-      tuhostLabel: t === null ? '' : String(t).replace('.', ',') + ' z 5',
+      tuhostLabel: t === null ? '' : String(t).replace('.', ','), // jen číslo bez „z 5“ (11. 11. 2026); stupnici ukazují dílky
       tuhostPos: t === null ? 0 : t * 20, // poloha podle celého stupně, aby odpovídala číslu
       // A / A2: dílky tuhosti 1–5, odstíny od světlé po tmavou (stejná škála jako komponenta Tuhost)
-      tSegs: ['#B9D0E5', '#8DB3D3', '#296093', '#21507B', '#132C43'].map((c, i) => ({ bg: t !== null && i < t ? c : emptyBg })),
+      // inverse (11. 11. 2026): na tmavě modrém podkladu (vybraná karta varianty) – světlé dílky, průsvitné prázdné, bílé číslo
+      tSegs: (p.inverse ? ['#8DB3D3', '#A3C2DC', '#B9D0E5', '#DCE8F2', '#FFFFFF'] : ['#B9D0E5', '#8DB3D3', '#296093', '#21507B', '#132C43']).map((c, i) => ({ bg: t !== null && i < t ? c : (p.inverse ? 'rgba(255,255,255,.22)' : emptyBg) })),
+      plainValColor: p.inverse ? '#FFFFFF' : 'var(--ss-text-primary,#1C2229)',
+      rootColor: p.inverse ? '#FFFFFF' : 'var(--ss-text-secondary,#3D4750)',
+      // numOnly (11. 11. 2026): karty variant pod nadpisem „Tuhost“ – bez opakovaného popisku, jen větší číslo
+      plainShowTitle: !p.numOnly, plainValSize: p.numOnly ? '18px' : 'inherit',
       emptyBg,
       hasZatizeni: hasZ,
       zatizeniLabel: hasZ ? od + '–' + dd + nb + 'kg' : '',
@@ -525,7 +534,7 @@ class Component extends DCLogic {
       // A2: stupnice 1–5 i 0–130 kg pod ukazateli odebrány kvůli nižší kartě (30. 10. 2026)
       scaleT: false,
       layoutName: p.layout || 'bars', lgStr: lg ? 'true' : 'false',
-      scaleZ: p.layout !== 'bars2' || lg,
+      scaleZ: lg, // stupnice 0–X kg jen na detailu, na kartách ve výpisu skrytá (11. 11. 2026)
       cellBg: p.layout === 'bars2' ? 'var(--ss-surface-subtle,#FAF5EF)' : 'none',
       cellPad: p.layout === 'bars2' ? '10px 12px' : '0',
       cellRad: p.layout === 'bars2' ? '8px' : '6px',
