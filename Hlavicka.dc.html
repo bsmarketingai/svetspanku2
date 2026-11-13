@@ -378,7 +378,7 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
             <dc-import name="Ikony" iconName="user" size="24" hint-size="24px,24px"></dc-import>
           </a>
           <dc-import name="Kosik" onClick="{{ openCart }}" count="{{ cartCount }}" total="{{ cartTotal }}" compact="{{ true }}" hideTotal="{{ true }}" onTint="{{ onTint }}" hint-size="56px,44px"></dc-import>
-          <button type="button" class="ss-hd-action ss-hd-burger" style="width:{{ mBtnW }};min-width:{{ mBtnW }};margin-left:{{ mBurgerGap }};height:44px;padding:0;gap:0;line-height:0;display:flex;align-items:center;justify-content:center" onClick="{{ openMobile }}" aria-label="Otevřít menu" aria-expanded="{{ mobileExpanded }}">
+          <button type="button" class="ss-hd-action ss-hd-burger" style="width:{{ mBtnW }};min-width:{{ mBtnW }};margin-left:{{ mBurgerGap }};height:{{ mBtnW }};align-self:center;padding:0;gap:0;line-height:0;display:flex;align-items:center;justify-content:center" onClick="{{ openMobile }}" aria-label="Otevřít menu" aria-expanded="{{ mobileExpanded }}">
             <dc-import name="Ikony" iconName="menu-2" size="26" hint-size="26px,26px"></dc-import>
           </button>
         </div>
