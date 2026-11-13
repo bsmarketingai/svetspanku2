@@ -34,6 +34,12 @@ main .wrap{padding-top:32px;padding-bottom:64px}
 .entry .files{margin-top:10px;font-size:13px;color:var(--muted)}
 .empty{background:#fff;border:1px dashed #D9CCBA;border-radius:12px;padding:24px;color:var(--muted);text-align:center}
 .base{background:var(--warm2);border-radius:12px;padding:16px 20px;color:var(--text);font-size:15px;margin-bottom:28px}
+.shots{display:flex;flex-wrap:wrap;align-items:flex-start;gap:10px;margin-top:14px}
+.shots .shot{display:block;flex:1 1 320px;max-width:100%;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:#fff;cursor:zoom-in}
+.shots .shot.narrow{flex:0 1 280px}
+.shots img{display:block;width:100%;height:auto;max-height:460px;object-fit:contain;object-position:left top}
+.note{margin-top:10px!important;padding:8px 12px;border-radius:8px;background:#FEEDD4;color:#7A4708!important;font-size:14px}
+.hint{margin:0 0 20px;color:var(--muted);font-size:14px}
 .links{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
 .links a{display:inline-flex;align-items:center;gap:6px;height:34px;padding:0 12px;border-radius:6px;background:var(--warm);box-shadow:inset 0 0 0 1px #D9CCBA;color:var(--blue);font-size:14px;font-weight:600;text-decoration:none;transition:background-color .12s}
 .links a:hover{background:var(--warm2)}
@@ -52,141 +58,143 @@ footer .wrap{padding-top:18px;padding-bottom:28px}
 </div></header>
 <main><div class="wrap">
   <div class="base"><b>Výchozí stav</b> – návrh odpovídá poslední synchronizaci do repozitáře z 10. 11. 2026 (homepage s novým blokem Průvodce výběrem matrace, bílá tlačítka na tmavých fotkách, vložená mapa a videa na webu, mobilní úpravy detailu, našeptávače a USP). Vše níže je změna oproti tomuto stavu.</div>
+  <p class="hint">U záznamů jsou ukázky z webu. <b style="color:#E5241B">Červený rámeček</b> označuje prvek, kterého se změna týká. Kliknutím otevřete obrázek ve větší velikosti.</p>
   <div class="legend"><span class="tag t-upr">Úprava</span><span class="tag t-opr">Oprava</span><span class="tag t-roz">Rozhodnutí</span></div>
 
   <!-- NOVÝ DEN: vložit blok <section class="day"> sem, nad ostatní dny. Záznam = <article class="entry"> s tagem, nadpisem, popisem a soubory. -->
   <section class="day" id="d-2026-11-13">
     <h2>13. 11. 2026</h2>
-    <article class="entry"><div class="entry-h"><span class="tag t-upr">Úprava</span><h3>Výběrové řádky na mobilu: tlačítko zpět ve svém sloupci</h3></div><p>Na mobilu (pod 550 px) už řádky pro výběr varianty (rošty, materiál, čalounění, úložný prostor, LED) nezalamují tlačítko na další řádek. Kolečko je vlevo, uprostřed název a popis, tlačítko Vybrat/Změnit vpravo ve vlastním sloupci. Příplatek se ukáže pod popisem až po výběru varianty.</p><div class="files">Soubory: Detail_Postel_3.0, Detail_Calounena_Postel, Detail_Komoda_VIA, Detail_Komplet_3.0, Detail_Produkt_Levita, Detail_Skrin_UNI_2D_Konf</div></article>
+    <article class="entry"><div class="entry-h"><span class="tag t-opr">Oprava</span><h3>Bez podbarvení při najetí je ikona otazníku, ne řádek</h3></div><p>Řádky voleb dopravy a platby mají zpět původní hover (modrý text, kolečko i šipka). Bez podbarvení je místo nich ikona otazníku: při najetí zůstává jen kurzor ukazatel, podklad se ukáže jen při otevřené nápovědě. Platí pro otazník všude na webu.</p><div class="shots"><a class="shot" href="changelog-img/01-otaznik-hover.jpg" target="_blank" rel="noopener" title="Otevřít ve větší velikosti"><img src="changelog-img/01-otaznik-hover.jpg" width="900" height="137" loading="lazy" alt="Ukázka: Bez podbarvení při najetí je ikona otazníku, ne řádek"></a></div><!--/shots--><div class="files">Soubory: InfoPopover.dc.html, SkupinaVoleb.dc.html, VolbaRadio.dc.html, KosikKrok2.dc.html</div></article>
+<article class="entry"><div class="entry-h"><span class="tag t-upr">Úprava</span><h3>Výběrové řádky na mobilu: tlačítko zpět ve svém sloupci</h3></div><p>Na mobilu (pod 550 px) už řádky pro výběr varianty (rošty, materiál, čalounění, úložný prostor, LED) nezalamují tlačítko na další řádek. Kolečko je vlevo, uprostřed název a popis, tlačítko Vybrat/Změnit vpravo ve vlastním sloupci. Příplatek se ukáže pod popisem až po výběru varianty.</p><div class="shots"><a class="shot narrow" href="changelog-img/02-radky-mobil.jpg" target="_blank" rel="noopener" title="Otevřít ve větší velikosti"><img src="changelog-img/02-radky-mobil.jpg" width="390" height="330" loading="lazy" alt="Ukázka: Výběrové řádky na mobilu: tlačítko zpět ve svém sloupci"></a></div><!--/shots--><div class="files">Soubory: Detail_Postel_3.0, Detail_Calounena_Postel, Detail_Komoda_VIA, Detail_Komplet_3.0, Detail_Produkt_Levita, Detail_Skrin_UNI_2D_Konf</div></article>
 <article class="entry">
       <div class="entry-h"><span class="tag t-upr">Úprava</span><h3>Košík: kontrola vyplnění před pokračováním</h3></div>
       <p>Krok Doprava a platba bez vybrané platby zobrazí upozornění „Vyberte způsob platby“ a nepustí dál. Krok Dodací údaje po kliknutí na Odeslat označí nevyplněná a chybná povinná pole (e-mail, telefon, PSČ, IČ) a upozorní na nezaškrtnuté obchodní podmínky. Přepínání kroků nahoře zůstává volné kvůli testování.</p>
-      <div class="files">Soubory: KosikKrok2.dc.html, KosikKrok3.dc.html, ShrnutiObjednavky.dc.html, SouhrnKosiku.dc.html</div>
+      <div class="shots"><a class="shot" href="changelog-img/03a-platba-upozorneni.jpg" target="_blank" rel="noopener" title="Otevřít ve větší velikosti"><img src="changelog-img/03a-platba-upozorneni.jpg" width="900" height="276" loading="lazy" alt="Ukázka: Košík: kontrola vyplnění před pokračováním"></a><a class="shot" href="changelog-img/03b-udaje-validace.jpg" target="_blank" rel="noopener" title="Otevřít ve větší velikosti"><img src="changelog-img/03b-udaje-validace.jpg" width="900" height="465" loading="lazy" alt="Ukázka: Košík: kontrola vyplnění před pokračováním"></a></div><!--/shots--><div class="files">Soubory: KosikKrok2.dc.html, KosikKrok3.dc.html, ShrnutiObjednavky.dc.html, SouhrnKosiku.dc.html</div>
     </article>
     <article class="entry">
       <div class="entry-h"><span class="tag t-upr">Úprava</span><h3>Košík – doprava a platba: bez podbarvení při najetí</h3></div>
       <p>Volby dopravy a platby se při najetí myší nepodbarvují, mění se jen kurzor.</p>
-      <div class="files">Soubory: SkupinaVoleb.dc.html, VolbaRadio.dc.html</div>
+      <p class="note">Nahrazeno opravou z 13. 11. výše: podbarvení při najetí je zpět u řádků, bez podbarvení je jen ikona otazníku.</p><div class="files">Soubory: SkupinaVoleb.dc.html, VolbaRadio.dc.html</div>
     </article>
     <article class="entry">
       <div class="entry-h"><span class="tag t-upr">Úprava</span><h3>Košík – údaje: užší předvolba telefonu na mobilu</h3></div>
       <p>Na mobilu je výběr předvolby zúžený na 96 px a ukazuje jen číslo (+420). Pole pro telefonní číslo je širší.</p>
-      <div class="files">Soubory: KosikKrok3.dc.html</div>
+      <div class="shots"><a class="shot narrow" href="changelog-img/05-predvolba-mobil.jpg" target="_blank" rel="noopener" title="Otevřít ve větší velikosti"><img src="changelog-img/05-predvolba-mobil.jpg" width="390" height="141" loading="lazy" alt="Ukázka: Košík – údaje: užší předvolba telefonu na mobilu"></a></div><!--/shots--><div class="files">Soubory: KosikKrok3.dc.html</div>
     </article>
     <article class="entry">
       <div class="entry-h"><span class="tag t-upr">Úprava</span><h3>Košík – doprava: šipka u skupin v sekundárním stylu</h3></div>
       <p>Tlačítko se šipkou u rozbalovacích skupin dopravy (osobní odběr, vlastní doprava) vypadá stejně jako u FAQ: rámeček, světlý podklad a modrá šipka.</p>
-      <div class="files">Soubory: SkupinaVoleb.dc.html</div>
+      <div class="shots"><a class="shot" href="changelog-img/06-skupina-sipka.jpg" target="_blank" rel="noopener" title="Otevřít ve větší velikosti"><img src="changelog-img/06-skupina-sipka.jpg" width="880" height="197" loading="lazy" alt="Ukázka: Košík – doprava: šipka u skupin v sekundárním stylu"></a></div><!--/shots--><div class="files">Soubory: SkupinaVoleb.dc.html</div>
     </article>
     <article class="entry">
       <div class="entry-h"><span class="tag t-opr">Oprava</span><h3>Náhled varianty: ikona lupy na mobilu</h3></div>
       <p>V kolečku vpravo dole na fotce (náhled roštu, LED, úložného prostoru…) se na mobilu teď zobrazuje ikona lupy. Dřív v sadě ikon chyběla a kolečko bylo prázdné.</p>
-      <div class="files">Soubory: Ikony.dc.html</div>
+      <div class="shots"><a class="shot narrow" href="changelog-img/07-lupa-mobil.jpg" target="_blank" rel="noopener" title="Otevřít ve větší velikosti"><img src="changelog-img/07-lupa-mobil.jpg" width="390" height="900" loading="lazy" alt="Ukázka: Náhled varianty: ikona lupy na mobilu"></a></div><!--/shots--><div class="files">Soubory: Ikony.dc.html</div>
     </article>
     <article class="entry">
       <div class="entry-h"><span class="tag t-roz">Rozhodnutí</span><h3>Kategorie: sticky filtrace a varianta K2 natrvalo</h3></div>
       <p>Filtr v kategoriích zůstává při scrollu připnutý a kategorie mají natrvalo podobu K2. Volby „Sticky filtrace ON/OFF“ a „Kategorie K1/K2“ byly z prezentační lišty odebrány.</p>
-      <div class="files">Soubory: PrezentacniLista.dc.html</div>
+      <div class="shots"><a class="shot" href="changelog-img/08-sticky-filtr.jpg" target="_blank" rel="noopener" title="Otevřít ve větší velikosti"><img src="changelog-img/08-sticky-filtr.jpg" width="900" height="562" loading="lazy" alt="Ukázka: Kategorie: sticky filtrace a varianta K2 natrvalo"></a></div><!--/shots--><div class="files">Soubory: PrezentacniLista.dc.html</div>
     </article>
     <article class="entry">
       <div class="entry-h"><span class="tag t-upr">Úprava</span><h3>Galerie fotek (lightbox): světlý režim, větší fotka na mobilu, klávesnice</h3></div>
       <p>Zvětšená galerie na detailech produktů má světlé pozadí. Na mobilu je fotka přes celou šířku a šipky jsou přes ni. Galerie se zavírá klávesou Esc a fotky se přepínají šipkami doleva a doprava.</p>
-      <div class="files">Soubory: všechny Detail_*.dc.html (14 souborů)</div>
+      <div class="shots"><a class="shot" href="changelog-img/09a-lightbox-desktop.jpg" target="_blank" rel="noopener" title="Otevřít ve větší velikosti"><img src="changelog-img/09a-lightbox-desktop.jpg" width="900" height="562" loading="lazy" alt="Ukázka: Galerie fotek (lightbox): světlý režim, větší fotka na mobilu, klávesnice"></a><a class="shot narrow" href="changelog-img/09b-lightbox-mobil.jpg" target="_blank" rel="noopener" title="Otevřít ve větší velikosti"><img src="changelog-img/09b-lightbox-mobil.jpg" width="390" height="844" loading="lazy" alt="Ukázka: Galerie fotek (lightbox): světlý režim, větší fotka na mobilu, klávesnice"></a></div><!--/shots--><div class="files">Soubory: všechny Detail_*.dc.html (14 souborů)</div>
     </article>
     <article class="entry">
       <div class="entry-h"><span class="tag t-opr">Oprava</span><h3>Hlavička: hamburger na mobilu čtvercový</h3></div>
       <p>Tlačítko menu (hamburger) je na úzkých mobilech čtverec 40 × 40 px místo obdélníku 40 × 44 px.</p>
-      <div class="files">Soubory: Hlavicka.dc.html</div>
+      <div class="shots"><a class="shot narrow" href="changelog-img/10-hamburger-mobil.jpg" target="_blank" rel="noopener" title="Otevřít ve větší velikosti"><img src="changelog-img/10-hamburger-mobil.jpg" width="360" height="120" loading="lazy" alt="Ukázka: Hlavička: hamburger na mobilu čtvercový"></a></div><!--/shots--><div class="files">Soubory: Hlavicka.dc.html</div>
     </article>
     <article class="entry">
       <div class="entry-h"><span class="tag t-opr">Oprava</span><h3>Mega menu: miniatura svisle na střed s nadpisem</h3></div>
       <p>Miniatura kategorie, nadpis a šipka jsou v mega menu zarovnané svisle na střed. Nadpis už nepůsobí výš než fotka. Šipka je přisazená hned za text.</p>
-      <div class="files">Soubory: MegaMenu.dc.html</div>
+      <div class="shots"><a class="shot" href="changelog-img/11-megamenu-miniatura.jpg" target="_blank" rel="noopener" title="Otevřít ve větší velikosti"><img src="changelog-img/11-megamenu-miniatura.jpg" width="760" height="128" loading="lazy" alt="Ukázka: Mega menu: miniatura svisle na střed s nadpisem"></a></div><!--/shots--><div class="files">Soubory: MegaMenu.dc.html</div>
     </article>
     <article class="entry">
       <div class="entry-h"><span class="tag t-upr">Úprava</span><h3>Mega menu B: 5 sloupců na velkých obrazovkách</h3></div>
       <p>Mega menu ve variantě B má na velkých obrazovkách (od 1300 px) 5 sloupců kategorií místo 4. Od 1150 px má 4 sloupce, pod tím 3.</p>
-      <div class="files">Soubory: MegaMenu.dc.html</div>
+      <div class="shots"><a class="shot" href="changelog-img/12-megamenu-5sloupcu.jpg" target="_blank" rel="noopener" title="Otevřít ve větší velikosti"><img src="changelog-img/12-megamenu-5sloupcu.jpg" width="900" height="423" loading="lazy" alt="Ukázka: Mega menu B: 5 sloupců na velkých obrazovkách"></a></div><!--/shots--><div class="files">Soubory: MegaMenu.dc.html</div>
     </article>
     <article class="entry">
       <div class="entry-h"><span class="tag t-upr">Úprava</span><h3>Kategorie: FAQ přes celou šířku</h3></div>
       <p>Časté dotazy pod výpisem kategorie jsou stejně široké jako dlouhý popis kategorie, už nejsou omezené na 900 px.</p>
-      <div class="files">Soubory: Faq.dc.html, Kategorie.dc.html</div>
+      <div class="shots"><a class="shot" href="changelog-img/13-faq-sirka.jpg" target="_blank" rel="noopener" title="Otevřít ve větší velikosti"><img src="changelog-img/13-faq-sirka.jpg" width="900" height="375" loading="lazy" alt="Ukázka: Kategorie: FAQ přes celou šířku"></a></div><!--/shots--><div class="files">Soubory: Faq.dc.html, Kategorie.dc.html</div>
     </article>
     <article class="entry">
       <div class="entry-h"><span class="tag t-upr">Úprava</span><h3>Box „Nevíte si rady s výběrem?“: karty vedle sebe na tabletu</h3></div>
       <p>Bílé karty (poradit on-line a vyzkoušet na pobočce) jsou vedle sebe, kdykoli se vejdou, tedy na tabletu pod popisem kategorie. Pod sebou zůstávají na mobilu a v úzkém pravém sloupci na desktopu.</p>
-      <div class="files">Soubory: PoradceBox.dc.html</div>
+      <div class="shots"><a class="shot" href="changelog-img/14-poradce-tablet.jpg" target="_blank" rel="noopener" title="Otevřít ve větší velikosti"><img src="changelog-img/14-poradce-tablet.jpg" width="820" height="314" loading="lazy" alt="Ukázka: Box „Nevíte si rady s výběrem?“: karty vedle sebe na tabletu"></a></div><!--/shots--><div class="files">Soubory: PoradceBox.dc.html</div>
     </article>
     <article class="entry">
       <div class="entry-h"><span class="tag t-opr">Oprava</span><h3>Postel 3.0: plovoucí lišta jen s vybranými variantami</h3></div>
       <p>Štítky variant v plovoucí liště se zobrazují až po jejich výběru. Nevybrané varianty se v liště neukazují.</p>
-      <div class="files">Soubory: Detail_Postel_3.0.dc.html</div>
+      <div class="shots"><a class="shot" href="changelog-img/15-lista-varianty.jpg" target="_blank" rel="noopener" title="Otevřít ve větší velikosti"><img src="changelog-img/15-lista-varianty.jpg" width="900" height="45" loading="lazy" alt="Ukázka: Postel 3.0: plovoucí lišta jen s vybranými variantami"></a></div><!--/shots--><div class="files">Soubory: Detail_Postel_3.0.dc.html</div>
     </article>
     <article class="entry">
       <div class="entry-h"><span class="tag t-upr">Úprava</span><h3>Postel 3.0: úložný prostor ve verzi B s výběrem typu</h3></div>
       <p>V prezentaci přibyla volba „Úložný prostor“. A je původní řešení se dvěma tlačítky. B (výchozí) má přepínač a po jeho zapnutí výběr typu úložného prostoru v draweru s obrázky a zvětšením. U každého typu je uvedena celková cena úložného prostoru. U přepínače je „od“ cena jen do výběru typu, potom je cena jen u vybrané položky.</p>
-      <div class="files">Soubory: Detail_Postel_3.0.dc.html</div>
+      <div class="shots"><a class="shot" href="changelog-img/16a-ulozny-prepinac.jpg" target="_blank" rel="noopener" title="Otevřít ve větší velikosti"><img src="changelog-img/16a-ulozny-prepinac.jpg" width="578" height="180" loading="lazy" alt="Ukázka: Postel 3.0: úložný prostor ve verzi B s výběrem typu"></a><a class="shot" href="changelog-img/16b-ulozny-drawer.jpg" target="_blank" rel="noopener" title="Otevřít ve větší velikosti"><img src="changelog-img/16b-ulozny-drawer.jpg" width="750" height="1000" loading="lazy" alt="Ukázka: Postel 3.0: úložný prostor ve verzi B s výběrem typu"></a></div><!--/shots--><div class="files">Soubory: Detail_Postel_3.0.dc.html</div>
     </article>
     <article class="entry">
       <div class="entry-h"><span class="tag t-upr">Úprava</span><h3>Skříň UNI 2D: LED osvětlení přepínačem a výběr typu LED</h3></div>
       <p>Volba „Chcete skříň s LED osvětlením?“ má místo zaškrtávátka přepínač. Zapnutý je žlutý s fajfkou, vypnutý je neutrální. Po zapnutí se typ LED osvětlení vybírá zvlášť pro každou část skříně (levá a pravá) v draweru s obrázky a náhledem. Příplatky se připočítávají k ceně. Tlačítka „bez LED / s LED“ byla odebrána, protože volbu ovládá přepínač. Příplatek za LED je vedle něj a přepočítává se podle zvolených typů. Každá část může zůstat i bez LED, ostatní varianty mají vlastní příplatek za část (žádná „v ceně LED“).</p>
-      <div class="files">Soubory: Detail_Skrin_UNI_2D_Konf.dc.html</div>
+      <div class="shots"><a class="shot" href="changelog-img/17a-led-prepinac.jpg" target="_blank" rel="noopener" title="Otevřít ve větší velikosti"><img src="changelog-img/17a-led-prepinac.jpg" width="578" height="270" loading="lazy" alt="Ukázka: Skříň UNI 2D: LED osvětlení přepínačem a výběr typu LED"></a><a class="shot" href="changelog-img/17b-led-drawer.jpg" target="_blank" rel="noopener" title="Otevřít ve větší velikosti"><img src="changelog-img/17b-led-drawer.jpg" width="750" height="1000" loading="lazy" alt="Ukázka: Skříň UNI 2D: LED osvětlení přepínačem a výběr typu LED"></a></div><!--/shots--><div class="files">Soubory: Detail_Skrin_UNI_2D_Konf.dc.html</div>
     </article>
     <article class="entry">
       <div class="entry-h"><span class="tag t-upr">Úprava</span><h3>Výběr varianty: širší panel, čtvercová fotka a lupa</h3></div>
       <p>Panel pro výběr varianty je na desktopu širší (600 px místo 460 px). Náhled fotky je čtvercový 1:1 jako fotky na e-shopu. Na desktopu se při najetí myší kurzor změní na lupu a fotka se uvnitř rámečku zvětší 2× a posouvá se za kurzorem. Na mobilu je v rohu fotky ikona lupy. Ťuknutí otevře fotku přes celou obrazovku, kde jde přiblížit roztažením prstů nebo dvojitým ťuknutím, posouvat prstem a zavřít křížkem.</p>
-      <div class="files">Soubory: Overlay.dc.html, VariantaDrawer.dc.html, NahledObsah.dc.html</div>
+      <div class="shots"><a class="shot" href="changelog-img/18a-panel-varianty.jpg" target="_blank" rel="noopener" title="Otevřít ve větší velikosti"><img src="changelog-img/18a-panel-varianty.jpg" width="750" height="1000" loading="lazy" alt="Ukázka: Výběr varianty: širší panel, čtvercová fotka a lupa"></a><a class="shot" href="changelog-img/18b-nahled-lupa.jpg" target="_blank" rel="noopener" title="Otevřít ve větší velikosti"><img src="changelog-img/18b-nahled-lupa.jpg" width="600" height="1000" loading="lazy" alt="Ukázka: Výběr varianty: širší panel, čtvercová fotka a lupa"></a><a class="shot narrow" href="changelog-img/07-lupa-mobil.jpg" target="_blank" rel="noopener" title="Otevřít ve větší velikosti"><img src="changelog-img/07-lupa-mobil.jpg" width="390" height="900" loading="lazy" alt="Ukázka: Výběr varianty: širší panel, čtvercová fotka a lupa"></a></div><!--/shots--><div class="files">Soubory: Overlay.dc.html, VariantaDrawer.dc.html, NahledObsah.dc.html</div>
     </article>
     <article class="entry">
       <div class="entry-h"><span class="tag t-upr">Úprava</span><h3>Výběrové řádky: tlačítko Vybrat / Změnit místo šipky</h3></div>
       <p>Řádky pro výběr rozměru, roštů, materiálu apod. na detailech mají stejné tlačítko jako sety polštářů. Před výběrem je to primární „Vybrat“, po výběru sekundární „Změnit“. Na mobilu (pod 550 px) je řádek ve dvou patrech: nahoře nadpis a popis, pod tím vlevo příplatek a vpravo tlačítko.</p>
-      <div class="files">Soubory: Detail_Postel_3.0, Detail_Komplet_3.0, Detail_Multi_3.0, Detail_Calounena_Postel, Detail_Komoda_VIA, Detail_Produkt_Levita, Detail_Skrin_UNI_2D_Konf (.dc.html)</div>
+      <p class="note">Rozložení na mobilu bylo později upraveno – viz záznam „Výběrové řádky na mobilu“ výše.</p><div class="shots"><a class="shot" href="changelog-img/19-radky-desktop.jpg" target="_blank" rel="noopener" title="Otevřít ve větší velikosti"><img src="changelog-img/19-radky-desktop.jpg" width="620" height="318" loading="lazy" alt="Ukázka: Výběrové řádky: tlačítko Vybrat / Změnit místo šipky"></a></div><!--/shots--><div class="files">Soubory: Detail_Postel_3.0, Detail_Komplet_3.0, Detail_Multi_3.0, Detail_Calounena_Postel, Detail_Komoda_VIA, Detail_Produkt_Levita, Detail_Skrin_UNI_2D_Konf (.dc.html)</div>
     </article>
     <article class="entry">
       <div class="entry-h"><span class="tag t-roz">Rozhodnutí</span><h3>Prezentační lišta detailů zjednodušena</h3></div>
       <p>Z prezentační lišty detailů zmizely volby Multi Konf., Set, Materiál a odstín, Rozměr a Příplatky. Natrvalo platí set S4, materiál a odstín B, rozměr pomocí čipů a zapnuté příplatky. Přepínač „LED“ se teď jmenuje „Otevřeno / Zavřeno“.</p>
-      <div class="files">Soubory: PrezentacniLista.dc.html</div>
+      <div class="shots"><a class="shot narrow" href="changelog-img/20-prezentacni-lista.jpg" target="_blank" rel="noopener" title="Otevřít ve větší velikosti"><img src="changelog-img/20-prezentacni-lista.jpg" width="536" height="366" loading="lazy" alt="Ukázka: Prezentační lišta detailů zjednodušena"></a></div><!--/shots--><div class="files">Soubory: PrezentacniLista.dc.html</div>
     </article>
     <article class="entry">
       <div class="entry-h"><span class="tag t-upr">Úprava</span><h3>Karty tuhosti: slovní popis pod ukazatelem</h3></div>
       <p>V kartách výběru tuhosti (Matrace 3.0, Airflex SET) je číslo blíž k ukazateli a pod ním je menším písmem slovně tuhost, např. „Měkká“. Spodní odsazení karty je stejné jako horní.</p>
-      <div class="files">Soubory: ParametryMatrace.dc.html</div>
+      <div class="shots"><a class="shot" href="changelog-img/21-tuhost-popis.jpg" target="_blank" rel="noopener" title="Otevřít ve větší velikosti"><img src="changelog-img/21-tuhost-popis.jpg" width="608" height="139" loading="lazy" alt="Ukázka: Karty tuhosti: slovní popis pod ukazatelem"></a></div><!--/shots--><div class="files">Soubory: ParametryMatrace.dc.html</div>
     </article>
     <article class="entry">
       <div class="entry-h"><span class="tag t-upr">Úprava</span><h3>Airflex SET 1 + 1: výběr tuhosti místo rozměru</h3></div>
       <p>U setu Airflex se u každé ze dvou matrací vybírá tuhost (2–5) stejnými kartami jako u Matrace 3.0, místo rozměru. Nic není předvybrané a cena setu je u všech tuhostí stejná. Parametry nahoře jsou ve dvou sloupcích (matrace 1 a 2) podle zvolené tuhosti, stupnice váhy do 140 kg. Pod nimi jsou jednou pro oba štítky výška 25 cm, max. nosnost 140 kg a záruka 10 let.</p>
-      <div class="files">Soubory: Detail_Matrace_Airflex_Set.dc.html, ParametryMatrace.dc.html</div>
+      <div class="shots"><a class="shot" href="changelog-img/22a-airflex-tuhost.jpg" target="_blank" rel="noopener" title="Otevřít ve větší velikosti"><img src="changelog-img/22a-airflex-tuhost.jpg" width="620" height="303" loading="lazy" alt="Ukázka: Airflex SET 1 + 1: výběr tuhosti místo rozměru"></a><a class="shot" href="changelog-img/22b-airflex-parametry.jpg" target="_blank" rel="noopener" title="Otevřít ve větší velikosti"><img src="changelog-img/22b-airflex-parametry.jpg" width="620" height="171" loading="lazy" alt="Ukázka: Airflex SET 1 + 1: výběr tuhosti místo rozměru"></a></div><!--/shots--><div class="files">Soubory: Detail_Matrace_Airflex_Set.dc.html, ParametryMatrace.dc.html</div>
     </article>
     <article class="entry">
       <div class="entry-h"><span class="tag t-upr">Úprava</span><h3>Komplet 3.0: tuhost jako na kartě matrace</h3></div>
       <p>Tuhost matrace v souhrnu kompletu ukazuje 5 stejně vysokých čárek ve stejných barvách jako karta matrace, místo rostoucích sloupečků. Zbytečný údaj „Skladem“ u tuhosti byl odebrán.</p>
-      <div class="files">Soubory: Detail_Komplet_3.0.dc.html</div>
+      <div class="shots"><a class="shot" href="changelog-img/23-24-komplet-souhrn.jpg" target="_blank" rel="noopener" title="Otevřít ve větší velikosti"><img src="changelog-img/23-24-komplet-souhrn.jpg" width="635" height="496" loading="lazy" alt="Ukázka: Komplet 3.0: tuhost jako na kartě matrace"></a></div><!--/shots--><div class="files">Soubory: Detail_Komplet_3.0.dc.html</div>
     </article>
     <article class="entry">
       <div class="entry-h"><span class="tag t-opr">Oprava</span><h3>Komplet 3.0: příplatek černě</h3></div>
       <p>V souhrnu kompletu se příplatek za materiál píše černě jako ve zbytku webu. Zeleně zůstává jen „Bez příplatku“.</p>
-      <div class="files">Soubory: Detail_Komplet_3.0.dc.html</div>
+      <div class="shots"><a class="shot" href="changelog-img/23-24-komplet-souhrn.jpg" target="_blank" rel="noopener" title="Otevřít ve větší velikosti"><img src="changelog-img/23-24-komplet-souhrn.jpg" width="635" height="496" loading="lazy" alt="Ukázka: Komplet 3.0: příplatek černě"></a></div><!--/shots--><div class="files">Soubory: Detail_Komplet_3.0.dc.html</div>
     </article>
     <article class="entry">
       <div class="entry-h"><span class="tag t-roz">Rozhodnutí</span><h3>Mega menu: výchozí varianta B</h3></div>
       <p>Mega menu má jako výchozí variantu B (karty Tip / Poradíme pod položkami). Dřív uložená volba z prezentace se nepoužije.</p>
-      <div class="files">Soubory: MegaMenu.dc.html, PrezentacniLista.dc.html</div>
+      <div class="shots"><a class="shot" href="changelog-img/12-megamenu-5sloupcu.jpg" target="_blank" rel="noopener" title="Otevřít ve větší velikosti"><img src="changelog-img/12-megamenu-5sloupcu.jpg" width="900" height="423" loading="lazy" alt="Ukázka: Mega menu: výchozí varianta B"></a></div><!--/shots--><div class="files">Soubory: MegaMenu.dc.html, PrezentacniLista.dc.html</div>
     </article>
     <article class="entry">
       <div class="entry-h"><span class="tag t-upr">Úprava</span><h3>Čistší náhledy produktů v inspiracích na homepage</h3></div>
       <p>V náhledech produktů, které se otevřou po kliknutí na „+“ ve fotkách interiérů, už není šipka vpravo. Zůstal jen křížek pro zavření v pravém horním rohu. Kliknutím na náhled se dál otevře detail produktu.</p>
-      <div class="files">Soubory: index.dc.html</div>
+      <div class="shots"><a class="shot narrow" href="changelog-img/26-nahled-inspirace.jpg" target="_blank" rel="noopener" title="Otevřít ve větší velikosti"><img src="changelog-img/26-nahled-inspirace.jpg" width="440" height="382" loading="lazy" alt="Ukázka: Čistší náhledy produktů v inspiracích na homepage"></a></div><!--/shots--><div class="files">Soubory: index.dc.html</div>
     </article>
     <article class="entry">
       <div class="entry-h"><span class="tag t-upr">Úprava</span><h3>Dlaždice kategorií na homepage: velikost fotek a textů podle šířky</h3></div>
       <p>Desktop: fotky jsou větší, matrace a rošty ještě o kus víc. Fotka je blíž k názvu (i na mobilu a tabletu) a pod dvouřádkovými názvy je víc místa. Jednořádkové názvy jsou svisle uprostřed výšky dvouřádkových. Tablet (S): větší názvy, fotky beze změny. Mobil (XS, XXS): větší fotky a větší názvy (18 px, na nejužších telefonech 17 px).</p>
-      <div class="files">Soubory: KategorickaDlazdice.dc.html</div>
+      <div class="shots"><a class="shot" href="changelog-img/27a-dlazdice-desktop.jpg" target="_blank" rel="noopener" title="Otevřít ve větší velikosti"><img src="changelog-img/27a-dlazdice-desktop.jpg" width="900" height="425" loading="lazy" alt="Ukázka: Dlaždice kategorií na homepage: velikost fotek a textů podle šířky"></a><a class="shot narrow" href="changelog-img/27b-dlazdice-mobil.jpg" target="_blank" rel="noopener" title="Otevřít ve větší velikosti"><img src="changelog-img/27b-dlazdice-mobil.jpg" width="390" height="368" loading="lazy" alt="Ukázka: Dlaždice kategorií na homepage: velikost fotek a textů podle šířky"></a></div><!--/shots--><div class="files">Soubory: KategorickaDlazdice.dc.html</div>
     </article>
     <article class="entry">
       <div class="entry-h"><span class="tag t-upr">Úprava</span><h3>Ikony v USP blíž k textům</h3></div>
       <p>V pásu výhod (USP) na desktopu a tabletu jsou ikony blíž k nadpisům, mezera je o zhruba 14 px menší. Mobil a dlaždicová varianta zůstaly beze změny.</p>
-      <div class="files">Soubory: Usp.dc.html</div>
+      <div class="shots"><a class="shot" href="changelog-img/28-usp-ikony.jpg" target="_blank" rel="noopener" title="Otevřít ve větší velikosti"><img src="changelog-img/28-usp-ikony.jpg" width="900" height="115" loading="lazy" alt="Ukázka: Ikony v USP blíž k textům"></a></div><!--/shots--><div class="files">Soubory: Usp.dc.html</div>
     </article>
   </section>
   <section class="day" id="d-2026-11-11">
@@ -194,137 +202,137 @@ footer .wrap{padding-top:18px;padding-bottom:28px}
     <article class="entry">
       <div class="entry-h"><span class="tag t-upr">Úprava</span><h3>Řádková karta produktu na malých telefonech</h3></div>
       <p>Na telefonech užších než 550 px se produkty ve všech výpisech zobrazují jako řádková karta (fotka vlevo, informace vpravo). Kategorie, výsledky vyhledávání i Oblíbené se chovají stejně. Na větších displejích zůstává klasická karta ve 2–4 sloupcích. Přepínač „Karta S–XXS“ v prezentační liště byl odstraněn.</p>
-      <div class="files">Soubory: Kategorie.dc.html, VysledkyVyhledavani.dc.html, Oblibene.dc.html</div>
+      <div class="shots"><a class="shot narrow" href="changelog-img/29-radkova-karta.jpg" target="_blank" rel="noopener" title="Otevřít ve větší velikosti"><img src="changelog-img/29-radkova-karta.jpg" width="390" height="623" loading="lazy" alt="Ukázka: Řádková karta produktu na malých telefonech"></a></div><!--/shots--><div class="files">Soubory: Kategorie.dc.html, VysledkyVyhledavani.dc.html, Oblibene.dc.html</div>
     </article>
     <article class="entry">
       <div class="entry-h"><span class="tag t-roz">Rozhodnutí</span><h3>Fotky na kartách produktů zůstávají čtvercové (1 : 1)</h3></div>
       <p>Varianta karty s fotkou 4 : 3 je skrytá a z prezentační lišty zmizel přepínač „Fotka karty“. Důvod: všechny produktové fotky na webu jsou čtvercové a jejich výměna teď není v plánu.</p>
-      <div class="files">Soubory: ProduktovaKarta.dc.html, PrezentacniLista.dc.html</div>
+      <div class="shots"><a class="shot" href="changelog-img/45-karta-a.jpg" target="_blank" rel="noopener" title="Otevřít ve větší velikosti"><img src="changelog-img/45-karta-a.jpg" width="900" height="589" loading="lazy" alt="Ukázka: Fotky na kartách produktů zůstávají čtvercové (1 : 1)"></a></div><!--/shots--><div class="files">Soubory: ProduktovaKarta.dc.html, PrezentacniLista.dc.html</div>
     </article>
     <article class="entry">
       <div class="entry-h"><span class="tag t-opr">Oprava</span><h3>Štítky na řádkové kartě shodné s kartou na výšku</h3></div>
       <p>Řádková karta teď ukazuje všechny štítky produktu včetně „Akce“, stejně jako běžná karta. Zrušen byl samostatný dopočítaný štítek se slevou u ceny, který mohl ukazovat jiné procento. Karta umí až 3 štítky. Ukázkový produkt v kategorii má Akce, Novinka a Doprava zdarma a jeho sleva odpovídá cenám (−21 %).</p>
-      <div class="files">Soubory: ProduktovaKarta.dc.html, Kategorie.dc.html</div>
+      <div class="shots"><a class="shot narrow" href="changelog-img/31-stitky-radkova.jpg" target="_blank" rel="noopener" title="Otevřít ve větší velikosti"><img src="changelog-img/31-stitky-radkova.jpg" width="390" height="495" loading="lazy" alt="Ukázka: Štítky na řádkové kartě shodné s kartou na výšku"></a></div><!--/shots--><div class="files">Soubory: ProduktovaKarta.dc.html, Kategorie.dc.html</div>
     </article>
     <article class="entry">
       <div class="entry-h"><span class="tag t-upr">Úprava</span><h3>Bez stupnice váhy na kartách ve výpisu</h3></div>
       <p>Pod ukazatelem „Ideální pro váhu“ na kartě matrace ve výpisu už není stupnice 0 – 120 kg. Rozsah váhy zůstává vedle popisku a celá stupnice se zobrazuje jen na detailu produktu.</p>
-      <div class="files">Soubory: ParametryMatrace.dc.html</div>
+      <div class="shots"><a class="shot narrow" href="changelog-img/32-bez-stupnice.jpg" target="_blank" rel="noopener" title="Otevřít ve větší velikosti"><img src="changelog-img/32-bez-stupnice.jpg" width="390" height="403" loading="lazy" alt="Ukázka: Bez stupnice váhy na kartách ve výpisu"></a></div><!--/shots--><div class="files">Soubory: ParametryMatrace.dc.html</div>
     </article>
     <article class="entry">
       <div class="entry-h"><span class="tag t-upr">Úprava</span><h3>Ukazatel „Ideální pro váhu“ s mezerami</h3></div>
       <p>Modrý rozsah váhy je od béžové linky oddělený mezerou zleva i zprava, stejně jako dílky ukazatele tuhosti. Výška ukazatele zůstala původní; zkoušené zvýšení modré části bylo příliš výrazné. Platí pro karty ve výpisu i pro detail produktu.</p>
-      <div class="files">Soubory: ParametryMatrace.dc.html</div>
+      <div class="shots"><a class="shot narrow" href="changelog-img/33-vaha-mezery.jpg" target="_blank" rel="noopener" title="Otevřít ve větší velikosti"><img src="changelog-img/33-vaha-mezery.jpg" width="394" height="722" loading="lazy" alt="Ukázka: Ukazatel „Ideální pro váhu“ s mezerami"></a></div><!--/shots--><div class="files">Soubory: ParametryMatrace.dc.html</div>
     </article>
     <article class="entry">
       <div class="entry-h"><span class="tag t-upr">Úprava</span><h3>Menší fotka na řádkové kartě</h3></div>
       <p>Na řádkové kartě (telefony užší než 550 px) zabírá fotka produktu třetinu šířky místo poloviny, takže je asi o třetinu menší. Na text, štítky a cenu tak zbývá víc místa.</p>
-      <div class="files">Soubory: ProduktovaKarta.dc.html</div>
+      <div class="shots"><a class="shot narrow" href="changelog-img/34-35-foto-srdicko.jpg" target="_blank" rel="noopener" title="Otevřít ve větší velikosti"><img src="changelog-img/34-35-foto-srdicko.jpg" width="390" height="403" loading="lazy" alt="Ukázka: Menší fotka na řádkové kartě"></a></div><!--/shots--><div class="files">Soubory: ProduktovaKarta.dc.html</div>
     </article>
     <article class="entry">
       <div class="entry-h"><span class="tag t-upr">Úprava</span><h3>Srdíčko na řádkové kartě vlevo</h3></div>
       <p>Tlačítko pro přidání do oblíbených (srdíčko) je na řádkové kartě v levém horním rohu fotky místo v pravém.</p>
-      <div class="files">Soubory: ProduktovaKarta.dc.html</div>
+      <div class="shots"><a class="shot narrow" href="changelog-img/34-35-foto-srdicko.jpg" target="_blank" rel="noopener" title="Otevřít ve větší velikosti"><img src="changelog-img/34-35-foto-srdicko.jpg" width="390" height="403" loading="lazy" alt="Ukázka: Srdíčko na řádkové kartě vlevo"></a></div><!--/shots--><div class="files">Soubory: ProduktovaKarta.dc.html</div>
     </article>
     <article class="entry">
       <div class="entry-h"><span class="tag t-upr">Úprava</span><h3>Tlačítko Zobrazit na řádkové kartě</h3></div>
       <p>Na řádkové kartě je dole místo odkazu „Více rozměrů / stupňů tuhosti“ tlačítko Zobrazit. Je zarovnané vlevo na stejnou linii jako název a cena, ne přes celou šířku. Funguje stejně jako tlačítko na běžné kartě: u produktu, který není skladem, se zobrazí „Hlídat dostupnost“.</p>
-      <div class="files">Soubory: ProduktovaKarta.dc.html</div>
+      <div class="shots"><a class="shot narrow" href="changelog-img/36-tlacitko-zobrazit.jpg" target="_blank" rel="noopener" title="Otevřít ve větší velikosti"><img src="changelog-img/36-tlacitko-zobrazit.jpg" width="390" height="403" loading="lazy" alt="Ukázka: Tlačítko Zobrazit na řádkové kartě"></a></div><!--/shots--><div class="files">Soubory: ProduktovaKarta.dc.html</div>
     </article>
     <article class="entry">
       <div class="entry-h"><span class="tag t-opr">Oprava</span><h3>Sticky filtr končí s výpisem produktů</h3></div>
       <p>Postranní filtr v kategorii zůstává při scrollování viditelný jen do konce výpisu (pod stránkováním). Popis kategorie a časté dotazy pod výpisem už se čtou bez filtru vedle. Text zůstává zarovnaný pod sloupec s produkty.</p>
-      <div class="files">Soubory: Kategorie.dc.html</div>
+      <div class="shots"><a class="shot" href="changelog-img/37-filtr-konci.jpg" target="_blank" rel="noopener" title="Otevřít ve větší velikosti"><img src="changelog-img/37-filtr-konci.jpg" width="900" height="562" loading="lazy" alt="Ukázka: Sticky filtr končí s výpisem produktů"></a></div><!--/shots--><div class="files">Soubory: Kategorie.dc.html</div>
     </article>
     <article class="entry">
       <div class="entry-h"><span class="tag t-upr">Úprava</span><h3>Stránkování a FAQ ve stylu sekundárního tlačítka</h3></div>
       <p>V stránkování mají čísla stránek a tlačítka Předchozí / Další při najetí myší vzhled sekundárního tlačítka (teplý podklad, jemný rámeček, tmavě modrý text), stejně jako „Načíst další produkty“. Aktivní stránka zůstává tmavě modrá. Rozbalovací šipky u častých dotazů jsou také sekundární tlačítka. Všechny prvky pod výpisem tak vypadají jednotně.</p>
-      <div class="files">Soubory: Paginace.dc.html, Tlacitko.dc.html (nová varianta ghostSecondary), Faq.dc.html</div>
+      <div class="shots"><a class="shot" href="changelog-img/38a-strankovani.jpg" target="_blank" rel="noopener" title="Otevřít ve větší velikosti"><img src="changelog-img/38a-strankovani.jpg" width="637" height="124" loading="lazy" alt="Ukázka: Stránkování a FAQ ve stylu sekundárního tlačítka"></a><a class="shot" href="changelog-img/38b-faq-sipky.jpg" target="_blank" rel="noopener" title="Otevřít ve větší velikosti"><img src="changelog-img/38b-faq-sipky.jpg" width="900" height="186" loading="lazy" alt="Ukázka: Stránkování a FAQ ve stylu sekundárního tlačítka"></a></div><!--/shots--><div class="files">Soubory: Paginace.dc.html, Tlacitko.dc.html (nová varianta ghostSecondary), Faq.dc.html</div>
     </article>
     <article class="entry">
       <div class="entry-h"><span class="tag t-upr">Úprava</span><h3>Banner v záhlaví kategorie ve stylu hero dlaždic</h3></div>
       <p>Banner vedle tipů v záhlaví kategorie má tmavý závoj přes fotku, bílý text a bílé tlačítko, stejně jako dlaždice v hero sekci na homepage. Hover je sjednocený: při najetí na banner se fotka jemně přiblíží a tlačítko změní barvu (na teplou béžovou) až při najetí přímo na něj.</p>
-      <div class="files">Soubory: Kategorie.dc.html</div>
+      <div class="shots"><a class="shot" href="changelog-img/39-banner-zahlavi.jpg" target="_blank" rel="noopener" title="Otevřít ve větší velikosti"><img src="changelog-img/39-banner-zahlavi.jpg" width="900" height="256" loading="lazy" alt="Ukázka: Banner v záhlaví kategorie ve stylu hero dlaždic"></a></div><!--/shots--><div class="files">Soubory: Kategorie.dc.html</div>
     </article>
     <article class="entry">
       <div class="entry-h"><span class="tag t-upr">Úprava</span><h3>Sticky lišta Filtry / Řazení na mobilu a tabletu</h3></div>
       <p>Na mobilu a tabletu zůstává lišta s tlačítky Filtry a Řazení při scrollování výpisem přichycená nahoře. Když se hlavička při scrollu dolů schová, lišta plynule vyjede až k hornímu okraji. Když se hlavička znovu ukáže, lišta se posune pod ni. Lišta končí s výpisem, takže popis kategorie pod ním už nepřekrývá.</p>
-      <div class="files">Soubory: Kategorie.dc.html</div>
+      <div class="shots"><a class="shot narrow" href="changelog-img/40-sticky-lista-mobil.jpg" target="_blank" rel="noopener" title="Otevřít ve větší velikosti"><img src="changelog-img/40-sticky-lista-mobil.jpg" width="390" height="844" loading="lazy" alt="Ukázka: Sticky lišta Filtry / Řazení na mobilu a tabletu"></a></div><!--/shots--><div class="files">Soubory: Kategorie.dc.html</div>
     </article>
     <article class="entry">
       <div class="entry-h"><span class="tag t-upr">Úprava</span><h3>Počet aktivních filtrů na tlačítku Filtry</h3></div>
       <p>Na mobilu a tabletu má tlačítko Filtry v pravém horním rohu žluté kolečko s počtem aktivních filtrů. Zobrazí se jen tehdy, když je nějaký filtr zapnutý. Text tlačítka zůstává krátký, „Filtry“, bez čísla v závorce.</p>
-      <div class="files">Soubory: FiltracniLista.dc.html, Kategorie.dc.html</div>
+      <div class="shots"><a class="shot narrow" href="changelog-img/41-pocet-filtru.jpg" target="_blank" rel="noopener" title="Otevřít ve větší velikosti"><img src="changelog-img/41-pocet-filtru.jpg" width="390" height="124" loading="lazy" alt="Ukázka: Počet aktivních filtrů na tlačítku Filtry"></a></div><!--/shots--><div class="files">Soubory: FiltracniLista.dc.html, Kategorie.dc.html</div>
     </article>
     <article class="entry">
       <div class="entry-h"><span class="tag t-upr">Úprava</span><h3>Aktivní filtry i v panelu Filtry</h3></div>
       <p>V panelu Filtry na mobilu a tabletu jsou pod nadpisem čipy s aktivními filtry, stejné jako nad výpisem. Klepnutím na čip se filtr zruší a výpis se hned aktualizuje. Na konci řádku je červený čip „Zrušit všechny filtry“ s košem, stejně jako nad výpisem.</p>
-      <div class="files">Soubory: FiltrObsah.dc.html, FiltrDrawer.dc.html, Kategorie.dc.html</div>
+      <div class="shots"><a class="shot narrow" href="changelog-img/42-panel-cipy.jpg" target="_blank" rel="noopener" title="Otevřít ve větší velikosti"><img src="changelog-img/42-panel-cipy.jpg" width="390" height="844" loading="lazy" alt="Ukázka: Aktivní filtry i v panelu Filtry"></a></div><!--/shots--><div class="files">Soubory: FiltrObsah.dc.html, FiltrDrawer.dc.html, Kategorie.dc.html</div>
     </article>
     <article class="entry">
       <div class="entry-h"><span class="tag t-upr">Úprava</span><h3>„Zrušit filtry“ jako destruktivní tlačítko</h3></div>
       <p>Tlačítko v patičce panelu Filtry má nový text „Zrušit filtry“ (dříve „Smazat vše“) a je červené (destruktivní sekundární varianta, bez ikony). Je tak jasné, že zruší všechny filtry. Komponenta Overlay nově umí nastavit variantu sekundárního tlačítka.</p>
-      <div class="files">Soubory: FiltrDrawer.dc.html, Overlay.dc.html</div>
+      <div class="shots"><a class="shot narrow" href="changelog-img/43-zrusit-filtry.jpg" target="_blank" rel="noopener" title="Otevřít ve větší velikosti"><img src="changelog-img/43-zrusit-filtry.jpg" width="390" height="844" loading="lazy" alt="Ukázka: „Zrušit filtry“ jako destruktivní tlačítko"></a></div><!--/shots--><div class="files">Soubory: FiltrDrawer.dc.html, Overlay.dc.html</div>
     </article>
     <article class="entry">
       <div class="entry-h"><span class="tag t-upr">Úprava</span><h3>Panel Filtry: počet aktivních filtrů a větší nadpisy</h3></div>
       <p>V hlavičce panelu Filtry je u ikony filtru žluté kolečko s počtem aktivních filtrů, stejně jako na tlačítku Filtry. Nadpisy skupin v panelu (Cena, Dostupnost, Rozměr…) jsou o úroveň větší (19 px místo 16 px), bez verzálek a prostrkání, jako ostatní nadpisy výběru na webu.</p>
-      <div class="files">Soubory: FiltrDrawer.dc.html, FiltrObsah.dc.html</div>
+      <div class="shots"><a class="shot narrow" href="changelog-img/44-panel-hlavicka.jpg" target="_blank" rel="noopener" title="Otevřít ve větší velikosti"><img src="changelog-img/44-panel-hlavicka.jpg" width="390" height="844" loading="lazy" alt="Ukázka: Panel Filtry: počet aktivních filtrů a větší nadpisy"></a></div><!--/shots--><div class="files">Soubory: FiltrDrawer.dc.html, FiltrObsah.dc.html</div>
     </article>
     <article class="entry">
       <div class="entry-h"><span class="tag t-roz">Rozhodnutí</span><h3>Produktová karta varianty A na celém webu</h3></div>
       <p>Na všech stránkách (kategorie, vyhledávání, oblíbené, související produkty na detailu) se používá karta A s ukazateli tuhosti a ideální váhy. Přepínač „Karta A / A2 / B / D / E / F“ byl z prezentační lišty odstraněn.</p>
-      <div class="files">Soubory: PrezentacniLista.dc.html, ProduktovaKarta.dc.html, Detail_Matrace_3.0.dc.html, Detail_Matrace_Airflex_Set.dc.html</div>
+      <div class="shots"><a class="shot" href="changelog-img/45-karta-a.jpg" target="_blank" rel="noopener" title="Otevřít ve větší velikosti"><img src="changelog-img/45-karta-a.jpg" width="900" height="589" loading="lazy" alt="Ukázka: Produktová karta varianty A na celém webu"></a></div><!--/shots--><div class="files">Soubory: PrezentacniLista.dc.html, ProduktovaKarta.dc.html, Detail_Matrace_3.0.dc.html, Detail_Matrace_Airflex_Set.dc.html</div>
     </article>
     <article class="entry">
       <div class="entry-h"><span class="tag t-roz">Rozhodnutí</span><h3>Fixní sloupec na detailu: galerie</h3></div>
       <p>Na detailech produktů zůstává při scrollování přichycená galerie. Přepínač „Fixní sloupec“ byl z prezentační lišty odstraněn ze všech detailů.</p>
-      <div class="files">Soubory: PrezentacniLista.dc.html</div>
+      <div class="shots"><a class="shot" href="changelog-img/46-fixni-galerie.jpg" target="_blank" rel="noopener" title="Otevřít ve větší velikosti"><img src="changelog-img/46-fixni-galerie.jpg" width="900" height="625" loading="lazy" alt="Ukázka: Fixní sloupec na detailu: galerie"></a></div><!--/shots--><div class="files">Soubory: PrezentacniLista.dc.html</div>
     </article>
     <article class="entry">
       <div class="entry-h"><span class="tag t-upr">Úprava</span><h3>Výběr tuhosti matrace</h3></div>
       <p>Sekce „Další varianty“ na detailu matrace se nově jmenuje „Tuhost“. Její karty nemají název ani fotku (u všech variant byla stejná), protože jde o varianty tuhosti stejné matrace. Karta je teď nízká: výběrové kolečko, číslo tuhosti (bez opakovaného popisku „Tuhost“) a ukazatel. Každá karta ukazuje svou tuhost (S měkká, M středně tvrdá, L tvrdá, XL velmi tvrdá). Ukazatel tuhosti je vidět na všech kartách, ne jen na vybrané. Barevné schéma je stejné jako u čipů: vybraná varianta je tmavě modrá se světlým ukazatelem tuhosti a bílým číslem, ostatní jsou bílé s šedým rámečkem.</p>
-      <div class="files">Soubory: Detail_Matrace_3.0.dc.html, ParametryMatrace.dc.html (nová vlastnost inverse)</div>
+      <div class="shots"><a class="shot" href="changelog-img/47-vyber-tuhosti.jpg" target="_blank" rel="noopener" title="Otevřít ve větší velikosti"><img src="changelog-img/47-vyber-tuhosti.jpg" width="620" height="151" loading="lazy" alt="Ukázka: Výběr tuhosti matrace"></a></div><!--/shots--><div class="files">Soubory: Detail_Matrace_3.0.dc.html, ParametryMatrace.dc.html (nová vlastnost inverse)</div>
     </article>
     <article class="entry">
       <div class="entry-h"><span class="tag t-upr">Úprava</span><h3>Tuhost jen číslem</h3></div>
       <p>U ukazatele tuhosti se vypisuje jen číslo (1, 2, 3, 4, 5), bez „z 5“ nebo „/5“. Stupnici ukazují dílky ukazatele. Platí na kartách ve výpisu, nahoře na detailu matrace i u karet variant.</p>
-      <div class="files">Soubory: ParametryMatrace.dc.html</div>
+      <div class="shots"><a class="shot" href="changelog-img/47-vyber-tuhosti.jpg" target="_blank" rel="noopener" title="Otevřít ve větší velikosti"><img src="changelog-img/47-vyber-tuhosti.jpg" width="620" height="151" loading="lazy" alt="Ukázka: Tuhost jen číslem"></a><a class="shot narrow" href="changelog-img/32-bez-stupnice.jpg" target="_blank" rel="noopener" title="Otevřít ve větší velikosti"><img src="changelog-img/32-bez-stupnice.jpg" width="390" height="403" loading="lazy" alt="Ukázka: Tuhost jen číslem"></a></div><!--/shots--><div class="files">Soubory: ParametryMatrace.dc.html</div>
     </article>
     <article class="entry">
       <div class="entry-h"><span class="tag t-upr">Úprava</span><h3>Doporučená váha podle zvolené tuhosti</h3></div>
       <p>Na detailu matrace se s výběrem varianty tuhosti mění i „Ideální pro váhu“: S 50–80 kg, M 65–95 kg, L 80–115 kg, XL 95–140 kg. Maximální nosnost je 140 kg. Hodnoty jsou ukázkové a doplní se podle skutečných parametrů.</p>
-      <div class="files">Soubory: Detail_Matrace_3.0.dc.html</div>
+      <div class="shots"><a class="shot" href="changelog-img/49-50-parametry-detail.jpg" target="_blank" rel="noopener" title="Otevřít ve větší velikosti"><img src="changelog-img/49-50-parametry-detail.jpg" width="620" height="267" loading="lazy" alt="Ukázka: Doporučená váha podle zvolené tuhosti"></a></div><!--/shots--><div class="files">Soubory: Detail_Matrace_3.0.dc.html</div>
     </article>
     <article class="entry">
       <div class="entry-h"><span class="tag t-upr">Úprava</span><h3>Tuhost a váha písmem Oswald i na detailu</h3></div>
       <p>Popisky a hodnoty tuhosti a ideální váhy nahoře na detailu matrace jsou písmem Oswald, stejně jako na kartách ve výpisu. Dříve tam byl Roboto.</p>
-      <div class="files">Soubory: ParametryMatrace.dc.html</div>
+      <div class="shots"><a class="shot" href="changelog-img/49-50-parametry-detail.jpg" target="_blank" rel="noopener" title="Otevřít ve větší velikosti"><img src="changelog-img/49-50-parametry-detail.jpg" width="620" height="267" loading="lazy" alt="Ukázka: Tuhost a váha písmem Oswald i na detailu"></a></div><!--/shots--><div class="files">Soubory: ParametryMatrace.dc.html</div>
     </article>
     <article class="entry">
       <div class="entry-h"><span class="tag t-roz">Rozhodnutí</span><h3>Magazín a prodejny ve stejné záložce</h3></div>
       <p>Na přání klienta se odkazy na magazín (články na homepage, tlačítka „Do magazínu“, články v megamenu a mobilním menu) a na detail prodejny otevírají ve stejné záložce. V nové záložce zůstávají jen Google Mapy (navigace) a YouTube videa.</p>
-      <div class="files">Soubory: index.dc.html, MegaMenu.dc.html, MobilniMenuObsah.dc.html, DostupnostObsah.dc.html</div>
+      <p class="note">Bez vizuální změny – týká se jen toho, kde se odkazy otevírají.</p><div class="files">Soubory: index.dc.html, MegaMenu.dc.html, MobilniMenuObsah.dc.html, DostupnostObsah.dc.html</div>
     </article>
     <article class="entry">
       <div class="entry-h"><span class="tag t-upr">Úprava</span><h3>Box „Nevíte si rady s výběrem?“ vedle popisu kategorie</h3></div>
       <p>Ve všech kategoriích je vedle dlouhého popisu a častých dotazů pod výpisem úzký pravý sloupec s boxem „Nevíte si rady s výběrem?“. Obsahuje telefon, e-mail a tlačítko Vybrat pobočku pod sebou. Při scrollu zůstává box přichycený. Na tabletu a mobilu je pod častými dotazy.</p>
-      <div class="files">Soubory: Kategorie.dc.html</div>
+      <div class="shots"><a class="shot" href="changelog-img/52-poradce-sloupec.jpg" target="_blank" rel="noopener" title="Otevřít ve větší velikosti"><img src="changelog-img/52-poradce-sloupec.jpg" width="900" height="311" loading="lazy" alt="Ukázka: Box „Nevíte si rady s výběrem?“ vedle popisu kategorie"></a></div><!--/shots--><div class="files">Soubory: Kategorie.dc.html</div>
     </article>
     <article class="entry">
       <div class="entry-h"><span class="tag t-roz">Rozhodnutí</span><h3>Set polštář + povlak: platí varianta B</h3></div>
       <p>Pro set polštáře s povlakem platí detail ve variantě B (polštář a povlak jako dvě karty s velkou fotkou). Varianta A byla z přepínače detailů v prezentační liště i z rozcestníku odebrána a B se jmenuje jen „Set polštář + povlak“.</p>
-      <div class="files">Soubory: všechny Detail_*.dc.html (přepínač detailů), Rozcestnik.dc.html</div>
+      <div class="shots"><a class="shot narrow" href="changelog-img/53-rozcestnik.jpg" target="_blank" rel="noopener" title="Otevřít ve větší velikosti"><img src="changelog-img/53-rozcestnik.jpg" width="409" height="100" loading="lazy" alt="Ukázka: Set polštář + povlak: platí varianta B"></a></div><!--/shots--><div class="files">Soubory: všechny Detail_*.dc.html (přepínač detailů), Rozcestnik.dc.html</div>
     </article>
     <article class="entry">
       <div class="entry-h"><span class="tag t-upr">Úprava</span><h3>Sety polštářů: tlačítka v kartách</h3></div>
       <p>V kartách setů (polštář + povlak, polštář + přikrývka, 1 + 1) je tlačítko „Vybrat“ primární (tmavě modré), dokud položka není vybraná. Po výběru se změní na sekundární „Změnit“. „Zobrazit“ u přikrývky zdarma je také sekundární. Dříve byla tlačítka meruňková. U přikrývky Bamboo zmizel zelený text „zdarma“, protože to už říká nadpis karty. Placeholder fotky před výběrem má bílý podklad.</p>
-      <div class="files">Soubory: Detail_Set_Polstar_B.dc.html, Detail_Set_Bamboo.dc.html, Detail_Set_Polstare_1plus1.dc.html</div>
+      <div class="shots"><a class="shot" href="changelog-img/54-55-sety-karty.jpg" target="_blank" rel="noopener" title="Otevřít ve větší velikosti"><img src="changelog-img/54-55-sety-karty.jpg" width="620" height="288" loading="lazy" alt="Ukázka: Sety polštářů: tlačítka v kartách"></a><a class="shot" href="changelog-img/54b-bamboo.jpg" target="_blank" rel="noopener" title="Otevřít ve větší velikosti"><img src="changelog-img/54b-bamboo.jpg" width="620" height="288" loading="lazy" alt="Ukázka: Sety polštářů: tlačítka v kartách"></a></div><!--/shots--><div class="files">Soubory: Detail_Set_Polstar_B.dc.html, Detail_Set_Bamboo.dc.html, Detail_Set_Polstare_1plus1.dc.html</div>
     </article>
     <article class="entry">
       <div class="entry-h"><span class="tag t-upr">Úprava</span><h3>Sety polštářů: karty v řádku pod sebou</h3></div>
       <p>Karty setu (polštář + povlak, polštář + přikrývka, set polštářů 1 + 1) jsou pod sebou jako řádky. Vlevo je menší fotka (zhruba 2/3 původní velikosti), uprostřed název, zvolená varianta a příplatek, vpravo tlačítko. U setů polštář + povlak a polštář + přikrývka jsou obě položky v jednom společném boxu, oddělené tenkou linkou, a malé bílé + na lince je spojuje. Set 1 + 1 má obě položky také v jednom boxu, jen bez znaménka +. Na malých telefonech je tlačítko pod textem.</p>
-      <div class="files">Soubory: Detail_Set_Polstar_B.dc.html, Detail_Set_Bamboo.dc.html, Detail_Set_Polstare_1plus1.dc.html</div>
+      <div class="shots"><a class="shot" href="changelog-img/54-55-sety-karty.jpg" target="_blank" rel="noopener" title="Otevřít ve větší velikosti"><img src="changelog-img/54-55-sety-karty.jpg" width="620" height="288" loading="lazy" alt="Ukázka: Sety polštářů: karty v řádku pod sebou"></a><a class="shot" href="changelog-img/54b-bamboo.jpg" target="_blank" rel="noopener" title="Otevřít ve větší velikosti"><img src="changelog-img/54b-bamboo.jpg" width="620" height="288" loading="lazy" alt="Ukázka: Sety polštářů: karty v řádku pod sebou"></a></div><!--/shots--><div class="files">Soubory: Detail_Set_Polstar_B.dc.html, Detail_Set_Bamboo.dc.html, Detail_Set_Polstare_1plus1.dc.html</div>
     </article>
   </section>
 
