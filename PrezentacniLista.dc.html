@@ -303,7 +303,7 @@ class Component extends DCLogic {
         onToggle: () => { if (p.onToggle) p.onToggle(idx); }
       })),
       // 11. 11. 2026: volba „Fixní sloupec“ skryta (výchozí Galerie); původní index ci zůstává, aby onPick stránek fungoval beze změn
-      choices: base.concat((p.choices || []).map((ch, ci) => ({ ch, ci })).filter(x => !['Fixní sloupec', 'Krokový Konfig.', 'Set', 'Materiál a odstín', 'Rozměr'].includes(x.ch.label)) /* 13. 11. 2026: skrytý i Krokový Konfig. (Multi Konf.), Set (výchozí S4), Materiál a odstín (výchozí B) a Rozměr (výchozí čipy V1) */.map(({ ch, ci }) => ({
+      choices: base.concat((p.choices || []).map((ch, ci) => ({ ch, ci })).filter(x => !['Fixní sloupec', 'Krokový Konfig.', 'Set', 'Materiál a odstín', 'Rozměr', 'Sticky filtrace', 'Kategorie'].includes(x.ch.label)) /* 13. 11. 2026: Sticky filtrace (ON) a Kategorie (K2) skryté */ /* 13. 11. 2026: skrytý i Krokový Konfig. (Multi Konf.), Set (výchozí S4), Materiál a odstín (výchozí B) a Rozměr (výchozí čipy V1) */.map(({ ch, ci }) => ({
         label: ch.label,
         options: (ch.options || []).map(opt => ({
           label: opt,

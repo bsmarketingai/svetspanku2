@@ -237,7 +237,7 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
       </sc-for>
     </div>
   </sc-if>
-  <dc-import name="SouhrnKosiku" totalLabel="Celková cena" total="{{ total }}" totalNoVat="{{ totalNoVat }}" ctaLabel="{{ ctaLabel }}" ctaSublabel="{{ ctaSublabel }}" termsNote="{{ termsNote }}" termsChecked="{{ termsChecked }}" onTerms="{{ onTerms }}" ctaHref="{{ ctaHref }}" noCta="{{ readonly }}" plain="{{ readonly }}" hint-size="100%,220px"></dc-import>
+  <dc-import name="SouhrnKosiku" totalLabel="Celková cena" total="{{ total }}" totalNoVat="{{ totalNoVat }}" ctaLabel="{{ ctaLabel }}" ctaSublabel="{{ ctaSublabel }}" termsNote="{{ termsNote }}" termsChecked="{{ termsChecked }}" onTerms="{{ onTerms }}" ctaHref="{{ ctaHref }}" onCta="{{ onCta }}" termsError="{{ termsError }}" noCta="{{ readonly }}" plain="{{ readonly }}" hint-size="100%,220px"></dc-import>
   <sc-if value="{{ hasBack }}" hint-placeholder-val="{{ true }}">
     <div style="display:flex;justify-content:center">
       <dc-import name="Tlacitko" label="{{ backLabel }}" variant="secondary" size="large" href="{{ backHref }}" iconLeft="arrow-left" hint-size="220px,52px"></dc-import>
@@ -273,7 +273,7 @@ class Component extends DCLogic {
       total: p.total ?? '41 480 Kč',
       totalNoVat: p.totalNoVat ?? '34 281 Kč',
       ctaLabel: p.ctaLabel || 'Pokračovat k dodacím údajům',
-      ctaHref: p.ctaHref || '#dodaci-udaje',
+      ctaHref: p.ctaHref || '#dodaci-udaje', onCta: p.onCta, termsError: !!p.termsError,
       ctaSublabel: p.ctaSublabel || '', termsNote: !!p.termsNote,
       termsChecked: !!p.termsChecked, onTerms: (v) => { if (p.onTerms) p.onTerms(v); },
       hasChecks: !!(p.checks && p.checks.length),

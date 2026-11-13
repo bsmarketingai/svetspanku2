@@ -207,7 +207,11 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
     </div>
   </sc-if>
   <sc-if value="{{ termsNote }}" hint-placeholder-val="{{ false }}">
+    <div style="display:flex;flex-direction:column;gap:4px" id="ss-terms">
     <dc-import name="Checkbox" parts="{{ termsParts }}" checked="{{ termsChecked }}" onChange="{{ onTerms }}" hint-size="100%,44px"></dc-import>
+    <!-- 13. 11. 2026: simulace validace – nezaškrtnuté obchodní podmínky -->
+    <sc-if value="{{ termsError }}" hint-placeholder-val="{{ false }}"><span role="alert" style="display:flex;align-items:center;gap:6px;font-size:14px;font-weight:600;color:var(--ss-status-error,#B3261E)"><dc-import name="Ikony" iconName="alert-circle" size="18" hint-size="18px,18px"></dc-import>Pro pokračování je potřeba souhlasit s obchodními podmínkami.</span></sc-if>
+    </div>
   </sc-if>
   <div style="display:flex;flex-direction:column;gap:4px">
     <div style="display:flex;align-items:baseline;justify-content:space-between;gap:16px">
@@ -217,7 +221,7 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
     <span style="align-self:flex-end;font-size:14px;color:var(--ss-text-muted,#5B6874);white-space:nowrap">{{ totalNoVat }} bez DPH</span>
   </div>
   <sc-if value="{{ hasCta }}" hint-placeholder-val="{{ true }}">
-    <dc-import name="Tlacitko" label="{{ ctaLabel }}" sublabel="{{ ctaSublabel }}" variant="buy" size="large" href="{{ ctaHref }}" iconRight="chevron-right" fullWidth="{{ true }}" hint-size="100%,52px"></dc-import>
+    <dc-import name="Tlacitko" label="{{ ctaLabel }}" sublabel="{{ ctaSublabel }}" variant="buy" size="large" href="{{ ctaHref }}" onClick="{{ onCtaClick }}" iconRight="chevron-right" fullWidth="{{ true }}" hint-size="100%,52px"></dc-import>
   </sc-if>
 </section>
 </x-dc>
@@ -231,7 +235,10 @@ class Component extends DCLogic {
       total: p.total ?? '47 570 Kč',
       totalNoVat: p.totalNoVat ?? '39 314 Kč',
       hasDiscount: !!p.discount, discount: p.discount,
-      ctaHref: p.ctaHref || '#doprava',
+      // 13. 11. 2026: onCta – stránka zkontroluje vyplnění; vrátí-li false, nepustí dál (jinak přejde na ctaHref)
+      ctaHref: p.onCta ? '' : (p.ctaHref || '#doprava'),
+      onCtaClick: () => { if (!p.onCta) return; if (p.onCta() !== false && p.ctaHref) (h => { try { const a = document.createElement('a'); a.href = h; a.style.display = 'none'; (document.getElementById('dc-root') || document.body).appendChild(a); a.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true, view: window })); a.remove(); } catch (e) { window.location.href = h; } })(p.ctaHref); },
+      termsError: !!p.termsError,
       ctaLabel: p.ctaLabel || 'Pokračovat v objednávce',
       totalLabel: p.totalLabel || 'Celkem za zboží',
       termsNote: !!p.termsNote,

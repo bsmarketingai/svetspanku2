@@ -210,7 +210,11 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
 .ss-sv-chev{pointer-events:none;display:flex;align-items:center;justify-content:center;width:44px;height:44px;margin:-6px -10px 0 0;border-radius:6px;color:var(--ss-text-secondary,#3D4750);transition:transform .15s cubic-bezier(.22,.61,.36,1),background-color .12s cubic-bezier(.22,.61,.36,1),color .12s cubic-bezier(.22,.61,.36,1);}
 .ss-sv-head[data-open="false"] .ss-sv-chev>span{transform:rotate(180deg);}
 .ss-sv-chev>span{display:flex;transition:transform .15s cubic-bezier(.22,.61,.36,1);}
-@media (hover:hover) and (pointer:fine){.ss-sv-head:hover .ss-sv-btn{color:var(--ss-hover-text,#21507B);}.ss-sv-head:hover .ss-sv-dot{box-shadow:inset 0 0 0 2px var(--ss-hover-text,#21507B);}.ss-sv-head[data-active="true"]:hover .ss-sv-dot{box-shadow:inset 0 0 0 2px #FBB255;}.ss-sv-head:hover .ss-sv-chev{background:var(--ss-hover-bg,#F0F5FA);color:var(--ss-hover-text,#21507B);}.ss-sv-head[data-rec="true"]:hover .ss-sv-chev{background:#FDDCAA;color:#7A4708;}}
+/* 13. 11. 2026: bez podbarvení při najetí – jen kurzor ukazatel (původně: @media (hover:hover) and (pointer:fine){.ss-sv-head:hover .s…) */
+/* 13. 11. 2026: tlačítko se šipkou v sekundárním stylu jako u FAQ (rámeček, světlý podklad, modrá šipka) */
+.ss-sv-chev{box-sizing:border-box;border:1px solid var(--ss-border-strong,#D9CCBA);background:var(--ss-surface-subtle,#FAF5EF);color:var(--ss-link-hover,#21507B);}
+.ss-sv-head[data-open="true"] .ss-sv-chev{background:var(--ss-surface-muted,#F3EDE4);}
+/* 13. 11. 2026: bez podbarvení při najetí – jen kurzor ukazatel (původně: @media (hover:hover) and (pointer:fine){.ss-sv-head:hover .s…) */
 </style>
 </helmet>
 <div style="{{ groupStyle }}">

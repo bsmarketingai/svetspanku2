@@ -423,13 +423,13 @@ a:hover{color:var(--ss-hover-text,#21507B);}
 
             <section aria-labelledby="ss-k3-dodaci" style="display:flex;flex-direction:column;gap:20px">
               <h2 id="ss-k3-dodaci" style="margin:0;font-size:{{ h2Size }};line-height:1.2">Dodací údaje</h2>
-              <dc-import name="Input" label="Jméno a příjmení" required="{{ true }}" autoComplete="name" bordered="{{ true }}" value="{{ f.name }}" onChange="{{ on.name }}" hint-size="100%,70px"></dc-import>
-              <dc-import name="Input" label="E-mail" type="email" required="{{ true }}" autoComplete="email" bordered="{{ true }}" value="{{ f.email }}" onChange="{{ on.email }}" hint-size="100%,70px"></dc-import>
+              <dc-import name="Input" label="Jméno a příjmení" required="{{ true }}" autoComplete="name" bordered="{{ true }}" value="{{ f.name }}" invalid="{{ er.name }}" hint="{{ eh.name }}" onChange="{{ on.name }}" hint-size="100%,70px"></dc-import>
+              <dc-import name="Input" label="E-mail" type="email" required="{{ true }}" autoComplete="email" bordered="{{ true }}" value="{{ f.email }}" invalid="{{ er.email }}" hint="{{ eh.email }}" onChange="{{ on.email }}" hint-size="100%,70px"></dc-import>
               <div role="group" aria-labelledby="ss-k3-tel" style="display:flex;flex-direction:column;gap:6px">
                 <span id="ss-k3-tel" style="font-size:13px;font-weight:600;color:var(--ss-text-secondary,#3D4750)">Telefon<span aria-hidden="true" style="color:var(--ss-status-error,#B3261E)"> *</span></span>
-                <div style="display:grid;grid-template-columns:128px minmax(0,1fr);gap:8px">
-                  <dc-import name="Select" ariaLabel="Předvolba" variant="outline" fullWidth="{{ true }}" options="{{ prefixes }}" value="{{ f.prefix }}" onChange="{{ on.prefix }}" hint-size="128px,44px"></dc-import>
-                  <dc-import name="Input" label="" ariaLabel="Telefonní číslo" type="tel" required="{{ true }}" autoComplete="tel-national" bordered="{{ true }}" value="{{ f.phone }}" onChange="{{ on.phone }}" hint="Na toto číslo vám dáme vědět o doručení objednávky." hint-size="100%,64px"></dc-import>
+                <div style="display:grid;grid-template-columns:{{ prefixCols }};gap:8px">
+                  <dc-import name="Select" ariaLabel="Předvolba" variant="outline" fullWidth="{{ true }}" options="{{ prefixes }}" value="{{ f.prefix }}" onChange="{{ on.prefix }}" hint-size="{{ prefixW }},44px"></dc-import>
+                  <dc-import name="Input" label="" ariaLabel="Telefonní číslo" type="tel" required="{{ true }}" autoComplete="tel-national" bordered="{{ true }}" value="{{ f.phone }}" invalid="{{ er.phone }}" onChange="{{ on.phone }}" hint="{{ eh.phone }}" hint-size="100%,64px"></dc-import>
                 </div>
               </div>
 
@@ -440,7 +440,7 @@ a:hover{color:var(--ss-hover-text,#21507B);}
               <sc-if value="{{ f.company }}" hint-placeholder-val="{{ false }}">
                 <section aria-labelledby="ss-k3-fakt" style="display:flex;flex-direction:column;gap:20px">
                   <h2 id="ss-k3-fakt" style="margin:0;font-size:{{ h3Size }};line-height:1.2">Fakturační údaje</h2>
-                  <dc-import name="Input" label="IČ" required="{{ true }}" bordered="{{ true }}" value="{{ f.ico }}" onChange="{{ on.ico }}" hint-size="100%,70px"></dc-import>
+                  <dc-import name="Input" label="IČ" required="{{ true }}" bordered="{{ true }}" value="{{ f.ico }}" invalid="{{ er.ico }}" hint="{{ eh.ico }}" onChange="{{ on.ico }}" hint-size="100%,70px"></dc-import>
                   <div style="display:grid;grid-template-columns:minmax(0,1fr) 32px;gap:8px;align-items:end">
                     <dc-import name="Input" label="DIČ (jen plátci DPH)" placeholder="CZ12345678" bordered="{{ true }}" value="{{ f.dic }}" onChange="{{ on.dic }}" hint-size="100%,70px"></dc-import>
                     <span style="display:flex;height:44px;align-items:center"><dc-import name="InfoPopover" title="DIČ" items="{{ dicInfo }}" hint-size="32px,32px"></dc-import></span>
@@ -450,10 +450,10 @@ a:hover{color:var(--ss-hover-text,#21507B);}
               </sc-if>
 
               <div style="display:flex;flex-direction:column;gap:20px;padding-top:20px;border-top:1px solid var(--ss-border-subtle,#E1E6EB)">
-                <dc-import name="Input" label="Ulice a číslo domu" required="{{ true }}" autoComplete="street-address" bordered="{{ true }}" value="{{ f.street }}" onChange="{{ on.street }}" hint-size="100%,70px"></dc-import>
+                <dc-import name="Input" label="Ulice a číslo domu" required="{{ true }}" autoComplete="street-address" bordered="{{ true }}" value="{{ f.street }}" invalid="{{ er.street }}" hint="{{ eh.street }}" onChange="{{ on.street }}" hint-size="100%,70px"></dc-import>
                 <div style="display:grid;grid-template-columns:{{ cityCols }};gap:16px">
-                  <dc-import name="Input" label="Město" required="{{ true }}" autoComplete="address-level2" bordered="{{ true }}" value="{{ f.city }}" onChange="{{ on.city }}" hint-size="100%,70px"></dc-import>
-                  <dc-import name="Input" label="PSČ" required="{{ true }}" autoComplete="postal-code" bordered="{{ true }}" value="{{ f.zip }}" onChange="{{ on.zip }}" hint-size="100%,70px"></dc-import>
+                  <dc-import name="Input" label="Město" required="{{ true }}" autoComplete="address-level2" bordered="{{ true }}" value="{{ f.city }}" invalid="{{ er.city }}" hint="{{ eh.city }}" onChange="{{ on.city }}" hint-size="100%,70px"></dc-import>
+                  <dc-import name="Input" label="PSČ" required="{{ true }}" autoComplete="postal-code" bordered="{{ true }}" value="{{ f.zip }}" invalid="{{ er.zip }}" hint="{{ eh.zip }}" onChange="{{ on.zip }}" hint-size="100%,70px"></dc-import>
                 </div>
               </div>
 
@@ -461,11 +461,11 @@ a:hover{color:var(--ss-hover-text,#21507B);}
                 <dc-import name="Checkbox" label="Doručit na jinou adresu" checked="{{ f.other }}" onChange="{{ on.other }}" hint-size="100%,44px"></dc-import>
                 <sc-if value="{{ f.other }}" hint-placeholder-val="{{ false }}">
                   <div style="display:flex;flex-direction:column;gap:20px;padding:12px 0 20px">
-                    <dc-import name="Input" label="Jméno a příjmení příjemce" required="{{ true }}" bordered="{{ true }}" value="{{ f.dName }}" onChange="{{ on.dName }}" hint-size="100%,70px"></dc-import>
-                    <dc-import name="Input" label="Ulice a číslo domu" required="{{ true }}" bordered="{{ true }}" value="{{ f.dStreet }}" onChange="{{ on.dStreet }}" hint-size="100%,70px"></dc-import>
+                    <dc-import name="Input" label="Jméno a příjmení příjemce" required="{{ true }}" bordered="{{ true }}" value="{{ f.dName }}" invalid="{{ er.dName }}" hint="{{ eh.dName }}" onChange="{{ on.dName }}" hint-size="100%,70px"></dc-import>
+                    <dc-import name="Input" label="Ulice a číslo domu" required="{{ true }}" bordered="{{ true }}" value="{{ f.dStreet }}" invalid="{{ er.dStreet }}" hint="{{ eh.dStreet }}" onChange="{{ on.dStreet }}" hint-size="100%,70px"></dc-import>
                     <div style="display:grid;grid-template-columns:{{ cityCols }};gap:16px">
-                      <dc-import name="Input" label="Město" required="{{ true }}" bordered="{{ true }}" value="{{ f.dCity }}" onChange="{{ on.dCity }}" hint-size="100%,70px"></dc-import>
-                      <dc-import name="Input" label="PSČ" required="{{ true }}" bordered="{{ true }}" value="{{ f.dZip }}" onChange="{{ on.dZip }}" hint-size="100%,70px"></dc-import>
+                      <dc-import name="Input" label="Město" required="{{ true }}" bordered="{{ true }}" value="{{ f.dCity }}" invalid="{{ er.dCity }}" hint="{{ eh.dCity }}" onChange="{{ on.dCity }}" hint-size="100%,70px"></dc-import>
+                      <dc-import name="Input" label="PSČ" required="{{ true }}" bordered="{{ true }}" value="{{ f.dZip }}" invalid="{{ er.dZip }}" hint="{{ eh.dZip }}" onChange="{{ on.dZip }}" hint-size="100%,70px"></dc-import>
                     </div>
                   </div>
                 </sc-if>
@@ -480,7 +480,7 @@ a:hover{color:var(--ss-hover-text,#21507B);}
           </div>
 
           <div style="{{ asideWrap }}">
-            <dc-import name="ShrnutiObjednavky" items="{{ items }}" lines="{{ lines }}" total="{{ total }}" totalNoVat="{{ totalNoVat }}" checks="{{ checks }}" onCheck="{{ onCheck }}" termsNote="{{ true }}" termsChecked="{{ terms }}" onTerms="{{ onTerms }}" ctaLabel="Odeslat objednávku" ctaSublabel="s povinností platby" ctaHref="Dekujeme.dc.html" backLabel="Zpět k dopravě a platbě" backHref="KosikKrok2.dc.html" hint-size="100%,900px"></dc-import>
+            <dc-import name="ShrnutiObjednavky" items="{{ items }}" lines="{{ lines }}" total="{{ total }}" totalNoVat="{{ totalNoVat }}" checks="{{ checks }}" onCheck="{{ onCheck }}" termsNote="{{ true }}" termsChecked="{{ terms }}" onTerms="{{ onTerms }}" ctaLabel="Odeslat objednávku" ctaSublabel="s povinností platby" ctaHref="Dekujeme.dc.html" onCta="{{ onCta }}" termsError="{{ termsError }}" backLabel="Zpět k dopravě a platbě" backHref="KosikKrok2.dc.html" hint-size="100%,900px"></dc-import>
           </div>
         </div>
       </div>
@@ -500,7 +500,7 @@ class Component extends DCLogic {
     width: typeof window !== 'undefined' ? document.documentElement.clientWidth : 1440,
     led: true,
     f: { name: '', email: '', prefix: '+420', phone: '', company: false, ico: '', dic: '', firm: '', street: '', city: '', zip: '', other: false, dName: '', dStreet: '', dCity: '', dZip: '', note: false, noteText: '' },
-    optSurvey: false, optNews: false, terms: false
+    optSurvey: false, optNews: false, terms: false, tried: false /* 13. 11. 2026: simulace validace po kliknutí na Odeslat */
   };
   componentDidMount() {
     this._r = () => this.setState({ width: document.documentElement.clientWidth });
@@ -535,7 +535,9 @@ class Component extends DCLogic {
       h3Size: narrow ? '20px' : '22px',
       cityCols: w >= 550 ? 'minmax(0,1fr) 160px' : 'minmax(0,1fr)',
       f: this.state.f, on,
-      prefixes: [{ value: '+420', label: 'CZ +420' }, { value: '+421', label: 'SK +421' }],
+      // 13. 11. 2026: na mobilu co nejužší předvolba – jen číslo (+420), sloupec 96 px
+      prefixes: w < 550 ? [{ value: '+420', label: '+420' }, { value: '+421', label: '+421' }] : [{ value: '+420', label: 'CZ +420' }, { value: '+421', label: 'SK +421' }],
+      prefixCols: (w < 550 ? '96px' : '128px') + ' minmax(0,1fr)', prefixW: w < 550 ? '96px' : '128px',
       dicInfo: ['Vyplňte, jen pokud je firma plátcem DPH', 'Formát: kód země a číslo, např. CZ12345678', 'Fakturu vystavíme s DIČ automaticky'],
       items: goods.map(g => ({ title: g.title, variant: g.variant, qty: g.qty, img: g.img, total: this.fmt(g.unit * g.qty) })),
       lines: [
@@ -547,6 +549,30 @@ class Component extends DCLogic {
         { label: 'Nepřeji si dostávat exkluzivní slevy a tipy e-mailem', checked: this.state.optNews }
       ],
       terms: this.state.terms,
+      ...(() => {
+        // 13. 11. 2026: povinná pole – chyby se ukážou až po kliknutí na Odeslat objednávku
+        const F = this.state.f, T = this.state.tried, E = {};
+        const req = ['name', 'email', 'phone', 'street', 'city', 'zip'].concat(F.company ? ['ico'] : []).concat(F.other ? ['dName', 'dStreet', 'dCity', 'dZip'] : []);
+        req.forEach(k => { if (!String(F[k] || '').trim()) E[k] = 'Vyplňte toto pole.'; });
+        if (!E.email && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(F.email)) E.email = 'Zadejte e-mail ve tvaru jmeno@domena.cz.';
+        if (!E.phone && String(F.phone).replace(/\D/g, '').length < 9) E.phone = 'Telefonní číslo musí mít 9 číslic.';
+        if (!E.zip && String(F.zip).replace(/\D/g, '').length !== 5) E.zip = 'PSČ má 5 číslic.';
+        if (F.other && !E.dZip && String(F.dZip).replace(/\D/g, '').length !== 5) E.dZip = 'PSČ má 5 číslic.';
+        if (F.company && !E.ico && String(F.ico).replace(/\D/g, '').length !== 8) E.ico = 'IČ má 8 číslic.';
+        const er = {}, eh = {};
+        Object.keys(F).forEach(k => { er[k] = T && !!E[k]; eh[k] = T && E[k] ? E[k] : ''; });
+        if (!eh.phone) eh.phone = 'Na toto číslo vám dáme vědět o doručení objednávky.';
+        const ok = Object.keys(E).length === 0 && this.state.terms;
+        return {
+          er, eh, termsError: T && !this.state.terms,
+          onCta: () => {
+            if (ok) return true;
+            this.setState({ tried: true });
+            setTimeout(() => { try { const el = document.querySelector('[aria-invalid="true"]') || document.getElementById('ss-terms'); if (el) { el.scrollIntoView({ block: 'center', behavior: 'smooth' }); if (el.focus) el.focus({ preventScroll: true }); } } catch (e) {} }, 60);
+            return false;
+          }
+        };
+      })(),
       onTerms: (v) => this.setState({ terms: v }),
       onCheck: (i, v) => this.setState(i === 0 ? { optSurvey: v } : { optNews: v }),
       total: this.fmt(total),

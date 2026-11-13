@@ -209,7 +209,7 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
 .ss-vr-in:checked:focus-visible ~ .ss-vr-dot{box-shadow:inset 0 0 0 2px #FBB255,0 0 0 3px rgba(41,96,147,.35);}
 .ss-vr-label{cursor:pointer;}
 .ss-vr-label::after{content:"";position:absolute;inset:0;border-radius:6px;}
-@media (hover:hover) and (pointer:fine){.ss-vr:not([data-disabled="true"]):hover .ss-vr-dot{box-shadow:inset 0 0 0 2px var(--ss-hover-text,#21507B);}.ss-vr:not([data-disabled="true"]):hover .ss-vr-label{color:var(--ss-hover-text,#21507B);}}
+/* 13. 11. 2026: bez podbarvení při najetí – jen kurzor ukazatel (původně: @media (hover:hover) and (pointer:fine){.ss-vr:not([data-dis…) */
 .ss-vr[data-disabled="true"] .ss-vr-label{cursor:not-allowed;}
 .ss-vr[data-disabled="true"] .ss-vr-dim{opacity:.45;}
 .ss-vr-media{display:flex;align-items:center;justify-content:center;border-radius:6px;overflow:hidden;color:var(--ss-link,#296093);}
