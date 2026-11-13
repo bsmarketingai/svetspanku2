@@ -241,13 +241,13 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
 .ss-mm-chip:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
 .ss-mm-cols{display:grid;gap:4px 24px;padding:12px 0 24px;}
 .ss-mm-col{min-width:0;padding:12px 0;}
-.ss-mm-group{display:flex;align-items:flex-start;gap:12px;color:inherit;border-radius:8px;}
-.ss-mm-group h3{margin:0;padding-top:4px;flex:1;min-width:0;font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:17px;line-height:1.25;color:var(--ss-text-heading,#0B1F33);transition:color .12s cubic-bezier(.22,.61,.36,1);}
+.ss-mm-group{display:flex;align-items:center;gap:12px;/* 13. 11. 2026: miniatura, nadpis i šipka svisle na střed */color:inherit;border-radius:8px;}
+.ss-mm-group h3{margin:0;padding-top:0;flex:0 1 auto;/* 13. 11. 2026: šipka přisazená k textu */min-width:0;font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:17px;line-height:1.25;color:var(--ss-text-heading,#0B1F33);transition:color .12s cubic-bezier(.22,.61,.36,1);}
 .ss-mm-group h3{display:flex;flex-direction:column;align-items:flex-start;gap:6px;}
 /* Příznak TIP u nejprodávanější kategorie (4. 11. 2026) */
 .ss-tipbadge{display:inline-flex;align-items:center;height:20px;padding:0 7px;border-radius:4px;background:#FBB255;color:#1C2229;font-family:Roboto,Helvetica,Arial,sans-serif;font-size:11px;font-weight:700;letter-spacing:.08em;line-height:1;text-transform:uppercase;}
 .ss-mm-group:hover h3{color:var(--ss-hover-text,#21507B);}
-.ss-mm-chev{display:flex;flex:none;padding-top:4px;color:var(--ss-text-muted,#5B6874);transition:transform .15s cubic-bezier(.22,.61,.36,1),color .12s cubic-bezier(.22,.61,.36,1);}
+.ss-mm-chev{display:flex;flex:none;padding-top:0;margin-left:-6px;color:var(--ss-text-muted,#5B6874);transition:transform .15s cubic-bezier(.22,.61,.36,1),color .12s cubic-bezier(.22,.61,.36,1);}
 .ss-mm-group:hover .ss-mm-chev{transform:translateX(4px);color:var(--ss-hover-text,#21507B);}
 .ss-mm-group:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
 .ss-mm-img{display:block;width:48px;height:48px;flex:none;border-radius:8px;overflow:hidden;background:var(--ss-surface-page,#FFFFFF);}
@@ -1923,13 +1923,13 @@ return { MENU, UTILITY, QUICK };
 })();
 class Component extends DCLogic {
   // Mega menu v2 (4. 11. 2026): props category (sekce z menu.js), touch (tablet bez najetí myší → Zobrazit vše jako tlačítko), maxItems (výchozí 4; tvrdost celá).
-  // Varianta mega menu A/B/C/D (D = jako C, nahoře banner z hlavičky kategorie jako fotka, 9. 11. 2026; A 6. 11., B pod položkami 9. 11., C = dřívější B s tipy vpravo) – globálně z prezentační lišty, uloženo v ss-mmv, událost ss-mmv; prop variant ji přebije
-  state = { demo: null, width: typeof window !== 'undefined' ? document.documentElement.clientWidth : 1440, mmv: (() => { try { return (v => ['A', 'B', 'C', 'D'].includes(v) ? v : 'A')(localStorage.getItem('ss-mmv')); } catch (e) { return 'A'; } })() };
+  // Varianta mega menu A/B/C/D (D = jako C, nahoře banner z hlavičky kategorie jako fotka, 9. 11. 2026; A 6. 11., B pod položkami 9. 11., C = dřívější B s tipy vpravo) – globálně z prezentační lišty, uloženo v ss-mmv2 (13. 11. 2026 výchozí B, starý klíč ss-mmv se ignoruje), událost ss-mmv; prop variant ji přebije
+  state = { demo: null, width: typeof window !== 'undefined' ? document.documentElement.clientWidth : 1440, mmv: (() => { try { return (v => ['A', 'B', 'C', 'D'].includes(v) ? v : 'B')(localStorage.getItem('ss-mmv2')); } catch (e) { return 'B'; } })() };
   componentDidMount() {
     if (!this.props.category) Promise.resolve(__M_menu).then(m => this.setState({ demo: m.MENU[0] }));
     this._resize = () => this.setState({ width: document.documentElement.clientWidth });
     window.addEventListener('resize', this._resize);
-    this._mmv = () => { try { this.setState({ mmv: (v => ['A', 'B', 'C', 'D'].includes(v) ? v : 'A')(localStorage.getItem('ss-mmv')) }); } catch (e) {} };
+    this._mmv = () => { try { this.setState({ mmv: (v => ['A', 'B', 'C', 'D'].includes(v) ? v : 'B')(localStorage.getItem('ss-mmv2')) }); } catch (e) {} };
     window.addEventListener('ss-mmv', this._mmv);
   }
   componentWillUnmount() { window.removeEventListener('resize', this._resize); window.removeEventListener('ss-mmv', this._mmv); }
@@ -1941,7 +1941,7 @@ class Component extends DCLogic {
     const chipGroups = all.filter(g => g.chips && g.chips !== 'hardness');
     const colGroups = all.filter(g => !(g.chips && g.chips !== 'hardness'));
     const V = ['A', 'B', 'C', 'D'].includes(this.props.variant) ? this.props.variant : this.state.mmv;
-    const cols = Math.max(1, Math.min(colGroups.length, V === 'B' ? (w >= 1300 ? 4 : 3) : w >= 1300 ? 5 : w >= 1150 ? 4 : 3 /* XXL max 5 sloupců – 6 zalamovalo názvy (4. 11. 2026) */));
+    const cols = Math.max(1, Math.min(colGroups.length, V === 'B' ? (w >= 1300 ? 5 : w >= 1150 ? 4 : 3) /* B: XXL 5 sloupců (13. 11. 2026) */ : w >= 1300 ? 5 : w >= 1150 ? 4 : 3 /* XXL max 5 sloupců – 6 zalamovalo názvy (4. 11. 2026) */));
     const bg = (src, size) => ({ display: 'block', width: '100%', height: '100%', background: src ? 'url(' + src + ') center / ' + (size || 'cover') + ' no-repeat' : 'none' });
     // Odkazy do jiné sekce (link) až za vlastní položky, před první oddělovač (4. 11. 2026)
     // Odkazy na články (label „Článek: …“ nebo article: true) nepatří mezi podkategorie – jdou do řady Tip / Poradíme (A, B, C) jako karta článku (9. 11. 2026)

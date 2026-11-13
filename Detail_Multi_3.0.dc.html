@@ -190,6 +190,11 @@ main>section.ss-grad-top.ss-grad-glow{background-image:radial-gradient(ellipse 5
 html[data-mode="dark"] main>section.ss-grad-top.ss-grad-glow{background-image:radial-gradient(ellipse 55% 100% at 50% 100%,rgba(251,178,85,.14) 0%,rgba(251,178,85,.05) 45%,rgba(251,178,85,0) 75%),linear-gradient(180deg,var(--ss-surface-page,#0E1F2F) 0%,var(--ss-surface-muted,#183049) 100%)!important;}
 
 
+
+/* 13. 11. 2026: výběrové řádky jako u polštářů a setů – před výběrem primární „Vybrat“, po výběru sekundární „Změnit“ (místo šipky) */
+.ss-pk-cta{flex:none;display:inline-flex;align-items:center;height:36px;padding:0 14px;border-radius:6px;font-size:14px;font-weight:600;white-space:nowrap;background:#132C43;color:#FFFFFF;transition:background-color .12s;}
+.ss-pk-cta[data-pri="false"]{background:var(--ss-surface-subtle,#FAF5EF);color:var(--ss-link-hover,#21507B);box-shadow:inset 0 0 0 1px var(--ss-border-strong,#D9CCBA);}
+@media (hover:hover) and (pointer:fine){.ss-pd-row:hover .ss-pk-cta[data-pri="true"]{background:#296093;}.ss-pd-row:hover .ss-pk-cta[data-pri="false"]{background:var(--ss-surface-muted,#F3EDE4);}}
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400..700&family=Roboto:wght@400..700&display=swap" rel="stylesheet">
 <script>try{var d=document.documentElement;if(localStorage.getItem('ss-mode')==='dark')d.setAttribute('data-mode','dark');d.setAttribute('data-logo',localStorage.getItem('ss-logo')||'a');d.setAttribute('data-font-h','base');d.setAttribute('data-font-b','base');d.setAttribute('data-bg',localStorage.getItem('ss-bg')||'on');}catch(e){}</script>
@@ -818,7 +823,7 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
                         </span>
                       </span>
                     </span>
-                    <span style="display:flex;color:var(--ss-text-heading,#0B1F33);flex:none"><dc-import name="Ikony" iconName="chevron-right" size="22" hint-size="22px,22px"></dc-import></span>
+                    <sc-if value="{{ p.isOff }}" hint-placeholder-val="{{ false }}"><span class="ss-pk-cta" data-pri="true">Vybrat</span></sc-if><sc-if value="{{ p.isOn }}" hint-placeholder-val="{{ true }}"><span class="ss-pk-cta" data-pri="false">Změnit</span></sc-if>
                   </button>
                 </div>
               </sc-for>

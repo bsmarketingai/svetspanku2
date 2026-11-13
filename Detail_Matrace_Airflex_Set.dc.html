@@ -496,8 +496,7 @@ html[data-mode="dark"] .ss-pd-glass::before,html[data-mode="dark"] .ss-pd-glassw
 .ss-pd-var:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
 .ss-pd-var-ph{position:relative;width:100%;border-radius:12px;overflow:hidden;background:var(--ss-surface-subtle,#FAF5EF);}
 .ss-pd-var img{transition:transform .4s cubic-bezier(.22,.61,.36,1);}
-@media (hover:hover) and (pointer:fine){.ss-pd-var:hover img{transform:scale(1.06);}.ss-pd-var[aria-pressed="false"]:hover{background:#FFFFFF!important;}.ss-pd-var[aria-pressed="false"]:hover .ss-pd-var-t{visibility:visible;}}
-.ss-pd-var[aria-pressed="false"] .ss-pd-var-t{visibility:hidden;}
+@media (hover:hover) and (pointer:fine){.ss-pd-var:hover img{transform:scale(1.06);}.ss-pd-var[aria-pressed="false"]:hover{background:#FFFFFF!important;}.ss-pd-var[aria-pressed="false"]:hover .ss-pd-var-t{visibility:visible;}.ss-pd-var[aria-pressed="false"]:hover .ss-pd-cs-dot{border-color:var(--ss-hover-text,#A4600C);}.ss-pd-var[aria-pressed="false"]:hover{box-shadow:inset 0 0 0 1px #132C43!important;}}
 .ss-pd-soc{display:flex;align-items:center;justify-content:center;gap:8px;flex:1;min-width:0;min-height:44px;padding:0 12px;border-radius:6px;font-size:14px;font-weight:600;text-decoration:none;white-space:nowrap;}
 .ss-pd-soc:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
 .ss-pd-fb{background:#3B5998;color:#FFFFFF;}
@@ -645,7 +644,14 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
             </div>
 
             <div style="padding:20px 0;border-top:1px solid var(--ss-border-subtle,#E1E6EB)">
-              <dc-import name="ParametryMatrace" layout="{{ pmLayout }}" tuhost="{{ selTuhost }}" zatizeniOd="{{ 50 }}" zatizeniDo="{{ 90 }}" nosnostMax="{{ 110 }}" spankNaBoku="{{ true }}" size="large" tuhostTitle="Tuhost matrace" hint-size="100%,180px"></dc-import>
+              <!-- 13. 11. 2026: dva sloupce – parametry každé matrace podle zvolené tuhosti (bez výběru prázdné) -->
+              <div style="display:grid;grid-template-columns:{{ pmPairTemplate }};gap:20px 24px">
+                <sc-for list="{{ pmPair }}" as="pm" hint-placeholder-count="2">
+                  <div style="min-width:0"><dc-import name="ParametryMatrace" layout="{{ pmLayout }}" tuhost="{{ pm.tuhost }}" zatizeniOd="{{ pm.zOd }}" zatizeniDo="{{ pm.zDo }}" nosnostMax="{{ 140 }}" noFacts="{{ true }}" spankNaBoku="{{ true }}" size="large" tuhostTitle="{{ pm.title }}" hint-size="100%,150px"></dc-import></div>
+                </sc-for>
+              </div>
+              <!-- 13. 11. 2026: štítky společné pro obě matrace jen jednou pod sloupci -->
+              <div><dc-import name="ParametryMatrace" nosnostMax="{{ 140 }}" vyska="{{ 25 }}" vyskaJadra="{{ 20 }}" zaruka="{{ 10 }}" size="large" hint-size="100%,32px"></dc-import></div>
             </div>
 
             <div style="display:grid;grid-template-columns:{{ factsTemplate }};gap:16px 20px;padding:20px 0;border-top:1px solid var(--ss-border-subtle,#E1E6EB);border-bottom:1px solid var(--ss-border-subtle,#E1E6EB)">
@@ -697,14 +703,20 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
             </div>
             </sc-if>
 
-            <!-- Matrace Airflex SET 1 + 1 (9. 11. 2026): rozměr každé ze dvou matrací zvlášť, čipy; nic předvybraného -->
+            <!-- Matrace Airflex SET 1 + 1: místo rozměru tuhost každé ze dvou matrací, karty jako u Matrace 3.0 (13. 11. 2026); nic předvybraného -->
             <div style="display:flex;flex-direction:column;gap:20px">
               <sc-for list="{{ setSizes }}" as="g" hint-placeholder-count="2">
-                <div style="display:flex;flex-direction:column;gap:10px">
-                  <div style="display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px"><span id="{{ g.id }}" style="font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:19px">{{ g.title }}</span><sc-if value="{{ g.warn }}" hint-placeholder-val="{{ false }}"><span class="ss-pk-msg">Vyberte rozměr</span></sc-if></div>
-                  <div style="display:flex;flex-wrap:wrap;gap:8px">
-                    <sc-for list="{{ g.items }}" as="s" hint-placeholder-count="5">
-                      <dc-import name="Chip" label="{{ s.label }}" size="standard" variant="{{ s.variant }}" ariaPressed="{{ s.pressed }}" check="{{ s.pressed }}" onClick="{{ s.onPick }}" hint-size="120px,36px"></dc-import>
+                <div style="display:flex;flex-direction:column;gap:12px">
+                  <div style="display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px"><span id="{{ g.id }}" style="font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:19px">{{ g.title }}</span><sc-if value="{{ g.warn }}" hint-placeholder-val="{{ false }}"><span class="ss-pk-msg">Vyberte tuhost</span></sc-if></div>
+                  <div style="display:grid;grid-template-columns:{{ varTemplate }};gap:12px">
+                    <sc-for list="{{ g.items }}" as="v" hint-placeholder-count="4">
+                      <button type="button" class="ss-pd-var" onClick="{{ v.onPick }}" aria-pressed="{{ v.pressed }}" aria-label="{{ v.aria }}" style="flex-direction:row;align-items:center;gap:10px;padding:12px;box-sizing:border-box;box-shadow:{{ v.ring }};background:{{ v.bg }};color:{{ v.fg }}">
+                        <span style="display:flex;flex:none" aria-hidden="true">
+                          <sc-if value="{{ v.selected }}" hint-placeholder-val="{{ false }}"><span class="ss-pd-var-check" style="position:static;width:22px;height:22px;box-shadow:none"><dc-import name="Ikony" iconName="check" size="16" hint-size="16px,16px"></dc-import></span></sc-if>
+                          <sc-if value="{{ v.notSelected }}" hint-placeholder-val="{{ true }}"><span class="ss-pd-cs-dot"></span></sc-if>
+                        </span>
+                        <span class="ss-pd-var-t" style="display:block;flex:1;min-width:0"><dc-import name="ParametryMatrace" tuhost="{{ v.tuhost }}" plain="{{ true }}" numOnly="{{ true }}" inverse="{{ v.selected }}" hint-size="100%,32px"></dc-import></span>
+                      </button>
                     </sc-for>
                   </div>
                 </div>
@@ -1477,12 +1489,12 @@ class Component extends DCLogic {
     const csErr = !this.state.csOn ? '' : (this.state.csW.length >= 2 && !csWok) ? 'Šířka musí být 80–220 cm.' : (this.state.csL.length >= 3 && !csLok) ? 'Délka musí být 180–240 cm.' : '';
     const price = fmt(now + csAdd);
     // SET 1 + 1 (9. 11. 2026): cena = součet cen obou zvolených rozměrů, do výběru obou „od“ nejlevnější kombinace (ukázkové ceny)
+    // 13. 11. 2026: SET 1 + 1 – u každé matrace se vybírá tuhost (S–XL jako Matrace 3.0) místo rozměru; cena setu stejná pro všechny tuhosti
     const SET_SIZES = [
-      { id: '80x200', label: '80 × 200 cm', now: 6490, before: 7990 },
-      { id: '90x200', label: '90 × 200 cm', now: 6990, before: 8590 },
-      { id: '100x200', label: '100 × 200 cm', now: 7490, before: 9190 },
-      { id: '90x210', label: '90 × 210 cm', now: 7790, before: 9490 },
-      { id: '100x210', label: '100 × 210 cm', now: 8290, before: 9990 }
+      { id: 'S', label: 'H2 · měkká', short: 'S', tuhost: 2, zOd: 50, zDo: 80, now: 6990, before: 8590 },
+      { id: 'M', label: 'H3 · středně tvrdá', short: 'M', tuhost: 3, zOd: 65, zDo: 95, now: 6990, before: 8590 },
+      { id: 'L', label: 'H4 · tvrdá', short: 'L', tuhost: 4, zOd: 80, zDo: 115, now: 6990, before: 8590 },
+      { id: 'XL', label: 'H5 · velmi tvrdá', short: 'XL', tuhost: 5, zOd: 95, zDo: 140, now: 6990, before: 8590 }
     ];
     const S1 = SET_SIZES.find(x => x.id === this.state.m1), S2 = SET_SIZES.find(x => x.id === this.state.m2);
     if (!S1) this._pkMiss.push('ss-pk-m1');
@@ -1866,12 +1878,16 @@ class Component extends DCLogic {
       price: fmt(setNow), priceBefore: fmt(setBefore), discount: '−' + Math.round((1 - setNow / setBefore) * 100) + ' %', showBefore: true,
       priceLine: setDone ? fmt(setNow) : 'od ' + fmt(setNow),
       priceNote: setDone ? 'Cena setu včetně DPH' : 'Cena včetně DPH · nejlevnější kombinace',
-      setSizes: [['ss-pk-m1', 'Rozměr matrace 1', 'm1', S1], ['ss-pk-m2', 'Rozměr matrace 2', 'm2', S2]].map(([id, title, key, cur]) => ({ id, title,
+      pmPair: [['Tuhost matrace 1', S1], ['Tuhost matrace 2', S2]].map(([title, x]) => ({ title, tuhost: x ? x.tuhost : null, zOd: x ? x.zOd : null, zDo: x ? x.zDo : null })),
+      pmPairTemplate: w >= 400 ? 'repeat(2,minmax(0,1fr))' : 'minmax(0,1fr)',
+      setSizes: [['ss-pk-m1', 'Tuhost matrace 1', 'm1', S1], ['ss-pk-m2', 'Tuhost matrace 2', 'm2', S2]].map(([id, title, key, cur]) => ({ id, title,
         warn: !!this.state.warn && !cur,
-        items: SET_SIZES.map(x => { const on = !!cur && cur.id === x.id; return { label: x.label, variant: on ? 'primary' : 'outlineBox', pressed: on ? 'true' : 'false', onPick: () => this.setState({ [key]: x.id }) }; }) })),
-      stickyChips: [{ label: S1 ? 'Matrace 1: ' + S1.label : '' }, { label: S2 ? 'Matrace 2: ' + S2.label : '' }].filter(c => !!c.label),
+        items: SET_SIZES.map(x => { const on = !!cur && cur.id === x.id; return { aria: title + ': ' + x.label, tuhost: x.tuhost, selected: on, notSelected: !on, pressed: on ? 'true' : 'false',
+          ring: on ? 'none' : 'inset 0 0 0 1px var(--ss-border-strong,#C8D0D8)', bg: on ? '#132C43' : 'var(--ss-surface-box,#FFFFFF)', fg: on ? '#FFFFFF' : 'var(--ss-text-secondary,#3D4750)',
+          onPick: () => this.setState({ [key]: x.id }) }; }) })),
+      stickyChips: [{ label: S1 ? 'Matrace 1: tuhost ' + S1.tuhost : '' }, { label: S2 ? 'Matrace 2: tuhost ' + S2.tuhost : '' }].filter(c => !!c.label),
       addedTitle: 'Matrace Airflex SET 1 + 1',
-      addedVariant: (S1 ? S1.label : '–') + ' + ' + (S2 ? S2.label : '–')
+      addedVariant: 'Tuhost ' + (S1 ? S1.tuhost : '–') + ' + ' + (S2 ? S2.tuhost : '–')
     };
   }
 }

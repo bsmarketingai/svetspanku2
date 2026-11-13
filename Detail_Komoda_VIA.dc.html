@@ -190,6 +190,19 @@ main>section.ss-grad-top.ss-grad-glow{background-image:radial-gradient(ellipse 5
 html[data-mode="dark"] main>section.ss-grad-top.ss-grad-glow{background-image:radial-gradient(ellipse 55% 100% at 50% 100%,rgba(251,178,85,.14) 0%,rgba(251,178,85,.05) 45%,rgba(251,178,85,0) 75%),linear-gradient(180deg,var(--ss-surface-page,#0E1F2F) 0%,var(--ss-surface-muted,#183049) 100%)!important;}
 
 
+
+/* 13. 11. 2026: výběrové řádky jako u polštářů a setů – před výběrem primární „Vybrat“, po výběru sekundární „Změnit“ (místo šipky) */
+.ss-pk-cta{flex:none;display:inline-flex;align-items:center;height:36px;padding:0 14px;border-radius:6px;font-size:14px;font-weight:600;white-space:nowrap;background:#132C43;color:#FFFFFF;transition:background-color .12s;}
+.ss-pk-cta[data-pri="false"]{background:var(--ss-surface-subtle,#FAF5EF);color:var(--ss-link-hover,#21507B);box-shadow:inset 0 0 0 1px var(--ss-border-strong,#D9CCBA);}
+@media (hover:hover) and (pointer:fine){.ss-pd-row:hover .ss-pk-cta[data-pri="true"]{background:#296093;}.ss-pd-row:hover .ss-pk-cta[data-pri="false"]{background:var(--ss-surface-muted,#F3EDE4);}}
+
+/* 13. 11. 2026 mobil (<550 px): výběrový řádek ve dvou řádcích – nahoře kolečko + nadpis a popis, pod tím vlevo příplatek a vpravo tlačítko */
+@media (max-width:549px){
+.ss-pd-row:has(.ss-pk-cta){flex-wrap:wrap;row-gap:12px;}
+.ss-pd-row .ss-pd-tx{flex:1 1 calc(100% - 48px)!important;}
+.ss-pd-row .ss-pd-nt{margin-left:40px;margin-right:auto;white-space:normal!important;}
+.ss-pd-row:has(.ss-pk-cta) .ss-pd-var-check,.ss-pd-row:has(.ss-pk-cta) .ss-pd-cs-dot{align-self:flex-start!important;margin-top:2px;}
+}
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400..700&family=Roboto:wght@400..700&display=swap" rel="stylesheet">
 <script>try{var d=document.documentElement;if(localStorage.getItem('ss-mode')==='dark')d.setAttribute('data-mode','dark');d.setAttribute('data-logo',localStorage.getItem('ss-logo')||'a');d.setAttribute('data-font-h','base');d.setAttribute('data-font-b','base');d.setAttribute('data-bg',localStorage.getItem('ss-bg')||'on');}catch(e){}</script>
@@ -815,7 +828,7 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
                 <button type="button" class="ss-pd-row" id="{{ p.pkId }}" data-warn="{{ p.warnStr }}" onClick="{{ p.onOpen }}" aria-expanded="false">
                   <sc-if value="{{ p.isOn }}" hint-placeholder-val="{{ true }}"><span class="ss-pd-var-check" aria-hidden="true" style="position:static;align-self:center;flex:none"><dc-import name="Ikony" iconName="check" size="16" hint-size="16px,16px"></dc-import></span></sc-if>
                   <sc-if value="{{ p.isOff }}" hint-placeholder-val="{{ false }}"><span class="ss-pd-cs-dot" aria-hidden="true" style="align-self:center"></span></sc-if>
-                  <span style="flex:1;min-width:0;display:flex;flex-direction:column;gap:4px">
+                  <span class="ss-pd-tx" style="flex:1;min-width:0;display:flex;flex-direction:column;gap:4px">
                     <span style="font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:19px;color:var(--ss-text-primary,#1C2229)">{{ p.title }}</span>
                     <span style="display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-size:14px;color:var(--ss-text-secondary,#3D4750)">
                       <sc-if value="{{ p.hasSwatch }}" hint-placeholder-val="{{ false }}">
@@ -824,8 +837,8 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
                       <span>{{ p.value }}</span>
                     </span>
                   </span>
-                  <span style="flex:none;font-size:15px;font-weight:600;color:{{ p.noteColor }};white-space:nowrap">{{ p.note }}</span>
-                  <span style="display:flex;color:var(--ss-text-heading,#0B1F33);flex:none"><dc-import name="Ikony" iconName="chevron-right" size="22" hint-size="22px,22px"></dc-import></span>
+                  <span class="ss-pd-nt" style="flex:none;font-size:15px;font-weight:600;color:{{ p.noteColor }};white-space:nowrap">{{ p.note }}</span>
+                  <sc-if value="{{ p.isOff }}" hint-placeholder-val="{{ false }}"><span class="ss-pk-cta" data-pri="true">Vybrat</span></sc-if><sc-if value="{{ p.isOn }}" hint-placeholder-val="{{ true }}"><span class="ss-pk-cta" data-pri="false">Změnit</span></sc-if>
                 </button>
               </sc-for>
             </div>

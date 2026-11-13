@@ -240,6 +240,27 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
 @media (prefers-reduced-motion:reduce){.ss-ct-chev{transition:none;}.ss-ct:hover .ss-ct-chev{transform:none;}}
 /* Horizontální dlaždice podkategorií větší (9. 11. 2026): název 19 px, fotka 56 px; mobil 17 px / 48 px */
 @media (max-width:549px){.ss-ct-htitle{font-size:17px!important;}.ss-ct-hmedia{width:48px!important;height:48px!important;}.ss-ct-hsub{font-size:13px!important;}}
+/* 13. 11. 2026 – dlaždice „výstup“ (homepage): */
+/* Desktop ≥820: vyšší pole fotky (16:9 místo 9:4) = větší fotky; matrace a rošty (data-zoom) ještě o kus větší; fotka blíž k názvu, název zarovnaný nahoru a víc místa dole (dvouřádkové názvy) */
+@media (min-width:820px){
+.ss-ct[data-pop="true"] .ss-ct-std>.ss-ct-media{aspect-ratio:16/9!important;margin-bottom:-14px!important;}
+.ss-ct[data-pop="true"]::before{top:calc(12px + (100cqw - 32px) * .28125);}
+.ss-ct[data-pop="true"] .ss-ct-std>.ss-ct-media .ss-ct-img[data-zoom="true"]{scale:1.45;}
+.ss-ct[data-pop="true"] .ss-ct-title[data-std="true"]{align-items:center!important;min-height:2.5em!important;} /* jednořádkové názvy svisle uprostřed výšky dvou řádků */
+.ss-ct[data-pop="true"]{padding-bottom:22px!important;}
+}
+/* S (550–819): větší názvy, fotky beze změny */
+@media (min-width:550px) and (max-width:819px){.ss-ct[data-pop="true"] .ss-ct-title[data-std="true"]{font-size:19px!important;}}
+/* XS/XXS (<550): vyšší pole fotky (4:3) = větší fotky; názvy 18 px (XS), pod 380 px 17 px */
+@media (max-width:549px){
+.ss-ct[data-pop="true"] .ss-ct-title[data-std="true"]{font-size:18px!important;}
+.ss-ct[data-pop="true"] .ss-ct-std>.ss-ct-media{aspect-ratio:4/3!important;}
+.ss-ct[data-pop="true"]::before{top:calc(12px + (100cqw - 32px) * .375);}
+.ss-ct[data-pop="true"] .ss-ct-std>.ss-ct-media .ss-ct-img[data-zoom="true"]{scale:1.4;}
+}
+@media (max-width:379px){.ss-ct[data-pop="true"] .ss-ct-title[data-std="true"]{font-size:17px!important;}}
+/* mobil a tablet (<820): fotka blíž k názvu */
+@media (max-width:819px){.ss-ct[data-pop="true"] .ss-ct-std>.ss-ct-media{margin-bottom:-16px!important;}}
 </style>
 </helmet>
 <a class="ss-ct" href="{{ href }}" data-photo="{{ photoStr }}" data-pop="{{ popStr }}" data-dense="{{ denseStr }}" style="{{ wrapStyle }}">

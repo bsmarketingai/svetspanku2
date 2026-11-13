@@ -190,6 +190,19 @@ main>section.ss-grad-top.ss-grad-glow{background-image:radial-gradient(ellipse 5
 html[data-mode="dark"] main>section.ss-grad-top.ss-grad-glow{background-image:radial-gradient(ellipse 55% 100% at 50% 100%,rgba(251,178,85,.14) 0%,rgba(251,178,85,.05) 45%,rgba(251,178,85,0) 75%),linear-gradient(180deg,var(--ss-surface-page,#0E1F2F) 0%,var(--ss-surface-muted,#183049) 100%)!important;}
 
 
+
+/* 13. 11. 2026: výběrové řádky jako u polštářů a setů – před výběrem primární „Vybrat“, po výběru sekundární „Změnit“ (místo šipky) */
+.ss-pk-cta{flex:none;display:inline-flex;align-items:center;height:36px;padding:0 14px;border-radius:6px;font-size:14px;font-weight:600;white-space:nowrap;background:#132C43;color:#FFFFFF;transition:background-color .12s;}
+.ss-pk-cta[data-pri="false"]{background:var(--ss-surface-subtle,#FAF5EF);color:var(--ss-link-hover,#21507B);box-shadow:inset 0 0 0 1px var(--ss-border-strong,#D9CCBA);}
+@media (hover:hover) and (pointer:fine){.ss-pd-row:hover .ss-pk-cta[data-pri="true"]{background:#296093;}.ss-pd-row:hover .ss-pk-cta[data-pri="false"]{background:var(--ss-surface-muted,#F3EDE4);}}
+
+/* 13. 11. 2026 mobil (<550 px): výběrový řádek ve dvou řádcích – nahoře kolečko + nadpis a popis, pod tím vlevo příplatek a vpravo tlačítko */
+@media (max-width:549px){
+.ss-pd-row:has(.ss-pk-cta){flex-wrap:wrap;row-gap:12px;}
+.ss-pd-row .ss-pd-tx{flex:1 1 calc(100% - 48px)!important;}
+.ss-pd-row .ss-pd-nt{margin-left:40px;margin-right:auto;white-space:normal!important;}
+.ss-pd-row:has(.ss-pk-cta) .ss-pd-var-check,.ss-pd-row:has(.ss-pk-cta) .ss-pd-cs-dot{align-self:flex-start!important;margin-top:2px;}
+}
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400..700&family=Roboto:wght@400..700&display=swap" rel="stylesheet">
 <script>try{var d=document.documentElement;if(localStorage.getItem('ss-mode')==='dark')d.setAttribute('data-mode','dark');d.setAttribute('data-logo',localStorage.getItem('ss-logo')||'a');d.setAttribute('data-font-h','base');d.setAttribute('data-font-b','base');d.setAttribute('data-bg',localStorage.getItem('ss-bg')||'on');}catch(e){}</script>
@@ -555,6 +568,16 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
 .ss-pd-lbth[aria-current="true"]{opacity:1;box-shadow:inset 0 0 0 2px #FFFFFF;}
 .ss-pd-lbth:hover{opacity:1;}
 .ss-pd-lbth:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(255,255,255,.6);}
+
+/* 13. 11. 2026: LED – místo zaškrtávátka přepínač; zapnuto = žlutý s fajfkou v jezdci, vypnuto = neutrální bez fajfky */
+.ss-sw{position:relative;display:block;flex:none;width:48px;height:28px;border-radius:999px;background:var(--ss-surface-strong,#E9E1D5);box-shadow:inset 0 0 0 1px var(--ss-border-strong,#C8D0D8);transition:background-color .18s cubic-bezier(.22,.61,.36,1),box-shadow .18s;}
+.ss-sw-k{position:absolute;top:3px;left:3px;width:22px;height:22px;border-radius:999px;background:#FFFFFF;box-shadow:0 1px 3px rgba(19,44,67,.25);display:flex;align-items:center;justify-content:center;color:#1C2229;transition:transform .18s cubic-bezier(.22,.61,.36,1);}
+.ss-sw-k svg{opacity:0;transition:opacity .12s;}
+.ss-led-sw[aria-checked="true"] .ss-sw{background:#FBB255;box-shadow:none;}
+.ss-led-sw[aria-checked="true"] .ss-sw-k{transform:translateX(20px);}
+.ss-led-sw[aria-checked="true"] .ss-sw-k svg{opacity:1;}
+@media (hover:hover) and (pointer:fine){.ss-led-sw:hover .ss-sw{box-shadow:inset 0 0 0 1px var(--ss-hover-text,#21507B);}.ss-led-sw[aria-checked="true"]:hover .ss-sw{background:#F0A23E;box-shadow:none;}}
+@media (prefers-reduced-motion:reduce){.ss-sw,.ss-sw-k,.ss-sw-k svg{transition:none;}}
 </style>
 </helmet>
 <div style="width:100%;background:var(--ss-surface-page,#FFFFFF);font-family:Roboto,Helvetica,Arial,sans-serif;color:var(--ss-text-primary,#1C2229)">
@@ -725,53 +748,46 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
                 <button type="button" class="ss-pd-row" id="{{ p.pkId }}" data-warn="{{ p.warnStr }}" onClick="{{ p.onOpen }}" aria-haspopup="dialog">
                   <sc-if value="{{ p.isOn }}" hint-placeholder-val="{{ false }}"><span class="ss-pd-var-check" aria-hidden="true" style="position:static;align-self:center;flex:none"><dc-import name="Ikony" iconName="check" size="16" hint-size="16px,16px"></dc-import></span></sc-if>
                   <sc-if value="{{ p.isOff }}" hint-placeholder-val="{{ true }}"><span class="ss-pd-cs-dot" aria-hidden="true" style="align-self:center"></span></sc-if>
-                  <span style="flex:1;min-width:0;display:flex;flex-direction:column;gap:4px">
+                  <span class="ss-pd-tx" style="flex:1;min-width:0;display:flex;flex-direction:column;gap:4px">
                     <span style="font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:19px;color:var(--ss-text-primary,#1C2229)">{{ p.title }}</span>
                     <span style="display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-size:14px;color:var(--ss-text-secondary,#3D4750)">
                       <sc-if value="{{ p.hasSwatch }}" hint-placeholder-val="{{ false }}"><span style="width:22px;height:22px;flex:none;border-radius:999px;background:{{ p.swatch }};box-shadow:inset 0 0 0 1px rgba(19,44,67,.15)"></span></sc-if>
                       <span>{{ p.value }}</span>
                     </span>
                   </span>
-                  <span style="flex:none;font-size:15px;font-weight:600;color:{{ p.noteColor }};white-space:nowrap">{{ p.note }}</span>
-                  <span style="display:flex;color:var(--ss-text-heading,#0B1F33);flex:none"><dc-import name="Ikony" iconName="chevron-right" size="22" hint-size="22px,22px"></dc-import></span>
+                  <span class="ss-pd-nt" style="flex:none;font-size:15px;font-weight:600;color:{{ p.noteColor }};white-space:nowrap">{{ p.note }}</span>
+                  <sc-if value="{{ p.isOff }}" hint-placeholder-val="{{ false }}"><span class="ss-pk-cta" data-pri="true">Vybrat</span></sc-if><sc-if value="{{ p.isOn }}" hint-placeholder-val="{{ true }}"><span class="ss-pk-cta" data-pri="false">Změnit</span></sc-if>
                 </button>
               </sc-for>
               </div>
               <div class="ss-elev ss-led-box" id="ss-pk-led" data-warn="{{ ledWarnStr }}" style="background:var(--ss-surface-box,#FFFFFF);border:1px solid var(--ss-border-subtle,#E1E6EB);border-radius:12px;padding:20px;display:flex;flex-direction:column;gap:14px">
-              <button type="button" class="ss-pd-cs-radio" role="radio" aria-checked="{{ ledYesPressed }}" onClick="{{ toggleLed }}">
-                <span class="ss-pd-cs-dot"></span>
+              <button type="button" class="ss-pd-cs-radio ss-led-sw" role="switch" aria-checked="{{ ledYesPressed }}" onClick="{{ toggleLed }}">
+                <span class="ss-sw" aria-hidden="true"><span class="ss-sw-k"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span></span>
                 <span class="ss-pd-cs-t" style="font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:19px;line-height:1.2;transition:color .12s">Chcete skříň s LED osvětlením?</span>
+                <span style="margin-left:auto;flex:none;font-size:15px;font-weight:600;color:var(--ss-text-primary,#1C2229);white-space:nowrap">{{ ledYesDiff }}</span>
               </button>
               <sc-if value="{{ ledWarn }}" hint-placeholder-val="{{ false }}"><span class="ss-pk-msg">Vyberte, zda chcete LED osvětlení</span></sc-if>
-              <div class="ss-pd-segwrap">
-                <button type="button" class="ss-pd-seg" onClick="{{ pickLedNo }}" aria-pressed="{{ ledNoPressed }}">
-                  <span style="display:flex;align-items:center;gap:12px;width:100%;min-width:0">
-                    <span style="display:flex;align-items:center;justify-content:center;width:26px;flex:none">
-                      <sc-if value="{{ ledNoSel }}" hint-placeholder-val="{{ false }}"><span class="ss-pd-var-check" style="position:static"><dc-import name="Ikony" iconName="check" size="16" hint-size="16px,16px"></dc-import></span></sc-if>
-                      <sc-if value="{{ ledYesSel }}" hint-placeholder-val="{{ false }}"><span class="ss-pd-var-check" style="position:static;background:transparent;box-shadow:inset 0 0 0 1.5px var(--ss-text-muted,#5B6874);color:var(--ss-text-primary,#1C2229)"><dc-import name="Ikony" iconName="minus" size="16" hint-size="16px,16px"></dc-import></span></sc-if>
-                      <sc-if value="{{ ledNone }}" hint-placeholder-val="{{ true }}"><span class="ss-pd-cs-dot" aria-hidden="true"></span></sc-if>
-                    </span>
-                    <span style="display:flex;flex-direction:column;gap:2px;min-width:0;text-align:left">
-                      <span style="font-size:16px;font-weight:600;color:var(--ss-text-primary,#1C2229)">bez LED osvětlení</span>
-                                            <span style="font-size:13px;color:var(--ss-status-success,#157A41)">{{ ledNoDiff }}</span>
-                    </span>
-                  </span>
-                </button>
-                <button type="button" class="ss-pd-seg" onClick="{{ pickLedYes }}" aria-pressed="{{ ledYesPressed }}">
-                  <span style="display:flex;align-items:center;gap:12px;width:100%;min-width:0">
-                    <span style="display:flex;align-items:center;justify-content:center;width:26px;flex:none">
-                      <sc-if value="{{ ledYesSel }}" hint-placeholder-val="{{ false }}"><span class="ss-pd-var-check" style="position:static"><dc-import name="Ikony" iconName="check" size="16" hint-size="16px,16px"></dc-import></span></sc-if>
-                      <sc-if value="{{ ledNoSel }}" hint-placeholder-val="{{ false }}"><span class="ss-pd-var-check" style="position:static;background:transparent;box-shadow:inset 0 0 0 1.5px var(--ss-text-muted,#5B6874);color:var(--ss-text-primary,#1C2229)"><dc-import name="Ikony" iconName="plus" size="16" hint-size="16px,16px"></dc-import></span></sc-if>
-                      <sc-if value="{{ ledNone }}" hint-placeholder-val="{{ true }}"><span class="ss-pd-cs-dot" aria-hidden="true"></span></sc-if>
-                    </span>
-                    <span style="display:flex;flex-direction:column;gap:2px;min-width:0;text-align:left">
-                      <span style="font-size:16px;font-weight:600;color:var(--ss-text-primary,#1C2229)">s LED osvětlením</span>
-                      <span style="font-size:13px;color:var(--ss-text-muted,#5B6874)">LED pásek v obou sekcích</span>
-                      <span style="font-size:13px;font-weight:600;color:var(--ss-text-primary,#1C2229)">{{ ledYesDiff }}</span>
+              <!-- 13. 11. 2026: tlačítka bez LED / s LED odebrána – ovládá to přepínač u nadpisu -->
+              <!-- 13. 11. 2026: po zapnutí LED výběr typu osvětlení pro každou část skříně (drawer s obrázky) -->
+              <sc-if value="{{ hasLedPickers }}" hint-placeholder-val="{{ false }}">
+              <div style="display:flex;flex-direction:column;gap:12px">
+              <sc-for list="{{ ledPickers }}" as="p" hint-placeholder-count="2">
+                <button type="button" class="ss-pd-row" id="{{ p.pkId }}" data-warn="{{ p.warnStr }}" onClick="{{ p.onOpen }}" aria-haspopup="dialog">
+                  <sc-if value="{{ p.isOn }}" hint-placeholder-val="{{ false }}"><span class="ss-pd-var-check" aria-hidden="true" style="position:static;align-self:center;flex:none"><dc-import name="Ikony" iconName="check" size="16" hint-size="16px,16px"></dc-import></span></sc-if>
+                  <sc-if value="{{ p.isOff }}" hint-placeholder-val="{{ true }}"><span class="ss-pd-cs-dot" aria-hidden="true" style="align-self:center"></span></sc-if>
+                  <span class="ss-pd-tx" style="flex:1;min-width:0;display:flex;flex-direction:column;gap:4px">
+                    <span style="font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:19px;color:var(--ss-text-primary,#1C2229)">{{ p.title }}</span>
+                    <span style="display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-size:14px;color:var(--ss-text-secondary,#3D4750)">
+                      <sc-if value="{{ p.hasSwatch }}" hint-placeholder-val="{{ false }}"><span style="width:22px;height:22px;flex:none;border-radius:999px;background:{{ p.swatch }};box-shadow:inset 0 0 0 1px rgba(19,44,67,.15)"></span></sc-if>
+                      <span>{{ p.value }}</span>
                     </span>
                   </span>
+                  <span class="ss-pd-nt" style="flex:none;font-size:15px;font-weight:600;color:{{ p.noteColor }};white-space:nowrap">{{ p.note }}</span>
+                  <sc-if value="{{ p.isOff }}" hint-placeholder-val="{{ false }}"><span class="ss-pk-cta" data-pri="true">Vybrat</span></sc-if><sc-if value="{{ p.isOn }}" hint-placeholder-val="{{ true }}"><span class="ss-pk-cta" data-pri="false">Změnit</span></sc-if>
                 </button>
+              </sc-for>
               </div>
+              </sc-if>
               </div>
             </div>
 
@@ -1601,10 +1617,27 @@ class Component extends DCLogic {
     const layL = layRows.find(r => r.id === this.state.layL) || layRows[0];
     const layR = layRows.find(r => r.id === this.state.layR) || layRows[0];
     const _num = (t) => parseInt(String(t || '').replace(/[^0-9]/g, ''), 10) || 0;
-    const upDiff = 2990; // LED osvětlení
+    const upDiff = 2990; // LED osvětlení (základ)
+    // 13. 11. 2026: typ LED osvětlení se vybírá zvlášť pro každou část skříně (2D = levá + pravá) v draweru; obrázky = ilustrační schémata 1:1 (nahradit fotkami z e-shopu)
+    const LED_IMG = { L0: 'data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22600%22%20height%3D%22600%22%20viewBox%3D%220%200%20600%20600%22%3E%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22%23FFFFFF%22%2F%3E%3Crect%20x%3D%22180%22%20y%3D%2250%22%20width%3D%22240%22%20height%3D%22500%22%20rx%3D%224%22%20fill%3D%22%233B4652%22%2F%3E%3Crect%20x%3D%22192%22%20y%3D%2262%22%20width%3D%22216%22%20height%3D%22476%22%20fill%3D%22%232A333D%22%2F%3E%3Crect%20x%3D%22192%22%20y%3D%22170%22%20width%3D%22216%22%20height%3D%228%22%20fill%3D%22%2356616C%22%2F%3E%3Crect%20x%3D%22192%22%20y%3D%22280%22%20width%3D%22216%22%20height%3D%228%22%20fill%3D%22%2356616C%22%2F%3E%3Crect%20x%3D%22192%22%20y%3D%22390%22%20width%3D%22216%22%20height%3D%228%22%20fill%3D%22%2356616C%22%2F%3E%3C%2Fsvg%3E', L1: 'data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22600%22%20height%3D%22600%22%20viewBox%3D%220%200%20600%20600%22%3E%3Cdefs%3E%3Cfilter%20id%3D%22g%22%20x%3D%22-50%25%22%20y%3D%22-50%25%22%20width%3D%22200%25%22%20height%3D%22200%25%22%3E%3CfeGaussianBlur%20stdDeviation%3D%227%22%2F%3E%3C%2Ffilter%3E%3ClinearGradient%20id%3D%22c%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%220%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23FFD27A%22%20stop-opacity%3D%22.55%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23FFD27A%22%20stop-opacity%3D%220%22%2F%3E%3C%2FlinearGradient%3E%3ClinearGradient%20id%3D%22h%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%220%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23FFD27A%22%20stop-opacity%3D%22.45%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23FFD27A%22%20stop-opacity%3D%220%22%2F%3E%3C%2FlinearGradient%3E%3ClinearGradient%20id%3D%22h2%22%20x1%3D%221%22%20y1%3D%220%22%20x2%3D%220%22%20y2%3D%220%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23FFD27A%22%20stop-opacity%3D%22.45%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23FFD27A%22%20stop-opacity%3D%220%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22%23FFFFFF%22%2F%3E%3Crect%20x%3D%22180%22%20y%3D%2250%22%20width%3D%22240%22%20height%3D%22500%22%20rx%3D%224%22%20fill%3D%22%233B4652%22%2F%3E%3Crect%20x%3D%22192%22%20y%3D%2262%22%20width%3D%22216%22%20height%3D%22476%22%20fill%3D%22%232A333D%22%2F%3E%3Crect%20x%3D%22192%22%20y%3D%22170%22%20width%3D%22216%22%20height%3D%228%22%20fill%3D%22%2356616C%22%2F%3E%3Crect%20x%3D%22192%22%20y%3D%22280%22%20width%3D%22216%22%20height%3D%228%22%20fill%3D%22%2356616C%22%2F%3E%3Crect%20x%3D%22192%22%20y%3D%22390%22%20width%3D%22216%22%20height%3D%228%22%20fill%3D%22%2356616C%22%2F%3E%3Cpolygon%20points%3D%22204%2C70%20396%2C70%20420%2C330%20180%2C330%22%20fill%3D%22url%28%23c%29%22%2F%3E%3Crect%20x%3D%22204%22%20y%3D%2264%22%20width%3D%22192%22%20height%3D%226%22%20rx%3D%223%22%20fill%3D%22%23FFE3A3%22%20filter%3D%22url%28%23g%29%22%2F%3E%3Crect%20x%3D%22204%22%20y%3D%2264%22%20width%3D%22192%22%20height%3D%225%22%20rx%3D%222.5%22%20fill%3D%22%23FFF4D6%22%2F%3E%3C%2Fsvg%3E', L2: 'data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22600%22%20height%3D%22600%22%20viewBox%3D%220%200%20600%20600%22%3E%3Cdefs%3E%3Cfilter%20id%3D%22g%22%20x%3D%22-50%25%22%20y%3D%22-50%25%22%20width%3D%22200%25%22%20height%3D%22200%25%22%3E%3CfeGaussianBlur%20stdDeviation%3D%227%22%2F%3E%3C%2Ffilter%3E%3ClinearGradient%20id%3D%22c%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%220%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23FFD27A%22%20stop-opacity%3D%22.55%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23FFD27A%22%20stop-opacity%3D%220%22%2F%3E%3C%2FlinearGradient%3E%3ClinearGradient%20id%3D%22h%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%220%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23FFD27A%22%20stop-opacity%3D%22.45%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23FFD27A%22%20stop-opacity%3D%220%22%2F%3E%3C%2FlinearGradient%3E%3ClinearGradient%20id%3D%22h2%22%20x1%3D%221%22%20y1%3D%220%22%20x2%3D%220%22%20y2%3D%220%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23FFD27A%22%20stop-opacity%3D%22.45%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23FFD27A%22%20stop-opacity%3D%220%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22%23FFFFFF%22%2F%3E%3Crect%20x%3D%22180%22%20y%3D%2250%22%20width%3D%22240%22%20height%3D%22500%22%20rx%3D%224%22%20fill%3D%22%233B4652%22%2F%3E%3Crect%20x%3D%22192%22%20y%3D%2262%22%20width%3D%22216%22%20height%3D%22476%22%20fill%3D%22%232A333D%22%2F%3E%3Crect%20x%3D%22192%22%20y%3D%22170%22%20width%3D%22216%22%20height%3D%228%22%20fill%3D%22%2356616C%22%2F%3E%3Crect%20x%3D%22192%22%20y%3D%22280%22%20width%3D%22216%22%20height%3D%228%22%20fill%3D%22%2356616C%22%2F%3E%3Crect%20x%3D%22192%22%20y%3D%22390%22%20width%3D%22216%22%20height%3D%228%22%20fill%3D%22%2356616C%22%2F%3E%3Crect%20x%3D%22196%22%20y%3D%2266%22%20width%3D%2270%22%20height%3D%22468%22%20fill%3D%22url%28%23h%29%22%2F%3E%3Crect%20x%3D%22334%22%20y%3D%2266%22%20width%3D%2270%22%20height%3D%22468%22%20fill%3D%22url%28%23h2%29%22%2F%3E%3Crect%20x%3D%22195%22%20y%3D%2270%22%20width%3D%226%22%20height%3D%22460%22%20rx%3D%223%22%20fill%3D%22%23FFE3A3%22%20filter%3D%22url%28%23g%29%22%2F%3E%3Crect%20x%3D%22195%22%20y%3D%2270%22%20width%3D%225%22%20height%3D%22460%22%20rx%3D%222.5%22%20fill%3D%22%23FFF4D6%22%2F%3E%3Crect%20x%3D%22400%22%20y%3D%2270%22%20width%3D%226%22%20height%3D%22460%22%20rx%3D%223%22%20fill%3D%22%23FFE3A3%22%20filter%3D%22url%28%23g%29%22%2F%3E%3Crect%20x%3D%22400%22%20y%3D%2270%22%20width%3D%225%22%20height%3D%22460%22%20rx%3D%222.5%22%20fill%3D%22%23FFF4D6%22%2F%3E%3C%2Fsvg%3E', L3: 'data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22600%22%20height%3D%22600%22%20viewBox%3D%220%200%20600%20600%22%3E%3Cdefs%3E%3Cfilter%20id%3D%22g%22%20x%3D%22-50%25%22%20y%3D%22-50%25%22%20width%3D%22200%25%22%20height%3D%22200%25%22%3E%3CfeGaussianBlur%20stdDeviation%3D%227%22%2F%3E%3C%2Ffilter%3E%3ClinearGradient%20id%3D%22c%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%220%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23FFD27A%22%20stop-opacity%3D%22.55%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23FFD27A%22%20stop-opacity%3D%220%22%2F%3E%3C%2FlinearGradient%3E%3ClinearGradient%20id%3D%22h%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%220%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23FFD27A%22%20stop-opacity%3D%22.45%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23FFD27A%22%20stop-opacity%3D%220%22%2F%3E%3C%2FlinearGradient%3E%3ClinearGradient%20id%3D%22h2%22%20x1%3D%221%22%20y1%3D%220%22%20x2%3D%220%22%20y2%3D%220%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23FFD27A%22%20stop-opacity%3D%22.45%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23FFD27A%22%20stop-opacity%3D%220%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22%23FFFFFF%22%2F%3E%3Crect%20x%3D%22180%22%20y%3D%2250%22%20width%3D%22240%22%20height%3D%22500%22%20rx%3D%224%22%20fill%3D%22%233B4652%22%2F%3E%3Crect%20x%3D%22192%22%20y%3D%2262%22%20width%3D%22216%22%20height%3D%22476%22%20fill%3D%22%232A333D%22%2F%3E%3Crect%20x%3D%22192%22%20y%3D%22170%22%20width%3D%22216%22%20height%3D%228%22%20fill%3D%22%2356616C%22%2F%3E%3Crect%20x%3D%22192%22%20y%3D%22280%22%20width%3D%22216%22%20height%3D%228%22%20fill%3D%22%2356616C%22%2F%3E%3Crect%20x%3D%22192%22%20y%3D%22390%22%20width%3D%22216%22%20height%3D%228%22%20fill%3D%22%2356616C%22%2F%3E%3Cpolygon%20points%3D%22204%2C72%20396%2C72%20404%2C142%20196%2C142%22%20fill%3D%22url%28%23c%29%22%2F%3E%3Crect%20x%3D%22204%22%20y%3D%2270%22%20width%3D%22192%22%20height%3D%225%22%20rx%3D%222.5%22%20fill%3D%22%23FFE3A3%22%20filter%3D%22url%28%23g%29%22%2F%3E%3Crect%20x%3D%22204%22%20y%3D%2270%22%20width%3D%22192%22%20height%3D%224%22%20rx%3D%222%22%20fill%3D%22%23FFF4D6%22%2F%3E%3Cpolygon%20points%3D%22204%2C180%20396%2C180%20404%2C250%20196%2C250%22%20fill%3D%22url%28%23c%29%22%2F%3E%3Crect%20x%3D%22204%22%20y%3D%22178%22%20width%3D%22192%22%20height%3D%225%22%20rx%3D%222.5%22%20fill%3D%22%23FFE3A3%22%20filter%3D%22url%28%23g%29%22%2F%3E%3Crect%20x%3D%22204%22%20y%3D%22178%22%20width%3D%22192%22%20height%3D%224%22%20rx%3D%222%22%20fill%3D%22%23FFF4D6%22%2F%3E%3Cpolygon%20points%3D%22204%2C290%20396%2C290%20404%2C360%20196%2C360%22%20fill%3D%22url%28%23c%29%22%2F%3E%3Crect%20x%3D%22204%22%20y%3D%22288%22%20width%3D%22192%22%20height%3D%225%22%20rx%3D%222.5%22%20fill%3D%22%23FFE3A3%22%20filter%3D%22url%28%23g%29%22%2F%3E%3Crect%20x%3D%22204%22%20y%3D%22288%22%20width%3D%22192%22%20height%3D%224%22%20rx%3D%222%22%20fill%3D%22%23FFF4D6%22%2F%3E%3Cpolygon%20points%3D%22204%2C400%20396%2C400%20404%2C470%20196%2C470%22%20fill%3D%22url%28%23c%29%22%2F%3E%3Crect%20x%3D%22204%22%20y%3D%22398%22%20width%3D%22192%22%20height%3D%225%22%20rx%3D%222.5%22%20fill%3D%22%23FFE3A3%22%20filter%3D%22url%28%23g%29%22%2F%3E%3Crect%20x%3D%22204%22%20y%3D%22398%22%20width%3D%22192%22%20height%3D%224%22%20rx%3D%222%22%20fill%3D%22%23FFF4D6%22%2F%3E%3C%2Fsvg%3E', L4: 'data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22600%22%20height%3D%22600%22%20viewBox%3D%220%200%20600%20600%22%3E%3Cdefs%3E%3Cfilter%20id%3D%22g%22%20x%3D%22-50%25%22%20y%3D%22-50%25%22%20width%3D%22200%25%22%20height%3D%22200%25%22%3E%3CfeGaussianBlur%20stdDeviation%3D%227%22%2F%3E%3C%2Ffilter%3E%3ClinearGradient%20id%3D%22c%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%220%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23FFD27A%22%20stop-opacity%3D%22.55%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23FFD27A%22%20stop-opacity%3D%220%22%2F%3E%3C%2FlinearGradient%3E%3ClinearGradient%20id%3D%22h%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%220%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23FFD27A%22%20stop-opacity%3D%22.45%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23FFD27A%22%20stop-opacity%3D%220%22%2F%3E%3C%2FlinearGradient%3E%3ClinearGradient%20id%3D%22h2%22%20x1%3D%221%22%20y1%3D%220%22%20x2%3D%220%22%20y2%3D%220%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23FFD27A%22%20stop-opacity%3D%22.45%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23FFD27A%22%20stop-opacity%3D%220%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22%23FFFFFF%22%2F%3E%3Crect%20x%3D%22180%22%20y%3D%2250%22%20width%3D%22240%22%20height%3D%22500%22%20rx%3D%224%22%20fill%3D%22%233B4652%22%2F%3E%3Crect%20x%3D%22192%22%20y%3D%2262%22%20width%3D%22216%22%20height%3D%22476%22%20fill%3D%22%232A333D%22%2F%3E%3Crect%20x%3D%22192%22%20y%3D%22170%22%20width%3D%22216%22%20height%3D%228%22%20fill%3D%22%2356616C%22%2F%3E%3Crect%20x%3D%22192%22%20y%3D%22280%22%20width%3D%22216%22%20height%3D%228%22%20fill%3D%22%2356616C%22%2F%3E%3Crect%20x%3D%22192%22%20y%3D%22390%22%20width%3D%22216%22%20height%3D%228%22%20fill%3D%22%2356616C%22%2F%3E%3Cpolygon%20points%3D%22204%2C70%20396%2C70%20420%2C330%20180%2C330%22%20fill%3D%22url%28%23c%29%22%2F%3E%3Crect%20x%3D%22204%22%20y%3D%2264%22%20width%3D%22192%22%20height%3D%226%22%20rx%3D%223%22%20fill%3D%22%23FFE3A3%22%20filter%3D%22url%28%23g%29%22%2F%3E%3Crect%20x%3D%22204%22%20y%3D%2264%22%20width%3D%22192%22%20height%3D%225%22%20rx%3D%222.5%22%20fill%3D%22%23FFF4D6%22%2F%3E%3Ccircle%20cx%3D%22455%22%20cy%3D%22110%22%20r%3D%229%22%20fill%3D%22%23132C43%22%2F%3E%3Cpath%20d%3D%22M472%2092a26%2026%200%200%201%200%2036M486%2080a44%2044%200%200%201%200%2060%22%20fill%3D%22none%22%20stroke%3D%22%23132C43%22%20stroke-width%3D%225%22%20stroke-linecap%3D%22round%22%2F%3E%3C%2Fsvg%3E' };
+    const LED_OPTS = [
+      { id: 'L0', name: 'Bez LED osvětlení', meta: 'tato část zůstane bez osvětlení', add: 0, none: true },
+      { id: 'L1', name: 'Horní LED lišta', meta: 'světlo pod stropem části, svítí dolů na oblečení', add: 1490 },
+      { id: 'L2', name: 'Svislé LED pásky po stranách', meta: 'rovnoměrné světlo po celé výšce části', add: 2790 },
+      { id: 'L3', name: 'LED pásky pod policemi', meta: 'podsvícení každé police', add: 3390 },
+      { id: 'L4', name: 'Horní LED lišta se senzorem', meta: 'rozsvítí se sama po otevření dveří', add: 2190 }
+    ].map(o => ({ id: o.id, label: o.name, name: o.name, meta: o.meta, add: o.add, price: o.none ? 'bez příplatku' : '+ ' + fmtK(o.add), /* 13. 11. 2026: bez základu „v ceně LED“ – každá varianta má celý příplatek za část */ none: !!o.none, stock: '', image: LED_IMG[o.id], full: LED_IMG[o.id] }));
+    const LED_SEK = [{ k: 'ledL', title: 'LED osvětlení – levá část' }, { k: 'ledR', title: 'LED osvětlení – pravá část' }]; // počet částí skříně: 2D = 2
+    const ledOf = (k) => LED_OPTS.find(o => o.id === this.state[k]) || LED_OPTS[1];
+    // 13. 11. 2026: každá část může být i bez LED; základ LED se účtuje, jen když svítí aspoň jedna část
+    const ledLit = LED_SEK.some(x => !(PK => PK[x.k] && ledOf(x.k).none)(this.state.pk || {}));
     const PK = this.state.pk || {};
+    // 13. 11. 2026: příplatek u přepínače LED se přepočítává podle zvolených typů LED v částech
+    const ledAllPicked = LED_SEK.every(x => !!PK[x.k]);
+    const ledMin = Math.min(...LED_OPTS.filter(o => !o.none).map(o => o.add));
+    const ledTotal = LED_SEK.reduce((a, x) => a + (PK[x.k] ? ledOf(x.k).add : 0), 0);
     const optAdd = (PK.sir ? sir.add : 0) + (PK.vys ? vys.add : 0) + (PK.mat && String(wood.note).indexOf('+') === 0 ? _num(wood.note) : 0)
-      + (PK.layL ? layL.add : 0) + (PK.layR ? layR.add : 0) + (PK.led && this.state.up === 'yes' ? upDiff : 0);
+      + (PK.layL ? layL.add : 0) + (PK.layR ? layR.add : 0) + (PK.led && this.state.up === 'yes' ? LED_SEK.reduce((a, x) => a + (PK[x.k] ? ledOf(x.k).add : 0), 0) : 0);
     const now = 38990 + optAdd, before = 41990 + optAdd;
     const csWn = 0, csLn = 0, csWok = false, csLok = false, csValid = false, csAddRaw = 0, csAdd = 0, csErr = '';
     const price = fmt(now);
@@ -1914,7 +1947,7 @@ class Component extends DCLogic {
       closeAdded: () => this.setState({ added: false }),
       // název položky v košíku obsahuje rozměr, olej a dřevo – materiál není samostatná položka (5. 11. 2026)
       addedTitle: 'Skříň UNI PD ' + sir.label.replace(' cm', '') + ' × ' + vys.label + ', olej ' + String(matItem.label).replace(/^olej /i, '') + ', ' + ((t) => { const p = String(t).split(' – '); return p[1] ? p[1] + ' ' + p[0].toLowerCase() : String(t).toLowerCase(); })(matGroup.title),
-      addedVariant: 'Uspořádání ' + layL.code + ' / ' + layR.code + (this.state.up === 'yes' ? ' · s LED osvětlením' : ' · bez LED osvětlení'),
+      addedVariant: 'Uspořádání ' + layL.code + ' / ' + layR.code + (this.state.up === 'yes' ? ' · LED: ' + LED_SEK.map(x => ledOf(x.k).name).join(' / ') : ' · bez LED osvětlení'),
       addedTotal: fmt(now * (this.state.qty || 1)),
       noop: () => {},
       favIcon: this.state.fav ? 'heart-filled' : 'heart',
@@ -2047,13 +2080,16 @@ class Component extends DCLogic {
         ].map(r => { const ok = !!PKs[r.k]; if (!ok) miss.push('ss-pk-' + r.k); return { title: r.title, value: ok ? r.value : 'Nevybráno', note: ok ? r.note : '', noteColor: nC(r.note), hasSwatch: ok && !!r.swatch, swatch: r.swatch || '',
           isOn: ok, isOff: !ok, pkId: 'ss-pk-' + r.k, warnStr: W && !ok ? 'true' : 'false', onOpen: () => this.setState({ drawer: 'sk-' + r.k }) }; });
         if (!PKs.led) miss.push('ss-pk-led');
+        const ledYes = !!PKs.led && this.state.up === 'yes';
+        const ledPickers = !ledYes ? [] : LED_SEK.map(x => { const ok = !!PKs[x.k], o = ledOf(x.k); if (!ok) miss.push('ss-pk-' + x.k); return { title: x.title, value: ok ? o.name : 'Nevybráno', note: ok && PP ? o.price : '', noteColor: nC(ok ? o.price : ''), hasSwatch: false, swatch: '',
+          isOn: ok, isOff: !ok, pkId: 'ss-pk-' + x.k, warnStr: W && !ok ? 'true' : 'false', onOpen: () => this.setState({ drawer: 'sk-' + x.k }) }; });
         const done = miss.length === 0, d = this.state.drawer || '';
         const LED_ROWS = [{ id: 'no', label: 'Bez LED osvětlení', meta: 'skříň bez osvětlení', price: 'bez příplatku', stock: '' }, { id: 'yes', label: 'S LED osvětlením', meta: 'LED pásek v obou sekcích, tvar podle nákresu', price: '+ ' + fmt(upDiff), stock: '' }];
         return {
-          skDims: dims, skPickers: rows,
+          skDims: dims, skPickers: rows, ledPickers, hasLedPickers: ledPickers.length > 0,
           ledNone: !PKs.led, ledNoSel: !!PKs.led && this.state.up === 'no', ledYesSel: !!PKs.led && this.state.up === 'yes',
           ledNoPressed: PKs.led && this.state.up === 'no' ? 'true' : 'false', ledYesPressed: PKs.led && this.state.up === 'yes' ? 'true' : 'false',
-          ledNoDiff: PP ? 'Bez příplatku' : '', ledYesDiff: PP ? '+\u00A0' + fmt(upDiff) : '',
+          ledNoDiff: PP ? 'Bez příplatku' : '', ledYesDiff: !PP ? '' : (this.state.up === 'yes' && ledAllPicked ? (ledTotal ? '+\u00A0' + fmt(ledTotal) : 'bez příplatku') : (this.state.up === 'yes' && ledTotal > ledMin ? 'od +\u00A0' + fmt(ledTotal) : 'od +\u00A0' + fmt(ledMin))),
           ledWarn: W && !PKs.led, ledWarnStr: W && !PKs.led ? 'true' : 'false',
           pickLedNo: () => set('led', { up: 'no' }), pickLedYes: () => set('led', { up: 'yes' }),
           toggleLed: () => set('led', { up: PKs.led && this.state.up === 'yes' ? 'no' : 'yes' }),
@@ -2061,12 +2097,12 @@ class Component extends DCLogic {
           priceLine: done ? price : 'od ' + price,
           priceNote: done ? 'Cena sestavy včetně DPH' : 'Cena včetně DPH · zatím vybrané volby + nejlevnější zbytek',
           drawerOpen: d.indexOf('sk-') === 0,
-          drawerTitle: ({ 'sk-mat': 'Materiál a odstín', 'sk-layL': 'Vnitřní uspořádání – levá část', 'sk-layR': 'Vnitřní uspořádání – pravá část', 'sk-led': 'LED osvětlení' })[d] || '',
-          drawerNote: d === 'sk-layL' || d === 'sk-layR' ? 'Kliknutím na nákres ho zvětšíte.' : '',
-          drawerValue: ({ 'sk-mat': PKs.mat ? this.state.mat : '', 'sk-layL': PKs.layL ? this.state.layL : '', 'sk-layR': PKs.layR ? this.state.layR : '', 'sk-led': PKs.led ? this.state.up : '' })[d] || '',
+          drawerTitle: ({ 'sk-mat': 'Materiál a odstín', 'sk-layL': 'Vnitřní uspořádání – levá část', 'sk-layR': 'Vnitřní uspořádání – pravá část', 'sk-led': 'LED osvětlení', 'sk-ledL': 'LED osvětlení – levá část', 'sk-ledR': 'LED osvětlení – pravá část' })[d] || '',
+          drawerNote: d === 'sk-layL' || d === 'sk-layR' ? 'Kliknutím na nákres ho zvětšíte.' : d === 'sk-ledL' || d === 'sk-ledR' ? 'Každá část může mít jiné osvětlení, nebo zůstat bez LED. Příplatek se počítá za každou část zvlášť. Kliknutím na obrázek ho zvětšíte.' : '',
+          drawerValue: ({ 'sk-mat': PKs.mat ? this.state.mat : '', 'sk-layL': PKs.layL ? this.state.layL : '', 'sk-layR': PKs.layR ? this.state.layR : '', 'sk-led': PKs.led ? this.state.up : '', 'sk-ledL': PKs.ledL ? this.state.ledL : '', 'sk-ledR': PKs.ledR ? this.state.ledR : '' })[d] || '',
           drawerGroups: d === 'sk-mat' ? MATERIALY : [],
-          drawerRows: (d === 'sk-layL' || d === 'sk-layR' ? layRows : d === 'sk-led' ? LED_ROWS : []).map(r => PP ? r : Object.assign({}, r, { price: '' })),
-          onDrawerPick: (id) => { const m = { 'sk-mat': ['mat', 'mat'], 'sk-layL': ['layL', 'layL'], 'sk-layR': ['layR', 'layR'], 'sk-led': ['led', 'up'] }[this.state.drawer]; if (m) set(m[0], { [m[1]]: id }); },
+          drawerRows: (d === 'sk-layL' || d === 'sk-layR' ? layRows : d === 'sk-led' ? LED_ROWS : d === 'sk-ledL' || d === 'sk-ledR' ? LED_OPTS : []).map(r => PP ? r : Object.assign({}, r, { price: '' })),
+          onDrawerPick: (id) => { const m = { 'sk-mat': ['mat', 'mat'], 'sk-layL': ['layL', 'layL'], 'sk-layR': ['layR', 'layR'], 'sk-led': ['led', 'up'], 'sk-ledL': ['ledL', 'ledL'], 'sk-ledR': ['ledR', 'ledR'] }[this.state.drawer]; if (m) set(m[0], { [m[1]]: id }); },
           closeDrawer: () => this.setState({ drawer: null }),
           onBuy: () => { if (!done) { this.setState({ warn: true }); requestAnimationFrame(() => { try { const el = miss.map(id => document.getElementById(id)).filter(Boolean).sort((a, b) => a.getBoundingClientRect().top - b.getBoundingClientRect().top)[0]; if (el) el.scrollIntoView({ block: 'center', behavior: 'smooth' }); } catch (e) {} }); return; } this.setState({ added: true }); }
         };

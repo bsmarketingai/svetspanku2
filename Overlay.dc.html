@@ -207,6 +207,7 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
 .ss-ov-lg{width:min(calc(100vw - 32px),880px);}
 .ss-ov-xl{width:min(calc(100vw - 32px),1200px);}
 .ss-ov-drawer{top:0;right:0;bottom:0;width:min(100vw,460px);border-radius:0;}
+.ss-ov-drawer.ss-ov-dlg{width:min(100vw,600px);} /* 13. 11. 2026: širší drawer (size lg) – výběr varianty, větší náhled fotky */
 .ss-ov-head{display:flex;align-items:center;gap:12px;min-height:72px;padding:12px 12px 12px var(--ss-ov-pad);border-bottom:1px solid var(--ss-border-subtle,#E1E6EB);flex:none;}
 .ss-ov-icon{position:relative;display:flex;flex:none;color:var(--ss-text-primary,#1C2229);}
 .ss-ov-icon-ok{color:var(--ss-status-success,#2E7D32);}
@@ -455,7 +456,7 @@ class Component extends DCLogic {
       hasScrim: variant !== 'popover',
       ariaModal: variant === 'popover' ? undefined : 'true',
       panelStyle: variant === 'popover' ? { top: (pp ? pp.top : 0) + 'px', left: (pp ? pp.left : 0) + 'px', width: (pp ? pp.width : 320) + 'px', opacity: pp ? 1 : 0 } : undefined,
-      panelClass: 'ss-ov ss-ov-' + variant + (variant === 'modal' ? ' ss-ov-' + size : ''),
+      panelClass: 'ss-ov ss-ov-' + variant + (variant === 'modal' ? ' ss-ov-' + size : (variant === 'drawer' && size === 'lg' ? ' ss-ov-dlg' : '')),
       titleId: this._id,
       title: p.title || '',
       hasBack: typeof p.onBack === 'function',

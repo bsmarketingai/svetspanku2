@@ -206,7 +206,7 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
 .ss-faq-t{transition:color .12s cubic-bezier(.22,.61,.36,1);}
 </style>
 </helmet>
-<section aria-labelledby="{{ hId }}" style="width:100%;max-width:900px;display:flex;flex-direction:column;gap:16px;font-family:Roboto,Helvetica,Arial,sans-serif;color:var(--ss-text-primary,#1C2229)">
+<section aria-labelledby="{{ hId }}" style="width:100%;max-width:{{ maxW }};display:flex;flex-direction:column;gap:16px;font-family:Roboto,Helvetica,Arial,sans-serif;color:var(--ss-text-primary,#1C2229)">
   <h2 id="{{ hId }}" style="{{ hStyle }}">{{ heading }}</h2>
   <div style="display:flex;flex-direction:column;border-top:1px solid var(--ss-border-subtle,#E1E6EB)">
     <sc-for list="{{ items }}" as="q" hint-placeholder-count="3">
@@ -218,7 +218,7 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
           </button>
         </h3>
         <sc-if value="{{ q.open }}" hint-placeholder-val="{{ false }}">
-          <p id="{{ q.pid }}" style="margin:0;padding:0 0 20px;font-size:15px;line-height:1.7;color:var(--ss-text-secondary,#3D4750);max-width:70ch;text-wrap:pretty">{{ q.answer }}</p>
+          <p id="{{ q.pid }}" style="margin:0;padding:0 0 20px;font-size:15px;line-height:1.7;color:var(--ss-text-secondary,#3D4750);max-width:{{ ansW }};text-wrap:pretty">{{ q.answer }}</p>
         </sc-if>
       </div>
     </sc-for>
@@ -228,7 +228,7 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
   </sc-if>
 </section>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:900,&quot;height&quot;:400},&quot;heading&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Nejčastější dotazy&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;items&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;{question: string, answer: string}[]&quot;},&quot;narrow&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;idPrefix&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;faq&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;moreText&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;moreLabel&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;moreHref&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;#&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:900,&quot;height&quot;:400},&quot;heading&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Nejčastější dotazy&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;items&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;{question: string, answer: string}[]&quot;},&quot;narrow&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;full&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;idPrefix&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;faq&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;moreText&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;moreLabel&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;moreHref&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;#&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
 class Component extends DCLogic {
   state = { open: -1 };
   renderVals() {
@@ -240,6 +240,8 @@ class Component extends DCLogic {
     ];
     const uid = p.idPrefix || 'faq';
     return {
+      // full (13. 11. 2026): FAQ přes celou šířku kontejneru (kategorie – stejně široké jako dlouhý popis)
+      maxW: this.props.full ? 'none' : '900px', ansW: this.props.full ? 'none' : '70ch',
       hId: uid + '-h',
       heading: p.heading || 'Nejčastější dotazy',
       hStyle: { margin: 0, fontSize: p.narrow ? '26px' : '34px', lineHeight: 1.15 },

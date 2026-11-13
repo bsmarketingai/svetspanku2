@@ -190,6 +190,19 @@ main>section.ss-grad-top.ss-grad-glow{background-image:radial-gradient(ellipse 5
 html[data-mode="dark"] main>section.ss-grad-top.ss-grad-glow{background-image:radial-gradient(ellipse 55% 100% at 50% 100%,rgba(251,178,85,.14) 0%,rgba(251,178,85,.05) 45%,rgba(251,178,85,0) 75%),linear-gradient(180deg,var(--ss-surface-page,#0E1F2F) 0%,var(--ss-surface-muted,#183049) 100%)!important;}
 
 
+
+/* 13. 11. 2026: výběrové řádky jako u polštářů a setů – před výběrem primární „Vybrat“, po výběru sekundární „Změnit“ (místo šipky) */
+.ss-pk-cta{flex:none;display:inline-flex;align-items:center;height:36px;padding:0 14px;border-radius:6px;font-size:14px;font-weight:600;white-space:nowrap;background:#132C43;color:#FFFFFF;transition:background-color .12s;}
+.ss-pk-cta[data-pri="false"]{background:var(--ss-surface-subtle,#FAF5EF);color:var(--ss-link-hover,#21507B);box-shadow:inset 0 0 0 1px var(--ss-border-strong,#D9CCBA);}
+@media (hover:hover) and (pointer:fine){.ss-pd-row:hover .ss-pk-cta[data-pri="true"]{background:#296093;}.ss-pd-row:hover .ss-pk-cta[data-pri="false"]{background:var(--ss-surface-muted,#F3EDE4);}}
+
+/* 13. 11. 2026 mobil (<550 px): výběrový řádek ve dvou řádcích – nahoře kolečko + nadpis a popis, pod tím vlevo příplatek a vpravo tlačítko */
+@media (max-width:549px){
+.ss-pd-row:has(.ss-pk-cta){flex-wrap:wrap;row-gap:12px;}
+.ss-pd-row .ss-pd-tx{flex:1 1 calc(100% - 48px)!important;}
+.ss-pd-row .ss-pd-nt{margin-left:40px;margin-right:auto;white-space:normal!important;}
+.ss-pd-row:has(.ss-pk-cta) .ss-pd-var-check,.ss-pd-row:has(.ss-pk-cta) .ss-pd-cs-dot{align-self:flex-start!important;margin-top:2px;}
+}
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400..700&family=Roboto:wght@400..700&display=swap" rel="stylesheet">
 <script>try{var d=document.documentElement;if(localStorage.getItem('ss-mode')==='dark')d.setAttribute('data-mode','dark');d.setAttribute('data-logo',localStorage.getItem('ss-logo')||'a');d.setAttribute('data-font-h','base');d.setAttribute('data-font-b','base');d.setAttribute('data-bg',localStorage.getItem('ss-bg')||'on');}catch(e){}</script>
@@ -529,6 +542,15 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
 .ss-pd-lbth[aria-current="true"]{opacity:1;box-shadow:inset 0 0 0 2px #FFFFFF;}
 .ss-pd-lbth:hover{opacity:1;}
 .ss-pd-lbth:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(255,255,255,.6);}
+/* 13. 11. 2026: přepínač (LED u skříně, úložný prostor B); zapnuto = žlutý s fajfkou v jezdci, vypnuto = neutrální bez fajfky */
+.ss-sw{position:relative;display:block;flex:none;width:48px;height:28px;border-radius:999px;background:var(--ss-surface-strong,#E9E1D5);box-shadow:inset 0 0 0 1px var(--ss-border-strong,#C8D0D8);transition:background-color .18s cubic-bezier(.22,.61,.36,1),box-shadow .18s;}
+.ss-sw-k{position:absolute;top:3px;left:3px;width:22px;height:22px;border-radius:999px;background:#FFFFFF;box-shadow:0 1px 3px rgba(19,44,67,.25);display:flex;align-items:center;justify-content:center;color:#1C2229;transition:transform .18s cubic-bezier(.22,.61,.36,1);}
+.ss-sw-k svg{opacity:0;transition:opacity .12s;}
+.ss-led-sw[aria-checked="true"] .ss-sw{background:#FBB255;box-shadow:none;}
+.ss-led-sw[aria-checked="true"] .ss-sw-k{transform:translateX(20px);}
+.ss-led-sw[aria-checked="true"] .ss-sw-k svg{opacity:1;}
+@media (hover:hover) and (pointer:fine){.ss-led-sw:hover .ss-sw{box-shadow:inset 0 0 0 1px var(--ss-hover-text,#21507B);}.ss-led-sw[aria-checked="true"]:hover .ss-sw{background:#F0A23E;box-shadow:none;}}
+@media (prefers-reduced-motion:reduce){.ss-sw,.ss-sw-k,.ss-sw-k svg{transition:none;}}
 </style>
 </helmet>
 <div style="width:100%;background:var(--ss-surface-page,#FFFFFF);font-family:Roboto,Helvetica,Arial,sans-serif;color:var(--ss-text-primary,#1C2229)">
@@ -763,6 +785,7 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
               </sc-if>
             </div>
 
+            <sc-if value="{{ upA }}" hint-placeholder-val="{{ true }}">
             <div class="ss-elev" style="background:var(--ss-surface-box,#FFFFFF);border:1px solid var(--ss-border-subtle,#E1E6EB);border-radius:12px;padding:20px;display:flex;flex-direction:column;gap:14px">
               <button type="button" class="ss-pd-cs-radio" role="radio" aria-checked="{{ upYesPressed }}" onClick="{{ toggleUp }}">
                 <span class="ss-pd-cs-dot"></span>
@@ -804,13 +827,45 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
                 </button>
               </div>
             </div>
+            </sc-if>
+            <!-- Úložný prostor B (13. 11. 2026): přepínač jako LED u skříně, po zapnutí výběr typu v draweru s obrázky -->
+            <sc-if value="{{ upB }}" hint-placeholder-val="{{ false }}">
+            <div class="ss-elev" style="background:var(--ss-surface-box,#FFFFFF);border:1px solid var(--ss-border-subtle,#E1E6EB);border-radius:12px;padding:20px;display:flex;flex-direction:column;gap:14px">
+              <button type="button" class="ss-pd-cs-radio ss-led-sw" role="switch" aria-checked="{{ upYesPressed }}" onClick="{{ toggleUp }}">
+                <span class="ss-sw" aria-hidden="true"><span class="ss-sw-k"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span></span>
+                <span class="ss-pd-cs-t" style="font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:19px;line-height:1.2;transition:color .12s">Chcete postel i s úložným prostorem?</span>
+                <span style="margin-left:auto;flex:none;font-size:15px;font-weight:600;color:var(--ss-text-primary,#1C2229);white-space:nowrap">{{ upBDiff }}</span>
+              </button>
+              <sc-if value="{{ hasUpPickers }}" hint-placeholder-val="{{ false }}">
+              <div style="display:flex;flex-direction:column;gap:12px">
+                <sc-for list="{{ upPickers }}" as="p" hint-placeholder-count="1">
+                  <button type="button" class="ss-pd-row" id="{{ p.pkId }}" data-warn="{{ p.warnStr }}" onClick="{{ p.onOpen }}" aria-expanded="false">
+                    <sc-if value="{{ p.isOn }}" hint-placeholder-val="{{ true }}"><span class="ss-pd-var-check" aria-hidden="true" style="position:static;align-self:center;flex:none"><dc-import name="Ikony" iconName="check" size="16" hint-size="16px,16px"></dc-import></span></sc-if>
+                    <sc-if value="{{ p.isOff }}" hint-placeholder-val="{{ false }}"><span class="ss-pd-cs-dot" aria-hidden="true" style="align-self:center"></span></sc-if>
+                    <span class="ss-pd-tx" style="flex:1;min-width:0;display:flex;flex-direction:column;gap:4px">
+                      <span style="font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:19px;color:var(--ss-text-primary,#1C2229)">{{ p.title }}</span>
+                      <span style="display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-size:14px;color:var(--ss-text-secondary,#3D4750)">
+                        <sc-if value="{{ p.hasSwatch }}" hint-placeholder-val="{{ false }}">
+                          <span style="width:22px;height:22px;flex:none;border-radius:999px;background:{{ p.swatch }};box-shadow:inset 0 0 0 1px rgba(19,44,67,.15)"></span>
+                        </sc-if>
+                        <span>{{ p.value }}</span>
+                      </span>
+                    </span>
+                    <span class="ss-pd-nt" style="flex:none;font-size:15px;font-weight:600;color:{{ p.noteColor }};white-space:nowrap">{{ p.note }}</span>
+                    <sc-if value="{{ p.isOff }}" hint-placeholder-val="{{ false }}"><span class="ss-pk-cta" data-pri="true">Vybrat</span></sc-if><sc-if value="{{ p.isOn }}" hint-placeholder-val="{{ true }}"><span class="ss-pk-cta" data-pri="false">Změnit</span></sc-if>
+                  </button>
+                </sc-for>
+              </div>
+              </sc-if>
+            </div>
+            </sc-if>
 
             <div style="display:flex;flex-direction:column;gap:12px">
               <sc-for list="{{ pickers }}" as="p" hint-placeholder-count="3">
                 <button type="button" class="ss-pd-row" id="{{ p.pkId }}" data-warn="{{ p.warnStr }}" onClick="{{ p.onOpen }}" aria-expanded="false">
                   <sc-if value="{{ p.isOn }}" hint-placeholder-val="{{ true }}"><span class="ss-pd-var-check" aria-hidden="true" style="position:static;align-self:center;flex:none"><dc-import name="Ikony" iconName="check" size="16" hint-size="16px,16px"></dc-import></span></sc-if>
                   <sc-if value="{{ p.isOff }}" hint-placeholder-val="{{ false }}"><span class="ss-pd-cs-dot" aria-hidden="true" style="align-self:center"></span></sc-if>
-                  <span style="flex:1;min-width:0;display:flex;flex-direction:column;gap:4px">
+                  <span class="ss-pd-tx" style="flex:1;min-width:0;display:flex;flex-direction:column;gap:4px">
                     <span style="font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:19px;color:var(--ss-text-primary,#1C2229)">{{ p.title }}</span>
                     <span style="display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-size:14px;color:var(--ss-text-secondary,#3D4750)">
                       <sc-if value="{{ p.hasSwatch }}" hint-placeholder-val="{{ false }}">
@@ -819,8 +874,8 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
                       <span>{{ p.value }}</span>
                     </span>
                   </span>
-                  <span style="flex:none;font-size:15px;font-weight:600;color:{{ p.noteColor }};white-space:nowrap">{{ p.note }}</span>
-                  <span style="display:flex;color:var(--ss-text-heading,#0B1F33);flex:none"><dc-import name="Ikony" iconName="chevron-right" size="22" hint-size="22px,22px"></dc-import></span>
+                  <span class="ss-pd-nt" style="flex:none;font-size:15px;font-weight:600;color:{{ p.noteColor }};white-space:nowrap">{{ p.note }}</span>
+                  <sc-if value="{{ p.isOff }}" hint-placeholder-val="{{ false }}"><span class="ss-pk-cta" data-pri="true">Vybrat</span></sc-if><sc-if value="{{ p.isOn }}" hint-placeholder-val="{{ true }}"><span class="ss-pk-cta" data-pri="false">Změnit</span></sc-if>
                 </button>
               </sc-for>
             </div>
@@ -1630,7 +1685,18 @@ class Component extends DCLogic {
     // Cena se navyšuje o zvolené rošty a příplatek za dřevo (29. 10. 2026)
     const _num = (t) => parseInt(String(t || '').replace(/[^0-9]/g, ''), 10) || 0;
     const optAdd = (rostData.id === 'bez' ? 0 : _num(rostData.price)) + (String(wood.note).indexOf('+') === 0 ? _num(wood.note) : 0);
-    const baseNow = 31990 + sizeAdd + optAdd, baseBefore = 34290 + sizeAdd + optAdd, upDiff = 7000;
+    // 13. 11. 2026: Úložný prostor – prezentace A = původní dvě tlačítka, B = přepínač + výběr typu v draweru (obrázky = ilustrační schémata, nahradit fotkami)
+    const UP_IMG = { U1: 'data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22600%22%20height%3D%22600%22%20viewBox%3D%220%200%20600%20600%22%3E%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22%23FFFFFF%22%2F%3E%3Crect%20x%3D%2270%22%20y%3D%22250%22%20width%3D%2240%22%20height%3D%22190%22%20rx%3D%224%22%20fill%3D%22%23B98A5A%22%2F%3E%3Crect%20x%3D%22100%22%20y%3D%22330%22%20width%3D%22440%22%20height%3D%2280%22%20rx%3D%224%22%20fill%3D%22%23C99A68%22%2F%3E%3Crect%20x%3D%22110%22%20y%3D%22410%22%20width%3D%2216%22%20height%3D%2230%22%20fill%3D%22%238A6440%22%2F%3E%3Crect%20x%3D%22514%22%20y%3D%22410%22%20width%3D%2216%22%20height%3D%2230%22%20fill%3D%22%238A6440%22%2F%3E%3Crect%20x%3D%22112%22%20y%3D%22342%22%20width%3D%22416%22%20height%3D%2258%22%20rx%3D%223%22%20fill%3D%22%232A333D%22%2F%3E%3Cg%20transform%3D%22rotate%28-24%20128%20330%29%22%3E%3Crect%20x%3D%22128%22%20y%3D%22300%22%20width%3D%22400%22%20height%3D%2214%22%20rx%3D%223%22%20fill%3D%22%238A6440%22%2F%3E%3Crect%20x%3D%22128%22%20y%3D%22262%22%20width%3D%22400%22%20height%3D%2238%22%20rx%3D%2210%22%20fill%3D%22%23E9E1D5%22%20stroke%3D%22%23C8D0D8%22%20stroke-width%3D%222%22%2F%3E%3C%2Fg%3E%3Cline%20x1%3D%22300%22%20y1%3D%22390%22%20x2%3D%22360%22%20y2%3D%22290%22%20stroke%3D%22%235B6874%22%20stroke-width%3D%227%22%20stroke-linecap%3D%22round%22%2F%3E%3Cpath%20d%3D%22M520%20200%20l18%20-22%20m-18%2022%20l26%204%22%20stroke%3D%22%23296093%22%20stroke-width%3D%225%22%20fill%3D%22none%22%20stroke-linecap%3D%22round%22%2F%3E%3C%2Fsvg%3E', U2: 'data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22600%22%20height%3D%22600%22%20viewBox%3D%220%200%20600%20600%22%3E%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22%23FFFFFF%22%2F%3E%3Crect%20x%3D%22120%22%20y%3D%22330%22%20width%3D%22360%22%20height%3D%2280%22%20rx%3D%224%22%20fill%3D%22%23C99A68%22%2F%3E%3Crect%20x%3D%22130%22%20y%3D%22410%22%20width%3D%2216%22%20height%3D%2230%22%20fill%3D%22%238A6440%22%2F%3E%3Crect%20x%3D%22454%22%20y%3D%22410%22%20width%3D%2216%22%20height%3D%2230%22%20fill%3D%22%238A6440%22%2F%3E%3Crect%20x%3D%22132%22%20y%3D%22342%22%20width%3D%22336%22%20height%3D%2258%22%20rx%3D%223%22%20fill%3D%22%232A333D%22%2F%3E%3Cg%20transform%3D%22rotate%2828%20468%20330%29%22%3E%3Crect%20x%3D%22132%22%20y%3D%22316%22%20width%3D%22336%22%20height%3D%2214%22%20rx%3D%223%22%20fill%3D%22%238A6440%22%2F%3E%3Crect%20x%3D%22132%22%20y%3D%22278%22%20width%3D%22336%22%20height%3D%2238%22%20rx%3D%2210%22%20fill%3D%22%23E9E1D5%22%20stroke%3D%22%23C8D0D8%22%20stroke-width%3D%222%22%2F%3E%3C%2Fg%3E%3Cline%20x1%3D%22300%22%20y1%3D%22392%22%20x2%3D%22330%22%20y2%3D%22300%22%20stroke%3D%22%235B6874%22%20stroke-width%3D%227%22%20stroke-linecap%3D%22round%22%2F%3E%3C%2Fsvg%3E', U3: 'data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22600%22%20height%3D%22600%22%20viewBox%3D%220%200%20600%20600%22%3E%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22%23FFFFFF%22%2F%3E%3Crect%20x%3D%2270%22%20y%3D%22250%22%20width%3D%2240%22%20height%3D%22190%22%20rx%3D%224%22%20fill%3D%22%23B98A5A%22%2F%3E%3Crect%20x%3D%22100%22%20y%3D%22330%22%20width%3D%22440%22%20height%3D%2280%22%20rx%3D%224%22%20fill%3D%22%23C99A68%22%2F%3E%3Crect%20x%3D%22110%22%20y%3D%22410%22%20width%3D%2216%22%20height%3D%2230%22%20fill%3D%22%238A6440%22%2F%3E%3Crect%20x%3D%22514%22%20y%3D%22410%22%20width%3D%2216%22%20height%3D%2230%22%20fill%3D%22%238A6440%22%2F%3E%3Crect%20x%3D%22128%22%20y%3D%22300%22%20width%3D%22400%22%20height%3D%2214%22%20rx%3D%223%22%20fill%3D%22%238A6440%22%2F%3E%3Crect%20x%3D%22128%22%20y%3D%22262%22%20width%3D%22400%22%20height%3D%2238%22%20rx%3D%2210%22%20fill%3D%22%23E9E1D5%22%20stroke%3D%22%23C8D0D8%22%20stroke-width%3D%222%22%2F%3E%3Crect%20x%3D%22140%22%20y%3D%22346%22%20width%3D%22180%22%20height%3D%2256%22%20rx%3D%224%22%20fill%3D%22%23B5844F%22%20stroke%3D%22%238A6440%22%20stroke-width%3D%223%22%2F%3E%3Crect%20x%3D%22330%22%20y%3D%22346%22%20width%3D%22180%22%20height%3D%2256%22%20rx%3D%224%22%20fill%3D%22%23B5844F%22%20stroke%3D%22%238A6440%22%20stroke-width%3D%223%22%2F%3E%3Crect%20x%3D%22205%22%20y%3D%22368%22%20width%3D%2250%22%20height%3D%228%22%20rx%3D%224%22%20fill%3D%22%23132C43%22%2F%3E%3Crect%20x%3D%22395%22%20y%3D%22368%22%20width%3D%2250%22%20height%3D%228%22%20rx%3D%224%22%20fill%3D%22%23132C43%22%2F%3E%3C%2Fsvg%3E', U4: 'data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22600%22%20height%3D%22600%22%20viewBox%3D%220%200%20600%20600%22%3E%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22%23FFFFFF%22%2F%3E%3Crect%20x%3D%2270%22%20y%3D%22250%22%20width%3D%2240%22%20height%3D%22190%22%20rx%3D%224%22%20fill%3D%22%23B98A5A%22%2F%3E%3Crect%20x%3D%22100%22%20y%3D%22330%22%20width%3D%22440%22%20height%3D%2280%22%20rx%3D%224%22%20fill%3D%22%23C99A68%22%2F%3E%3Crect%20x%3D%22110%22%20y%3D%22410%22%20width%3D%2216%22%20height%3D%2230%22%20fill%3D%22%238A6440%22%2F%3E%3Crect%20x%3D%22514%22%20y%3D%22410%22%20width%3D%2216%22%20height%3D%2230%22%20fill%3D%22%238A6440%22%2F%3E%3Crect%20x%3D%22112%22%20y%3D%22342%22%20width%3D%22416%22%20height%3D%2258%22%20rx%3D%223%22%20fill%3D%22%232A333D%22%2F%3E%3Cline%20x1%3D%22245%22%20y1%3D%22344%22%20x2%3D%22245%22%20y2%3D%22400%22%20stroke%3D%22%2356616C%22%20stroke-width%3D%225%22%2F%3E%3Cline%20x1%3D%22385%22%20y1%3D%22344%22%20x2%3D%22385%22%20y2%3D%22400%22%20stroke%3D%22%2356616C%22%20stroke-width%3D%225%22%2F%3E%3Cg%20transform%3D%22rotate%28-24%20128%20330%29%22%3E%3Crect%20x%3D%22128%22%20y%3D%22300%22%20width%3D%22400%22%20height%3D%2214%22%20rx%3D%223%22%20fill%3D%22%238A6440%22%2F%3E%3Crect%20x%3D%22128%22%20y%3D%22262%22%20width%3D%22400%22%20height%3D%2238%22%20rx%3D%2210%22%20fill%3D%22%23E9E1D5%22%20stroke%3D%22%23C8D0D8%22%20stroke-width%3D%222%22%2F%3E%3C%2Fg%3E%3Cline%20x1%3D%22300%22%20y1%3D%22390%22%20x2%3D%22360%22%20y2%3D%22290%22%20stroke%3D%22%235B6874%22%20stroke-width%3D%227%22%20stroke-linecap%3D%22round%22%2F%3E%3Cline%20x1%3D%22440%22%20y1%3D%22392%22%20x2%3D%22500%22%20y2%3D%22230%22%20stroke%3D%22%235B6874%22%20stroke-width%3D%227%22%20stroke-linecap%3D%22round%22%2F%3E%3C%2Fsvg%3E' };
+    const UP_OPTS = [
+      { id: 'U1', name: 'Výklopný rošt – od nohou', meta: 'rošt se zvedá u nohou postele, plynové písty', add: 0 },
+      { id: 'U2', name: 'Výklopný rošt – do boku', meta: 'rošt se zvedá z boku, vhodné ke stěně u hlavy', add: 1200 },
+      { id: 'U3', name: 'Dvě úložné zásuvky', meta: 'zásuvky na kolečkách pod postelí, bez zvedání roštu', add: 2900 },
+      { id: 'U4', name: 'Výklopný rošt s přepážkami', meta: 'úložný prostor rozdělený na tři oddíly', add: 1900 }
+    ].map(o => ({ id: o.id, label: o.name, name: o.name, meta: o.meta, add: o.add, price: '+ ' + fmt(7000 + o.add), stock: '', /* 13. 11. 2026: celková cena úložného prostoru daného typu (základ 7 000 + typ) */ image: UP_IMG[o.id], full: UP_IMG[o.id] }));
+    const upB = (this.state.upUi || 'B') === 'B';
+    const upTyp = UP_OPTS.find(o => o.id === this.state.upTyp) || UP_OPTS[0];
+    const upTypAdd = upB && this.state.up === 'yes' && (this.state.pk || {}).upTyp ? upTyp.add : 0;
+    const baseNow = 31990 + sizeAdd + optAdd + upTypAdd, baseBefore = 34290 + sizeAdd + optAdd + upTypAdd, upDiff = 7000;
     const now = this.state.up === 'yes' ? baseNow : baseNow - upDiff;
     const before = this.state.up === 'yes' ? baseBefore : baseBefore - upDiff;
     const csWn = parseInt(this.state.csW, 10), csLn = parseInt(this.state.csL, 10);
@@ -1671,16 +1737,18 @@ class Component extends DCLogic {
         { label: 'Fixní sloupec', value: this.state.stickPick || (stick === 'zadny' ? 'Žádný' : 'Galerie'), options: ['Galerie', 'Žádný'] },
         { label: 'Rozměr', value: this.state.sizeUi || 'V1', options: ['V1', 'V2'] },
         { label: 'Set', value: this.state.setUi || 'S1', options: ['S1', 'S2', 'S3', 'S4'] },
-        { label: 'Materiál a odstín', value: this.state.matUi || 'B', options: ['A', 'B'] }
+        { label: 'Materiál a odstín', value: this.state.matUi || 'B', options: ['A', 'B'] },
+        { label: 'Úložný prostor', value: this.state.upUi || 'B', options: ['A', 'B'] }
       ],
-      onPresPick: (ci, opt) => { if (ci === 1) ci = 0; else if (ci > 1) ci -= 1; /* Detail rozdělen na Simple a Konfigurátor (6. 11. 2026) */ if (ci === 0) { if (opt !== 'Postel 3.0') (h => { try { const a = document.createElement('a'); a.href = h; a.style.display = 'none'; (document.getElementById('dc-root') || document.body).appendChild(a); a.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true, view: window })); a.remove(); } catch (e) { window.location.href = h; } })(opt === 'Multi Konf.' ? 'Detail_Postel_3.0-hqdl.dc.html' : (opt === 'Set polštář + povlak' ? 'Detail_Set_Polstar_B.dc.html' : opt === 'Set polštář + přikrývka' ? 'Detail_Set_Bamboo.dc.html' : opt === 'Čalouněná' ? 'Detail_Calounena_Postel.dc.html' : opt === 'Airflex SET' ? 'Detail_Matrace_Airflex_Set.dc.html' : opt === 'Set 1+1 polštáře' ? 'Detail_Set_Polstare_1plus1.dc.html' : opt === 'Skříň UNI 2D' ? 'Detail_Skrin_UNI_2D_Konf.dc.html' : 'Detail_' + String(opt).replace(/ /g, '_') + '.dc.html')); return; } ci -= 1; this.setState(ci === 0 ? { stickPick: opt } : ci === 1 ? { sizeUi: opt } : ci === 2 ? { setUi: opt } : { matUi: opt }); },
-      stickyChips: [
-        { label: this.state.customSize || this.state.size },
-        { label: this.state.up === 'yes' ? 'S úložným prostorem' : 'Bez úložného prostoru' },
-        { label: 'Rošt: ' + rost.label },
-        { label: mat.label, color: mat.color, hasSwatch: true },
-        { label: 'Čalounění: ' + cal.label, color: cal.color, hasSwatch: true }
-      ].filter(c => !!c.label),
+      onPresPick: (ci, opt) => { /* 13. 11. 2026: skupina Krokový Konfig. už v seznamu není – bez posunu indexu */ /* Detail rozdělen na Simple a Konfigurátor (6. 11. 2026) */ if (ci === 0) { if (opt !== 'Postel 3.0') (h => { try { const a = document.createElement('a'); a.href = h; a.style.display = 'none'; (document.getElementById('dc-root') || document.body).appendChild(a); a.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true, view: window })); a.remove(); } catch (e) { window.location.href = h; } })(opt === 'Multi Konf.' ? 'Detail_Postel_3.0-hqdl.dc.html' : (opt === 'Set polštář + povlak' ? 'Detail_Set_Polstar_B.dc.html' : opt === 'Set polštář + přikrývka' ? 'Detail_Set_Bamboo.dc.html' : opt === 'Čalouněná' ? 'Detail_Calounena_Postel.dc.html' : opt === 'Airflex SET' ? 'Detail_Matrace_Airflex_Set.dc.html' : opt === 'Set 1+1 polštáře' ? 'Detail_Set_Polstare_1plus1.dc.html' : opt === 'Skříň UNI 2D' ? 'Detail_Skrin_UNI_2D_Konf.dc.html' : 'Detail_' + String(opt).replace(/ /g, '_') + '.dc.html')); return; } ci -= 1; this.setState(ci === 0 ? { stickPick: opt } : ci === 1 ? { sizeUi: opt } : ci === 2 ? { setUi: opt } : ci === 3 ? { matUi: opt } : { upUi: opt }); },
+      // 13. 11. 2026: plovoucí lišta ukazuje jen varianty, které zákazník opravdu vybral
+      stickyChips: ((PKc) => [
+        { label: (PKc.size || this.state.csOn) ? (this.state.customSize || this.state.size) : '' },
+        { label: this.state.up === 'yes' && (!upB || PKc.upTyp) ? (upB ? 'Úložný prostor: ' + upTyp.name : 'S úložným prostorem') : '' },
+        { label: PKc.rosty ? 'Rošt: ' + rost.label : '' },
+        { label: (PKc.material || PKc.drevo || PKc.odstin) ? mat.label : '', color: mat.color, hasSwatch: true },
+        { label: PKc.calouneni ? 'Čalounění: ' + cal.label : '', color: cal.color, hasSwatch: true }
+      ].filter(c => !!c.label))(this.state.pk || {}),
       crumbs: [
         { label: 'Domů', href: 'index.dc.html' },
         { label: 'Postele z masivu', href: '#postele' },
@@ -1790,6 +1858,10 @@ class Component extends DCLogic {
       upYesPressed: this.state.up === 'yes' ? 'true' : 'false',
       pickUpYes: () => this.setState({ up: 'yes' }),
       toggleUp: () => this.setState(s => ({ up: s.up === 'yes' ? 'no' : 'yes' })),
+      upA: !upB, upB,
+      upBDiff: !PP ? '' : this.state.up === 'yes' && (this.state.pk || {}).upTyp ? '' : 'od +\u00A0' + fmt(upDiff), /* po výběru typu je cena jen u vybrané položky (13. 11. 2026) */
+      upPickers: upB && this.state.up === 'yes' ? [{ title: 'Typ úložného prostoru', value: upTyp.name, note: '+ ' + fmt(upDiff + upTyp.add), on: 'true', noteColor: 'var(--ss-text-primary,#1C2229)', hasSwatch: false, swatch: '', dk: 'upTyp', onOpen: () => this.setState({ drawer: 'upTyp' }) }].map(p => this.pkWrap(p)).map(p => Object.assign(p, { isOn: p.on === 'true', isOff: p.on !== 'true' }, PP ? {} : { note: '' })) : [],
+      hasUpPickers: upB && this.state.up === 'yes',
       pickers: [
         { title: 'Rošty', value: rost.label, note: rost.note, on: rost.note === 'Bez příplatku' ? 'false' : 'true', noteColor: rost.note === 'Bez příplatku' ? 'var(--ss-status-success,#157A41)' : 'var(--ss-text-primary,#1C2229)', hasSwatch: false, swatch: '', dk: 'rosty', onOpen: () => this.setState({ drawer: 'rosty' }) },
         // Prezentace „Materiál a odstín“: A = dva samostatné výběry, B = jeden výběr se společným drawerem (dřevo + odstín oleje)
@@ -1802,16 +1874,17 @@ class Component extends DCLogic {
         { title: 'Čalounění', value: cal.label, note: cal.note, on: 'true', noteColor: cal.note === 'Bez příplatku' ? 'var(--ss-status-success,#157A41)' : 'var(--ss-text-primary,#1C2229)', hasSwatch: true, swatch: cal.color, dk: 'calouneni', onOpen: () => this.setState({ drawer: 'calouneni' }) }
       ].map(p => this.pkWrap(p)).map(p => Object.assign(p, { isOn: p.on === 'true', isOff: p.on !== 'true' }, PP ? {} : { note: '' })),
       drawerOpen: !!this.state.drawer,
-      drawerTitle: this.state.drawer === 'rosty' ? 'Rošt(y)' : this.state.drawer === 'drevo' ? 'Materiál' : this.state.drawer === 'odstin' ? 'Odstín (olej)' : this.state.drawer === 'material' ? 'Materiál a odstín dřeva' : 'Čalounění',
-      drawerNote: this.state.drawer === 'calouneni' ? 'Cena postele se výběrem látky nemění. Barvy se na obrazovkách liší – odstín si raději ověřte za denního světla na vzorníku v některé z našich prodejen.' : '',
-      drawerValue: this.state.drawer === 'rosty' ? this.state.rost : this.state.drawer === 'drevo' ? wood.key : this.state.drawer === 'odstin' ? tone.id : this.state.drawer === 'material' ? this.state.mat : this.state.cal,
+      drawerTitle: this.state.drawer === 'upTyp' ? 'Typ úložného prostoru' : this.state.drawer === 'rosty' ? 'Rošt(y)' : this.state.drawer === 'drevo' ? 'Materiál' : this.state.drawer === 'odstin' ? 'Odstín (olej)' : this.state.drawer === 'material' ? 'Materiál a odstín dřeva' : 'Čalounění',
+      drawerNote: this.state.drawer === 'upTyp' ? 'U každého typu je uvedena celková cena úložného prostoru. Kliknutím na obrázek ho zvětšíte.' : this.state.drawer === 'calouneni' ? 'Cena postele se výběrem látky nemění. Barvy se na obrazovkách liší – odstín si raději ověřte za denního světla na vzorníku v některé z našich prodejen.' : '',
+      drawerValue: this.state.drawer === 'upTyp' ? ((this.state.pk || {}).upTyp ? upTyp.id : '') : this.state.drawer === 'rosty' ? this.state.rost : this.state.drawer === 'drevo' ? wood.key : this.state.drawer === 'odstin' ? tone.id : this.state.drawer === 'material' ? this.state.mat : this.state.cal,
       drawerGroups: this.state.drawer === 'odstin' ? TONE_GROUP : this.state.drawer === 'material' ? MATERIALY : this.state.drawer === 'calouneni' ? LATKY_GROUPS : [],
-      drawerRows: (this.state.drawer === 'rosty' ? ROSTY : this.state.drawer === 'drevo' ? DREVO_ROWS : []).map(r => PP ? r : Object.assign({}, r, { price: '' })),
+      drawerRows: (this.state.drawer === 'upTyp' ? UP_OPTS : this.state.drawer === 'rosty' ? ROSTY : this.state.drawer === 'drevo' ? DREVO_ROWS : []).map(r => PP ? r : Object.assign({}, r, { price: '' })),
       onDrawerPick: (id) => {
         this.setState(st => ({ pk: Object.assign({}, st.pk, { [st.drawer]: true }) }));
         const k = this.state.drawer;
         if (k === 'drevo') { const ol = olejeFor(id); this.setState({ mat: id + '-' + (ol.some(o => o.id === tone.id) ? tone.id : ol[0].id) }); return; }
         if (k === 'odstin') { this.setState({ mat: wood.key + '-' + id }); return; }
+        if (k === 'upTyp') { this.setState({ upTyp: id }); return; }
         this.setState(k === 'rosty' ? { rost: id } : k === 'material' ? { mat: id } : { cal: id });
       },
       closeDrawer: () => this.setState({ drawer: null }),
@@ -1892,7 +1965,7 @@ class Component extends DCLogic {
       closeAdded: () => this.setState({ added: false }),
       // název položky v košíku obsahuje rozměr, olej, dřevo a čalounění – nejsou to samostatné položky (5. 11. 2026)
       addedTitle: 'Postel LEVITA ' + (this.state.size || this.state.customSize || '') + ', olej ' + String(matItem.label).replace(/^olej /i, '') + ', ' + ((t) => { const p = String(t).split(' – '); return p[1] ? p[1] + ' ' + p[0].toLowerCase() : String(t).toLowerCase(); })(matGroup.title) + ', čalounění ' + cal.label,
-      addedVariant: (this.state.up === 'yes' ? 'S úložným prostorem' : 'Bez úložného prostoru') + ' · Rošt: ' + rost.label,
+      addedVariant: (this.state.up === 'yes' ? 'S úložným prostorem' + (upB ? ' (' + upTyp.name + ')' : '') : 'Bez úložného prostoru') + ' · Rošt: ' + rost.label,
       addedTotal: fmt((now + csAdd) * (this.state.qty || 1)),
       noop: () => {},
       favIcon: this.state.fav ? 'heart-filled' : 'heart',

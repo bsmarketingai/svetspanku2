@@ -253,14 +253,16 @@ html[data-mode="dark"] main>section.ss-grad-top.ss-grad-glow{background-image:ra
 </helmet>
 <div class="pm-root" data-l="{{ layoutName }}" data-lg="{{ lgStr }}" style="display:grid;grid-template-columns:{{ rootCols }};gap:{{ rootGap }};column-gap:{{ colGap }};align-items:start;width:100%;min-width:0;font-family:Roboto,Helvetica,Arial,sans-serif;color:{{ rootColor }}">
   <sc-if value="{{ plainTuhost }}" hint-placeholder-val="{{ false }}">
-    <span style="display:flex;flex-direction:column;gap:8px;width:100%">
-      <span style="display:flex;justify-content:space-between;align-items:baseline;gap:8px;width:100%;font-family:{{ lblFont }};font-size:{{ lblSize }};line-height:1.35">
+    <span style="display:flex;flex-direction:column;gap:{{ plainGap }};width:100%">
+      <span style="display:flex;justify-content:space-between;align-items:baseline;gap:8px;width:100%;font-family:{{ lblFont }};font-size:{{ lblSize }};line-height:{{ plainLh }}">
         <sc-if value="{{ plainShowTitle }}" hint-placeholder-val="{{ true }}"><span style="flex:none;white-space:nowrap">{{ tuhostTitle }}</span></sc-if>
         <span style="flex:none;white-space:nowrap;font-weight:600;font-size:{{ plainValSize }};color:{{ plainValColor }}">{{ tuhostLabel }}</span>
       </span>
       <span aria-hidden="true" style="display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:4px;width:100%;padding:4px 0">
         <sc-for list="{{ tSegs }}" as="ts" hint-placeholder-count="5"><span style="display:block;height:4px;border-radius:2px;background:{{ ts.bg }}"></span></sc-for>
       </span>
+      <!-- numOnly (13. 11. 2026): pod dílky slovně tuhost menším písmem -->
+      <sc-if value="{{ plainWord }}" hint-placeholder-val="{{ false }}"><span style="display:block;font-size:13px;line-height:1.2;color:{{ plainWordColor }}">{{ tWordCap }}</span></sc-if>
     </span>
   </sc-if>
   <!-- Varianta C (seg) smazána 30. 10. 2026 na pokyn klienta -->
@@ -384,7 +386,7 @@ html[data-mode="dark"] main>section.ss-grad-top.ss-grad-glow{background-image:ra
   </div>
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:320,&quot;height&quot;:200},&quot;layout&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;bars&quot;,&quot;bars2&quot;,&quot;tiles&quot;,&quot;seg&quot;,&quot;rada&quot;,&quot;kompakt&quot;],&quot;default&quot;:&quot;bars&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;tuhost&quot;:{&quot;editor&quot;:&quot;float&quot;,&quot;default&quot;:4.5,&quot;min&quot;:0,&quot;max&quot;:5,&quot;step&quot;:0.1,&quot;tsType&quot;:&quot;number&quot;},&quot;tuhostPct&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:90,&quot;min&quot;:0,&quot;max&quot;:100,&quot;tsType&quot;:&quot;number&quot;},&quot;zatizeniOd&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:70,&quot;tsType&quot;:&quot;number&quot;},&quot;zatizeniDo&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:100,&quot;tsType&quot;:&quot;number&quot;},&quot;nosnostMax&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:120,&quot;tsType&quot;:&quot;number&quot;},&quot;vyska&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:19,&quot;tsType&quot;:&quot;number&quot;},&quot;vyskaJadra&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:16,&quot;tsType&quot;:&quot;number&quot;},&quot;zaruka&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:8,&quot;tsType&quot;:&quot;number&quot;},&quot;spankNaBoku&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;plain&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;inverse&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;numOnly&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;size&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;standard&quot;,&quot;options&quot;:[&quot;standard&quot;,&quot;large&quot;],&quot;tsType&quot;:&quot;string&quot;},&quot;tuhostTitle&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Tuhost&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:320,&quot;height&quot;:200},&quot;layout&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;bars&quot;,&quot;bars2&quot;,&quot;tiles&quot;,&quot;seg&quot;,&quot;rada&quot;,&quot;kompakt&quot;],&quot;default&quot;:&quot;bars&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;tuhost&quot;:{&quot;editor&quot;:&quot;float&quot;,&quot;default&quot;:4.5,&quot;min&quot;:0,&quot;max&quot;:5,&quot;step&quot;:0.1,&quot;tsType&quot;:&quot;number&quot;},&quot;tuhostPct&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:90,&quot;min&quot;:0,&quot;max&quot;:100,&quot;tsType&quot;:&quot;number&quot;},&quot;zatizeniOd&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:70,&quot;tsType&quot;:&quot;number&quot;},&quot;zatizeniDo&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:100,&quot;tsType&quot;:&quot;number&quot;},&quot;nosnostMax&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:120,&quot;tsType&quot;:&quot;number&quot;},&quot;noFacts&quot;:{&quot;editor&quot;:&quot;bool&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;vyska&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:19,&quot;tsType&quot;:&quot;number&quot;},&quot;vyskaJadra&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:16,&quot;tsType&quot;:&quot;number&quot;},&quot;zaruka&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:8,&quot;tsType&quot;:&quot;number&quot;},&quot;spankNaBoku&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;plain&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;inverse&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;numOnly&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;size&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;standard&quot;,&quot;options&quot;:[&quot;standard&quot;,&quot;large&quot;],&quot;tsType&quot;:&quot;string&quot;},&quot;tuhostTitle&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Tuhost&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
 class Component extends DCLogic {
   uid = 'pm' + Math.random().toString(36).slice(2, 8);
   // Animované ikony tuhosti H1 (velmi měkká) – H5 (velmi tvrdá) od klienta (tvrdost-Hx-animovana.svg), vložené inline:
@@ -486,10 +488,13 @@ class Component extends DCLogic {
     if (p.vyska) facts.push({ icon: 'arrow-autofit-height', label: p.vyska + nb + 'cm', tip: 'Celková výška matrace včetně potahu' + (p.vyskaJadra ? ', jádro ' + p.vyskaJadra + nb + 'cm.' : '.') });
     if (p.nosnostMax) facts.push({ icon: 'weight', label: 'max' + nb + p.nosnostMax + nb + 'kg', tip: 'Maximální nosnost na jednu osobu.' });
     if (p.zaruka) facts.push({ icon: 'shield-check', label: p.zaruka + nb + (p.zaruka === 1 ? 'rok' : p.zaruka < 5 ? 'roky' : 'let'), tip: 'Délka záruky na matraci.' });
+    // noFacts (13. 11. 2026): štítky výška/nosnost/záruka skryté – např. Airflex SET je ukazuje jednou pro obě matrace
+    if (p.noFacts) facts.length = 0;
     facts.forEach((f, i) => { f.id = u + 'f' + i; });
     return {
       idT: u + 't', idZ: u + 'z',
-      rootGap: lg ? '20px' : '12px',
+      // 13. 11. 2026: plain (karty tuhosti) bez mezery pod prázdným řádkem příznaků – spodní odsazení karty jako horní
+      rootGap: p.plain ? '0px' : (lg ? '20px' : '12px'),
       lblSmall: lg ? '15px' : '13px',
       large: lg, tuhostTitle: p.tuhostTitle || 'Tuhost',
       // Popisky ukazatelů (Tuhost + číslo, Ideální pro + váha) na kartě Oswaldem (30. 10. 2026, zkouška); Oswald je úzký → 15 px
@@ -509,6 +514,9 @@ class Component extends DCLogic {
       rootColor: p.inverse ? '#FFFFFF' : 'var(--ss-text-secondary,#3D4750)',
       // numOnly (11. 11. 2026): karty variant pod nadpisem „Tuhost“ – bez opakovaného popisku, jen větší číslo
       plainShowTitle: !p.numOnly, plainValSize: p.numOnly ? '18px' : 'inherit',
+      // 13. 11. 2026: u numOnly číslo blíž k dílkům + slovní tuhost pod nimi
+      plainGap: p.numOnly ? '2px' : '8px', plainLh: p.numOnly ? '1.15' : '1.35', plainWord: !!p.numOnly, tWordCap,
+      plainWordColor: p.inverse ? 'rgba(255,255,255,.82)' : 'var(--ss-text-muted,#5B6874)',
       emptyBg,
       hasZatizeni: hasZ,
       zatizeniLabel: hasZ ? od + '–' + dd + nb + 'kg' : '',

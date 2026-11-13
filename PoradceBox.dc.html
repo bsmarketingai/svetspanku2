@@ -232,7 +232,7 @@ class Component extends DCLogic {
     const row = !!p.horizontal;
     return {
       isOn: (p.ledMode || 'on') === 'on', ledMode: p.ledMode || 'on',
-      gridStyle: { display: 'grid', gridTemplateColumns: row ? 'repeat(2,minmax(0,1fr))' : 'minmax(0,1fr)', gap: '12px' },
+      gridStyle: { display: 'grid', gridTemplateColumns: row ? 'repeat(2,minmax(0,1fr))' : 'repeat(auto-fit,minmax(min(100%,260px),1fr))', /* 13. 11. 2026: karty vedle sebe, když se vejdou (tablet); pod sebou v úzkém sloupci a na mobilu */ gap: '12px' },
       boxStyle: { boxSizing: 'border-box', width: '100%', fontFamily: 'Roboto,Helvetica,Arial,sans-serif', color: 'var(--ss-text-primary,#1C2229)', background: '#0B1F33', borderRadius: '12px', padding: '24px', display: 'flex', flexDirection: 'column', gap: '20px' }
     };
   }
