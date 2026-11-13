@@ -34,6 +34,11 @@ main .wrap{padding-top:32px;padding-bottom:64px}
 .entry .files{margin-top:10px;font-size:13px;color:var(--muted)}
 .empty{background:#fff;border:1px dashed #D9CCBA;border-radius:12px;padding:24px;color:var(--muted);text-align:center}
 .base{background:var(--warm2);border-radius:12px;padding:16px 20px;color:var(--text);font-size:15px;margin-bottom:28px}
+.links{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.links a{display:inline-flex;align-items:center;gap:6px;height:34px;padding:0 12px;border-radius:6px;background:var(--warm);box-shadow:inset 0 0 0 1px #D9CCBA;color:var(--blue);font-size:14px;font-weight:600;text-decoration:none;transition:background-color .12s}
+.links a:hover{background:var(--warm2)}
+.links a:focus-visible{outline:3px solid rgba(41,96,147,.35);outline-offset:2px}
+.links svg{flex:none}
 footer{border-top:1px solid var(--line);color:var(--muted);font-size:13px}
 footer .wrap{padding-top:18px;padding-bottom:28px}
 </style>
@@ -52,7 +57,8 @@ footer .wrap{padding-top:18px;padding-bottom:28px}
   <!-- NOVÝ DEN: vložit blok <section class="day"> sem, nad ostatní dny. Záznam = <article class="entry"> s tagem, nadpisem, popisem a soubory. -->
   <section class="day" id="d-2026-11-13">
     <h2>13. 11. 2026</h2>
-    <article class="entry">
+    <article class="entry"><div class="entry-h"><span class="tag t-upr">Úprava</span><h3>Výběrové řádky na mobilu: tlačítko zpět ve svém sloupci</h3></div><p>Na mobilu (pod 550 px) už řádky pro výběr varianty (rošty, materiál, čalounění, úložný prostor, LED) nezalamují tlačítko na další řádek. Kolečko je vlevo, uprostřed název a popis, tlačítko Vybrat/Změnit vpravo ve vlastním sloupci. Příplatek se ukáže pod popisem až po výběru varianty.</p><div class="files">Soubory: Detail_Postel_3.0, Detail_Calounena_Postel, Detail_Komoda_VIA, Detail_Komplet_3.0, Detail_Produkt_Levita, Detail_Skrin_UNI_2D_Konf</div></article>
+<article class="entry">
       <div class="entry-h"><span class="tag t-upr">Úprava</span><h3>Košík: kontrola vyplnění před pokračováním</h3></div>
       <p>Krok Doprava a platba bez vybrané platby zobrazí upozornění „Vyberte způsob platby“ a nepustí dál. Krok Dodací údaje po kliknutí na Odeslat označí nevyplněná a chybná povinná pole (e-mail, telefon, PSČ, IČ) a upozorní na nezaškrtnuté obchodní podmínky. Přepínání kroků nahoře zůstává volné kvůli testování.</p>
       <div class="files">Soubory: KosikKrok2.dc.html, KosikKrok3.dc.html, ShrnutiObjednavky.dc.html, SouhrnKosiku.dc.html</div>
@@ -324,5 +330,38 @@ footer .wrap{padding-top:18px;padding-bottom:28px}
 
 </div></main>
 <footer><div class="wrap">Svět spánku · changelog finálních úprav · soubor <code>changelog-finalni-upravy.html</code> v repozitáři</div></footer>
+<script>
+/* Tlačítka „Zobrazit“: z řádku „Soubory:“ odvodí stránku, na které je změna vidět; otevírá se v nové záložce */
+(function(){
+  var MAP={Ikony:'Detail_Postel_3.0',Overlay:'Detail_Postel_3.0',VariantaDrawer:'Detail_Postel_3.0',NahledObsah:'Detail_Postel_3.0',
+    SkupinaVoleb:'KosikKrok2',VolbaRadio:'KosikKrok2',SouhrnKosiku:'KosikKrok3',ShrnutiObjednavky:'KosikKrok3',
+    ParametryMatrace:'Detail_Matrace_3.0',PrezentacniLista:'index',Hlavicka:'index',MegaMenu:'index',MobilniMenuObsah:'index',
+    DostupnostObsah:'index',Usp:'index',KategorickaDlazdice:'index',Faq:'Kategorie',PoradceBox:'Kategorie',FiltracniLista:'Kategorie',
+    FiltrObsah:'Kategorie',FiltrDrawer:'Kategorie',Paginace:'Kategorie',Tlacitko:'Kategorie',ProduktovaKarta:'Kategorie'};
+  var NAME={index:'Homepage',Kategorie:'Kategorie',KosikKrok1:'Košík – krok 1',KosikKrok2:'Košík – doprava a platba',KosikKrok3:'Košík – údaje',
+    Kosik:'Košík',Detail_Calounena_Postel:'Čalouněná postel',Detail_Skrin_UNI_2D_Konf:'Skříň UNI',Detail_Produkt_Levita:'Levita',Detail_Set_Polstar_B:'Set polštář + povlak',Detail_Set_Bamboo:'Set Bamboo',Detail_Set_Polstare_1plus1:'Polštáře 1 + 1',Detail_Matrace_Airflex_Set:'Airflex set',Detail_Komoda_VIA:'Komoda VIA',Rozcestnik:'Rozcestník',VysledkyVyhledavani:'Výsledky vyhledávání',Oblibene:'Oblíbené'};
+  var ico='<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6"/><path d="M20 4l-9 9"/><path d="M19 14v5a1 1 0 0 1 -1 1h-13a1 1 0 0 1 -1 -1v-13a1 1 0 0 1 1 -1h5"/></svg>';
+  function label(p){return NAME[p]||p.replace(/^Detail_/,'').replace(/_/g,' ');}
+  document.querySelectorAll('.entry').forEach(function(en){
+    var fl=en.querySelector('.files'); if(!fl) return;
+    var t=fl.textContent.replace(/^\s*Soubory:\s*/,'');
+    var pages=[];
+    if(/všechny Detail_/.test(t)) pages.push('Detail_Postel_3.0');
+    (t.match(/[A-Za-z][A-Za-z0-9_.\-]*/g)||[]).forEach(function(w){
+      w=w.replace(/\.dc\.html$|\.dc$|\.html$/,'').replace(/\.$/,'');
+      if(!/^[A-Z]|^index$/.test(w)||w==='Detail_') return;
+      if(/^(Soubory|Detail_\*)$/.test(w)) return;
+      var p=MAP[w]||w; if(pages.indexOf(p)<0) pages.push(p);
+    });
+    if(!pages.length) return;
+    var box=document.createElement('div'); box.className='links';
+    pages.forEach(function(p){
+      var a=document.createElement('a'); a.href=p+'.dc.html'; a.target='_blank'; a.rel='noopener';
+      a.innerHTML='Zobrazit: '+label(p)+' '+ico; box.appendChild(a);
+    });
+    fl.insertAdjacentElement('afterend',box);
+  });
+})();
+</script>
 </body>
 </html>

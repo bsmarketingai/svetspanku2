@@ -196,12 +196,14 @@ html[data-mode="dark"] main>section.ss-grad-top.ss-grad-glow{background-image:ra
 .ss-pk-cta[data-pri="false"]{background:var(--ss-surface-subtle,#FAF5EF);color:var(--ss-link-hover,#21507B);box-shadow:inset 0 0 0 1px var(--ss-border-strong,#D9CCBA);}
 @media (hover:hover) and (pointer:fine){.ss-pd-row:hover .ss-pk-cta[data-pri="true"]{background:#296093;}.ss-pd-row:hover .ss-pk-cta[data-pri="false"]{background:var(--ss-surface-muted,#F3EDE4);}}
 
-/* 13. 11. 2026 mobil (<550 px): výběrový řádek ve dvou řádcích – nahoře kolečko + nadpis a popis, pod tím vlevo příplatek a vpravo tlačítko */
+/* 13. 11. 2026 mobil (<550 px): výběrový řádek – kolečko | nadpis + popis + (po výběru) příplatek | tlačítko ve vlastním sloupci */
 @media (max-width:549px){
-.ss-pd-row:has(.ss-pk-cta){flex-wrap:wrap;row-gap:12px;}
-.ss-pd-row .ss-pd-tx{flex:1 1 calc(100% - 48px)!important;}
-.ss-pd-row .ss-pd-nt{margin-left:40px;margin-right:auto;white-space:normal!important;}
-.ss-pd-row:has(.ss-pk-cta) .ss-pd-var-check,.ss-pd-row:has(.ss-pk-cta) .ss-pd-cs-dot{align-self:flex-start!important;margin-top:2px;}
+.ss-pd-row:has(.ss-pk-cta){display:grid!important;grid-template-columns:auto minmax(0,1fr) auto;column-gap:12px;row-gap:0;align-items:center;}
+.ss-pd-row:has(.ss-pk-cta) .ss-pd-var-check,.ss-pd-row:has(.ss-pk-cta) .ss-pd-cs-dot{grid-column:1;grid-row:1 / span 2;align-self:center!important;}
+.ss-pd-row:has(.ss-pk-cta) .ss-pd-tx{grid-column:2;grid-row:1;}
+.ss-pd-row:has(.ss-pk-cta) .ss-pd-nt{grid-column:2;grid-row:2;margin-top:6px;white-space:normal!important;}
+.ss-pd-row:has(.ss-pk-cta) .ss-pk-cta{grid-column:3;grid-row:1 / span 2;align-self:center;}
+.ss-pd-row:has(.ss-pk-cta[data-pri="true"]) .ss-pd-nt,.ss-pd-row .ss-pd-nt:empty{display:none;}
 }
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400..700&family=Roboto:wght@400..700&display=swap" rel="stylesheet">
