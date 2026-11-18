@@ -458,8 +458,8 @@ a:hover{color:var(--ss-hover-text,#A4600C);}
 @media (hover:hover) and (pointer:fine){.ss-pd-cs-radio:hover .ss-pd-cs-dot{border-color:var(--ss-hover-text,#A4600C);}.ss-pd-cs-radio:hover .ss-pd-cs-t{color:#21507B;}html[data-mode="dark"] .ss-pd-cs-radio:hover .ss-pd-cs-t{color:#FBB255;}}
 .ss-pd-cs-info{position:relative;flex:none;display:flex;align-items:center;justify-content:center;width:36px;height:36px;padding:0;border:0;border-radius:999px;background:none;cursor:pointer;color:var(--ss-link,#296093);transition:color .12s cubic-bezier(.22,.61,.36,1),background-color .12s cubic-bezier(.22,.61,.36,1);}
 .ss-pd-cs-info:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
-.ss-pd-cs-info[aria-expanded="true"]{color:var(--ss-hover-text,#A4600C);}
-@media (hover:hover) and (pointer:fine){.ss-pd-cs-info:hover{color:var(--ss-hover-text,#A4600C);background:var(--ss-hover-bg,#FFF5E6);}}
+.ss-pd-cs-info[aria-expanded="true"]{color:var(--ss-link-hover,#21507B);background:var(--ss-surface-subtle,#FAF5EF);}
+@media (hover:hover) and (pointer:fine){.ss-pd-cs-info:hover{color:var(--ss-link-hover,#21507B);background:var(--ss-surface-subtle,#FAF5EF);}}
 .ss-pd-cs-f{position:relative;display:flex;align-items:center;}
 .ss-pd-cs-f>.ss-pd-cs-ic{position:absolute;left:12px;display:flex;color:var(--ss-text-muted,#5B6874);pointer-events:none;}
 .ss-pd-cs-f>.ss-pd-cs-u{position:absolute;right:12px;font-size:14px;color:var(--ss-text-muted,#5B6874);pointer-events:none;}
@@ -565,7 +565,7 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
       <div style="{{ inner }}">
         <sc-if value="{{ titleTop }}" hint-placeholder-val="{{ false }}">
           <div style="display:flex;flex-direction:column;gap:10px;padding:0 0 16px">
-            <h1 style="margin:0;font-size:{{ h1Size }};line-height:1.08">Matrace ELARA greengel „S“</h1>
+            <h1 style="margin:0;font-size:{{ h1Size }};line-height:1.08">{{ prodName }}</h1>
             <div style="display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;font-size:14px;color:var(--ss-text-muted,#5B6874)">
               <dc-import name="Hodnoceni" value="{{ rating }}" count="{{ ratingCount }}" size="small" hint-size="160px,20px"></dc-import>
               <span style="color:var(--ss-text-decor,#C8D0D8)">|</span>
@@ -640,7 +640,7 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
           <div style="min-width:0;display:flex;flex-direction:column;gap:20px;{{ buyStick }}">
             <div style="display:flex;flex-direction:column;gap:12px">
               <sc-if value="{{ titleInColumn }}" hint-placeholder-val="{{ true }}">
-                <h1 style="margin:0;font-size:{{ h1Size }};line-height:1.08">Matrace ELARA greengel „S“</h1>
+                <h1 style="margin:0;font-size:{{ h1Size }};line-height:1.08">{{ prodName }}</h1>
                 <div style="display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;font-size:14px;color:var(--ss-text-muted,#5B6874)">
                   <dc-import name="Hodnoceni" value="{{ rating }}" count="{{ ratingCount }}" size="small" hint-size="160px,20px"></dc-import>
                   <span style="color:var(--ss-text-decor,#C8D0D8)">|</span>
@@ -764,7 +764,7 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
                     <sc-if value="{{ csHasPrice }}" hint-placeholder-val="{{ false }}">
                       <div aria-live="polite" style="display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:4px 12px;padding:12px 16px;border-radius:6px;background:var(--ss-surface-page,#FFFFFF)">
                         <span style="font-size:14px;color:var(--ss-text-secondary,#3D4750)">Příplatek za rozměr {{ csDims }}</span>
-                        <span style="font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:21px;color:var(--ss-text-primary,#1C2229)">+ {{ csAddFmt }}</span>
+                        <span style="font-size:16px;font-weight:700;color:var(--ss-text-primary,#1C2229);white-space:nowrap">+ {{ csAddFmt }}</span>
                       </div>
                       <sc-if value="{{ csNotConfirmed }}" hint-placeholder-val="{{ true }}">
                         <dc-import name="Tlacitko" label="Potvrdit" variant="primary" size="standard" fullWidth="{{ true }}" onClick="{{ confirmCs }}" hint-size="100%,44px"></dc-import>
@@ -805,9 +805,10 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
                 <span style="display:flex;color:var(--ss-text-muted,#5B6874);flex:none"><dc-import name="Ikony" iconName="map-pin" size="16" hint-size="16px,16px"></dc-import></span>
                 <span>Můžete mít hned na <a href="#prodejny" onClick="{{ openStores }}" aria-haspopup="dialog">3 prodejnách</a></span>
               </span>
+              <!-- 18. 11. 2026: doprava / osobní odběr s odkazem na informace o dopravě -->
               <span style="display:flex;align-items:center;gap:8px;font-size:14px;color:var(--ss-text-secondary,#3D4750);padding-left:2px">
-                <span style="display:flex;color:var(--ss-text-muted,#5B6874);flex:none"><dc-import name="Ikony" iconName="map-pin" size="16" hint-size="16px,16px"></dc-import></span>
-                <span>Vyzkoušejte osobně na <a href="#prodejny" onClick="{{ openTry }}" aria-haspopup="dialog">5 specializovaných prodejnách</a></span>
+                <span style="display:flex;color:var(--ss-text-muted,#5B6874);flex:none"><dc-import name="Ikony" iconName="truck" size="16" hint-size="16px,16px"></dc-import></span>
+                <span>Osobní odběr na prodejně <strong style="font-weight:600;color:var(--ss-status-success,#157A41)">zdarma</strong> · doprava od 650 Kč · <a href="#doprava" onClick="{{ openDoprava }}" aria-haspopup="dialog">Možnosti dopravy</a></span>
               </span>
             </div>
 
@@ -1112,7 +1113,7 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
             <div style="display:flex;align-items:center;gap:16px;min-width:0">
               <img decoding="async" src="_blob/c2606f1b288878aa84129b4a0e05ba7e.webp" alt="" style="width:64px;height:48px;object-fit:cover;border-radius:6px;flex:none;background:#FFFFFF" />
               <div style="display:flex;flex-direction:column;gap:2px;min-width:0;flex:1">
-              <span style="font-size:15px;font-weight:600;line-height:1.3;color:var(--ss-text-primary,#1C2229);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Matrace ELARA greengel „S“</span>
+              <span style="font-size:15px;font-weight:600;line-height:1.3;color:var(--ss-text-primary,#1C2229);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ prodName }}</span>
               <span style="display:flex;flex-wrap:wrap;gap:6px;margin-top:4px">
                 <sc-for list="{{ stickyChips }}" as="ch" hint-placeholder-count="4">
                   <span style="display:inline-flex;align-items:center;gap:6px;height:26px;padding:0 10px;border-radius:999px;background:var(--ss-surface-subtle,#FAF5EF);box-shadow:inset 0 0 0 1px var(--ss-border-subtle,#E1E6EB);font-size:13px;color:var(--ss-text-secondary,#3D4750);white-space:nowrap">
@@ -1167,8 +1168,10 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
 
   <dc-import name="VariantaDrawer" open="{{ drawerOpen }}" title="{{ drawerTitle }}" note="{{ drawerNote }}" value="{{ drawerValue }}" groups="{{ drawerGroups }}" rows="{{ drawerRows }}" onPick="{{ onDrawerPick }}" onClose="{{ closeDrawer }}" hint-size="0px,0px"></dc-import>
 
+  <!-- 18. 11. 2026: okno Možnosti dopravy (Overlay + DopravaObsah) -->
+  <dc-import name="Overlay" open="{{ dopravaOpen }}" variant="modal" size="md" obsah="DopravaObsah" title="Možnosti dopravy" icon="truck" closeLabel="okno" initialFocus="close" data="{{ dopravaData }}" onClose="{{ closeDoprava }}" hint-size="100%,100%"></dc-import>
   <dc-import name="Overlay" open="{{ dostOpen }}" variant="modal" size="sm" obsah="DostupnostObsah" title="{{ dostTitle }}" icon="building-store" closeLabel="okno" initialFocus="close" data="{{ dostData }}" onClose="{{ closeDost }}" hint-size="100%,100%"></dc-import>
-  <dc-import name="KosikPridanoModal" open="{{ addedOpen }}" title="Matrace ELARA greengel S" qty="{{ qty }}" variant="{{ addedVariant }}" image="_blob/c2606f1b288878aa84129b4a0e05ba7e.webp" stockKind="inStock" stockLabel="Skladem · odesíláme do 24 h" total="{{ addedTotal }}" onClose="{{ closeAdded }}" hint-size="0px,0px"></dc-import>
+  <dc-import name="KosikPridanoModal" open="{{ addedOpen }}" title="{{ prodName }}" qty="{{ qty }}" variant="{{ addedVariant }}" image="_blob/c2606f1b288878aa84129b4a0e05ba7e.webp" stockKind="inStock" stockLabel="Skladem · odesíláme do 24 h" total="{{ addedTotal }}" onClose="{{ closeAdded }}" hint-size="0px,0px"></dc-import>
 
   <sc-if value="{{ customOpen }}" hint-placeholder-val="{{ false }}">
     <div class="ss-scrim" style="position:fixed;inset:0;z-index:500;display:flex;align-items:safe center;justify-content:center;overflow-y:auto;padding:24px 16px" onClick="{{ onCustomBackdrop }}">
@@ -1229,9 +1232,9 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
 
   <sc-if value="{{ lbOpen }}" hint-placeholder-val="{{ false }}">
     <div class="ss-pd-lbwrap" style="position:fixed;inset:0;z-index:500;background:var(--ss-surface-page,#FFFFFF);display:flex;flex-direction:column" onClick="{{ onBackdrop }}">
-      <div role="dialog" aria-modal="true" aria-label="Galerie fotek – Matrace ELARA greengel „S“" ref="{{ dialogRef }}" style="display:flex;flex-direction:column;flex:1;min-height:0;padding:16px;gap:12px">
+      <div role="dialog" aria-modal="true" aria-label="Galerie fotek – {{ prodName }}" ref="{{ dialogRef }}" style="display:flex;flex-direction:column;flex:1;min-height:0;padding:16px;gap:12px">
         <div style="display:flex;align-items:center;justify-content:space-between;gap:16px">
-          <span style="display:flex;flex-direction:column;gap:2px;min-width:0"><span style="color:var(--ss-text-heading,#0B1F33);font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:20px;line-height:1.2">Matrace ELARA greengel „S“</span><span style="color:var(--ss-text-muted,#5B6874);font-size:14px">{{ lbCounter }}</span></span>
+          <span style="display:flex;flex-direction:column;gap:2px;min-width:0"><span style="color:var(--ss-text-heading,#0B1F33);font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:20px;line-height:1.2">{{ prodName }}</span><span style="color:var(--ss-text-muted,#5B6874);font-size:14px">{{ lbCounter }}</span></span>
           <button type="button" class="ss-pd-round" style="border-radius:6px" onClick="{{ closeLb }}" ref="{{ closeRef }}" aria-label="Zavřít galerii">
             <dc-import name="Ikony" iconName="x" size="22" hint-size="22px,22px"></dc-import>
           </button>
@@ -1564,21 +1567,22 @@ class Component extends DCLogic {
     const discount = '−' + Math.round((1 - now / before) * 100) + ' %';
     const sizes = stockFilter(ROZMERY).map(r => r.label);
     const variants = [
-      // 11. 11. 2026: každá varianta jiná tuhost (S měkká → XL velmi tvrdá)
+      // 18. 11. 2026: jen tuhosti 2–4; volba tuhosti mění název produktu (Matrace ELARA greengel Soft / Medium / Hard)
       // doporučená váha se mění s tuhostí (11. 11. 2026)
-      { label: 'ELARA greengel S', firm: 'H2 · měkká', tuhost: 2, zOd: 50, zDo: 80 },
-      { label: 'ELARA greengel M', firm: 'H3 · středně tvrdá', tuhost: 3, zOd: 65, zDo: 95 },
-      { label: 'ELARA greengel L', firm: 'H4 · tvrdá', tuhost: 4, zOd: 80, zDo: 115 },
-      { label: 'ELARA greengel XL', firm: 'H5 · velmi tvrdá', tuhost: 5, zOd: 95, zDo: 140 }
+      { label: 'ELARA greengel S', name: 'Soft', firm: 'H2 · Soft', tuhost: 2, zOd: 50, zDo: 80 },
+      { label: 'ELARA greengel M', name: 'Medium', firm: 'H3 · Medium', tuhost: 3, zOd: 65, zDo: 95 },
+      { label: 'ELARA greengel L', name: 'Hard', firm: 'H4 · Hard', tuhost: 4, zOd: 80, zDo: 115 }
     ];
+    const selVar = variants.find(v => v.label === (this.state.variantLabel || 'ELARA greengel S')) || variants[0];
     const faqData = [
-      { question: 'Jak vybrat správnou tuhost?', answer: 'Řiďte se hmotností a polohou při spaní. Na boku spícím lidem do 80 kg sedne S nebo M, na zádech a na břiše a nad 90 kg spíš L nebo XL. Nejjistější je matraci vyzkoušet na některé z našich prodejen.' },
+      { question: 'Jak vybrat správnou tuhost?', answer: 'Řiďte se hmotností a polohou při spaní. Na boku spícím lidem do 80 kg sedne Soft nebo Medium, na zádech a na břiše a nad 90 kg spíš Hard. Nejjistější je matraci vyzkoušet na některé z našich prodejen.' },
       { question: 'Můžu matraci vrátit, když mi nesedne?', answer: '30 nocí jistoty (výměna jádra za jinou tvrdost). Platí jen pro vybrané modely 90 × 200 cm. Výměna na prodejně.' },
       { question: 'Jak se o matraci starat?', answer: 'Potah sundejte a perte na 60 °C. Matraci jednou za tři měsíce otočte a pravidelně větrejte. Pro delší životnost doporučujeme chránič matrace.' }
     ];
     const PKW = () => !!this.state.warn && this._pkMiss.length > 0;
     return {
       // okno Dostupnost (9. 11. 2026)
+      dopravaOpen: !!this.state.doprava, dopravaData: {}, openDoprava: (e) => { if (e && e.preventDefault) e.preventDefault(); this.setState({ doprava: true }); }, closeDoprava: () => this.setState({ doprava: false }),
       dostOpen: !!this.state.dost, dostTitle: this.state.dost === 'stores' ? 'Skladem na prodejnách' : this.state.dost === 'tryout' ? 'Vyzkoušejte na prodejně' : 'Dostupnost', dostData: { storeIds: null, kind: this.state.dost === 'stores' || this.state.dost === 'tryout' ? this.state.dost : 'inStock', qty: 3, store: 'Praha – Chodov', pickup: 'ihned', delivery: 'zítra' },
       openDost: (e) => { if (e && e.preventDefault) e.preventDefault(); this.setState({ dost: true }); },
       openTry: (e) => { if (e && e.preventDefault) e.preventDefault(); this.setState({ dost: 'tryout' }); },
@@ -1592,14 +1596,15 @@ class Component extends DCLogic {
       presChoices: [
         { label: 'Detail – Simple', value: 'Matrace 3.0', options: ['Postel 3.0', 'Komplet 3.0', 'Multi 3.0', 'Matrace 3.0', 'Komoda VIA', 'Set polštář + povlak', 'Set polštář + přikrývka', 'Set 1+1 polštáře', 'Čalouněná', 'Airflex SET', 'Skříň UNI 2D'] }, { label: 'Krokový Konfig.', value: 'Matrace 3.0', options: ['Multi Konf.'] },
         { label: 'Fixní sloupec', value: this.state.stickPick || (stick === 'zadny' ? 'Žádný' : 'Galerie'), options: ['Galerie', 'Žádný'] },
-        { label: 'Rozměr', value: this.state.sizeUi === 'V2' ? 'Dropdown' : 'Chipy', options: ['Chipy', 'Dropdown'] },
-        { label: 'Výška', value: this.state.heightUi === 'V2' ? 'Dropdown' : 'Chipy', options: ['Chipy', 'Dropdown'] },
-        { label: 'Varianty', value: this.state.varUi || 'Karty', options: ['Karty', 'Chipy'] }
+        { label: 'Rozměr', value: this.state.sizeUi === 'V2' ? 'Dropdown' : 'Chipy', options: ['Chipy', 'Dropdown'] }
+        /* 18. 11. 2026: Výška natrvalo Chipy, volba odebrána */
+        /* 18. 11. 2026: Varianty natrvalo Karty, volba odebrána */
       ],
       // Karta matrace = globální volba Karta v prezentaci (ss-cardv, 30. 10. 2026)
       cardAB: this.state.cardAB || 'A',
       pmLayout: ({ A2: 'bars2', B: 'tiles', D: 'rada', E: 'kompakt' })[this.state.cardAB] || 'bars',
-      onPresPick: (ci, opt) => { if (ci === 1) ci = 0; else if (ci > 1) ci -= 1; /* Detail rozdělen na Simple a Konfigurátor (6. 11. 2026) */ if (ci === 0) { if (opt !== 'Matrace 3.0') (h => { try { const a = document.createElement('a'); a.href = h; a.style.display = 'none'; (document.getElementById('dc-root') || document.body).appendChild(a); a.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true, view: window })); a.remove(); } catch (e) { window.location.href = h; } })(opt === 'Multi Konf.' ? 'Detail_Postel_3.0-hqdl.dc.html' : (opt === 'Set polštář + povlak' ? 'Detail_Set_Polstar_B.dc.html' : opt === 'Set polštář + přikrývka' ? 'Detail_Set_Bamboo.dc.html' : opt === 'Čalouněná' ? 'Detail_Calounena_Postel.dc.html' : opt === 'Airflex SET' ? 'Detail_Matrace_Airflex_Set.dc.html' : opt === 'Set 1+1 polštáře' ? 'Detail_Set_Polstare_1plus1.dc.html' : opt === 'Skříň UNI 2D' ? 'Detail_Skrin_UNI_2D_Konf.dc.html' : 'Detail_' + String(opt).replace(/ /g, '_') + '.dc.html')); return; } this.setState(ci === 1 ? { stickPick: opt } : ci === 2 ? { sizeUi: opt === 'Dropdown' ? 'V2' : 'V1' } : ci === 3 ? { heightUi: opt === 'Dropdown' ? 'V2' : 'V1' } : ci === 4 ? { varUi: opt } : ci === 5 ? { cardAB: opt } : { setUi: opt }); },
+      onPresPick: (ci, opt) => { if (ci === 1) ci = 0; else if (ci > 1) ci -= 1; /* Detail rozdělen na Simple a Konfigurátor (6. 11. 2026) */ if (ci === 0) { if (opt !== 'Matrace 3.0') (h => { try { const a = document.createElement('a'); a.href = h; a.style.display = 'none'; (document.getElementById('dc-root') || document.body).appendChild(a); a.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true, view: window })); a.remove(); } catch (e) { window.location.href = h; } })(opt === 'Multi Konf.' ? 'Detail_Postel_3.0-hqdl.dc.html' : (opt === 'Set polštář + povlak' ? 'Detail_Set_Polstar_B.dc.html' : opt === 'Set polštář + přikrývka' ? 'Detail_Set_Bamboo.dc.html' : opt === 'Čalouněná' ? 'Detail_Calounena_Postel.dc.html' : opt === 'Airflex SET' ? 'Detail_Matrace_Airflex_Set.dc.html' : opt === 'Set 1+1 polštáře' ? 'Detail_Set_Polstare_1plus1.dc.html' : opt === 'Skříň UNI 2D' ? 'Detail_Skrin_UNI_2D_Konf.dc.html' : 'Detail_' + String(opt).replace(/ /g, '_') + '.dc.html')); return; } this.setState(ci === 1 ? { stickPick: opt } : ci === 2 ? { sizeUi: opt === 'Dropdown' ? 'V2' : 'V1' } : ci === 3 ? { cardAB: opt } : { setUi: opt }); },
+      prodName: 'Matrace ELARA greengel ' + selVar.name,
       stickyChips: [
         { label: this.state.customSize || this.state.size },
         { label: 'Výška ' + vys.label },
@@ -1609,7 +1614,7 @@ class Component extends DCLogic {
         { label: 'Domů', href: 'index.dc.html' },
         { label: 'Matrace', href: 'Kategorie_Matrace.dc.html' },
         { label: 'Pěnové matrace', href: '#matrace-penove' },
-        { label: 'ELARA greengel S' }
+        { label: 'ELARA greengel ' + selVar.name }
       ],
       inner,
       innerPadded: Object.assign({}, inner, { padding: narrow ? '40px 16px' : '64px 32px' }),
@@ -1666,17 +1671,17 @@ class Component extends DCLogic {
       selZOd: (variants.find(v => v.label === (this.state.variantLabel || 'ELARA greengel S')) || variants[0]).zOd,
       selZDo: (variants.find(v => v.label === (this.state.variantLabel || 'ELARA greengel S')) || variants[0]).zDo,
       facts: [
-        { icon: 'bed', label: 'Tuhost H2 – měkká' },
+        { icon: 'bed', label: 'Tuhost ' + selVar.firm.replace(' · ', ' – ') },
         { icon: 'weight', label: 'Nosnost až 200 kg' },
         { icon: 'arrows-vertical', label: 'Výška jádra 20 cm' },
         { icon: 'stack-2', label: 'Pěnová matrace' }
       ].map(f => ({ label: f.label, icon: f.icon, isFlag: !!f.flag, isIcon: !f.flag })),
-      varCards: this.state.varUi !== 'Chipy', varChips: this.state.varUi === 'Chipy',
-      varTemplate: w >= 550 ? 'repeat(4,minmax(0,1fr))' : 'repeat(2,minmax(0,1fr))',
+      varCards: true, varChips: false,
+      varTemplate: w >= 400 ? 'repeat(3,minmax(0,1fr))' : 'repeat(2,minmax(0,1fr))',
       variants: variants.map(v => {
         const sel = (this.state.variantLabel || 'ELARA greengel S') === v.label;
         return {
-          label: v.label, short: v.label.split(' ').pop(), aria: v.label + ', ' + v.firm, chipVariant: sel ? 'primary' : 'outlineBox', src: '_blob/c2606f1b288878aa84129b4a0e05ba7e.webp', selected: sel, firmLabel: v.firm, tuhost: v.tuhost,
+          label: v.label, short: v.name, aria: v.label + ', ' + v.firm, chipVariant: sel ? 'primary' : 'outlineBox', src: '_blob/c2606f1b288878aa84129b4a0e05ba7e.webp', selected: sel, firmLabel: v.firm, tuhost: v.tuhost,
           scale: [0, 1, 2, 3, 4].map(k => ({ bg: k === v.pos ? '#132C43' : 'var(--ss-surface-selected,#DCE8F2)' })),
           // 11. 11. 2026: barevné schéma jako čipy – vybraná tmavě modrá (Chip primary), ostatní bílé s rámečkem (Chip outlineBox)
           ring: sel ? 'none' : 'inset 0 0 0 1px var(--ss-border-strong,#C8D0D8)', notSelected: !sel,
@@ -1717,8 +1722,8 @@ class Component extends DCLogic {
       onlyStock,
       heights: stockFilter(VYSKY).map(h => ({ label: h.label, variant: (vys.id === h.id && !!(this.state.pk || {}).vyska) ? 'primary' : 'outlineBox', pressed: (vys.id === h.id && !!(this.state.pk || {}).vyska) ? 'true' : 'false', onPick: () => this.setState(st => ({ vyska: h.id, pk: Object.assign({}, st.pk, { vyska: true }) })) })),
       heightValue: vys.id,
-      heightChips: this.state.heightUi !== 'V2',
-      heightSelect: this.state.heightUi === 'V2',
+      heightChips: true,
+      heightSelect: false,
       heightOptions: stockFilter(VYSKY).map(h => ({ value: h.id, label: h.label + (h.add ? ' (+ ' + fmt(h.add) + ')' : '') })),
       onHeightSelect: (v) => this.setState({ vyska: v }),
       setOnlyStock: (v) => this.setState({ onlyStock: v }),
@@ -1859,7 +1864,7 @@ class Component extends DCLogic {
         ['Výška matrace', '22 nebo 25 cm', 'arrow-autofit-height'],
         ['Výška jádra', '20 cm', 'ruler-2'],
         ['Nosnost', 'až 200 kg', 'weight'],
-        ['Tuhost', '4 – tvrdá, 5 – velmi tvrdá', 'adjustments-horizontal'],
+        ['Tuhost', 'H2–H4 · Soft, Medium, Hard', 'adjustments-horizontal'],
         ['Počet zón', '7', 'adjustments'],
         ['Jádro', 'BIO pěna VERDE®, pěna XDURA®', 'stack-2'],
         ['Potah', 'greengel, snímatelný, pratelný na 60 °C', 'color-swatch'],

@@ -327,9 +327,9 @@ class Component extends DCLogic {
       ['Detail_Postel_3.0-hqdl.dc.html', 'Detail – Multi 3.0 Konfigurátor', 'Krokový konfigurátor: rozměr → výška → úložný prostor → typ roštu → rošt → materiál a odstín → čalounění. Další krok se objeví po výběru, hotové kroky se sbalí se Změnit, výběr vždy přímo na stránce.']
     ] },
     { id: 'rz-kos', title: 'Košík a objednávka', desc: 'Celý nákupní proces od košíku po poděkování. Kroky 2 a 3 jsou uzavřená pokladna se zjednodušenou hlavičkou.', items: [
-      ['KosikKrok1.dc.html', '1. Váš košík', 'Položky, slevový kupon, doprava zdarma, souhrn. Plná hlavička.'],
-      ['KosikKrok2.dc.html', '2. Doprava, montáž a platba', 'Volba dopravy a platby, info bubliny. Zjednodušená hlavička pokladny.'],
-      ['KosikKrok3.dc.html', '3. Dodací údaje', 'Formulář, nákup na firmu, přihlášení přes sociální sítě.'],
+      ['KosikKrok1.dc.html', '1. Košík, doprava a platba', 'Položky, slevový kupon, doprava zdarma, způsob dopravy a platby (svázané s kupóny), souhrn. Plná hlavička.'],
+      ['KosikKrok3.dc.html', '2. Kontaktní údaje', 'Formulář, nákup na firmu, přihlášení přes sociální sítě.'],
+      ['KosikShrnuti.dc.html', '3. Shrnutí objednávky', 'Kontakt, dodací údaje, poznámka, doprava a platba, obchodní podmínky a tlačítko Koupit.'],
       ['Dekujeme.dc.html', 'Děkujeme za objednávku', 'Platební údaje s QR kódem, zpětná vazba, průběh objednávky, registrace.'],
       ['PrazdnyKosik.dc.html', 'Prázdný košík', 'Stav bez položek s doporučenými kategoriemi.'],
       ['Oblibene.dc.html', 'Oblíbené', 'Uložené produkty, box poradce.'],
@@ -359,10 +359,10 @@ class Component extends DCLogic {
       ['Kategorie_Matrace.dc.html', 'Poradna (tipy v kategorii)', 'Článek poradny otevřený nad výpisem.', 'Ve výpisu kategorie klikněte na dlaždici tipu / poradny mezi produkty.', 'PoradnaObsah.dc.html', 'Modal'],
       ['Kategorie_Matrace.dc.html', 'Filtry na mobilu', 'Vysouvací panel s celou filtrací.', 'Zúžte okno pod 820 px a klikněte na „Filtry“.', 'FiltrObsah.dc.html', 'Drawer'],
       ['Kategorie_Matrace.dc.html', 'Tooltipy u parametrů karty', 'Krátké vysvětlení tuhosti, váhy, výšky a záruky.', 'Na kartě matrace najeďte myší na tuhost, váhu nebo štítky 22 cm / max kg / let.', 'ParametryMatrace.dc.html', 'Tooltip'],
-      ['KosikKrok2.dc.html', 'Info bubliny u dopravy a platby', 'Podrobnosti k jednotlivým způsobům dopravy a platby.', 'Klikněte na ikonu „i“ u volby dopravy nebo platby.', 'InfoPopover.dc.html', 'Popover'],
+      ['KosikKrok1.dc.html', 'Info bubliny u dopravy a platby', 'Podrobnosti k jednotlivým způsobům dopravy a platby.', 'Klikněte na ikonu „i“ u volby dopravy nebo platby.', 'InfoPopover.dc.html', 'Popover'],
       ['KosikKrok3.dc.html', 'Info bublina DIČ', 'Vysvětlení, kdy vyplnit DIČ.', 'Zaškrtněte „Nakupuji na firmu“ a klikněte na „i“ u pole DIČ.', 'InfoObsah.dc.html', 'Popover'],
       ['Chyba404.dc.html', 'Vyhledávání ze stránky 404', 'Tlačítko na 404 otevře vyhledávání v hlavičce s návrhy.', 'Na stránce 404 klikněte na „Vyhledat v obchodě“.', '', ''],
-      ['KosikKrok2.dc.html', 'Opustit pokladnu?', 'Potvrzení před odchodem z pokladny.', 'V kroku 2 nebo 3 klikněte na logo v hlavičce.', 'HlavickaPokladna.dc.html', 'Dialog']
+      ['KosikKrok3.dc.html', 'Opustit pokladnu?', 'Potvrzení před odchodem z pokladny.', 'V kroku 2 nebo 3 klikněte na logo v hlavičce.', 'HlavickaPokladna.dc.html', 'Dialog']
     ] },
     { id: 'rz-pre', title: 'Prezentační přepínače', desc: 'Na většině stránek je dole plovoucí lišta s variantami k porovnání. Tady jsou stránky, kde jsou varianty k vyzkoušení.', items: [
       ['index.dc.html', 'Homepage – varianty', 'Karusel V1–V3, Header Světlá / Modrá / Duo, Footer, Magazín M1/M2, Kategorie K1/K2, Prodejny P1/P2, Menu M1/M2, LED.'],

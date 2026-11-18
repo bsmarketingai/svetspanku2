@@ -469,8 +469,8 @@ a:hover{color:var(--ss-hover-text,#A4600C);}
 @media (hover:hover) and (pointer:fine){.ss-pd-cs-radio:hover .ss-pd-cs-dot{border-color:var(--ss-hover-text,#A4600C);}.ss-pd-cs-radio:hover .ss-pd-cs-t{color:#21507B;}html[data-mode="dark"] .ss-pd-cs-radio:hover .ss-pd-cs-t{color:#FBB255;}}
 .ss-pd-cs-info{position:relative;flex:none;display:flex;align-items:center;justify-content:center;width:36px;height:36px;padding:0;border:0;border-radius:999px;background:none;cursor:pointer;color:var(--ss-link,#296093);transition:color .12s cubic-bezier(.22,.61,.36,1),background-color .12s cubic-bezier(.22,.61,.36,1);}
 .ss-pd-cs-info:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
-.ss-pd-cs-info[aria-expanded="true"]{color:var(--ss-hover-text,#A4600C);}
-@media (hover:hover) and (pointer:fine){.ss-pd-cs-info:hover{color:var(--ss-hover-text,#A4600C);background:var(--ss-hover-bg,#FFF5E6);}}
+.ss-pd-cs-info[aria-expanded="true"]{color:var(--ss-link-hover,#21507B);background:var(--ss-surface-subtle,#FAF5EF);}
+@media (hover:hover) and (pointer:fine){.ss-pd-cs-info:hover{color:var(--ss-link-hover,#21507B);background:var(--ss-surface-subtle,#FAF5EF);}}
 .ss-pd-cs-f{position:relative;display:flex;align-items:center;}
 .ss-pd-cs-f>.ss-pd-cs-ic{position:absolute;left:12px;display:flex;color:var(--ss-text-muted,#5B6874);pointer-events:none;}
 .ss-pd-cs-f>.ss-pd-cs-u{position:absolute;right:12px;font-size:14px;color:var(--ss-text-muted,#5B6874);pointer-events:none;}
@@ -748,9 +748,10 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
                 <span style="display:flex;color:var(--ss-text-muted,#5B6874);flex:none"><dc-import name="Ikony" iconName="map-pin" size="16" hint-size="16px,16px"></dc-import></span>
                 <span>Můžete mít hned na <a href="#prodejny" onClick="{{ openStores }}" aria-haspopup="dialog">3 prodejnách</a></span>
               </span>
+              <!-- 18. 11. 2026: doprava / osobní odběr s odkazem na informace o dopravě -->
               <span style="display:flex;align-items:center;gap:8px;font-size:14px;color:var(--ss-text-secondary,#3D4750);padding-left:2px">
-                <span style="display:flex;color:var(--ss-text-muted,#5B6874);flex:none"><dc-import name="Ikony" iconName="map-pin" size="16" hint-size="16px,16px"></dc-import></span>
-                <span>Vyzkoušejte osobně na <a href="#prodejny" onClick="{{ openTry }}" aria-haspopup="dialog">5 specializovaných prodejnách</a></span>
+                <span style="display:flex;color:var(--ss-text-muted,#5B6874);flex:none"><dc-import name="Ikony" iconName="truck" size="16" hint-size="16px,16px"></dc-import></span>
+                <span>Osobní odběr na prodejně <strong style="font-weight:600;color:var(--ss-status-success,#157A41)">zdarma</strong> · doprava od 650 Kč · <a href="#doprava" onClick="{{ openDoprava }}" aria-haspopup="dialog">Možnosti dopravy</a></span>
               </span>
             </div>
 
@@ -790,6 +791,15 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
               </span>
             </a>
             </sc-if>
+            </div>
+
+            <!-- 18. 11. 2026: Vyzkoušejte osobně – jako u Matrace 3.0, s názvem produktu -->
+            <div style="display:flex;align-items:center;gap:16px;padding:4px 0 20px;border-bottom:1px solid var(--ss-border-subtle,#E1E6EB)">
+              <span style="display:flex;color:var(--ss-text-heading,#0B1F33);flex:none"><dc-import name="Ikony" iconName="usp-prodejny" size="40" hint-size="40px,40px"></dc-import></span>
+              <span style="display:flex;flex-direction:column;gap:4px;min-width:0;font-size:15px;line-height:1.45;color:var(--ss-text-secondary,#3D4750)">
+                <span style="font-weight:600;color:var(--ss-text-primary,#1C2229)">Vyzkoušejte osobně na <a href="#prodejny" onClick="{{ openTry }}" aria-haspopup="dialog">5 prodejnách</a></span>
+                <span>Postel LEVITA s matrací Viscoair je vystavená v Praze (Butovice a Kutnohorská), Brně, Ostravě a Olomouci.</span>
+              </span>
             </div>
 
             <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;padding-top:4px">
@@ -1080,6 +1090,8 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
 
   <dc-import name="VariantaDrawer" open="{{ drawerOpen }}" title="{{ drawerTitle }}" note="{{ drawerNote }}" value="{{ drawerValue }}" groups="{{ drawerGroups }}" rows="{{ drawerRows }}" onPick="{{ onDrawerPick }}" onClose="{{ closeDrawer }}" hint-size="0px,0px"></dc-import>
 
+  <!-- 18. 11. 2026: okno Možnosti dopravy (Overlay + DopravaObsah) -->
+  <dc-import name="Overlay" open="{{ dopravaOpen }}" variant="modal" size="md" obsah="DopravaObsah" title="Možnosti dopravy" icon="truck" closeLabel="okno" initialFocus="close" data="{{ dopravaData }}" onClose="{{ closeDoprava }}" hint-size="100%,100%"></dc-import>
   <dc-import name="Overlay" open="{{ dostOpen }}" variant="modal" size="sm" obsah="DostupnostObsah" title="{{ dostTitle }}" icon="building-store" closeLabel="okno" initialFocus="close" data="{{ dostData }}" onClose="{{ closeDost }}" hint-size="100%,100%"></dc-import>
   <dc-import name="KosikPridanoModal" open="{{ addedOpen }}" title="{{ addedTitle }}" qty="{{ qty }}" variant="{{ addedVariant }}" image="_blob/6b546453dfb90e0ec7ddb488eed7e6ec.webp" stockKind="onOrder" stockLabel="Vyrobíme během 2–4 týdnů" total="{{ addedTotal }}" onClose="{{ closeAdded }}" hint-size="0px,0px"></dc-import>
 
@@ -1589,6 +1601,7 @@ class Component extends DCLogic {
     ];
     return {
       // okno Dostupnost (9. 11. 2026)
+      dopravaOpen: !!this.state.doprava, dopravaData: {}, openDoprava: (e) => { if (e && e.preventDefault) e.preventDefault(); this.setState({ doprava: true }); }, closeDoprava: () => this.setState({ doprava: false }),
       dostOpen: !!this.state.dost, dostTitle: this.state.dost === 'stores' ? 'Skladem na prodejnách' : this.state.dost === 'tryout' ? 'Vyzkoušejte na prodejně' : 'Dostupnost', dostData: { storeIds: null, kind: this.state.dost === 'stores' || this.state.dost === 'tryout' ? this.state.dost : 'inStock', qty: 3, store: 'Praha – Chodov', pickup: 'ihned', delivery: 'zítra' },
       openDost: (e) => { if (e && e.preventDefault) e.preventDefault(); this.setState({ dost: true }); },
       openTry: (e) => { if (e && e.preventDefault) e.preventDefault(); this.setState({ dost: 'tryout' }); },
@@ -1715,7 +1728,7 @@ class Component extends DCLogic {
       kitItems: KIT.map(it => {
         const open = kitOpen[it.key] !== false;
         const opt = it.key === 'postel' ? { optTitle: 'Materiál a odstín (olej)', optValue: mat.label, optNote: mat.note, optNoteColor: mat.note === 'Bez příplatku' ? 'var(--ss-status-success,#157A41)' : 'var(--ss-text-primary,#1C2229)', hasSwatch: true, swatch: mat.color, onOpt: () => this.setState({ drawer: 'material' }) }
-          : it.key === 'matrace' ? { optTitle: 'Tuhost matrace', optValue: tuh.label, optNote: '', optNoteColor: 'var(--ss-status-success,#157A41)', hasSwatch: false, swatch: '', hasBars: true, bars: ['#B9D0E5', '#8DB3D3', '#296093', '#21507B', '#132C43'].map((c, i) => ({ bg: i < Number(String(tuh.id).slice(1)) ? c : 'var(--ss-surface-strong,#E9E1D5)' })), onOpt: () => this.setState({ drawer: 'tuhost' }) } : null;
+          : it.key === 'matrace' ? { optTitle: 'Tuhost matrace', optValue: tuh.label, optNote: '', optNoteColor: 'var(--ss-status-success,#157A41)', hasSwatch: false, swatch: '', hasBars: true, bars: ['#21507B', '#21507B', '#21507B', '#21507B', '#21507B'] /* 18. 11. 2026: bez přechodu – aktivní dílky jednou tmavou modrou */.map((c, i) => ({ bg: i < Number(String(tuh.id).slice(1)) ? c : 'var(--ss-surface-strong,#E9E1D5)' })), onOpt: () => this.setState({ drawer: 'tuhost' }) } : null;
         return Object.assign({}, it, { regular: it.count > 1 ? it.count + ' × ' + fmtK(it.unit) + ' = ' + fmtK(it.unit * it.count) : fmtK(it.unit), hasImg: !!it.img, noImg: !it.img, open, expanded: open ? 'true' : 'false', rotate: open ? 'none' : 'rotate(180deg)',
           toggleLabel: (open ? 'Sbalit ' : 'Rozbalit ') + it.title, toggle: kitToggle(it.key), hasOpt: !!opt }, opt || {});
       }),

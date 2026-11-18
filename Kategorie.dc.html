@@ -492,8 +492,8 @@ const FACETY = [
     { id: '160x200', label: '160 × 200 cm', count: 62 }, { id: '180x200', label: '180 × 200 cm', count: 57 },
     { id: '200x200', label: '200 × 200 cm', count: 12 } ] },
   { id: 'tuhost', title: 'Tuhost', options: [
-    { id: 'h1', label: 'Měkká H1', count: 14 }, { id: 'h2', label: 'Středně tuhá H2', count: 44 },
-    { id: 'h3', label: 'Tuhá H3', count: 39 }, { id: 'h4', label: 'Velmi tuhá H4', count: 15 } ] },
+    { id: 'h1', label: 'Soft H1', count: 14 }, { id: 'h2', label: 'Medium H2', count: 44 },
+    { id: 'h3', label: 'Hard H3', count: 39 }, { id: 'h4', label: 'Extra Hard H4', count: 15 } ] },
   { id: 'konstrukce', title: 'Konstrukce', options: [
     { id: 'penova', label: 'Pěnová', count: 38 }, { id: 'tastickova', label: 'Taštičková', count: 31 },
     { id: 'latexova', label: 'Latexová', count: 18 }, { id: 'sendvicova', label: 'Sendvičová', count: 15 } ] },
@@ -7235,10 +7235,10 @@ class Component extends DCLogic {
     { title: 'Jakou zvolit tuhost nové matrace?', image: '_blob/dc5fa8667ca1a270c407277d68672f80.webp', imageAlt: 'Ruka tlačí do matrace, řez vrstvami',
       intro: 'Tuhost se značí stupni H1 až H5. Správná tuhost drží páteř v rovině – nezáleží jen na váze, ale i na poloze, ve které spíte.',
       items: [
-        { h: 'H1 – měkká', t: 'Pro lehčí postavy do 60 kg a spaní na boku. Ramena a boky se hlouběji zaboří.' },
-        { h: 'H2 – středně tuhá', t: 'Univerzální volba pro 60–90 kg. Vyhovuje většině spáčů na boku i na zádech.' },
-        { h: 'H3 – tuhá', t: 'Pro 90–120 kg nebo spaní na zádech a břiše. Pánev se nepropadá.' },
-        { h: 'H4 a H5 – velmi tuhá', t: 'Pro těžší postavy nad 120 kg a pro ty, kdo vyžadují pevnou oporu.' },
+        { h: 'H1 – Soft', t: 'Pro lehčí postavy do 60 kg a spaní na boku. Ramena a boky se hlouběji zaboří.' },
+        { h: 'H2 – Medium', t: 'Univerzální volba pro 60–90 kg. Vyhovuje většině spáčů na boku i na zádech.' },
+        { h: 'H3 – Hard', t: 'Pro 90–120 kg nebo spaní na zádech a břiše. Pánev se nepropadá.' },
+        { h: 'H4 a H5 – Extra Hard', t: 'Pro těžší postavy nad 120 kg a pro ty, kdo vyžadují pevnou oporu.' },
         { h: 'Partneři s různou váhou', t: 'Zvolte dvě samostatné matrace, nebo partnerskou matraci s rozdílnou tuhostí každé poloviny.' }
       ],
       ctaLabel: 'Zobrazit matrace podle tuhosti', ctaHref: '#tuhost' }

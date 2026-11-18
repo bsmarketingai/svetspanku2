@@ -458,8 +458,8 @@ a:hover{color:var(--ss-hover-text,#A4600C);}
 @media (hover:hover) and (pointer:fine){.ss-pd-cs-radio:hover .ss-pd-cs-dot{border-color:var(--ss-hover-text,#A4600C);}.ss-pd-cs-radio:hover .ss-pd-cs-t{color:#21507B;}html[data-mode="dark"] .ss-pd-cs-radio:hover .ss-pd-cs-t{color:#FBB255;}}
 .ss-pd-cs-info{position:relative;flex:none;display:flex;align-items:center;justify-content:center;width:36px;height:36px;padding:0;border:0;border-radius:999px;background:none;cursor:pointer;color:var(--ss-link,#296093);transition:color .12s cubic-bezier(.22,.61,.36,1),background-color .12s cubic-bezier(.22,.61,.36,1);}
 .ss-pd-cs-info:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
-.ss-pd-cs-info[aria-expanded="true"]{color:var(--ss-hover-text,#A4600C);}
-@media (hover:hover) and (pointer:fine){.ss-pd-cs-info:hover{color:var(--ss-hover-text,#A4600C);background:var(--ss-hover-bg,#FFF5E6);}}
+.ss-pd-cs-info[aria-expanded="true"]{color:var(--ss-link-hover,#21507B);background:var(--ss-surface-subtle,#FAF5EF);}
+@media (hover:hover) and (pointer:fine){.ss-pd-cs-info:hover{color:var(--ss-link-hover,#21507B);background:var(--ss-surface-subtle,#FAF5EF);}}
 .ss-pd-cs-f{position:relative;display:flex;align-items:center;}
 .ss-pd-cs-f>.ss-pd-cs-ic{position:absolute;left:12px;display:flex;color:var(--ss-text-muted,#5B6874);pointer-events:none;}
 .ss-pd-cs-f>.ss-pd-cs-u{position:absolute;right:12px;font-size:14px;color:var(--ss-text-muted,#5B6874);pointer-events:none;}
@@ -747,9 +747,10 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
                 <span style="display:flex;color:var(--ss-text-muted,#5B6874);flex:none"><dc-import name="Ikony" iconName="map-pin" size="16" hint-size="16px,16px"></dc-import></span>
                 <span>Můžete mít hned na <a href="#prodejny" onClick="{{ openStores }}" aria-haspopup="dialog">3 prodejnách</a></span>
               </span>
+              <!-- 18. 11. 2026: doprava / osobní odběr s odkazem na informace o dopravě -->
               <span style="display:flex;align-items:center;gap:8px;font-size:14px;color:var(--ss-text-secondary,#3D4750);padding-left:2px">
-                <span style="display:flex;color:var(--ss-text-muted,#5B6874);flex:none"><dc-import name="Ikony" iconName="map-pin" size="16" hint-size="16px,16px"></dc-import></span>
-                <span>Vyzkoušejte osobně na <a href="#prodejny" onClick="{{ openTry }}" aria-haspopup="dialog">5 specializovaných prodejnách</a></span>
+                <span style="display:flex;color:var(--ss-text-muted,#5B6874);flex:none"><dc-import name="Ikony" iconName="truck" size="16" hint-size="16px,16px"></dc-import></span>
+                <span>Osobní odběr na prodejně <strong style="font-weight:600;color:var(--ss-status-success,#157A41)">zdarma</strong> · doprava od 650 Kč · <a href="#doprava" onClick="{{ openDoprava }}" aria-haspopup="dialog">Možnosti dopravy</a></span>
               </span>
             </div>
 
@@ -1109,6 +1110,8 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
 
   <dc-import name="VariantaDrawer" open="{{ drawerOpen }}" title="{{ drawerTitle }}" note="{{ drawerNote }}" value="{{ drawerValue }}" groups="{{ drawerGroups }}" rows="{{ drawerRows }}" onPick="{{ onDrawerPick }}" onClose="{{ closeDrawer }}" hint-size="0px,0px"></dc-import>
 
+  <!-- 18. 11. 2026: okno Možnosti dopravy (Overlay + DopravaObsah) -->
+  <dc-import name="Overlay" open="{{ dopravaOpen }}" variant="modal" size="md" obsah="DopravaObsah" title="Možnosti dopravy" icon="truck" closeLabel="okno" initialFocus="close" data="{{ dopravaData }}" onClose="{{ closeDoprava }}" hint-size="100%,100%"></dc-import>
   <dc-import name="Overlay" open="{{ dostOpen }}" variant="modal" size="sm" obsah="DostupnostObsah" title="{{ dostTitle }}" icon="building-store" closeLabel="okno" initialFocus="close" data="{{ dostData }}" onClose="{{ closeDost }}" hint-size="100%,100%"></dc-import>
   <dc-import name="KosikPridanoModal" open="{{ addedOpen }}" title="{{ addedTitle }}" qty="{{ qty }}" variant="{{ addedVariant }}" image="_blob/c2606f1b288878aa84129b4a0e05ba7e.webp" stockKind="inStock" stockLabel="Skladem · odesíláme do 24 h" total="{{ addedTotal }}" onClose="{{ closeAdded }}" hint-size="0px,0px"></dc-import>
 
@@ -1505,10 +1508,10 @@ class Component extends DCLogic {
     // SET 1 + 1 (9. 11. 2026): cena = součet cen obou zvolených rozměrů, do výběru obou „od“ nejlevnější kombinace (ukázkové ceny)
     // 13. 11. 2026: SET 1 + 1 – u každé matrace se vybírá tuhost (S–XL jako Matrace 3.0) místo rozměru; cena setu stejná pro všechny tuhosti
     const SET_SIZES = [
-      { id: 'S', label: 'H2 · měkká', short: 'S', tuhost: 2, zOd: 50, zDo: 80, now: 6990, before: 8590 },
-      { id: 'M', label: 'H3 · středně tvrdá', short: 'M', tuhost: 3, zOd: 65, zDo: 95, now: 6990, before: 8590 },
-      { id: 'L', label: 'H4 · tvrdá', short: 'L', tuhost: 4, zOd: 80, zDo: 115, now: 6990, before: 8590 },
-      { id: 'XL', label: 'H5 · velmi tvrdá', short: 'XL', tuhost: 5, zOd: 95, zDo: 140, now: 6990, before: 8590 }
+      { id: 'S', label: 'H2 · Soft', short: 'S', tuhost: 2, zOd: 50, zDo: 80, now: 6990, before: 8590 },
+      { id: 'M', label: 'H3 · Medium', short: 'M', tuhost: 3, zOd: 65, zDo: 95, now: 6990, before: 8590 },
+      { id: 'L', label: 'H4 · Hard', short: 'L', tuhost: 4, zOd: 80, zDo: 115, now: 6990, before: 8590 },
+      { id: 'XL', label: 'H5 · Extra Hard', short: 'XL', tuhost: 5, zOd: 95, zDo: 140, now: 6990, before: 8590 }
     ];
     const S1 = SET_SIZES.find(x => x.id === this.state.m1), S2 = SET_SIZES.find(x => x.id === this.state.m2);
     if (!S1) this._pkMiss.push('ss-pk-m1');
@@ -1521,10 +1524,10 @@ class Component extends DCLogic {
     const discount = '−' + Math.round((1 - now / before) * 100) + ' %';
     const sizes = stockFilter(ROZMERY).map(r => r.label);
     const variants = [
-      { label: 'ELARA greengel S', firm: 'H2 · měkká', tuhost: 2 },
-      { label: 'ELARA greengel M', firm: 'H2 · měkká', tuhost: 2 },
-      { label: 'ELARA greengel L', firm: 'H2 · měkká', tuhost: 2 },
-      { label: 'ELARA greengel XL', firm: 'H2 · měkká', tuhost: 2 }
+      { label: 'ELARA greengel S', firm: 'H2 · Soft', tuhost: 2 },
+      { label: 'ELARA greengel M', firm: 'H2 · Soft', tuhost: 2 },
+      { label: 'ELARA greengel L', firm: 'H2 · Soft', tuhost: 2 },
+      { label: 'ELARA greengel XL', firm: 'H2 · Soft', tuhost: 2 }
     ];
     const faqData = [
       { question: 'Jak vybrat správnou tuhost?', answer: 'Řiďte se hmotností a polohou při spaní. Na boku spícím lidem do 80 kg sedne S nebo M, na zádech a na břiše a nad 90 kg spíš L nebo XL. Nejjistější je matraci vyzkoušet na některé z našich prodejen.' },
@@ -1534,6 +1537,7 @@ class Component extends DCLogic {
     const PKW = () => !!this.state.warn && this._pkMiss.length > 0;
     return {
       // okno Dostupnost (9. 11. 2026)
+      dopravaOpen: !!this.state.doprava, dopravaData: {}, openDoprava: (e) => { if (e && e.preventDefault) e.preventDefault(); this.setState({ doprava: true }); }, closeDoprava: () => this.setState({ doprava: false }),
       dostOpen: !!this.state.dost, dostTitle: this.state.dost === 'stores' ? 'Skladem na prodejnách' : this.state.dost === 'tryout' ? 'Vyzkoušejte na prodejně' : 'Dostupnost', dostData: { storeIds: null, kind: this.state.dost === 'stores' || this.state.dost === 'tryout' ? this.state.dost : 'inStock', qty: 3, store: 'Praha – Chodov', pickup: 'ihned', delivery: 'zítra' },
       openDost: (e) => { if (e && e.preventDefault) e.preventDefault(); this.setState({ dost: true }); },
       openTry: (e) => { if (e && e.preventDefault) e.preventDefault(); this.setState({ dost: 'tryout' }); },
@@ -1619,7 +1623,7 @@ class Component extends DCLogic {
       togglePerex: () => this.setState(s => ({ perex: !s.perex })),
       selTuhost: (variants.find(v => v.label === (this.state.variantLabel || 'ELARA greengel S')) || variants[0]).tuhost,
       facts: [
-        { icon: 'bed', label: 'Tuhost H2 – měkká' },
+        { icon: 'bed', label: 'Tuhost H2 – Soft' },
         { icon: 'weight', label: 'Nosnost až 200 kg' },
         { icon: 'arrows-vertical', label: 'Výška jádra 20 cm' },
         { icon: 'stack-2', label: 'Pěnová matrace' }
@@ -1811,7 +1815,7 @@ class Component extends DCLogic {
         ['Výška matrace', '22 nebo 25 cm', 'arrow-autofit-height'],
         ['Výška jádra', '20 cm', 'ruler-2'],
         ['Nosnost', 'až 200 kg', 'weight'],
-        ['Tuhost', '4 – tvrdá, 5 – velmi tvrdá', 'adjustments-horizontal'],
+        ['Tuhost', 'H4 – Hard, H5 – Extra Hard', 'adjustments-horizontal'],
         ['Počet zón', '7', 'adjustments'],
         ['Jádro', 'BIO pěna VERDE®, pěna XDURA®', 'stack-2'],
         ['Potah', 'greengel, snímatelný, pratelný na 60 °C', 'color-swatch'],

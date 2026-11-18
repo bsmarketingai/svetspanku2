@@ -245,9 +245,10 @@ class Component extends DCLogic {
     const narrow = this.state.width < 820;
     const allLabels = this.state.width >= 550;
     const defs = [
-      { label: 'Váš košík', href: p.href1 || 'KosikKrok1.dc.html' },
-      { label: 'Doprava, montáž a platba', href: p.href2 || 'KosikKrok2.dc.html' },
-      { label: 'Dodací údaje', href: p.href3 || 'KosikKrok3.dc.html' }
+      // 18. 11. 2026: nové pořadí kroků (doprava a platba jsou svázané s kupóny → v kroku 1)
+      { label: 'Košík, doprava a platba', href: p.href1 || 'KosikKrok1.dc.html' },
+      { label: 'Kontaktní údaje', href: p.href2 || 'KosikKrok3.dc.html' },
+      { label: 'Shrnutí objednávky', href: p.href3 || 'KosikShrnuti.dc.html' }
     ];
     return {
       olStyle: { listStyle: 'none', margin: '0 auto', padding: narrow ? '0 8px' : '0 32px', maxWidth: '1560px', boxSizing: 'border-box', display: 'flex', justifyContent: narrow ? 'space-between' : 'center', alignItems: 'stretch', gap: narrow ? '4px' : '24px' },

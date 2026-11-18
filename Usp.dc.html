@@ -231,12 +231,14 @@ class Component extends DCLogic {
     const w = this.state.width;
     const dark = p.tone === 'tmavy';
     const tiles = p.variant === 'dlazdice';
+    // 18. 11. 2026: finální znění USP dle klienta (ikony se ještě doladí)
     const src = p.items || [
-      { icon: 'usp-spanek', title: '20 000 spokojených spáčů', text: 'Sny si u nás plní zákazníci od roku 2009' },
-      { icon: 'usp-doprava', title: 'Doprava zdarma nad 5 000 Kč', text: 'Vynášku do bytu domluvíme předem' },
-      { icon: 'usp-23-let', title: '23 let na trhu', text: 'Kvalitu materiálů známe od výrobců' },
       { icon: 'usp-vyroba', title: 'Vlastní výroba na míru', text: 'Postel vyrobíme podle vašeho rozměru' },
-      { icon: 'usp-prodejny', title: '5 prodejen po celé ČR', text: 'Přijďte si matraci osobně vyzkoušet' }
+      { icon: 'usp-masiv', title: 'Poctivý masiv', text: 'Žádná dřevotříska, ani tam, kde není vidět' },
+      { icon: 'usp-doprava', title: 'Vlastní doprava i montáž', text: 'Naše vozy, naši lidé, žádná přepravní služba' },
+      { icon: 'usp-prodejny', title: '5 prodejen po celé ČR', text: 'Přijďte si matraci osobně vyzkoušet' },
+      { icon: 'usp-spanek', title: '30 nocí na vyzkoušení', text: 'Nesedí tuhost matrace? Jádro vyměníme zdarma' },
+      { icon: 'usp-23-let', title: 'Na trhu od roku 2002', text: 'Spánku rozumíme přes 20 let' }
     ];
     // Mobil (1 sloupec): kompaktní řádky – ikona vlevo, text vedle
     // Mobil: USP ve 2 sloupcích, ikona nad textem, vše na střed (10. 11. 2026); dlaždice zůstávají řádky
@@ -250,7 +252,7 @@ class Component extends DCLogic {
     const hrefFor = (it) => it.href || (/doprav|vraceni|platb|nakup/.test(String(it.icon || '')) ? 'VseONakupu.dc.html' : 'ONas.dc.html');
     const items = src.map((it, n) => ({ ...it, href: hrefFor(it), hl: it.highlight && it.title.startsWith(it.highlight) ? it.highlight : '', rest: it.highlight && it.title.startsWith(it.highlight) ? it.title.slice(it.highlight.length) : it.title, stroke: String(it.icon || '').indexOf('usp-') === 0 ? 2.5 : 0.95, iconStyle: iconWrap }));
     // Neúplný poslední řádek se centruje (flex-wrap + pevná šířka sloupce), 29. 10. 2026
-    const cols = w >= 1560 ? Math.min(items.length, 6) : w >= 1150 ? Math.min(items.length, 5) : w >= 820 ? 3 : w >= 550 ? 2 : (tiles ? 1 : 2);
+    const cols = w >= 1150 && items.length === 6 ? 6 : w >= 1560 ? Math.min(items.length, 6) : w >= 1150 ? Math.min(items.length, 5) : w >= 820 ? 3 : w >= 550 ? 2 : (tiles ? 1 : 2);
     const gapV = mob ? (tiles ? '10px' : '20px') : (tiles ? '20px' : (w < 820 ? '20px' : '24px'));
     return {
       items,

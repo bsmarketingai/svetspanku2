@@ -245,8 +245,8 @@ html,body{margin:0;}
       </sc-for>
     </span>
     <span aria-hidden="true" style="display:flex;justify-content:space-between;gap:8px;font-size:13px;color:var(--ss-text-muted,#5B6874)">
-      <span>Měkká</span>
-      <span>Tuhá</span>
+      <span>Soft</span>
+      <span>Extra Hard</span>
     </span>
   </div>
 </sc-if>
@@ -265,8 +265,8 @@ html,body{margin:0;}
       </sc-for>
     </span>
     <span aria-hidden="true" style="display:flex;justify-content:space-between;gap:8px;font-size:13px;color:var(--ss-text-muted,#5B6874)">
-      <span>Měkká</span>
-      <span>Tuhá</span>
+      <span>Soft</span>
+      <span>Extra Hard</span>
     </span>
   </div>
 </sc-if>
@@ -274,8 +274,8 @@ html,body{margin:0;}
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:420,&quot;height&quot;:160},&quot;value&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:4.5,&quot;min&quot;:1,&quot;max&quot;:5,&quot;step&quot;:0.5,&quot;tsType&quot;:&quot;number&quot;},&quot;size&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;compact&quot;,&quot;large&quot;,&quot;scale&quot;],&quot;default&quot;:&quot;compact&quot;,&quot;tsType&quot;:&quot;'compact' | 'large' | 'scale'&quot;},&quot;label&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Tuhost&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;napoveda&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;}}">
 class Component extends DCLogic {
-  static SHADES = ['#B9D0E5', '#8DB3D3', '#296093', '#21507B', '#132C43'];
-  static WORDS = { 1: 'velmi měkká', 1.5: 'velmi měkká až měkká', 2: 'měkká', 2.5: 'měkká až středně tuhá', 3: 'středně tuhá', 3.5: 'středně tuhá až tvrdá', 4: 'tvrdá', 4.5: 'tvrdá až velmi tvrdá', 5: 'velmi tvrdá' };
+  static SHADES = ['#21507B', '#21507B', '#21507B', '#21507B', '#21507B'] /* 18. 11. 2026: bez přechodu – aktivní dílky jednou tmavou modrou */;
+  static WORDS = { 1: 'Extra Soft', 1.5: 'Extra Soft až Soft', 2: 'Soft', 2.5: 'Soft až Medium', 3: 'Medium', 3.5: 'Medium až Hard', 4: 'Hard', 4.5: 'Hard až Extra Hard', 5: 'Extra Hard' }; /* 18. 11. 2026: názvosloví tuhosti Soft / Medium / Hard / Extra Hard */
   state = { help: false };
   renderVals() {
     const p = this.props;

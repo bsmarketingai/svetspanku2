@@ -410,6 +410,56 @@ html[data-mode="dark"] main>section.ss-grad-top.ss-grad-glow{background-image:ra
 html body .ss-pd-round[aria-label="Zavřít galerii"],html body .ss-pd-round[aria-label="Zavřít okno"]{width:40px!important;height:40px!important;min-width:40px!important;padding:0!important;border:0!important;border-radius:6px!important;background:transparent!important;box-shadow:none!important;color:var(--ss-text-secondary,#3D4750)!important;cursor:pointer;transition:background-color .12s cubic-bezier(.22,.61,.36,1),color .12s cubic-bezier(.22,.61,.36,1)!important;}
 html body .ss-pd-round[aria-label="Zavřít galerii"]:hover,html body .ss-pd-round[aria-label="Zavřít okno"]:hover{background:var(--ss-surface-subtle,#FAF5EF)!important;color:var(--ss-link-hover,#21507B)!important;}
 html body .ss-pd-round[aria-label="Zavřít galerii"]:focus-visible,html body .ss-pd-round[aria-label="Zavřít okno"]:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35)!important;}
+/* 18. 11. 2026: ikona „i“ u volby LED / úložného prostoru – později otevře modal s podrobnostmi */
+.ss-pd-info{flex:none;display:flex;align-items:center;justify-content:center;width:40px;height:40px;margin:-8px -8px -8px auto;padding:0;border:0;border-radius:999px;background:transparent;color:var(--ss-link,#296093);cursor:pointer;transition:background-color .12s cubic-bezier(.22,.61,.36,1),color .12s cubic-bezier(.22,.61,.36,1);}
+.ss-pd-info:hover{background:var(--ss-surface-subtle,#FAF5EF);color:var(--ss-link-hover,#21507B);}
+.ss-pd-info:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
+/* 18. 11. 2026: box s fotkou úložného prostoru + modal (stejné jako LED u skříně) */
+.ss-led-promo{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2.2fr);gap:20px;align-items:start;padding:16px;border-radius:12px;background:var(--ss-surface-subtle,#FAF5EF);}
+@media (max-width:719px){.ss-led-promo{grid-template-columns:1fr;gap:16px;}}
+.ss-led-vid{position:relative;display:block;width:100%;aspect-ratio:4/3;padding:0;border:0;border-radius:8px;overflow:hidden;background:#132C43;cursor:pointer;}
+.ss-led-vid img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .3s cubic-bezier(.22,.61,.36,1);}
+.ss-led-play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:flex;filter:drop-shadow(0 2px 8px rgba(0,0,0,.35));transition:transform .15s cubic-bezier(.22,.61,.36,1);}
+@media (hover:hover) and (pointer:fine){.ss-led-vid:hover img{transform:scale(1.04);}.ss-led-vid:hover .ss-led-play{transform:translate(-50%,-50%) scale(1.08);}}
+.ss-led-vid:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
+.ss-led-txt{display:flex;flex-direction:column;gap:10px;min-width:0;}
+.ss-led-txt ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px;}
+.ss-led-txt li{position:relative;padding-left:22px;font-size:14px;line-height:1.45;color:var(--ss-text-secondary,#3D4750);}
+.ss-led-txt li::before{content:"";position:absolute;left:2px;top:6px;width:9px;height:9px;border-radius:999px;background:#FBB255;}
+.ss-led-txt b{color:var(--ss-text-primary,#1C2229);font-weight:600;}
+/* 18. 11. 2026: modal s reels videem LED */
+.ss-lv-dlg{display:flex;gap:24px;width:min(880px,100%);max-height:calc(100vh - 32px);padding:24px;box-sizing:border-box;border-radius:16px;background:#FFFFFF;box-shadow:0 24px 64px rgba(0,0,0,.35);overflow:auto;}
+.ss-lv-video{position:relative;flex:none;width:min(340px,40vw);aspect-ratio:9/16;max-height:calc(100vh - 80px);border-radius:12px;overflow:hidden;background:#0B1F33;}
+.ss-lv-body{flex:1;min-width:0;display:flex;flex-direction:column;gap:14px;}
+.ss-lv-list{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px;}
+.ss-lv-list li{position:relative;padding-left:22px;font-size:15px;line-height:1.5;color:var(--ss-text-secondary,#3D4750);}
+.ss-lv-list li::before{content:"";position:absolute;left:2px;top:7px;width:9px;height:9px;border-radius:999px;background:#FBB255;}
+.ss-lv-list b{color:var(--ss-text-primary,#1C2229);font-weight:600;}
+.ss-lv-x{flex:none;display:flex;align-items:center;justify-content:center;width:40px;height:40px;margin:-8px -8px 0 0;border:0;border-radius:6px;background:transparent;color:var(--ss-text-secondary,#3D4750);cursor:pointer;}
+.ss-lv-x:hover{background:var(--ss-surface-subtle,#FAF5EF);color:var(--ss-link-hover,#21507B);}
+.ss-lv-x:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
+@media (max-width:719px){.ss-lv-dlg{position:relative;flex-direction:column;padding:16px;gap:16px;}.ss-lv-video{width:auto;height:min(58vh,520px);align-self:center;}.ss-lv-x{position:absolute;top:8px;right:8px;margin:0;background:#FFFFFF;box-shadow:0 1px 4px rgba(0,0,0,.18);z-index:2;}.ss-lv-body h2{padding-right:40px;}}
+.ss-led-vid.ss-up-ph{background:#FFFFFF;box-shadow:inset 0 0 0 1px var(--ss-border-subtle,#E1E6EB);}
+.ss-led-vid.ss-up-ph img{object-fit:contain;}
+.ss-up-zoom{position:absolute;right:6px;bottom:6px;display:flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:6px;background:rgba(255,255,255,.92);color:var(--ss-link-hover,#21507B);box-shadow:0 1px 4px rgba(19,44,67,.18);}
+@media (hover:hover) and (pointer:fine){.ss-up-ph:hover .ss-up-zoom{background:#FFFFFF;color:var(--ss-hover-text,#A4600C);}}
+.ss-lv-video.ss-up-big{width:min(480px,50vw);aspect-ratio:auto;align-self:flex-start;background:#FFFFFF;box-shadow:inset 0 0 0 1px var(--ss-border-subtle,#E1E6EB);}
+.ss-up-big img{display:block;width:100%;height:auto;}
+@media (max-width:719px){.ss-lv-video.ss-up-big{width:100%;height:auto;}}
+/* 18. 11. 2026: vybraná položka (rošt, materiál, čalounění) s náhledem; cena vpravo vedle tlačítka */
+.ss-pd-pkimg{display:block;width:76px;height:64px;flex:none;border-radius:8px;box-shadow:inset 0 0 0 1px rgba(19,44,67,.12);}
+.ss-pd-row:has(.ss-pd-pkimg){grid-template-columns:auto auto minmax(0,1fr) auto auto;column-gap:16px;}
+.ss-pd-row:has(.ss-pd-pkimg) .ss-pd-pkimg{grid-column:2;grid-row:1 / span 2;align-self:center;}
+.ss-pd-row:has(.ss-pd-pkimg) .ss-pd-tx{grid-column:3;grid-row:1 / span 2;align-self:center;}
+.ss-pd-row:has(.ss-pd-pkimg) .ss-pd-nt{grid-column:4;grid-row:1 / span 2;align-self:center;margin-top:0;font-size:16px!important;font-weight:700!important;}
+.ss-pd-row:has(.ss-pd-pkimg) .ss-pk-cta{grid-column:5;}
+@media (max-width:719px){.ss-pd-pkimg{width:48px;height:48px;}.ss-pd-row:has(.ss-pd-pkimg){padding:12px!important;}.ss-pd-row:has(.ss-pd-pkimg){grid-template-columns:auto auto minmax(0,1fr) auto;column-gap:12px;}.ss-pd-row:has(.ss-pd-pkimg) .ss-pd-tx{grid-row:1;}.ss-pd-row:has(.ss-pd-pkimg) .ss-pd-nt{grid-column:3;grid-row:2;margin-top:4px;font-size:15px!important;}.ss-pd-row:has(.ss-pd-pkimg) .ss-pk-cta{grid-column:4;}}
+/* 18. 11. 2026: ikona zvětšení na náhledu vybrané položky (jako v draweru) */
+.ss-pd-pkimg{position:relative;overflow:hidden;}
+.ss-pd-pkzoom{position:absolute;inset:0;border-radius:8px;cursor:zoom-in;}
+.ss-pd-pkzoom:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
+.ss-pd-pkzi{position:absolute;right:3px;bottom:3px;display:flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:6px;background:rgba(255,255,255,.92);color:var(--ss-link-hover,#21507B);box-shadow:0 1px 4px rgba(19,44,67,.18);}
+@media (hover:hover) and (pointer:fine){.ss-pd-pkzoom:hover{box-shadow:inset 0 0 0 2px var(--ss-border-hover,#8DB3D3);}.ss-pd-pkzoom:hover .ss-pd-pkzi{background:#FFFFFF;color:var(--ss-hover-text,#A4600C);}}
 </style>
 <script>try{var d=document.documentElement;if(localStorage.getItem('ss-mode')==='dark')d.setAttribute('data-mode','dark');d.setAttribute('data-logo',localStorage.getItem('ss-logo')||'a');d.setAttribute('data-font-h','base');d.setAttribute('data-font-b','base');d.setAttribute('data-bg',localStorage.getItem('ss-bg')||'on');}catch(e){}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -473,8 +523,8 @@ a:hover{color:var(--ss-hover-text,#A4600C);}
 @media (hover:hover) and (pointer:fine){.ss-pd-cs-radio:hover .ss-pd-cs-dot{border-color:var(--ss-hover-text,#A4600C);}.ss-pd-cs-radio:hover .ss-pd-cs-t{color:#21507B;}html[data-mode="dark"] .ss-pd-cs-radio:hover .ss-pd-cs-t{color:#FBB255;}}
 .ss-pd-cs-info{position:relative;flex:none;display:flex;align-items:center;justify-content:center;width:36px;height:36px;padding:0;border:0;border-radius:999px;background:none;cursor:pointer;color:var(--ss-link,#296093);transition:color .12s cubic-bezier(.22,.61,.36,1),background-color .12s cubic-bezier(.22,.61,.36,1);}
 .ss-pd-cs-info:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
-.ss-pd-cs-info[aria-expanded="true"]{color:var(--ss-hover-text,#A4600C);}
-@media (hover:hover) and (pointer:fine){.ss-pd-cs-info:hover{color:var(--ss-hover-text,#A4600C);background:var(--ss-hover-bg,#FFF5E6);}}
+.ss-pd-cs-info[aria-expanded="true"]{color:var(--ss-link-hover,#21507B);background:var(--ss-surface-subtle,#FAF5EF);}
+@media (hover:hover) and (pointer:fine){.ss-pd-cs-info:hover{color:var(--ss-link-hover,#21507B);background:var(--ss-surface-subtle,#FAF5EF);}}
 .ss-pd-cs-f{position:relative;display:flex;align-items:center;}
 .ss-pd-cs-f>.ss-pd-cs-ic{position:absolute;left:12px;display:flex;color:var(--ss-text-muted,#5B6874);pointer-events:none;}
 .ss-pd-cs-f>.ss-pd-cs-u{position:absolute;right:12px;font-size:14px;color:var(--ss-text-muted,#5B6874);pointer-events:none;}
@@ -785,7 +835,7 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
                   <sc-if value="{{ csHasPrice }}" hint-placeholder-val="{{ false }}">
                     <div aria-live="polite" hidden="{{ csHideAdd }}" style="display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:4px 12px;padding:12px 16px;border-radius:6px;background:var(--ss-surface-page,#FFFFFF)">
                       <span style="font-size:14px;color:var(--ss-text-secondary,#3D4750)">Příplatek za rozměr {{ csDims }}</span>
-                      <span style="font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:21px;color:var(--ss-text-primary,#1C2229)">+ {{ csAddFmt }}</span>
+                      <span style="font-size:16px;font-weight:700;color:var(--ss-text-primary,#1C2229);white-space:nowrap">+ {{ csAddFmt }}</span>
                     </div>
                     <sc-if value="{{ csNotConfirmed }}" hint-placeholder-val="{{ true }}">
                       <dc-import name="Tlacitko" label="Potvrdit" variant="primary" size="standard" fullWidth="{{ true }}" onClick="{{ confirmCs }}" hint-size="100%,44px"></dc-import>
@@ -803,10 +853,13 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
 
             <sc-if value="{{ upA }}" hint-placeholder-val="{{ true }}">
             <div class="ss-elev" style="background:var(--ss-surface-box,#FFFFFF);border:1px solid var(--ss-border-subtle,#E1E6EB);border-radius:12px;padding:20px;display:flex;flex-direction:column;gap:14px">
-              <button type="button" class="ss-pd-cs-radio" role="radio" aria-checked="{{ upYesPressed }}" onClick="{{ toggleUp }}">
+              <div style="display:flex;align-items:center;gap:8px">
+              <button type="button" class="ss-pd-cs-radio" style="flex:1;min-width:0" role="radio" aria-checked="{{ upYesPressed }}" onClick="{{ toggleUp }}">
                 <span class="ss-pd-cs-dot"></span>
                 <span class="ss-pd-cs-t" style="font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:19px;line-height:1.2;transition:color .12s">Chcete postel i s úložným prostorem?</span>
               </button>
+                <button type="button" class="ss-pd-info" onClick="{{ openUpInfo }}" aria-label="Podrobnosti o úložném prostoru"><dc-import name="Ikony" iconName="info-circle" size="22" hint-size="22px,22px"></dc-import></button>
+              </div>
               <div class="ss-pd-segwrap">
                 <button type="button" class="ss-pd-seg" onClick="{{ pickUpNo }}" aria-pressed="{{ upNoPressed }}">
                   <span style="display:flex;align-items:center;gap:12px;width:100%;min-width:0">
@@ -842,6 +895,23 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
                   </span>
                 </button>
               </div>
+              <!-- 18. 11. 2026: po volbě s úložným prostorem box s fotkou a důvody (stejně jako LED u skříně); klik otevře modal -->
+              <sc-if value="{{ upYesSelected }}" hint-placeholder-val="{{ false }}">
+              <div class="ss-led-promo">
+                <button type="button" class="ss-led-vid ss-up-ph" onClick="{{ openUpInfo }}" aria-label="Zobrazit podrobnosti o úložném prostoru">
+                  <img src="_blob/fe8a33fa793cb3f1057fda97c30d7bc3.jpg" alt="Celoplošný úložný prostor pod zvednutým roštem" loading="lazy" decoding="async" />
+                  <span class="ss-up-zoom" aria-hidden="true"><dc-import name="Ikony" iconName="arrows-maximize" size="16" hint-size="16px,16px"></dc-import></span>
+                </button>
+                <div class="ss-led-txt">
+                  <h4 style="margin:0;font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:19px;line-height:1.25;color:var(--ss-text-heading,#0B1F33)">Proč postel s úložným prostorem?</h4>
+                  <ul>
+                    <li><b>Celá plocha pod postelí</b> – až 1 000 litrů místa pro peřiny, polštáře i sezónní věci.</li>
+                    <li><b>Snadné otevírání</b> – rošt se zvedá na plynových pístech, lehce i s matrací.</li>
+                    <li><b>Bez prachu pod postelí</b> – uzavřený box drží věci v čistotě a ložnice zůstane uklizená.</li>
+                  </ul>
+                </div>
+              </div>
+              </sc-if>
             </div>
             </sc-if>
             <!-- Úložný prostor B (13. 11. 2026): přepínač jako LED u skříně, po zapnutí výběr typu v draweru s obrázky -->
@@ -855,21 +925,7 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
               <sc-if value="{{ hasUpPickers }}" hint-placeholder-val="{{ false }}">
               <div style="display:flex;flex-direction:column;gap:12px">
                 <sc-for list="{{ upPickers }}" as="p" hint-placeholder-count="1">
-                  <button type="button" class="ss-pd-row" id="{{ p.pkId }}" data-warn="{{ p.warnStr }}" onClick="{{ p.onOpen }}" aria-expanded="false">
-                    <sc-if value="{{ p.isOn }}" hint-placeholder-val="{{ true }}"><span class="ss-pd-var-check" aria-hidden="true" style="position:static;align-self:center;flex:none"><dc-import name="Ikony" iconName="check" size="16" hint-size="16px,16px"></dc-import></span></sc-if>
-                    <sc-if value="{{ p.isOff }}" hint-placeholder-val="{{ false }}"><span class="ss-pd-cs-dot" aria-hidden="true" style="align-self:center"></span></sc-if>
-                    <span class="ss-pd-tx" style="flex:1;min-width:0;display:flex;flex-direction:column;gap:4px">
-                      <span style="font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:19px;color:var(--ss-text-primary,#1C2229)">{{ p.title }}</span>
-                      <span style="display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-size:14px;color:var(--ss-text-secondary,#3D4750)">
-                        <sc-if value="{{ p.hasSwatch }}" hint-placeholder-val="{{ false }}">
-                          <span style="width:22px;height:22px;flex:none;border-radius:999px;background:{{ p.swatch }};box-shadow:inset 0 0 0 1px rgba(19,44,67,.15)"></span>
-                        </sc-if>
-                        <span>{{ p.value }}</span>
-                      </span>
-                    </span>
-                    <span class="ss-pd-nt" style="flex:none;font-size:15px;font-weight:600;color:{{ p.noteColor }};white-space:nowrap">{{ p.note }}</span>
-                    <sc-if value="{{ p.isOff }}" hint-placeholder-val="{{ false }}"><span class="ss-pk-cta" data-pri="true">Vybrat</span></sc-if><sc-if value="{{ p.isOn }}" hint-placeholder-val="{{ true }}"><span class="ss-pk-cta" data-pri="false">Změnit</span></sc-if>
-                  </button>
+                  <dc-import name="VyberRadek" title="{{ p.title }}" value="{{ p.value }}" note="{{ p.note }}" noteColor="{{ p.noteColor }}" selected="{{ p.isOn }}" warn="{{ p.vrWarn }}" rowId="{{ p.pkId }}" image="{{ p.vrImg }}" swatch="{{ p.vrBg }}" fit="{{ p.vrFit }}" cta="{{ p.vrCta }}" canChange="{{ p.vrCan }}" position="{{ p.vrPos }}" onOpen="{{ p.onOpen }}" hint-size="100%,92px"></dc-import>
                 </sc-for>
               </div>
               </sc-if>
@@ -878,21 +934,7 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
 
             <div style="display:flex;flex-direction:column;gap:12px">
               <sc-for list="{{ pickers }}" as="p" hint-placeholder-count="3">
-                <button type="button" class="ss-pd-row" id="{{ p.pkId }}" data-warn="{{ p.warnStr }}" onClick="{{ p.onOpen }}" aria-expanded="false">
-                  <sc-if value="{{ p.isOn }}" hint-placeholder-val="{{ true }}"><span class="ss-pd-var-check" aria-hidden="true" style="position:static;align-self:center;flex:none"><dc-import name="Ikony" iconName="check" size="16" hint-size="16px,16px"></dc-import></span></sc-if>
-                  <sc-if value="{{ p.isOff }}" hint-placeholder-val="{{ false }}"><span class="ss-pd-cs-dot" aria-hidden="true" style="align-self:center"></span></sc-if>
-                  <span class="ss-pd-tx" style="flex:1;min-width:0;display:flex;flex-direction:column;gap:4px">
-                    <span style="font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:19px;color:var(--ss-text-primary,#1C2229)">{{ p.title }}</span>
-                    <span style="display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-size:14px;color:var(--ss-text-secondary,#3D4750)">
-                      <sc-if value="{{ p.hasSwatch }}" hint-placeholder-val="{{ false }}">
-                        <span style="width:22px;height:22px;flex:none;border-radius:999px;background:{{ p.swatch }};box-shadow:inset 0 0 0 1px rgba(19,44,67,.15)"></span>
-                      </sc-if>
-                      <span>{{ p.value }}</span>
-                    </span>
-                  </span>
-                  <span class="ss-pd-nt" style="flex:none;font-size:15px;font-weight:600;color:{{ p.noteColor }};white-space:nowrap">{{ p.note }}</span>
-                  <sc-if value="{{ p.isOff }}" hint-placeholder-val="{{ false }}"><span class="ss-pk-cta" data-pri="true">Vybrat</span></sc-if><sc-if value="{{ p.isOn }}" hint-placeholder-val="{{ true }}"><span class="ss-pk-cta" data-pri="false">Změnit</span></sc-if>
-                </button>
+                <dc-import name="VyberRadek" title="{{ p.title }}" value="{{ p.value }}" note="{{ p.note }}" noteColor="{{ p.noteColor }}" selected="{{ p.isOn }}" warn="{{ p.vrWarn }}" rowId="{{ p.pkId }}" image="{{ p.vrImg }}" swatch="{{ p.vrBg }}" fit="{{ p.vrFit }}" cta="{{ p.vrCta }}" canChange="{{ p.vrCan }}" position="{{ p.vrPos }}" onOpen="{{ p.onOpen }}" hint-size="100%,92px"></dc-import>
               </sc-for>
             </div>
 
@@ -906,9 +948,10 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
                 <span style="display:flex;color:var(--ss-text-muted,#5B6874);flex:none"><dc-import name="Ikony" iconName="map-pin" size="16" hint-size="16px,16px"></dc-import></span>
                 <span>Můžete mít hned na <a href="#prodejny" onClick="{{ openStores }}" aria-haspopup="dialog">3 prodejnách</a></span>
               </span>
+              <!-- 18. 11. 2026: doprava / osobní odběr s odkazem na informace o dopravě -->
               <span style="display:flex;align-items:center;gap:8px;font-size:14px;color:var(--ss-text-secondary,#3D4750);padding-left:2px">
-                <span style="display:flex;color:var(--ss-text-muted,#5B6874);flex:none"><dc-import name="Ikony" iconName="map-pin" size="16" hint-size="16px,16px"></dc-import></span>
-                <span>Vyzkoušejte osobně na <a href="#prodejny" onClick="{{ openTry }}" aria-haspopup="dialog">5 specializovaných prodejnách</a></span>
+                <span style="display:flex;color:var(--ss-text-muted,#5B6874);flex:none"><dc-import name="Ikony" iconName="truck" size="16" hint-size="16px,16px"></dc-import></span>
+                <span>Osobní odběr na prodejně <strong style="font-weight:600;color:var(--ss-status-success,#157A41)">zdarma</strong> · doprava od 650 Kč · <a href="#doprava" onClick="{{ openDoprava }}" aria-haspopup="dialog">Možnosti dopravy</a></span>
               </span>
             </div>
 
@@ -954,6 +997,15 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
               </span>
             </a>
             </sc-if>
+            </div>
+
+            <!-- 18. 11. 2026: Vyzkoušejte osobně – jako u Matrace 3.0, s názvem produktu -->
+            <div style="display:flex;align-items:center;gap:16px;padding:4px 0 20px;border-bottom:1px solid var(--ss-border-subtle,#E1E6EB)">
+              <span style="display:flex;color:var(--ss-text-heading,#0B1F33);flex:none"><dc-import name="Ikony" iconName="usp-prodejny" size="40" hint-size="40px,40px"></dc-import></span>
+              <span style="display:flex;flex-direction:column;gap:4px;min-width:0;font-size:15px;line-height:1.45;color:var(--ss-text-secondary,#3D4750)">
+                <span style="font-weight:600;color:var(--ss-text-primary,#1C2229)">Vyzkoušejte osobně na <a href="#prodejny" onClick="{{ openTry }}" aria-haspopup="dialog">5 prodejnách</a></span>
+                <span>Postel LEVITA je vystavená v Praze (Butovice a Kutnohorská), Brně, Ostravě a Olomouci.</span>
+              </span>
             </div>
 
             <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;padding-top:4px">
@@ -1192,7 +1244,7 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
                 <sc-for list="{{ stickyChips }}" as="ch" hint-placeholder-count="4">
                   <span style="display:inline-flex;align-items:center;gap:6px;height:26px;padding:0 10px;border-radius:999px;background:var(--ss-surface-subtle,#FAF5EF);box-shadow:inset 0 0 0 1px var(--ss-border-subtle,#E1E6EB);font-size:13px;color:var(--ss-text-secondary,#3D4750);white-space:nowrap">
                     <sc-if value="{{ ch.hasSwatch }}" hint-placeholder-val="{{ false }}">
-                      <span style="width:10px;height:10px;border-radius:999px;flex:none;box-shadow:inset 0 0 0 1px rgba(19,44,67,.18);background:{{ ch.color }}"></span>
+                      <span style="width:18px;height:18px;margin-left:-7px;border-radius:999px;flex:none;box-shadow:inset 0 0 0 1px rgba(19,44,67,.18);background:{{ ch.color }}"></span>
                     </sc-if>
                     <span>{{ ch.label }}</span>
                   </span>
@@ -1213,7 +1265,7 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
               <sc-for list="{{ stickyChips }}" as="ch" hint-placeholder-count="4">
                 <span style="display:inline-flex;align-items:center;gap:6px;flex:none;height:24px;padding:0 10px;border-radius:999px;background:var(--ss-surface-subtle,#FAF5EF);box-shadow:inset 0 0 0 1px var(--ss-border-subtle,#E1E6EB);font-size:13px;color:var(--ss-text-secondary,#3D4750)">
                   <sc-if value="{{ ch.hasSwatch }}" hint-placeholder-val="{{ false }}">
-                    <span style="width:10px;height:10px;border-radius:999px;flex:none;box-shadow:inset 0 0 0 1px rgba(19,44,67,.18);background:{{ ch.color }}"></span>
+                    <span style="width:18px;height:18px;margin-left:-7px;border-radius:999px;flex:none;box-shadow:inset 0 0 0 1px rgba(19,44,67,.18);background:{{ ch.color }}"></span>
                   </sc-if>
                   <span>{{ ch.label }}</span>
                 </span>
@@ -1238,6 +1290,8 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
 
   <dc-import name="VariantaDrawer" open="{{ drawerOpen }}" title="{{ drawerTitle }}" note="{{ drawerNote }}" value="{{ drawerValue }}" groups="{{ drawerGroups }}" rows="{{ drawerRows }}" onPick="{{ onDrawerPick }}" onClose="{{ closeDrawer }}" hint-size="0px,0px"></dc-import>
 
+  <!-- 18. 11. 2026: okno Možnosti dopravy (Overlay + DopravaObsah) -->
+  <dc-import name="Overlay" open="{{ dopravaOpen }}" variant="modal" size="md" obsah="DopravaObsah" title="Možnosti dopravy" icon="truck" closeLabel="okno" initialFocus="close" data="{{ dopravaData }}" onClose="{{ closeDoprava }}" hint-size="100%,100%"></dc-import>
   <dc-import name="Overlay" open="{{ dostOpen }}" variant="modal" size="sm" obsah="DostupnostObsah" title="{{ dostTitle }}" icon="building-store" closeLabel="okno" initialFocus="close" data="{{ dostData }}" onClose="{{ closeDost }}" hint-size="100%,100%"></dc-import>
   <dc-import name="KosikPridanoModal" open="{{ addedOpen }}" title="{{ addedTitle }}" qty="{{ qty }}" variant="{{ addedVariant }}" image="_blob/6b546453dfb90e0ec7ddb488eed7e6ec.webp" stockKind="onOrder" stockLabel="Vyrobíme během 2–4 týdnů" total="{{ addedTotal }}" onClose="{{ closeAdded }}" hint-size="0px,0px"></dc-import>
 
@@ -1339,6 +1393,28 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
       </div>
     </div>
   </sc-if>
+  <!-- 18. 11. 2026: modal s fotkou a popisem úložného prostoru -->
+  <sc-if value="{{ upInfoOpen }}" hint-placeholder-val="{{ false }}">
+    <div class="ss-scrim" style="position:fixed;inset:0;z-index:600;display:flex;align-items:center;justify-content:center;padding:16px" onClick="{{ closeUpInfo }}">
+      <div class="ss-lv-dlg" role="dialog" aria-modal="true" aria-label="Úložný prostor postele" onClick="{{ stopProp }}">
+        <div class="ss-lv-video ss-up-big"><img src="_blob/fe8a33fa793cb3f1057fda97c30d7bc3.jpg" alt="Celoplošný úložný prostor pod zvednutým roštem" /></div>
+        <div class="ss-lv-body">
+          <div style="display:flex;align-items:flex-start;gap:12px">
+            <h2 style="margin:0;flex:1;font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:24px;line-height:1.2;color:var(--ss-text-heading,#0B1F33)">Úložný prostor postele</h2>
+            <button type="button" class="ss-lv-x" onClick="{{ closeUpInfo }}" aria-label="Zavřít okno s úložným prostorem"><dc-import name="Ikony" iconName="x" size="22" hint-size="22px,22px"></dc-import></button>
+          </div>
+          <p style="margin:0;font-size:15px;line-height:1.6;color:var(--ss-text-secondary,#3D4750)">Celoplošný úložný box vyplní celý prostor pod roštem. Rošt se zvedá na plynových pístech, takže se k věcem dostanete jedním pohybem – i s matrací na posteli.</p>
+          <ul class="ss-lv-list">
+            <li><b>Až 1 000 litrů</b> – místo pro peřiny, polštáře, deky i sezónní oblečení.</li>
+            <li><b>Snadné otevírání</b> – plynové písty drží rošt v otevřené poloze, nic nepadá.</li>
+            <li><b>Bez prachu pod postelí</b> – uzavřený box drží věci v čistotě.</li>
+            <li><b>Lze doplnit i později</b> – noha postele má pozici pro úložný prostor, box dokoupíte kdykoli.</li>
+          </ul>
+          <p style="margin:auto 0 0;padding-top:14px;border-top:1px solid var(--ss-border-subtle,#E1E6EB);font-size:16px;font-weight:400;color:var(--ss-text-muted,#5B6874)">Příplatek za úložný prostor: <b style="font-weight:700;color:var(--ss-text-primary,#1C2229)">{{ upYesDiff }}</b></p>
+        </div>
+      </div>
+    </div>
+  </sc-if>
 </div>
 
 </x-dc>
@@ -1363,9 +1439,11 @@ class Component extends DCLogic {
     rost: 'bez', mat: 'buk-cherry', cal: 'kronos-05',
     custom: false, customW: '', customL: '', customMail: '', customAgree: false, customReg: true,
     customError: false, customSize: null, csOn: false, csW: '', csL: '', csOk: false, csInfo: false,
-    moreReviews: false, sticky: false, setUi: 'S4'
+    moreReviews: false, sticky: false, setUi: 'S4', upInfo: false
   };
   componentDidMount() {
+    this._upKey = (e) => { if (e.key === 'Escape' && this.state.upInfo) this.setState({ upInfo: false }); };
+    document.addEventListener('keydown', this._upKey);
     this._resize = () => this.setState({ width: document.documentElement.clientWidth });
     window.addEventListener('resize', this._resize);
     this._scroll = () => {
@@ -1425,6 +1503,7 @@ class Component extends DCLogic {
     window.addEventListener('keydown', this._key, true);
   }
   componentWillUnmount() {
+    document.removeEventListener('keydown', this._upKey);
     window.removeEventListener('ss-hdhidden', this._hdHidden); document.removeEventListener('click', this._tocClick);
     clearInterval(this._headerTick); window.removeEventListener('resize', this._onResize);
     window.removeEventListener('resize', this._resize);
@@ -1497,6 +1576,16 @@ class Component extends DCLogic {
     this.setState({ warn: true });
     requestAnimationFrame(() => { try { const el = m.map(id => document.getElementById(id)).filter(Boolean).sort((a, b) => a.getBoundingClientRect().top - b.getBoundingClientRect().top)[0]; if (el) el.scrollIntoView({ block: 'center', behavior: 'smooth' }); } catch (e) {} }); // k nejvýše položené chybějící
     return false;
+  }
+  // 18. 11. 2026: data pro komponentu VyberRadek (fotka po výběru, zvětšení, spojená skupina)
+  vrMap(p) {
+    const yes = (v) => v === true || v === 'true';
+    const on = p.isOn !== undefined ? !!p.isOn : yes(p.on);
+    const bg = p.thumb || (p.hasSwatch === false || /url\((undefined|null)?\)/.test(p.swatch || '') ? '' : (p.swatch || ''));
+    const img = p.vrImg !== undefined ? p.vrImg : (p.zoomSrc || p.img || ((/url\(([^)]+)\)/.exec(bg) || [])[1]) || '');
+    const fit = p.vrFit || (p.img || /contain|#FFFFFF/.test(bg) ? 'contain' : 'cover');
+    const cta = p.cta && p.cta !== 'Vybrat' && p.cta !== 'Změnit' ? p.cta : '';
+    return Object.assign(p, { isOn: on, vrWarn: p.warnStr === 'true', vrImg: on ? img : '', vrBg: on ? bg : '', vrFit: fit, vrCta: cta, vrCan: !cta, vrPos: p.vrPos || '' });
   }
   renderVals() {
     this._pkMiss = [];
@@ -1709,7 +1798,7 @@ class Component extends DCLogic {
       { id: 'U3', name: 'Dvě úložné zásuvky', meta: 'zásuvky na kolečkách pod postelí, bez zvedání roštu', add: 2900 },
       { id: 'U4', name: 'Výklopný rošt s přepážkami', meta: 'úložný prostor rozdělený na tři oddíly', add: 1900 }
     ].map(o => ({ id: o.id, label: o.name, name: o.name, meta: o.meta, add: o.add, price: '+ ' + fmt(7000 + o.add), stock: '', /* 13. 11. 2026: celková cena úložného prostoru daného typu (základ 7 000 + typ) */ image: UP_IMG[o.id], full: UP_IMG[o.id] }));
-    const upB = (this.state.upUi || 'B') === 'B';
+    const upB = (this.state.upUi || 'A') === 'B'; /* 18. 11. 2026: úložný prostor natrvalo A (velká tlačítka), varianta B zůstává v kódu */
     const upTyp = UP_OPTS.find(o => o.id === this.state.upTyp) || UP_OPTS[0];
     const upTypAdd = upB && this.state.up === 'yes' && (this.state.pk || {}).upTyp ? upTyp.add : 0;
     const baseNow = 31990 + sizeAdd + optAdd + upTypAdd, baseBefore = 34290 + sizeAdd + optAdd + upTypAdd, upDiff = 7000;
@@ -1737,7 +1826,12 @@ class Component extends DCLogic {
     ];
     const PKW = () => !!this.state.warn && this._pkMiss.length > 0;
     return {
+      upInfoOpen: !!this.state.upInfo,
+      openUpInfo: (e) => { if (e && e.preventDefault) e.preventDefault(); this.setState({ upInfo: true }); },
+      closeUpInfo: () => this.setState({ upInfo: false }),
+      stopProp: (e) => { if (e && e.stopPropagation) e.stopPropagation(); },
       // okno Dostupnost (9. 11. 2026)
+      dopravaOpen: !!this.state.doprava, dopravaData: {}, openDoprava: (e) => { if (e && e.preventDefault) e.preventDefault(); this.setState({ doprava: true }); }, closeDoprava: () => this.setState({ doprava: false }),
       dostOpen: !!this.state.dost, dostTitle: this.state.dost === 'stores' ? 'Skladem na prodejnách' : this.state.dost === 'tryout' ? 'Vyzkoušejte na prodejně' : 'Dostupnost', dostData: { storeIds: null, kind: this.state.dost === 'stores' || this.state.dost === 'tryout' ? this.state.dost : 'inStock', qty: 3, store: 'Praha – Chodov', pickup: 'ihned', delivery: 'zítra' },
       openDost: (e) => { if (e && e.preventDefault) e.preventDefault(); this.setState({ dost: true }); },
       openTry: (e) => { if (e && e.preventDefault) e.preventDefault(); this.setState({ dost: 'tryout' }); },
@@ -1754,7 +1848,7 @@ class Component extends DCLogic {
         { label: 'Rozměr', value: this.state.sizeUi || 'V1', options: ['V1', 'V2'] },
         { label: 'Set', value: this.state.setUi || 'S1', options: ['S1', 'S2', 'S3', 'S4'] },
         { label: 'Materiál a odstín', value: this.state.matUi || 'B', options: ['A', 'B'] },
-        { label: 'Úložný prostor', value: this.state.upUi || 'B', options: ['A', 'B'] }
+        { label: 'Úložný prostor', value: this.state.upUi || 'A', options: ['A', 'B'] }
       ],
       onPresPick: (ci, opt) => { /* 13. 11. 2026: skupina Krokový Konfig. už v seznamu není – bez posunu indexu */ /* Detail rozdělen na Simple a Konfigurátor (6. 11. 2026) */ if (ci === 0) { if (opt !== 'Postel 3.0') (h => { try { const a = document.createElement('a'); a.href = h; a.style.display = 'none'; (document.getElementById('dc-root') || document.body).appendChild(a); a.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true, view: window })); a.remove(); } catch (e) { window.location.href = h; } })(opt === 'Multi Konf.' ? 'Detail_Postel_3.0-hqdl.dc.html' : (opt === 'Set polštář + povlak' ? 'Detail_Set_Polstar_B.dc.html' : opt === 'Set polštář + přikrývka' ? 'Detail_Set_Bamboo.dc.html' : opt === 'Čalouněná' ? 'Detail_Calounena_Postel.dc.html' : opt === 'Airflex SET' ? 'Detail_Matrace_Airflex_Set.dc.html' : opt === 'Set 1+1 polštáře' ? 'Detail_Set_Polstare_1plus1.dc.html' : opt === 'Skříň UNI 2D' ? 'Detail_Skrin_UNI_2D_Konf.dc.html' : 'Detail_' + String(opt).replace(/ /g, '_') + '.dc.html')); return; } ci -= 1; this.setState(ci === 0 ? { stickPick: opt } : ci === 1 ? { sizeUi: opt } : ci === 2 ? { setUi: opt } : ci === 3 ? { matUi: opt } : { upUi: opt }); },
       // 13. 11. 2026: plovoucí lišta ukazuje jen varianty, které zákazník opravdu vybral
@@ -1763,7 +1857,7 @@ class Component extends DCLogic {
         { label: this.state.up === 'yes' && (!upB || PKc.upTyp) ? (upB ? 'Úložný prostor: ' + upTyp.name : 'S úložným prostorem') : '' },
         { label: PKc.rosty ? 'Rošt: ' + rost.label : '' },
         { label: (PKc.material || PKc.drevo || PKc.odstin) ? mat.label : '', color: mat.color, hasSwatch: true },
-        { label: PKc.calouneni ? 'Čalounění: ' + cal.label : '', color: cal.color, hasSwatch: true }
+        { label: PKc.calouneni ? 'Čalounění: ' + cal.label : '', color: calItem.image ? 'url(' + calItem.image + ') center / cover' : cal.color, hasSwatch: true }
       ].filter(c => !!c.label))(this.state.pk || {}),
       crumbs: [
         { label: 'Domů', href: 'index.dc.html' },
@@ -1876,19 +1970,24 @@ class Component extends DCLogic {
       toggleUp: () => this.setState(s => ({ up: s.up === 'yes' ? 'no' : 'yes' })),
       upA: !upB, upB,
       upBDiff: !PP ? '' : this.state.up === 'yes' && (this.state.pk || {}).upTyp ? '' : 'od +\u00A0' + fmt(upDiff), /* po výběru typu je cena jen u vybrané položky (13. 11. 2026) */
-      upPickers: upB && this.state.up === 'yes' ? [{ title: 'Typ úložného prostoru', value: upTyp.name, note: '+ ' + fmt(upDiff + upTyp.add), on: 'true', noteColor: 'var(--ss-text-primary,#1C2229)', hasSwatch: false, swatch: '', dk: 'upTyp', onOpen: () => this.setState({ drawer: 'upTyp' }) }].map(p => this.pkWrap(p)).map(p => Object.assign(p, { isOn: p.on === 'true', isOff: p.on !== 'true' }, PP ? {} : { note: '' })) : [],
+      upPickers: (upB && this.state.up === 'yes' ? [{ title: 'Typ úložného prostoru', value: upTyp.name, note: '+ ' + fmt(upDiff + upTyp.add), on: 'true', noteColor: 'var(--ss-text-primary,#1C2229)', hasSwatch: false, swatch: '', dk: 'upTyp', onOpen: () => this.setState({ drawer: 'upTyp' }) }].map(p => this.pkWrap(p)).map(p => Object.assign(p, { isOn: p.on === 'true', isOff: p.on !== 'true' }, PP ? {} : { note: '' })) : []).map(p => this.vrMap(p)),
       hasUpPickers: upB && this.state.up === 'yes',
       pickers: [
-        { title: 'Rošty', value: rost.label, note: rost.note, on: rost.note === 'Bez příplatku' ? 'false' : 'true', noteColor: rost.note === 'Bez příplatku' ? 'var(--ss-status-success,#157A41)' : 'var(--ss-text-primary,#1C2229)', hasSwatch: false, swatch: '', dk: 'rosty', onOpen: () => this.setState({ drawer: 'rosty' }) },
+        { title: 'Rošty', value: rost.label, note: rost.note, on: rost.note === 'Bez příplatku' ? 'false' : 'true', noteColor: rost.note === 'Bez příplatku' ? 'var(--ss-status-success,#157A41)' : 'var(--ss-text-primary,#1C2229)', hasSwatch: false, swatch: '', zoomSrc: rostData.id === 'bez' ? '' : (rostData.image || ''), thumb: rostData.id === 'bez' ? '' : (rostData.image ? 'url(' + rostData.image + ') center / contain no-repeat #FFFFFF' : ''), dk: 'rosty', onOpen: () => this.setState({ drawer: 'rosty' }) },
         // Prezentace „Materiál a odstín“: A = dva samostatné výběry, B = jeden výběr se společným drawerem (dřevo + odstín oleje)
         ...((this.state.matUi || 'B') === 'B' ? [
-          { title: 'Materiál a odstín', value: mat.label, note: mat.note, on: 'true', noteColor: mat.note === 'Bez příplatku' ? 'var(--ss-status-success,#157A41)' : 'var(--ss-text-primary,#1C2229)', hasSwatch: true, swatch: mat.color, dk: 'material', onOpen: () => this.setState({ drawer: 'material' }) }
+          { title: 'Materiál a odstín', value: mat.label, note: mat.note, on: 'true', noteColor: mat.note === 'Bez příplatku' ? 'var(--ss-status-success,#157A41)' : 'var(--ss-text-primary,#1C2229)', hasSwatch: true, swatch: mat.color, thumb: mat.color, zoomSrc: matItem.image || '', dk: 'material', onOpen: () => this.setState({ drawer: 'material' }) }
         ] : [
-          { title: 'Materiál', value: wood.title, note: wood.note === 'bez příplatku' ? 'Bez příplatku' : wood.note, on: 'true', noteColor: wood.note === 'bez příplatku' ? 'var(--ss-status-success,#157A41)' : 'var(--ss-text-primary,#1C2229)', hasSwatch: false, swatch: '', dk: 'drevo', onOpen: () => this.setState({ drawer: 'drevo' }) },
-          { title: 'Odstín (olej)', value: tone.label, note: 'Bez příplatku', on: 'true', noteColor: 'var(--ss-status-success,#157A41)', hasSwatch: true, swatch: swatchOf(wood.key, tone.id, tone.color), dk: 'odstin', onOpen: () => this.setState({ drawer: 'odstin' }) }
+          { title: 'Materiál', value: wood.title, note: wood.note === 'bez příplatku' ? 'Bez příplatku' : wood.note, on: 'true', noteColor: wood.note === 'bez příplatku' ? 'var(--ss-status-success,#157A41)' : 'var(--ss-text-primary,#1C2229)', hasSwatch: false, swatch: '', thumb: imgOf(wood.key, tone.id) ? 'url(' + imgOf(wood.key, tone.id) + ') center / cover' : '', zoomSrc: imgOf(wood.key, tone.id) || '', dk: 'drevo', onOpen: () => this.setState({ drawer: 'drevo' }) },
+          { title: 'Odstín (olej)', value: tone.label, note: 'Bez příplatku', on: 'true', noteColor: 'var(--ss-status-success,#157A41)', hasSwatch: true, swatch: swatchOf(wood.key, tone.id, tone.color), thumb: swatchOf(wood.key, tone.id, tone.color), zoomSrc: imgOf(wood.key, tone.id) || '', dk: 'odstin', onOpen: () => this.setState({ drawer: 'odstin' }) }
         ]),
-        { title: 'Čalounění', value: cal.label, note: cal.note, on: 'true', noteColor: cal.note === 'Bez příplatku' ? 'var(--ss-status-success,#157A41)' : 'var(--ss-text-primary,#1C2229)', hasSwatch: true, swatch: cal.color, dk: 'calouneni', onOpen: () => this.setState({ drawer: 'calouneni' }) }
-      ].map(p => this.pkWrap(p)).map(p => Object.assign(p, { isOn: p.on === 'true', isOff: p.on !== 'true' }, PP ? {} : { note: '' })),
+        { title: 'Čalounění', value: cal.label, note: cal.note, on: 'true', noteColor: cal.note === 'Bez příplatku' ? 'var(--ss-status-success,#157A41)' : 'var(--ss-text-primary,#1C2229)', hasSwatch: true, swatch: cal.color, thumb: calItem.image ? 'url(' + calItem.image + ') center / cover' : cal.color, zoomSrc: calItem.image || '', dk: 'calouneni', onOpen: () => this.setState({ drawer: 'calouneni' }) }
+      ].map(p => this.pkWrap(p)).map(p => Object.assign(p, { isOn: p.on === 'true', isOff: p.on !== 'true' }, PP ? {} : { note: '' })).map(p => { /* 18. 11. 2026: vybraná položka s náhledem (fotka roštu, materiálu, látky) místo kolečka */ const t = p.isOn && p.warnStr !== 'true' && (this.state.pk || {})[p.dk] !== undefined ? (p.thumb || '') : ''; const zs = t ? (p.zoomSrc || '') : ''; const zo = (e) => { if (e) { e.stopPropagation(); e.preventDefault(); } this.setState({ pkZoom: { image: zs, label: p.title + ': ' + p.value, dk: p.dk } }); }; return Object.assign(p, { hasThumb: !!t, thumb: t, hasSwatch: t ? false : p.hasSwatch, hasZoom: !!zs, onZoom: zo, onZoomKey: (e) => { if (e && (e.key === 'Enter' || e.key === ' ')) zo(e); } }); }).map(p => this.vrMap(p)),
+      pkZoomOpen: !!this.state.pkZoom,
+      pkZoomTitle: this.state.pkZoom ? this.state.pkZoom.label : '',
+      pkZoomData: this.state.pkZoom ? { image: this.state.pkZoom.image, label: this.state.pkZoom.label } : {},
+      closePkZoom: () => this.setState({ pkZoom: null }),
+      pkZoomChange: () => { const d = this.state.pkZoom && this.state.pkZoom.dk; this.setState({ pkZoom: null, drawer: d || null }); },
       drawerOpen: !!this.state.drawer,
       drawerTitle: this.state.drawer === 'upTyp' ? 'Typ úložného prostoru' : this.state.drawer === 'rosty' ? 'Rošt(y)' : this.state.drawer === 'drevo' ? 'Materiál' : this.state.drawer === 'odstin' ? 'Odstín (olej)' : this.state.drawer === 'material' ? 'Materiál a odstín dřeva' : 'Čalounění',
       drawerNote: this.state.drawer === 'upTyp' ? 'U každého typu je uvedena celková cena úložného prostoru. Kliknutím na obrázek ho zvětšíte.' : this.state.drawer === 'calouneni' ? 'Cena postele se výběrem látky nemění. Barvy se na obrazovkách liší – odstín si raději ověřte za denního světla na vzorníku v některé z našich prodejen.' : '',

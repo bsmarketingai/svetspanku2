@@ -480,8 +480,8 @@ a:hover{color:var(--ss-hover-text,#A4600C);}
 @media (hover:hover) and (pointer:fine){.ss-pd-cs-radio:hover .ss-pd-cs-dot{border-color:var(--ss-hover-text,#A4600C);}.ss-pd-cs-radio:hover .ss-pd-cs-t{color:#21507B;}html[data-mode="dark"] .ss-pd-cs-radio:hover .ss-pd-cs-t{color:#FBB255;}}
 .ss-pd-cs-info{position:relative;flex:none;display:flex;align-items:center;justify-content:center;width:36px;height:36px;padding:0;border:0;border-radius:999px;background:none;cursor:pointer;color:var(--ss-link,#296093);transition:color .12s cubic-bezier(.22,.61,.36,1),background-color .12s cubic-bezier(.22,.61,.36,1);}
 .ss-pd-cs-info:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
-.ss-pd-cs-info[aria-expanded="true"]{color:var(--ss-hover-text,#A4600C);}
-@media (hover:hover) and (pointer:fine){.ss-pd-cs-info:hover{color:var(--ss-hover-text,#A4600C);background:var(--ss-hover-bg,#FFF5E6);}}
+.ss-pd-cs-info[aria-expanded="true"]{color:var(--ss-link-hover,#21507B);background:var(--ss-surface-subtle,#FAF5EF);}
+@media (hover:hover) and (pointer:fine){.ss-pd-cs-info:hover{color:var(--ss-link-hover,#21507B);background:var(--ss-surface-subtle,#FAF5EF);}}
 .ss-pd-cs-f{position:relative;display:flex;align-items:center;}
 .ss-pd-cs-f>.ss-pd-cs-ic{position:absolute;left:12px;display:flex;color:var(--ss-text-muted,#5B6874);pointer-events:none;}
 .ss-pd-cs-f>.ss-pd-cs-u{position:absolute;right:12px;font-size:14px;color:var(--ss-text-muted,#5B6874);pointer-events:none;}
@@ -725,21 +725,7 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
 
             <div style="display:flex;flex-direction:column;gap:12px">
               <sc-for list="{{ pickers }}" as="p" hint-placeholder-count="3">
-                <button type="button" class="ss-pd-row" onClick="{{ p.onOpen }}" aria-expanded="false">
-                  <sc-if value="{{ p.isOn }}" hint-placeholder-val="{{ true }}"><span class="ss-pd-var-check" aria-hidden="true" style="position:static;align-self:center;flex:none"><dc-import name="Ikony" iconName="check" size="16" hint-size="16px,16px"></dc-import></span></sc-if>
-                  <sc-if value="{{ p.isOff }}" hint-placeholder-val="{{ false }}"><span class="ss-pd-cs-dot" aria-hidden="true" style="align-self:center"></span></sc-if>
-                  <span style="flex:1;min-width:0;display:flex;flex-direction:column;gap:4px">
-                    <span style="font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:19px;color:var(--ss-text-primary,#1C2229)">{{ p.title }}</span>
-                    <span style="display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-size:14px;color:var(--ss-text-secondary,#3D4750)">
-                      <sc-if value="{{ p.hasSwatch }}" hint-placeholder-val="{{ false }}">
-                        <span style="width:22px;height:22px;flex:none;border-radius:999px;background:{{ p.swatch }};box-shadow:inset 0 0 0 1px rgba(19,44,67,.15)"></span>
-                      </sc-if>
-                      <span>{{ p.value }}</span>
-                    </span>
-                  </span>
-                  <span style="flex:none;font-size:15px;font-weight:600;color:{{ p.noteColor }};white-space:nowrap">{{ p.note }}</span>
-                  <span style="display:flex;color:var(--ss-text-heading,#0B1F33);flex:none"><dc-import name="Ikony" iconName="chevron-right" size="22" hint-size="22px,22px"></dc-import></span>
-                </button>
+                <dc-import name="VyberRadek" title="{{ p.title }}" value="{{ p.value }}" note="{{ p.note }}" noteColor="{{ p.noteColor }}" selected="{{ p.isOn }}" warn="{{ p.vrWarn }}" rowId="{{ p.pkId }}" image="{{ p.vrImg }}" swatch="{{ p.vrBg }}" fit="{{ p.vrFit }}" cta="{{ p.vrCta }}" canChange="{{ p.vrCan }}" position="{{ p.vrPos }}" onOpen="{{ p.onOpen }}" hint-size="100%,92px"></dc-import>
               </sc-for>
             </div>
 
@@ -753,9 +739,10 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
                 <span style="display:flex;color:var(--ss-text-muted,#5B6874);flex:none"><dc-import name="Ikony" iconName="map-pin" size="16" hint-size="16px,16px"></dc-import></span>
                 <span>Můžete mít hned na <a href="#prodejny" onClick="{{ openStores }}" aria-haspopup="dialog">3 prodejnách</a></span>
               </span>
+              <!-- 18. 11. 2026: doprava / osobní odběr s odkazem na informace o dopravě -->
               <span style="display:flex;align-items:center;gap:8px;font-size:14px;color:var(--ss-text-secondary,#3D4750);padding-left:2px">
-                <span style="display:flex;color:var(--ss-text-muted,#5B6874);flex:none"><dc-import name="Ikony" iconName="map-pin" size="16" hint-size="16px,16px"></dc-import></span>
-                <span>Vyzkoušejte osobně na <a href="#prodejny" onClick="{{ openTry }}" aria-haspopup="dialog">5 specializovaných prodejnách</a></span>
+                <span style="display:flex;color:var(--ss-text-muted,#5B6874);flex:none"><dc-import name="Ikony" iconName="truck" size="16" hint-size="16px,16px"></dc-import></span>
+                <span>Osobní odběr na prodejně <strong style="font-weight:600;color:var(--ss-status-success,#157A41)">zdarma</strong> · doprava od 650 Kč · <a href="#doprava" onClick="{{ openDoprava }}" aria-haspopup="dialog">Možnosti dopravy</a></span>
               </span>
             </div>
 
@@ -800,6 +787,15 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
               </span>
             </a>
             </sc-if>
+            </div>
+
+            <!-- 18. 11. 2026: Vyzkoušejte osobně – jako u Matrace 3.0, s názvem produktu -->
+            <div style="display:flex;align-items:center;gap:16px;padding:4px 0 20px;border-bottom:1px solid var(--ss-border-subtle,#E1E6EB)">
+              <span style="display:flex;color:var(--ss-text-heading,#0B1F33);flex:none"><dc-import name="Ikony" iconName="usp-prodejny" size="40" hint-size="40px,40px"></dc-import></span>
+              <span style="display:flex;flex-direction:column;gap:4px;min-width:0;font-size:15px;line-height:1.45;color:var(--ss-text-secondary,#3D4750)">
+                <span style="font-weight:600;color:var(--ss-text-primary,#1C2229)">Vyzkoušejte osobně na <a href="#prodejny" onClick="{{ openTry }}" aria-haspopup="dialog">5 prodejnách</a></span>
+                <span>Set polštář + povlak je vystavený v Praze (Butovice a Kutnohorská), Brně, Ostravě a Olomouci.</span>
+              </span>
             </div>
 
             <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;padding-top:4px">
@@ -1035,6 +1031,8 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
   <dc-import name="VariantaDrawer" open="{{ drawerOpen }}" title="{{ drawerTitle }}" note="{{ drawerNote }}" value="{{ drawerValue }}" groups="{{ drawerGroups }}" rows="{{ drawerRows }}" onPick="{{ onDrawerPick }}" onClose="{{ closeDrawer }}" hint-size="0px,0px"></dc-import>
   <dc-import name="Overlay" open="{{ pvOpen }}" variant="modal" size="md" obsah="NahledObsah" title="{{ pvTitle }}" icon="photo" closeLabel="okno" initialFocus="close" data="{{ pvData }}" onClose="{{ pvClose }}" primaryLabel="Vybrat tuto variantu" onPrimary="{{ pvPick }}" secondaryLabel="Zavřít" onSecondary="{{ pvClose }}" hint-size="100%,100%"></dc-import>
 
+  <!-- 18. 11. 2026: okno Možnosti dopravy (Overlay + DopravaObsah) -->
+  <dc-import name="Overlay" open="{{ dopravaOpen }}" variant="modal" size="md" obsah="DopravaObsah" title="Možnosti dopravy" icon="truck" closeLabel="okno" initialFocus="close" data="{{ dopravaData }}" onClose="{{ closeDoprava }}" hint-size="100%,100%"></dc-import>
   <dc-import name="Overlay" open="{{ dostOpen }}" variant="modal" size="sm" obsah="DostupnostObsah" title="{{ dostTitle }}" icon="building-store" closeLabel="okno" initialFocus="close" data="{{ dostData }}" onClose="{{ closeDost }}" hint-size="100%,100%"></dc-import>
   <dc-import name="KosikPridanoModal" open="{{ addedOpen }}" title="{{ addedTitle }}" qty="{{ qty }}" variant="{{ addedVariant }}" image="_blob/1c357f1db8ebde3fecd9d43f7576a42f.jpg" stockKind="inStock" stockLabel="Skladem · odesíláme do 24 h" total="{{ addedTotal }}" onClose="{{ closeAdded }}" hint-size="0px,0px"></dc-import>
 
@@ -1285,6 +1283,16 @@ class Component extends DCLogic {
     // Po výběru se stránka vrátí na hotový krok, pokud je odscrollovaný nad horní hranou (dlouhé seznamy, např. čalounění; 5. 11. 2026). Na úzkém displeji jinak dorovná další krok do zorného pole.
     setTimeout(() => { try { const el = document.getElementById('ss-cfg-' + n); if (!el) return; const hd = document.querySelector('header.ss-hd'); const off = (hd ? Math.round(hd.getBoundingClientRect().height) : 0) + 16; const top = el.getBoundingClientRect().top; if (top < off) window.scrollTo({ top: Math.max(0, window.scrollY + top - off), behavior: 'smooth' }); else if (this.state.width < 820) { const nx = document.getElementById('ss-cfg-' + (n + 1)); if (nx) nx.scrollIntoView({ block: 'nearest', behavior: 'smooth' }); } } catch (e) {} }, 60);
   }
+  // 18. 11. 2026: data pro komponentu VyberRadek (fotka po výběru, zvětšení, spojená skupina)
+  vrMap(p) {
+    const yes = (v) => v === true || v === 'true';
+    const on = p.isOn !== undefined ? !!p.isOn : yes(p.on);
+    const bg = p.thumb || (p.hasSwatch === false || /url\((undefined|null)?\)/.test(p.swatch || '') ? '' : (p.swatch || ''));
+    const img = p.vrImg !== undefined ? p.vrImg : (p.zoomSrc || p.img || ((/url\(([^)]+)\)/.exec(bg) || [])[1]) || '');
+    const fit = p.vrFit || (p.img || /contain|#FFFFFF/.test(bg) ? 'contain' : 'cover');
+    const cta = p.cta && p.cta !== 'Vybrat' && p.cta !== 'Změnit' ? p.cta : '';
+    return Object.assign(p, { isOn: on, vrWarn: p.warnStr === 'true', vrImg: on ? img : '', vrBg: on ? bg : '', vrFit: fit, vrCta: cta, vrCan: !cta, vrPos: p.vrPos || '' });
+  }
   renderVals() {
     const w = this.state.width;
     // Prezentace „Příplatky“: Off schová všechny informace o navýšení ceny, zůstane jen celková cena (29. 10. 2026)
@@ -1530,6 +1538,7 @@ class Component extends DCLogic {
     ];
     return {
       // okno Dostupnost (9. 11. 2026)
+      dopravaOpen: !!this.state.doprava, dopravaData: {}, openDoprava: (e) => { if (e && e.preventDefault) e.preventDefault(); this.setState({ doprava: true }); }, closeDoprava: () => this.setState({ doprava: false }),
       dostOpen: !!this.state.dost, dostTitle: this.state.dost === 'stores' ? 'Skladem na prodejnách' : this.state.dost === 'tryout' ? 'Vyzkoušejte na prodejně' : 'Dostupnost', dostData: { storeIds: null, kind: this.state.dost === 'stores' || this.state.dost === 'tryout' ? this.state.dost : 'inStock', qty: 3, store: 'Praha – Chodov', pickup: 'ihned', delivery: 'zítra' },
       openDost: (e) => { if (e && e.preventDefault) e.preventDefault(); this.setState({ dost: true }); },
       openTry: (e) => { if (e && e.preventDefault) e.preventDefault(); this.setState({ dost: 'tryout' }); },
@@ -1696,7 +1705,7 @@ class Component extends DCLogic {
       pickers: [
         { title: 'Polštář', value: this.state.polOk ? pol.label : 'Nevybráno', note: !this.state.polOk ? '' : PP ? (pol.unit - minPol ? '+ ' + fmt(pol.unit - minPol) : 'v ceně setu') : '', on: this.state.polOk ? 'true' : 'false', hasSwatch: this.state.polOk, noteColor: pol.unit - minPol ? 'var(--ss-text-primary,#1C2229)' : 'var(--ss-status-success,#157A41)', swatch: 'url(' + pol.image + ') center / cover #FFFFFF', onOpen: () => this.setState({ drawer: 'polstar' }) },
         { title: 'Povlak', value: this.state.povOk ? pov.label : 'Nevybráno', note: !this.state.povOk ? '' : PP ? (pov.unit - minPov ? '+ ' + fmt(pov.unit - minPov) : 'v ceně setu') : '', on: this.state.povOk ? 'true' : 'false', hasSwatch: this.state.povOk, noteColor: pov.unit - minPov ? 'var(--ss-text-primary,#1C2229)' : 'var(--ss-status-success,#157A41)', swatch: 'url(' + pov.image + ') center / cover #FFFFFF', onOpen: () => this.setState({ drawer: 'povlak' }) }
-      ].map(p => Object.assign(p, { isOn: p.on === 'true', isOff: p.on !== 'true' }, PP ? {} : { note: '' })),
+      ].map(p => Object.assign(p, { isOn: p.on === 'true', isOff: p.on !== 'true' }, PP ? {} : { note: '' })).map(p => this.vrMap(p)),
       drawerOpen: !!this.state.drawer,
       drawerTitle: this.state.drawer === 'povlak' ? 'Vyberte povlak' : 'Vyberte polštář',
       drawerNote: this.state.drawer === 'povlak' ? 'Barvy se na obrazovkách liší – odstín si raději ověřte za denního světla v některé z našich prodejen.' : 'Všechny polštáře mají rozměr 70 × 90 cm a náplň 1 000 g.',

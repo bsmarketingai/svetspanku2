@@ -278,7 +278,7 @@ html[data-mode="dark"] main>section.ss-grad-top.ss-grad-glow{background-image:ra
           <span class="pm-in {{ rd.c4 }}" style="display:flex;justify-content:center;padding:2px 0;opacity:{{ rd.o4 }};animation-delay:180ms"><svg width="40" height="32" viewBox="0 4 32 26" aria-hidden="true" style="overflow:visible"><path class="{{ rd.pd4 }}" d="M3 18H8C12 18 11 20 16 20C21 20 20 18 24 18H29" fill="none" stroke="{{ rd.s4 }}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><circle class="{{ rd.pb4 }}" cx="16" cy="14.5" r="4.5" fill="{{ rd.f4 }}"></circle></svg></span>
           <span class="pm-in {{ rd.c5 }}" style="display:flex;justify-content:center;padding:2px 0;opacity:{{ rd.o5 }};animation-delay:240ms"><svg width="40" height="32" viewBox="0 4 32 26" aria-hidden="true" style="overflow:visible"><path class="{{ rd.pd5 }}" d="M3 18H9C12.5 18 11 18.6 16 18.6C21 18.6 19.5 18 23 18H29" fill="none" stroke="{{ rd.s5 }}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><circle class="{{ rd.pb5 }}" cx="16" cy="13.1" r="4.5" fill="{{ rd.f5 }}"></circle></svg></span>
         </div>
-        <div class="pm-sub" aria-hidden="true"><span>měkká</span><span>tvrdá</span></div>
+        <div class="pm-sub" aria-hidden="true"><span>Soft</span><span>Extra Hard</span></div>
       </div>
       <!-- D: Ideální pro (váha) převzato z varianty A – ukazatel rozsahu pod blokem (30. 10. 2026) -->
     </div>
@@ -343,7 +343,7 @@ html[data-mode="dark"] main>section.ss-grad-top.ss-grad-glow{background-image:ra
         <sc-for list="{{ tSegs }}" as="ts" hint-placeholder-count="5"><span style="display:block;height:{{ track }}px;border-radius:3px;background:{{ ts.bg }}"></span></sc-for>
       </span>
       <sc-if value="{{ large }}" hint-placeholder-val="{{ false }}">
-        <span aria-hidden="true" style="display:flex;justify-content:space-between;width:100%;font-size:13px;line-height:1.2;color:var(--ss-text-muted,#5B6874)"><span>Měkká</span><span>Tuhá</span></span>
+        <span aria-hidden="true" style="display:flex;justify-content:space-between;width:100%;font-size:13px;line-height:1.2;color:var(--ss-text-muted,#5B6874)"><span>Soft</span><span>Extra Hard</span></span>
       </sc-if>
       <sc-if value="{{ scaleT }}" hint-placeholder-val="{{ false }}">
         <span aria-hidden="true" style="display:flex;justify-content:space-between;width:100%;margin-top:-4px;font-size:13px;line-height:1.2;color:var(--ss-text-muted,#5B6874)"><span>1</span><span>5</span></span>
@@ -466,7 +466,7 @@ class Component extends DCLogic {
     const emptyBg = 'var(--ss-surface-strong,#E9E1D5)';
     // Omezený pohyb (WCAG 2.3.3): bez animace, jen klidový stav ikony
     const tAnim = !(typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
-    const wordsL = ['velmi měkká', 'měkká', 'středně tvrdá', 'tvrdá', 'velmi tvrdá'];
+    const wordsL = ['Extra Soft', 'Soft', 'Medium', 'Hard', 'Extra Hard']; /* 18. 11. 2026: názvosloví tuhosti */
     const tWordLow = wordsL[tLvl - 1];
     const tWordCap = tWordLow.charAt(0).toUpperCase() + tWordLow.slice(1);
     const tNumStr = t === null ? '' : String(t).replace('.', ',');
@@ -509,7 +509,7 @@ class Component extends DCLogic {
       tuhostPos: t === null ? 0 : t * 20, // poloha podle celého stupně, aby odpovídala číslu
       // A / A2: dílky tuhosti 1–5, odstíny od světlé po tmavou (stejná škála jako komponenta Tuhost)
       // inverse (11. 11. 2026): na tmavě modrém podkladu (vybraná karta varianty) – světlé dílky, průsvitné prázdné, bílé číslo
-      tSegs: (p.inverse ? ['#8DB3D3', '#A3C2DC', '#B9D0E5', '#DCE8F2', '#FFFFFF'] : ['#B9D0E5', '#8DB3D3', '#296093', '#21507B', '#132C43']).map((c, i) => ({ bg: t !== null && i < t ? c : (p.inverse ? 'rgba(255,255,255,.22)' : emptyBg) })),
+      tSegs: (p.inverse ? ['#DCE8F2', '#DCE8F2', '#DCE8F2', '#DCE8F2', '#DCE8F2'] : ['#21507B', '#21507B', '#21507B', '#21507B', '#21507B'] /* 18. 11. 2026: bez přechodu – aktivní dílky jednou tmavou modrou */).map((c, i) => ({ bg: t !== null && i < t ? c : (p.inverse ? 'rgba(255,255,255,.22)' : emptyBg) })),
       plainValColor: p.inverse ? '#FFFFFF' : 'var(--ss-text-primary,#1C2229)',
       rootColor: p.inverse ? '#FFFFFF' : 'var(--ss-text-secondary,#3D4750)',
       // numOnly (11. 11. 2026): karty variant pod nadpisem „Tuhost“ – bez opakovaného popisku, jen větší číslo

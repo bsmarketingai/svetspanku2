@@ -408,11 +408,11 @@ a:hover{color:var(--ss-hover-text,#21507B);}
 </helmet>
 <div style="width:100%;background:var(--ss-surface-page,#FFFFFF);font-family:Roboto,Helvetica,Arial,sans-serif;color:var(--ss-text-primary,#1C2229)">
   <!-- Uzavřená pokladna (29. 10. 2026): zjednodušená hlavička s krokovníkem místo plné hlavičky -->
-  <dc-import name="HlavickaPokladna" style="position:sticky;top:0;z-index:200" active="{{ 3 }}" ledMode="{{ ledMode }}" hint-size="100%,160px"></dc-import>
+  <dc-import name="HlavickaPokladna" style="position:sticky;top:0;z-index:200" active="{{ 2 }}" ledMode="{{ ledMode }}" hint-size="100%,160px"></dc-import>
   <dc-import name="PrezentacniLista" items="{{ presItems }}" onToggle="{{ onPresToggle }}" hint-size="320px,52px"></dc-import>
 
   <main>
-    <h1 style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0">Dodací údaje</h1>
+    <h1 style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0">Kontaktní údaje</h1>
 
     <section style="width:100%">
       <div style="{{ inner }}">
@@ -434,7 +434,7 @@ a:hover{color:var(--ss-hover-text,#21507B);}
             </sc-if>
 
             <section aria-labelledby="ss-k3-dodaci" style="display:flex;flex-direction:column;gap:20px">
-              <h2 id="ss-k3-dodaci" style="margin:0;font-size:{{ h2Size }};line-height:1.2">Dodací údaje</h2>
+              <h2 id="ss-k3-dodaci" style="margin:0;font-size:{{ h2Size }};line-height:1.2">Kontaktní údaje</h2>
               <dc-import name="Input" label="Jméno a příjmení" required="{{ true }}" autoComplete="name" bordered="{{ true }}" value="{{ f.name }}" invalid="{{ er.name }}" hint="{{ eh.name }}" onChange="{{ on.name }}" hint-size="100%,70px"></dc-import>
               <dc-import name="Input" label="E-mail" type="email" required="{{ true }}" autoComplete="email" bordered="{{ true }}" value="{{ f.email }}" invalid="{{ er.email }}" hint="{{ eh.email }}" onChange="{{ on.email }}" hint-size="100%,70px"></dc-import>
               <div role="group" aria-labelledby="ss-k3-tel" style="display:flex;flex-direction:column;gap:6px">
@@ -491,13 +491,38 @@ a:hover{color:var(--ss-hover-text,#21507B);}
             </section>
           </div>
 
-          <div style="{{ asideWrap }}">
-            <dc-import name="ShrnutiObjednavky" items="{{ items }}" lines="{{ lines }}" total="{{ total }}" totalNoVat="{{ totalNoVat }}" checks="{{ checks }}" onCheck="{{ onCheck }}" termsNote="{{ true }}" termsChecked="{{ terms }}" onTerms="{{ onTerms }}" ctaLabel="Odeslat objednávku" ctaSublabel="s povinností platby" ctaHref="Dekujeme.dc.html" onCta="{{ onCta }}" termsError="{{ termsError }}" backLabel="Zpět k dopravě a platbě" backHref="KosikKrok2.dc.html" hint-size="100%,900px"></dc-import>
+          <div id="ss-co-sum" style="{{ asideWrap }}">
+            <dc-import name="ShrnutiObjednavky" items="{{ items }}" lines="{{ lines }}" total="{{ total }}" totalNoVat="{{ totalNoVat }}" ctaLabel="Pokračovat ke shrnutí objednávky" ctaHref="KosikShrnuti.dc.html" onCta="{{ onCta }}" backLabel="Zpět ke košíku, dopravě a platbě" backHref="KosikKrok1.dc.html" hint-size="100%,900px"></dc-import>
           </div>
         </div>
       </div>
     </section>
   </main>
+  <!-- 18. 11. 2026: plovoucí lišta dole (kroky 2 a 3) – zpět, celková cena, další krok; skryje se, když je vidět souhrn s tlačítkem -->
+  <sc-if value="{{ barOn }}" hint-placeholder-val="{{ false }}">
+    <div role="region" aria-label="Pokračování objednávky" style="position:fixed;left:0;right:0;bottom:0;z-index:150;background:var(--ss-surface-page,#FFFFFF);box-shadow:0 -4px 16px rgba(19,44,67,.12);border-top:1px solid var(--ss-border-subtle,#E1E6EB)">
+      <!-- 18. 11. 2026: na úzkém mobilu doprava v řádku nad tlačítky -->
+      <sc-if value="{{ barDelRow }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;justify-content:flex-end;gap:6px;padding:8px 16px 0;font-size:14px;line-height:1.4;color:var(--ss-text-muted,#5B6874)">Doprava <span style="color:{{ barDelColor }}">{{ barDel }}</span></div>
+      </sc-if>
+      <div style="{{ barInner }}">
+        <sc-if value="{{ barBackFull }}" hint-placeholder-val="{{ true }}"><dc-import name="Tlacitko" label="{{ barBackLabel }}" variant="secondary" size="large" href="{{ barBackHref }}" iconLeft="arrow-left" hint-size="260px,52px"></dc-import></sc-if>
+        <sc-if value="{{ barBackIcon }}" hint-placeholder-val="{{ false }}"><a class="ss-bar-back" href="{{ barBackHref }}" aria-label="{{ barBackLabel }}" style="flex:none;display:flex;align-items:center;justify-content:center;width:{{ barBackW }};height:44px;border-radius:6px;background:var(--ss-surface-subtle,#FAF5EF);box-shadow:inset 0 0 0 1px var(--ss-border-strong,#D9CCBA);color:var(--ss-link-hover,#21507B)"><dc-import name="Ikony" iconName="arrow-left" size="20" hint-size="20px,20px"></dc-import></a></sc-if>
+        <span style="flex:1"></span>
+        <sc-if value="{{ barDelOn }}" hint-placeholder-val="{{ true }}">
+        <span style="display:flex;flex-direction:column;align-items:flex-end;line-height:1.15;padding-right:24px;border-right:1px solid var(--ss-border-subtle,#E1E6EB)">
+          <span style="font-size:13px;color:var(--ss-text-muted,#5B6874)">Doprava</span>
+          <span style="font-size:15px;font-weight:400;line-height:1.4;white-space:nowrap;color:{{ barDelColor }}">{{ barDel }}</span>
+        </span>
+        </sc-if>
+        <span style="display:flex;flex-direction:column;align-items:flex-end;line-height:1.15">
+          <span style="font-size:13px;color:var(--ss-text-muted,#5B6874)">Celkem</span>
+          <span style="font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:{{ barTotalSize }};white-space:nowrap">{{ total }}</span>
+        </span>
+        <dc-import name="Tlacitko" label="{{ barCtaLabel }}" sublabel="{{ barCtaSub }}" variant="buy" size="{{ barCtaSize }}" onClick="{{ goNext }}" iconRight="chevron-right" hint-size="300px,52px"></dc-import>
+      </div>
+    </div>
+  </sc-if>
 
   <footer style="width:100%;background:var(--ss-surface-subtle,#FAF5EF);border-top:1px solid var(--ss-border-subtle,#E1E6EB)">
     <div style="{{ innerFoot }}">
@@ -514,19 +539,37 @@ class Component extends DCLogic {
   withAuth(f, a) { const P = this.PROFIL; if (a) return Object.assign({}, f, P); const o = Object.assign({}, f); Object.keys(P).forEach(k => { if (k !== 'prefix' && o[k] === P[k]) o[k] = ''; }); return o; }
   state = {
     width: typeof window !== 'undefined' ? document.documentElement.clientWidth : 1440,
-    led: true,
+    led: true, sumVis: false,
     auth: this.isAuth(),
     f: this.withAuth({ name: '', email: '', prefix: '+420', phone: '', company: false, ico: '', dic: '', firm: '', street: '', city: '', zip: '', other: false, dName: '', dStreet: '', dCity: '', dZip: '', note: false, noteText: '' }, this.isAuth()),
     optSurvey: false, optNews: false, terms: false, tried: false /* 13. 11. 2026: simulace validace po kliknutí na Odeslat */
   };
   componentDidMount() {
+    { const c = this.ck(); if (c.f) this.setState(s => ({ f: Object.assign({}, s.f, c.f) })); }
     this._r = () => this.setState({ width: document.documentElement.clientWidth });
+    // 18. 11. 2026: plovoucí lišta – skryje se, až je vidět tlačítko v souhrnu vpravo
+    this._bar = () => { try { const box = document.getElementById('ss-co-sum'); const lab = 'Pokračovat ke shrnutí objednávky'; const btn = box && Array.prototype.find.call(box.querySelectorAll('a,button'), x => x.textContent.indexOf(lab) >= 0); const r = (btn || box) && (btn || box).getBoundingClientRect(); const vis = !!r && r.bottom - 20 < window.innerHeight; if (vis !== this.state.sumVis) this.setState({ sumVis: vis }); } catch (e) {} };
+    window.addEventListener('scroll', this._bar, { passive: true }); setTimeout(this._bar, 300);
     window.addEventListener('resize', this._r);
     this._auth = () => { const a = this.isAuth(); this.setState(s => ({ auth: a, f: this.withAuth(s.f, a) })); };
     window.addEventListener('ss-auth', this._auth); window.addEventListener('storage', this._auth);
   }
-  componentWillUnmount() { window.removeEventListener('resize', this._r); window.removeEventListener('ss-auth', this._auth); window.removeEventListener('storage', this._auth); }
+  componentWillUnmount() { window.removeEventListener('scroll', this._bar); window.removeEventListener('resize', this._r); window.removeEventListener('ss-auth', this._auth); window.removeEventListener('storage', this._auth); }
   fmt(n) { return String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, '\u00A0') + '\u00A0Kč'; }
+  // 18. 11. 2026: volby z kroku 1 (doprava, platba, kupón) a údaje z kroku 2 – localStorage ss-checkout
+  ck() { try { return JSON.parse(localStorage.getItem('ss-checkout') || '{}') || {}; } catch (e) { return {}; } }
+  ckSave(patch) { try { const c = this.ck(); localStorage.setItem('ss-checkout', JSON.stringify(Object.assign(c, patch))); } catch (e) {} }
+  ckDP() {
+    const c = this.ck(), d = c.delivery || 'own-1';
+    const OWN = [{ fee: 650, short: 'za první dveře v přízemí' }, { fee: 1500, short: 's vynáškou do patra' }, { fee: 2050, short: 's vynáškou a montáží' }];
+    const PAY = { card: ['Platba kartou online', 0], instant: ['Okamžitý bankovní převod', 0], qr: ['QR platba / běžný bankovní převod', 0], gpay: ['Google Pay', 0], klarna: ['Klarna – 3 splátky bez úroku', 0], cash: ['Hotově', 0], cod: ['Dobírkou', 79] };
+    let delName, delFee, store = false;
+    if (d.indexOf('own-') === 0) { const o = OWN[+d.split('-')[1]] || OWN[1]; delName = 'Doprava Svět spánku – ' + o.short; /* 18. 11. 2026: jasně naše doprava, ne odvoz zákazníkem */ delFee = o.fee; }
+    else if (d === 'ppl') { delName = 'Doručení na adresu PPL'; delFee = 1000; }
+    else { delName = 'Osobní odběr – ' + (c.storeName || 'prodejna'); delFee = 0; store = true; }
+    const p = PAY[c.payment] || PAY.card;
+    return { delName, delFee, payName: p[0], payFee: p[1], store, storeName: c.storeName || '', storeAddr: c.storeAddr || '', coupon: c.coupon || '' };
+  }
   set(k, v) { this.setState(s => ({ f: Object.assign({}, s.f, { [k]: v }) })); }
   renderVals() {
     const w = this.state.width;
@@ -536,8 +579,8 @@ class Component extends DCLogic {
       { title: 'Manželská postel SANTE 45 dvoulůžko 180 × 200 cm, olej Teak, jádrový buk', variant: 'Kód: SAN0045180', qty: 2, unit: 19990, img: '_blob/6721a0d378d224249b73f0d946656a32.jpg' },
       { title: 'Matrace Spring Variant 22 cm', variant: '180 × 200 cm · tuhost H3', qty: 1, unit: 7590, img: '_blob/66ef2119f31d8262ba38ce4bea618a8e.webp' }
     ];
-    const delFee = 1500;
-    const total = goods.reduce((s, g) => s + g.unit * g.qty, 0) + delFee;
+    const DP = this.ckDP(); const delFee = DP.delFee;
+    const total = goods.reduce((s, g) => s + g.unit * g.qty, 0) + delFee + DP.payFee;
     const on = {};
     Object.keys(this.state.f).forEach(k => { on[k] = (v) => this.set(k, v); });
     on.noteText = (e) => this.set('noteText', e.target.value);
@@ -563,8 +606,8 @@ class Component extends DCLogic {
       dicInfo: ['Vyplňte, jen pokud je firma plátcem DPH', 'Formát: kód země a číslo, např. CZ12345678', 'Fakturu vystavíme s DIČ automaticky'],
       items: goods.map(g => ({ title: g.title, variant: g.variant, qty: g.qty, img: g.img, total: this.fmt(g.unit * g.qty) })),
       lines: [
-        { label: 'Doprava', name: 'Vlastní doprava s vynáškou do patra', value: this.fmt(delFee) },
-        { label: 'Platba', name: 'Platba kartou online', value: 'Zdarma' }
+        { label: 'Doprava', name: DP.delName, value: delFee ? this.fmt(delFee) : 'Zdarma' },
+        { label: 'Platba', name: DP.payName, value: DP.payFee ? this.fmt(DP.payFee) : 'Zdarma' }
       ],
       checks: [
         { label: 'Nezasílat dotazník spokojenosti v rámci programu Ověřeno zákazníky', checked: this.state.optSurvey },
@@ -572,7 +615,7 @@ class Component extends DCLogic {
       ],
       terms: this.state.terms,
       ...(() => {
-        // 13. 11. 2026: povinná pole – chyby se ukážou až po kliknutí na Odeslat objednávku
+        // 13. 11. 2026: povinná pole – chyby se ukážou až po kliknutí na Pokračovat (18. 11.: ke shrnutí)
         const F = this.state.f, T = this.state.tried, E = {};
         const req = ['name', 'email', 'phone', 'street', 'city', 'zip'].concat(F.company ? ['ico'] : []).concat(F.other ? ['dName', 'dStreet', 'dCity', 'dZip'] : []);
         req.forEach(k => { if (!String(F[k] || '').trim()) E[k] = 'Vyplňte toto pole.'; });
@@ -584,11 +627,11 @@ class Component extends DCLogic {
         const er = {}, eh = {};
         Object.keys(F).forEach(k => { er[k] = T && !!E[k]; eh[k] = T && E[k] ? E[k] : ''; });
         if (!eh.phone) eh.phone = 'Na toto číslo vám dáme vědět o doručení objednávky.';
-        const ok = Object.keys(E).length === 0 && this.state.terms;
+        const ok = Object.keys(E).length === 0; /* 18. 11. 2026: obchodní podmínky až ve shrnutí */
         return {
-          er, eh, termsError: T && !this.state.terms,
+          er, eh,
           onCta: () => {
-            if (ok) return true;
+            if (ok) { this.ckSave({ f: this.state.f }); return true; }
             this.setState({ tried: true });
             setTimeout(() => { try { const el = document.querySelector('[aria-invalid="true"]') || document.getElementById('ss-terms'); if (el) { el.scrollIntoView({ block: 'center', behavior: 'smooth' }); if (el.focus) el.focus({ preventScroll: true }); } } catch (e) {} }, 60);
             return false;
@@ -597,6 +640,13 @@ class Component extends DCLogic {
       })(),
       onTerms: (v) => this.setState({ terms: v }),
       onCheck: (i, v) => this.setState(i === 0 ? { optSurvey: v } : { optNews: v }),
+      barOn: !this.state.sumVis,
+      barInner: { maxWidth: '1560px', margin: '0 auto', boxSizing: 'border-box', padding: (w < 360 ? '8px 10px' : w < 400 ? '8px 12px' : narrow ? '10px 16px' : '12px 32px'), display: 'flex', alignItems: 'center', gap: w < 360 ? '6px' : w < 400 ? '8px' : narrow ? '12px' : '24px' },
+      barBackFull: w >= 820, barBackIcon: w < 820, barBackLabel: 'Zpět ke košíku', barBackHref: 'KosikKrok1.dc.html',
+      barTotalSize: w < 360 ? '17px' : w < 400 ? '18px' : narrow ? '20px' : '24px', barCtaSize: w < 400 ? 'medium' : 'large', barBackW: w < 360 ? '36px' : w < 400 ? '40px' : '48px',
+      barDelOn: w >= 550, barDelRow: w < 550, barDel: DP.delFee ? this.fmt(DP.delFee) : 'Zdarma', barDelColor: DP.delFee ? 'var(--ss-text-primary,#1C2229)' : 'var(--ss-status-success,#157A41)',
+      barCtaLabel: w >= 820 ? 'Pokračovat ke shrnutí objednávky' : 'Pokračovat', barCtaSub: '',
+      goNext: () => { const v = this.renderVals(); if (v.onCta && v.onCta() === false) return; (h => { try { const a = document.createElement('a'); a.href = h; a.style.display = 'none'; (document.getElementById('dc-root') || document.body).appendChild(a); a.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true, view: window })); a.remove(); } catch (e) { window.location.href = h; } })('KosikShrnuti.dc.html'); },
       total: this.fmt(total),
       totalNoVat: this.fmt(total / 1.21)
     };

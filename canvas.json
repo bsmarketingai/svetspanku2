@@ -2336,10 +2336,10 @@
     },
     "KosikKrok1.dc.html": {
       "expand": "fill",
-      "h": 1400,
+      "h": 2000,
       "is_interactive": true,
       "page": "kosik",
-      "title": "KosikKrok1",
+      "title": "KosikKrok1 – 1. Košík, doprava a platba",
       "w": 1440,
       "x": 0,
       "y": 0
@@ -2349,9 +2349,9 @@
       "h": 1600,
       "is_interactive": true,
       "page": "kosik",
-      "title": "KosikKrok2",
+      "title": "KosikKrok2 – původní krok Doprava a platba (nepoužívá se)",
       "w": 1440,
-      "x": 1520,
+      "x": 6080,
       "y": 0
     },
     "KosikKrok3.dc.html": {
@@ -2359,9 +2359,9 @@
       "h": 1600,
       "is_interactive": true,
       "page": "kosik",
-      "title": "KosikKrok3",
+      "title": "KosikKrok3 – 2. Kontaktní údaje",
       "w": 1440,
-      "x": 3040,
+      "x": 1520,
       "y": 0
     },
     "KosikObsah.dc.html": {
@@ -3087,6 +3087,16 @@
       "w": 1440,
       "x": 0,
       "y": 0
+    },
+    "KosikShrnuti.dc.html": {
+      "expand": "fill",
+      "h": 1600,
+      "is_interactive": true,
+      "page": "kosik",
+      "title": "KosikShrnuti – 3. Shrnutí objednávky",
+      "w": 1440,
+      "x": 3040,
+      "y": 0
     }
   },
   "createdOnFiles": {
@@ -3263,6 +3273,7 @@
     "KosikKrok1.dc.html",
     "KosikKrok2.dc.html",
     "KosikKrok3.dc.html",
+    "KosikShrnuti.dc.html",
     "PrazdnyKosik.dc.html",
     "Dekujeme.dc.html",
     "Oblibene.dc.html",

@@ -201,6 +201,8 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
 <style>
 .ss-sp-soc{box-sizing:border-box;display:flex;align-items:center;justify-content:center;gap:10px;width:100%;min-height:44px;padding:0 16px;border:0;border-radius:6px;font-family:inherit;font-size:15px;font-weight:600;text-decoration:none;cursor:pointer;transition:background-color .12s cubic-bezier(.22,.61,.36,1),color .12s cubic-bezier(.22,.61,.36,1);}
 .ss-sp-soc:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
+.ss-sp-ap{background:#1C2229;color:#FFFFFF;}
+.ss-sp-ap:hover{background:#000000;color:#FFFFFF;}
 .ss-sp-mail{background:var(--ss-surface-page,#FFFFFF);color:var(--ss-text-primary,#1C2229);box-shadow:inset 0 0 0 1px var(--ss-border-subtle,#E1E6EB);}
 .ss-sp-mail:hover{background:var(--ss-hover-bg,#F0F5FA);color:var(--ss-hover-text,#21507B);}
 .ss-sp-fb{background:#3B5998;color:#FFFFFF;}
@@ -214,10 +216,11 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
 <section aria-labelledby="ss-sp-h" style="font-family:Roboto,Helvetica,Arial,sans-serif;color:var(--ss-text-primary,#1C2229);box-sizing:border-box;display:flex;flex-direction:column;gap:16px;padding:20px;border-radius:12px;background:var(--ss-surface-hover,#F0F5FA)">
   <h2 id="ss-sp-h" class="ss-plain" style="margin:0;font-family:Roboto,Helvetica,Arial,sans-serif;font-size:16px;font-weight:600;line-height:1.4">Přihlaste se nebo se zaregistrujte propojením svého účtu</h2>
   <div style="display:grid;grid-template-columns:{{ cols }};gap:12px">
-    <button type="button" class="ss-sp-soc ss-sp-mail" ref="{{ mailRef }}" onClick="{{ openLogin }}" aria-haspopup="dialog">
-      <span style="display:flex;color:var(--ss-link,#296093)"><dc-import name="Ikony" iconName="mail" size="22" hint-size="22px,22px"></dc-import></span>
-      <span>E-mail</span>
-    </button>
+    <!-- 18. 11. 2026: místo E-mailu Apple ID (stejně jako v okně Přihlášení) -->
+    <a class="ss-sp-soc ss-sp-ap" href="#prihlaseni-apple" aria-label="Přihlásit se přes Apple ID">
+      <span style="display:flex"><dc-import name="Ikony" iconName="brand-apple-filled" size="22" hint-size="22px,22px"></dc-import></span>
+      <span>Apple ID</span>
+    </a>
     <a class="ss-sp-soc ss-sp-fb" href="#prihlaseni-facebook">
       <span style="display:flex"><dc-import name="Ikony" iconName="brand-facebook" size="22" hint-size="22px,22px"></dc-import></span>
       <span>Facebook</span>
