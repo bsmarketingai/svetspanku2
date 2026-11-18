@@ -284,9 +284,9 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
       <sc-for list="{{ utility }}" as="u" hint-placeholder-count="1">
         <a class="ss-mob-row" href="{{ u.href }}" style="color:var(--ss-text-secondary,#3D4750)"><span class="ss-mob-icon"><dc-import name="Ikony" iconName="phone" size="20" hint-size="20px,20px"></dc-import></span><span>{{ u.label }}</span></a>
       </sc-for>
-      <a class="ss-mob-row" href="#prihlaseni" style="color:var(--ss-text-secondary,#3D4750)">
+      <a class="ss-mob-row" href="{{ acctHref }}" style="color:var(--ss-text-secondary,#3D4750)">
         <span class="ss-mob-icon"><dc-import name="Ikony" iconName="user" size="20" hint-size="20px,20px"></dc-import></span>
-        <span>Přihlášení a registrace</span>
+        <span>{{ acctLabel }}</span>
       </a>
       <a class="ss-mob-row" href="#oblibene" style="color:var(--ss-text-secondary,#3D4750)">
         <span class="ss-mob-icon"><dc-import name="Ikony" iconName="heart" size="20" hint-size="20px,20px"></dc-import></span>
@@ -1899,11 +1899,15 @@ return { MENU, UTILITY, QUICK };
 class Component extends DCLogic {
   // Mobilní menu v2 (4. 11. 2026). Rozhraní: data { section: index otevřené sekce | null, categories?, quick?, utility? }, onEvent('open', i) | ('back') | ('close').
   // Název úrovně a šipku zpět zobrazuje Overlay (title + onBack), stav otevřené sekce drží Hlavicka.
-  state = { cats: null, quick: null, util: null, storesOpen: false };
+  state = { cats: null, quick: null, util: null, storesOpen: false, auth: (() => { try { return localStorage.getItem('ss-auth') === 'in'; } catch (e) { return false; } })() };
   componentDidMount() {
+    /* 18. 11. 2026: po přihlášení (ss-auth) místo „Přihlášení a registrace“ jméno účtu */
+    this._auth = () => { try { this.setState({ auth: localStorage.getItem('ss-auth') === 'in' }); } catch (e) {} };
+    window.addEventListener('ss-auth', this._auth);
     const d0 = this.props.data || {};
     if (!d0.categories) Promise.resolve(__M_menu).then(m => this.setState({ cats: m.MENU, quick: m.QUICK, util: m.UTILITY }));
   }
+  componentWillUnmount() { window.removeEventListener('ss-auth', this._auth); }
   renderVals() {
     const p = this.props;
     const d = p.data || {};
@@ -1962,6 +1966,7 @@ class Component extends DCLogic {
         articles
       });
     }
+    vals.acctLabel = this.state.auth ? 'Můj účet – Pavel Černý' : 'Přihlášení a registrace'; vals.acctHref = this.state.auth ? '#ucet' : '#prihlaseni';
     return vals;
   }
 }

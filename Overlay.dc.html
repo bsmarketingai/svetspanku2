@@ -244,6 +244,11 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
 .ss-ov-popover .ss-ov-title{font-size:17px;}
 .ss-ov-popover .ss-ov-body{padding:12px 16px 16px;}
 @media (prefers-reduced-motion:no-preference){.ss-ov-popover{animation:ss-ov-fade .12s cubic-bezier(.22,.61,.36,1);}}
+
+/* 18. 11. 2026: zavírací tlačítka jednotně jako v menu účtu – ghost ikona 40 × 40, hover béžový */
+.ss-ov .ss-ov-close{width:40px!important;height:40px!important;min-width:40px!important;padding:0!important;border:0!important;border-radius:6px!important;background:transparent!important;box-shadow:none!important;color:var(--ss-text-secondary,#3D4750)!important;cursor:pointer;transition:background-color .12s cubic-bezier(.22,.61,.36,1),color .12s cubic-bezier(.22,.61,.36,1)!important;}
+.ss-ov .ss-ov-close:hover{background:var(--ss-surface-subtle,#FAF5EF)!important;color:var(--ss-link-hover,#21507B)!important;}
+.ss-ov .ss-ov-close:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35)!important;}
 </style>
 </helmet>
 <sc-if value="{{ isOpen }}" hint-placeholder-val="{{ true }}">

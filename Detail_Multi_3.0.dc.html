@@ -395,6 +395,11 @@ main>section.ss-grad-top.ss-grad-glow{background-image:radial-gradient(ellipse 5
 html[data-mode="dark"] main>section.ss-grad-top.ss-grad-glow{background-image:radial-gradient(ellipse 55% 100% at 50% 100%,rgba(251,178,85,.14) 0%,rgba(251,178,85,.05) 45%,rgba(251,178,85,0) 75%),linear-gradient(180deg,var(--ss-surface-page,#0E1F2F) 0%,var(--ss-surface-muted,#183049) 100%)!important;}
 
 
+
+/* 18. 11. 2026: zavírací tlačítka jednotně jako v menu účtu – ghost ikona 40 × 40, hover béžový */
+html body .ss-pd-round[aria-label="Zavřít galerii"],html body .ss-pd-round[aria-label="Zavřít okno"]{width:40px!important;height:40px!important;min-width:40px!important;padding:0!important;border:0!important;border-radius:6px!important;background:transparent!important;box-shadow:none!important;color:var(--ss-text-secondary,#3D4750)!important;cursor:pointer;transition:background-color .12s cubic-bezier(.22,.61,.36,1),color .12s cubic-bezier(.22,.61,.36,1)!important;}
+html body .ss-pd-round[aria-label="Zavřít galerii"]:hover,html body .ss-pd-round[aria-label="Zavřít okno"]:hover{background:var(--ss-surface-subtle,#FAF5EF)!important;color:var(--ss-link-hover,#21507B)!important;}
+html body .ss-pd-round[aria-label="Zavřít galerii"]:focus-visible,html body .ss-pd-round[aria-label="Zavřít okno"]:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35)!important;}
 </style>
 <script>try{var d=document.documentElement;if(localStorage.getItem('ss-mode')==='dark')d.setAttribute('data-mode','dark');d.setAttribute('data-logo',localStorage.getItem('ss-logo')||'a');d.setAttribute('data-font-h','base');d.setAttribute('data-font-b','base');d.setAttribute('data-bg',localStorage.getItem('ss-bg')||'on');}catch(e){}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">

@@ -287,6 +287,26 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
 .ss-hd[data-theme="blue"] .ss-hd-tab[aria-current="page"]{color:#FBB255;}
 /* Schovaná hlavička (H2): obal i hlavička nepřijímají kliky, jinak by průhledný sticky obal blokoval lištu obsahu pod sebou */
 .sc-host:has(>.ss-hd[data-hidden="true"]),.ss-hd[data-hidden="true"]{pointer-events:none;}
+/* 18. 11. 2026: účet po přihlášení – jméno v horní liště a rozbalovací menu účtu */
+.ss-acct-btn{gap:6px;cursor:pointer;border:0;background:none;font:inherit;font-size:13px;font-weight:600;}
+.ss-acct-btn[aria-expanded="true"] .ss-acct-chev{transform:rotate(180deg);}
+.ss-acct-chev{display:flex;transition:transform .15s cubic-bezier(.22,.61,.36,1);}
+.ss-acct-panel{position:fixed;z-index:1200;width:320px;max-width:calc(100vw - 24px);background:#FFFFFF;border-radius:12px;box-shadow:0 0 0 1px rgba(19,44,67,.08),0 16px 40px rgba(19,44,67,.22);overflow:hidden;font-family:Roboto,Helvetica,Arial,sans-serif;color:#1C2229;text-align:left;}
+.ss-acct-head{display:flex;align-items:flex-start;gap:12px;padding:20px 16px 16px 24px;}
+.ss-acct-name{margin:0;font-family:Oswald,Roboto,sans-serif;font-weight:600;font-size:22px;line-height:1.25;color:#0B1F33;}
+.ss-acct-grp{margin:6px 0 0;font-size:15px;color:#3D4750;}
+.ss-acct-x{flex:none;margin-left:auto;display:flex;align-items:center;justify-content:center;width:40px;height:40px;border:0;border-radius:6px;background:none;color:#3D4750;cursor:pointer;}
+.ss-acct-x:hover{background:var(--ss-surface-subtle,#FAF5EF);color:#21507B;}
+.ss-acct-list{background:#FFFFFF;border-top:1px solid var(--ss-border-subtle,#E1E6EB);padding:8px;display:flex;flex-direction:column;gap:2px;}
+.ss-acct-item{display:flex;align-items:center;gap:12px;min-height:44px;padding:0 16px;border-radius:8px;font-size:16px;color:#1C2229;text-decoration:none;transition:background-color .12s cubic-bezier(.22,.61,.36,1),color .12s cubic-bezier(.22,.61,.36,1);}
+.ss-acct-ico{display:flex;flex:none;color:var(--ss-text-muted,#5B6874);transition:color .12s cubic-bezier(.22,.61,.36,1);}
+.ss-acct-item:hover{color:var(--ss-hover-text,#21507B);background:var(--ss-hover-bg,#F0F5FA);}
+.ss-acct-item:hover .ss-acct-ico{color:var(--ss-hover-text,#21507B);}
+.ss-acct-foot{padding:4px 16px 16px;background:#FFFFFF;}
+.ss-acct-item:focus-visible,.ss-acct-x:focus-visible{outline:none;box-shadow:inset 0 0 0 3px rgba(41,96,147,.35);}
+.ss-acct-sep{height:1px;margin:6px 8px;background:var(--ss-border-subtle,#E1E6EB);}
+.ss-acct-out{color:var(--ss-link,#296093);font-weight:600;}
+.ss-acct-dot{position:absolute;right:6px;bottom:8px;width:10px;height:10px;border-radius:999px;background:#2E9E5B;box-shadow:0 0 0 2px var(--ss-hd-bg,#132C43);}
 </style>
 </helmet>
 <header class="ss-hd" data-theme="{{ theme }}" data-hidden="{{ hdHiddenStr }}" ref="{{ headerRef }}" style="{{ headerStyle }}">
@@ -300,9 +320,16 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
           </sc-for>
         </nav>
         <div style="margin-left:auto;display:flex;align-items:center;gap:8px">
+          <sc-if value="{{ loggedOut }}" hint-placeholder-val="{{ true }}">
           <a class="ss-hd-util" href="Registrace.dc.html">Registrace</a>
           <span class="ss-hd-sep" style="color:var(--ss-text-decor,#C8D0D8)">·</span>
           <a class="ss-hd-util" href="#prihlaseni" onClick="{{ openLogin }}">Přihlášení</a>
+          </sc-if>
+          <sc-if value="{{ loggedIn }}" hint-placeholder-val="{{ false }}">
+          <button type="button" class="ss-hd-util ss-acct-btn" data-acct="1" onClick="{{ toggleAcct }}" aria-haspopup="true" aria-expanded="{{ acctExpanded }}" aria-controls="ss-acct-panel">
+            <dc-import name="Ikony" iconName="user" size="16" hint-size="16px,16px"></dc-import>{{ acctName }}<span class="ss-acct-chev"><dc-import name="Ikony" iconName="chevron-down" size="14" hint-size="14px,14px"></dc-import></span>
+          </button>
+          </sc-if>
         </div>
       </div>
     </div>
@@ -374,8 +401,8 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
               </sc-if>
             </span>
           </a>
-          <a class="ss-hd-action" href="#prihlaseni" onClick="{{ openLogin }}" style="{{ mIconStyle }}" aria-label="Přihlášení">
-            <dc-import name="Ikony" iconName="user" size="24" hint-size="24px,24px"></dc-import>
+          <a class="ss-hd-action" href="#prihlaseni" data-acct="1" onClick="{{ userIconClick }}" style="{{ mUserStyle }}" aria-label="{{ userIconLabel }}" aria-expanded="{{ acctExpandedM }}">
+            <dc-import name="Ikony" iconName="{{ userIcon }}" size="24" hint-size="24px,24px"></dc-import>
           </a>
           <dc-import name="Kosik" onClick="{{ openCart }}" count="{{ cartCount }}" total="{{ cartTotal }}" compact="{{ true }}" hideTotal="{{ true }}" onTint="{{ onTint }}" hint-size="56px,44px"></dc-import>
           <button type="button" class="ss-hd-action ss-hd-burger" style="width:{{ mBtnW }};min-width:{{ mBtnW }};margin-left:{{ mBurgerGap }};height:{{ mBtnW }};align-self:center;padding:0;gap:0;line-height:0;display:flex;align-items:center;justify-content:center" onClick="{{ openMobile }}" aria-label="Otevřít menu" aria-expanded="{{ mobileExpanded }}">
@@ -441,6 +468,27 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
   <dc-import name="Overlay" open="{{ loginOpen }}" variant="drawer" obsah="PrihlaseniObsah" title="Přihlaste se" icon="user" closeLabel="přihlášení" data="{{ loginData }}" onEvent="{{ onLoginEvent }}" onClose="{{ closeLogin }}" hint-size="0px,0px"></dc-import>
   <dc-import name="Overlay" open="{{ cartOpen }}" variant="drawer" obsah="KosikObsah" title="Nákupní košík" icon="shopping-bag" badge="{{ cartCount }}" closeLabel="košík" data="{{ cartData }}" onEvent="{{ onCartEvent }}" onClose="{{ closeCart }}" primaryLabel="{{ cartPrimary }}" primaryVariant="buy" primaryHref="KosikKrok1.dc.html" primaryIcon="shopping-bag" secondaryLabel="{{ cartSecondary }}" secondaryIcon="arrow-left" hint-size="0px,0px"></dc-import>
   <dc-import name="Overlay" open="{{ mobileOpen }}" variant="drawer" flush="{{ true }}" obsah="MobilniMenuObsah" title="{{ mobileTitle }}" icon="menu-2" closeLabel="menu" data="{{ mobileData }}" onEvent="{{ onMobileEvent }}" onBack="{{ mobileBack }}" backLabel="Zpět na hlavní menu" onClose="{{ closeMobile }}" hint-size="0px,0px"></dc-import>
+  <sc-if value="{{ acctOpen }}" hint-placeholder-val="{{ false }}">
+    <div class="ss-acct-panel" id="ss-acct-panel" data-acct="1" role="dialog" aria-label="Můj účet" style="{{ acctPanelStyle }}">
+      <div class="ss-acct-head">
+        <div style="min-width:0">
+          <p class="ss-acct-name">{{ acctName }}</p>
+          <p class="ss-acct-grp">Cenová skupina: <strong style="color:#1C2229">Prodejní</strong></p>
+        </div>
+        <button type="button" class="ss-acct-x" onClick="{{ closeAcct }}" aria-label="Zavřít menu účtu"><dc-import name="Ikony" iconName="x" size="22" hint-size="22px,22px"></dc-import></button>
+      </div>
+      <nav class="ss-acct-list" aria-label="Můj účet">
+        <a class="ss-acct-item" href="#ucet-objednavky"><span class="ss-acct-ico"><dc-import name="Ikony" iconName="package" size="20" hint-size="20px,20px"></dc-import></span>Přehled objednávek</a>
+        <a class="ss-acct-item" href="#ucet-faktury"><span class="ss-acct-ico"><dc-import name="Ikony" iconName="receipt" size="20" hint-size="20px,20px"></dc-import></span>Přehled faktur</a>
+        <a class="ss-acct-item" href="#ucet-export"><span class="ss-acct-ico"><dc-import name="Ikony" iconName="file-export" size="20" hint-size="20px,20px"></dc-import></span>Export / import produktů</a>
+        <a class="ss-acct-item" href="Oblibene.dc.html"><span class="ss-acct-ico"><dc-import name="Ikony" iconName="heart" size="20" hint-size="20px,20px"></dc-import></span>Oblíbené produkty</a>
+        <a class="ss-acct-item" href="#ucet-sprava"><span class="ss-acct-ico"><dc-import name="Ikony" iconName="settings" size="20" hint-size="20px,20px"></dc-import></span>Správa účtu</a>
+      </nav>
+      <div class="ss-acct-foot">
+        <dc-import name="Tlacitko" label="Odhlásit z e-shopu" variant="dangerSecondary" size="medium" iconLeft="logout" fullWidth="{{ true }}" onClick="{{ logout }}" hint-size="100%,44px"></dc-import>
+      </div>
+    </div>
+  </sc-if>
 </header>
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:320},&quot;theme&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;duo&quot;,&quot;options&quot;:[&quot;light&quot;,&quot;blue&quot;,&quot;duo&quot;],&quot;tsType&quot;:&quot;string&quot;},&quot;cartCount&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:2,&quot;min&quot;:0,&quot;max&quot;:99,&quot;tsType&quot;:&quot;number&quot;},&quot;cartTotal&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;2 480 Kč&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;activeCategory&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;onSearch&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;(query: string) =&gt; void&quot;}}">
@@ -2087,7 +2135,7 @@ if (typeof window !== 'undefined') { window.MENU = MENU; window.MENU_UTILITY = U
 return { MENU, UTILITY, QUICK };
 })();
 class Component extends DCLogic {
-  state = { width: typeof window !== 'undefined' ? document.documentElement.clientWidth : 1440, open: -1, mobileOpen: false, query: '', cats: null, util: [], cmpN: (() => { try { return (JSON.parse(localStorage.getItem('ss-cmp') || '[]')).length; } catch (e) { return 0; } })(), hdMode: 'H2' /* sticky H2 = finální (30. 10. 2026) */, hdHidden: false, favN: (() => { try { return (JSON.parse(localStorage.getItem('ss-fav') || '[]')).length; } catch (e) { return 0; } })() };
+  state = { width: typeof window !== 'undefined' ? document.documentElement.clientWidth : 1440, open: -1, mobileOpen: false, query: '', cats: null, util: [], cmpN: (() => { try { return (JSON.parse(localStorage.getItem('ss-cmp') || '[]')).length; } catch (e) { return 0; } })(), hdMode: 'H2' /* sticky H2 = finální (30. 10. 2026) */, hdHidden: false, auth: (() => { try { return localStorage.getItem('ss-auth') === 'in'; } catch (e) { return false; } })(), acctOpen: false, favN: (() => { try { return (JSON.parse(localStorage.getItem('ss-fav') || '[]')).length; } catch (e) { return 0; } })() };
 
   componentDidMount() {
     // Našeptávač na mobilu: výška podle viditelné plochy (visualViewport), aby šlo doscrollovat i s vysunutou klávesnicí (10. 11. 2026)
@@ -2096,6 +2144,13 @@ class Component extends DCLogic {
     this._fav = () => { try { this.setState({ favN: (JSON.parse(localStorage.getItem('ss-fav') || '[]')).length }); } catch (e) {} };
     this._cmp = () => { try { this.setState({ cmpN: (JSON.parse(localStorage.getItem('ss-cmp') || '[]')).length }); } catch (e) {} };
     window.addEventListener('ss-fav', this._fav); window.addEventListener('storage', this._fav);
+    /* 18. 11. 2026: stav přihlášení z prezentace (ss-auth), menu účtu zavírá klik mimo, scroll a Escape */
+    this._auth = () => { try { const a = localStorage.getItem('ss-auth') === 'in'; this.setState(s => ({ auth: a, acctOpen: a ? s.acctOpen : false })); } catch (e) {} };
+    window.addEventListener('ss-auth', this._auth); window.addEventListener('storage', this._auth);
+    this._acctOut = (e) => { if (this.state.acctOpen && !(e.target.closest && e.target.closest('[data-acct]'))) this.setState({ acctOpen: false }); };
+    document.addEventListener('pointerdown', this._acctOut, true);
+    this._acctScroll = () => { if (this.state.acctOpen) this.setState({ acctOpen: false }); };
+    window.addEventListener('scroll', this._acctScroll, { passive: true });
     window.addEventListener('ss-cmp', this._cmp); window.addEventListener('storage', this._cmp);
     Promise.resolve(__M_menu).then(m => this.setState({ cats: m.MENU, util: m.UTILITY }));
     Promise.resolve(__M_produkty).then(m => this.setState({ products: m.PRODUKTY }));
@@ -2114,6 +2169,7 @@ class Component extends DCLogic {
     this._tick = setInterval(() => this.forceUpdate(), 60000);
     this._key = (e) => {
       if (e.key !== 'Escape') return;
+      if (this.state.acctOpen) { this.setState({ acctOpen: false }); return; }
       // Okna (přihlášení, košík, menu) zavírá Escapem sdílený Overlay.
       if (this.state.loginOpen || this.state.cartOpen || this.state.mobileOpen) return;
       if (this.state.storesOpen) this.setState({ storesOpen: false });
@@ -2184,6 +2240,8 @@ class Component extends DCLogic {
     window.removeEventListener('ss-cmp', this._cmp); window.removeEventListener('storage', this._cmp);
     clearInterval(this._tick);
     window.removeEventListener('resize', this._resize);
+    window.removeEventListener('ss-auth', this._auth); window.removeEventListener('storage', this._auth);
+    document.removeEventListener('pointerdown', this._acctOut, true); window.removeEventListener('scroll', this._acctScroll);
     document.removeEventListener('keydown', this._key);
     document.removeEventListener('pointerdown', this._outside, true);
     document.removeEventListener('scroll', this._scroll, true);
@@ -2381,13 +2439,37 @@ class Component extends DCLogic {
       closeMobile: this.closeMobile,
       headerRef: (el) => { this._header = el; },
       loginOpen: !!this.state.loginOpen,
+      /* 18. 11. 2026: přihlášený testovací účet */
+      loggedIn: !!this.state.auth, loggedOut: !this.state.auth,
+      acctName: 'Pavel Černý',
+      userIcon: this.state.auth ? 'user-check' : 'user', /* 18. 11. 2026: po přihlášení ikona uživatele s fajfkou místo tečky */
+      acctOpen: !!(this.state.auth && this.state.acctOpen),
+      acctExpanded: this.state.acctOpen ? 'true' : 'false',
+      acctExpandedM: this.state.auth && this.state.acctOpen ? 'true' : 'false',
+      userIconLabel: this.state.auth ? 'Můj účet – Pavel Černý' : 'Přihlášení',
+      mUserStyle: Object.assign({ position: 'relative' }, { minWidth: w < 420 ? '40px' : '44px', width: w < 420 ? '40px' : '44px', height: '44px', padding: 0 }),
+      acctPanelStyle: this.state.acctPos || {},
+      toggleAcct: (e) => {
+        const r = e && e.currentTarget ? e.currentTarget.getBoundingClientRect() : null;
+        const pos = r ? (w < 560 ? { top: Math.round(r.bottom + 8) + 'px', left: '12px', right: '12px', width: 'auto' } : { top: Math.round(r.bottom + 8) + 'px', right: Math.max(12, Math.round(document.documentElement.clientWidth - r.right)) + 'px' }) : {};
+        this.setState(s => ({ acctOpen: !s.acctOpen, acctPos: pos, open: -1 }));
+      },
+      userIconClick: (e) => {
+        if (e && e.preventDefault) e.preventDefault();
+        if (!this.state.auth) { this.setState({ loginOpen: true, open: -1, mobileOpen: false }); return; }
+        const r = e && e.currentTarget ? e.currentTarget.getBoundingClientRect() : null;
+        const pos = r ? (w < 560 ? { top: Math.round(r.bottom + 8) + 'px', left: '12px', right: '12px', width: 'auto' } : { top: Math.round(r.bottom + 8) + 'px', right: Math.max(12, Math.round(document.documentElement.clientWidth - r.right)) + 'px' }) : {};
+        this.setState(s => ({ acctOpen: !s.acctOpen, acctPos: pos, open: -1 }));
+      },
+      closeAcct: () => this.setState({ acctOpen: false }),
+      logout: (e) => { if (e && e.preventDefault) e.preventDefault(); try { localStorage.setItem('ss-auth', 'out'); } catch (er) {} window.dispatchEvent(new Event('ss-auth')); this.setState({ auth: false, acctOpen: false }); },
       openLogin: (e) => {
         if (e && e.preventDefault) e.preventDefault();
         this.setState({ loginOpen: true, open: -1, mobileOpen: false });
       },
       closeLogin: () => { this.setState({ loginOpen: false }); },
       loginData: {},
-      onLoginEvent: () => {},
+      onLoginEvent: (t) => { if (t === 'submit') { try { localStorage.setItem('ss-auth', 'in'); } catch (er) {} window.dispatchEvent(new Event('ss-auth')); this.setState({ auth: true, loginOpen: false }); } },
       cartOpen: !!this.state.cartOpen,
       cartData: { items: cart, total: cartTotal },
       cartPrimary: cart.length ? 'Ukázat košík' : '',

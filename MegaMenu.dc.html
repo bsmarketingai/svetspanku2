@@ -1924,12 +1924,12 @@ return { MENU, UTILITY, QUICK };
 class Component extends DCLogic {
   // Mega menu v2 (4. 11. 2026): props category (sekce z menu.js), touch (tablet bez najetí myší → Zobrazit vše jako tlačítko), maxItems (výchozí 4; tvrdost celá).
   // Varianta mega menu A/B/C/D (D = jako C, nahoře banner z hlavičky kategorie jako fotka, 9. 11. 2026; A 6. 11., B pod položkami 9. 11., C = dřívější B s tipy vpravo) – globálně z prezentační lišty, uloženo v ss-mmv2 (13. 11. 2026 výchozí B, starý klíč ss-mmv se ignoruje), událost ss-mmv; prop variant ji přebije
-  state = { demo: null, width: typeof window !== 'undefined' ? document.documentElement.clientWidth : 1440, mmv: (() => { try { return (v => ['A', 'B', 'C', 'D'].includes(v) ? v : 'B')(localStorage.getItem('ss-mmv2')); } catch (e) { return 'B'; } })() };
+  state = { demo: null, width: typeof window !== 'undefined' ? document.documentElement.clientWidth : 1440, mmv: 'B' /* 18. 11. 2026: B natrvalo, volba z prezentace odebrána; varianty A/C/D zůstávají v kódu. Návrat: místo 'B' číst localStorage ss-mmv2 */ };
   componentDidMount() {
     if (!this.props.category) Promise.resolve(__M_menu).then(m => this.setState({ demo: m.MENU[0] }));
     this._resize = () => this.setState({ width: document.documentElement.clientWidth });
     window.addEventListener('resize', this._resize);
-    this._mmv = () => { try { this.setState({ mmv: (v => ['A', 'B', 'C', 'D'].includes(v) ? v : 'B')(localStorage.getItem('ss-mmv2')) }); } catch (e) {} };
+    this._mmv = () => {}; /* 18. 11. 2026: varianta mega menu pevně B */
     window.addEventListener('ss-mmv', this._mmv);
   }
   componentWillUnmount() { window.removeEventListener('resize', this._resize); window.removeEventListener('ss-mmv', this._mmv); }

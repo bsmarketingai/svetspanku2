@@ -481,12 +481,15 @@ a:hover{color:var(--ss-hover-text,#21507B);}
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:2400},&quot;stav&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;prevod&quot;,&quot;options&quot;:[&quot;prevod&quot;,&quot;zaplaceno&quot;,&quot;nezaplaceno&quot;,&quot;dobirka&quot;,&quot;osobni&quot;],&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Stav objednávky&quot;},&quot;typ&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;skladem&quot;,&quot;options&quot;:[&quot;skladem&quot;,&quot;naObjednavku&quot;],&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Stav objednávky&quot;},&quot;prihlasen&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Stav objednávky&quot;}}">
 class Component extends DCLogic {
-  state = { width: typeof window !== 'undefined' ? document.documentElement.clientWidth : 1440, led: true };
+  /* 18. 11. 2026: přihlášený testovací účet (ss-auth) – údaje Pavla Černého a bez nabídky registrace */
+  state = { width: typeof window !== 'undefined' ? document.documentElement.clientWidth : 1440, led: true, auth: (() => { try { return localStorage.getItem('ss-auth') === 'in'; } catch (e) { return false; } })() };
   componentDidMount() {
     this._r = () => this.setState({ width: document.documentElement.clientWidth });
     window.addEventListener('resize', this._r);
+    this._auth = () => { try { this.setState({ auth: localStorage.getItem('ss-auth') === 'in' }); } catch (e) {} };
+    window.addEventListener('ss-auth', this._auth); window.addEventListener('storage', this._auth);
   }
-  componentWillUnmount() { window.removeEventListener('resize', this._r); }
+  componentWillUnmount() { window.removeEventListener('resize', this._r); window.removeEventListener('ss-auth', this._auth); window.removeEventListener('storage', this._auth); }
   fmt(n) { return String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, '\u00A0') + '\u00A0Kč'; }
   renderVals() {
     const p = this.props;
@@ -496,7 +499,9 @@ class Component extends DCLogic {
     const w = this.state.width, narrow = w < 820;
     const pad = narrow ? '16px' : '32px';
     const box = (t, b) => ({ maxWidth: '1560px', margin: '0 auto', boxSizing: 'border-box', padding: t + ' ' + pad + ' ' + b });
-    const email = 'jana.novakova@seznam.cz';
+    const A = !!this.state.auth;
+    const email = A ? 'pavel.cerny@email.cz' : 'jana.novakova@seznam.cz';
+    const jm = A ? 'Pavel Černý' : 'Jana Nováková', ul = A ? 'Lipová 1284/12' : 'Školní 279', ms = A ? '779 00 Olomouc' : '281 63 Žehušice', tel = A ? '+420 777 123 456' : '+420 603 123 456';
     const goods = [{ title: 'Manželská postel SANTE 45 dvoulůžko 180 × 200 cm, olej Teak, jádrový buk', variant: 'Kód: SAN0045180', qty: 2, unit: 19990, img: '_blob/6721a0d378d224249b73f0d946656a32.jpg' }];
     const delFee = osobni ? 0 : 1500;
     const total = goods.reduce((s, g) => s + g.unit * g.qty, 0) + delFee;
@@ -526,8 +531,8 @@ class Component extends DCLogic {
     const N = { color: 'var(--ss-text-secondary,#3D4750)' };
     const L = (a) => a.map((t, i) => ({ text: t, style: i === 0 ? S : N }));
     const addr = [
-      { label: osobni ? 'Kontaktní údaje' : 'Dodací adresa', lines: L(osobni ? ['Jana Nováková', email, '+420 603 123 456'] : ['Jana Nováková', 'Školní 279', '281 63 Žehušice', '+420 603 123 456']) },
-      { label: 'Fakturační adresa', lines: L(['Jana Nováková', 'Školní 279', '281 63 Žehušice', email]) }
+      { label: osobni ? 'Kontaktní údaje' : 'Dodací adresa', lines: L(osobni ? [jm, email, tel] : [jm, ul, ms, tel]) },
+      { label: 'Fakturační adresa', lines: L([jm, ul, ms, email]) }
     ];
     return {
       ledMode: this.state.led ? 'on' : 'off',
@@ -558,7 +563,7 @@ class Component extends DCLogic {
       ],
       total: this.fmt(total),
       totalNoVat: this.fmt(total / 1.21),
-      showReg: !p.prihlasen
+      showReg: !(p.prihlasen || this.state.auth)
     };
   }
 }

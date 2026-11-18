@@ -260,13 +260,16 @@ class Component extends DCLogic {
     photoAR: (() => { try { return localStorage.getItem('ss-photoar') === 'B' ? 'B' : 'A'; } catch (e) { return 'A'; } })(),
     cardV: (() => { try { return localStorage.getItem('ss-cardv') || 'A'; } catch (e) { return 'A'; } })(),
     mmv: (() => { try { return (v => ['A', 'B', 'C', 'D'].includes(v) ? v : 'B')(localStorage.getItem('ss-mmv2')); } catch (e) { return 'B'; } })()
+,
+    auth: (() => { try { return localStorage.getItem('ss-auth') === 'in' ? 'in' : 'out'; } catch (e) { return 'out'; } })()
   };
   setAttr(key, attr, v) {
     try { localStorage.setItem(key, v); } catch (e) {}
     document.documentElement.setAttribute(attr, v);
   }
   // Uložený tmavý režim z dřívějška vrátí na světlý
-  componentDidMount() { if (this.state.mode === 'dark') this.setMode('light'); }
+  componentDidMount() { if (this.state.mode === 'dark') this.setMode('light'); this._auth = () => { try { this.setState({ auth: localStorage.getItem('ss-auth') === 'in' ? 'in' : 'out' }); } catch (e) {} }; window.addEventListener('ss-auth', this._auth); }
+  componentWillUnmount() { window.removeEventListener('ss-auth', this._auth); }
   setLogo(l) { this.setAttr('ss-logo', 'data-logo', l); this.setState({ logo: l }); }
   setMode(m) {
     try { localStorage.setItem('ss-mode', m); } catch (e) {}
@@ -285,7 +288,10 @@ class Component extends DCLogic {
     // Varianta produktové karty (30. 10. 2026) – globálně na všech stránkách (homepage, kategorie, detail, oblíbené…), uloženo v ss-cardv, událost ss-cardv. F = univerzální (popis + příznaky) pro matrace i ostatní produkty
     // 11. 11. 2026: volba Karta (A–F) skryta, na celém webu platí karta A (ss-cardv se ignoruje)
     // Mega menu A = karty Tip / Poradíme nahoře v řadě, B = dole pod položkami (9. 11. 2026), C = ve vlastním sloupci vpravo (6. 11. 2026) – globálně; 13. 11. 2026 výchozí B, uloženo v ss-mmv2, událost ss-mmv
-    base.push(grp('Megamenu', [['A', 'A'], ['B', 'B'], ['C', 'C'], ['D', 'D']], this.state.mmv, v => { try { localStorage.setItem('ss-mmv2', v); } catch (e) {} window.dispatchEvent(new Event('ss-mmv')); this.setState({ mmv: v }); }));
+    /* 18. 11. 2026: Megamenu natrvalo B, volba z prezentační lišty odebrána. Návrat – odkomentovat:
+    base.push(grp('Megamenu', [['A', 'A'], ['B', 'B'], ['C', 'C'], ['D', 'D']], this.state.mmv, v => { try { localStorage.setItem('ss-mmv2', v); } catch (e) {} window.dispatchEvent(new Event('ss-mmv')); this.setState({ mmv: v }); })); */
+    /* 18. 11. 2026: stav účtu – Nepřihlášen / Přihlášen (testovací účet Pavel Černý), globálně v ss-auth, událost ss-auth */
+    base.push(grp('Účet', [['Nepřihlášen', 'out'], ['Přihlášen', 'in']], this.state.auth, v => { try { localStorage.setItem('ss-auth', v); } catch (e) {} window.dispatchEvent(new Event('ss-auth')); this.setState({ auth: v }); }));
     return {
       open,
       visible: !this.state.hidden,

@@ -220,6 +220,11 @@ html:not([data-mode="dark"]) .ss-log::before{background:radial-gradient(ellipse 
 .ss-log-link{font-size:14px;font-weight:600;color:var(--ss-text-primary,#1C2229);text-decoration:underline;text-underline-offset:3px;border-radius:4px;}
 .ss-log-link:hover{color:var(--ss-hover-text,#A4600C);}
 .ss-log-link:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
+
+/* 18. 11. 2026: zavírací tlačítka jednotně jako v menu účtu – ghost ikona 40 × 40, hover béžový */
+.ss-log-close{width:40px!important;height:40px!important;min-width:40px!important;padding:0!important;border:0!important;border-radius:6px!important;background:transparent!important;box-shadow:none!important;color:var(--ss-text-secondary,#3D4750)!important;cursor:pointer;transition:background-color .12s cubic-bezier(.22,.61,.36,1),color .12s cubic-bezier(.22,.61,.36,1)!important;}
+.ss-log-close:hover{background:var(--ss-surface-subtle,#FAF5EF)!important;color:var(--ss-link-hover,#21507B)!important;}
+.ss-log-close:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35)!important;}
 </style>
 </helmet>
 <div class="ss-log">

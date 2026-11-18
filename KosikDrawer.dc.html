@@ -208,6 +208,11 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
 .ss-kd-del:hover{background:var(--ss-status-error-surface,#FDF0EF);color:var(--ss-status-error-strong,#8E1E18);}
 .ss-kd-title{font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:26px;margin:0;}
 .ss-kd-row{display:grid;grid-template-columns:88px minmax(0,1fr);gap:16px;padding:20px 0;border-bottom:1px solid var(--ss-border-subtle,#E1E6EB);}
+
+/* 18. 11. 2026: zavírací tlačítka jednotně jako v menu účtu – ghost ikona 40 × 40, hover béžový */
+.ss-kd-icon[aria-label="Zavřít košík"]{width:40px!important;height:40px!important;min-width:40px!important;padding:0!important;border:0!important;border-radius:6px!important;background:transparent!important;box-shadow:none!important;color:var(--ss-text-secondary,#3D4750)!important;cursor:pointer;transition:background-color .12s cubic-bezier(.22,.61,.36,1),color .12s cubic-bezier(.22,.61,.36,1)!important;}
+.ss-kd-icon[aria-label="Zavřít košík"]:hover{background:var(--ss-surface-subtle,#FAF5EF)!important;color:var(--ss-link-hover,#21507B)!important;}
+.ss-kd-icon[aria-label="Zavřít košík"]:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35)!important;}
 </style>
 </helmet>
 <div class="ss-kd">

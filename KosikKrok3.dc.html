@@ -419,7 +419,19 @@ a:hover{color:var(--ss-hover-text,#21507B);}
         <div style="display:grid;grid-template-columns:{{ cols }};gap:{{ colGap }};align-items:start">
           <div style="display:flex;flex-direction:column;gap:40px;min-width:0;max-width:640px">
 
+            <sc-if value="{{ loggedOut }}" hint-placeholder-val="{{ true }}">
             <dc-import name="SocialniPrihlaseni" hint-size="100%,140px"></dc-import>
+            </sc-if>
+            <sc-if value="{{ loggedIn }}" hint-placeholder-val="{{ false }}">
+            <div role="status" style="display:flex;align-items:center;gap:14px;padding:16px 20px;border-radius:12px;background:var(--ss-surface-subtle,#FAF5EF);box-shadow:inset 0 0 0 1px var(--ss-border-subtle,#E1E6EB)">
+              <span aria-hidden="true" style="flex:none;display:flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:999px;background:#132C43;color:#FFFFFF;font-family:Oswald,Roboto,sans-serif;font-weight:600;font-size:17px">PČ</span>
+              <span style="flex:1;min-width:0;display:flex;flex-direction:column;gap:2px;font-size:15px;line-height:1.45;color:var(--ss-text-secondary,#3D4750)">
+                <span>Přihlášen jako <strong style="color:var(--ss-text-primary,#1C2229)">{{ profName }}</strong> ({{ profEmail }})</span>
+                <span style="font-size:14px">Dodací údaje jsme předvyplnili z vašeho účtu. Můžete je upravit.</span>
+              </span>
+              <a href="#odhlasit" onClick="{{ logout }}" style="flex:none;font-size:14px;font-weight:600;color:var(--ss-link,#296093);text-decoration:underline;text-underline-offset:3px">Odhlásit</a>
+            </div>
+            </sc-if>
 
             <section aria-labelledby="ss-k3-dodaci" style="display:flex;flex-direction:column;gap:20px">
               <h2 id="ss-k3-dodaci" style="margin:0;font-size:{{ h2Size }};line-height:1.2">Dodací údaje</h2>
@@ -496,17 +508,24 @@ a:hover{color:var(--ss-hover-text,#21507B);}
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:1600}}">
 class Component extends DCLogic {
+  /* 18. 11. 2026: testovací účet – po přihlášení (prezentace Účet / ss-auth) se dodací údaje předvyplní */
+  PROFIL = { name: 'Pavel Černý', email: 'pavel.cerny@email.cz', prefix: '+420', phone: '777 123 456', street: 'Lipová 1284/12', city: 'Olomouc', zip: '779 00' };
+  isAuth() { try { return localStorage.getItem('ss-auth') === 'in'; } catch (e) { return false; } }
+  withAuth(f, a) { const P = this.PROFIL; if (a) return Object.assign({}, f, P); const o = Object.assign({}, f); Object.keys(P).forEach(k => { if (k !== 'prefix' && o[k] === P[k]) o[k] = ''; }); return o; }
   state = {
     width: typeof window !== 'undefined' ? document.documentElement.clientWidth : 1440,
     led: true,
-    f: { name: '', email: '', prefix: '+420', phone: '', company: false, ico: '', dic: '', firm: '', street: '', city: '', zip: '', other: false, dName: '', dStreet: '', dCity: '', dZip: '', note: false, noteText: '' },
+    auth: this.isAuth(),
+    f: this.withAuth({ name: '', email: '', prefix: '+420', phone: '', company: false, ico: '', dic: '', firm: '', street: '', city: '', zip: '', other: false, dName: '', dStreet: '', dCity: '', dZip: '', note: false, noteText: '' }, this.isAuth()),
     optSurvey: false, optNews: false, terms: false, tried: false /* 13. 11. 2026: simulace validace po kliknutí na Odeslat */
   };
   componentDidMount() {
     this._r = () => this.setState({ width: document.documentElement.clientWidth });
     window.addEventListener('resize', this._r);
+    this._auth = () => { const a = this.isAuth(); this.setState(s => ({ auth: a, f: this.withAuth(s.f, a) })); };
+    window.addEventListener('ss-auth', this._auth); window.addEventListener('storage', this._auth);
   }
-  componentWillUnmount() { window.removeEventListener('resize', this._r); }
+  componentWillUnmount() { window.removeEventListener('resize', this._r); window.removeEventListener('ss-auth', this._auth); window.removeEventListener('storage', this._auth); }
   fmt(n) { return String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, '\u00A0') + '\u00A0Kč'; }
   set(k, v) { this.setState(s => ({ f: Object.assign({}, s.f, { [k]: v }) })); }
   renderVals() {
@@ -523,6 +542,9 @@ class Component extends DCLogic {
     Object.keys(this.state.f).forEach(k => { on[k] = (v) => this.set(k, v); });
     on.noteText = (e) => this.set('noteText', e.target.value);
     return {
+      loggedIn: !!this.state.auth, loggedOut: !this.state.auth,
+      profName: this.PROFIL.name, profEmail: this.PROFIL.email,
+      logout: (e) => { if (e && e.preventDefault) e.preventDefault(); try { localStorage.setItem('ss-auth', 'out'); } catch (er) {} window.dispatchEvent(new Event('ss-auth')); },
       ledMode: this.state.led ? 'on' : 'off',
       presItems: [{ label: 'LED', value: this.state.led }],
       onPresToggle: () => this.setState(s => ({ led: !s.led })),
