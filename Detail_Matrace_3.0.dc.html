@@ -443,6 +443,22 @@ a:hover{color:var(--ss-hover-text,#A4600C);}
 .ss-pd-row{display:flex;align-items:center;gap:16px;width:100%;text-align:left;padding:14px 16px;border:1px solid var(--ss-border-subtle,#E1E6EB);border-radius:12px;background:var(--ss-surface-box,#FFFFFF);cursor:pointer;font-family:inherit;transition:box-shadow .15s cubic-bezier(.22,.61,.36,1),border-color .12s cubic-bezier(.22,.61,.36,1);}
 @media (hover:hover) and (pointer:fine){.ss-pd-row:hover svg{color:var(--ss-hover-text,#A4600C);}.ss-pd-row:hover{border-color:var(--ss-hover-text,#A4600C);box-shadow:0 4px 12px rgba(19,44,67,.12);}}
 .ss-pd-row:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
+/* 25. 11. 2026: Varianty matrace B – řádky jako výběr v setech (check / kolečko, fotka, název, ukazatel tuhosti), každá varianta samostatná karta, vybrat jde jen jedna */
+.ss-mvr{display:flex;flex-direction:column;gap:8px;}
+.ss-mvr-row{display:flex;align-items:center;gap:16px;width:100%;min-height:72px;box-sizing:border-box;text-align:left;padding:14px 16px;border:1px solid var(--ss-border-subtle,#E1E6EB);border-radius:12px;background:var(--ss-surface-box,#FFFFFF);box-shadow:0 2px 8px rgba(19,44,67,.08);cursor:pointer;font-family:inherit;color:inherit;transition:box-shadow .15s cubic-bezier(.22,.61,.36,1),border-color .12s cubic-bezier(.22,.61,.36,1);}
+.ss-mvr-row:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);position:relative;z-index:1;}
+@media (hover:hover) and (pointer:fine){.ss-mvr-row:hover{border-color:var(--ss-hover-text,#A4600C);box-shadow:0 4px 12px rgba(19,44,67,.12);}.ss-mvr-row:hover .ss-vyr-dot{border-color:var(--ss-hover-text,#A4600C);}.ss-mvr-row:hover .ss-mvr-t{color:var(--ss-hover-text,#21507B);}}
+.ss-mvr .ss-vyr-check{display:flex;align-items:center;justify-content:center;width:26px;height:26px;flex:none;border-radius:999px;background:#FBB255;color:#1C2229;box-shadow:0 2px 8px rgba(19,44,67,.08);}
+.ss-mvr .ss-vyr-dot{width:22px;height:22px;margin:0 2px;flex:none;box-sizing:border-box;border-radius:999px;border:2px solid var(--ss-border-strong,#C8D0D8);background:var(--ss-surface-page,#FFFFFF);transition:border-color .12s cubic-bezier(.22,.61,.36,1);}
+.ss-mvr-img{display:block;width:76px;height:64px;flex:none;border-radius:8px;background:#FFFFFF center / contain no-repeat;box-shadow:inset 0 0 0 1px rgba(19,44,67,.12);}
+.ss-mvr-tx{flex:1;min-width:0;display:flex;flex-direction:column;gap:6px;}
+.ss-mvr-t{font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:19px;line-height:1.25;color:var(--ss-text-primary,#1C2229);transition:color .12s cubic-bezier(.22,.61,.36,1);}
+.ss-mvr-it{position:relative;}
+.ss-mvr-zoom{position:absolute;left:58px;top:50%;transform:translateY(-50%);width:76px;height:64px;padding:0;border:0;border-radius:8px;background:none;cursor:zoom-in;}
+.ss-mvr-zi{position:absolute;right:3px;bottom:3px;display:flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:6px;background:rgba(255,255,255,.92);color:var(--ss-link-hover,#21507B);box-shadow:0 1px 4px rgba(19,44,67,.18);pointer-events:none;}
+@media (hover:hover) and (pointer:fine){.ss-mvr-zoom:hover{box-shadow:inset 0 0 0 2px var(--ss-border-hover,#8DB3D3);}.ss-mvr-zoom:hover .ss-mvr-zi{background:#FFFFFF;color:var(--ss-hover-text,#A4600C);}}
+.ss-mvr-zoom:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
+@media (max-width:719px){.ss-mvr-row{gap:12px;padding:12px;}.ss-mvr-img{width:48px;height:48px;}.ss-mvr-t{font-size:18px;}.ss-mvr-zoom{left:50px;width:48px;height:48px;}}
 .ss-pd-cs-radio{display:flex;align-items:center;gap:12px;width:100%;padding:0;border:0;background:none;cursor:pointer;font-family:inherit;text-align:left;color:var(--ss-text-primary,#1C2229);border-radius:6px;}
 .ss-pd-cs-radio:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
 .ss-pd-cs-dot{width:22px;height:22px;flex:none;border-radius:999px;box-sizing:border-box;border:2px solid var(--ss-border-strong,#C8D0D8);background:var(--ss-surface-page,#FFFFFF);display:flex;align-items:center;justify-content:center;transition:border-color .12s cubic-bezier(.22,.61,.36,1);}
@@ -682,7 +698,7 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
 
             <sc-if value="{{ showVariants }}" hint-placeholder-val="{{ true }}">
             <div style="display:flex;flex-direction:column;gap:12px;padding-bottom:20px;border-bottom:1px solid var(--ss-border-subtle,#E1E6EB)">
-              <span style="font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:19px">Tuhost</span>
+              <span style="font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:19px">Varianty matrace v jiné tuhosti</span>
               <sc-if value="{{ varCards }}" hint-placeholder-val="{{ true }}">
               <div style="display:grid;grid-template-columns:{{ varTemplate }};gap:12px">
                 <sc-for list="{{ variants }}" as="v" hint-placeholder-count="4">
@@ -694,6 +710,24 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
                     </span>
                     <span class="ss-pd-var-t" style="display:block;flex:1;min-width:0"><dc-import name="ParametryMatrace" tuhost="{{ v.tuhost }}" plain="{{ true }}" numOnly="{{ true }}" inverse="{{ v.selected }}" hint-size="100%,32px"></dc-import></span>
                   </button>
+                </sc-for>
+              </div>
+              </sc-if>
+              <sc-if value="{{ varRows }}" hint-placeholder-val="{{ false }}">
+              <div class="ss-mvr" role="group" aria-label="Varianty matrace v jiné tuhosti">
+                <sc-for list="{{ variants }}" as="v" hint-placeholder-count="3">
+                  <div class="ss-mvr-it">
+                  <button type="button" class="ss-mvr-row" onClick="{{ v.onPick }}" aria-pressed="{{ v.pressed }}" aria-label="{{ v.rowAria }}">
+                    <sc-if value="{{ v.selected }}" hint-placeholder-val="{{ true }}"><span class="ss-vyr-check" aria-hidden="true"><dc-import name="Ikony" iconName="check" size="16" hint-size="16px,16px"></dc-import></span></sc-if>
+                    <sc-if value="{{ v.notSelected }}" hint-placeholder-val="{{ false }}"><span class="ss-vyr-dot" aria-hidden="true"></span></sc-if>
+                    <span class="ss-mvr-img" aria-hidden="true" style="background-image:url({{ v.src }})"></span>
+                    <span class="ss-mvr-tx">
+                      <span class="ss-mvr-t">{{ v.rowTitle }}</span>
+                      <span style="display:block;max-width:240px"><dc-import name="ParametryMatrace" tuhost="{{ v.tuhost }}" plain="{{ true }}" numOnly="{{ true }}" hint-size="100%,32px"></dc-import></span>
+                    </span>
+                  </button>
+                  <button type="button" class="ss-mvr-zoom" onClick="{{ v.onZoom }}" aria-label="{{ v.zoomAria }}" title="Zvětšit fotku"><span class="ss-mvr-zi" aria-hidden="true"><dc-import name="Ikony" iconName="arrows-maximize" size="14" hint-size="14px,14px"></dc-import></span></button>
+                  </div>
                 </sc-for>
               </div>
               </sc-if>
@@ -1169,6 +1203,8 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
   <dc-import name="VariantaDrawer" open="{{ drawerOpen }}" title="{{ drawerTitle }}" note="{{ drawerNote }}" value="{{ drawerValue }}" groups="{{ drawerGroups }}" rows="{{ drawerRows }}" onPick="{{ onDrawerPick }}" onClose="{{ closeDrawer }}" hint-size="0px,0px"></dc-import>
 
   <!-- 18. 11. 2026: okno Možnosti dopravy (Overlay + DopravaObsah) -->
+  <!-- 25. 11. 2026: náhled fotky varianty matrace (Varianty B) -->
+  <dc-import name="Overlay" open="{{ varZoomOpen }}" variant="drawer" size="lg" obsah="NahledObsah" title="{{ varZoomTitle }}" icon="photo" closeLabel="náhled" initialFocus="close" data="{{ varZoomData }}" onClose="{{ closeVarZoom }}" primaryLabel="Vybrat tuto variantu" onPrimary="{{ pickVarZoom }}" hint-size="0px,0px"></dc-import>
   <dc-import name="Overlay" open="{{ dopravaOpen }}" variant="modal" size="md" obsah="DopravaObsah" title="Možnosti dopravy" icon="truck" closeLabel="okno" initialFocus="close" data="{{ dopravaData }}" onClose="{{ closeDoprava }}" hint-size="100%,100%"></dc-import>
   <dc-import name="Overlay" open="{{ dostOpen }}" variant="modal" size="sm" obsah="DostupnostObsah" title="{{ dostTitle }}" icon="building-store" closeLabel="okno" initialFocus="close" data="{{ dostData }}" onClose="{{ closeDost }}" hint-size="100%,100%"></dc-import>
   <dc-import name="KosikPridanoModal" open="{{ addedOpen }}" title="{{ prodName }}" qty="{{ qty }}" variant="{{ addedVariant }}" image="_blob/c2606f1b288878aa84129b4a0e05ba7e.webp" stockKind="inStock" stockLabel="Skladem · odesíláme do 24 h" total="{{ addedTotal }}" onClose="{{ closeAdded }}" hint-size="0px,0px"></dc-import>
@@ -1599,11 +1635,12 @@ class Component extends DCLogic {
         { label: 'Rozměr', value: this.state.sizeUi === 'V2' ? 'Dropdown' : 'Chipy', options: ['Chipy', 'Dropdown'] }
         /* 18. 11. 2026: Výška natrvalo Chipy, volba odebrána */
         /* 18. 11. 2026: Varianty natrvalo Karty, volba odebrána */
+        ,{ label: 'Varianty matrace', value: this.state.varUi || 'A', options: ['A', 'B'] } /* 25. 11. 2026: A = karty, B = řádky s fotkou a názvem */
       ],
       // Karta matrace = globální volba Karta v prezentaci (ss-cardv, 30. 10. 2026)
       cardAB: this.state.cardAB || 'A',
       pmLayout: ({ A2: 'bars2', B: 'tiles', D: 'rada', E: 'kompakt' })[this.state.cardAB] || 'bars',
-      onPresPick: (ci, opt) => { if (ci === 1) ci = 0; else if (ci > 1) ci -= 1; /* Detail rozdělen na Simple a Konfigurátor (6. 11. 2026) */ if (ci === 0) { if (opt !== 'Matrace 3.0') (h => { try { const a = document.createElement('a'); a.href = h; a.style.display = 'none'; (document.getElementById('dc-root') || document.body).appendChild(a); a.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true, view: window })); a.remove(); } catch (e) { window.location.href = h; } })(opt === 'Multi Konf.' ? 'Detail_Postel_3.0-hqdl.dc.html' : (opt === 'Set polštář + povlak' ? 'Detail_Set_Polstar_B.dc.html' : opt === 'Set polštář + přikrývka' ? 'Detail_Set_Bamboo.dc.html' : opt === 'Čalouněná' ? 'Detail_Calounena_Postel.dc.html' : opt === 'Airflex SET' ? 'Detail_Matrace_Airflex_Set.dc.html' : opt === 'Set 1+1 polštáře' ? 'Detail_Set_Polstare_1plus1.dc.html' : opt === 'Skříň UNI 2D' ? 'Detail_Skrin_UNI_2D_Konf.dc.html' : 'Detail_' + String(opt).replace(/ /g, '_') + '.dc.html')); return; } this.setState(ci === 1 ? { stickPick: opt } : ci === 2 ? { sizeUi: opt === 'Dropdown' ? 'V2' : 'V1' } : ci === 3 ? { cardAB: opt } : { setUi: opt }); },
+      onPresPick: (ci, opt) => { if (ci === 1) ci = 0; else if (ci > 1) ci -= 1; /* Detail rozdělen na Simple a Konfigurátor (6. 11. 2026) */ if (ci === 0) { if (opt !== 'Matrace 3.0') (h => { try { const a = document.createElement('a'); a.href = h; a.style.display = 'none'; (document.getElementById('dc-root') || document.body).appendChild(a); a.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true, view: window })); a.remove(); } catch (e) { window.location.href = h; } })(opt === 'Multi Konf.' ? 'Detail_Postel_3.0-hqdl.dc.html' : (opt === 'Set polštář + povlak' ? 'Detail_Set_Polstar_B.dc.html' : opt === 'Set polštář + přikrývka' ? 'Detail_Set_Bamboo.dc.html' : opt === 'Čalouněná' ? 'Detail_Calounena_Postel.dc.html' : opt === 'Airflex SET' ? 'Detail_Matrace_Airflex_Set.dc.html' : opt === 'Set 1+1 polštáře' ? 'Detail_Set_Polstare_1plus1.dc.html' : opt === 'Skříň UNI 2D' ? 'Detail_Skrin_UNI_2D_Konf.dc.html' : 'Detail_' + String(opt).replace(/ /g, '_') + '.dc.html')); return; } this.setState(ci === 1 ? { stickPick: opt } : ci === 2 ? { sizeUi: opt === 'Dropdown' ? 'V2' : 'V1' } : ci === 3 ? { varUi: opt } : { setUi: opt }); },
       prodName: 'Matrace ELARA greengel ' + selVar.name,
       stickyChips: [
         { label: this.state.customSize || this.state.size },
@@ -1676,12 +1713,13 @@ class Component extends DCLogic {
         { icon: 'arrows-vertical', label: 'Výška jádra 20 cm' },
         { icon: 'stack-2', label: 'Pěnová matrace' }
       ].map(f => ({ label: f.label, icon: f.icon, isFlag: !!f.flag, isIcon: !f.flag })),
-      varCards: true, varChips: false,
+      varZoomOpen: !!this.state.varZoom, varZoomTitle: 'Matrace ELARA greengel ' + ((variants.find(v => v.label === this.state.varZoom) || variants[0]).name), varZoomData: { image: '_blob/c2606f1b288878aa84129b4a0e05ba7e.webp', label: 'Matrace ELARA greengel ' + ((variants.find(v => v.label === this.state.varZoom) || variants[0]).name), meta: 'Tuhost ' + ((variants.find(v => v.label === this.state.varZoom) || variants[0]).firm) }, closeVarZoom: () => this.setState({ varZoom: null }), pickVarZoom: () => this.setState(st => ({ variantLabel: st.varZoom || st.variantLabel, varZoom: null })),
+      varCards: (this.state.varUi || 'A') === 'A', varRows: this.state.varUi === 'B', varChips: false,
       varTemplate: w >= 400 ? 'repeat(3,minmax(0,1fr))' : 'repeat(2,minmax(0,1fr))',
       variants: variants.map(v => {
         const sel = (this.state.variantLabel || 'ELARA greengel S') === v.label;
         return {
-          label: v.label, short: v.name, aria: v.label + ', ' + v.firm, chipVariant: sel ? 'primary' : 'outlineBox', src: '_blob/c2606f1b288878aa84129b4a0e05ba7e.webp', selected: sel, firmLabel: v.firm, tuhost: v.tuhost,
+          label: v.label, short: v.name, aria: v.label + ', ' + v.firm, rowTitle: 'Matrace ELARA greengel ' + v.name, rowAria: 'Matrace ELARA greengel ' + v.name + ', tuhost ' + v.firm, zoomAria: 'Zvětšit fotku: Matrace ELARA greengel ' + v.name, onZoom: () => this.setState({ varZoom: v.label }), chipVariant: sel ? 'primary' : 'outlineBox', src: '_blob/c2606f1b288878aa84129b4a0e05ba7e.webp', selected: sel, firmLabel: v.firm, tuhost: v.tuhost,
           scale: [0, 1, 2, 3, 4].map(k => ({ bg: k === v.pos ? '#132C43' : 'var(--ss-surface-selected,#DCE8F2)' })),
           // 11. 11. 2026: barevné schéma jako čipy – vybraná tmavě modrá (Chip primary), ostatní bílé s rámečkem (Chip outlineBox)
           ring: sel ? 'none' : 'inset 0 0 0 1px var(--ss-border-strong,#C8D0D8)', notSelected: !sel,

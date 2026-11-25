@@ -301,7 +301,6 @@ a.ss-promo:hover{color:#FFFFFF;}
       </div>
     </section>
 
-    <sc-if value="{{ hasProducts }}" hint-placeholder-val="{{ true }}">
     <section style="width:100%;background:var(--ss-surface-tint,rgba(251,178,85,.05))">
       <div style="{{ innerResults }}">
         <sc-if value="{{ hasSub }}" hint-placeholder-val="{{ true }}">
@@ -325,6 +324,8 @@ a.ss-promo:hover{color:#FFFFFF;}
           </sc-if>
         </nav>
         </sc-if>
+        <!-- 25. 11. 2026: podmínka hasProducts jen kolem výpisu – podkategorie, popis a FAQ se ukážou i u kategorie bez produktů -->
+        <sc-if value="{{ hasProducts }}" hint-placeholder-val="{{ true }}">
         <div style="display:grid;grid-template-columns:{{ resultsTemplate }};gap:{{ resultsGap }};align-items:start">
 
           <sc-if value="{{ hasSidebar }}" hint-placeholder-val="{{ true }}">
@@ -381,14 +382,16 @@ a.ss-promo:hover{color:#FFFFFF;}
 
           </div>
         </div>
+        </sc-if>
         <!-- 11. 11. 2026: popis kategorie a FAQ mimo mřížku s filtrem – sticky filtr na konci výpisu (pod paginací) odjede se stránkou; obsah zarovnaný pod sloupec výpisu -->
         <div style="display:grid;grid-template-columns:{{ resultsTemplate }};gap:0 {{ resultsGap }}">
           <!-- 11. 11. 2026: vpravo vedle popisu a FAQ úzký sloupec s boxem „Nevíte si rady s výběrem?“ (PoradceBox svisle); pod 1000 px pod obsahem -->
-          <div style="grid-column: 1 / -1; min-width:0; display:grid; grid-template-columns:{{ longCols }}; column-gap:48px; align-items:start">
+          <!-- 25. 11. 2026: separátor nad popisem přes celou šířku obsahu (i nad sloupcem s boxem poradce) -->
+          <div style="grid-column: 1 / -1; min-width:0; display:grid; grid-template-columns:{{ longCols }}; column-gap:48px; align-items:start; margin-top:{{ longGap }}; padding-top:{{ longGap }}; border-top:1px solid var(--ss-border-subtle,#E1E6EB)">
           <div style="min-width:0; display:flex; flex-direction:column">
               <!-- Dlouhý popis a FAQ z Excelu kategorií – až pod paginací, ve sloupci výpisu (4. 11. 2026) -->
               <sc-if value="{{ hasLong }}" hint-placeholder-val="{{ true }}">
-                <section class="ss-kat-long" aria-labelledby="kat-long-h" style="margin-top:{{ longGap }}; padding-top:{{ longGap }}; border-top:1px solid var(--ss-border-subtle,#E1E6EB); max-width: none; font-family:Roboto,Helvetica,Arial,sans-serif; color:var(--ss-text-primary,#1C2229)">
+                <section class="ss-kat-long" aria-labelledby="kat-long-h" style="max-width: none; font-family:Roboto,Helvetica,Arial,sans-serif; color:var(--ss-text-primary,#1C2229)">
                   <h2 id="kat-long-h" style="margin:0 0 20px;font-size:{{ secH2Size }};line-height:1.15">{{ longHeading }}</h2>
                   <div style="display:flex;flex-direction:column;gap:14px;font-size:{{ bodySize }};line-height:1.7;color:var(--ss-text-secondary,#3D4750);text-wrap:pretty">
                     <sc-for list="{{ longBlocks }}" as="b" hint-placeholder-count="4">
@@ -401,7 +404,7 @@ a.ss-promo:hover{color:#FFFFFF;}
                 </section>
               </sc-if>
               <sc-if value="{{ hasFaq }}" hint-placeholder-val="{{ true }}">
-                <div style="margin-top:{{ longGap }};padding-top:{{ longGap }};border-top:1px solid var(--ss-border-subtle,#E1E6EB)">
+                <div style="{{ faqSepStyle }}">
                   <dc-import name="Faq" heading="{{ faqHeading }}" items="{{ faqItems }}" narrow="{{ narrow }}" full="{{ true }}" idPrefix="kat-faq" hint-size="100%,320px"></dc-import>
                 </div>
               </sc-if>
@@ -413,7 +416,6 @@ a.ss-promo:hover{color:#FFFFFF;}
         </div>
       </div>
     </section>
-    </sc-if>
   </main>
 
   <dc-import name="FiltrDrawer" open="{{ filtersOpen }}" resultCount="{{ total }}" selected="{{ selected }}" active="{{ activeChips }}" onToggleOption="{{ onToggleOption }}" onClearAll="{{ onClearAll }}" onClose="{{ closeFilters }}" priceFrom="{{ priceFrom }}" priceTo="{{ priceTo }}" onPriceChange="{{ onPrice }}" hint-size="0,0"></dc-import>
@@ -471,7 +473,20 @@ const PRODUKTY = [
   { id: 'p10', image: '_blob/83b97877b4eeaa401d7d46a9fa01dd17.webp', title: 'Postel z masivu Sara s čalouněným čelem', href: 'Detail_Postel_3.0.dc.html', orderNo: '419877',
     perex: 'Masivní rám s čalouněným čelem v pratelném lněném potahu.',
     rating: 4.6, ratingCount: 29, price: '18 490 Kč', stock: 'inStock', moreLabel: 'Více rozměrů / potahů',
-    params: [{ icon: 'dimensions', label: '160 × 200 cm' }, { icon: 'palette', label: 'Len šedý' }] }
+    params: [{ icon: 'dimensions', label: '160 × 200 cm' }, { icon: 'palette', label: 'Len šedý' }] },
+  // 25. 11. 2026: vzorové lůžkoviny pro kategorii Povlečení a prostěradla (ukázkové ceny, fotky z mega menu)
+  { id: 'p11', image: '_blob/56aa44a9fe077e9955c51f753cc8f0e7.webp', title: 'Jednobarevné bavlněné povlečení Renforcé', href: 'Detail_Postel_3.0.dc.html', orderNo: '452110',
+    perex: 'Hustě tkaná bavlna, která se po praní nemačká. Zapínání na zip.',
+    rating: 4.6, ratingCount: 31, price: '1 290 Kč', stock: 'inStock', moreLabel: 'Více rozměrů / barev',
+    params: [{ icon: 'dimensions', label: '140 × 200 + 70 × 90 cm' }, { icon: 'color-swatch', label: '100% bavlna' }] },
+  { id: 'p12', image: '_blob/e6e0d367624dc2976eb51684c3aafedb.webp', title: 'Saténové povlečení se vzorem Listy', href: 'Detail_Postel_3.0.dc.html', orderNo: '452184',
+    perex: 'Bavlněný satén s jemným leskem, příjemně chladí. Vzor z obou stran.',
+    rating: 4.7, ratingCount: 22, price: '1 590 Kč', stock: 'inStock', moreLabel: 'Více rozměrů / vzorů',
+    params: [{ icon: 'dimensions', label: '140 × 200 + 70 × 90 cm' }, { icon: 'color-swatch', label: 'Bavlněný satén' }] },
+  { id: 'p13', image: '_blob/8a390213d7a03de388b2726d4453c347.webp', title: 'Napínací prostěradlo Jersey', href: 'Detail_Postel_3.0.dc.html', orderNo: '453020',
+    perex: 'Pružná bavlna s elastanem, sedí i na vysoké matrace. Nemusí se žehlit.',
+    rating: 4.5, ratingCount: 58, price: '449 Kč', stock: 'inStock', moreLabel: 'Více rozměrů / barev',
+    params: [{ icon: 'dimensions', label: '90 × 200 cm' }, { icon: 'arrow-autofit-height', label: 'Matrace do 30 cm' }] }
 ];
 
 const KATEGORIE = [
@@ -492,8 +507,8 @@ const FACETY = [
     { id: '160x200', label: '160 × 200 cm', count: 62 }, { id: '180x200', label: '180 × 200 cm', count: 57 },
     { id: '200x200', label: '200 × 200 cm', count: 12 } ] },
   { id: 'tuhost', title: 'Tuhost', options: [
-    { id: 'h1', label: 'Soft H1', count: 14 }, { id: 'h2', label: 'Medium H2', count: 44 },
-    { id: 'h3', label: 'Hard H3', count: 39 }, { id: 'h4', label: 'Extra Hard H4', count: 15 } ] },
+    { id: 'h1', label: 'H1', count: 14 }, { id: 'h2', label: 'H2', count: 44 },
+    { id: 'h3', label: 'H3', count: 39 }, { id: 'h4', label: 'H4', count: 15 } ] },
   { id: 'konstrukce', title: 'Konstrukce', options: [
     { id: 'penova', label: 'Pěnová', count: 38 }, { id: 'tastickova', label: 'Taštičková', count: 31 },
     { id: 'latexova', label: 'Latexová', count: 18 }, { id: 'sendvicova', label: 'Sendvičová', count: 15 } ] },
@@ -7478,7 +7493,8 @@ class Component extends DCLogic {
       // Texty z Excelu kategorií podle URL (__M_texty); H1 má přednost z menu.js
       hasShort: !!tx.short, shortText: tx.short || '',
       longCols: w >= 1000 ? 'minmax(0,1fr) 320px' : 'minmax(0,1fr)',
-      longAsideStyle: w >= 1000 ? { minWidth: 0, marginTop: narrow ? '32px' : '48px', paddingTop: narrow ? '32px' : '48px', position: 'sticky', top: ((this.state.headerH || 0) + 16) + 'px', transition: 'top .4s cubic-bezier(.22,.61,.36,1)' } : { minWidth: 0, marginTop: narrow ? '32px' : '48px' },
+      faqSepStyle: longBlocks.length > 0 ? { marginTop: narrow ? '32px' : '48px', paddingTop: narrow ? '32px' : '48px', borderTop: '1px solid var(--ss-border-subtle,#E1E6EB)' } : {},
+      longAsideStyle: w >= 1000 ? { minWidth: 0, position: 'sticky', top: ((this.state.headerH || 0) + 16) + 'px', transition: 'top .4s cubic-bezier(.22,.61,.36,1)' } : { minWidth: 0, marginTop: narrow ? '32px' : '48px' },
       hasLong: longBlocks.length > 0, longBlocks, longHeading: 'O kategorii ' + (h1 || ''), longGap: narrow ? '32px' : '48px',
       secH2Size: narrow ? '26px' : '34px', secH3Size: narrow ? '19px' : '22px',
       hasFaq: faqItems.length > 0, faqItems, faqHeading: 'Nejčastější dotazy',
