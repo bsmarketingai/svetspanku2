@@ -1635,7 +1635,7 @@ class Component extends DCLogic {
         { label: 'Rozměr', value: this.state.sizeUi === 'V2' ? 'Dropdown' : 'Chipy', options: ['Chipy', 'Dropdown'] }
         /* 18. 11. 2026: Výška natrvalo Chipy, volba odebrána */
         /* 18. 11. 2026: Varianty natrvalo Karty, volba odebrána */
-        ,{ label: 'Varianty matrace', value: this.state.varUi || 'A', options: ['A', 'B'] } /* 25. 11. 2026: A = karty, B = řádky s fotkou a názvem */
+        ,{ label: 'Varianty matrace', value: this.state.varUi || 'B', options: ['A', 'B'] } /* 25. 11. 2026: A = karty, B = řádky s fotkou a názvem; 26. 11. 2026 výchozí B */
       ],
       // Karta matrace = globální volba Karta v prezentaci (ss-cardv, 30. 10. 2026)
       cardAB: this.state.cardAB || 'A',
@@ -1714,7 +1714,7 @@ class Component extends DCLogic {
         { icon: 'stack-2', label: 'Pěnová matrace' }
       ].map(f => ({ label: f.label, icon: f.icon, isFlag: !!f.flag, isIcon: !f.flag })),
       varZoomOpen: !!this.state.varZoom, varZoomTitle: 'Matrace ELARA greengel ' + ((variants.find(v => v.label === this.state.varZoom) || variants[0]).name), varZoomData: { image: '_blob/c2606f1b288878aa84129b4a0e05ba7e.webp', label: 'Matrace ELARA greengel ' + ((variants.find(v => v.label === this.state.varZoom) || variants[0]).name), meta: 'Tuhost ' + ((variants.find(v => v.label === this.state.varZoom) || variants[0]).firm) }, closeVarZoom: () => this.setState({ varZoom: null }), pickVarZoom: () => this.setState(st => ({ variantLabel: st.varZoom || st.variantLabel, varZoom: null })),
-      varCards: (this.state.varUi || 'A') === 'A', varRows: this.state.varUi === 'B', varChips: false,
+      varCards: (this.state.varUi || 'B') === 'A', varRows: (this.state.varUi || 'B') === 'B', varChips: false,
       varTemplate: w >= 400 ? 'repeat(3,minmax(0,1fr))' : 'repeat(2,minmax(0,1fr))',
       variants: variants.map(v => {
         const sel = (this.state.variantLabel || 'ELARA greengel S') === v.label;
