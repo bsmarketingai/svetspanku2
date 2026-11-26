@@ -1708,7 +1708,7 @@ export const TEXTY = {
   ]
  },
  "/matrace/matrace-podle-tvrdosti/velmi-mekke-matrace/": {
-  "h1": "Matrace H1",
+  "h1": "Velmi měkké matrace H1",
   "short": "Velmi měkké matrace pro lehčí postavy (orientačně do 60 kg) a spáče na boku.",
   "long": [
    {
@@ -1728,7 +1728,7 @@ export const TEXTY = {
   ]
  },
  "/matrace/matrace-podle-tvrdosti/mekke-matrace/": {
-  "h1": "Matrace H2",
+  "h1": "Měkké matrace H2",
   "short": "Měkké matrace pro hmotnost orientačně 60–80 kg – příjemně se přizpůsobí, ale nepropadnete se.",
   "long": [
    {
@@ -1748,7 +1748,7 @@ export const TEXTY = {
   ]
  },
  "/matrace/matrace-podle-tvrdosti/stredne-tvrde-matrace/": {
-  "h1": "Matrace H3",
+  "h1": "Středně tvrdé matrace H3",
   "short": "Nejčastější volba – vyvážená opora pro většinu spáčů, orientačně 75–100 kg.",
   "long": [
    {
@@ -1768,7 +1768,7 @@ export const TEXTY = {
   ]
  },
  "/matrace/matrace-podle-tvrdosti/tvrde-matrace/": {
-  "h1": "Matrace H4",
+  "h1": "Tvrdé matrace H4",
   "short": "Tvrdé matrace pro těžší postavy (orientačně 90–120 kg) a spaní na zádech nebo na břiše.",
   "long": [
    {
@@ -1788,7 +1788,7 @@ export const TEXTY = {
   ]
  },
  "/matrace/matrace-podle-tvrdosti/velmi-tvrde-matrace/": {
-  "h1": "Matrace H5",
+  "h1": "Velmi tvrdé matrace H5",
   "short": "Velmi tvrdé matrace pro hmotnost nad 120 kg a pro ty, kdo chtějí cítit pevnou podložku.",
   "long": [
    {

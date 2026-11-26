@@ -455,38 +455,38 @@ export const MENU = [
         "chips": "hardness",
         "items": [
           {
-            "label": "H1",
+            "label": "Velmi měkké H1",
             "href": "Kategorie_Matrace_velmi-mekke-matrace.dc.html",
             "url": "/matrace/matrace-podle-tvrdosti/velmi-mekke-matrace/",
-            "h1": "Matrace H1",
+            "h1": "Velmi měkké matrace H1",
             "note": "do 60 kg"
           },
           {
-            "label": "H2",
+            "label": "Měkké H2",
             "href": "Kategorie_Matrace_mekke-matrace.dc.html",
             "url": "/matrace/matrace-podle-tvrdosti/mekke-matrace/",
-            "h1": "Matrace H2",
+            "h1": "Měkké matrace H2",
             "note": "60–80 kg"
           },
           {
-            "label": "H3",
+            "label": "Středně tvrdé H3",
             "href": "Kategorie_Matrace_stredne-tvrde-matrace.dc.html",
             "url": "/matrace/matrace-podle-tvrdosti/stredne-tvrde-matrace/",
-            "h1": "Matrace H3",
+            "h1": "Středně tvrdé matrace H3",
             "note": "75–100 kg"
           },
           {
-            "label": "H4",
+            "label": "Tvrdé H4",
             "href": "Kategorie_Matrace_tvrde-matrace.dc.html",
             "url": "/matrace/matrace-podle-tvrdosti/tvrde-matrace/",
-            "h1": "Matrace H4",
+            "h1": "Tvrdé matrace H4",
             "note": "90–120 kg"
           },
           {
-            "label": "H5",
+            "label": "Velmi tvrdé H5",
             "href": "Kategorie_Matrace_velmi-tvrde-matrace.dc.html",
             "url": "/matrace/matrace-podle-tvrdosti/velmi-tvrde-matrace/",
-            "h1": "Matrace H5",
+            "h1": "Velmi tvrdé matrace H5",
             "note": "nad 120 kg"
           },
           {
