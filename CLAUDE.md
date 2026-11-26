@@ -52,7 +52,7 @@ Scrim modálů a drawerů: **vždy třída `.ss-scrim`** z `tmavy-rezim.css` (bl
 Scrollbar: globálně z `tmavy-rezim.css` – systémová šířka (15 px), průhledný podklad, jen táhlo meruňkové `action.buy` (hover apricot-500), pill, stejné v obou režimech; neřeší se per komponenta.
 Grain (zrno): **plošný grain zrušen (28. 10. 2026)** – ztmavoval podklady. Sekce, gradienty `.ss-grad-top`/`.ss-grad-glow`, plné barevné plochy, hlavička a patička jsou bez zrna, jako dřív. Zrno mají jen pojmenované podklady **bg m 1 / bg b 1 / bg m 2** (vlastní jemný šum v jejich třídách). Grain nepřidávat jinam bez výslovného zadání.
 **Pojmenované podklady sekcí** (když uživatel napíše název, použije se přesně tento podklad):
-- **„bg m 1“** = třída `.ss-bg-m1`: bílá (`surface.page`) + jemné zrno krytí .07 + meruňková záře zespodu `radial-gradient(ellipse 80% 55% at 50% 100%, apricot .16 → .06 → 0 80%)`. Vzor: Ověřené recenze a Příběh Světa spánku na homepage (28. 10. 2026).
+- **„bg m 1“** = třída `.ss-bg-m1`: bílá (`surface.page`) + jemné zrno krytí .07 + meruňková záře zespodu `radial-gradient(ellipse 80% 55% at 50% 100%, apricot .16 → .06 → 0 80%)`. Vzor: Ověřené recenze a Příběh Světspánku.cz na homepage (28. 10. 2026).
 - **„bg m 2“** = třída `.ss-bg-m2`: jako bg m 1, ale barevnější a malinko tmavší – přechod bílá → teplá `#FDF5EA` shora dolů, zrno krytí .09, meruňková záře zespodu větší a silnější `radial-gradient(ellipse 90% 70% at 50% 100%, apricot .30 → .12 → 0 85%)`. Vzor: sekce pod hero na homepage (28. 10. 2026).
 - **„bg b 1“** = třída `.ss-bg-b1`: stejné jako bg m 1, ale v modrém – bílá + jemné modré zrno krytí .07 + modrá záře zespodu `radial-gradient(ellipse 80% 55% at 50% 100%, #296093 .12 → .05 → 0 80%)`. Vzor: Newsletter na homepage (28. 10. 2026).
 - **„meruňkové podsvícení“** = `.ss-grad-top.ss-grad-glow` (přechod surface.page → surface.muted + meruňková záře od spodní hrany). **„gradient shora“** = jen `.ss-grad-top`.
@@ -131,7 +131,8 @@ Platí pro všechny detaily s krokovým výběrem (Multi 3.0 Konfigurátor `Deta
 - Emoji ne. Ikony ano, z jednoho registru.
 - Čas se píše vždy s dvojtečkou: „9:00–17:00“ (pomlčka bez mezer), nikdy „9.00“.
 - Ceny, skladovost a dostupnost se píšou jednotně: cena „7 590 Kč“ (pevná mezera, s DPH), „Skladem · odesíláme do 24 h“, „Poslední kusy“, „Nedostupné“. Formulace se ustálí jednou a drží.
-- Vždy **„tuhost“**, nikdy „tvrdost“ (9. 10. 2026). Tuhost se uvádí **jen celými čísly 1–5**, nikdy půlstupně ani desetiny (30. 10. 2026). Přídavná jména stupňů (tvrdá, středně tvrdá, měkká) zůstávají.
+- Název značky v textech vždy **„Světspánku.cz“** – neskloňuje se, velké S, celá doména („ve Světspánku.cz“, „novinky ze Světspánku.cz“), nikdy „Svět spánku“, „ve Světě spánku“ ani „Světspánku“ bez .cz (26. 11. 2026).
+- Vždy **„tuhost“**, nikdy „tvrdost“ (9. 10. 2026). Tuhost se uvádí **jen celými čísly 1–5**, nikdy půlstupně ani desetiny (30. 10. 2026). **Všude se píše jako H1–H5** (26. 11. 2026) – ukazatel, filtry, varianty, menu, FAQ, porovnání; anglické názvy Soft / Medium / Hard / Extra Hard ani zápis 3/5 se nepoužívají. Přídavná jména stupňů (tvrdá, středně tvrdá, měkká) a české názvy kategorií zůstávají.
 - Fotky klient dodá – do té doby placeholdery ve `surface.muted`.
 
 ## Funkční rozsah (potvrzeno klientem)

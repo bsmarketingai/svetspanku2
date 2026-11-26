@@ -723,7 +723,8 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
                     <span class="ss-mvr-img" aria-hidden="true" style="background-image:url({{ v.src }})"></span>
                     <span class="ss-mvr-tx">
                       <span class="ss-mvr-t">{{ v.rowTitle }}</span>
-                      <span style="display:block;max-width:240px"><dc-import name="ParametryMatrace" tuhost="{{ v.tuhost }}" plain="{{ true }}" numOnly="{{ true }}" hint-size="100%,32px"></dc-import></span>
+                      <!-- 26. 11. 2026: tuhost v řádku – H2 a za ním dílky, svisle na střed -->
+                      <span style="display:flex;align-items:center;gap:10px" role="img" aria-label="{{ v.tAria }}"><span style="font-family:Oswald,Roboto,sans-serif;font-weight:600;font-size:18px;line-height:1;color:var(--ss-text-primary,#1C2229)">{{ v.tLabel }}</span><span aria-hidden="true" style="display:grid;grid-template-columns:repeat(5,28px);gap:4px"><sc-for list="{{ v.tBars }}" as="tb" hint-placeholder-count="5"><span style="display:block;height:4px;border-radius:2px;background:{{ tb.bg }}"></span></sc-for></span></span>
                     </span>
                   </button>
                   <button type="button" class="ss-mvr-zoom" onClick="{{ v.onZoom }}" aria-label="{{ v.zoomAria }}" title="Zvětšit fotku"><span class="ss-mvr-zi" aria-hidden="true"><dc-import name="Ikony" iconName="arrows-maximize" size="14" hint-size="14px,14px"></dc-import></span></button>
@@ -1152,7 +1153,7 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
                 <sc-for list="{{ stickyChips }}" as="ch" hint-placeholder-count="4">
                   <span style="display:inline-flex;align-items:center;gap:6px;height:26px;padding:0 10px;border-radius:999px;background:var(--ss-surface-subtle,#FAF5EF);box-shadow:inset 0 0 0 1px var(--ss-border-subtle,#E1E6EB);font-size:13px;color:var(--ss-text-secondary,#3D4750);white-space:nowrap">
                     <sc-if value="{{ ch.hasSwatch }}" hint-placeholder-val="{{ false }}">
-                      <span style="width:10px;height:10px;border-radius:999px;flex:none;box-shadow:inset 0 0 0 1px rgba(19,44,67,.18);background:{{ ch.color }}"></span>
+                      <span style="width:18px;height:18px;margin-left:-7px;border-radius:999px;flex:none;box-shadow:inset 0 0 0 1px rgba(19,44,67,.18);background:{{ ch.color }}"></span>
                     </sc-if>
                     <span>{{ ch.label }}</span>
                   </span>
@@ -1177,7 +1178,7 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
               <sc-for list="{{ stickyChips }}" as="ch" hint-placeholder-count="4">
                 <span style="display:inline-flex;align-items:center;gap:6px;flex:none;height:24px;padding:0 10px;border-radius:999px;background:var(--ss-surface-subtle,#FAF5EF);box-shadow:inset 0 0 0 1px var(--ss-border-subtle,#E1E6EB);font-size:13px;color:var(--ss-text-secondary,#3D4750)">
                   <sc-if value="{{ ch.hasSwatch }}" hint-placeholder-val="{{ false }}">
-                    <span style="width:10px;height:10px;border-radius:999px;flex:none;box-shadow:inset 0 0 0 1px rgba(19,44,67,.18);background:{{ ch.color }}"></span>
+                    <span style="width:18px;height:18px;margin-left:-7px;border-radius:999px;flex:none;box-shadow:inset 0 0 0 1px rgba(19,44,67,.18);background:{{ ch.color }}"></span>
                   </sc-if>
                   <span>{{ ch.label }}</span>
                 </span>
@@ -1603,15 +1604,15 @@ class Component extends DCLogic {
     const discount = '−' + Math.round((1 - now / before) * 100) + ' %';
     const sizes = stockFilter(ROZMERY).map(r => r.label);
     const variants = [
-      // 18. 11. 2026: jen tuhosti 2–4; volba tuhosti mění název produktu (Matrace ELARA greengel Soft / Medium / Hard)
+      // 18. 11. 2026: jen tuhosti 2–4; volba tuhosti mění název produktu (Matrace ELARA greengel Soft / Medium / Hard – názvy produktů zůstávají; tuhost se píše H2–H4)
       // doporučená váha se mění s tuhostí (11. 11. 2026)
-      { label: 'ELARA greengel S', name: 'Soft', firm: 'H2 · Soft', tuhost: 2, zOd: 50, zDo: 80 },
-      { label: 'ELARA greengel M', name: 'Medium', firm: 'H3 · Medium', tuhost: 3, zOd: 65, zDo: 95 },
-      { label: 'ELARA greengel L', name: 'Hard', firm: 'H4 · Hard', tuhost: 4, zOd: 80, zDo: 115 }
+      { label: 'ELARA greengel S', name: 'Soft', firm: 'H2', tuhost: 2, zOd: 50, zDo: 80 },
+      { label: 'ELARA greengel M', name: 'Medium', firm: 'H3', tuhost: 3, zOd: 65, zDo: 95 },
+      { label: 'ELARA greengel L', name: 'Hard', firm: 'H4', tuhost: 4, zOd: 80, zDo: 115 }
     ];
     const selVar = variants.find(v => v.label === (this.state.variantLabel || 'ELARA greengel S')) || variants[0];
     const faqData = [
-      { question: 'Jak vybrat správnou tuhost?', answer: 'Řiďte se hmotností a polohou při spaní. Na boku spícím lidem do 80 kg sedne Soft nebo Medium, na zádech a na břiše a nad 90 kg spíš Hard. Nejjistější je matraci vyzkoušet na některé z našich prodejen.' },
+      { question: 'Jak vybrat správnou tuhost?', answer: 'Řiďte se hmotností a polohou při spaní. Na boku spícím lidem do 80 kg sedne H2 nebo H3, na zádech a na břiše a nad 90 kg spíš H4. Nejjistější je matraci vyzkoušet na některé z našich prodejen.' },
       { question: 'Můžu matraci vrátit, když mi nesedne?', answer: '30 nocí jistoty (výměna jádra za jinou tvrdost). Platí jen pro vybrané modely 90 × 200 cm. Výměna na prodejně.' },
       { question: 'Jak se o matraci starat?', answer: 'Potah sundejte a perte na 60 °C. Matraci jednou za tři měsíce otočte a pravidelně větrejte. Pro delší životnost doporučujeme chránič matrace.' }
     ];
@@ -1635,7 +1636,7 @@ class Component extends DCLogic {
         { label: 'Rozměr', value: this.state.sizeUi === 'V2' ? 'Dropdown' : 'Chipy', options: ['Chipy', 'Dropdown'] }
         /* 18. 11. 2026: Výška natrvalo Chipy, volba odebrána */
         /* 18. 11. 2026: Varianty natrvalo Karty, volba odebrána */
-        ,{ label: 'Varianty matrace', value: this.state.varUi || 'B', options: ['A', 'B'] } /* 25. 11. 2026: A = karty, B = řádky s fotkou a názvem; 26. 11. 2026 výchozí B */
+        /* 26. 11. 2026: Varianty matrace natrvalo B (řádky s fotkou a názvem), volba A/B odebrána z prezentace; kód A zůstává */
       ],
       // Karta matrace = globální volba Karta v prezentaci (ss-cardv, 30. 10. 2026)
       cardAB: this.state.cardAB || 'A',
@@ -1713,13 +1714,13 @@ class Component extends DCLogic {
         { icon: 'arrows-vertical', label: 'Výška jádra 20 cm' },
         { icon: 'stack-2', label: 'Pěnová matrace' }
       ].map(f => ({ label: f.label, icon: f.icon, isFlag: !!f.flag, isIcon: !f.flag })),
-      varZoomOpen: !!this.state.varZoom, varZoomTitle: 'Matrace ELARA greengel ' + ((variants.find(v => v.label === this.state.varZoom) || variants[0]).name), varZoomData: { image: '_blob/c2606f1b288878aa84129b4a0e05ba7e.webp', label: 'Matrace ELARA greengel ' + ((variants.find(v => v.label === this.state.varZoom) || variants[0]).name), meta: 'Tuhost ' + ((variants.find(v => v.label === this.state.varZoom) || variants[0]).firm) }, closeVarZoom: () => this.setState({ varZoom: null }), pickVarZoom: () => this.setState(st => ({ variantLabel: st.varZoom || st.variantLabel, varZoom: null })),
-      varCards: (this.state.varUi || 'B') === 'A', varRows: (this.state.varUi || 'B') === 'B', varChips: false,
+      varZoomOpen: !!this.state.varZoom, varZoomTitle: 'Matrace ELARA greengel ' + ((variants.find(v => v.label === this.state.varZoom) || variants[0]).name), varZoomData: { image: '_blob/c2606f1b288878aa84129b4a0e05ba7e.webp', label: 'Matrace ELARA greengel ' + ((variants.find(v => v.label === this.state.varZoom) || variants[0]).name), tuhost: (variants.find(v => v.label === this.state.varZoom) || variants[0]).tuhost, zOd: (variants.find(v => v.label === this.state.varZoom) || variants[0]).zOd, zDo: (variants.find(v => v.label === this.state.varZoom) || variants[0]).zDo }, closeVarZoom: () => this.setState({ varZoom: null }), pickVarZoom: () => this.setState(st => ({ variantLabel: st.varZoom || st.variantLabel, varZoom: null })),
+      varCards: false, varRows: true, varChips: false,
       varTemplate: w >= 400 ? 'repeat(3,minmax(0,1fr))' : 'repeat(2,minmax(0,1fr))',
       variants: variants.map(v => {
         const sel = (this.state.variantLabel || 'ELARA greengel S') === v.label;
         return {
-          label: v.label, short: v.name, aria: v.label + ', ' + v.firm, rowTitle: 'Matrace ELARA greengel ' + v.name, rowAria: 'Matrace ELARA greengel ' + v.name + ', tuhost ' + v.firm, zoomAria: 'Zvětšit fotku: Matrace ELARA greengel ' + v.name, onZoom: () => this.setState({ varZoom: v.label }), chipVariant: sel ? 'primary' : 'outlineBox', src: '_blob/c2606f1b288878aa84129b4a0e05ba7e.webp', selected: sel, firmLabel: v.firm, tuhost: v.tuhost,
+          label: v.label, short: v.name, aria: v.label + ', ' + v.firm, rowTitle: 'Matrace ELARA greengel ' + v.name, rowAria: 'Matrace ELARA greengel ' + v.name + ', tuhost ' + v.firm, zoomAria: 'Zvětšit fotku: Matrace ELARA greengel ' + v.name, tLabel: 'H' + v.tuhost, tAria: 'Tuhost H' + v.tuhost + ' z H5', tBars: [1, 2, 3, 4, 5].map(n => ({ bg: n <= v.tuhost ? '#21507B' : 'var(--ss-surface-strong,#E9E1D5)' })), onZoom: () => this.setState({ varZoom: v.label }), chipVariant: sel ? 'primary' : 'outlineBox', src: '_blob/c2606f1b288878aa84129b4a0e05ba7e.webp', selected: sel, firmLabel: v.firm, tuhost: v.tuhost,
           scale: [0, 1, 2, 3, 4].map(k => ({ bg: k === v.pos ? '#132C43' : 'var(--ss-surface-selected,#DCE8F2)' })),
           // 11. 11. 2026: barevné schéma jako čipy – vybraná tmavě modrá (Chip primary), ostatní bílé s rámečkem (Chip outlineBox)
           ring: sel ? 'none' : 'inset 0 0 0 1px var(--ss-border-strong,#C8D0D8)', notSelected: !sel,
@@ -1902,13 +1903,13 @@ class Component extends DCLogic {
         ['Výška matrace', '22 nebo 25 cm', 'arrow-autofit-height'],
         ['Výška jádra', '20 cm', 'ruler-2'],
         ['Nosnost', 'až 200 kg', 'weight'],
-        ['Tuhost', 'H2–H4 · Soft, Medium, Hard', 'adjustments-horizontal'],
+        ['Tuhost', 'H2–H4', 'adjustments-horizontal'],
         ['Počet zón', '7', 'adjustments'],
         ['Jádro', 'BIO pěna VERDE®, pěna XDURA®', 'stack-2'],
         ['Potah', 'greengel, snímatelný, pratelný na 60 °C', 'color-swatch'],
         ['Úprava potahu', 'antimikrobiální, chladicí gel', 'leaf'],
         ['Certifikace', 'OEKO-TEX® Standard 100', 'award'],
-        ['Výrobce', 'Svět spánku, vyrábíme v ČR', 'map-pin']
+        ['Výrobce', 'Světspánku.cz, vyrábíme v ČR', 'map-pin']
       ].map((p, k, all) => ({ label: p[0] + ':', value: p[1], icon: p[2], border: k < all.length - 1 ? '1px solid var(--ss-border-subtle,#E1E6EB)' : '0' })),
       perks: [
         { icon: 'map-pin', label: 'Vyrobena u nás v Česku' },

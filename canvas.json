@@ -169,16 +169,6 @@
       "x": 0,
       "y": 0
     },
-    "Detail_Produkt_Levita.dc.html": {
-      "expand": "fill",
-      "h": 1000,
-      "is_interactive": true,
-      "page": "detaily",
-      "title": "Detail_Produkt Levita",
-      "w": 1440,
-      "x": 0,
-      "y": 1120
-    },
     "Detail_Set_Bamboo.dc.html": {
       "expand": "fill",
       "h": 1000,
@@ -3097,6 +3087,43 @@
       "w": 1440,
       "x": 3040,
       "y": 0
+    },
+    "UloznyProstor.dc.html": {
+      "h": 420,
+      "page": "komponenty2",
+      "title": "UloznyProstor",
+      "w": 640,
+      "x": 440,
+      "y": 8820
+    },
+    "Objednavky.dc.html": {
+      "expand": "fill",
+      "h": 2300,
+      "is_interactive": true,
+      "page": "kosik",
+      "title": "Objednavky – Přehled objednávek (Můj účet)",
+      "w": 1440,
+      "x": 0,
+      "y": 5840
+    },
+    "ObjednavkaDetail.dc.html": {
+      "expand": "fill",
+      "h": 2400,
+      "is_interactive": true,
+      "page": "kosik",
+      "title": "ObjednavkaDetail – Detail objednávky (Můj účet)",
+      "w": 1440,
+      "x": 1520,
+      "y": 5840
+    },
+    "StavObjednavky.dc.html": {
+      "h": 64,
+      "is_interactive": true,
+      "page": "komponenty2",
+      "title": "StavObjednavky",
+      "w": 320,
+      "x": 1120,
+      "y": 8820
     }
   },
   "createdOnFiles": {
@@ -3209,7 +3236,6 @@
     "Detail_Matrace_3.0.dc.html",
     "Detail_Multi_3.0.dc.html",
     "Detail_Komoda_VIA.dc.html",
-    "Detail_Produkt_Levita.dc.html",
     "Karta_Matrace.dc.html",
     "Dostupnost_Popup.dc.html",
     "NakupniBox.dc.html",
@@ -3520,7 +3546,11 @@
     "KaruselNav.dc.html",
     "KontaktniKarta.dc.html",
     "KontaktniOsoba.dc.html",
-    "KontaktniFormular.dc.html"
+    "KontaktniFormular.dc.html",
+    "UloznyProstor.dc.html",
+    "Objednavky.dc.html",
+    "ObjednavkaDetail.dc.html",
+    "StavObjednavky.dc.html"
   ],
   "pages": [
     {

@@ -308,13 +308,12 @@ class Component extends DCLogic {
       ['Kategorie_Luzkoviny_povlaky-40x70.dc.html', 'Povlečení › Povlaky na polštář 40 × 70', ''],
       ['Kategorie_Akce_aktualni-akce.dc.html', 'Akce › Aktuální akce', '']
     ] },
-    { id: 'rz-det', title: 'Detaily produktů – Simple', desc: 'Detaily bez konfigurátoru (postel, komplet, matrace, multi, komoda) a konkrétní postel Levita. Vyzkoušejte výběr rozměru, materiálu a oleje, roštů a čalounění, přepočet ceny i přidání do košíku.', items: [
+    { id: 'rz-det', title: 'Detaily produktů – Simple', desc: 'Detaily bez konfigurátoru (postel, komplet, matrace, multi, komoda, skříň, sety, čalouněná postel). Vyzkoušejte výběr rozměru, materiálu a oleje, roštů a čalounění, přepočet ceny i přidání do košíku.', items: [
       ['Detail_Postel_3.0.dc.html', 'Detail – Postel', 'Výběr rozměru, úložného prostoru, roštů, dřeva s olejem a čalounění. Cena se přepočítá podle rozměru, roštů a dřeva.'],
       ['Detail_Komplet_3.0.dc.html', 'Detail – Komplet', 'Postel s matracemi a rošty v sadě, výběr dřeva a oleje jako u postele, video v sekci Ložnice na míru.'],
       ['Detail_Matrace_3.0.dc.html', 'Detail – Matrace', 'Výška, rozměr, varianty tuhosti, parametry, potahy.'],
       ['Detail_Multi_3.0.dc.html', 'Detail – Multi', 'Postel MULTI BENE: rozměr, výška, rošty, dřevo a olej. Cena se přepočítá podle výběru.'],
       ['Detail_Komoda_VIA.dc.html', 'Detail – Komoda VIA 3Z', 'Nábytek: rozměr 90/120 cm, dřevo a olej, skryté plnovýsuvy.'],
-      ['Detail_Produkt_Levita.dc.html', 'Detail – Postel Levita', 'Konkrétní produkt s reálnými fotkami a vzorníkem látek Kronos, Vega, Wind.'],
       ['Karta_Matrace.dc.html', 'Karta matrace – varianty', 'Přehled variant karty produktu pro matrace.'],
       ['Detail_Skrin_UNI_2D_Konf.dc.html', 'Detail – Skříň UNI 2D', 'Běžný detail: šířka a výška čipy, materiál, vnitřní uspořádání levé a pravé části (nákresy se zvětšením) a LED osvětlení v draweru. Nic předvybraného, Koupit zvýrazní, co chybí.'],
       ['Detail_Set_Polstare_1plus1.dc.html', 'Detail – SET polštářů 1 + 1', 'Dva polštáře za zvýhodněnou cenu: polštář 1 a polštář 2 v draweru ze 16 polštářů, u každého cena při nákupu zvlášť. Cena setu o 15 % nižší než součet.'],
@@ -333,6 +332,8 @@ class Component extends DCLogic {
       ['Dekujeme.dc.html', 'Děkujeme za objednávku', 'Platební údaje s QR kódem, zpětná vazba, průběh objednávky, registrace.'],
       ['PrazdnyKosik.dc.html', 'Prázdný košík', 'Stav bez položek s doporučenými kategoriemi.'],
       ['Oblibene.dc.html', 'Oblíbené', 'Uložené produkty, box poradce.'],
+      ['Objednavky.dc.html', 'Přehled objednávek', 'Můj účet: filtr, řazení, stavy objednávek, faktury, stránkování.'],
+      ['ObjednavkaDetail.dc.html', 'Detail objednávky', 'Údaje objednávky, poznámka, objednané zboží s cenami, Objednat znovu.'],
       ['Porovnani.dc.html', 'Porovnání produktů', 'Tabulka porovnání, jen rozdíly, záložky kategorií.']
     ] },
     { id: 'rz-ost', title: 'Ostatní stránky', desc: '', items: [
@@ -354,7 +355,7 @@ class Component extends DCLogic {
       ['index.dc.html', 'Nákupní košík (panel)', 'Rychlý náhled košíku s položkami a pokračováním k pokladně.', 'V hlavičce klikněte na ikonu košíku.', 'KosikObsah.dc.html', 'Drawer'],
       ['Detail_Postel_3.0.dc.html', 'Přidáno do košíku', 'Potvrzení po přidání s doplňky a souvisejícími produkty.', 'Na detailu klikněte na „Do košíku“.', 'KosikPridanoObsah.dc.html', 'Modal'],
       ['Detail_Postel_3.0.dc.html', 'Výběr varianty (rošty, materiál, odstín)', 'Vysouvací panel s výběrem roštů, dřeva a odstínu oleje.', 'Na detailu postele klikněte na řádek „Rošty“, „Materiál“ nebo „Odstín (olej)“. Zkuste i přepínač „Materiál a odstín“ B.', 'VariantaObsah.dc.html', 'Drawer'],
-      ['Detail_Produkt_Levita.dc.html', 'Výběr čalounění', 'Vzorník látek Kronos, Vega, Wind se skupinami a popisy.', 'Na detailu Levita klikněte na řádek „Čalounění“.', 'VariantaDrawer.dc.html', 'Drawer'],
+      ['Detail_Postel_3.0.dc.html', 'Výběr čalounění', 'Vzorník látek Kronos, Vega, Wind se skupinami a popisy.', 'Na detailu postele klikněte na řádek „Čalounění“.', 'VariantaDrawer.dc.html', 'Drawer'],
       ['index.dc.html', 'Nápověda k tuhosti', 'Vysvětlení stupňů tuhosti s ilustracemi.', 'Na kartě produktu s ukazatelem tuhosti (např. homepage, Nejoblíbenější) klikněte na otazník vedle tuhosti.', 'TuhostObsah.dc.html', 'Modal'],
       ['Kategorie_Matrace.dc.html', 'Poradna (tipy v kategorii)', 'Článek poradny otevřený nad výpisem.', 'Ve výpisu kategorie klikněte na dlaždici tipu / poradny mezi produkty.', 'PoradnaObsah.dc.html', 'Modal'],
       ['Kategorie_Matrace.dc.html', 'Filtry na mobilu', 'Vysouvací panel s celou filtrací.', 'Zúžte okno pod 820 px a klikněte na „Filtry“.', 'FiltrObsah.dc.html', 'Drawer'],

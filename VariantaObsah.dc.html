@@ -263,7 +263,7 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
           <sc-for list="{{ rows }}" as="r" hint-placeholder-count="3">
             <div style="position:relative">
             <button type="button" class="ss-vd-row" onClick="{{ r.onPick }}" aria-pressed="{{ r.pressed }}">
-              <span style="display:flex;align-items:center;justify-content:center;width:26px;height:26px;flex:none;border-radius:999px;background:{{ r.dotBg }};color:{{ r.dotColor }};box-shadow:{{ r.dotRing }}">
+              <span style="align-self:center;display:flex;align-items:center;justify-content:center;width:26px;height:26px;flex:none;border-radius:999px;background:{{ r.dotBg }};color:{{ r.dotColor }};box-shadow:{{ r.dotRing }}">
                 <sc-if value="{{ r.selected }}" hint-placeholder-val="{{ false }}">
                   <dc-import name="Ikony" iconName="check" size="16" hint-size="16px,16px"></dc-import>
                 </sc-if>

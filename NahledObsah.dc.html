@@ -214,14 +214,19 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
     <sc-if value="{{ hasImage }}" hint-placeholder-val="{{ true }}"><img ref="{{ imgRef }}" decoding="async" src="{{ image }}" alt="{{ label }}" style="display:block;width:100%;height:100%;object-fit:contain" /></sc-if>
     <sc-if value="{{ hasImage }}" hint-placeholder-val="{{ true }}"><span class="ss-nh-zi" aria-hidden="true"><dc-import name="Ikony" iconName="zoom-in" size="22" hint-size="22px,22px"></dc-import></span></sc-if>
   </div>
+  <sc-if value="{{ hasInfo }}" hint-placeholder-val="{{ true }}">
   <div style="display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:space-between;gap:8px 16px">
     <div style="display:flex;flex-direction:column;gap:6px;min-width:0;flex:1 1 240px">
-      <span style="font-family:Oswald,Roboto,sans-serif;font-weight:600;font-size:20px;line-height:1.25;color:var(--ss-text-heading,#0B1F33)">{{ label }}</span>
+      <!-- 26. 11. 2026: název pod fotkou odebrán – je už v hlavičce okna -->
+      <!-- 26. 11. 2026: u matrace tuhost (a doporučená váha) jako na kartě produktu ve výpisu – ParametryMatrace layout bars -->
+      <sc-if value="{{ hasTuhost }}" hint-placeholder-val="{{ false }}"><span style="display:block;max-width:320px"><dc-import name="ParametryMatrace" layout="bars" tuhost="{{ tuhost }}" zatizeni-od="{{ zOd }}" zatizeni-do="{{ zDo }}" hint-size="100%,130px"></dc-import></span></sc-if>
       <sc-if value="{{ hasMeta }}" hint-placeholder-val="{{ true }}"><span style="font-size:14px;line-height:1.5;color:var(--ss-text-secondary,#3D4750)">{{ meta }}</span></sc-if>
+      <sc-if value="{{ hasDesc }}" hint-placeholder-val="{{ false }}"><p style="margin:0;font-size:15px;line-height:1.6;color:var(--ss-text-secondary,#3D4750);text-wrap:pretty">{{ desc }}</p></sc-if>
       <sc-if value="{{ hasStock }}" hint-placeholder-val="{{ true }}"><dc-import name="Skladovost" kind="{{ stockKind }}" label="{{ stock }}" size="sm" hint-size="140px,18px"></dc-import></sc-if>
     </div>
     <sc-if value="{{ hasPrice }}" hint-placeholder-val="{{ true }}"><span style="font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:22px;white-space:nowrap">{{ price }}</span></sc-if>
   </div>
+  </sc-if>
 </div>
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;: {&quot;width&quot;: 560, &quot;height&quot;: 560}, &quot;data&quot;: {&quot;editor&quot;: null, &quot;tsType&quot;: &quot;any&quot;}, &quot;onEvent&quot;: {&quot;editor&quot;: null, &quot;tsType&quot;: &quot;any&quot;}}">
@@ -295,9 +300,35 @@ function ssOpenPhotoViewer(src, alt) {
   btn.focus();
 }
 class Component extends DCLogic {
+  // Krátké popisy produktů pro náhled fotky (26. 11. 2026, ukázkové – nahradí texty z e-shopu). Hledá se podle názvu v náhledu.
+  static DESC = [
+    [/Villach S/i, 'Lamelový rošt s 28 pružnými lamelami z bukové překližky. Lamely v oblasti ramen lze ručně změkčit, rám je z masivního smrku.'],
+    [/výklopný rošt – z boku/i, 'Lamelový rošt s výklopem z boku – snadný přístup do úložného prostoru postele.'],
+    [/výklopný rošt – od nohou/i, 'Lamelový rošt s výklopem od nohou – úložný prostor otevřete i bez odsouvání nočních stolků.'],
+    [/Polohovací rošt/i, 'Rošt s ručně polohovatelnou hlavovou i nožní částí – pohodlné čtení v posteli i odlehčení nohou.'],
+    [/Viscoair/i, 'Antimikrobiální a ortopedická matrace spojuje BIO pěnu VERDE® a pěnu XDURA® – pro hluboký spánek a dlouhotrvající komfort.'],
+    [/ELARA/i, 'Matrace s chladivou gelovou pěnou, která se přizpůsobí tělu a odvádí teplo. Vhodná pro spaní na boku i na zádech.'],
+    [/Leda Duo/i, 'Taštičkové pružiny pracují každá zvlášť, takže matrace drží páteř rovně a pohyb partnera se nepřenáší.'],
+    [/Přikrývka Bamboo/i, 'Celoroční přikrývka s bambusovým vláknem – prodyšná, lehká a příjemná na dotek.'],
+    [/Bamboo visco – klasický/i, 'Polštář z paměťové pěny klasického tvaru v potahu s bambusovým vláknem, které dobře odvádí vlhkost.'],
+    [/Bamboo visco – ergonomický/i, 'Anatomický polštář z paměťové pěny s tvarovanou opěrkou krku, potah s bambusovým vláknem.'],
+    [/Ergonomico/i, 'Anatomický polštář z paměťové pěny s tvarovanou opěrkou krku – drží hlavu a krční páteř v rovině.'],
+    [/Clasico/i, 'Polštář z paměťové pěny klasického tvaru – přizpůsobí se hlavě i ramenům a drží tvar.'],
+    [/Polštář Antistress/i, 'Polštář s potahem s uhlíkovým vláknem, které odvádí statickou elektřinu. Rozměr 70 × 90 cm, náplň 1000 g.'],
+    [/Polštář Aloe Vera/i, 'Polštář s potahem ošetřeným výtažkem z aloe vera, jemný na pokožku. Rozměr 70 × 90 cm, náplň 1000 g.'],
+    [/Polštář AntiMikrobial/i, 'Polštář s antibakteriální úpravou potahu, vhodný i pro alergiky. Rozměr 70 × 90 cm, náplň 1000 g.'],
+    [/Polštář Bamboo/i, 'Polštář s potahem s bambusovým vláknem, které dobře odvádí vlhkost. Rozměr 70 × 90 cm, náplň 1000 g.'],
+    [/Polštář Cirrus/i, 'Měkký polštář s jemnou dutou náplní, pratelný. Rozměr 70 × 90 cm, náplň 1000 g.'],
+    [/Atlas/i, 'Povlak na polštář z hladkého bavlněného atlasu, zapínání na zip. Rozměr 70 × 90 cm.'],
+    [/Satén/i, 'Povlak na polštář z bavlněného saténu s jemným leskem, zapínání na zip. Rozměr 70 × 90 cm.']
+  ];
   renderVals() {
     const d = this.props.data || {};
     const meta = [d.metaStrong, d.meta].filter(Boolean).join('').replace(/^ · /, '');
+    // 26. 11. 2026: krátký popis produktu v každém náhledu – d.desc, jinak podle názvu z Component.DESC (ukázkové texty)
+    const lbl = String(d.label || '');
+    const hit = d.desc ? null : Component.DESC.find(x => x[0].test(lbl));
+    const desc = d.desc || (hit ? hit[1] : '');
     return {
       zoomStr: d.image ? 'true' : 'false',
       imgRef: (el) => { this._img = el; },
@@ -308,6 +339,8 @@ class Component extends DCLogic {
       meta, hasMeta: !!meta,
       price: d.price || '', hasPrice: !!d.price,
       stock: d.stock || '', hasStock: !!d.stock,
+      desc, hasDesc: !!desc, tuhost: d.tuhost || 0, hasTuhost: !!d.tuhost, zOd: d.zOd || null, zDo: d.zDo || null,
+      hasInfo: !!(meta || desc || d.tuhost || d.price || d.stock),
       stockKind: d.stockKind || (d.outOfStock ? (/nedostup|vyprod/i.test(d.stock || '') ? 'outOfStock' : 'onOrder') : 'inStock'),
       stockIcon: d.outOfStock ? 'clock' : 'circle-check',
       stockColor: d.outOfStock ? 'var(--ss-text-muted,#5B6874)' : 'var(--ss-status-success,#157A41)'

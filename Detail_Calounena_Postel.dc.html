@@ -746,13 +746,68 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
                       <sc-for list="{{ sizesExt }}" as="s" hint-placeholder-count="3">
                         <dc-import name="Chip" label="{{ s.label }}" count="{{ s.extra }}" size="standard" variant="{{ s.variant }}" ariaPressed="{{ s.pressed }}" check="{{ s.pressed }}" onClick="{{ s.onPick }}" hint-size="170px,36px"></dc-import>
                       </sc-for>
-                      <!-- 9. 11. 2026: čalouněné postele nemají vlastní rozměr -->
                     </div>
                   </div>
                 </div>
               </sc-if>
               <sc-if value="{{ sizeSelect }}" hint-placeholder-val="{{ false }}">
                 <dc-import name="Select" label="" ariaLabel="Rozměr postele" variant="outline" fullWidth="{{ true }}" value="{{ sizeValue }}" options="{{ sizeOptions }}" onChange="{{ onSizeSelect }}" hint-size="100%,44px"></dc-import>
+              </sc-if>
+            </div>
+
+            <!-- 26. 11. 2026: vlastní rozměr vrácen, stejný blok jako Postel 3.0 -->
+            <div class="ss-elev" style="background:var(--ss-surface-box,#FFFFFF);border:1px solid var(--ss-border-subtle,#E1E6EB);border-radius:12px;padding:20px;display:flex;flex-direction:column;gap:16px">
+              <div style="display:flex;align-items:center;gap:12px">
+                <div style="flex:1;min-width:0">
+                <button type="button" id="ss-pd-cs" class="ss-pd-cs-radio" role="radio" aria-checked="{{ csChecked }}" aria-controls="ss-pd-cs-form" onClick="{{ toggleCs }}">
+                  <span class="ss-pd-cs-dot"></span>
+                  <span style="display:flex;flex-direction:column;gap:2px;min-width:0">
+                    <span class="ss-pd-cs-t" style="font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:19px;line-height:1.2;transition:color .12s">Vlastní rozměr</span>
+                    <span style="font-size:13px;color:var(--ss-text-muted,#5B6874)">Vyrobíme na míru, šířka 80–220 cm, délka 180–240 cm</span>
+                  </span>
+                </button>
+                </div>
+                <button type="button" class="ss-pd-cs-info" aria-label="Informace o vlastním rozměru" aria-expanded="{{ csInfoExp }}" aria-controls="ss-pd-cs-info" onClick="{{ toggleCsInfo }}"><dc-import name="Ikony" iconName="info-circle" size="22" hint-size="22px,22px"></dc-import></button>
+              </div>
+              <sc-if value="{{ csInfo }}" hint-placeholder-val="{{ false }}">
+                <p id="ss-pd-cs-info" style="margin:0;display:flex;justify-content:flex-start;text-align:left;gap:10px;padding:12px 16px;border-radius:6px;background:#EAF2FA;box-shadow:inset 0 0 0 1px #CFE0F0;font-size:14px;line-height:1.55;color:#1C3A57">Kvůli změnám rozměrů se může změnit dodací lhůta a cena. O všem vás budeme informovat e-mailem.</p>
+              </sc-if>
+              <sc-if value="{{ csOn }}" hint-placeholder-val="{{ false }}">
+                <div id="ss-pd-cs-form" style="display:flex;flex-direction:column;gap:12px">
+                  <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px">
+                    <label style="display:flex;flex-direction:column;gap:6px;min-width:0">
+                      <span style="font-size:13px;font-weight:600;color:var(--ss-text-secondary,#3D4750)">Šířka</span>
+                      <span class="ss-pd-cs-f">
+                        <span class="ss-pd-cs-ic"><dc-import name="Ikony" iconName="arrows-horizontal" size="20" hint-size="20px,20px"></dc-import></span>
+                        <input class="ss-pd-cs-in" type="text" inputmode="numeric" placeholder="např. 150" ref="{{ csWRef }}" value="{{ csW }}" onChange="{{ onCsW }}" aria-invalid="{{ csWInvalid }}">
+                        <span class="ss-pd-cs-u">cm</span>
+                      </span>
+                    </label>
+                    <label style="display:flex;flex-direction:column;gap:6px;min-width:0">
+                      <span style="font-size:13px;font-weight:600;color:var(--ss-text-secondary,#3D4750)">Délka</span>
+                      <span class="ss-pd-cs-f">
+                        <span class="ss-pd-cs-ic"><dc-import name="Ikony" iconName="arrows-vertical" size="20" hint-size="20px,20px"></dc-import></span>
+                        <input class="ss-pd-cs-in" type="text" inputmode="numeric" placeholder="např. 210" value="{{ csL }}" onChange="{{ onCsL }}" aria-invalid="{{ csLInvalid }}">
+                        <span class="ss-pd-cs-u">cm</span>
+                      </span>
+                    </label>
+                  </div>
+                  <sc-if value="{{ csHasPrice }}" hint-placeholder-val="{{ false }}">
+                    <div aria-live="polite" hidden="{{ csHideAdd }}" style="display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:4px 12px;padding:12px 16px;border-radius:6px;background:var(--ss-surface-page,#FFFFFF)">
+                      <span style="font-size:14px;color:var(--ss-text-secondary,#3D4750)">Příplatek za rozměr {{ csDims }}</span>
+                      <span style="font-size:16px;font-weight:700;color:var(--ss-text-primary,#1C2229);white-space:nowrap">+ {{ csAddFmt }}</span>
+                    </div>
+                    <sc-if value="{{ csNotConfirmed }}" hint-placeholder-val="{{ true }}">
+                      <dc-import name="Tlacitko" label="Potvrdit" variant="primary" size="standard" fullWidth="{{ true }}" onClick="{{ confirmCs }}" hint-size="100%,44px"></dc-import>
+                    </sc-if>
+                    <sc-if value="{{ csConfirmedOk }}" hint-placeholder-val="{{ false }}">
+                      <span role="status" style="display:flex;align-items:center;gap:8px;font-size:14px;font-weight:600;color:var(--ss-status-success,#157A41)"><dc-import name="Ikony" iconName="check" size="18" hint-size="18px,18px"></dc-import>Rozměr potvrzen, příplatek je započtený v ceně</span>
+                    </sc-if>
+                  </sc-if>
+                  <sc-if value="{{ csHasError }}" hint-placeholder-val="{{ false }}">
+                    <span role="alert" style="font-size:13px;color:var(--ss-status-error,#B3261E)">{{ csError }}</span>
+                  </sc-if>
+                </div>
               </sc-if>
             </div>
 
@@ -1069,7 +1124,7 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
                 <sc-for list="{{ stickyChips }}" as="ch" hint-placeholder-count="4">
                   <span style="display:inline-flex;align-items:center;gap:6px;height:26px;padding:0 10px;border-radius:999px;background:var(--ss-surface-subtle,#FAF5EF);box-shadow:inset 0 0 0 1px var(--ss-border-subtle,#E1E6EB);font-size:13px;color:var(--ss-text-secondary,#3D4750);white-space:nowrap">
                     <sc-if value="{{ ch.hasSwatch }}" hint-placeholder-val="{{ false }}">
-                      <span style="width:10px;height:10px;border-radius:999px;flex:none;box-shadow:inset 0 0 0 1px rgba(19,44,67,.18);background:{{ ch.color }}"></span>
+                      <span style="width:18px;height:18px;margin-left:-7px;border-radius:999px;flex:none;box-shadow:inset 0 0 0 1px rgba(19,44,67,.18);background:{{ ch.color }}"></span>
                     </sc-if>
                     <span>{{ ch.label }}</span>
                   </span>
@@ -1090,7 +1145,7 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
               <sc-for list="{{ stickyChips }}" as="ch" hint-placeholder-count="4">
                 <span style="display:inline-flex;align-items:center;gap:6px;flex:none;height:24px;padding:0 10px;border-radius:999px;background:var(--ss-surface-subtle,#FAF5EF);box-shadow:inset 0 0 0 1px var(--ss-border-subtle,#E1E6EB);font-size:13px;color:var(--ss-text-secondary,#3D4750)">
                   <sc-if value="{{ ch.hasSwatch }}" hint-placeholder-val="{{ false }}">
-                    <span style="width:10px;height:10px;border-radius:999px;flex:none;box-shadow:inset 0 0 0 1px rgba(19,44,67,.18);background:{{ ch.color }}"></span>
+                    <span style="width:18px;height:18px;margin-left:-7px;border-radius:999px;flex:none;box-shadow:inset 0 0 0 1px rgba(19,44,67,.18);background:{{ ch.color }}"></span>
                   </sc-if>
                   <span>{{ ch.label }}</span>
                 </span>
@@ -1647,11 +1702,11 @@ class Component extends DCLogic {
       ],
       onPresPick: (ci, opt) => { if (ci === 1) ci = 0; else if (ci > 1) ci -= 1; /* Detail rozdělen na Simple a Konfigurátor (6. 11. 2026) */ if (ci === 0) { if (opt !== 'Čalouněná') (h => { try { const a = document.createElement('a'); a.href = h; a.style.display = 'none'; (document.getElementById('dc-root') || document.body).appendChild(a); a.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true, view: window })); a.remove(); } catch (e) { window.location.href = h; } })(opt === 'Multi Konf.' ? 'Detail_Postel_3.0-hqdl.dc.html' : (opt === 'Set polštář + povlak' ? 'Detail_Set_Polstar_B.dc.html' : opt === 'Set polštář + přikrývka' ? 'Detail_Set_Bamboo.dc.html' : opt === 'Čalouněná' ? 'Detail_Calounena_Postel.dc.html' : opt === 'Airflex SET' ? 'Detail_Matrace_Airflex_Set.dc.html' : opt === 'Set 1+1 polštáře' ? 'Detail_Set_Polstare_1plus1.dc.html' : opt === 'Skříň UNI 2D' ? 'Detail_Skrin_UNI_2D_Konf.dc.html' : 'Detail_' + String(opt).replace(/ /g, '_') + '.dc.html')); return; } ci -= 1; this.setState(ci === 0 ? { stickPick: opt } : ci === 1 ? { sizeUi: opt } : ci === 2 ? { setUi: opt } : { matUi: opt }); },
       stickyChips: [
-        { label: this.state.customSize || this.state.size },
+        { label: this.state.csOn ? (csValid ? csWn + ' × ' + csLn + ' cm' : 'Vlastní rozměr') : (this.state.customSize || this.state.size) },
         { label: panel ? 'Panely: ' + panel.label : '' },
         { label: 'Rošt: ' + rost.label },
         { label: mat.label, color: mat.color, hasSwatch: true },
-        { label: 'Čalounění: ' + cal.label, color: cal.color, hasSwatch: true }
+        { label: 'Čalounění: ' + cal.label, color: calItem.image ? 'url(' + calItem.image + ') center / cover' : cal.color, hasSwatch: true }
       ].filter(c => !!c.label),
       crumbs: [
         { label: 'Domů', href: 'index.dc.html' },
@@ -1908,7 +1963,7 @@ class Component extends DCLogic {
         ['Výška matrace', 'doporučujeme 15–18 cm'],
         ['Údržba', 'utřete vlhkým hadříkem, nedoporučujeme agresivní čistidla či rozpouštědla'],
         ['Dle certifikace', 'ČSN EN 71-3, vydal TZÚS Praha, s.p.'],
-        ['Výrobce', 'Svět spánku, navrhujeme i vyrábíme v ČR'],
+        ['Výrobce', 'Světspánku.cz, navrhujeme i vyrábíme v ČR'],
         ['Síla čela postele', '4 cm'],
         ['Síla bočnice', '2,7 cm'],
         ['Výška čela u hlavy', '100 cm'],

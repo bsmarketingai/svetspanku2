@@ -791,6 +791,9 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
                 </sc-if>
               </div>
 
+              <!-- 26. 11. 2026: úložný prostor ano / ne nad výškou postele – stejná komponenta jako Postel 3.0 -->
+              <dc-import name="UloznyProstor" value="{{ upValue }}" noNote="{{ upNoNote }}" yesNote="{{ upYesNote }}" onPick="{{ onUpPick }}" noInfo="{{ true }}" noLow="{{ true }}" noImage="_blob/32c7725e0a9966d7f254315694db0eb9.webp" hint-size="100%,190px"></dc-import>
+
               <div style="display:flex;flex-direction:column;gap:10px">
                 <span id="ss-pk-vyska" style="font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:19px">Výška postele (horní hrana rámu)</span><sc-if value="{{ warnVyska }}" hint-placeholder-val="{{ false }}"><span class="ss-pk-msg">Vyberte výšku</span></sc-if>
                 <sc-if value="{{ sizeChips }}" hint-placeholder-val="{{ true }}">
@@ -1127,7 +1130,7 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
                 <sc-for list="{{ stickyChips }}" as="ch" hint-placeholder-count="4">
                   <span style="display:inline-flex;align-items:center;gap:6px;height:26px;padding:0 10px;border-radius:999px;background:var(--ss-surface-subtle,#FAF5EF);box-shadow:inset 0 0 0 1px var(--ss-border-subtle,#E1E6EB);font-size:13px;color:var(--ss-text-secondary,#3D4750);white-space:nowrap">
                     <sc-if value="{{ ch.hasSwatch }}" hint-placeholder-val="{{ false }}">
-                      <span style="width:10px;height:10px;border-radius:999px;flex:none;box-shadow:inset 0 0 0 1px rgba(19,44,67,.18);background:{{ ch.color }}"></span>
+                      <span style="width:18px;height:18px;margin-left:-7px;border-radius:999px;flex:none;box-shadow:inset 0 0 0 1px rgba(19,44,67,.18);background:{{ ch.color }}"></span>
                     </sc-if>
                     <span>{{ ch.label }}</span>
                   </span>
@@ -1152,7 +1155,7 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
               <sc-for list="{{ stickyChips }}" as="ch" hint-placeholder-count="4">
                 <span style="display:inline-flex;align-items:center;gap:6px;flex:none;height:24px;padding:0 10px;border-radius:999px;background:var(--ss-surface-subtle,#FAF5EF);box-shadow:inset 0 0 0 1px var(--ss-border-subtle,#E1E6EB);font-size:13px;color:var(--ss-text-secondary,#3D4750)">
                   <sc-if value="{{ ch.hasSwatch }}" hint-placeholder-val="{{ false }}">
-                    <span style="width:10px;height:10px;border-radius:999px;flex:none;box-shadow:inset 0 0 0 1px rgba(19,44,67,.18);background:{{ ch.color }}"></span>
+                    <span style="width:18px;height:18px;margin-left:-7px;border-radius:999px;flex:none;box-shadow:inset 0 0 0 1px rgba(19,44,67,.18);background:{{ ch.color }}"></span>
                   </sc-if>
                   <span>{{ ch.label }}</span>
                 </span>
@@ -1311,7 +1314,7 @@ class Component extends DCLogic {
   state = {
     width: typeof window !== 'undefined' ? document.documentElement.clientWidth : 1440,
     led: true, photo: 0, lb: null, qty: 1, fav: (() => { try { return JSON.parse(localStorage.getItem('ss-fav') || '[]').includes('multi-bene'); } catch (e) { return false; } })(), cmp: (() => { try { return JSON.parse(localStorage.getItem('ss-cmp') || '[]').includes('multi-bene'); } catch (e) { return false; } })(), perex: false,
-    onlyStock: false, pk: {}, warn: false, size: '90 × 200 cm', vyska: 'komfort', up: 'yes', variant: 1, faq: 1,
+    onlyStock: false, pk: {}, warn: false, size: '90 × 200 cm', vyska: 'v40', up: 'no', variant: 1, faq: 1,
     rost: 'bez', mat: 'buk-cherry', cal: 'k26',
     custom: false, customW: '', customL: '', customMail: '', customAgree: false, customReg: true,
     customError: false, customSize: null, csOn: false, csW: '', csL: '', csOk: false, csInfo: false,
@@ -1592,16 +1595,20 @@ class Component extends DCLogic {
       { id: '180 × 200 cm', label: '180 × 200 cm', meta: 'ložná plocha', add: 6200, stock: 'Skladem' },
       { id: '200 × 200 cm', label: '200 × 200 cm', meta: 'ložná plocha', add: 7400, stock: 'Na objednání (2–3 týdny)', outOfStock: true }
     ];
-    const VYSKY = [
-      { id: 'standard', label: 'Standard 40 cm', meta: 'horní hrana rámu', add: 0, stock: 'Skladem' },
-      { id: 'komfort', label: 'Komfort 50 cm', meta: 'horní hrana rámu', add: 900, stock: 'Skladem' },
-      { id: 'senior', label: 'Senior 60 cm', meta: 'horní hrana rámu, snazší vstávání', add: 1600, stock: 'Na objednání (2–3 týdny)', outOfStock: true }
+    // 26. 11. 2026: výška podle úložného prostoru – bez něj 35 / 40 / 45 / 50 cm, s ním jen 45 / 50 cm (ukázkové příplatky)
+    const VYSKY_ALL = [
+      { id: 'v35', label: '35 cm', meta: 'horní hrana rámu', add: 0, stock: 'Skladem' },
+      { id: 'v40', label: '40 cm', meta: 'horní hrana rámu', add: 0, stock: 'Skladem' },
+      { id: 'v45', label: '45 cm', meta: 'horní hrana rámu', add: 500, stock: 'Skladem' },
+      { id: 'v50', label: '50 cm', meta: 'horní hrana rámu', add: 900, stock: 'Skladem' }
     ];
+    const VYSKY = this.state.up === 'yes' ? VYSKY_ALL.filter(v => v.id === 'v45' || v.id === 'v50') : VYSKY_ALL;
     const roz = ROZMERY.find(r => r.id === this.state.size) || ROZMERY[0];
-    const vys = VYSKY.find(r => r.id === this.state.vyska) || VYSKY[1];
+    const vys = VYSKY.find(r => r.id === this.state.vyska) || VYSKY[0];
     const addAll = roz.add + vys.add + matWoodAdd;
-    const now = baseNow + addAll;
-    const before = baseBefore + addAll;
+    const upAdd = this.state.up === 'yes' ? upDiff : 0; // 26. 11. 2026: úložný prostor se přičítá k ceně
+    const now = baseNow + addAll + upAdd;
+    const before = baseBefore + addAll + upAdd;
     const fmtRow = (r) => Object.assign({}, r, { price: r.add ? '+ ' + fmt(r.add) : 'bez příplatku' });
     const onlyStock = this.state.onlyStock;
     const stockFilter = (rows) => onlyStock ? rows.filter(r => !r.outOfStock) : rows;
@@ -1855,6 +1862,7 @@ class Component extends DCLogic {
       priceBefore,
       discount,
       upNoDiff: '−' + fmt(upDiff),
+      upValue: this.state.up, upNoNote: 'Bez příplatku', upYesNote: '+\u00A0' + fmt(upDiff), onUpPick: (v) => this.setState(st => { const ok = v === 'yes' ? ['v45', 'v50'] : ['v35', 'v40', 'v45', 'v50']; if (ok.indexOf(st.vyska) >= 0) return { up: v }; return { up: v, vyska: ok[0], pk: Object.assign({}, st.pk, { vyska: false }) }; }), /* 26. 11. 2026: výška, která s úložným prostorem nejde, se zruší */
       qty: this.state.qty,
       onQty: (v) => this.setState({ qty: v }),
       onBuy: () => { if (this.state.size === '' && this.state.customSize) return; if (this.pkCheck()) this.setState({ added: true }); },
@@ -1905,7 +1913,7 @@ class Component extends DCLogic {
         ['Výška matrace', 'doporučujeme 15–18 cm'],
         ['Údržba', 'utřete vlhkým hadříkem, nedoporučujeme agresivní čistidla či rozpouštědla'],
         ['Dle certifikace', 'ČSN EN 71-3, vydal TZÚS Praha, s.p.'],
-        ['Výrobce', 'Svět spánku, navrhujeme i vyrábíme v ČR'],
+        ['Výrobce', 'Světspánku.cz, navrhujeme i vyrábíme v ČR'],
         ['Síla čela postele', '4 cm'],
         ['Síla bočnice', '2,7 cm'],
         ['Výška čela u hlavy', '100 cm'],

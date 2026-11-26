@@ -562,9 +562,9 @@ class Component extends DCLogic {
   ckDP() {
     const c = this.ck(), d = c.delivery || 'own-1';
     const OWN = [{ fee: 650, short: 'za první dveře v přízemí' }, { fee: 1500, short: 's vynáškou do patra' }, { fee: 2050, short: 's vynáškou a montáží' }];
-    const PAY = { card: ['Platba kartou online', 0], instant: ['Okamžitý bankovní převod', 0], qr: ['QR platba / běžný bankovní převod', 0], gpay: ['Google Pay', 0], klarna: ['Klarna – 3 splátky bez úroku', 0], cash: ['Hotově', 0], cod: ['Dobírkou', 79] };
+    const PAY = { card: ['Platba kartou online', 0], instant: ['Okamžitý bankovní převod', 0], qr: ['QR platba / běžný bankovní převod', 0], apay: ['Apple Pay', 0], gpay: ['Google Pay', 0], klarna: ['Klarna – 3 splátky bez úroku', 0], cash: ['Hotově', 0], cod: ['Dobírkou', 79] };
     let delName, delFee, store = false;
-    if (d.indexOf('own-') === 0) { const o = OWN[+d.split('-')[1]] || OWN[1]; delName = 'Doprava Svět spánku – ' + o.short; /* 18. 11. 2026: jasně naše doprava, ne odvoz zákazníkem */ delFee = o.fee; }
+    if (d.indexOf('own-') === 0) { const o = OWN[+d.split('-')[1]] || OWN[1]; delName = 'Doprava Světspánku.cz – ' + o.short; /* 18. 11. 2026: jasně naše doprava, ne odvoz zákazníkem */ delFee = o.fee; }
     else if (d === 'ppl') { delName = 'Doručení na adresu PPL'; delFee = 1000; }
     else { delName = 'Osobní odběr – ' + (c.storeName || 'prodejna'); delFee = 0; store = true; }
     const p = PAY[c.payment] || PAY.card;

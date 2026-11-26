@@ -543,6 +543,13 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
 .ss-pd-lbth[aria-current="true"]{opacity:1;box-shadow:inset 0 0 0 2px #FFFFFF;}
 .ss-pd-lbth:hover{opacity:1;}
 .ss-pd-lbth:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(255,255,255,.6);}
+.ss-kit-zoom{position:relative;display:block;flex:none;width:88px;height:88px;padding:0;border:0;border-radius:8px;background:none;cursor:zoom-in;}
+.ss-kit-zi{position:absolute;right:3px;bottom:3px;display:flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:6px;background:rgba(255,255,255,.92);color:var(--ss-link-hover,#21507B);box-shadow:0 1px 4px rgba(19,44,67,.18);pointer-events:none;}
+@media (hover:hover) and (pointer:fine){.ss-kit-zoom:hover{box-shadow:inset 0 0 0 2px var(--ss-border-hover,#8DB3D3);}.ss-kit-zoom:hover .ss-kit-zi{background:#FFFFFF;color:var(--ss-hover-text,#A4600C);}}
+.ss-kit-zoom:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
+.ss-kit-chg{border:0;cursor:pointer;font-family:inherit;}
+@media (hover:hover) and (pointer:fine){.ss-kit-chg:hover{background:var(--ss-surface-muted,#F3EDE4)!important;}}
+.ss-kit-chg:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
 .ss-pd-kit-tg{display:flex;align-items:center;justify-content:center;width:44px;height:44px;flex:none;margin:-8px -8px 0 0;border:0;border-radius:6px;background:none;color:var(--ss-text-secondary,#3D4750);cursor:pointer;transition:background-color .12s cubic-bezier(.22,.61,.36,1),color .12s cubic-bezier(.22,.61,.36,1);}
 @media (hover:hover) and (pointer:fine){.ss-pd-kit-tg:hover{background:var(--ss-hover-bg,#F0F5FA);color:var(--ss-hover-text,#21507B);}}
 .ss-pd-kit-tg:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
@@ -692,49 +699,47 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
             <div style="display:flex;flex-direction:column;gap:12px">
               <h2 style="margin:0;font-size:21px;line-height:1.2;color:var(--ss-text-heading,#0B1F33)">Co je ve vašem kompletu</h2>
               <sc-for list="{{ kitItems }}" as="k" hint-placeholder-count="3">
-                <div style="background:var(--ss-surface-box,#FFFFFF);border:1px solid var(--ss-border-subtle,#E1E6EB);border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:16px">
-                  <div style="display:flex;align-items:flex-start;gap:16px">
+                <div style="background:var(--ss-surface-box,#FFFFFF);border:1px solid var(--ss-border-subtle,#E1E6EB);border-radius:12px;padding:16px;display:flex;align-items:center;gap:16px">
+                  <!-- 26. 11. 2026: zaškrtnutí svisle vystředěné na celou kartu -->
+                  <span class="ss-pd-var-check" aria-hidden="true" style="position:static;flex:none"><dc-import name="Ikony" iconName="check" size="16" hint-size="16px,16px"></dc-import></span>
+                  <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:16px">
+                  <div style="display:flex;align-items:center;gap:16px">
                     <sc-if value="{{ k.hasImg }}" hint-placeholder-val="{{ true }}">
-                      <img decoding="async" src="{{ k.img }}" alt="" style="display:block;width:88px;height:88px;flex:none;border-radius:8px;object-fit:{{ k.fit }};background:#FFFFFF" />
+                      <!-- 26. 11. 2026: fotka položky kompletu se dá zvětšit (Overlay + NahledObsah) -->
+                      <button type="button" class="ss-kit-zoom" onClick="{{ k.onZoom }}" aria-label="{{ k.zoomAria }}" title="Zvětšit fotku">
+                        <img decoding="async" src="{{ k.img }}" alt="" style="display:block;width:88px;height:88px;border-radius:8px;object-fit:{{ k.fit }};background:#FFFFFF" />
+                        <span class="ss-kit-zi" aria-hidden="true"><dc-import name="Ikony" iconName="arrows-maximize" size="14" hint-size="14px,14px"></dc-import></span>
+                      </button>
                     </sc-if>
                     <sc-if value="{{ k.noImg }}" hint-placeholder-val="{{ false }}">
                       <span aria-hidden="true" style="display:flex;align-items:center;justify-content:center;width:88px;height:88px;flex:none;border-radius:8px;background:var(--ss-surface-muted,#F3EDE4);color:var(--ss-text-muted,#5B6874)"><dc-import name="Ikony" iconName="photo" size="24" hint-size="24px,24px"></dc-import></span>
                     </sc-if>
                     <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:6px">
-                      <h3 style="margin:0;font-size:19px;line-height:1.3;color:var(--ss-text-heading,#0B1F33)">{{ k.title }}</h3>
+                      <!-- 26. 11. 2026: u postele bez nadpisu – název je už v H1 nahoře -->
+                      <sc-if value="{{ k.showTitle }}" hint-placeholder-val="{{ true }}"><h3 style="margin:0;font-size:19px;line-height:1.3;color:var(--ss-text-heading,#0B1F33)">{{ k.title }}</h3></sc-if>
+                      <sc-if value="{{ k.showTitle }}" hint-placeholder-val="{{ true }}">
                       <span style="font-size:14px;color:var(--ss-text-muted,#5B6874)">Cena samostatně {{ k.regular }}</span>
                       <span style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 12px;font-size:14px">
                         <span style="display:flex;align-items:center;gap:4px;font-weight:600;color:var(--ss-status-success,#157A41)"><span style="display:flex"><dc-import name="Ikony" iconName="circle-check" size="18" hint-size="18px,18px"></dc-import></span>Skladem <span style="font-weight:400;color:var(--ss-text-secondary,#3D4750)">({{ k.qty }})</span></span>
                         <a href="#doprava" style="font-size:14px">22. 10. u vás</a>
                       </span>
+                      </sc-if>
+                      <!-- 26. 11. 2026: postel – vedle fotky jen popis (název je v H1, cena a skladovost u kompletu) -->
+                      <sc-if value="{{ k.descBeside }}" hint-placeholder-val="{{ false }}"><p style="margin:0;font-size:15px;line-height:1.6;color:var(--ss-text-secondary,#3D4750);text-wrap:pretty">{{ k.desc }}</p></sc-if>
                     </div>
-                    <button type="button" class="ss-pd-kit-tg" onClick="{{ k.toggle }}" aria-expanded="{{ k.expanded }}" aria-label="{{ k.toggleLabel }}"><span style="display:flex;transition:transform .15s cubic-bezier(.22,.61,.36,1);transform:{{ k.rotate }}"><dc-import name="Ikony" iconName="chevron-up" size="22" hint-size="22px,22px"></dc-import></span></button>
-                  </div>
-                  <sc-if value="{{ k.open }}" hint-placeholder-val="{{ true }}">
-                    <p style="margin:0;font-size:15px;line-height:1.6;color:var(--ss-text-secondary,#3D4750);text-wrap:pretty">{{ k.desc }}</p>
-                    <sc-if value="{{ k.hasOpt }}" hint-placeholder-val="{{ true }}">
-                      <button type="button" class="ss-pd-row" onClick="{{ k.onOpt }}" aria-expanded="false">
-                        <span class="ss-pd-var-check" aria-hidden="true" style="position:static;align-self:center;flex:none"><dc-import name="Ikony" iconName="check" size="16" hint-size="16px,16px"></dc-import></span>
-                        <span class="ss-pd-tx" style="flex:1;min-width:0;display:flex;flex-direction:column;gap:4px">
-                          <span style="font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:19px;color:var(--ss-text-primary,#1C2229)">{{ k.optTitle }}</span>
-                          <span style="display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-size:14px;color:var(--ss-text-secondary,#3D4750)">
-                            <sc-if value="{{ k.hasSwatch }}" hint-placeholder-val="{{ false }}">
-                              <span style="width:22px;height:22px;flex:none;border-radius:999px;background:{{ k.swatch }};box-shadow:inset 0 0 0 1px rgba(19,44,67,.15)"></span>
-                            </sc-if>
-                            <sc-if value="{{ k.hasBars }}" hint-placeholder-val="{{ false }}">
-                              <span role="img" aria-label="{{ k.optValue }}" style="display:grid;grid-template-columns:repeat(5,minmax(0,1fr));align-items:center;gap:3px;width:42px;height:16px;flex:none"><!-- tuhost jako 5 stejně vysokých dílků podle karty matrace (13. 11. 2026) -->
-                                <sc-for list="{{ k.bars }}" as="kb" hint-placeholder-count="5"><span style="display:block;height:4px;border-radius:2px;background:{{ kb.bg }}"></span></sc-for>
-                              </span>
-                            </sc-if>
-                            <span>{{ k.optValue }}</span>
-                          </span>
-                        </span>
-                        <span class="ss-pd-nt" style="flex:none;font-size:15px;font-weight:600;color:{{ k.optNoteColor }};white-space:nowrap">{{ k.optNote }}</span>
-                        <span class="ss-pk-cta" data-pri="false">Změnit</span>
-                      </button>
+                    <sc-if value="{{ k.hasChange }}" hint-placeholder-val="{{ true }}">
+                      <button type="button" class="ss-pk-cta ss-kit-chg" data-pri="false" onClick="{{ k.onChange }}" aria-haspopup="dialog" aria-label="{{ k.changeLabel }}">Změnit</button>
                     </sc-if>
+                  </div>
+                  <sc-if value="{{ k.showTitle }}" hint-placeholder-val="{{ true }}">
+                    <p style="margin:0;font-size:15px;line-height:1.6;color:var(--ss-text-secondary,#3D4750);text-wrap:pretty">{{ k.desc }}</p>
                   </sc-if>
+                  </div>
                 </div>
+                <!-- 26. 11. 2026: Materiál a odstín samostatně jako 2. položka hned pod postelí (komponenta VyberRadek jako na Postel 3.0) -->
+                <sc-if value="{{ k.matAfter }}" hint-placeholder-val="{{ false }}">
+                  <dc-import name="VyberRadek" title="Materiál a odstín (olej)" value="{{ kitMatValue }}" note="{{ kitMatNote }}" noteColor="{{ kitMatNoteColor }}" selected="{{ true }}" image="{{ kitMatImg }}" swatch="{{ kitMatSwatch }}" onOpen="{{ kitMatOpen }}" hint-size="100%,92px"></dc-import>
+                </sc-if>
               </sc-for>
             </div>
 
@@ -1042,7 +1047,7 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
                 <sc-for list="{{ stickyChips }}" as="ch" hint-placeholder-count="4">
                   <span style="display:inline-flex;align-items:center;gap:6px;height:26px;padding:0 10px;border-radius:999px;background:var(--ss-surface-subtle,#FAF5EF);box-shadow:inset 0 0 0 1px var(--ss-border-subtle,#E1E6EB);font-size:13px;color:var(--ss-text-secondary,#3D4750);white-space:nowrap">
                     <sc-if value="{{ ch.hasSwatch }}" hint-placeholder-val="{{ false }}">
-                      <span style="width:10px;height:10px;border-radius:999px;flex:none;box-shadow:inset 0 0 0 1px rgba(19,44,67,.18);background:{{ ch.color }}"></span>
+                      <span style="width:18px;height:18px;margin-left:-7px;border-radius:999px;flex:none;box-shadow:inset 0 0 0 1px rgba(19,44,67,.18);background:{{ ch.color }}"></span>
                     </sc-if>
                     <span>{{ ch.label }}</span>
                   </span>
@@ -1065,7 +1070,7 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
               <sc-for list="{{ stickyChips }}" as="ch" hint-placeholder-count="4">
                 <span style="display:inline-flex;align-items:center;gap:6px;flex:none;height:24px;padding:0 10px;border-radius:999px;background:var(--ss-surface-subtle,#FAF5EF);box-shadow:inset 0 0 0 1px var(--ss-border-subtle,#E1E6EB);font-size:13px;color:var(--ss-text-secondary,#3D4750)">
                   <sc-if value="{{ ch.hasSwatch }}" hint-placeholder-val="{{ false }}">
-                    <span style="width:10px;height:10px;border-radius:999px;flex:none;box-shadow:inset 0 0 0 1px rgba(19,44,67,.18);background:{{ ch.color }}"></span>
+                    <span style="width:18px;height:18px;margin-left:-7px;border-radius:999px;flex:none;box-shadow:inset 0 0 0 1px rgba(19,44,67,.18);background:{{ ch.color }}"></span>
                   </sc-if>
                   <span>{{ ch.label }}</span>
                 </span>
@@ -1088,6 +1093,7 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
     </div>
   </sc-if>
 
+  <dc-import name="Overlay" open="{{ kitZoomOpen }}" variant="drawer" size="lg" obsah="NahledObsah" title="{{ kitZoomTitle }}" icon="photo" closeLabel="náhled" initialFocus="close" data="{{ kitZoomData }}" onClose="{{ closeKitZoom }}" primaryLabel="{{ kitZoomPrimary }}" onPrimary="{{ kitZoomChange }}" hint-size="0px,0px"></dc-import>
   <dc-import name="VariantaDrawer" open="{{ drawerOpen }}" title="{{ drawerTitle }}" note="{{ drawerNote }}" value="{{ drawerValue }}" groups="{{ drawerGroups }}" rows="{{ drawerRows }}" onPick="{{ onDrawerPick }}" onClose="{{ closeDrawer }}" hint-size="0px,0px"></dc-import>
 
   <!-- 18. 11. 2026: okno Možnosti dopravy (Overlay + DopravaObsah) -->
@@ -1549,26 +1555,41 @@ class Component extends DCLogic {
     const matWoodAdd = String(matItem.woodNote).indexOf('+') === 0 ? _num0(matItem.woodNote) : 0;
     const calItem = LATKY.find(l => l.id === (this.state.cal || 'kronos-05')) || LATKY[0];
     const TUHOSTI = [
-      { id: 't1', label: 'Měkká (1/5)', meta: 'pro lehčí postavy a spaní na boku', price: '0 Kč', stock: 'Skladem', image: '_blob/a63e20d779f2e3e40349f4ecbcc793c0.webp' },
-      { id: 't2', label: 'Středně měkká (2/5)', meta: 'pro spaní na boku i na zádech do 80 kg', price: '0 Kč', stock: 'Skladem', image: '_blob/4c656a6df09362706765cb731767ac96.webp' },
-      { id: 't3', label: 'Středně tvrdá (3/5)', meta: 'univerzální volba 60–100 kg', price: '0 Kč', stock: 'Skladem', image: '_blob/a63789a52fc157dddaef6cdbafc13fb0.webp' },
-      { id: 't4', label: 'Tvrdá (4/5)', meta: 'pro těžší postavy a spaní na zádech', price: '0 Kč', stock: 'Skladem', image: '_blob/45ceef241f2bd0f41d022267c01370de.webp' },
-      { id: 't5', label: 'Velmi tvrdá (5/5)', meta: 'pro nejtěžší postavy a pevnou oporu zad', price: '0 Kč', stock: 'Skladem', image: '_blob/3f85ee4ed91cf11d2ff61f165a3410a2.webp' }
+      { id: 't1', label: 'H1', meta: 'pro lehčí postavy a spaní na boku', price: '0 Kč', stock: 'Skladem', image: '_blob/a63e20d779f2e3e40349f4ecbcc793c0.webp' },
+      { id: 't2', label: 'H2', meta: 'pro spaní na boku i na zádech do 80 kg', price: '0 Kč', stock: 'Skladem', image: '_blob/4c656a6df09362706765cb731767ac96.webp' },
+      { id: 't3', label: 'H3', meta: 'univerzální volba 60–100 kg', price: '0 Kč', stock: 'Skladem', image: '_blob/a63789a52fc157dddaef6cdbafc13fb0.webp' },
+      { id: 't4', label: 'H4', meta: 'pro těžší postavy a spaní na zádech', price: '0 Kč', stock: 'Skladem', image: '_blob/45ceef241f2bd0f41d022267c01370de.webp' },
+      { id: 't5', label: 'H5', meta: 'pro nejtěžší postavy a pevnou oporu zad', price: '0 Kč', stock: 'Skladem', image: '_blob/3f85ee4ed91cf11d2ff61f165a3410a2.webp' }
     ];
     const tuh = TUHOSTI.find(t => t.id === (this.state.tuh || 't3')) || TUHOSTI[1];
     const kitOpen = this.state.kitOpen || { postel: true, matrace: true, rost: true };
     const kitToggle = key => () => this.setState(s => { const o = Object.assign({ postel: true, matrace: true, rost: true }, s.kitOpen); o[key] = !o[key]; return { kitOpen: o }; });
+    // 26. 11. 2026: položky kompletu vždy rozbalené, předvybrané (zaškrtnutí); matraci a rošt lze přes Změnit vyměnit za jinou variantu
+    const KIT_MATRACE = [
+      { id: 'viscoair', short: 'Viscoair', img: '_blob/4a0a7adf8f13ddf960536da06df0e197.webp', title: 'Matrace Viscoair 19 cm, 180 × 200 cm', unit: 8290, qty: '5 ks', meta: 'BIO pěna VERDE® + XDURA® · tuhost H3',
+        desc: 'Antimikrobiální a ortopedická matrace spojuje BIO pěnu VERDE® a pěnu XDURA® – pro hluboký spánek a dlouhotrvající komfort.' },
+      { id: 'elara', short: 'ELARA greengel', img: '_blob/c2606f1b288878aa84129b4a0e05ba7e.webp', title: 'Matrace ELARA greengel 22 cm, 180 × 200 cm', unit: 9990, qty: '4 ks', meta: 'gelová paměťová pěna · tuhost H2',
+        desc: 'Matrace s chladivou gelovou pěnou, která se přizpůsobí tělu a odvádí teplo. Vhodná pro spaní na boku i na zádech.' },
+      { id: 'leda', short: 'Leda Duo', img: '_blob/4d39f39f3e59f9479b2f3fa0c249def9.webp', title: 'Taštičková matrace Leda Duo 20 cm, 180 × 200 cm', unit: 10490, qty: '3 ks', meta: 'taštičkové pružiny · tuhost H4',
+        desc: 'Taštičkové pružiny pracují každá zvlášť, takže matrace drží páteř rovně a pohyb partnera se nepřenáší.' }
+    ];
+    const KIT_ROSTY = [
+      { id: 'villach', short: 'rošt Villach S', img: '_blob/7d9234acbe0f59bf374b86101ea80224.webp', title: 'Lamelový rošt Villach S, 90 × 200 cm', unit: 2290, qty: '8 ks', meta: '28 lamel · nastavitelná tuhost v ramenou',
+        desc: 'Lamelový rošt s 28 pružnými lamelami z bukové překližky. Lamely v oblasti ramen lze ručně změkčit, rám je z masivního smrku.' },
+      { id: 'polohovaci', short: 'polohovací rošt', img: '_blob/e93df98a5542f295113f3ff8460f56a7.webp', title: 'Polohovací rošt s kováním, 90 × 200 cm', unit: 3490, qty: '4 ks', meta: 'polohování hlavy i nohou',
+        desc: 'Rošt s ručně polohovatelnou hlavovou i nožní částí – pohodlné čtení v posteli i odlehčení nohou.' }
+    ];
+    const kMat = KIT_MATRACE.find(m => m.id === (this.state.kitMat || 'viscoair')) || KIT_MATRACE[0];
+    const kRost = KIT_ROSTY.find(m => m.id === (this.state.kitRost || 'villach')) || KIT_ROSTY[0];
     const KIT = [
       { key: 'postel', img: '_blob/bf9ee623a3c7f6bdd65949a31b2b28ab.webp', fit: 'contain', title: 'LEVITA – dřevěná postel s „levitujícím“ rámem a nočními stolky, 180 × 200 cm', unit: 38990, count: 1, qty: '3 ks',
         desc: 'Postel LEVITA je skvělou volbou pro každého, kdo hledá nábytek, který nejen skvěle vypadá, ale také vám dopřeje kvalitní odpočinek.' },
-      { key: 'matrace', img: '_blob/4a0a7adf8f13ddf960536da06df0e197.webp', fit: 'contain', title: 'Matrace Viscoair 19 cm, 180 × 200 cm', unit: 8290, count: 1, qty: '5 ks',
-        desc: 'Antimikrobiální a ortopedická matrace spojuje BIO pěnu VERDE® a pěnu XDURA® – pro hluboký spánek a dlouhotrvající komfort.' },
-      { key: 'rost', img: '_blob/7d9234acbe0f59bf374b86101ea80224.webp', fit: 'contain', title: 'Lamelový rošt Villach S, 90 × 200 cm', unit: 2290, count: 2, qty: '8 ks',
-        desc: 'Lamelový rošt s 28 pružnými lamelami z bukové překližky. Lamely v oblasti ramen lze ručně změkčit, rám je z masivního smrku.' }
+      Object.assign({ key: 'matrace', fit: 'contain', count: 1, drawer: 'kitMat', base: KIT_MATRACE[0].unit }, kMat),
+      Object.assign({ key: 'rost', fit: 'contain', count: 2, drawer: 'kitRost', base: KIT_ROSTY[0].unit }, kRost)
     ];
     const fmtK = n => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, '\u00A0') + '\u00A0Kč';
     const kitSum = KIT.reduce((a, it) => a + it.unit * it.count, 0);
-    const KIT_PRICE = 43270;
+    const KIT_PRICE = 43270 + KIT.reduce((a, it) => a + (it.base ? (it.unit - it.base) * it.count : 0), 0); // 43 270 Kč = výchozí sestava; jiná matrace / rošt přičte rozdíl ceny
     const kitSave = kitSum - KIT_PRICE;
     const kitPct = Math.floor(kitSave / kitSum * 100);
     const cal = { label: calItem.label, note: 'Bez příplatku', color: calItem.color };
@@ -1620,8 +1641,8 @@ class Component extends DCLogic {
       stickyChips: [
         { label: '180 × 200 cm' },
         { label: mat.label, color: mat.color, hasSwatch: true },
-        { label: 'Matrace ' + tuh.label },
-        { label: '2 × rošt Villach S' }
+        { label: 'Matrace ' + kMat.short },
+        { label: '2 × ' + kRost.short }
       ].filter(c => !!c.label),
       crumbs: [
         { label: 'Domů', href: 'index.dc.html' },
@@ -1726,11 +1747,12 @@ class Component extends DCLogic {
       pickUpYes: () => this.setState({ up: 'yes' }),
       toggleUp: () => this.setState(s => ({ up: s.up === 'yes' ? 'no' : 'yes' })),
       kitItems: KIT.map(it => {
-        const open = kitOpen[it.key] !== false;
-        const opt = it.key === 'postel' ? { optTitle: 'Materiál a odstín (olej)', optValue: mat.label, optNote: mat.note, optNoteColor: mat.note === 'Bez příplatku' ? 'var(--ss-status-success,#157A41)' : 'var(--ss-text-primary,#1C2229)', hasSwatch: true, swatch: mat.color, onOpt: () => this.setState({ drawer: 'material' }) }
-          : it.key === 'matrace' ? { optTitle: 'Tuhost matrace', optValue: tuh.label, optNote: '', optNoteColor: 'var(--ss-status-success,#157A41)', hasSwatch: false, swatch: '', hasBars: true, bars: ['#21507B', '#21507B', '#21507B', '#21507B', '#21507B'] /* 18. 11. 2026: bez přechodu – aktivní dílky jednou tmavou modrou */.map((c, i) => ({ bg: i < Number(String(tuh.id).slice(1)) ? c : 'var(--ss-surface-strong,#E9E1D5)' })), onOpt: () => this.setState({ drawer: 'tuhost' }) } : null;
-        return Object.assign({}, it, { regular: it.count > 1 ? it.count + ' × ' + fmtK(it.unit) + ' = ' + fmtK(it.unit * it.count) : fmtK(it.unit), hasImg: !!it.img, noImg: !it.img, open, expanded: open ? 'true' : 'false', rotate: open ? 'none' : 'rotate(180deg)',
-          toggleLabel: (open ? 'Sbalit ' : 'Rozbalit ') + it.title, toggle: kitToggle(it.key), hasOpt: !!opt }, opt || {});
+        const opt = it.key === 'postel' ? { optTitle: 'Materiál a odstín (olej)', optValue: mat.label, optNote: mat.note, optNoteColor: mat.note === 'Bez příplatku' ? 'var(--ss-status-success,#157A41)' : 'var(--ss-text-primary,#1C2229)', hasSwatch: true, swatch: mat.color, onOpt: () => this.setState({ drawer: 'material' }) } : null;
+        return Object.assign({}, it, { regular: it.count > 1 ? it.count + ' × ' + fmtK(it.unit) + ' = ' + fmtK(it.unit * it.count) : fmtK(it.unit), hasImg: !!it.img, noImg: !it.img,
+          zoomAria: 'Zvětšit fotku: ' + it.title, onZoom: () => this.setState({ kitZoom: { image: it.img, label: it.title, desc: it.desc || '', drawer: it.drawer || '' } }),
+          matAfter: it.key === 'postel', showTitle: it.key !== 'postel', descBeside: it.key === 'postel',
+          hasChange: !!it.drawer, changeLabel: 'Změnit ' + (it.key === 'matrace' ? 'matraci' : 'rošt') + ': ' + it.title, onChange: () => this.setState({ drawer: it.drawer }),
+          hasOpt: !!opt, isVr: !!opt, vrImg: it.key === 'postel' ? (matItem.image || '') : '' }, opt || {});
       }),
       kitBefore: fmtK(kitSum), kitPriceLine: fmtK(KIT_PRICE), kitDiscount: '−' + kitPct + ' %', kitSaveFmt: fmtK(kitSave), kitPriceFmt: fmtK(KIT_PRICE), kitSetBanner: false,
       pickers: [
@@ -1738,15 +1760,18 @@ class Component extends DCLogic {
         { title: 'Materiál a odstín (olej)', value: mat.label, note: mat.note, on: 'true', noteColor: mat.note === 'Bez příplatku' ? 'var(--ss-status-success,#157A41)' : 'var(--ss-text-primary,#1C2229)', hasSwatch: true, swatch: mat.color, onOpen: () => this.setState({ drawer: 'material' }) },
         { title: 'Čalounění', value: cal.label, note: cal.note, on: 'true', noteColor: cal.note === 'Bez příplatku' ? 'var(--ss-status-success,#157A41)' : 'var(--ss-text-primary,#1C2229)', hasSwatch: true, swatch: cal.color, onOpen: () => this.setState({ drawer: 'calouneni' }) }
       ],
+      kitMatValue: mat.label, kitMatNote: mat.note, kitMatNoteColor: mat.note === 'Bez příplatku' ? 'var(--ss-status-success,#157A41)' : 'var(--ss-text-primary,#1C2229)', kitMatImg: matItem.image || '', kitMatSwatch: mat.color, kitMatOpen: () => this.setState({ drawer: 'material' }),
+      kitZoomOpen: !!this.state.kitZoom, kitZoomTitle: this.state.kitZoom ? this.state.kitZoom.label : '', kitZoomData: this.state.kitZoom ? { image: this.state.kitZoom.image, label: this.state.kitZoom.label, desc: this.state.kitZoom.desc } : {},
+      kitZoomPrimary: this.state.kitZoom && this.state.kitZoom.drawer ? 'Změnit výběr' : '', closeKitZoom: () => this.setState({ kitZoom: null }), kitZoomChange: () => this.setState(st => ({ kitZoom: null, drawer: (st.kitZoom && st.kitZoom.drawer) || null })),
       drawerOpen: !!this.state.drawer,
-      drawerTitle: this.state.drawer === 'tuhost' ? 'Tuhost matrace' : this.state.drawer === 'rosty' ? 'Rošt(y)' : this.state.drawer === 'material' ? 'Materiál a odstín dřeva' : 'Čalounění',
+      drawerTitle: this.state.drawer === 'kitMat' ? 'Matrace v kompletu' : this.state.drawer === 'kitRost' ? 'Rošty v kompletu' : this.state.drawer === 'tuhost' ? 'Tuhost matrace' : this.state.drawer === 'rosty' ? 'Rošt(y)' : this.state.drawer === 'material' ? 'Materiál a odstín dřeva' : 'Čalounění',
       drawerNote: this.state.drawer === 'calouneni' ? 'Cena postele se výběrem látky nemění. Barvy se na obrazovkách liší – odstín si raději ověřte za denního světla na vzorníku v některé z našich prodejen.' : '',
-      drawerValue: this.state.drawer === 'tuhost' ? (this.state.tuh || 't3') : this.state.drawer === 'rosty' ? this.state.rost : this.state.drawer === 'material' ? this.state.mat : this.state.cal,
+      drawerValue: this.state.drawer === 'kitMat' ? kMat.id : this.state.drawer === 'kitRost' ? kRost.id : this.state.drawer === 'tuhost' ? (this.state.tuh || 't3') : this.state.drawer === 'rosty' ? this.state.rost : this.state.drawer === 'material' ? this.state.mat : this.state.cal,
       drawerGroups: this.state.drawer === 'material' ? MATERIALY : this.state.drawer === 'calouneni' ? LATKY_GROUPS : [],
-      drawerRows: this.state.drawer === 'rosty' ? ROSTY : this.state.drawer === 'tuhost' ? TUHOSTI : [],
+      drawerRows: this.state.drawer === 'kitMat' ? KIT_MATRACE.map(m => ({ id: m.id, label: m.title, meta: m.meta, price: (m.unit - KIT_MATRACE[0].unit) > 0 ? '+ ' + fmtK(m.unit - KIT_MATRACE[0].unit) : 'V ceně kompletu', stock: 'Skladem', image: m.img })) : this.state.drawer === 'kitRost' ? KIT_ROSTY.map(m => ({ id: m.id, label: m.title, meta: m.meta + ' · 2 ks', price: (m.unit - KIT_ROSTY[0].unit) > 0 ? '+ ' + fmtK((m.unit - KIT_ROSTY[0].unit) * 2) : 'V ceně kompletu', stock: 'Skladem', image: m.img })) : this.state.drawer === 'rosty' ? ROSTY : this.state.drawer === 'tuhost' ? TUHOSTI : [],
       onDrawerPick: (id) => {
         const k = this.state.drawer;
-        this.setState(k === 'tuhost' ? { tuh: id } : k === 'rosty' ? { rost: id } : k === 'material' ? { mat: id } : { cal: id });
+        this.setState(k === 'kitMat' ? { kitMat: id } : k === 'kitRost' ? { kitRost: id } : k === 'tuhost' ? { tuh: id } : k === 'rosty' ? { rost: id } : k === 'material' ? { mat: id } : { cal: id });
       },
       closeDrawer: () => this.setState({ drawer: null }),
       csOn: this.state.csOn,
@@ -1867,7 +1892,7 @@ class Component extends DCLogic {
         ['Výška matrace', 'doporučujeme 15–18 cm'],
         ['Údržba', 'utřete vlhkým hadříkem, nedoporučujeme agresivní čistidla či rozpouštědla'],
         ['Dle certifikace', 'ČSN EN 71-3, vydal TZÚS Praha, s.p.'],
-        ['Výrobce', 'Svět spánku, navrhujeme i vyrábíme v ČR'],
+        ['Výrobce', 'Světspánku.cz, navrhujeme i vyrábíme v ČR'],
         ['Síla čela postele', '4 cm'],
         ['Síla bočnice', '2,7 cm'],
         ['Výška čela u hlavy', '100 cm'],

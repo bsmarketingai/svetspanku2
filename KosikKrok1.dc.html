@@ -437,7 +437,7 @@ a:hover{color:var(--ss-hover-text,#21507B);}
           <div style="display:grid;grid-template-columns:{{ twoCols }};gap:{{ dpGap }};align-items:start;margin-top:40px;padding-top:40px;border-top:1px solid var(--ss-border-subtle,#E1E6EB)">
             <section aria-labelledby="ss-k1-doprava" style="min-width:0">
               <h2 id="ss-k1-doprava" style="margin:0;font-size:{{ h2Size }};line-height:1.2">Způsob dopravy</h2>
-              <dc-import name="SkupinaVoleb" group="doprava" recommended="{{ true }}" title="Naše vlastní doprava Svět spánku" description="Jistota perfektního stavu, doručení na domluvený termín a čas" date="21.–22. 10." dateNote="u vás" price="od 650 Kč" icon="truck" info="{{ ownInfo }}" options="{{ ownOptions }}" selectedIndex="{{ ownSel }}" open="{{ ownOpen }}" onToggle="{{ onOwnToggle }}" onPick="{{ onOwnPick }}" compact="{{ compact }}" hint-size="100%,320px"></dc-import>
+              <dc-import name="SkupinaVoleb" group="doprava" recommended="{{ true }}" title="Naše vlastní doprava Světspánku.cz" description="Jistota perfektního stavu, doručení na domluvený termín a čas" date="21.–22. 10." dateNote="u vás" price="od 650 Kč" icon="truck" info="{{ ownInfo }}" options="{{ ownOptions }}" selectedIndex="{{ ownSel }}" open="{{ ownOpen }}" onToggle="{{ onOwnToggle }}" onPick="{{ onOwnPick }}" compact="{{ compact }}" hint-size="100%,320px"></dc-import>
               <dc-import name="VolbaRadio" group="doprava" title="Doručení na adresu PPL" date="21.–22. 10." dateNote="u vás" price="1 000 Kč" logo="_blob/716b3b5040a1b6246fb9f795e3e50ffe.svg" info="{{ pplInfo }}" checked="{{ pplChecked }}" onSelect="{{ onPpl }}" divider="{{ true }}" compact="{{ compact }}" hint-size="100%,96px"></dc-import>
               <dc-import name="SkupinaVoleb" group="doprava" title="{{ storeTitle }}" date="21.–22. 10." dateNote="na prodejně" price="Zdarma" icon="building-store" options="{{ storeOptions }}" selectedIndex="{{ storeSel }}" open="{{ storeOpen }}" onToggle="{{ onStoreToggle }}" onPick="{{ onStorePick }}" compact="{{ compact }}" hint-size="100%,96px"></dc-import>
             </section>
@@ -589,6 +589,7 @@ class Component extends DCLogic {
     { id: 'card', title: 'Platba kartou online', logo: '_blob/d2e02f48c7c21cf75919a5f378eaa600.svg', fee: 0, info: ['Visa, Mastercard i Maestro', 'Platbu zpracuje zabezpečená brána Comgate', 'Objednávku začneme vyřizovat hned po zaplacení'] },
     { id: 'instant', title: 'Okamžitý bankovní převod', icon: 'building-bank', fee: 0, info: ['Zaplatíte přes internetové bankovnictví své banky', 'Peníze dorazí hned, objednávku vyřídíme bez čekání'] },
     { id: 'qr', title: 'QR platba / běžný bankovní převod', icon: 'qrcode', fee: 0, info: ['Platební údaje a QR kód vám pošleme e-mailem', 'Zboží expedujeme po připsání platby na účet'] },
+    { id: 'apay', title: 'Apple Pay', logo: '_blob/3b993d55123ae38f35df5a711fc08b34.svg', fee: 0 },
     { id: 'gpay', title: 'Google Pay', logo: '_blob/cd147266568c825a4bd1307aa053c17e.svg', fee: 0 },
     { id: 'klarna', title: 'Klarna', logo: '_blob/1ae9dd29343c0ca26d205edcb51ff6c6.svg', logoBg: '#FFA8CD', description: 'Zaplaťte ve 3 splátkách bez úroku', fee: 0 },
     { id: 'cash', title: 'Hotově', icon: 'cash', fee: 0, allow: ['own', 'store'] },

@@ -1277,7 +1277,7 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
                 <sc-for list="{{ stickyChips }}" as="ch" hint-placeholder-count="4">
                   <span style="display:inline-flex;align-items:center;gap:6px;height:26px;padding:0 10px;border-radius:999px;background:var(--ss-surface-subtle,#FAF5EF);box-shadow:inset 0 0 0 1px var(--ss-border-subtle,#E1E6EB);font-size:13px;color:var(--ss-text-secondary,#3D4750);white-space:nowrap">
                     <sc-if value="{{ ch.hasSwatch }}" hint-placeholder-val="{{ false }}">
-                      <span style="width:10px;height:10px;border-radius:999px;flex:none;box-shadow:inset 0 0 0 1px rgba(19,44,67,.18);background:{{ ch.color }}"></span>
+                      <span style="width:18px;height:18px;margin-left:-7px;border-radius:999px;flex:none;box-shadow:inset 0 0 0 1px rgba(19,44,67,.18);background:{{ ch.color }}"></span>
                     </sc-if>
                     <span>{{ ch.label }}</span>
                   </span>
@@ -1298,7 +1298,7 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
               <sc-for list="{{ stickyChips }}" as="ch" hint-placeholder-count="4">
                 <span style="display:inline-flex;align-items:center;gap:6px;flex:none;height:24px;padding:0 10px;border-radius:999px;background:var(--ss-surface-subtle,#FAF5EF);box-shadow:inset 0 0 0 1px var(--ss-border-subtle,#E1E6EB);font-size:13px;color:var(--ss-text-secondary,#3D4750)">
                   <sc-if value="{{ ch.hasSwatch }}" hint-placeholder-val="{{ false }}">
-                    <span style="width:10px;height:10px;border-radius:999px;flex:none;box-shadow:inset 0 0 0 1px rgba(19,44,67,.18);background:{{ ch.color }}"></span>
+                    <span style="width:18px;height:18px;margin-left:-7px;border-radius:999px;flex:none;box-shadow:inset 0 0 0 1px rgba(19,44,67,.18);background:{{ ch.color }}"></span>
                   </sc-if>
                   <span>{{ ch.label }}</span>
                 </span>
@@ -1915,7 +1915,7 @@ class Component extends DCLogic {
         { label: this.state.up === 'yes' ? 'S úložným prostorem' : 'Bez úložného prostoru' },
         { label: 'Rošt: ' + rost.label },
         { label: mat.label, color: mat.color, hasSwatch: true },
-        { label: 'Čalounění: ' + cal.label, color: cal.color, hasSwatch: true }
+        { label: 'Čalounění: ' + cal.label, color: calItem.image ? 'url(' + calItem.image + ') center / cover' : cal.color, hasSwatch: true }
       ].filter(c => !!c.label),
       crumbs: [
         { label: 'Domů', href: 'index.dc.html' },
@@ -2171,7 +2171,7 @@ class Component extends DCLogic {
         ['Výška matrace', 'doporučujeme 15–18 cm'],
         ['Údržba', 'utřete vlhkým hadříkem, nedoporučujeme agresivní čistidla či rozpouštědla'],
         ['Dle certifikace', 'ČSN EN 71-3, vydal TZÚS Praha, s.p.'],
-        ['Výrobce', 'Svět spánku, navrhujeme i vyrábíme v ČR'],
+        ['Výrobce', 'Světspánku.cz, navrhujeme i vyrábíme v ČR'],
         ['Síla čela postele', '4 cm'],
         ['Síla bočnice', '2,7 cm'],
         ['Výška čela u hlavy', '100 cm'],

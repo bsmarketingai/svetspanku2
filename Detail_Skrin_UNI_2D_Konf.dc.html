@@ -802,6 +802,41 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
                   <sc-if value="{{ g.hasHint }}" hint-placeholder-val="{{ false }}"><span style="font-size:13px;color:var(--ss-text-muted,#5B6874)">{{ g.hint }}</span></sc-if>
                 </div>
               </sc-for>
+              <!-- 26. 11. 2026: šířka skříně pod výškou – zadání 150–170 cm jako vlastní rozměr, info „i“ s rozsahem -->
+              <div style="display:flex;flex-direction:column;gap:10px">
+                <div style="display:flex;align-items:center;gap:8px">
+                  <div style="flex:1;min-width:0;display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px"><span id="ss-pk-sir" style="font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:19px">Šířka skříně</span><sc-if value="{{ sirWarn }}" hint-placeholder-val="{{ false }}"><span class="ss-pk-msg">Zadejte a potvrďte šířku</span></sc-if></div>
+                  <button type="button" class="ss-pd-cs-info" aria-label="Informace o šířce skříně" aria-expanded="{{ sirInfoExp }}" aria-controls="ss-sk-sir-info" onClick="{{ toggleSirInfo }}"><dc-import name="Ikony" iconName="info-circle" size="22" hint-size="22px,22px"></dc-import></button>
+                </div>
+                <sc-if value="{{ sirInfo }}" hint-placeholder-val="{{ false }}">
+                  <p id="ss-sk-sir-info" style="margin:0;padding:12px 16px;border-radius:6px;background:#EAF2FA;box-shadow:inset 0 0 0 1px #CFE0F0;font-size:14px;line-height:1.55;color:#1C3A57">Šířku skříně vyrobíme na míru v rozsahu 150–170 cm, po 1 cm. Výška se volí zvlášť (200–230 cm). Cena se dopočítá podle zadané šířky.</p>
+                </sc-if>
+                <!-- 26. 11. 2026: tlačítko Potvrdit šířku v řádku vedle pole -->
+                <div style="display:flex;flex-wrap:wrap;align-items:flex-end;gap:12px">
+                <label style="display:flex;flex-direction:column;gap:6px;flex:1 1 200px;max-width:260px;min-width:0">
+                  <span style="font-size:13px;font-weight:600;color:var(--ss-text-secondary,#3D4750)">Šířka (150–170 cm)</span>
+                  <span class="ss-pd-cs-f">
+                    <span class="ss-pd-cs-ic"><dc-import name="Ikony" iconName="arrows-horizontal" size="20" hint-size="20px,20px"></dc-import></span>
+                    <input class="ss-pd-cs-in" type="text" inputmode="numeric" placeholder="např. 160" value="{{ sirIn }}" onChange="{{ onSirIn }}" aria-invalid="{{ sirInvalid }}">
+                    <span class="ss-pd-cs-u">cm</span>
+                  </span>
+                </label>
+                  <sc-if value="{{ sirNotConf }}" hint-placeholder-val="{{ true }}">
+                    <span style="display:block;flex:none"><dc-import name="Tlacitko" label="Potvrdit šířku" variant="primary" size="medium" onClick="{{ confirmSir }}" hint-size="150px,44px"></dc-import></span>
+                  </sc-if>
+                </div>
+                <sc-if value="{{ sirHasErr }}" hint-placeholder-val="{{ false }}"><span role="alert" style="font-size:13px;color:var(--ss-status-error,#B3261E)">{{ sirErr }}</span></sc-if>
+                <!-- 26. 11. 2026: potvrzení šířky tlačítkem a výpis zvolené šířky (jako vlastní rozměr u postelí) -->
+                <sc-if value="{{ sirValid }}" hint-placeholder-val="{{ false }}">
+                  <div aria-live="polite" style="display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:4px 12px;padding:12px 16px;border-radius:6px;background:var(--ss-surface-subtle,#FAF5EF)">
+                    <span style="font-size:14px;color:var(--ss-text-secondary,#3D4750)">Šířka skříně {{ sirLabel }}</span>
+                    <span style="font-size:16px;font-weight:700;color:var(--ss-text-primary,#1C2229);white-space:nowrap">{{ sirNote }}</span>
+                  </div>
+                  <sc-if value="{{ sirConf }}" hint-placeholder-val="{{ false }}">
+                    <span role="status" style="display:flex;align-items:center;gap:8px;font-size:14px;font-weight:600;color:var(--ss-status-success,#157A41)"><dc-import name="Ikony" iconName="check" size="18" hint-size="18px,18px"></dc-import>{{ sirSummary }}</span>
+                  </sc-if>
+                </sc-if>
+              </div>
               <div style="display:flex;flex-direction:column;gap:12px">
               <sc-for list="{{ skPickers }}" as="p" hint-placeholder-count="4">
                 <dc-import name="VyberRadek" title="{{ p.title }}" value="{{ p.value }}" note="{{ p.note }}" noteColor="{{ p.noteColor }}" selected="{{ p.isOn }}" warn="{{ p.vrWarn }}" rowId="{{ p.pkId }}" image="{{ p.vrImg }}" swatch="{{ p.vrBg }}" fit="{{ p.vrFit }}" cta="{{ p.vrCta }}" canChange="{{ p.vrCan }}" position="{{ p.vrPos }}" onOpen="{{ p.onOpen }}" hint-size="100%,92px"></dc-import>
@@ -1177,7 +1212,7 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
                 <sc-for list="{{ stickyChips }}" as="ch" hint-placeholder-count="4">
                   <span style="display:inline-flex;align-items:center;gap:6px;height:26px;padding:0 10px;border-radius:999px;background:var(--ss-surface-subtle,#FAF5EF);box-shadow:inset 0 0 0 1px var(--ss-border-subtle,#E1E6EB);font-size:13px;color:var(--ss-text-secondary,#3D4750);white-space:nowrap">
                     <sc-if value="{{ ch.hasSwatch }}" hint-placeholder-val="{{ false }}">
-                      <span style="width:10px;height:10px;border-radius:999px;flex:none;box-shadow:inset 0 0 0 1px rgba(19,44,67,.18);background:{{ ch.color }}"></span>
+                      <span style="width:18px;height:18px;margin-left:-7px;border-radius:999px;flex:none;box-shadow:inset 0 0 0 1px rgba(19,44,67,.18);background:{{ ch.color }}"></span>
                     </sc-if>
                     <span>{{ ch.label }}</span>
                   </span>
@@ -1198,7 +1233,7 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
               <sc-for list="{{ stickyChips }}" as="ch" hint-placeholder-count="4">
                 <span style="display:inline-flex;align-items:center;gap:6px;flex:none;height:24px;padding:0 10px;border-radius:999px;background:var(--ss-surface-subtle,#FAF5EF);box-shadow:inset 0 0 0 1px var(--ss-border-subtle,#E1E6EB);font-size:13px;color:var(--ss-text-secondary,#3D4750)">
                   <sc-if value="{{ ch.hasSwatch }}" hint-placeholder-val="{{ false }}">
-                    <span style="width:10px;height:10px;border-radius:999px;flex:none;box-shadow:inset 0 0 0 1px rgba(19,44,67,.18);background:{{ ch.color }}"></span>
+                    <span style="width:18px;height:18px;margin-left:-7px;border-radius:999px;flex:none;box-shadow:inset 0 0 0 1px rgba(19,44,67,.18);background:{{ ch.color }}"></span>
                   </sc-if>
                   <span>{{ ch.label }}</span>
                 </span>
@@ -1721,7 +1756,9 @@ class Component extends DCLogic {
       { id: '150', label: '150 cm', add: 0 },
       { id: '170', label: '170 cm', add: 3500 }
     ];
-    const sir = SIRKY.find(x => x.id === this.state.sirka) || SIRKY[0];
+    // 26. 11. 2026: šířka zadáním 150–170 cm (input jako vlastní rozměr), cena lineárně 150 cm = 0 Kč … 170 cm = + 3 500 Kč (ukázkově)
+    const sirN = parseInt(this.state.sirIn || '', 10), sirOk = sirN >= 150 && sirN <= 170;
+    const sir = sirOk ? { id: String(sirN), label: sirN + ' cm', add: Math.round((sirN - 150) * 175 / 100) * 100 } : (SIRKY.find(x => x.id === this.state.sirka) || SIRKY[0]);
     const VYSKY = [
       { id: '200', label: '200 cm', add: 0 },
       { id: '210', label: '210 cm', add: 1200 },
@@ -2133,7 +2170,7 @@ class Component extends DCLogic {
         ['Vnitřní uspořádání', 'každá sekce zvlášť: police, zásuvkové vložky, šatní tyče'],
         ['LED osvětlení', 'volitelné, v obou sekcích'],
         ['Údržba', 'utřete vlhkým hadříkem, nedoporučujeme agresivní čistidla či rozpouštědla'],
-        ['Výrobce', 'Svět spánku, navrhujeme i vyrábíme v ČR']
+        ['Výrobce', 'Světspánku.cz, navrhujeme i vyrábíme v ČR']
       ].map((p, k, all) => ({ label: p[0] + ':', value: p[1], border: k < all.length - 1 ? '1px solid var(--ss-border-subtle,#E1E6EB)' : '0' })),
       perks: [
         { icon: 'map-pin', label: 'Vyrobena u nás v Česku' },
@@ -2208,10 +2245,10 @@ class Component extends DCLogic {
         const PKs = this.state.pk || {}, W = !!this.state.warn, set = (k, patch) => this.setState(st => Object.assign({}, patch, { pk: Object.assign({}, st.pk, { [k]: true }) }));
         const miss = [];
         const dims = [
-          { id: 'ss-pk-sir', title: 'Šířka skříně', k: 'sir', msg: 'Vyberte šířku', list: SIRKY, cur: sir, field: 'sirka' },
           { id: 'ss-pk-vys', title: 'Výška skříně', k: 'vys', msg: 'Vyberte výšku', list: VYSKY, cur: vys, field: 'vyska' }
         ].map(g => { if (!PKs[g.k]) miss.push(g.id); return { id: g.id, title: g.title, warn: W && !PKs[g.k], msg: g.msg, hasHint: g.k === 'vys' && !!PKs.vys && !!vys.hint, hint: vys.hint || '',
           items: g.list.map(h => { const on = !!PKs[g.k] && g.cur.id === h.id; return { label: h.label, extra: PP && h.add ? '+ ' + fmt(h.add) : '', variant: on ? 'primary' : 'outline', pressed: on ? 'true' : 'false', onPick: () => set(g.k, { [g.field]: h.id }) }; }) }; });
+        if (!PKs.sir) miss.push('ss-pk-sir'); // šířka se zadává (pod výškou)
         const nC = (t) => !t || /bez p/i.test(t) ? 'var(--ss-status-success,#157A41)' : 'var(--ss-text-primary,#1C2229)';
         const rows = [
           { k: 'mat', title: 'Materiál a odstín', value: mat.label, note: PP ? mat.note : '', swatch: mat.color, thumb: mat.color, zoom: matItem.image || '' },
@@ -2226,7 +2263,14 @@ class Component extends DCLogic {
         const done = miss.length === 0, d = this.state.drawer || '';
         const LED_ROWS = [{ id: 'no', label: 'Bez LED osvětlení', meta: 'skříň bez osvětlení', price: 'bez příplatku', stock: '' }, { id: 'yes', label: 'S LED osvětlením', meta: 'LED pásek v obou sekcích, tvar podle nákresu', price: '+ ' + fmt(upDiff), stock: '' }];
         return {
-          skDims: dims, skPickers: rows.map(p => this.vrMap(p)), ledPickers: ledPickers.map(p => this.vrMap(p)), hasLedPickers: ledPickers.length > 0,
+          skDims: dims,
+          sirIn: this.state.sirIn || '', sirWarn: W && !PKs.sir, sirInvalid: (this.state.sirIn || '').length >= 3 && !sirOk ? 'true' : 'false',
+          sirErr: (this.state.sirIn || '').length >= 3 && !sirOk ? 'Šířka musí být 150–170 cm.' : '', sirHasErr: (this.state.sirIn || '').length >= 3 && !sirOk,
+          sirNote: sirOk ? (sir.add ? '+ ' + fmt(sir.add) : 'Bez příplatku') : '', sirValid: sirOk, sirLabel: sir.label, sirConf: sirOk && !!PKs.sir, sirNotConf: sirOk && !PKs.sir,
+          sirSummary: 'Vybráno: ' + (PKs.vys ? 'skříň ' + sir.label.replace(' cm', '') + ' × ' + vys.label + ' (šířka × výška)' : 'šířka ' + sir.label) + (sir.add ? ', příplatek + ' + fmt(sir.add) + ' je započtený v ceně' : ''),
+          confirmSir: () => this.setState(st => ({ pk: Object.assign({}, st.pk, { sir: true }) })),
+          sirInfo: !!this.state.sirInfo, sirInfoExp: this.state.sirInfo ? 'true' : 'false', toggleSirInfo: () => this.setState(st => ({ sirInfo: !st.sirInfo })),
+          onSirIn: (e) => { const v = String(e.target.value || '').replace(/\D/g, '').slice(0, 3); const n = parseInt(v, 10); this.setState(st => ({ sirIn: v, pk: Object.assign({}, st.pk, { sir: false }) })); }, /* šířka platí až po Potvrdit */ skPickers: rows.map(p => this.vrMap(p)), ledPickers: ledPickers.map(p => this.vrMap(p)), hasLedPickers: ledPickers.length > 0,
           ledNone: !PKs.led, ledNoSel: !!PKs.led && this.state.up === 'no', ledYesSel: !!PKs.led && this.state.up === 'yes', ledNotNoSel: !(PKs.led && this.state.up === 'no'), ledNotYesSel: !(PKs.led && this.state.up === 'yes'),
           ledNoPressed: PKs.led && this.state.up === 'no' ? 'true' : 'false', ledYesPressed: PKs.led && this.state.up === 'yes' ? 'true' : 'false',
           ledNoDiff: PP ? 'Bez příplatku' : '', ledYesDiff: !PP ? '' : '+\u00A0' + fmt(upDiff),

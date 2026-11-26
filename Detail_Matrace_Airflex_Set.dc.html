@@ -1060,7 +1060,7 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
                 <sc-for list="{{ stickyChips }}" as="ch" hint-placeholder-count="4">
                   <span style="display:inline-flex;align-items:center;gap:6px;height:26px;padding:0 10px;border-radius:999px;background:var(--ss-surface-subtle,#FAF5EF);box-shadow:inset 0 0 0 1px var(--ss-border-subtle,#E1E6EB);font-size:13px;color:var(--ss-text-secondary,#3D4750);white-space:nowrap">
                     <sc-if value="{{ ch.hasSwatch }}" hint-placeholder-val="{{ false }}">
-                      <span style="width:10px;height:10px;border-radius:999px;flex:none;box-shadow:inset 0 0 0 1px rgba(19,44,67,.18);background:{{ ch.color }}"></span>
+                      <span style="width:18px;height:18px;margin-left:-7px;border-radius:999px;flex:none;box-shadow:inset 0 0 0 1px rgba(19,44,67,.18);background:{{ ch.color }}"></span>
                     </sc-if>
                     <span>{{ ch.label }}</span>
                   </span>
@@ -1085,7 +1085,7 @@ html[data-mode="dark"] .ss-bg-m1{background-image:url("data:image/svg+xml,%3Csvg
               <sc-for list="{{ stickyChips }}" as="ch" hint-placeholder-count="4">
                 <span style="display:inline-flex;align-items:center;gap:6px;flex:none;height:24px;padding:0 10px;border-radius:999px;background:var(--ss-surface-subtle,#FAF5EF);box-shadow:inset 0 0 0 1px var(--ss-border-subtle,#E1E6EB);font-size:13px;color:var(--ss-text-secondary,#3D4750)">
                   <sc-if value="{{ ch.hasSwatch }}" hint-placeholder-val="{{ false }}">
-                    <span style="width:10px;height:10px;border-radius:999px;flex:none;box-shadow:inset 0 0 0 1px rgba(19,44,67,.18);background:{{ ch.color }}"></span>
+                    <span style="width:18px;height:18px;margin-left:-7px;border-radius:999px;flex:none;box-shadow:inset 0 0 0 1px rgba(19,44,67,.18);background:{{ ch.color }}"></span>
                   </sc-if>
                   <span>{{ ch.label }}</span>
                 </span>
@@ -1508,10 +1508,10 @@ class Component extends DCLogic {
     // SET 1 + 1 (9. 11. 2026): cena = součet cen obou zvolených rozměrů, do výběru obou „od“ nejlevnější kombinace (ukázkové ceny)
     // 13. 11. 2026: SET 1 + 1 – u každé matrace se vybírá tuhost (S–XL jako Matrace 3.0) místo rozměru; cena setu stejná pro všechny tuhosti
     const SET_SIZES = [
-      { id: 'S', label: 'H2 · Soft', short: 'S', tuhost: 2, zOd: 50, zDo: 80, now: 6990, before: 8590 },
-      { id: 'M', label: 'H3 · Medium', short: 'M', tuhost: 3, zOd: 65, zDo: 95, now: 6990, before: 8590 },
-      { id: 'L', label: 'H4 · Hard', short: 'L', tuhost: 4, zOd: 80, zDo: 115, now: 6990, before: 8590 },
-      { id: 'XL', label: 'H5 · Extra Hard', short: 'XL', tuhost: 5, zOd: 95, zDo: 140, now: 6990, before: 8590 }
+      { id: 'S', label: 'H2', short: 'S', tuhost: 2, zOd: 50, zDo: 80, now: 6990, before: 8590 },
+      { id: 'M', label: 'H3', short: 'M', tuhost: 3, zOd: 65, zDo: 95, now: 6990, before: 8590 },
+      { id: 'L', label: 'H4', short: 'L', tuhost: 4, zOd: 80, zDo: 115, now: 6990, before: 8590 },
+      { id: 'XL', label: 'H5', short: 'XL', tuhost: 5, zOd: 95, zDo: 140, now: 6990, before: 8590 }
     ];
     const S1 = SET_SIZES.find(x => x.id === this.state.m1), S2 = SET_SIZES.find(x => x.id === this.state.m2);
     if (!S1) this._pkMiss.push('ss-pk-m1');
@@ -1524,10 +1524,10 @@ class Component extends DCLogic {
     const discount = '−' + Math.round((1 - now / before) * 100) + ' %';
     const sizes = stockFilter(ROZMERY).map(r => r.label);
     const variants = [
-      { label: 'ELARA greengel S', firm: 'H2 · Soft', tuhost: 2 },
-      { label: 'ELARA greengel M', firm: 'H2 · Soft', tuhost: 2 },
-      { label: 'ELARA greengel L', firm: 'H2 · Soft', tuhost: 2 },
-      { label: 'ELARA greengel XL', firm: 'H2 · Soft', tuhost: 2 }
+      { label: 'ELARA greengel S', firm: 'H2', tuhost: 2 },
+      { label: 'ELARA greengel M', firm: 'H2', tuhost: 2 },
+      { label: 'ELARA greengel L', firm: 'H2', tuhost: 2 },
+      { label: 'ELARA greengel XL', firm: 'H2', tuhost: 2 }
     ];
     const faqData = [
       { question: 'Jak vybrat správnou tuhost?', answer: 'Řiďte se hmotností a polohou při spaní. Na boku spícím lidem do 80 kg sedne S nebo M, na zádech a na břiše a nad 90 kg spíš L nebo XL. Nejjistější je matraci vyzkoušet na některé z našich prodejen.' },
@@ -1623,7 +1623,7 @@ class Component extends DCLogic {
       togglePerex: () => this.setState(s => ({ perex: !s.perex })),
       selTuhost: (variants.find(v => v.label === (this.state.variantLabel || 'ELARA greengel S')) || variants[0]).tuhost,
       facts: [
-        { icon: 'bed', label: 'Tuhost H2 – Soft' },
+        { icon: 'bed', label: 'Tuhost H2' },
         { icon: 'weight', label: 'Nosnost až 200 kg' },
         { icon: 'arrows-vertical', label: 'Výška jádra 20 cm' },
         { icon: 'stack-2', label: 'Pěnová matrace' }
@@ -1815,13 +1815,13 @@ class Component extends DCLogic {
         ['Výška matrace', '22 nebo 25 cm', 'arrow-autofit-height'],
         ['Výška jádra', '20 cm', 'ruler-2'],
         ['Nosnost', 'až 200 kg', 'weight'],
-        ['Tuhost', 'H4 – Hard, H5 – Extra Hard', 'adjustments-horizontal'],
+        ['Tuhost', 'H4, H5', 'adjustments-horizontal'],
         ['Počet zón', '7', 'adjustments'],
         ['Jádro', 'BIO pěna VERDE®, pěna XDURA®', 'stack-2'],
         ['Potah', 'greengel, snímatelný, pratelný na 60 °C', 'color-swatch'],
         ['Úprava potahu', 'antimikrobiální, chladicí gel', 'leaf'],
         ['Certifikace', 'OEKO-TEX® Standard 100', 'award'],
-        ['Výrobce', 'Svět spánku, vyrábíme v ČR', 'map-pin']
+        ['Výrobce', 'Světspánku.cz, vyrábíme v ČR', 'map-pin']
       ].map((p, k, all) => ({ label: p[0] + ':', value: p[1], icon: p[2], border: k < all.length - 1 ? '1px solid var(--ss-border-subtle,#E1E6EB)' : '0' })),
       perks: [
         { icon: 'map-pin', label: 'Vyrobena u nás v Česku' },

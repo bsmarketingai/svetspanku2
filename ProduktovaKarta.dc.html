@@ -406,8 +406,8 @@ html[data-mode="dark"] .ss-pc-fav-in{background:var(--ss-surface-card,#0E1F2F);c
 class Component extends DCLogic {
   // Vysvětlivky příznaků (tooltip po najetí / fokusu) podle ikony – 4. 11. 2026
   static TIPS = {
-    ring: 'Tuhost matrace na stupnici 1–5. Čím vyšší číslo, tím tužší matrace.',
-    'adjustments-horizontal': 'Tuhost matrace na stupnici 1–5. Čím vyšší číslo, tím tužší matrace.',
+    ring: 'Tuhost matrace na stupnici H1–H5. Čím vyšší stupeň, tím tužší matrace.',
+    'adjustments-horizontal': 'Tuhost matrace na stupnici H1–H5. Čím vyšší stupeň, tím tužší matrace.',
     user: 'Doporučená váha jednoho spáče.',
     'arrow-autofit-height': 'Celková výška matrace včetně potahu.',
     weight: 'Maximální nosnost na jednu osobu.',
@@ -459,7 +459,7 @@ class Component extends DCLogic {
     if (isF && d.mp) {
       const m = d.mp; chips = [];
       const tp = typeof m.tuhostPct === 'number' ? m.tuhostPct : (typeof m.tuhost === 'number' ? m.tuhost / 5 * 100 : null);
-      if (tp !== null) { const n = Math.max(1, Math.min(5, Math.round(tp / 20))); chips.push({ ring: n / 5, label: 'Tuhost' + nb + n + '/5', hl: true }); } // kruhový ukazatel místo ikony
+      if (tp !== null) { const n = Math.max(1, Math.min(5, Math.round(tp / 20))); chips.push({ ring: n / 5, label: 'Tuhost' + nb + 'H' + n, hl: true }); } // kruhový ukazatel místo ikony
       if (m.zatizeniOd && m.zatizeniDo) chips.push({ icon: 'weight', label: 'Pro' + nb + m.zatizeniOd + '–' + m.zatizeniDo + nb + 'kg', hl: true }); // závaží jako v ostatních variantách (4. 11. 2026)
       if (m.vyska) chips.push({ icon: 'arrow-autofit-height', label: m.vyska + nb + 'cm' });
       if (m.nosnostMax) chips.push({ icon: 'weight', label: 'max' + nb + m.nosnostMax + nb + 'kg' });

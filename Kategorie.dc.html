@@ -507,8 +507,8 @@ const FACETY = [
     { id: '160x200', label: '160 × 200 cm', count: 62 }, { id: '180x200', label: '180 × 200 cm', count: 57 },
     { id: '200x200', label: '200 × 200 cm', count: 12 } ] },
   { id: 'tuhost', title: 'Tuhost', options: [
-    { id: 'h1', label: 'H1', count: 14 }, { id: 'h2', label: 'H2', count: 44 },
-    { id: 'h3', label: 'H3', count: 39 }, { id: 'h4', label: 'H4', count: 15 } ] },
+    { id: 'h1', label: 'H1', count: 6 }, { id: 'h2', label: 'H2', count: 14 }, { id: 'h3', label: 'H3', count: 44 },
+    { id: 'h4', label: 'H4', count: 39 }, { id: 'h5', label: 'H5', count: 15 } ] },
   { id: 'konstrukce', title: 'Konstrukce', options: [
     { id: 'penova', label: 'Pěnová', count: 38 }, { id: 'tastickova', label: 'Taštičková', count: 31 },
     { id: 'latexova', label: 'Latexová', count: 18 }, { id: 'sendvicova', label: 'Sendvičová', count: 15 } ] },
@@ -1806,7 +1806,7 @@ const TEXTY = {
     "t": "ol",
     "items": [
      "Rozměr – matrace má sedět na rošt a být alespoň o 20 cm delší, než je vaše výška. Do dvojlůžek se obvykle dávají dvě matrace (např. 2× 90×200 do postele 180×200).",
-     "Tvrdost – rozhoduje hmotnost a poloha spánku. Lehčí postavy a spáči na boku potřebují měkčí matraci, těžší postavy a spáči na zádech či břiše tvrdší. Tvrdost značíme na stupnici 1–5.",
+     "Tvrdost – rozhoduje hmotnost a poloha spánku. Lehčí postavy a spáči na boku potřebují měkčí matraci, těžší postavy a spáči na zádech či břiše tvrdší. Tvrdost značíme na stupnici H1–H5.",
      "Typ jádra – pěnová matrace dobře kopíruje tělo, taštičková lépe větrá a nepřenáší pohyb partnera, paměťová pěna uleví tlakovým bodům, latex je pružný a hybridní kombinuje pružiny s pěnou."
     ]
    },
@@ -1830,7 +1830,7 @@ const TEXTY = {
   "faq": [
    {
     "question": "Jak vybrat správnou tvrdost matrace?",
-    "answer": "Tvrdost matrace vybírejte hlavně podle hmotnosti a polohy spánku. Těžší postava a spaní na zádech nebo břiše potřebuje tvrdší matraci, lehčí postava a spaní na boku měkčí. Světspánku.cz značí tvrdost na stupnici 1–5."
+    "answer": "Tvrdost matrace vybírejte hlavně podle hmotnosti a polohy spánku. Těžší postava a spaní na zádech nebo břiše potřebuje tvrdší matraci, lehčí postava a spaní na boku měkčí. Světspánku.cz značí tvrdost na stupnici H1–H5."
    },
    {
     "question": "Co je služba 30 nocí jistoty?",
@@ -1900,7 +1900,7 @@ const TEXTY = {
    },
    {
     "t": "p",
-    "text": "Pro děti doporučujeme dětské matrace bez lepidel. Pro dospělé vybírejte tvrdost podle hmotnosti a polohy spánku na stupnici 1–5 a typ jádra podle toho, jestli chcete pěnovou, taštičkovou nebo matraci z paměťové pěny. Na polohovací rošt volte ohebnou matraci."
+    "text": "Pro děti doporučujeme dětské matrace bez lepidel. Pro dospělé vybírejte tvrdost podle hmotnosti a polohy spánku na stupnici H1–H5 a typ jádra podle toho, jestli chcete pěnovou, taštičkovou nebo matraci z paměťové pěny. Na polohovací rošt volte ohebnou matraci."
    }
   ],
   "faq": [
@@ -1944,7 +1944,7 @@ const TEXTY = {
    },
    {
     "t": "p",
-    "text": "Tvrdost vybírejte podle hmotnosti a polohy spánku na stupnici 1–5: lehčí postavy a spáči na boku spíš měkčí, těžší postavy a spáči na zádech či na břiše tvrdší. Nejuniverzálnější je středně tvrdá matrace."
+    "text": "Tvrdost vybírejte podle hmotnosti a polohy spánku na stupnici H1–H5: lehčí postavy a spáči na boku spíš měkčí, těžší postavy a spáči na zádech či na břiše tvrdší. Nejuniverzálnější je středně tvrdá matrace."
    },
    {
     "t": "h",
@@ -2176,20 +2176,20 @@ const TEXTY = {
    },
    {
     "t": "h",
-    "text": "Stupnice tvrdosti 1–5"
+    "text": "Stupnice tvrdosti H1–H5"
    },
    {
     "t": "p",
-    "text": "Tvrdost matrací Světspánku.cz značíme na stupnici 1 až 5:"
+    "text": "Tvrdost matrací Světspánku.cz značíme na stupnici H1 až H5:"
    },
    {
     "t": "ul",
     "items": [
-     "1 – velmi měkká: lehčí postavy, spáči na boku",
-     "2 – měkká: lehčí až střední postavy, střídání poloh",
-     "3 – středně tvrdá: nejuniverzálnější volba pro většinu lidí",
-     "4 – tvrdá: těžší postavy, spaní na zádech a na břiše",
-     "5 – velmi tvrdá: nejvyšší hmotnosti a milovníci pevné podložky"
+     "H1 – velmi měkká: lehčí postavy, spáči na boku",
+     "H2 – měkká: lehčí až střední postavy, střídání poloh",
+     "H3 – středně tvrdá: nejuniverzálnější volba pro většinu lidí",
+     "H4 – tvrdá: těžší postavy, spaní na zádech a na břiše",
+     "H5 – velmi tvrdá: nejvyšší hmotnosti a milovníci pevné podložky"
     ]
    },
    {
@@ -2233,7 +2233,7 @@ const TEXTY = {
   ]
  },
  "/matrace/matrace-podle-tvrdosti/velmi-mekke-matrace/": {
-  "h1": "Velmi měkké matrace",
+  "h1": "Matrace H1",
   "short": "Velmi měkké matrace pro lehčí postavy (orientačně do 60 kg) a spáče na boku.",
   "long": [
    {
@@ -2244,7 +2244,7 @@ const TEXTY = {
   "faq": [
    {
     "question": "Pro koho je velmi měkká matrace?",
-    "answer": "Velmi měkká matrace (stupeň 1/5) je pro lehčí postavy, spáče na boku a lidi s citlivými klouby, kterým vyhovuje hluboké zaboření ramen a boků."
+    "answer": "Velmi měkká matrace (H1) je pro lehčí postavy, spáče na boku a lidi s citlivými klouby, kterým vyhovuje hluboké zaboření ramen a boků."
    },
    {
     "question": "Není měkká matrace špatná pro záda?",
@@ -2253,7 +2253,7 @@ const TEXTY = {
   ]
  },
  "/matrace/matrace-podle-tvrdosti/mekke-matrace/": {
-  "h1": "Měkké matrace",
+  "h1": "Matrace H2",
   "short": "Měkké matrace pro hmotnost orientačně 60–80 kg – příjemně se přizpůsobí, ale nepropadnete se.",
   "long": [
    {
@@ -2264,7 +2264,7 @@ const TEXTY = {
   "faq": [
    {
     "question": "Jaký je rozdíl mezi velmi měkkou a měkkou matrací?",
-    "answer": "Měkká matrace (stupeň 2/5) dává o něco víc opory než velmi měkká a hodí se pro lehčí až střední postavy, které během noci střídají polohy."
+    "answer": "Měkká matrace (H2) dává o něco víc opory než velmi měkká a hodí se pro lehčí až střední postavy, které během noci střídají polohy."
    },
    {
     "question": "Je měkká matrace vhodná na spaní na zádech?",
@@ -2273,7 +2273,7 @@ const TEXTY = {
   ]
  },
  "/matrace/matrace-podle-tvrdosti/stredne-tvrde-matrace/": {
-  "h1": "Středně tvrdé matrace",
+  "h1": "Matrace H3",
   "short": "Nejčastější volba – vyvážená opora pro většinu spáčů, orientačně 75–100 kg.",
   "long": [
    {
@@ -2284,7 +2284,7 @@ const TEXTY = {
   "faq": [
    {
     "question": "Je středně tvrdá matrace vhodná pro každého?",
-    "answer": "Středně tvrdá matrace (stupeň 3/5) vyhovuje většině lidí a je nejčastější volbou. Velmi lehké a velmi těžké postavy by měly zvolit měkčí nebo tvrdší stupeň."
+    "answer": "Středně tvrdá matrace (H3) vyhovuje většině lidí a je nejčastější volbou. Velmi lehké a velmi těžké postavy by měly zvolit měkčí nebo tvrdší stupeň."
    },
    {
     "question": "Mohu tvrdost matrace později vyměnit?",
@@ -2293,7 +2293,7 @@ const TEXTY = {
   ]
  },
  "/matrace/matrace-podle-tvrdosti/tvrde-matrace/": {
-  "h1": "Tvrdé matrace",
+  "h1": "Matrace H4",
   "short": "Tvrdé matrace pro těžší postavy (orientačně 90–120 kg) a spaní na zádech nebo na břiše.",
   "long": [
    {
@@ -2304,7 +2304,7 @@ const TEXTY = {
   "faq": [
    {
     "question": "Pro koho je tvrdá matrace?",
-    "answer": "Tvrdá matrace (stupeň 4/5) je pro těžší postavy a pro spaní na zádech nebo na břiše, kdy je potřeba, aby se pánev nepropadala."
+    "answer": "Tvrdá matrace (H4) je pro těžší postavy a pro spaní na zádech nebo na břiše, kdy je potřeba, aby se pánev nepropadala."
    },
    {
     "question": "Proč mi tvrdá matrace připadá měkčí než ostatním?",
@@ -2313,7 +2313,7 @@ const TEXTY = {
   ]
  },
  "/matrace/matrace-podle-tvrdosti/velmi-tvrde-matrace/": {
-  "h1": "Velmi tvrdé matrace",
+  "h1": "Matrace H5",
   "short": "Velmi tvrdé matrace pro hmotnost nad 120 kg a pro ty, kdo chtějí cítit pevnou podložku.",
   "long": [
    {
@@ -2324,7 +2324,7 @@ const TEXTY = {
   "faq": [
    {
     "question": "Jakou matraci zvolit pro osobu s vysokou hmotností?",
-    "answer": "Velmi tvrdou matraci (stupeň 5/5) s vysokou nosností. Maximální nosnost najdete u každého modelu Světspánku.cz."
+    "answer": "Velmi tvrdou matraci (H5) s vysokou nosností. Maximální nosnost najdete u každého modelu Světspánku.cz."
    },
    {
     "question": "Nebude mi velmi tvrdá matrace nepohodlná?",
@@ -2718,7 +2718,7 @@ const TEXTY = {
     "t": "ul",
     "items": [
      "Anatomické zóny – části matrace s různou tvrdostí podle hmotnosti jednotlivých částí těla (například ELARA má 7 zón).",
-     "Správná tvrdost – podle hmotnosti a polohy spánku na stupnici 1–5.",
+     "Správná tvrdost – podle hmotnosti a polohy spánku na stupnici H1–H5.",
      "Hygiena – antimikrobiální úprava a pratelný potah pro alergiky."
     ]
    },
@@ -6150,38 +6150,38 @@ const MENU = [
         "chips": "hardness",
         "items": [
           {
-            "label": "Velmi měkké (1/5)",
+            "label": "H1",
             "href": "Kategorie_Matrace_velmi-mekke-matrace.dc.html",
             "url": "/matrace/matrace-podle-tvrdosti/velmi-mekke-matrace/",
-            "h1": "Velmi měkké matrace",
+            "h1": "Matrace H1",
             "note": "do 60 kg"
           },
           {
-            "label": "Měkké (2/5)",
+            "label": "H2",
             "href": "Kategorie_Matrace_mekke-matrace.dc.html",
             "url": "/matrace/matrace-podle-tvrdosti/mekke-matrace/",
-            "h1": "Měkké matrace",
+            "h1": "Matrace H2",
             "note": "60–80 kg"
           },
           {
-            "label": "Středně tvrdé (3/5)",
+            "label": "H3",
             "href": "Kategorie_Matrace_stredne-tvrde-matrace.dc.html",
             "url": "/matrace/matrace-podle-tvrdosti/stredne-tvrde-matrace/",
-            "h1": "Středně tvrdé matrace",
+            "h1": "Matrace H3",
             "note": "75–100 kg"
           },
           {
-            "label": "Tvrdé (4/5)",
+            "label": "H4",
             "href": "Kategorie_Matrace_tvrde-matrace.dc.html",
             "url": "/matrace/matrace-podle-tvrdosti/tvrde-matrace/",
-            "h1": "Tvrdé matrace",
+            "h1": "Matrace H4",
             "note": "90–120 kg"
           },
           {
-            "label": "Velmi tvrdé (5/5)",
+            "label": "H5",
             "href": "Kategorie_Matrace_velmi-tvrde-matrace.dc.html",
             "url": "/matrace/matrace-podle-tvrdosti/velmi-tvrde-matrace/",
-            "h1": "Velmi tvrdé matrace",
+            "h1": "Matrace H5",
             "note": "nad 120 kg"
           },
           {
@@ -7250,10 +7250,10 @@ class Component extends DCLogic {
     { title: 'Jakou zvolit tuhost nové matrace?', image: '_blob/dc5fa8667ca1a270c407277d68672f80.webp', imageAlt: 'Ruka tlačí do matrace, řez vrstvami',
       intro: 'Tuhost se značí stupni H1 až H5. Správná tuhost drží páteř v rovině – nezáleží jen na váze, ale i na poloze, ve které spíte.',
       items: [
-        { h: 'H1 – Soft', t: 'Pro lehčí postavy do 60 kg a spaní na boku. Ramena a boky se hlouběji zaboří.' },
-        { h: 'H2 – Medium', t: 'Univerzální volba pro 60–90 kg. Vyhovuje většině spáčů na boku i na zádech.' },
-        { h: 'H3 – Hard', t: 'Pro 90–120 kg nebo spaní na zádech a břiše. Pánev se nepropadá.' },
-        { h: 'H4 a H5 – Extra Hard', t: 'Pro těžší postavy nad 120 kg a pro ty, kdo vyžadují pevnou oporu.' },
+        { h: 'H1 a H2', t: 'Pro lehčí postavy do 60 kg a spaní na boku. Ramena a boky se hlouběji zaboří.' },
+        { h: 'H3', t: 'Univerzální volba pro 60–90 kg. Vyhovuje většině spáčů na boku i na zádech.' },
+        { h: 'H4', t: 'Pro 90–120 kg nebo spaní na zádech a břiše. Pánev se nepropadá.' },
+        { h: 'H5', t: 'Pro těžší postavy nad 120 kg a pro ty, kdo vyžadují pevnou oporu.' },
         { h: 'Partneři s různou váhou', t: 'Zvolte dvě samostatné matrace, nebo partnerskou matraci s rozdílnou tuhostí každé poloviny.' }
       ],
       ctaLabel: 'Zobrazit matrace podle tuhosti', ctaHref: '#tuhost' }

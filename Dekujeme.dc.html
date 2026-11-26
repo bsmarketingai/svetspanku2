@@ -506,7 +506,7 @@ class Component extends DCLogic {
     const delFee = osobni ? 0 : 1500;
     const total = goods.reduce((s, g) => s + g.unit * g.qty, 0) + delFee;
     const platba = { prevod: 'Okamžitý bankovní převod', zaplaceno: 'Platba kartou online', nezaplaceno: 'Platba kartou online', dobirka: 'Dobírka', osobni: 'Na prodejně' }[stav];
-    const doprava = osobni ? 'Osobní odběr – Brno, H-Park' : 'Vlastní doprava Světspánku – vynáška do patra';
+    const doprava = osobni ? 'Osobní odběr – Brno, H-Park' : 'Vlastní doprava Světspánku.cz – vynáška do patra';
     const dopravaAdresa = osobni ? 'Heršpická 11f, 639 00 Brno · Po–Pá 9:00–18:00, So 10:00–18:00' : 'Školní 279, 281 63 Žehušice';
     const waitPay = stav === 'prevod' || stav === 'nezaplaceno';
     let steps;
